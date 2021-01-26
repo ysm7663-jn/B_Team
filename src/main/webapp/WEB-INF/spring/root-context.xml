@@ -5,18 +5,18 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
-	<!-- HikariConfig (url -> jdbcUrl) -->
+	<!-- HikariConfig (url -> jdbcUrl)로만 변경 -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
 		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="username" value="spring" />
 		<property name="password" value="1111" />
-	</bean>
-	
+	</bean>	 
 	<!-- HikariDataSource -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
+	
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -25,7 +25,13 @@
 	
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
-	</bean>	
+	</bean>
+	
+	<!-- 파일업로드용 : multipartResolver -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+		<property name="defaultEncoding" value="utf-8" />
+		<property name="maxUploadSize" value="10485760" /> <!-- 10MB(10485760)  = 1024 * 1024 * 10 byte -->
+	</bean>
 	
 	<!-- Mybatis용 dataSource, sqlSessionFactory, sqlSession -->
 	
