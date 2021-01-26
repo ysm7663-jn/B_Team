@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.koreait.B_Team">
+	<logger name="com.koreait.baraON">
 		<level value="info" />
 	</logger>
 	
