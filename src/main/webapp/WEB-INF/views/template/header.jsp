@@ -33,15 +33,16 @@
 			
 			<div class="head_content">
 				<nav id="bottom_head">
-					<div><a href="">소개</a></div>
-					<div><a href="">장기 프로젝트</a></div>
-					<div><a href="">단기 프로젝트</a></div>
-					<div><a href="">장소</a></div>
+					<div><a href="">바라온 소개</a></div>
+					<div><a href="">정기 활동</a></div>
+					<div><a href="">번개 활동</a></div>
+					<div><a href="">장소 공유</a></div>
 					<div><a href="">공지사항&이벤트</a></div>
 				</nav>
 			</div>
 		
 		<!-- 로그인 후 -->
+		<!-- EL 작업해야함 -->
 		<!-- 	
 		<div class="head-wrap">
 				<div class="left_head_wrap">
