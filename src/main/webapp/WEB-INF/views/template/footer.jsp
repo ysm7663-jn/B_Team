@@ -2,8 +2,6 @@
     pageEncoding="UTF-8"%>
     
 </div>
-		
-			
 			
 		<div class="footer-wrap">
 			<div class="title">
