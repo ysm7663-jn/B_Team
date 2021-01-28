@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.baraON.dao.MemberDao">
+	<select id="memberLogin" resultType="com.koreait.baraON.dto.MemberDto">
+		SELECT *
+			FROM MEMBER
+		  WHERE M_ID = #{param1}
+		   AND M_PW = #{param2}
+	</select>
+	<select id="sellerLogin" resultType="com.koreait.baraON.dto.SellerDto">
+		SELECT *
+			FROM SELLER
+		  WHERE S_ID = #{param1}
+		   AND S_PW = #{param2}
+	</select>
+</mapper>

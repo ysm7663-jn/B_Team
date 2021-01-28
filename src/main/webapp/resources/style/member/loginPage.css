@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+ul, ol {
+	list-style-type: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+
+.box {
+	background: gray;
+	height: 700px;
+}
+.inner-box {
+	background: white;
+	height: 600px;
+	width: 600px;
+	position: relative;
+	left: 580px;
+	top: 50px;
+}
+.box {
+	text-align: center;
+}
+form {
+	position: relative;
+	top: 50px;
+}
+a[class="login"] {
+	color: #1DD1AD;
+}
+button {
+	background: #1DD1AD;
+	color: white;
+	width: 130px;
+	border: 1px solid #13C7A3;
+	border-radius: 2px;
+}
+
