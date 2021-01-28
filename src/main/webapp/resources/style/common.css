@@ -137,6 +137,7 @@ a {
 .part {
 	margin-bottom: 15px;
 	list-style-type: none;
+	font-weight: 900;
 }
 
 .partners-info > #partner-bold {
