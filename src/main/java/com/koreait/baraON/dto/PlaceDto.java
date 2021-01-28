@@ -17,7 +17,7 @@ public class PlaceDto {
 	private String pInfo;
 	private String pName;
 	private String pAddr;
-	private int Star;
+	private int pStar;
 	private String pImg;
 	private int pConfirm;
 	private String pUrl;
