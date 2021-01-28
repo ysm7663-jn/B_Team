@@ -16,7 +16,7 @@ public class controller {
 	
 	private BaraONCommand baraONCommand;
 	
-	@RequestMapping(value="/")
+	@RequestMapping(value= {"/","index"})
 	public String index() {
 		return "index";
 	}

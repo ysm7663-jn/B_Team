@@ -30,6 +30,7 @@ public class LoginCommand implements BaraONCommand {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginDto", loginMemberDto);
 				model.addAttribute("loginDto", loginMemberDto);
+				model.addAttribute("grade", "member");
 			}
 		} else {  // 등급이 seller일때 
 			SellerDto loginSellerDto = memberDao.sellerLogin(id, pw);
@@ -37,6 +38,7 @@ public class LoginCommand implements BaraONCommand {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginDto", loginSellerDto);
 				model.addAttribute("loginDto", loginSellerDto);
+				model.addAttribute("grade", "seller");
 			}
 		}
 				

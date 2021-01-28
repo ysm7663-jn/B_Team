@@ -13,6 +13,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%
+	String id = null;
+
+	Cookie[] cookieList = request.getCookies();
+	if(cookieList != null && cookieList.length != 0) {
+		
+	}
+%>
+
+
 	<div class="box">
 		<div class="inner-box">
 			<form action="login.member" method="post">
