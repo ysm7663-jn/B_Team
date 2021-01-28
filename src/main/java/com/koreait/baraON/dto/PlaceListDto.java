@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class PlaceListDto {
 	
-	private int pNo;
-	private String pcName;
-	private int poMinPrice;
-	private int poMaxPeople;
+	private int p_no;
 	private int rvCount;
-	private String pImg;
-	private String pTitle;
-	private String pAddr;
+	private String pc_name;
+	private int minPrice;
+	private int maxPeople;
+	private String p_title;
+	private String p_img;
+	private String p_addr;
 }

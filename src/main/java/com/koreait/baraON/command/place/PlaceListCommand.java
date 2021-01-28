@@ -11,11 +11,7 @@ public class PlaceListCommand implements PlaceCommand {
 	public void execute(SqlSession sqlSession, Model model) {
 		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
 		
-		try {
-			model.addAttribute("list", placeDao.placeList());
-		} catch(NullPointerException e) {
-			model.addAttribute("list", null);
-		}
+		model.addAttribute("list", placeDao.placeList());
 	}
 
 }
