@@ -2,32 +2,32 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../template/header.jsp">
-	<jsp:param value="BaraON :: 장소공유" name="title"/>
+	<jsp:param value="BaraON :: 공간목록" name="title"/>
 </jsp:include>
 
-<style>
-	.list-wrap {
-		width : 600px;
-		margin : auto;
-	}
-	.place-list-wrap{
-		display: flex;
-	}
-	.place-list-wrap > article {
-		width : 200px;
-	}
-	.place-list {
-		width: 200px;
-	}
+<link rel="stylesheet" href="resources/style/place-list.css">
 
-</style>
 
-<h3>어떤 공간을 찾고 있나요?</h3>
+<h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
-<h3>오늘의 추천공간</h3>
+<div class="category-wrap">
+	<div class="category-list">
+		<c:if test="${categoryList eq null}" >
+			<h4>아직 카테고리가 없네요!</h4>
+		</c:if>
+		<c:if test="${categoryList ne null}">
+			<c:forEach var="categoryDto" items="${categoryList}" >
+				<div class="category">
+					${categoryDto.pc_name}
+				</div>
+			</c:forEach>
+		</c:if>
+	</div>
+</div>
+
 <div class="list-wrap">
 	<!-- Todo : 로그인된 회원이 판매자인지 확인 후 판매자면 공간등록버튼 생성 -->
-	<h2>공간 목록</h2>
+	<h3 class="subtitle">공간 목록</h3>
 	<c:if test="${empty list}">
 		<div class="empty-list-box" >등록된 공간이 없어요!</div>
 	</c:if>
@@ -35,13 +35,15 @@
 		<div class="place-list-wrap">
 		<c:forEach var="placeList" items="${list}" >
 			<article class="place-list">
-				<a href="placeViewPage.place">
-					<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/${placeList.p_img}">
+
+				<a href="placeViewPage.place?no=${placeList.p_no}">
+					<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/${placeList.p_img}.jpg">
 					<div class="place-list-info" >
 						<h3>${placeList.p_title}</h3>
 						<div class="place-list-detail">
 							<span id="place-list-addr"><i class="fas fa-map-marker-alt"></i>${placeList.p_addr}</span>
-							<span id="place-list-category"># ${placeList.p_title}</span><br/>
+							<span id="place-list-category"># ${placeList.pc_name}</span><br/>
+
 						</div>
 						<div id="info-price">
 							<strong class="place-price" >${placeList.minPrice}</strong>

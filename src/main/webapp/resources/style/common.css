@@ -13,6 +13,7 @@
 
 a {
 	text-decoration: none;
+	color: black;
 }
 
 .wrap {
@@ -127,12 +128,23 @@ a {
 	margin-right: 250px;
 }
 
-.part {
-	margin-bottom: 15px;
-}
 
 .name {
 	color: black;
 	list-style-type: none;
+}
+
+.part {
+	margin-bottom: 15px;
+	list-style-type: none;
 	font-weight: 900;
+}
+
+.partners-info > #partner-bold {
+	list-style-type: none;
+	font-weight: 900;
+}
+
+.name > #partner-bold:nth-of-type(n) {
+	list-style-type: none;
 }
