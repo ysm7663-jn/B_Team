@@ -31,8 +31,8 @@
 		<c:if test="${loginDto eq null}">
 			<div class="head-wrap">
 				<div class="left_head_wrap">
-						<a href="">
-							<img alt="로고사진" src="">
+						<a href="index">
+							<img id="logo" alt="로고사진" src="">
 						</a>
 				</div>
 				
@@ -60,8 +60,8 @@
 		<c:if test="${loginDto ne null}">
 			<div class="head-wrap">
 				<div class="left_head_wrap">
-						<a href="">
-							<img alt="로고사진" src="">
+						<a href="index">
+							<img id="logo" alt="로고사진" src="">
 						</a>
 				</div>
 				
