@@ -54,6 +54,7 @@
 					<div><a href="">공지사항&이벤트</a></div>
 				</nav>
 			</div>
+		</c:if>
 		
 		<!-- 로그인 후 -->
 		<c:if test="${loginDto ne null}">
