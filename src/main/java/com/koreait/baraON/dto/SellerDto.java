@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class SellerDto {
-	private int sNo;
-	private String sId;
-	private String sPw;
-	private String sPhone;
-	private String sName;
-	private String sBirth;
-	private String sEmail;
-	private Date sRegDate;
-	private int sAuth;
-	private int sAgreement;
-	private String sCompanyNo;
+	private int s_no;
+	private String s_id;
+	private String s_pw;
+	private String s_phone;
+	private String s_name;
+	private String s_birth;
+	private String s_email;
+	private Date s_regDate;
+	private int s_auth;
+	private int s_agreement;
+	private String s_companyNo;
 }
