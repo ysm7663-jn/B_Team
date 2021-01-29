@@ -1,5 +1,7 @@
 package com.koreait.baraON.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,13 @@ public class PlaceController {
 	public String placeListPage(Model model) {
 		placeListCommand.execute(sqlSession, model);
 		return "place/placeListPage";
+	}
+	
+	@RequestMapping(value="placeViewPage.place", method=RequestMethod.GET)
+	public String placeViewPage(HttpServletRequest request,  Model model) {
+		
+		
+		return "place/placeViewPage";
 	}
 	
 }

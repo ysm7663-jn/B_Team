@@ -8,6 +8,21 @@
 
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
+<div class="category-wrap">
+	<div class="category-list">
+		<c:if test="${categoryList eq null}" >
+			<h4>아직 카테고리가 없네요!</h4>
+		</c:if>
+		<c:if test="${categoryList ne null}">
+			<c:forEach var="categoryDto" items="${categoryList}" >
+				<div class="category">
+					
+				</div>
+			</c:forEach>
+		</c:if>
+	</div>
+</div>
+
 <div class="list-wrap">
 	<!-- Todo : 로그인된 회원이 판매자인지 확인 후 판매자면 공간등록버튼 생성 -->
 	<h3 class="subtitle">공간 목록</h3>
