@@ -18,7 +18,7 @@
 		<div class="place-list-wrap">
 		<c:forEach var="placeList" items="${list}" >
 			<article class="place-list">
-				<a href="placeViewPage.place">
+				<a href="placeViewPage.place?no=${placeList.p_no}">
 					<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/${placeList.p_img}.jpg">
 					<div class="place-list-info" >
 						<h3>${placeList.p_title}</h3>
