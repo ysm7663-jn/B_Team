@@ -9,8 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.koreait.baraON.command.BaraONCommand;
 import com.koreait.baraON.command.LoginCommand;
+import com.koreait.baraON.command.LogoutCommand;
 
 @Controller
 public class MemberController {
@@ -20,10 +20,13 @@ public class MemberController {
 	
 	//private BaraONCommand baraONCommand;
 	private LoginCommand loginCommand;
+	private LogoutCommand logoutCommand;
 	
 	@Autowired
-	public void setCommand(LoginCommand loginCommand) {
+	public void setCommand(LoginCommand loginCommand,
+							 LogoutCommand logoutCommand) {
 		this.loginCommand = loginCommand;
+		this.logoutCommand = logoutCommand;
 	}
 	
 	//단순이동
@@ -36,8 +39,17 @@ public class MemberController {
 	public String login(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		loginCommand.execute(sqlSession, model);
-		
-		return "member/loginResult";
+		if(request.getParameter("grade").equals("member")) { // member일때
+			return "member/loginResult";
+		} else {  // seller일때
+			return "member/loginResult2";
+		}
 	}
 	
+	@RequestMapping(value="logout.member", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		logoutCommand.execute(sqlSession, model);
+		return "index";
+	}
 }

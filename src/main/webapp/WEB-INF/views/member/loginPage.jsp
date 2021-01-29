@@ -11,15 +11,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/style/member/loginPage.css">
 <title>Insert title here</title>
+<script>
+	$(document).ready(function(){
+		$(".footer-wrap").css("background" , "white");
+	});
+</script>
 </head>
 <body>
 <%
-	String id = null;
-
-	Cookie[] cookieList = request.getCookies();
-	if(cookieList != null && cookieList.length != 0) {
-		
-	}
+	/* 아이디 기억 구현*/
 %>
 
 

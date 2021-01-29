@@ -25,5 +25,6 @@
 	
 	
 	<beans:bean id="loginCommand" class="com.koreait.baraON.command.LoginCommand" />	
+	<beans:bean id="logoutCommand" class="com.koreait.baraON.command.LogoutCommand" />	
 	
 </beans:beans>
