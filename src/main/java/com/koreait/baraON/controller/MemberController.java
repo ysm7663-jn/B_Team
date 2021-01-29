@@ -62,4 +62,10 @@ public class MemberController {
 		logoutCommand.execute(sqlSession, model);
 		return "index";
 	}
+	
+	// 단순이동
+	@RequestMapping(value="findPage.member", method=RequestMethod.GET)
+	public String findIdAndPwPage(HttpServletRequest request, Model model) {
+		return "member/findPage";
+	}
 }

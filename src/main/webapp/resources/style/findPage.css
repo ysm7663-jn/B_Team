@@ -1,0 +1,88 @@
+@charset "UTF-8";
+
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+
+.box {
+	background: lightgray;
+	height: 500px;
+}
+.inner-box {
+	width : 50%;
+	height: 70%;
+	border-radius: 10px;
+	background: white;
+}
+.main-aside {
+	position: relative;
+	width: 70%;
+	left: 16%;
+	top: 10%;
+	
+}
+input[type="radio"] {
+	display: none;
+}
+.tab-contents {
+	display: none;
+}
+.tab-buttons {
+	display: flex;
+	margin: 5%;
+}
+.button input{
+	width: 100%;	
+	border: 1px solid #1DD1AD;
+	border-radius: 3px;
+	background: #1DD1AD;
+	color: white;
+}
+hr {
+	visibility: ;
+	background: #1DD1AD;
+	border: 1px solid #1DD1AD;
+	border-radius: 3px;
+	height: 3px;
+	margin-top: 3px;
+}
+.tab-buttons > label {
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	width: 25%;
+}
+#findId:checked ~ .tab-contents:first-of-type {
+	display: block;
+}
+#findId:checked ~ label > .line:first-of-type {
+	visibility: visible;
+}
+#findPw:checked ~ .tab-contents:last-of-type {
+	display: block;
+}
+#findPw:checked ~ label > .line:last-of-type {
+	visibility: visible;
+}
+td {
+	heigth: 20px;
+}
+.name > td:first-of-type, .email > td:first-of-type, .id > td:first-of-type {
+	background: lightgray;
+}
