@@ -2,12 +2,21 @@
     pageEncoding="UTF-8"%>
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    
+
+<%
+	request.setCharacterEncoding("UTF-8");
+	String title = request.getParameter("title");
+	if (title == null || title.isEmpty()) {
+		title = "BaraON";
+	}
+	pageContext.setAttribute("title", title);
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>${title}</title>
 <link rel="stylesheet" href="resources/style/common.css">
 </head>
 <body class="body">
