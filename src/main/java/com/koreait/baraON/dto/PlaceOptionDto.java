@@ -20,4 +20,6 @@ public class PlaceOptionDto {
 	private String po_img2;
 	private String po_img3;
 	private String po_fxility;
+	private String po_name;
+	// name 필요할듯..
 }

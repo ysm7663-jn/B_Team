@@ -32,7 +32,7 @@ public class PlaceController {
 	
 	@RequestMapping(value="placeViewPage.place", method=RequestMethod.GET)
 	public String placeViewPage(HttpServletRequest request,  Model model) {
-		
+		model.addAttribute("request", request);
 		
 		return "place/placeViewPage";
 	}

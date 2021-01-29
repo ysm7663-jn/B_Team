@@ -24,6 +24,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM PLACE
 		WHERE P_NO=#{param1}
 	</select>
+	<select id="getPcName" parameterType="int" resultType="string" >
+		SELECT PC_NAME
+		FROM PLACECATEGORY
+		WHERE PC_NO = #{param1}
+	</select>
 	
 	<select id="getSellerDto" parameterType="int" resultType="com.koreait.baraON.dto.SellerDto" >
 		SELECT S_NO, S_ID, S_PHONE, S_NAME, S_EMAIL, S_COMPANYNO
@@ -40,7 +45,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		AND
 	</select>
 	
-	<select id="getPlaceOptionDto">
+	<select id="getPlaceOptionList">
 		SELECT *
 		FROM PLACEOPTION
 		WHERE P_NO=#{param1}

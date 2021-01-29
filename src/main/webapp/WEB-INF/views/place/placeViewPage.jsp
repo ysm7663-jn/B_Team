@@ -8,13 +8,13 @@
 
 <div class="title-area">
 	<div class="place-title">
-		<h1>제목</h1>
+		<h1>${placeDto.p_title}</h1>
 	</div>
 	<div class="place-line-desc1">
-		<h3>한줄설명</h3>
+		<h3>${placeDto.p_desc}</h3>
 	</div>
 	<div>
-		<span>#카테고리명</span>
+		<span># ${pc_name}</span>
 	</div>
 </div>
 <section>
@@ -29,7 +29,30 @@
 			</c:if>
 			<c:if test="${optionList ne null}">
 				<div class="place-option-wrap">
-					
+					<c:forEach var="optionDto" items="${optionList}">
+						<input type="radio" name="po_no" value="${optionDto.po_no}" />
+						<strong>${optionDto.po_name}</strong>
+						<div class="day-price">&#92; ${optionDto.po_dayPrice}/day</div>
+						<div class="holiday-price">&#92; ${optionDto.po_holiday}/day</div>
+						<div class="option-info-box">
+							<div class="img-box">
+								<img alt="" src="resources/images/${optionDto.po_img1}" />
+							</div>
+							<div class="person-count">
+								<strong>수용인원</strong>
+								<span>최소 ${optionDto.po_min}명 ~ 최대 ${optionDto.po_max}</span>
+							</div>
+							<div class="facilities">
+								<div class="facility">
+									<!-- json 객체를 변환해서 append -->
+								</div>
+							</div>
+							<div class="calendar-wrap">
+								<!-- 이거 가능해..? -->
+							</div>
+						</div>
+						
+					</c:forEach>
 				</div>		
 			</c:if>
 			<div>
@@ -43,7 +66,7 @@
 		<img alt="썸네일" src="resources/images/" >
 		
 		<div class="place-line-desc2">
-			한줄설명 좀 더 크게
+			${placeDto.p_desc}
 		</div>
 		<div class="place-nav">
 			<ul>
@@ -56,7 +79,7 @@
 		<div class="place-main-info">
 			<h3>공간소개</h3>
 			<p>
-				소개글
+				${placeDto.p_content}
 			</p>
 		</div>
 		<div class="place-info">

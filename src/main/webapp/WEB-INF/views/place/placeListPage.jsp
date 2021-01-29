@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../template/header.jsp">
-	<jsp:param value="BaraON :: 장소공유" name="title"/>
+	<jsp:param value="BaraON :: 공간목록" name="title"/>
 </jsp:include>
 <link rel="stylesheet" href="resources/style/place-list.css">
 
@@ -16,7 +16,7 @@
 		<c:if test="${categoryList ne null}">
 			<c:forEach var="categoryDto" items="${categoryList}" >
 				<div class="category">
-					
+					${categoryDto.pc_name}
 				</div>
 			</c:forEach>
 		</c:if>
