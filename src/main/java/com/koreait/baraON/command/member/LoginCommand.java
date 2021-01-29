@@ -1,13 +1,16 @@
-package com.koreait.baraON.command;
+package com.koreait.baraON.command.member;
 
 import java.util.Map;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
+import com.koreait.baraON.command.BaraONCommand;
 import com.koreait.baraON.dao.MemberDao;
 import com.koreait.baraON.dto.MemberDto;
 import com.koreait.baraON.dto.SellerDto;
@@ -42,7 +45,7 @@ public class LoginCommand implements BaraONCommand {
 				model.addAttribute("grade", request.getParameter("grade"));
 			}
 		}
-				
-			
+		
+		
 	}
 }

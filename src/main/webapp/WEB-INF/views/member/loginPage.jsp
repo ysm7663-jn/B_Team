@@ -3,8 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
     
 <%-- 머리글 포함(파라미터(title)가 있으므로 동적 페이지 포함) --%>
-<jsp:include page="../template/header.jsp" />
-
+<jsp:include page="../template/header.jsp" >
+	<jsp:param value="로그인" name="title"/>
+</jsp:include>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,17 @@
 </head>
 <body>
 <%
-	/* 아이디 기억 구현*/
+	String id = null;
+
+	Cookie[] cookieList = request.getCookies();
+	if(cookieList != null && cookieList.length != 0) {
+		for(Cookie ck : cookieList) {
+			if(ck.getName().equals("id")) {
+				id = ck.getValue();
+			}
+		}
+	}
+	pageContext.setAttribute("id", id);
 %>
 
 
@@ -33,10 +44,18 @@
 				<input type="radio" name="grade" id="seller" value="seller" />
 				<label for="seller">호스트&nbsp;</label><br/>
 				
-				<input type="text" name="id" placeholder="아이디" /><br/>
-				<input type="password" name="pw" placeholder="비밀번호" /><br/>
-				
-				<input type="checkbox" name="rememberId" id="rememberId"/><label for="rememberId">아이디 기억하기</label><br/>
+				<!-- 아이디가 쿠키에 남아있는 경우 -->
+				<c:if test="${id ne null}">
+					<input type="text" name="id" placeholder="아이디" value="${id}"/><br/>
+					<input type="password" name="pw" placeholder="비밀번호" /><br/>
+					<input type="checkbox" name="chkId" id="chkId" checked="checked"/><label for="chkId">아이디 기억하기</label><br/>
+				</c:if>
+				<!-- 아이디가 쿠키에 없는 경우 -->
+				<c:if test="${id eq null}">
+					<input type="text" name="id" placeholder="아이디" /><br/>
+					<input type="password" name="pw" placeholder="비밀번호" /><br/>
+					<input type="checkbox" name="chkId" id="chkId"/><label for="chkId">아이디 기억하기</label><br/>
+				</c:if>
 				
 				<a href="" class="login">회원가입&nbsp;</a>
 				<a href="" class="login">아이디/비밀번호를 잊으셨나요?</a><br/>
