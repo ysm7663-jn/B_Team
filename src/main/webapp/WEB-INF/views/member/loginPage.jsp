@@ -6,19 +6,13 @@
 <jsp:include page="../template/header.jsp" >
 	<jsp:param value="로그인" name="title"/>
 </jsp:include>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <link rel="stylesheet" href="resources/style/member/loginPage.css">
-<title>Insert title here</title>
 <script>
 	$(document).ready(function(){
 		$(".footer-wrap").css("background" , "white");
 	});
 </script>
-</head>
-<body>
 <%
 	String id = null;
 
@@ -65,7 +59,6 @@
 			</form>
 		</div>
 	</div>
-</body>
-</html>
+
 
 <%@ include file="../template/footer.jsp" %>

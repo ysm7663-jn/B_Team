@@ -1,4 +1,4 @@
-package com.koreait.baraON.controller.member;
+package com.koreait.baraON.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
