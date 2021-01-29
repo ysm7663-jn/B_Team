@@ -7,7 +7,7 @@
 	<jsp:param value="로그인" name="title"/>
 </jsp:include>
 
-<link rel="stylesheet" href="resources/style/member/loginPage.css">
+<link rel="stylesheet" href="resources/style/loginPage.css">
 <script>
 	$(document).ready(function(){
 		$(".footer-wrap").css("background" , "white");
@@ -27,38 +27,37 @@
 	pageContext.setAttribute("id", id);
 %>
 
+<div class="box">
+	<div class="inner-box">
+		<form action="login.member" method="post">
+			<h3>로그인해주세요</h3>
 
-	<div class="box">
-		<div class="inner-box">
-			<form action="login.member" method="post">
-				<h3>로그인해주세요</h3>
-	
-				<input type="radio" name="grade" id="member" value="member" checked="checked"/>
-				<label for="member">멤버&nbsp;</label>
-				<input type="radio" name="grade" id="seller" value="seller" />
-				<label for="seller">호스트&nbsp;</label><br/>
-				
-				<!-- 아이디가 쿠키에 남아있는 경우 -->
-				<c:if test="${id ne null}">
-					<input type="text" name="id" placeholder="아이디" value="${id}"/><br/>
-					<input type="password" name="pw" placeholder="비밀번호" /><br/>
-					<input type="checkbox" name="chkId" id="chkId" checked="checked"/><label for="chkId">아이디 기억하기</label><br/>
-				</c:if>
-				<!-- 아이디가 쿠키에 없는 경우 -->
-				<c:if test="${id eq null}">
-					<input type="text" name="id" placeholder="아이디" /><br/>
-					<input type="password" name="pw" placeholder="비밀번호" /><br/>
-					<input type="checkbox" name="chkId" id="chkId"/><label for="chkId">아이디 기억하기</label><br/>
-				</c:if>
-				
-				<a href="" class="login">회원가입&nbsp;</a>
-				<a href="" class="login">아이디/비밀번호를 잊으셨나요?</a><br/>
-				
-				<button>로그인</button>
-				
-			</form>
-		</div>
+			<input type="radio" name="grade" id="member" value="member" checked="checked"/>
+			<label for="member">멤버&nbsp;</label>
+			<input type="radio" name="grade" id="seller" value="seller" />
+			<label for="seller">호스트&nbsp;</label><br/>
+			
+			<!-- 아이디가 쿠키에 남아있는 경우 -->
+			<c:if test="${id ne null}">
+				<input type="text" name="id" placeholder="아이디" value="${id}"/><br/>
+				<input type="password" name="pw" placeholder="비밀번호" /><br/>
+				<input type="checkbox" name="chkId" id="chkId" checked="checked"/><label for="chkId">아이디 기억하기</label><br/>
+			</c:if>
+			<!-- 아이디가 쿠키에 없는 경우 -->
+			<c:if test="${id eq null}">
+				<input type="text" name="id" placeholder="아이디" /><br/>
+				<input type="password" name="pw" placeholder="비밀번호" /><br/>
+				<input type="checkbox" name="chkId" id="chkId"/><label for="chkId">아이디 기억하기</label><br/>
+			</c:if>
+			
+			<a href="" class="login">회원가입&nbsp;</a>
+			<a href="findPage.member" class="login">아이디/비밀번호를 잊으셨나요?</a><br/>
+			
+			<button>로그인</button>
+			
+		</form>
 	</div>
+</div>
 
 
 <%@ include file="../template/footer.jsp" %>
