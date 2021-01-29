@@ -7,27 +7,28 @@
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<!-- config.properties 로드하기(Namespaces 탭에서 context 체크하기) -->
-	<context:property-placeholder location="config/*.properties" />
+<context:property-placeholder location="/config/*.properties" />  <!-- 혹시 properties 파일이 더 있을까봐 -->
 	
-	
-	
-	<!-- HikariConfig (url -> jdbcUrl)로만 변경 -->
+	<!-- HikariConfig -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="${spring.hikariConfig.driverClassName}" />
 		<property name="jdbcUrl" value="${spring.hikariConfig.jdbcUrl}" />
 		<property name="username" value="${spring.hikariConfig.username}" />
 		<property name="password" value="${spring.hikariConfig.password}" />
-	</bean>	 
+	</bean>
+	
 	<!-- HikariDataSource -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
 	
+	<!-- SqlSessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations" value="classpath:com/koreait/baraON/dao/mapper/*.xml" />
 	</bean>
 	
+	<!-- SqlSession -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
