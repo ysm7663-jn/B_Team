@@ -16,12 +16,20 @@ public class ClubController {
 	
 	private BaraONCommand baraONCommand;
 
+	// 단순이동
+	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
+	public String clubInsertPage() {
+		return "club/clubInsertPage";
+	}
+	
+	
+	// method 이동
 	@RequestMapping(value="clubListPage.club", method=RequestMethod.GET)
 	public String clubListPage() {
 		
 		
-		return "club/clubListPage.jsp";
+		
+		return "club/clubListPage";
+	
 	}
-	
-	
 }
