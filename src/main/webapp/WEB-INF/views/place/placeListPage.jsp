@@ -41,7 +41,9 @@
 			<article class="place-list">
 
 				<a href="placeViewPage.place?no=${placeList.p_no}">
-					<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/${placeList.p_img}">
+					<div class="thumbnail-box">
+						<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/${placeList.p_img}">
+					</div>
 					<div class="place-list-info" >
 						<h3>${placeList.p_title}</h3>
 						<div class="place-list-detail">
