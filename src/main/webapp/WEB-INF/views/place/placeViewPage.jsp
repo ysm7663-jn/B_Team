@@ -5,6 +5,54 @@
 	<jsp:param value="BaraON :: 공간보기" name="title" />
 </jsp:include>
 
+<style>
+	.body-wrap{
+		width: 80%;
+		margin:0 auto;
+	}
+	section {
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: flex-start;
+	}
+	aside {
+		width:30%;
+		margin: 0 auto;
+	}
+	article{
+		width: 70%;
+		margin: 0 auto;
+	}
+	.place-nav > ul {
+		display: flex;
+		list-style-type : none;
+	}
+	.place-nav > ul > li {
+		border-left : 1px solid purple ; 
+		border-right : 1px solid purple ;
+	}
+	.place-nav > ul > li > a {
+		display: inline-block;
+		width : 150px;
+		text-align : center;
+	}
+</style>
+
+<script>
+	// let facilities = JSON.parse('${optionDto.po_fxility}');
+	let optionList = '${optionList}';
+	
+	// let facilitie = JSON.stringify('${optionDto.po_fxility}');
+	
+	$(function(){
+		alert(optionList);
+		// alert(facilitie);
+		$.each(optionList, function(index, item){
+			alert(index);
+		});
+	})
+	
+</script>
 
 <div class="title-area">
 	<div class="place-title">
@@ -43,12 +91,10 @@
 								<span>최소 ${optionDto.po_min}명 ~ 최대 ${optionDto.po_max}</span>
 							</div>
 							<div class="facilities">
-								<div class="facility">
-									<!-- json 객체를 변환해서 append -->
-								</div>
 							</div>
 							<div class="calendar-wrap">
 								<!-- 이거 가능해..? -->
+								<input type="date" />
 							</div>
 						</div>
 						
@@ -70,31 +116,31 @@
 		</div>
 		<div class="place-nav">
 			<ul>
-				<li>공간소개</li>
-				<li>시설안내</li>
-				<li>유의사항</li>
-				<li>리뷰</li>
+				<li><a href="#place-main-info">공간소개</a></li>
+				<li><a href="#place-info">시설안내</a></li>
+				<li><a href="#place-remark">유의사항</a></li>
+				<li><a href="#place-review">리뷰</a></li>
 			</ul>
 		</div>
-		<div class="place-main-info">
+		<div id="place-main-info" class="place-main-info">
 			<h3>공간소개</h3>
 			<p>
 				${placeDto.p_content}
 			</p>
 		</div>
-		<div class="place-info">
+		<div id="place-info" class="place-info">
 			<h3>시설안내</h3>
 			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
 			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
 			
 		</div>
-		<div class="place-remark">
+		<div id="palce-remark" class="place-remark">
 			<h3>유의사항</h3>
 			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
 			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
 		
 		</div>
-		<div class="place-review">
+		<div id="place-review" class="place-review">
 			<h3>리뷰</h3>
 			<c:if test="${reviewList eq null}">
 				<div>

@@ -4,6 +4,31 @@
 	width: 80%;
 	margin: 30px auto;
 }
+.category-wrap {
+	width : 80%;
+	margin: 0 auto;
+}
+.category-list{
+	width : 100%;
+	margin: 0 auto;
+	display:grid;
+	grid-template-columns : repeat(10,100px);
+	justify-content : center;
+}
+.category > a{
+	display:block;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+}
+
+article.place-list > a> img.list-thumbnail {
+	transition: all ease 1s;
+	max-width: 100%;
+}
+article.place-list> a:hover > img.list-thumbnail {
+	transform : scale(1.2) ;
+}
 h1, h3{
 	text-align: center;
 }
@@ -30,15 +55,26 @@ h1, h3{
 img {
 	width:100%;
 }
+.info-price>strong span, .info-people-reviews>span{
+	text-align: right;
+}
 @media screen and (max-width : 1068px){
+	.category-list{
+		grid-template-columns : repeat(6,100px);
+	}
+	
 	.place-list-wrap{
 		grid-template-columns : repeat(2,400px);
 		column-gap: 10px;
 	}
 }
 @media screen and (max-width: 767px) {
+	.category-list{
+		grid-template-columns : repeat(4,100px);
+	}
 	.place-list-wrap{
-		grid-template-columns : repeat(1,400px);
+		
+		grid-template-columns : repeat(1,100%);
 		column-gap: 5px;
 	}
 }

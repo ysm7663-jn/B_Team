@@ -7,7 +7,6 @@
 
 <link rel="stylesheet" href="resources/style/place-list.css">
 
-
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
 <div class="category-wrap">
@@ -17,8 +16,11 @@
 		</c:if>
 		<c:if test="${categoryList ne null}">
 			<c:forEach var="categoryDto" items="${categoryList}" >
-				<div class="category">
-					${categoryDto.pc_name}
+				
+				<div class="category" >
+					<a href="placeListPage.place?categoryNo=${categoryDto.pc_no}">
+					<strong>${categoryDto.pc_name}</strong>
+					</a>
 				</div>
 			</c:forEach>
 		</c:if>
@@ -26,8 +28,10 @@
 </div>
 
 <div class="list-wrap">
-	<!-- Todo : 로그인된 회원이 판매자인지 확인 후 판매자면 공간등록버튼 생성 -->
 	<h3 class="subtitle">공간 목록</h3>
+	<c:if test="${isSeller}">
+		<input type="button" value="공간등록하기" />
+	</c:if>
 	<c:if test="${empty list}">
 		<div class="empty-list-box" >등록된 공간이 없어요!</div>
 	</c:if>
@@ -37,7 +41,7 @@
 			<article class="place-list">
 
 				<a href="placeViewPage.place?no=${placeList.p_no}">
-					<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/${placeList.p_img}.jpg">
+					<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/${placeList.p_img}">
 					<div class="place-list-info" >
 						<h3>${placeList.p_title}</h3>
 						<div class="place-list-detail">

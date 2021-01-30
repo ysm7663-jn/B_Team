@@ -12,10 +12,10 @@ import com.koreait.baraON.dto.SellerDto;
 public interface PlaceDao {
 
 	public List<PlaceListDto> placeList();
+	public List<PlaceCategoryDto> placeCategoryList();
 	public PlaceDto getPlaceDto(int p_no);
-	public String getPcName(int pc_no);
 	public SellerDto getSellerDto(int s_no);
 	public List<ReviewDto> getReviewList(int p_no, int beginRecord, int endRecord);
 	public List<PlaceOptionDto> getPlaceOptionList(int p_no);
-	public List<PlaceListDto> getPlaceDtoList(int s_no);
+	public List<PlaceListDto> getPlaceListDtoByCategory(int pc_no);
 }

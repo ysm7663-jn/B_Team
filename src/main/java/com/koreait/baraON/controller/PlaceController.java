@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.koreait.baraON.command.place.PlaceListCommand;
+import com.koreait.baraON.command.place.PlaceViewCommand;
 
 @Controller
 public class PlaceController {
@@ -18,14 +19,18 @@ public class PlaceController {
 	private SqlSession sqlSession;
 	
 	private PlaceListCommand placeListCommand;
+	private PlaceViewCommand placeViewCommand;
 	
 	@Autowired
-	public void setCommand(PlaceListCommand placeListCommand) {
+	public void setCommand(PlaceListCommand placeListCommand,
+							PlaceViewCommand placeViewCommand) {
 		this.placeListCommand = placeListCommand;
+		this.placeViewCommand = placeViewCommand;
 	}
 	
 	@RequestMapping(value="placeListPage.place", method=RequestMethod.GET)
-	public String placeListPage(Model model) {
+	public String placeListPage(HttpServletRequest request, Model model) {
+		model.addAttribute("request",request);
 		placeListCommand.execute(sqlSession, model);
 		return "place/placeListPage";
 	}
@@ -33,7 +38,7 @@ public class PlaceController {
 	@RequestMapping(value="placeViewPage.place", method=RequestMethod.GET)
 	public String placeViewPage(HttpServletRequest request,  Model model) {
 		model.addAttribute("request", request);
-		
+		placeViewCommand.execute(sqlSession, model);
 		return "place/placeViewPage";
 	}
 	

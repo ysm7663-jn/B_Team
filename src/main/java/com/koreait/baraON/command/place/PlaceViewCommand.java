@@ -34,7 +34,6 @@ public class PlaceViewCommand implements PlaceCommand {
 		
 		model.addAttribute("placeDto", placeDto);
 		model.addAttribute("sellerDto", sellerDto);
-		model.addAttribute("pc_name", placeDao.getPcName(pc_no));
 		model.addAttribute("optionList", placeOptionList);
 	}
 

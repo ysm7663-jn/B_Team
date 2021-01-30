@@ -22,6 +22,7 @@
 	</beans:bean>
 	
 	<beans:bean id="placeListCommand" class="com.koreait.baraON.command.place.PlaceListCommand" />
+	<beans:bean id="placeViewCommand" class="com.koreait.baraON.command.place.PlaceViewCommand" />
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	

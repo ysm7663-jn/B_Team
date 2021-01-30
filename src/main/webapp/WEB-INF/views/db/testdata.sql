@@ -151,6 +151,27 @@ INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_DESC, P_CONTENT, P_INFO, P_NAME
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_DESC, P_CONTENT, P_INFO, P_NAME, P_ADDR, P_STAR, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE) VALUES (19, 19, 19, 'P_TITLE 19', 'P_DESC 19', 'P_CONTENT 19', 'P_INFO 19', 'P_NAME 19', 'P_ADDR 19', 4, 'P_IMG19', 1, 'P_URL 19', 'P_REMARK 19', 1);
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_DESC, P_CONTENT, P_INFO, P_NAME, P_ADDR, P_STAR, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE) VALUES (20, 20, 20, 'P_TITLE 20', 'P_DESC 20', 'P_CONTENT 20', 'P_INFO 20', 'P_NAME 20', 'P_ADDR 20', 5, 'P_IMG20', 1, 'P_URL 20', 'P_REMARK 20', 1);
 
+UPDATE PLACE SET P_IMG = 'P_IMG01.jpg' WHERE P_NO = 1;
+UPDATE PLACE SET P_IMG = 'P_IMG02.jpg' WHERE P_NO = 2;
+UPDATE PLACE SET P_IMG = 'P_IMG03.jpg' WHERE P_NO = 3;
+UPDATE PLACE SET P_IMG = 'P_IMG04.jpg' WHERE P_NO = 4;
+UPDATE PLACE SET P_IMG = 'P_IMG05.jpg' WHERE P_NO = 5;
+UPDATE PLACE SET P_IMG = 'P_IMG06.jpg' WHERE P_NO = 6;
+UPDATE PLACE SET P_IMG = 'P_IMG07.jpg' WHERE P_NO = 7;
+UPDATE PLACE SET P_IMG = 'P_IMG08.jpg' WHERE P_NO = 8;
+UPDATE PLACE SET P_IMG = 'P_IMG09.jpg' WHERE P_NO = 9;
+UPDATE PLACE SET P_IMG = 'P_IMG10.jpg' WHERE P_NO = 10;
+UPDATE PLACE SET P_IMG = 'P_IMG11.jpg' WHERE P_NO = 11;
+UPDATE PLACE SET P_IMG = 'P_IMG12.jpg' WHERE P_NO = 12;
+UPDATE PLACE SET P_IMG = 'P_IMG13.jpg' WHERE P_NO = 13;
+UPDATE PLACE SET P_IMG = 'P_IMG14.jpg' WHERE P_NO = 14;
+UPDATE PLACE SET P_IMG = 'P_IMG15.jpg' WHERE P_NO = 15;
+UPDATE PLACE SET P_IMG = 'P_IMG16.jpg' WHERE P_NO = 16;
+UPDATE PLACE SET P_IMG = 'P_IMG17.jpg' WHERE P_NO = 17;
+UPDATE PLACE SET P_IMG = 'P_IMG18.jpg' WHERE P_NO = 18;
+UPDATE PLACE SET P_IMG = 'P_IMG19.jpg' WHERE P_NO = 19;
+UPDATE PLACE SET P_IMG = 'P_IMG20.jpg' WHERE P_NO = 20;
+ 
 -- PLACEOPTION TEST DATA
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_ADDPRICE, PO_IMG1, PO_IMG2, PO_IMG3, PO_FXILITY) VALUES (01, 01, 01, 01, 01, 01, 01, 'PO_IMG1 01', 'PO_IMG2 01', 'PO_IMG3 01', 'PO_FXILITY 01');
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_ADDPRICE, PO_IMG1, PO_IMG2, PO_IMG3, PO_FXILITY) VALUES (02, 01, 02, 02, 02, 02, 02, 'PO_IMG1 02', 'PO_IMG2 02', 'PO_IMG3 02', 'PO_FXILITY 02');
@@ -173,6 +194,26 @@ INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, P
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_ADDPRICE, PO_IMG1, PO_IMG2, PO_IMG3, PO_FXILITY) VALUES (19, 15, 19, 19, 19, 19, 19, 'PO_IMG1 19', 'PO_IMG2 19', 'PO_IMG3 19', 'PO_FXILITY 19');
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_ADDPRICE, PO_IMG1, PO_IMG2, PO_IMG3, PO_FXILITY) VALUES (20, 16, 20, 20, 20, 20, 20, 'PO_IMG1 20', 'PO_IMG2 20', 'PO_IMG3 20', 'PO_FXILITY 20');
 
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=1;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=2;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=3;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=4;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=5;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=6;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=7;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=8;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=9;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=10;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=11;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=12;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=13;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=14;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=15;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=16;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=17;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=18;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=19;
+UPDATE PLACEOPTION SET PO_FXILITY='{ \"facility01\" : \"wifi\", \"facility02\" : \"tv\", \"faciltiry03\" : \"내부화장실\" }' WHERE PO_NO=20;
 -- CLUBLIST TEST DATA
 
 -- 일단 되는대로 랜덤값넣긴했는데..
