@@ -40,7 +40,7 @@ div {
 	top: 10%;
 	
 }
-input[type="radio"] {
+#findId, #findPw {
 	display: none;
 }
 .tab-contents {
@@ -56,7 +56,7 @@ input[type="radio"] {
 	border-radius: 3px;
 	background: #1DD1AD;
 	color: white;
-}
+} 
 hr {
 	visibility: ;
 	background: #1DD1AD;

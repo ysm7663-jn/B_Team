@@ -16,4 +16,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  WHERE S_ID = #{param1}
 		   AND S_PW = #{param2}
 	</select>
+	<select id="findMemberId" resultType="String">
+		SELECT M_ID
+			FROM MEMBER
+		  WHERE M_NAME = #{param1}
+		   AND M_EMAIL = #{param2}
+	</select>
+	<select id="findSellerId" resultType="String">
+		SELECT S_ID
+			FROM SELLER
+		  WHERE S_NAME = #{param1}
+		   AND S_EMAIL = #{param2}
+	</select>
 </mapper>

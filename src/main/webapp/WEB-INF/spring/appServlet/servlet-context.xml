@@ -25,9 +25,10 @@
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
-	
+	<!-- member -->
 	<beans:bean id="loginCommand" class="com.koreait.baraON.command.member.LoginCommand" />	
 	<beans:bean id="logoutCommand" class="com.koreait.baraON.command.member.LogoutCommand" />	
 	<beans:bean id="chkIdCommand" class="com.koreait.baraON.command.member.ChkIdCommand" />	
+	<beans:bean id="findIdCommand" class="com.koreait.baraON.command.member.FindIdCommand" />	
 	
 </beans:beans>

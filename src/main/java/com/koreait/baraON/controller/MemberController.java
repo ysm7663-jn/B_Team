@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.koreait.baraON.command.member.ChkIdCommand;
+import com.koreait.baraON.command.member.FindIdCommand;
 import com.koreait.baraON.command.member.LoginCommand;
 import com.koreait.baraON.command.member.LogoutCommand;
 
@@ -24,14 +25,17 @@ public class MemberController {
 	private LoginCommand loginCommand;
 	private LogoutCommand logoutCommand;
 	private ChkIdCommand chkIdCommand;
+	private FindIdCommand findIdCommand;
 	
 	@Autowired
 	public void setCommand(LoginCommand loginCommand,
 							 LogoutCommand logoutCommand,
-							 ChkIdCommand chkIdCommand) {
+							 ChkIdCommand chkIdCommand,
+							 FindIdCommand findIdCommand) {
 		this.loginCommand = loginCommand;
 		this.logoutCommand = logoutCommand;
 		this.chkIdCommand = chkIdCommand;
+		this.findIdCommand = findIdCommand;
 	}
 	
 	//단순이동
@@ -65,7 +69,18 @@ public class MemberController {
 	
 	// 단순이동
 	@RequestMapping(value="findPage.member", method=RequestMethod.GET)
-	public String findIdAndPwPage(HttpServletRequest request, Model model) {
+	public String findIdAndPwPage(HttpServletRequest request) {
 		return "member/findPage";
+	}
+	
+	@RequestMapping(value="findId.member", method=RequestMethod.POST)
+	public String findId(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		findIdCommand.execute(sqlSession, model);
+		if (${id eq null}) {
+			return "member/findPage";
+		} else {
+			return "member/findIdPage";
+		}
 	}
 }
