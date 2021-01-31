@@ -54,8 +54,7 @@ article.place-list>a>div.thumbnail-box{
 }
 
 article.place-list > a>div.thumbnail-box> img.list-thumbnail {
-	transition: all ease 1.5s;
-	max-width: 100%;
+	transition: all ease 0.5s;
 }
 article.place-list> a:hover>div.thumbnail-box> img.list-thumbnail {
 	transform : scale(1.2) ;

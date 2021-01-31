@@ -30,11 +30,22 @@ public class PlaceViewCommand implements PlaceCommand {
 		SellerDto sellerDto = placeDao.getSellerDto(s_no);
 		
 		List<PlaceOptionDto> placeOptionList = placeDao.getPlaceOptionList(p_no);
-		
+		StringBuffer sb = new StringBuffer();
+		sb.trimToSize();
+		sb.append("[");
+		for(int i = 0, size=placeOptionList.size();i<size;i++) {
+			if (i==size-1) {
+				sb.append(placeOptionList.get(i).getPo_fxility());
+			} else {
+				sb.append(placeOptionList.get(i).getPo_fxility()+", ");
+			}
+		}
+		sb.append("]");
 		
 		model.addAttribute("placeDto", placeDto);
 		model.addAttribute("sellerDto", sellerDto);
 		model.addAttribute("optionList", placeOptionList);
+		model.addAttribute("facilityList",sb.toString());
 	}
 
 }

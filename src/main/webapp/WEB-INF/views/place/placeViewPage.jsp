@@ -5,53 +5,11 @@
 	<jsp:param value="BaraON :: 공간보기" name="title" />
 </jsp:include>
 
-<style>
-	.body-wrap{
-		width: 80%;
-		margin:0 auto;
-	}
-	section {
-		display: flex;
-		flex-direction: row-reverse;
-		justify-content: flex-start;
-	}
-	aside {
-		width:30%;
-		margin: 0 auto;
-	}
-	article{
-		width: 70%;
-		margin: 0 auto;
-	}
-	.place-nav > ul {
-		display: flex;
-		list-style-type : none;
-	}
-	.place-nav > ul > li {
-		border-left : 1px solid purple ; 
-		border-right : 1px solid purple ;
-	}
-	.place-nav > ul > li > a {
-		display: inline-block;
-		width : 150px;
-		text-align : center;
-	}
-</style>
-
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="resources/style/place/place-view.css">
+<script type="text/javascript" src="resources//js/place-view.js" ></script> 
 <script>
-	// let facilities = JSON.parse('${optionDto.po_fxility}');
-	let optionList = '${optionList}';
-	
-	// let facilitie = JSON.stringify('${optionDto.po_fxility}');
-	
-	$(function(){
-		alert(optionList);
-		// alert(facilitie);
-		$.each(optionList, function(index, item){
-			alert(index);
-		});
-	})
-	
+	let facilityList = JSON.parse('${facilityList}');
 </script>
 
 <div class="title-area">
@@ -69,7 +27,7 @@
 	<aside>
 		<h4>세부 공간 선택</h4>
 		<!-- Todo : 세부옵션 추가 -->
-		<form>
+		<form class="reserve-form">
 			<c:if test="${optionList eq null}">
 				<div>
 					<h4>등록된 공간이 없습니다.</h4>
@@ -77,40 +35,47 @@
 			</c:if>
 			<c:if test="${optionList ne null}">
 				<div class="place-option-wrap">
-					<c:forEach var="optionDto" items="${optionList}">
-						<input type="radio" name="po_no" value="${optionDto.po_no}" />
-						<strong>${optionDto.po_name}</strong>
-						<div class="day-price">&#92; ${optionDto.po_dayPrice}/day</div>
-						<div class="holiday-price">&#92; ${optionDto.po_holiday}/day</div>
-						<div class="option-info-box">
-							<div class="img-box">
-								<img alt="" src="resources/images/${optionDto.po_img1}" />
-							</div>
-							<div class="person-count">
-								<strong>수용인원</strong>
-								<span>최소 ${optionDto.po_min}명 ~ 최대 ${optionDto.po_max}</span>
-							</div>
-							<div class="facilities">
-							</div>
-							<div class="calendar-wrap">
-								<!-- 이거 가능해..? -->
-								<input type="date" />
+					<c:forEach var="optionDto" items="${optionList}" varStatus="k">
+						<label>
+							<input type="checkbox" name="po_no" value="${optionDto.po_no}" />
+							<strong>${optionDto.po_name}</strong>
+						</label>
+							
+						<div class="hidden-box">
+							<div class="day-price">&#92; ${optionDto.po_dayPrice}/day</div>
+							<div class="holiday-price">&#92; ${optionDto.po_holiday}/day</div>
+							<div class="option-info-box">
+								<div class="img-box">
+									<img alt="" src="resources/images/PlaceOptionImages/${optionDto.po_img1}" />
+									<!-- 옵션의 이미지는 한개만하고 공간의 썸네일을 많이 받는게 나을거 같다. -->
+								</div>
+								<div class="person-count">
+									<strong>수용인원</strong>
+									<span>최소 ${optionDto.po_min}명 ~ 최대 ${optionDto.po_max}</span>
+								</div>
+								<div class="facilities${k.count}">
+								<!-- Todo : 각 방마다의 편의시설을 불러올 방법 -->
+								<!-- DB에 저장되어있는 편의시설정보는 json -->
+								</div>
+								<div class="calendar-wrap">
+								<input type="hidden" name="res_date" />
+								</div>
 							</div>
 						</div>
 						
 					</c:forEach>
 				</div>		
 			</c:if>
-			<div>
-				
+			<div class="btn-wrap">
+				<button type="button"><span><i class="fas fa-mobile-alt"></i>전화</span></button>
+				<button>예약신청하기</button>
 			</div>
-			<button type="button"><span><i class="fas fa-mobile-alt"></i>전화</span></button>
-			<button>예약신청하기</button>
 		</form>
 	</aside>
 	<article>
-		<img alt="썸네일" src="resources/images/" >
-		
+		<div class="thumbnail-box">
+		<img alt="썸네일" src="resources/images/${placeDto.p_img}" >
+		</div>
 		<div class="place-line-desc2">
 			${placeDto.p_desc}
 		</div>
@@ -127,18 +92,147 @@
 			<p>
 				${placeDto.p_content}
 			</p>
+			<pre>
+asdj
+asdjf
+ajsd
+fja
+sdfj
+asdjf
+fasd
+fjas
+dfj
+asdj
+asdfj
+fja
+sdfj
+asdjf
+asjdf
+jasd
+fja
+sdfj
+asdjf
+asjd
+fjasd
+fja
+sdjf
+asdjf
+asdjf
+asdjf
+asdj
+fasd
+fjas
+dfj
+asdj
+asdfj
+		</pre>
 		</div>
 		<div id="place-info" class="place-info">
 			<h3>시설안내</h3>
 			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
 			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
+			<pre>
+asdj
+asdjf
+ajsd
+fja
+sdfj
+asdjf
+asjdf
+jas
+asjdf
+jasd
+fja
+sdfj
+asdjf
+asjd
+fjasd
+fja
+sdjf
+asdjf
+asdjf
+asdjf
+asdj
+fasd
+fjas
+dfj
+asdj
+asdfj
+			</pre>
 			
 		</div>
-		<div id="palce-remark" class="place-remark">
+		<div id="place-remark" class="place-remark">
 			<h3>유의사항</h3>
 			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
 			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
-		
+			<pre>
+asdj
+asdjf
+ajsd
+fja
+sdfj
+asdjf
+asjdf
+jasd
+fja
+sdfj
+asdjf
+asjd
+fjasd
+fja
+sdjf
+asdjf
+asdjf
+asdjf
+asdj
+fasd
+fjas
+dfj
+asdj
+asdfj
+fja
+sdfj
+asdjf
+asjdf
+jasd
+fja
+sdfj
+asdjf
+asjd
+fjasd
+fja
+sdjf
+asdjf
+asdjf
+asdjf
+asdj
+fasd
+fjas
+dfj
+asdj
+asdfj
+fja
+sdfj
+asdjf
+asjdf
+jasd
+fja
+sdfj
+asdjf
+asjd
+fjasd
+fja
+sdjf
+asdjf
+asdjf
+asdjf
+asdj
+fasd
+fjas
+dfj
+asdj
+asdfj
+		</pre>
 		</div>
 		<div id="place-review" class="place-review">
 			<h3>리뷰</h3>

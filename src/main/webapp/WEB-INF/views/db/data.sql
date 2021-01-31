@@ -161,6 +161,7 @@ CREATE TABLE PLACEOPTION
 (
     PO_NO          NUMBER             PRIMARY KEY, 
     P_NO           NUMBER             NOT NULL REFERENCES PLACE (P_NO), 
+    PO_NAME		   VARCHAR2(100)	  NOT NULL,
     PO_MIN         NUMBER             NOT NULL, 
     PO_MAX         NUMBER             NOT NULL, 
     PO_DAYPRICE    NUMBER             NOT NULL, 
@@ -236,7 +237,8 @@ CREATE TABLE REVIEW
     P_NO         NUMBER               NOT NULL REFERENCES PLACE (P_NO), 
     RV_DELETE    NUMBER               NULL, 
     RV_STAR      NUMBER               NULL, 
-    RV_IMG       VARCHAR2(4000)    NULL
+    RV_IMG       VARCHAR2(4000)    NULL,
+    RV_POSTDATE	 DATE
 );
 
 CREATE SEQUENCE REVIEW_SEQ

@@ -5,7 +5,7 @@
 	<jsp:param value="BaraON :: 공간목록" name="title"/>
 </jsp:include>
 
-<link rel="stylesheet" href="resources/style/place-list.css">
+<link rel="stylesheet" href="resources/style/place/place-list.css">
 
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
@@ -42,7 +42,7 @@
 
 				<a href="placeViewPage.place?no=${placeList.p_no}">
 					<div class="thumbnail-box">
-						<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/${placeList.p_img}">
+						<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/PlaceImages/${placeList.p_img}">
 					</div>
 					<div class="place-list-info" >
 						<h3>${placeList.p_title}</h3>

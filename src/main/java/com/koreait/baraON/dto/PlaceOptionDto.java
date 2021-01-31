@@ -11,6 +11,7 @@ public class PlaceOptionDto {
 
 	private int po_no;
 	private int p_no;
+	private String po_name;
 	private int po_min;
 	private int po_max;
 	private int po_dayPrice;
@@ -20,6 +21,5 @@ public class PlaceOptionDto {
 	private String po_img2;
 	private String po_img3;
 	private String po_fxility;
-	private String po_name;
 	// name 필요할듯..
 }
