@@ -30,10 +30,11 @@ div {
 .inner-box {
 	background: white;
 	height: 600px;
-	width: 600px;
+	width: 40%;
 	position: relative;
-	left: 580px;
-	top: 50px;
+	left: 31%;
+	top:7%;
+	border-radius: 15px;
 }
 .box {
 	text-align: center;

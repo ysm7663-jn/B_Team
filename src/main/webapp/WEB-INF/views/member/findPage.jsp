@@ -27,7 +27,7 @@
 			<input type="radio" name="tab" id="findId" checked />
 			<input type="radio" name="tab" id="findPw" />
 			<div class="tab-buttons">
-				<label for="findId">아이디 찾기<span class="line"><hr></span></label>&nbsp;&nbsp;&nbsp;
+				<label for="findId">아이디 찾기<hr></label>&nbsp;&nbsp;&nbsp;
 				<label for="findPw">비밀번호 찾기<hr></label>
 			</div>
 			
