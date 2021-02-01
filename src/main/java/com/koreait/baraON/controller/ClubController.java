@@ -31,21 +31,26 @@ public class ClubController {
 		return "club/clubInsertPage1";
 	}
 	
+  	@RequestMapping(value="clubInsertPage2.club", method=RequestMethod.GET)
+	public String clubInsertPage2() {
+		return "club/clubInsertPage2";
+	}
+	
 	// method 이동
 	@RequestMapping(value="clubListPage.club", method=RequestMethod.GET)
 	public String clubListPage(HttpServletRequest request, Model model) {
 		
-		model.addAttribute("request", request);
 		clubListCommand.execute(sqlSession, model);
 		
 		return "club/clubListPage";
 	}
 	
-	@RequestMapping(value="clubInsertPage2.club", method=RequestMethod.GET)
-	public String clubInsertPage2() {
+	@RequestMapping(value="clubInsert", method=RequestMethod.GET)
+	public String clubInsert() {
 		
 		
 		
-		return "club/clubInsertPage2";
+		return "redirect:clubListPage.club";
 	}
+	
 }

@@ -68,6 +68,7 @@ INCREMENT BY 1
 NOCYCLE
 NOCACHE;
 
+select * from club;
 
 -- CLUB Table Create SQL
 CREATE TABLE CLUB

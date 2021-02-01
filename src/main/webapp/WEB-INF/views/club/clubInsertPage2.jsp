@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,7 +11,7 @@
 </head>
 <body>
 	
-	<form method="get">
+	<form method="get" enctype="multipart/form-data">
 		<div class="insert-wrap">
 		
 			<div class="inputs">
@@ -44,7 +47,7 @@
 	
 		function fn_finish(f) {
 			if (confirm('클럽 생성을 완료하시겠습니까?')) {
-					f.action = 'clubListPage.club';
+					f.action = 'clubInsert';
 					f.submit();
 				} 
 		}
