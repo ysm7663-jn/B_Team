@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class clubDto {
+public class ClubDto {
 
 	private int c_no;			// 번호
 	private String c_title;		// 클럽 제목
