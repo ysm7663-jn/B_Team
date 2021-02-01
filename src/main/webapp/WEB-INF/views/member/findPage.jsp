@@ -7,55 +7,73 @@
 </jsp:include>
 
 <link rel="stylesheet" href="resources/style/findPage.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
-	$(document).ready(function(){
-		$(".footer-wrap").css("background" , "white");
-	});
+	/* css */
+	/* $(document).ready(function(){
+		if($('#findId:checked'.val() == 'checked')) {
+			$('.tab-contents:first-of-type').css('display', 'block');
+			$('hr').css("display", block);
+		} else if($('#findPw:checked.val() == 'checked')) {
+			$('.tab-contents:last-of-type').css('display', 'block');
+			$('hr').css("display", block);
+		}
+	}); */
 	
 	function fn_findId(f){
 		if (f.name.value == '') {
 			alert('이름을 입력하세요.');
 			f.name.focus();
 			return;
-		} else if (f.email.value = '') {
+		} else if (f.email.value == '') {
 			alert('이메일을 입력하세요.');
 			f.email.focus();
 			return;
-		} else if(f.domain.value = '') {
+		} else if(f.domains.value == '') {
 			alert('도메인을 입력하세요.');
-			f.domain.focus();
+			f.domains.focus();
 			return;
 		}
 		f.action='findId.member';
 		f.submit();
 	}
-	function fn_fn_findPw(f){
+	function fn_findPw(f){
 		if (f.id.value == '') {
 			alert('아이디를 입력하세요.');
 			f.id.focus();
 			return;
-		} else if (f.name.value = '') {
+		} else if (f.name.value == '') {
 			alert('이름을 입력하세요.');
 			f.name.focus();
 			return;
-		} else if (f.email.value = '') {
+		} else if (f.email.value == '') {
 			alert('이메일을 입력하세요.');
 			f.email.focus();
 			return;
-		} else if(f.domain.value = '') {
+		} else if(f.domains.value == '') {
 			alert('도메인을 입력하세요.');
-			f.domain.focus();
+			f.domains.focus();
 			return;
 		}
 		f.action='';
 		f.submit();
 	}
+	
+	/* 아이디 찾기 결과 */
+	if('${findIdResult}') { // findIdCommand에서 넘어왔으면
+		if(${id eq null}) {
+			alert('일치하는 정보가 없습니다.');
+		} else {
+			location.href='findIdPage.member?id=${id}';
+		}
+	}
+	
 </script>
 <div class="box">
 	<div class="inner-box">
 		<div class="main-aside">
 			<form method="post">
-				<input type="radio" name="tab" id="findId" checked />
+				<input type="radio" name="tab" id="findId" checked="checked" />
 				<input type="radio" name="tab" id="findPw" />
 				<div class="tab-buttons">
 					<label for="findId">아이디 찾기<hr></label>&nbsp;&nbsp;&nbsp;
@@ -67,7 +85,7 @@
 					<tbody>
 						<tr>
 							<td colspan="2">
-								<input type="radio" name="grade" id="member" value="member" checked="checked"/>
+								<input type="radio" name="grade" id="member" value="member" checked/>
 								<label for="member">멤버&nbsp;</label>
 								<input type="radio" name="grade" id="seller" value="seller" />
 								<label for="seller">호스트&nbsp;</label><br/>
@@ -84,12 +102,12 @@
 							<td>
 								<input type="text" name="email" placeholder="이메일" />
 								@
-								<select name="domain">
-									<option value="">직접 입력</option>
-									<option value="01">naver.com</option>
-									<option value="02">nate.com</option>
-									<option value="03">google.com</option>
-								</select>
+								<input type="text" name="domains" list="domains" placeholder="직접입력" />
+								<datalist id="domains">
+									<option value="naver.com" />
+									<option value="nate.com" />
+									<option value="google.com" />
+								</datalist>
 							</td>
 						</tr>
 						<tr class="button">
@@ -127,12 +145,12 @@
 							<td>
 								<input type="text" name="email" placeholder="이메일" />
 								@
-								<select>
-									<option value="">직접 입력</option>
-									<option value="naver.com">naver.com</option>
-									<option value="nate.com">nate.com</option>
-									<option value="google.com">google.com</option>
-								</select>
+								<input type="text" name="domains" list="domains" placeholder="직접입력" />
+								<datalist id="domains">
+									<option value="naver.com" />
+									<option value="nate.com" />
+									<option value="google.com" />
+								</datalist>
 							</td>
 						</tr>
 						<tr class="button">

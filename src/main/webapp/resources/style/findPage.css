@@ -13,7 +13,7 @@ ul, ol {
 	list-style-type: none;
 }
 table {
-	border-collapse: collapse;
+	/* border-collapse: collapse; */
 }
 div {
 	box-sizing: border-box;
@@ -57,35 +57,40 @@ div {
 	background: #1DD1AD;
 	color: white;
 } 
+input[type="text"] {
+	width: 46%;
+}
 hr {
-	visibility: ;
 	background: #1DD1AD;
 	border: 1px solid #1DD1AD;
 	border-radius: 3px;
-	height: 10px;
+	height: 5px;
 	margin-top: 3px;
 }
 .tab-buttons > label {
-	display: inline-block;
+	display: block;
 	width: 35%;
 	font-size: 20px;
 	font-weight: bold;
 	text-align: center;
 }
-#findId:checked ~ .tab-contents:first-of-type {
+#findId:checked ~ .tab-contents:nth-of-type(1) {
 	display: block;
 }
-#findId:checked ~ label > .line:first-of-type {
-	visibility: visible;
-}
-#findPw:checked ~ .tab-contents:last-of-type {
+#findId:checked + hr:first-of-type {
 	display: block;
 }
-#findPw:checked ~ label > .line:last-of-type {
-	visibility: visible;
+#findPw:checked ~ .tab-contents:nth-of-type(2) {
+	display: block;
+}
+#findPw:checked + hr:last-of-type {
+	display: block;
 }
 td {
 	heigth: 20px;
+}
+tbody {
+	width: 100%;
 }
 .name > td:first-of-type, .email > td:first-of-type, .id > td:first-of-type {
 	background: lightgray;

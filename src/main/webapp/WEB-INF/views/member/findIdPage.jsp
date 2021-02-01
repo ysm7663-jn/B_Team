@@ -12,12 +12,7 @@
 	});
 	
 	function fn_findIdResult(){
-		if(${id eq null}) {
-			location.href='findPage.member';
-			alert('일치하는 정보가 없습니다.');
-		} else {
-			$('findIdResult').text('아이디: "' + ${id} + '"');
-		}
+		$('#findIdResult').text('아이디: ${param.id}');
 	}
 </script>
 <div class="box">

@@ -77,10 +77,11 @@ public class MemberController {
 	public String findId(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		findIdCommand.execute(sqlSession, model);
-		if (${id eq null}) {
-			return "member/findPage";
-		} else {
-			return "member/findIdPage";
-		}
+		return "member/findPage";
+	}
+	
+	@RequestMapping(value="findIdPage.member", method=RequestMethod.GET)
+	public String findIdPage(HttpServletRequest request) {
+		return "member/findIdPage";
 	}
 }
