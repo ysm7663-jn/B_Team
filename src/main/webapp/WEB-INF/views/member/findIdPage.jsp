@@ -5,6 +5,7 @@
 </jsp:include>
 
 <link rel="stylesheet" href="resources/style/findPage.css">
+<link rel="stylesheet" href="resources/style/findIdPage.css">
 
 <script>
 	$(document).ready(function(){
@@ -25,10 +26,12 @@
 				<label for="findPw">비밀번호 찾기<hr></label>
 			</div>
 			<div class="resultBox">
-				<h3>아이디 찾기가 완료되었습니다.</h3>
+				<h4>아이디 찾기가 완료되었습니다.</h4>
 				<div id="findIdResult"></div>
 			</div>
-			<input type="button" value="로그인" onclick="loginPage.member"/>
+			<div class="login-button">
+				<input type="button" value="로그인" onclick="loginPage.member"/>
+			</div>
 		</div>
 	</div>
 </div>

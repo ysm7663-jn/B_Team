@@ -44,7 +44,7 @@ div {
 	display: none;
 }
 .tab-contents {
-	display: none;
+	/* display: none; */
 }
 .tab-buttons {
 	display: flex;
@@ -85,9 +85,6 @@ hr {
 }
 #findPw:checked + hr:last-of-type {
 	display: block;
-}
-td {
-	heigth: 20px;
 }
 tbody {
 	width: 100%;
