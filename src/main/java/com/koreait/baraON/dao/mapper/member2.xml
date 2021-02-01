@@ -5,10 +5,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.baraON.dao.memberDao2">
 
-	<select id="memberSearch" parameterType="String" resultType="com.koreait.baraON.dto.MemberDto2">
-		SELECT MID
+	<select id="memberSearch" parameterType="String" resultType="int">
+		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE MID=#{mId}
 	</select>
+	
+	<delete id="memberDrop" parameterType="int">
+		DELETE 
+		FROM MEMBER
+		WHERE NO =#{no}
+	</delete>
+	
 
 </mapper>

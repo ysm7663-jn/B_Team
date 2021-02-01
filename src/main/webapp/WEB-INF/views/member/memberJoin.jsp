@@ -29,7 +29,7 @@
 	</script>
 
 
-	<form id="joinform" method="GET" action="memberJoin2.do">
+	<form id="joinform" method="GET" action="memberJoin2.member">
 	
 		<input type="checkbox" name="chk_all" id="chk_all" />
 		<label for="chk_all">

@@ -15,7 +15,7 @@
 		$('#mId').keyup(function(){
 			var mId=$('#mId').val();
 			$.ajax({
-				url:'memberSearch.do?mId='+mId,
+				url:'memberSearch.member?mId='+mId,
 				type:'get',
 				dataType: 'json',
 				success: function(data){

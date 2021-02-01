@@ -25,7 +25,7 @@
 			<div class="right_head_wrap">
 				<nav id="right_head">
 					<div><a href="">로그인</a></div>
-					<div><a href="">회원가입</a></div>
+					<div><a href="memberJoin.do">회원가입</a></div>
 					<div><a href="">FAQ</a></div>
 				</nav>
 			</div>

@@ -37,15 +37,15 @@ public class MemberController2 {
 	public String index() {
 		return "index";
 	}
-	@RequestMapping(value="memberJoin.do" ,method=RequestMethod.GET)
+	@RequestMapping(value="memberJoin.member" ,method=RequestMethod.GET)
 	public String memberJoin() {
 		return "member/memberJoin";
 	}
-	@RequestMapping(value="memberJoin2.do" ,method=RequestMethod.GET)
+	@RequestMapping(value="memberJoin2.member" ,method=RequestMethod.GET)
 	public String memberJoin2() {
 		return "member/memberJoin2";
 	}
-	@RequestMapping(value="memberSearch.do", 
+	@RequestMapping(value="memberSearch.member", 
 					 method=RequestMethod.GET,
 					 produces="application/json; charset=utf-8")
 	@ResponseBody
@@ -54,10 +54,10 @@ public class MemberController2 {
 		model.addAttribute("mId",mId);
 		return memberSearchCommand.execute(sqlSession, model);
 	}
-	@RequestMapping(value="memberDrop.do",method=RequestMethod.POST)
+	@RequestMapping(value="memberDrop.member",method=RequestMethod.POST)
 	public String memberDrop(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		memberDropCommand.execute(model);
+		memberDropCommand.execute(sqlSession, model);
 		return "index";
 	}
 	
