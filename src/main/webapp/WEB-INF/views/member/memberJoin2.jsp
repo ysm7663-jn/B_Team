@@ -2,42 +2,47 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../template/header.jsp" />
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
 <script>
-
 	
-
-
-	function mIdCheck(f){
-		var id=f.mId.value;
-		var regExpID = /^[0-9a-zA-Z][0-9a-zA-Z]{5,15}$/;
-		var result = document.getElementById('result');
-		
-		if(regExpID.test(id)){
-			result.textContent ='사용가능한 아이디입니다.';
-			result.setAttribute = ('class', 'check-mId-result-ok');
-			return true;
-		}else{
-			result.textContent = '이미 있거나 사용이 불가능한 아이디입니다.';
-			result.setAttribute = ('class', 'check-mId-result-not');
-			return false;
-		}
-	}
+	$(function(){
+		fn_search();
+	});
 	
-	function mPwCheck(f){
-		var pw=f.mPw.value;
-		var regExpPW = /[a-zA-Z0-9]{6,16}$/;
-		var result2 = document.getElementByPW('result2');
-		
-		if(regExpPW.test(id)){
-			result.textContent ='사용가능한 비밀번호입니다.';
-			result.setAttribute = ('class', 'check-mPw1-result-ok');
-			return true;
-		}else{
-			result.textContent = '사용이 불가능한 비밀번호입니다.';
-			result.setAttribute = ('class', 'check-mPw1-result-not');
-			return false;
-		}
+	
+	function fn_search(){
+		$('#mId').keyup(function(){
+			var mId=$('#mId').val();
+			$.ajax({
+				url:'memberSearch.do?mId='+mId,
+				type:'get',
+				dataType: 'json',
+				success: function(data){
+					if (data.resultMap == 1) {
+						alert('이미 등록되어있는 아이디 입니다');
+					} else {
+						var regExpID = /[a-zA-Z0-9]{6,16}$/;
+						var result = document.getElementById('result');
+						if(regExpID.test(mId)){
+							result.textContent ='사용가능한 아이디입니다.';
+							result.setAttribute('class', 'check-mId-result-ok');
+							return true;
+						}else{
+							result.textContent = '사용이 불가능한 아이디입니다.';
+							result.setAttribute('class', 'check-mId-result-not');
+							return false;
+						}
+					}
+				},
+				error: function(){
+					alert('실패');
+				}
+			});
+		});
 	}
+		
+	
 	function mPw2Check(f){
 		if(f.mPw1.value == f.mPw2.value){
 			result.textContent ='비밀번호가 일치합니다.';
@@ -65,7 +70,7 @@
 	
 	<form method="post" action="memberInsert.do">
 		<label for="mId">아이디</label><br/>
-		<input type="text" name="mid" id="mId" onblur="mIdCheck(this.form)"/><br/>
+		<input type="text" name="mId" id="mId" /><br/>
 		<div id="result" class="check-mId-result"></div>
 		<br/><br/>
 		
@@ -101,10 +106,10 @@
 		
 		<label for="email">이메일</label><br/>
 		<input type="text" name="email" id="email" onblur="emailCheck(this.form)"/><br/>
-		<input type="text" name="mId" id="mId"/><br/>
+		<input type="text" name="" id=""/><br/>
 		<br/><br/>
 		
-		<input type="text" name="mId" id="mId"/><br/>
+		<input type="text" name="" id=""/><br/>
 		<br/><br/>
 		
 		
