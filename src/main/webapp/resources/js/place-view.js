@@ -24,6 +24,7 @@ $(function(){
         	$('input:hidden[name="res_date"]').val(d);
         }
 	});
+	
 	$(document).on('click', 'input:checkbox', function(){
 		$('input:checkbox').parent().next().removeClass('active');
 		$('input:checkbox:checked').parent().next().addClass('active');

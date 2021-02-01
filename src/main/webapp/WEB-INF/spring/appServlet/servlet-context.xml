@@ -21,9 +21,12 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- place command -->
 	<beans:bean id="placeListCommand" class="com.koreait.baraON.command.place.PlaceListCommand" />
 	<beans:bean id="placeViewCommand" class="com.koreait.baraON.command.place.PlaceViewCommand" />
 	
+	<!-- review command -->
+	<beans:bean id="reviewUpdateCommand" class="com.koreait.baraON.command.review.ReviewUpdateCommand" />
 	<context:component-scan base-package="com.koreait.baraON" />
 	
 	

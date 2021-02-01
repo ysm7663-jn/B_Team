@@ -21,5 +21,6 @@ public class PlaceDto {
 	private String p_img;
 	private int p_confirm;
 	private String p_url;
+	private String p_remark;
 	private int p_delete;
 }

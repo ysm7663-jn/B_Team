@@ -10,8 +10,73 @@
 <script type="text/javascript" src="resources//js/place-view.js" ></script> 
 <script>
 	let facilityList = JSON.parse('${facilityList}');
+	function fn_modal(f){
+		let rv_no = f.rv_no.value;
+		let rv_star = f.rv_star.value;
+		let rv_content = f.rv_content.value;
+		$('.modal-star').empty();
+		for(let i = 0 ; i<5 ; i++){
+			if(i<rv_star){
+				$('.modal-star').append('<i class="fas fa-star"></i>');
+			} else {
+				$('.modal-star').append('<i class="far fa-star"></i>');
+			}
+		}
+		$('textarea[name="rv_content"]').val(rv_content);
+		$('#modal-rv-no').val(rv_no);
+		$('.modal').addClass('active');
+	}
+	function fn_modalClose(){
+		$('.modal').removeClass('active');
+	}
+	function fn_reviewUpdate(f){
+		let rv_content = f.rv_content.value;
+		let rv_no = f.rv_no.value;
+		let sendObj = {
+				'rv_no' : rv_no,
+				'rv_content' : rv_content
+		}
+		$.ajax({
+			url:'reviewUpdate.review',
+			type:'post',
+			data: JSON.stringify(sendObj),
+			contentType: 'application/json; charset=utf-8',
+			dataType:'json',
+			success:function(responseObj){
+				if(responseObj.result == 1){
+					alert('수정되었습니다.');
+					location.href='placeViewPage.place?no=${placeDto.p_no}';
+				} else{
+					alert('리dd니다.');
+				}
+			},
+			error:function(error){
+				alert(error);
+			}
+		
+		});
+	}
 </script>
 
+<div class="modal">
+	<div class="modal-content">
+		<div class="close" onclick="fn_modalClose()">&times;</div>
+		<form id="modal-form" action="reviewUpdate.review" method="post">
+			<div class="content-wrap">
+			<span>ID : ${loginDto.m_id}</span><br/>
+			
+			<span class="modal-star">
+				
+			</span>
+			<br/>
+			<textarea name="rv_content" rows="5" cols="50"></textarea>
+			<input id="modal-rv-no" type="hidden" name="rv_no" />
+			<input type="button" value="수정완료" onclick="fn_reviewUpdate(this.form)" />
+			<input type="button" value="돌아가기" onclick="fn_modalClose()" />
+			</div>
+		</form>
+	</div>
+</div>
 <div class="title-area">
 	<div class="place-title">
 		<h1>${placeDto.p_title}</h1>
@@ -20,7 +85,7 @@
 		<h3>${placeDto.p_desc}</h3>
 	</div>
 	<div>
-		<span># ${pc_name}</span>
+		<span># ${categoryName}</span>
 	</div>
 </div>
 <section>
@@ -99,38 +164,33 @@ ajsd
 fja
 sdfj
 asdjf
-fasd
-fjas
-dfj
-asdj
-asdfj
-fja
-sdfj
-asdjf
-asjdf
-jasd
-fja
-sdfj
-asdjf
-asjd
-fjasd
-fja
-sdjf
-asdjf
-asdjf
-asdjf
-asdj
-fasd
-fjas
-dfj
-asdj
-asdfj
 		</pre>
 		</div>
 		<div id="place-info" class="place-info">
 			<h3>시설안내</h3>
 			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
 			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
+			<p>
+			${placeDto.p_info}
+			</p>
+			<pre>
+asdj
+asdjf
+ajsd
+fja
+sdfj
+asdjf
+asjdf
+			</pre>
+			
+		</div>
+		<div id="place-remark" class="place-remark">
+			<h3>유의사항</h3>
+			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
+			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
+			<p>
+			${placeDto.p_remark}
+			</p>
 			<pre>
 asdj
 asdjf
@@ -140,122 +200,78 @@ sdfj
 asdjf
 asjdf
 jas
-asjdf
-jasd
-fja
-sdfj
-asdjf
-asjd
-fjasd
-fja
-sdjf
-asdjf
-asdjf
-asdjf
-asdj
-fasd
-fjas
-dfj
-asdj
-asdfj
-			</pre>
-			
-		</div>
-		<div id="place-remark" class="place-remark">
-			<h3>유의사항</h3>
-			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
-			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
-			<pre>
-asdj
-asdjf
-ajsd
-fja
-sdfj
-asdjf
-asjdf
-jasd
-fja
-sdfj
-asdjf
-asjd
-fjasd
-fja
-sdjf
-asdjf
-asdjf
-asdjf
-asdj
-fasd
-fjas
-dfj
-asdj
-asdfj
-fja
-sdfj
-asdjf
-asjdf
-jasd
-fja
-sdfj
-asdjf
-asjd
-fjasd
-fja
-sdjf
-asdjf
-asdjf
-asdjf
-asdj
-fasd
-fjas
-dfj
-asdj
-asdfj
-fja
-sdfj
-asdjf
-asjdf
-jasd
-fja
-sdfj
-asdjf
-asjd
-fjasd
-fja
-sdjf
-asdjf
-asdjf
-asdjf
-asdj
-fasd
-fjas
-dfj
-asdj
-asdfj
 		</pre>
 		</div>
 		<div id="place-review" class="place-review">
 			<h3>리뷰</h3>
-			<c:if test="${reviewList eq null}">
-				<div>
-					<h2>등록된 후기가 아직 없습니다.</h2>
-				</div>
-			</c:if>
-			<c:if test="${reviewList ne null}">
-			<!-- Tod : 리뷰 불러오기는 홀수번째, 짝수번째에 나눠서 다른 css적용 -->
-				<c:forEach var="reviewDto" items="${reviewList}" varStatus="k" >
-					<c:if test="${(k.index/2) eq 1}">
-						<div class="review-wrap-odd">
-							
-						</div>
-					</c:if>
-					<c:if test="${(k.index/2) eq 0}">
-						<div class="review-wrap-even">
-							
-						</div>
-					</c:if>
-				</c:forEach>
-			</c:if>
+			<div class="review-list">
+				<c:if test="${reviewList eq null}">
+					<div>
+						<h2>등록된 후기가 아직 없습니다.</h2>
+					</div>
+				</c:if>
+				<c:if test="${reviewList ne null}">
+				<!-- Todo : 리뷰 불러오기는 홀수번째, 짝수번째에 나눠서 다른 css적용 -->
+				<!-- 일단은 모두 같은 css를 적용한다. -->
+					<c:forEach var="reviewDto" items="${reviewList}" varStatus="k" >
+						<%-- <c:if test="${(k.index/2) eq 1}">
+							<div class="review-wrap-odd">
+								
+							</div>
+						</c:if>
+						<c:if test="${(k.index/2) eq 0}">
+							<div class="review-wrap-even">
+								
+							</div> 
+						</c:if>--%>
+						<form>
+							<div class="review">
+								<div class="reviewer-info">
+									<c:if test="${reviewDto.m_nick eq null}">
+										<span class="review-id">ID : ${reviewDto.m_id}</span>
+									</c:if>
+									<c:if test="${reviewDto.m_nick ne null}">
+										<span class="review-nick">Nick name : ${reviewDto.m_nick}</span>
+										<br/>
+										<span class="review-id">ID : ${reviewDto.m_id}</span>
+									</c:if>
+								</div>
+								<div class="review-star">
+									<c:forEach begin="1" end="5" step="1" varStatus="k" >
+										<c:if test="${k.count le reviewDto.rv_star}">
+											<i class="fas fa-star"></i>
+										</c:if>
+										<c:if test="${k.count gt reviewDto.rv_star}">
+											<i class="far fa-star"></i>
+										</c:if>
+									 </c:forEach>
+									 <div class="review-date">
+									 	작성일 : ${reviewDto.rv_postDate}<br/>
+									 	<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
+										 	최근수정일 : ${reviewDto.rv_modifyDate}
+									 	</c:if>
+									 </div>
+									 <!-- modal에 표시할 별점 -->
+									 <input type="hidden" name="rv_star" value="${reviewDto.rv_star}" />
+								</div>
+								<div class="review-content" >
+									<p>${reviewDto.rv_content}</p>
+									<!-- modal에 표시할 내용 -->
+									<input type="hidden" name="rv_content" value="${reviewDto.rv_content}" />
+									<input type="hidden" name="rv_no" value="${reviewDto.rv_no}" />
+								</div>
+								<div class="review-btns" >
+									<c:if test="${loginDto.m_no eq reviewDto.m_no}">
+										<input type="hidden" name="rv_no" value="${reviewDto.rv_no}" />
+										<input type="button" value="수정하기" onclick="fn_modal(this.form)" />
+										<input type="button" value="삭제하기" onclick="fn_reviewDelete(this.form)" />
+									</c:if>
+								</div>
+							</div>
+						</form>
+					</c:forEach>
+				</c:if>
+			</div>
 		</div>
 	
 	</article>

@@ -29,6 +29,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE P_NO=#{param1}
 	</select>
 	
+	<select id="getPlaceCategoryByPCNo" parameterType="int" resultType="com.koreait.baraON.dto.PlaceCategoryDto">
+		SELECT *
+		FROM PLACECATEGORY
+		WHERE PC_NO=#{param1}
+	</select>
+	
 	<select id="getSellerDto" parameterType="int" resultType="com.koreait.baraON.dto.SellerDto" >
 		SELECT S_NO, S_ID, S_PHONE, S_NAME, S_EMAIL, S_COMPANYNO
 		FROM SELLER
@@ -36,12 +42,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	
-	<!-- 페이징처리를 위해 보류 -->
-	<select id="getReviewList" parameterType="int" resultType="com.koreait.baraON.dto.ReviewDto" >
-		SELECT RV.RV_NO, RV.RV_STAR, RV.RV_IMG, M.M_NICK, M.M_ID
-		FROM REVIEW RV LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO AND RV.RV_DELETE = 0
-		WHERE P_NO=#{param1}
-		AND
+	<select id="getReviewListOfViewPage" resultType="com.koreait.baraON.dto.ReviewDto" >
+			SELECT B.*
+		FROM (SELECT ROWNUM RN, A.*
+		FROM (SELECT RV.*, M.M_NICK, M.M_ID
+			 FROM REVIEW RV LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO AND RV.RV_DELETE = 0
+			 WHERE P_NO = #{param1}
+			 ORDER BY RV.RV_POSTDATE DESC ) A ) B
+		 WHERE RN BETWEEN #{param2} AND #{param3}
 	</select>
 	
 	<select id="getPlaceOptionList" parameterType="int" resultType="com.koreait.baraON.dto.PlaceOptionDto">

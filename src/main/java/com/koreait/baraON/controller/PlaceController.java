@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.baraON.command.place.PlaceListCommand;
 import com.koreait.baraON.command.place.PlaceViewCommand;
@@ -41,5 +42,7 @@ public class PlaceController {
 		placeViewCommand.execute(sqlSession, model);
 		return "place/placeViewPage";
 	}
+	
+	
 	
 }
