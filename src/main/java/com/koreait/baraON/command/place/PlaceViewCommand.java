@@ -8,8 +8,10 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.baraON.dao.PlaceDao;
+import com.koreait.baraON.dto.PlaceCategoryDto;
 import com.koreait.baraON.dto.PlaceDto;
 import com.koreait.baraON.dto.PlaceOptionDto;
+import com.koreait.baraON.dto.ReviewDto;
 import com.koreait.baraON.dto.SellerDto;
 
 public class PlaceViewCommand implements PlaceCommand {
@@ -29,6 +31,9 @@ public class PlaceViewCommand implements PlaceCommand {
 		
 		SellerDto sellerDto = placeDao.getSellerDto(s_no);
 		
+		PlaceCategoryDto placeCategoryDto = placeDao.getPlaceCategoryByPCNo(pc_no);
+		
+		// OptionList의 facility 데이터를 받아와서 배열로 만들기
 		List<PlaceOptionDto> placeOptionList = placeDao.getPlaceOptionList(p_no);
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
@@ -42,10 +47,17 @@ public class PlaceViewCommand implements PlaceCommand {
 		}
 		sb.append("]");
 		
+		// Review
+		// 가장 최초에는 삭제되지 않은 리뷰중에 가장 최근의 리뷰부터 3개를 가져옴
+		List<ReviewDto> reviewList = placeDao.getReviewListOfViewPage(p_no, 1, 3);
+		
+		
 		model.addAttribute("placeDto", placeDto);
 		model.addAttribute("sellerDto", sellerDto);
+		model.addAttribute("categoryName", placeCategoryDto.getPc_name());
 		model.addAttribute("optionList", placeOptionList);
 		model.addAttribute("facilityList",sb.toString());
+		model.addAttribute("reviewList", reviewList);
 	}
 
 }
