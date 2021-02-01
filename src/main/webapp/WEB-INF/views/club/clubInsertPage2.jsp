@@ -28,6 +28,14 @@
 			</div>
 		</div>
 		
+		<input type="hidden" name="mainThumbnail" />
+		<input type="hidden" name="c_title" />
+		<input type="hidden" name="c_min" />
+		<input type="hidden" name="c_max" />
+		<input type="hidden" name="c_money" />
+		<input type="hidden" name="c_startDate" />
+		<input type="hidden" name="c_endDate" />
+	
 		<input type="button" value="finish" onclick="fn_finish(this.form)" />
 		
 	</form>

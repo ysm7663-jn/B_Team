@@ -8,11 +8,11 @@
 </head>
 <body>
 	
-	<form action="clubInsertPage2.club" method="get">
+	<form method="get">
 		<div class="insert-wrap">
 		
 			<div id="image">
-				<img alt="${clubDto.mainthumnail}" src="resources/storage/${clubDto.filename}">
+				<input type="file" name="mainThumbnail" />
 			</div>
 		
 			<div class="inputs">
@@ -36,9 +36,18 @@
 			</div>
 		</div>
 		
-		<button>next></button>
+		<input type="button" name="btn" value="next >" onclick="fn_next(this.form)" />
 		
 	</form>
+	
+	<script type="text/javascript">
+	
+		function fn_next(f) {
+			f.action='clubInsertPage2.club';
+			f.submit();
+		}
+	
+	</script>
 
 </body>
 </html>

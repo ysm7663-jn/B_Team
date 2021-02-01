@@ -21,13 +21,15 @@
 			<div id="none_content">등록된 클럽이 없습니다.</div>
 		</c:if>
 		<c:if test="${not empty list}">
-			<div class="group-list">
-				<div class="content">
-					<div class="thumnail">
-						<img alt="" src="">
+			<c:forEach var="clubDto" items="${list}">
+				<div class="group-list">
+					<div class="content">
+						<div class="thumnail">
+							<img alt="" src="">
+						</div>
 					</div>
 				</div>
-			</div>
+			</c:forEach>
 		</c:if>
 	</form>
 	

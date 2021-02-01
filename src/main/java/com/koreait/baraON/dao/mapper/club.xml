@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.baraON.dao.ClubDao">
 
-	<select id="clubList" resultType="clubDto">
+	<select id="clubList" resultType="">
 		SELECT *
 		  FROM CLUB
 	</select>
