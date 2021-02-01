@@ -10,5 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE RV_NO = #{rv_no}
 	</update>
 	
+	<update id="reviewDelete" parameterType="int" >
+		UPDATE REVIEW
+		SET RV_DELETE = 1
+		WHERE RV_NO = #{param1}
+	</update>
+	
 	
 </mapper>

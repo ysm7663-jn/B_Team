@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.baraON.command.review.ReviewDeleteCommand;
 import com.koreait.baraON.command.review.ReviewUpdateCommand;
 import com.koreait.baraON.dto.ReviewDto;
 
@@ -19,21 +20,31 @@ public class ReviewController {
 
 	private SqlSession sqlSession;
 	private ReviewUpdateCommand reviewUpdateCommand;
+	private ReviewDeleteCommand reviewDeleteCommand;
 	
 	@Autowired
 	public void setSessionAndCommands(SqlSession sqlSession,
-										  ReviewUpdateCommand reviewUpdateCommand) {
+										  ReviewUpdateCommand reviewUpdateCommand,
+										  ReviewDeleteCommand reviewDeleteCommand) {
 		this.sqlSession = sqlSession;
 		this.reviewUpdateCommand = reviewUpdateCommand;
+		this.reviewDeleteCommand = reviewDeleteCommand;
 	}
 	
 	
 	
-	@RequestMapping(value="reviewUpdate.review", method=RequestMethod.POST, produces="application/json; charset=utf-8")
+	@RequestMapping(value="reviewUpdate.review", method=RequestMethod.PUT, produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> reviewUpdate(@RequestBody ReviewDto reviewDto , Model model) {
 		model.addAttribute("reviewDto",reviewDto);
 		
 		return reviewUpdateCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="reviewDelete,review", method=RequestMethod.PUT, produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> reviewDelete(@RequestBody int pv_no , Model model) {
+		model.addAttribute("pv_no", pv_no);
+		return reviewDeleteCommand.execute(sqlSession, model);
 	}
 }

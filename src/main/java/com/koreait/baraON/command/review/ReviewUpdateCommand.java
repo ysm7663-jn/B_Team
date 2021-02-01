@@ -15,9 +15,7 @@ public class ReviewUpdateCommand {
 		ReviewDto reviewDto = (ReviewDto)model.asMap().get("reviewDto");
 		
 		ReviewDao reviewDao = sqlSession.getMapper(ReviewDao.class);
-		
 		Map<String, Object> resultMap = new HashMap<String, Object>(); 
-		
 		resultMap.put("result", reviewDao.reviewUpdate(reviewDto));
 		
 		return resultMap;

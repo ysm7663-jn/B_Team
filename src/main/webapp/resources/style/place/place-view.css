@@ -188,12 +188,17 @@ div[id*="place-"]{
 }
 .ui-datepicker-prev{
 	position:absolute;
-	left:2px
+	left:2px;
+	cursor:pointer;
 		
 }
 .ui-datepicker-next{
 	position:absolute;
-	right:2px
+	right:2px;
+	cursor:pointer;
+}
+.ui-state-disabled{
+	cursor:auto;
 }
 .ui-datepicker-calendar {
 	width: 300px;

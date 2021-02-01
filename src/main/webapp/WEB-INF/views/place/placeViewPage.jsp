@@ -22,7 +22,7 @@
 				$('.modal-star').append('<i class="far fa-star"></i>');
 			}
 		}
-		$('textarea[name="rv_content"]').val(rv_content);
+		$('#modal-rv-content').val(rv_content);
 		$('#modal-rv-no').val(rv_no);
 		$('.modal').addClass('active');
 	}
@@ -30,51 +30,75 @@
 		$('.modal').removeClass('active');
 	}
 	function fn_reviewUpdate(f){
-		let rv_content = f.rv_content.value;
-		let rv_no = f.rv_no.value;
+ 		let rv_content = $('#modal-rv-content').val();
+		let rv_no = $('#modal-rv-no').val();
 		let sendObj = {
 				'rv_no' : rv_no,
 				'rv_content' : rv_content
-		}
+		};
 		$.ajax({
 			url:'reviewUpdate.review',
-			type:'post',
+			type:'put',
 			data: JSON.stringify(sendObj),
 			contentType: 'application/json; charset=utf-8',
 			dataType:'json',
 			success:function(responseObj){
-				if(responseObj.result == 1){
+				if(responseObj.result > 0){
 					alert('수정되었습니다.');
 					location.href='placeViewPage.place?no=${placeDto.p_no}';
 				} else{
-					alert('리dd니다.');
+					alert('실패');
 				}
 			},
-			error:function(error){
-				alert(error);
+			error:function(){
+				alert('오류가 발생했습니다.');
 			}
 		
 		});
+	}
+	function fn_reviewDelete(f){
+		
+		if(confirm('정말삭제하시겠습니까?')){
+			let sendObj = {
+				'rv_no' : f.rv_no.value
+			};
+			$.ajax({
+				url:'reviewDelete.review',
+				type:'put',
+				data:JSON.stringify(sendObj),
+				contentType: 'application/json; charset=utf-8',
+				dataType:'json',
+				success:function(responseObj){
+					if(responseObj.result > 0) {
+						alert('삭제되었습니다.');
+						location.href='placeViewPage.place?no=${placeDto.p_no}';
+					} else {
+						alert('삭제에 실패했습니다.');
+					}
+				},
+				error:function(request,status,error){
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
 	}
 </script>
 
 <div class="modal">
 	<div class="modal-content">
 		<div class="close" onclick="fn_modalClose()">&times;</div>
-		<form id="modal-form" action="reviewUpdate.review" method="post">
-			<div class="content-wrap">
-			<span>ID : ${loginDto.m_id}</span><br/>
+		<div class="content-wrap">
+		<span>ID : ${loginDto.m_id}</span><br/>
+		
+		<span class="modal-star">
 			
-			<span class="modal-star">
-				
-			</span>
-			<br/>
-			<textarea name="rv_content" rows="5" cols="50"></textarea>
-			<input id="modal-rv-no" type="hidden" name="rv_no" />
-			<input type="button" value="수정완료" onclick="fn_reviewUpdate(this.form)" />
-			<input type="button" value="돌아가기" onclick="fn_modalClose()" />
-			</div>
-		</form>
+		</span>
+		<br/>
+		<textarea id="modal-rv-content" rows="5" cols="50"></textarea>
+		<input id="modal-rv-no" type="hidden" />
+		<input type="button" value="수정완료" onclick="fn_reviewUpdate()" />
+		<input type="button" value="돌아가기" onclick="fn_modalClose()" />
+		</div>
 	</div>
 </div>
 <div class="title-area">
@@ -139,7 +163,7 @@
 	</aside>
 	<article>
 		<div class="thumbnail-box">
-		<img alt="썸네일" src="resources/images/${placeDto.p_img}" >
+		<img alt="썸네일" src="resources/images/PlaceImages/${placeDto.p_img}" >
 		</div>
 		<div class="place-line-desc2">
 			${placeDto.p_desc}
@@ -204,6 +228,24 @@ jas
 		</div>
 		<div id="place-review" class="place-review">
 			<h3>리뷰</h3>
+			<div class="review-insert">
+				<form method="post" enctype="multipart/form-data" >
+					<div class="review-insert-star">
+						
+						<input type="hidden" name="rv_star" />
+					</div>
+					<c:if test="${loginDto eq null }">
+						<textarea rows="5" cols="50" placeholder="로그인한 회원만 리뷰작성이 가능합니다." readonly></textarea>
+					</c:if>
+					<c:if test="${loginDto ne null }">
+						<textarea rows="5" cols="50" name="rv_content" placeholder="댓글은 마음의 창입니다." ></textarea>
+					</c:if>
+					<div class="review-insert-btn-wrap">
+						<button>작성하기</button>
+						<input type="button" value="다시작성하기" />
+					</div>
+				</form>
+			</div>
 			<div class="review-list">
 				<c:if test="${reviewList eq null}">
 					<div>
@@ -262,7 +304,6 @@ jas
 								</div>
 								<div class="review-btns" >
 									<c:if test="${loginDto.m_no eq reviewDto.m_no}">
-										<input type="hidden" name="rv_no" value="${reviewDto.rv_no}" />
 										<input type="button" value="수정하기" onclick="fn_modal(this.form)" />
 										<input type="button" value="삭제하기" onclick="fn_reviewDelete(this.form)" />
 									</c:if>
