@@ -34,7 +34,7 @@
 	<script type="text/javascript">
 
 		function fn_insertPage(f) {
-			f.action = 'clubInsertPage.club';
+			f.action = 'clubInsertPage1.club';
 			f.submit();
 		}	
 	

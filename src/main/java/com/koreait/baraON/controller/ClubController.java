@@ -17,9 +17,10 @@ public class ClubController {
 	private BaraONCommand baraONCommand;
 
 	// 단순이동
-	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
+	@RequestMapping(value="clubInsertPage1.club", method=RequestMethod.GET)
 	public String clubInsertPage() {
-		return "club/clubInsertPage";
+		
+		return "club/clubInsertPage1";
 	}
 	
 	
@@ -30,6 +31,13 @@ public class ClubController {
 		
 		
 		return "club/clubListPage";
+	}
 	
+	@RequestMapping(value="clubInsertPage2.club", method=RequestMethod.GET)
+	public String clubInsertPage2() {
+		
+		
+		
+		return "club/clubInsertPage2";
 	}
 }
