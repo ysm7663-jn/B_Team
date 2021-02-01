@@ -55,7 +55,7 @@
 			f.domains.focus();
 			return;
 		}
-		f.action='';
+		f.action='findPw.member';
 		f.submit();
 	}
 	
@@ -65,6 +65,15 @@
 			alert('일치하는 정보가 없습니다.');
 		} else {
 			location.href='findIdPage.member?id=${id}';
+		}
+	}
+	
+	/* 비밀번호 찾기 결과 */
+	if('${findPwResult}') {
+		if(${Dto eq null}) {
+			alert('일치하는 정보가 없습니다.');
+		} else {
+			location.href='findPwPage.member?email=${email}';
 		}
 	}
 	

@@ -53,5 +53,18 @@
 	</bean>
 	-->
 	
+	<!-- 이메일 인증 -->
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="baraontest@gmail.com" />
+		<property name="password" value="asdfzxcv12!" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttle.enable">true</prop>
+			</props>
+		</property>
+	</bean>
 </beans>
 

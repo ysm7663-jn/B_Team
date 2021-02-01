@@ -189,12 +189,13 @@
 		</dependency>
 		
 		<!-- 이메일 인증 처리를 위한 2개 디펜던시 -->
-		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
-		    <artifactId>javax.mail-api</artifactId>
+		    <artifactId>mail</artifactId>
 		    <version>1.4.7</version>
 		</dependency>
+
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
 		<dependency>
