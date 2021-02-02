@@ -68,25 +68,33 @@ INCREMENT BY 1
 NOCYCLE
 NOCACHE;
 
+select * from club;
 
 -- CLUB Table Create SQL
 CREATE TABLE CLUB
 (
-    C_NO           NUMBER               PRIMARY KEY, 
-    CT_NO          NUMBER               NOT NULL REFERENCES CATEGORY (CT_NO), 
-    M_NO           NUMBER               NOT NULL REFERENCES MEMBER (M_NO), 
+    C_NO           NUMBER            PRIMARY KEY, 
+    CT_NO          NUMBER            NOT NULL REFERENCES CATEGORY (CT_NO), 
+    M_NO           NUMBER            NOT NULL REFERENCES MEMBER (M_NO), 
     C_TITLE        VARCHAR2(100)     NOT NULL, 
     C_CONTENT      VARCHAR2(4000)    NULL, 
     C_POSTDATE     DATE              NOT NULL, 
-    C_ENJOYDATE    VARCHAR2(1000)    NULL, 
+    C_STARTDATE    DATE    			 NOT NULL, 
     C_ENDDATE      DATE              NOT NULL, 
-    C_MIN          NUMBER               NOT NULL, 
-    C_MAX          NUMBER               NOT NULL, 
-    C_COUNT        NUMBER               NOT NULL, 
-    C_THUMB        VARCHAR2(50)      NULL, 
-    C_DELETE       NUMBER               NOT NULL, 
-    C_PART         NUMBER               NOT NULL
+    C_MIN          NUMBER            NOT NULL, 
+    C_MAX          NUMBER            NOT NULL, 
+    C_COUNT        NUMBER            NOT NULL,
+    C_MAINTHUMNAIL VARCHAR2(50)	     NULL,
+    C_THUMBNAIL1   VARCHAR2(50)      NULL, 
+    C_THUMBNAIL2   VARCHAR2(50)      NULL, 
+    C_THUMBNAIL3   VARCHAR2(50)      NULL, 
+    C_DELETE       NUMBER            NOT NULL, 
+    C_PART         NUMBER            NOT NULL
 );
+
+ALTER TABLE CLUB ADD C_MONEY NUMBER NULL;
+ALTER TABLE CLUB MODIFY C_STARTDATE DATE NOT NULL;
+SELECT * FROM CLUB;
 
 CREATE SEQUENCE CLUB_SEQ
 START WITH 1
