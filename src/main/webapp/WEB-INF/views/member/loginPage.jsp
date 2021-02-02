@@ -8,11 +8,11 @@
 </jsp:include>
 
 <link rel="stylesheet" href="resources/style/loginPage.css">
+
 <script>
 	$(document).ready(function(){
 		$(".footer-wrap").css("background" , "white");
 	});
-</script>
 <%
 	String id = null;
 
@@ -26,6 +26,7 @@
 	}
 	pageContext.setAttribute("id", id);
 %>
+</script>
 
 <div class="box">
 	<div class="inner-box">
@@ -54,7 +55,15 @@
 			<a href="findPage.member" class="login">아이디/비밀번호를 잊으셨나요?</a><br/>
 			
 			<button>로그인</button>
-			
+			<div class="kakaoLogin">
+				<h5>Kakao 계정으로 시작하기</h5>
+				<a href="https://kauth.kakao.com/oauth/authorize
+				?client_id=4fd62ed3c510f9b7e565ab78d297d444
+				&redirect_uri=http://localhost:9090/baraON/loginKakao.member
+				&response_type=code">
+    				<img alt="kakaoTalk" src="resources/images/kakao_login_small.png">
+    			</a>
+			</div>
 		</form>
 	</div>
 </div>

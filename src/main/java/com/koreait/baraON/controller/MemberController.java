@@ -1,7 +1,10 @@
 package com.koreait.baraON.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.baraON.command.member.ChangePwCommand;
 import com.koreait.baraON.command.member.ChkIdCommand;
@@ -24,6 +28,8 @@ public class MemberController {
 	
 	@Autowired
 	private SqlSession sqlSession;
+	@Autowired
+	private KaKaoAPI kakaoAPI;
 	
 	//private BaraONCommand baraONCommand;
 	private LoginCommand loginCommand;
@@ -71,6 +77,24 @@ public class MemberController {
 		} else {  // seller일때
 			return "member/loginResult2";
 		}
+	}
+	
+	@RequestMapping(value="loginKakao.member")
+	public String kakaoLogin(@RequestParam(value="code", required=false) String code, HttpSession session) throws Exception {
+		String access_Token = kakaoAPI.getAccessToken(code);
+		HashMap<String, Object> userInfo = kakaoAPI.getUserInfo(access_Token);
+		
+		System.out.println("login Controller: " + userInfo);
+		System.out.println("access_Token : " + access_Token);
+		System.out.println("userInfo : " + userInfo.get("email"));
+		System.out.println("nickname : " + userInfo.get("nickname"));
+		System.out.println("profile_image : " + userInfo.get("profile_image"));
+		/*if(userInfo.get("email") != null) {
+			session.setAttribute("userId", userInfo.get("email"));
+			session.setAttribute("access_Token", access_Token);
+		}*/
+		
+		return "member/loginPage";
 	}
 	
 	@RequestMapping(value="logout.member", method=RequestMethod.GET)
