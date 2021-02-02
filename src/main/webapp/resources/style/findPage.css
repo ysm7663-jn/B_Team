@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	/* border-collapse: collapse; */
+}
+div {
+	box-sizing: border-box;
+}
+
+
+.box {
+	background: lightgray;
+	height: 500px;
+}
+.inner-box {
+	height: 70%;
+	background: white;
+	width: 40%;
+	position: relative;
+	left: 31%;
+	top:7%;
+	border-radius: 15px;
+}
+.main-aside {
+	position: relative;
+	width: 70%;
+	left: 16%;
+	top: 10%;
+	
+}
+#findId, #findPw {
+	display: none;
+}
+.tab-contents {
+	/* display: none; */
+}
+.tab-buttons {
+	display: flex;
+	margin: 5%;
+}
+.button input{
+	width: 100%;	
+	border: 1px solid #1DD1AD;
+	border-radius: 3px;
+	background: #1DD1AD;
+	color: white;
+} 
+input[type="text"] {
+	width: 46%;
+}
+hr {
+	background: #1DD1AD;
+	border: 1px solid #1DD1AD;
+	border-radius: 3px;
+	height: 5px;
+	margin-top: 3px;
+}
+.tab-buttons > label {
+	display: block;
+	width: 35%;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+#findId:checked ~ .tab-contents:nth-of-type(1) {
+	display: block;
+}
+#findId:checked + hr:first-of-type {
+	display: block;
+}
+#findPw:checked ~ .tab-contents:nth-of-type(2) {
+	display: block;
+}
+#findPw:checked + hr:last-of-type {
+	display: block;
+}
+tbody {
+	width: 100%;
+}
+.name > td:first-of-type, .email > td:first-of-type, .id > td:first-of-type {
+	background: lightgray;
+}
