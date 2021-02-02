@@ -18,7 +18,7 @@ public class MemberDto {
 	private String m_birth;
 	private String m_nick;
 	private String m_email;
-	private Date regDate;
+	private Date m_regDate;
 	private int m_auth;
 	private int m_agreement;
 }

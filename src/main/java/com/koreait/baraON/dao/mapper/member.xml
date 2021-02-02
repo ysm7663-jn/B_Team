@@ -16,4 +16,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  WHERE S_ID = #{param1}
 		   AND S_PW = #{param2}
 	</select>
+	<select id="findMemberId" resultType="com.koreait.baraON.dto.MemberDto">
+		SELECT M_ID
+			FROM MEMBER
+		  WHERE M_NAME = #{param1}
+		   AND M_EMAIL = #{param2}
+	</select>
+	<select id="findSellerId" resultType="com.koreait.baraON.dto.SellerDto">
+		SELECT S_ID
+			FROM SELLER
+		  WHERE S_NAME = #{param1}
+		   AND S_EMAIL = #{param2}
+	</select>
+	<select id="findMemberPw" resultType="int">
+		SELECT M_NO
+			FROM MEMBER
+		  WHERE M_ID = #{param1}
+		   AND M_NAME = #{param2}
+		   AND M_EMAIL = #{param3}
+	</select>
+	<select id="findSellerPw" resultType="int">
+		SELECT S_NO
+			FROM SELLER
+		  WHERE S_ID = #{param1}
+		   AND S_NAME = #{param2}
+		   AND S_EMAIL = #{param3}
+	</select>
+	<update id="changeMemberPw">
+		UPDATE MEMBER
+			SET M_PW = #{param1}
+		 WHERE M_ID = #{param2}
+	</update>
+	<update id="changeSellerPw">
+		UPDATE SELLER
+			SET S_PW = #{param1}
+		 WHERE S_ID = #{param2}
+	</update>
 </mapper>
