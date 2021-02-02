@@ -10,6 +10,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM CLUB
 	</select>
 	
-	
+	<insert id="clubInsert1">
+		INSERT 
+		  INTO CLUB (C_NO, C_MAINTHUMNAIL, C_TITLE, C_MIN, C_MAX, C_MONEY, C_STARTDATE, C_ENDDATE, C_POSTDATE)
+		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, SYSDATE )
+	</insert>
 
 </mapper>

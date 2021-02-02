@@ -15,8 +15,8 @@ public class ClubDto {
 	private String c_title;		
 	private String c_content;	
 	private Date c_postDate;	
-	private Date c_startDate;	
-	private Date c_endDate;  	
+	private String c_startDate;	
+	private String c_endDate;  	
 	private int c_min;			
 	private int c_max;			
 	private int c_count;		

@@ -26,18 +26,23 @@
 				
 				<br/>
 			
+			
 				<span class="title">커리큘럼</span>
 				
 			</div>
 		</div>
 		
-		<input type="hidden" name="mainThumbnail" />
+		<input type="hidden" name="c_mainThumbnail" />
 		<input type="hidden" name="c_title" />
 		<input type="hidden" name="c_min" />
 		<input type="hidden" name="c_max" />
 		<input type="hidden" name="c_money" />
 		<input type="hidden" name="c_startDate" />
 		<input type="hidden" name="c_endDate" />
+		<input type="hidden" name="c_no" />
+		<input type="hidden" name="c_postDate" />
+	
+		<span>${clubDto.c_title}</span>
 	
 		<input type="button" value="finish" onclick="fn_finish(this.form)" />
 		
@@ -47,7 +52,7 @@
 	
 		function fn_finish(f) {
 			if (confirm('클럽 생성을 완료하시겠습니까?')) {
-					f.action = 'clubInsert';
+					f.action = 'clubInsert.club';
 					f.submit();
 				} 
 		}
