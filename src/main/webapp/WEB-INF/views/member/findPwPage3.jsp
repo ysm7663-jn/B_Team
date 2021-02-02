@@ -6,11 +6,18 @@
    
 <link rel="stylesheet" href="resources/style/findPage.css">
 <script>
-	if(${changePwResult} >= 1) {
-		$('h3').text('비밀번호 변경이 성공적으로 이루어졌습니다.');
-	} else {
-		alert('오류가 발생했습니다. 다시 시도해주세요');
-	}
+	$(function(){
+		$(".footer-wrap").css("background" , "white");
+
+		if(${changePwResult >= 1}) {
+			$('h3').text('비밀번호 변경이 성공적으로 이루어졌습니다.');
+		} else {
+			alert('오류가 발생했습니다. 다시 시도해주세요');
+		}
+		<%
+			session.invalidate();
+		%>
+	});
 </script>
 <div class="box">
 	<div class="inner-box">

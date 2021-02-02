@@ -121,7 +121,7 @@ public class MemberController {
 		return "member/findPwPage2";
 	}
 	
-	@RequestMapping(value="changePw.member", method=RequestMethod.GET)
+	@RequestMapping(value="changePw.member", method=RequestMethod.POST)
 	public String changePw(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		changePwCommand.execute(sqlSession, model);

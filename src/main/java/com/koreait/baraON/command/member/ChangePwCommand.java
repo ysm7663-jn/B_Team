@@ -3,6 +3,7 @@ package com.koreait.baraON.command.member;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -16,16 +17,17 @@ public class ChangePwCommand implements BaraONCommand {
 	public void execute(SqlSession sqlSession, Model model) {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		String chagePassword = request.getParameter("chagePassword");
-		String id = request.getParameter("id");
-		String grade = request.getParameter("grade");
+		HttpSession session = request.getSession();
+		String newPassword = request.getParameter("newPassword");
+		String id = (String)session.getAttribute("id");
+		String grade = (String)session.getAttribute("grade");
 		
 		MemberDao memberdao = sqlSession.getMapper(MemberDao.class);
 		int changePwResult = 0;
 		if(grade.equals("member")) {  // 멤버일때
-			changePwResult = memberdao.changeMemberPw(chagePassword, id);
+			changePwResult = memberdao.changeMemberPw(newPassword, id);
 		} else {  // 호스트일때
-			changePwResult = memberdao.changeSellerPw(chagePassword, id);
+			changePwResult = memberdao.changeSellerPw(newPassword, id);
 		}
 		model.addAttribute("changePwResult", changePwResult);
 	}

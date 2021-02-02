@@ -6,13 +6,20 @@
 
 <link rel="stylesheet" href="resources/style/findPage.css">
 <script>
+	$(function(){
+		$(".footer-wrap").css("background" , "white");
+	});
+
 	function fn_checkPassword(f) {
-		if (f.newPassword.value != f.newPassword2.value) {
+		if (f.newPassword.value == '') {
+			alert('새 비밀번호를 입력하세요.');
+			return;
+		} else if(f.newPassword.value == f.newPassword2.value){
+			f.action = 'changePw.member';
+			f.submit();
+		} else {
 			alert('새 비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 			return;
-		} else {
-			f.chagePassword.value = f.newPassword.value;
-			location.href = 'changePw.member?grade=${grade}?id=${id}';
 		}
 	}
 </script>
@@ -42,8 +49,6 @@
 						</tr>
 						<tr>
 							<td colspan="2">
-								<!-- hidden -->
-								<input type="hidden" name="chagePassword" />
 								<input type="button" value="확인" onclick="fn_checkPassword(this.form)">
 							</td>
 						</tr>

@@ -6,6 +6,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -27,7 +28,8 @@ public class EmailAuthCommmand implements BaraONCommand {
 			message.setHeader("Content-Type", "text/plain; charset=utf-8");
 			message.setFrom(new InternetAddress("baraontest@gmail.com", "바라온"));
 			
-			InternetAddress to = new InternetAddress(request.getParameter("email"));
+			HttpSession session = request.getSession();
+			InternetAddress to = new InternetAddress((String)session.getAttribute("email"));
 			
 			message.addRecipient(RecipientType.TO, to);
 			message.setSubject("인증 요청 메일입니다.", "utf-8");
@@ -38,8 +40,6 @@ public class EmailAuthCommmand implements BaraONCommand {
 			mailSender.send(message);
 			
 			model.addAttribute("authKey", authKey);
-			model.addAttribute("grade", request.getParameter("grade"));
-			model.addAttribute("id", request.getParameter("id"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

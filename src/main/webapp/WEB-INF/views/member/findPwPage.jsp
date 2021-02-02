@@ -6,17 +6,21 @@
 </jsp:include> 
    
 <script>
+	$(function(){
+		$(".footer-wrap").css("background" , "white");
+	});
+
 	function fn_emailAuthConfirm(f) {
 		var authKey = '${authKey}';
 		var userKey = f.userKey.value;
 		console.log(authKey);
 		if(userKey != null) {
-			if(authKey != userKey) {
+			if(authKey == userKey) {
+				alert('인증되었습니다.');
+				location.href = 'findPwPage2.member';
+			} else {
 				alert('잘못된 인증코드입니다.');
 				return;
-			} else {
-				alert('인증되었습니다.');
-				location.href = 'findPwPage2.member?grade=${grade}?id=${id}';
 			}
 			
 		}

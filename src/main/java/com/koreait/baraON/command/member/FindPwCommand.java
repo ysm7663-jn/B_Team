@@ -3,6 +3,7 @@ package com.koreait.baraON.command.member;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -38,9 +39,17 @@ public class FindPwCommand implements BaraONCommand {
 		}
 			
 		model.addAttribute("findPwResult", true);
-		model.addAttribute("email", email);
-		model.addAttribute("grade", grade);
-		model.addAttribute("id", id);
+		
+		HttpSession session = request.getSession();
+		if(id != null) {
+			session.setAttribute("id", id);
+		}
+		if(grade != null) {
+			session.setAttribute("grade", grade);
+		}
+		if(email != null) {
+			session.setAttribute("email", email);
+		}
 
 	}
 

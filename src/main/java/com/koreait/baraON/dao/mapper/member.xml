@@ -42,12 +42,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   AND S_NAME = #{param2}
 		   AND S_EMAIL = #{param3}
 	</select>
-	<update id="changeMemberPw" parameterType="String">
+	<update id="changeMemberPw">
 		UPDATE MEMBER
 			SET M_PW = #{param1}
 		 WHERE M_ID = #{param2}
 	</update>
-	<update id="changeSellerPw" parameterType="String">
+	<update id="changeSellerPw">
 		UPDATE SELLER
 			SET S_PW = #{param1}
 		 WHERE S_ID = #{param2}
