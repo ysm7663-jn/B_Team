@@ -3,19 +3,12 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.koreait.baraON.dao.memberDao2">
+<mapper namespace="com.koreait.baraON.dao.MemberDao">
 
 	<select id="memberSearch" parameterType="String" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER
-		WHERE MID=#{mId}
+		WHERE M_ID= #{m_id}
 	</select>
-	
-	<delete id="memberDrop" parameterType="int">
-		DELETE 
-		FROM MEMBER
-		WHERE NO =#{no}
-	</delete>
-	
 
 </mapper>

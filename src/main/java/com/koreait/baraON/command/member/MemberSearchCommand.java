@@ -3,12 +3,10 @@ package com.koreait.baraON.command.member;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.koreait.baraON.dao.MemberDao2;
+import com.koreait.baraON.dao.MemberDao;
 
 public class MemberSearchCommand implements MemberCommand{
 
@@ -16,15 +14,13 @@ public class MemberSearchCommand implements MemberCommand{
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
 		Map<String, Object> map = model.asMap();
-		String mId = (String)map.get("mId");
+		String m_id = (String)map.get("m_id");
 
-		MemberDao2 memberDao = sqlSession.getMapper(MemberDao2.class);
+		MemberDao memberDao2 = sqlSession.getMapper(MemberDao.class);
 		
-		int count = 0;
-		count = memberDao.memberSearch(mId);
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		resultMap.put("result", count);
+		resultMap.put("resultMap", memberDao2.memberSearch(m_id));
 		
 		return resultMap;
 	}
