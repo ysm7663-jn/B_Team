@@ -21,35 +21,30 @@ public class ReviewInsertCommand implements ReviewCommand {
 //		System.out.println(rttr);
 		
 		int m_no = Integer.parseInt(multipartRequest.getParameter("m_no"));
-		System.out.println(m_no);
 		int p_no = Integer.parseInt(multipartRequest.getParameter("p_no"));
-		System.out.println(p_no);
 		String rv_content = multipartRequest.getParameter("rv_content");
-		System.out.println(rv_content);
 		String rv_img = null;
 		int rv_star = Integer.parseInt(multipartRequest.getParameter("rv_star"));
-		System.out.println(rv_star);
 		ReviewDao reviewDao = sqlSession.getMapper(ReviewDao.class);
 		
 		List<MultipartFile> files = multipartRequest.getFiles("rv_img");
 		int size = files.size();
+		String[] extensions = { "jpg", "jpeg", "gif", "png"};
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, gif, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
 				String originalFilename = file.getOriginalFilename();
-				
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
-				if(!extension.equalsIgnoreCase("jpg") ||
-					!extension.equalsIgnoreCase("jpeg") ||
-					!extension.equalsIgnoreCase("gif") ||
-					!extension.equalsIgnoreCase("png")) {
-					model.addAttribute("insertResult", 0);
-					return;
+				for(int i=0;i<extensions.length;i++) {
+					if(extension.equalsIgnoreCase(extensions[i])) {
+						System.out.println(extension.equalsIgnoreCase(extensions[i]));
+						return;
+					}
 				}
 				String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
-				
+				System.out.println(2);
 				String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
 				
 				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/ReviewImages");
@@ -66,6 +61,7 @@ public class ReviewInsertCommand implements ReviewCommand {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
 				if(files.get(size-1) != file) {
 					sb.append(uploadFilename+", ");
 				} else {

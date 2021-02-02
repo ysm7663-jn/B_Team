@@ -58,6 +58,6 @@ public class ReviewController {
 		model.addAttribute("multipartRequest", multipartRequest);
 		
 		reviewInsertCommand.execute(sqlSession, model);
-		return "redirect:placeViewPage.place?no="+multipartRequest.getParameter("p_no")+"&insertResult="+(int)model.asMap().get("insertResult");
+		return "redirect:placeViewPage.place?no="+multipartRequest.getParameter("p_no");
 	}
 }

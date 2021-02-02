@@ -10,10 +10,36 @@
 <script type="text/javascript" src="resources//js/place-view.js" ></script> 
 <script>
 	let facilityList = JSON.parse('${facilityList}');
+	let isEnd = false;	
+	/* 이벤트 부여를 위한 onload 이벤트 */
+	$(function(){
+		fn_star();
+		if($('body').height() > $(window).height()) {
+			$(window).scroll(function(){
+				let $window = $(this);
+				let scrollTop = $window.scrollTop();
+				let windowHeight = $window.height();
+				let documentHeight = $(document).height();
+				
+				if (scrollTop + windowHeight >= documentHeight){
+					fn_reviewList();
+				}
+			});
+		}
+	})
+	
+	function fn_reviewList(){
+		if(isEnd == true) {
+			return;
+		}
+		alert(1);
+	}
+	
+	
 	/* 리뷰작성 성공 */
-	if('${insertResult}'>0){
+	if('${param.insertResult}'>0){
 		alert('작성해주셔서 감사합니다.');
-	} else if ('${insertResult}') {
+	} else if ('${param.insertResult}') {
 		alert('리뷰 작성에 실패했습니다.');
 	}
 	
@@ -98,10 +124,7 @@
 		}
 	}
 	
-	/* 이벤트 부여를 위한 onload 이벤트 */
-	$(function(){
-		fn_star();
-	})
+	
 	
 	/* 별 클릭 시 이전 형제요소들(input)의 checked 속성 true/false */
 	/*
@@ -140,6 +163,10 @@
 		if(!contentRegExp.test(f.rv_content.value)){
 			alert('리뷰는 5글자 이상 작성해주세요');
 			f.rv_content.focus();
+			return;
+		}
+		if(f.rv_star.value == '' || f.rv_star.value == null){
+			alert('별점을 선택해주세요');
 			return;
 		}
 		f.action='reviewInsert.review';
@@ -325,7 +352,8 @@ jas
 						<!-- hidden -->
 						<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 						<input type="hidden" name="p_no" value="${placeDto.p_no}" />
-						<input type="file" name="rv_img" value="이미지첨부" />
+						<input id="file-upload-btn" type="file" name="rv_img" value="이미지첨부" />
+						<label id="upload-btn" for="file-upload-btn">파일 업로드</label>
 						<input type="button" value="작성하기" onclick="fn_reviewInsert(this.form)" />
 						<input type="button" value="다시작성하기" onclick="fn_reviewReset()" />
 					</div>
