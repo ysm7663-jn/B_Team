@@ -9,15 +9,17 @@ import lombok.NoArgsConstructor;
 @Data
 public class PlaceOptionDto {
 
-	private int poNo;
-	private int pNo;
-	private int poMin;
-	private int poMax;
-	private int poDayPrice;
-	private int poHoliday;
-	private int poAddPrice;
-	private String poImg1;
-	private String poImg2;
-	private String poImg3;
-	private String poFxility;
+	private int po_no;
+	private int p_no;
+	private String po_name;
+	private int po_min;
+	private int po_max;
+	private int po_dayPrice;
+	private int po_holiday;
+	private int po_addPrice;
+	private String po_img1;
+	private String po_img2;
+	private String po_img3;
+	private String po_fxility;
+	// name 필요할듯..
 }

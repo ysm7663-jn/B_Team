@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Data
 public class PlaceCategoryDto {
 	
-	private int pcNo;
-	private String pcName;
+	private int pc_no;
+	private String pc_name;
 }

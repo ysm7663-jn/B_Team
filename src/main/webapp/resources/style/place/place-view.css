@@ -1,0 +1,294 @@
+@charset "UTF-8";
+html {
+	scroll-behavior: smooth;
+}
+.body-wrap{
+	width: 1080px;
+	margin:0 auto;
+}
+section {
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-start;
+}
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal>.modal-content{
+	background-color: #fefefe;
+	margin: 15% auto; /* 15% from the top and centered */
+	padding: 20px;
+	border: 1px solid #888;
+	width: 50%; /* Could be more or less, depending on screen size */
+	height: 50%;   
+	z-index: 2; 
+}
+.content-wrap {
+	width : 80%;
+	margin: 0 auto;
+	height : 
+}
+.close{
+	width: 30px;
+	height: 30px;
+	font-size: 30px;
+	font-height: bold;
+	float:right;
+	cursor: pointer;
+	transition : all ease 0.5s;
+}
+.close:hover{
+	transform:rotateY(360deg);
+}
+/* 공간 옵션 css */
+aside {
+	position : sticky;
+	top : 50px;
+	width:324px;
+	height : 80%;
+	margin: 0 auto;
+	border-left : 1px solid rgba(216,191,216, 0.8);
+	border-right : 1px solid rgba(216,191,216, 0.8);
+	padding : 5px;
+}
+label{
+	display: block;
+	cursor:pointer;
+	
+}
+.facility {
+	border : 1px solid black;
+	border-radius: 20px;
+	text-align: center;
+	height: 40px;
+	line-height : 40px;
+}
+.option-info-box>.img-box{
+	height: 200px;
+	overflow: hidden;
+}
+.option-info-box>.img-box>img{
+	width: 100%;
+	transition: all ease 0.5s;
+}
+.option-info-box>.img-box>img:hover{
+	transform: scale(1.2);
+	width:300px;
+}
+.reserve-form > .btn-wrap > button{
+	width : 150px;
+	height : 30px;
+	line-height: 30px;
+	text-align: center;
+	background: rgba(216,191,216, 0.5);
+	cursor: pointer;
+	font-size: 15px;
+	border : 0;
+	border-radius: 10px;
+}
+.reserve-form > .btn-wrap > button:hover{
+	background: rgba(216,191,216, 1);
+	
+}
+.hidden-box{
+	display:none;
+}
+.active{
+	display:block;
+}
+/* 공간 메인 css */
+article{
+	width: 756px;
+	height: 100%;
+	margin: 0 auto;
+	margin-right: 10px;
+	border-left : 1px solid rgba(216,191,216, 0.8);
+	border-right : 1px solid rgba(216,191,216, 0.8);
+	padding : 20px;
+}
+.place-nav {
+	position : sticky;
+	top: 0;
+	margin-bottom: 10px;
+	background: #FFF;
+}
+.place-nav > ul {
+	display: flex;
+	list-style-type : none;
+	width: 80%;
+	margin : 0 auto;
+}
+.place-nav > ul > li {
+	border-left : 1px solid purple ; 
+	border-right : 1px solid purple ;
+	background: #FFF;
+}
+.place-nav > ul > li > a {
+	display: inline-block;
+	width : 150px;
+	height: 30px;
+	line-height: 30px;
+	text-align : center;
+}
+div[id*="place-"]{
+	padding-top:30px;
+	margin-bottom: 20px;
+	border-top: 3px solid rgba(216,191,216, 0.8);
+}
+.thumbnail-box{
+	overflow:hidden;
+}
+.thumbnail-box > img {
+	width : 100%;
+	transition: all ease 0.5s;
+}
+.thumbnail-box > img:hover {
+	transform : scale(1.2) ;
+}
+
+/* 별점 css */
+input[id*=star]{
+	display:none;
+}
+label[for*=star]{
+	display:inline-block;
+	margin : 0;
+	color: rgba(216,191,216, 0.8);
+	font-size: 20px;
+}
+label[for*=star]::before{
+	content:"\f005";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 400;
+}
+label[for*=star]:hover::before{
+	content:"\f005";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+}
+input[id*=star]:checked + label::before{
+	content:"\f005";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 900;
+}
+/* textarea */
+textarea {
+	display: block;
+	width : 100%;
+	height : 120px;
+}
+
+/* 리뷰작성 버튼 */
+.review-insert-btn-wrap > input[type="button"]{
+	width : 150px;
+	height : 30px;
+	font-size: 15px;
+	border : 0;
+	border-radius: 10px;
+	background: rgba(216,191,216, 0.5);
+	cursor:pointer;	
+}
+.review-insert-btn-wrap > input[type="button"]:hover{
+	background: rgba(216,191,216, 1);
+}
+
+/* 작성된 review */
+.review-star, .modal-star{
+	color: rgb(216,191,216);
+}
+.review-btns > input[type="button"] {
+	width: 150px;
+	height : 30px;
+	font-size: 15px;
+	border : 0;
+	border-radius: 10px;
+	background : rgba(216,191,216, 0.5);
+	cursor:pointer;
+}
+.review-btns > button:hover {
+	background : rgba(216,191,216, 1);
+}
+
+/* 캘린더 css */
+
+.ui-datepicker {
+	width:300px;
+	margin : 30px auto;
+}
+.ui-datepicker-header{
+	width: 300px;
+	height: 30px;
+	display: flex;
+	position:relative;
+}
+.ui-datepicker-title{
+	width:100%;
+	text-align: center;
+}
+.ui-datepicker-prev{
+	position:absolute;
+	left:2px;
+	cursor:pointer;
+		
+}
+.ui-datepicker-next{
+	position:absolute;
+	right:2px;
+	cursor:pointer;
+}
+.ui-state-disabled{
+	cursor:auto;
+}
+.ui-datepicker-calendar {
+	width: 300px;
+}
+td {
+	height: 30px;
+	text-align: center;
+	border: 1px solid black;
+	cursor: pointer;
+}
+.ui-unselectable {
+	cursor: default;
+}
+td>a{
+	width:100%;
+}
+td.ui-datepicker-today{
+	background: rgba(216,191,216, 0.5);
+}
+td:hover{
+	background: rgba(216,191,216, 1);
+}
+td:active{
+	background: rgba(216,191,216, 1);
+}
+.ui-datepicker-week-end{
+	color: red;
+}
+@media screen and (max-width : 1100px){
+	.body-wrap{
+		width: 600px;
+		margin: 0 auto;
+	}
+	section {
+		width:100%;
+		display: block;
+	}
+	aside {
+		position:static;
+		width: 100%;
+	}
+	article{
+		width: 100%;
+		margin: 0 auto;
+	}
+}

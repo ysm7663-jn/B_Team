@@ -1,5 +1,4 @@
 package com.koreait.baraON.command.member;
-
 import java.util.Map;
 
 import javax.servlet.http.Cookie;
@@ -25,9 +24,8 @@ public class LoginCommand implements BaraONCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		String grade = request.getParameter("grade");
 		
-		if(grade.equals("member")) { // 등급이 member일때
+		if(request.getParameter("grade").equals("member")) { // 등급이 member일때
 			MemberDto loginMemberDto = memberDao.memberLogin(id, pw);
 			
 			if(loginMemberDto != null) {
