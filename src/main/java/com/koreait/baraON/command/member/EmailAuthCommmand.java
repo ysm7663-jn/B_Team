@@ -25,19 +25,21 @@ public class EmailAuthCommmand implements BaraONCommand {
 			
 			MimeMessage message = mailSender.createMimeMessage();
 			message.setHeader("Content-Type", "text/plain; charset=utf-8");
-			message.setFrom(new InternetAddress("dpwls6787@gmail.com", "바라온"));
+			message.setFrom(new InternetAddress("baraontest@gmail.com", "바라온"));
 			
 			InternetAddress to = new InternetAddress(request.getParameter("email"));
 			
-			message.setRecipient(RecipientType.TO, to);
-			message.setSubject("인증 요청 메일입니다.");
+			message.addRecipient(RecipientType.TO, to);
+			message.setSubject("인증 요청 메일입니다.", "utf-8");
 			
 			long authKey = (long)(Math.random() * 100000000L) + 1234567890;
 			
-			message.setText("인증코드: " + authKey);
+			message.setText("인증코드: " + authKey, "utf-8");
 			mailSender.send(message);
 			
 			model.addAttribute("authKey", authKey);
+			model.addAttribute("grade", request.getParameter("grade"));
+			model.addAttribute("id", request.getParameter("id"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();

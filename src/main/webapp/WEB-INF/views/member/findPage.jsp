@@ -70,10 +70,10 @@
 	
 	/* 비밀번호 찾기 결과 */
 	if('${findPwResult}') {
-		if(${Dto eq null}) {
+		if(${no == 0}) {
 			alert('일치하는 정보가 없습니다.');
 		} else {
-			location.href='findPwPage.member?email=${email}';
+			location.href='findPwPage.member?email=${email}&id=${id}&grade=${grade}';
 		}
 	}
 	

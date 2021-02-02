@@ -5,6 +5,23 @@
 	<jsp:param value="비밀번호 찾기" name="title"/>
 </jsp:include> 
    
+<script>
+	function fn_emailAuthConfirm(f) {
+		var authKey = '${authKey}';
+		var userKey = f.userKey.value;
+		console.log(authKey);
+		if(userKey != null) {
+			if(authKey != userKey) {
+				alert('잘못된 인증코드입니다.');
+				return;
+			} else {
+				alert('인증되었습니다.');
+				location.href = 'findPwPage2.member?grade=${grade}?id=${id}';
+			}
+			
+		}
+	}
+</script>
 <link rel="stylesheet" href="resources/style/findPage.css">
 <div class="box">
 	<div class="inner-box">
@@ -18,10 +35,12 @@
 			<div class="resultBox">
 				<h4>인증번호가 메일로 전송되었습니다.</h4>
 			</div>
-			<div class="authInputBox">
-				<input type="text" name="auth" placeholder="인증번호를 입력해주세요" />	&nbsp;&nbsp;			
-				<input type="button" value="확인" onclick="loginPage.member"/>
-			</div>
+			<form>
+				<div class="authInputBox">
+					<input type="text" name="userKey" placeholder="인증번호를 입력해주세요" />	&nbsp;&nbsp;			
+					<input type="button" value="확인" onclick="fn_emailAuthConfirm(this.form)"/>
+				</div>
+			</form>
 		</div>
 	</div>
 </div>

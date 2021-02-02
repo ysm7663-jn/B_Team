@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.koreait.baraON.command.member.ChangePwCommand;
 import com.koreait.baraON.command.member.ChkIdCommand;
 import com.koreait.baraON.command.member.EmailAuthCommmand;
 import com.koreait.baraON.command.member.FindIdCommand;
@@ -31,6 +32,7 @@ public class MemberController {
 	private FindIdCommand findIdCommand;
 	private FindPwCommand findPwCommand;
 	private EmailAuthCommmand emailAuthCommmand;
+	private ChangePwCommand changePwCommand;
 	
 	@Autowired
 	public void setCommand(LoginCommand loginCommand,
@@ -38,13 +40,15 @@ public class MemberController {
 							 ChkIdCommand chkIdCommand,
 							 FindIdCommand findIdCommand,
 							 FindPwCommand findPwCommand,
-							 EmailAuthCommmand emailAuthCommmand) {
+							 EmailAuthCommmand emailAuthCommmand,
+							 ChangePwCommand changePwCommand) {
 		this.loginCommand = loginCommand;
 		this.logoutCommand = logoutCommand;
 		this.chkIdCommand = chkIdCommand;
 		this.findIdCommand = findIdCommand;
 		this.findPwCommand = findPwCommand;
 		this.emailAuthCommmand = emailAuthCommmand;
+		this.changePwCommand = changePwCommand;
 	}
 	
 	//단순이동
@@ -94,21 +98,33 @@ public class MemberController {
 		return "member/findIdPage";
 	}
 	
-	@Autowired
-	private JavaMailSender mailSender;
-	
 	@RequestMapping(value="findPw.member", method=RequestMethod.POST)
 	public String findPw(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		findPwCommand.execute(sqlSession, model);
 		return "member/findPage";
 	}
-	
+
+	@Autowired
+	private JavaMailSender mailSender;
+	//post?
 	@RequestMapping(value="findPwPage.member", method=RequestMethod.GET)
 	public String findPwPage(HttpServletRequest request, Model model) {
-		model.addAttribute(request);
+		model.addAttribute("request", request);
 		model.addAttribute("mailSender", mailSender);
 		emailAuthCommmand.execute(sqlSession, model);
 		return "member/findPwPage";
+	}
+	
+	@RequestMapping(value="findPwPage2.member", method=RequestMethod.GET)
+	public String findPwPage2(HttpServletRequest request) {
+		return "member/findPwPage2";
+	}
+	
+	@RequestMapping(value="changePw.member", method=RequestMethod.GET)
+	public String changePw(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		changePwCommand.execute(sqlSession, model);
+		return "member/findPwPage3";
 	}
 }

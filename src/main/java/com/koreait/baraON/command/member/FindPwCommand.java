@@ -26,19 +26,21 @@ public class FindPwCommand implements BaraONCommand {
 		
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		if(grade.equals("member")) {  // 멤버일때
-			MemberDto memberDto = memberDao.findMemberPw(id, name, email);
-			if(memberDto != null) {
-				model.addAttribute("Dto", memberDto);
+			int m_no = memberDao.findMemberPw(id, name, email);
+			if(m_no != 0) {
+				model.addAttribute("no", m_no);
 			}
 		} else {  // 호스트일때
-			SellerDto sellerDto = memberDao.findSellerPw(id, name, email);
-			if(sellerDto != null) {
-				model.addAttribute("Dto", sellerDto);
+			int s_no = memberDao.findSellerPw(id, name, email);
+			if(s_no != 0) {
+				model.addAttribute("no", s_no);
 			}
 		}
 			
 		model.addAttribute("findPwResult", true);
 		model.addAttribute("email", email);
+		model.addAttribute("grade", grade);
+		model.addAttribute("id", id);
 
 	}
 

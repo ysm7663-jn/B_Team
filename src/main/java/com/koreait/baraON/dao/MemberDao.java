@@ -8,7 +8,9 @@ public interface MemberDao {
 	public SellerDto sellerLogin(String id, String pw);
 	public MemberDto findMemberId(String name, String email);
 	public SellerDto findSellerId(String name, String email);
-	public MemberDto findMemberPw(String id, String name, String email);
-	public SellerDto findSellerPw(String id, String name, String email);
+	public int findMemberPw(String id, String name, String email);
+	public int findSellerPw(String id, String name, String email);
+	public int changeMemberPw(String pw, String id);
+	public int changeSellerPw(String pw, String id);
 	
 }
