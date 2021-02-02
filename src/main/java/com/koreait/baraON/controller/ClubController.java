@@ -47,10 +47,8 @@ public class ClubController {
 	}
 	
   	@RequestMapping(value="clubInsertPage2.club", method=RequestMethod.GET)
-	public String clubInsertPage2(Model model) {
+	public String clubInsertPage2() {
 		
-  		
-  		
 		return "club/clubInsertPage2";
 	}
 	

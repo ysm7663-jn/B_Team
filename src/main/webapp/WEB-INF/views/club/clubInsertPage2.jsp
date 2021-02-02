@@ -11,10 +11,6 @@
 </head>
 <body>
 
-	<%
-		String c_title = request.getParameter("c_title");
-	%>
-	
 	<form method="get" enctype="multipart/form-data">
 		<div class="insert-wrap">
 		
@@ -36,7 +32,7 @@
 			</div>
 		</div>
 		
-		<input type="hidden" name="c_mainThumbnail" />
+		<input type="hidden" name="c_mainThumbnail" value="${c_title}" />
 		<input type="hidden" name="c_title" />
 		<input type="hidden" name="c_min" />
 		<input type="hidden" name="c_max" />
@@ -45,8 +41,6 @@
 		<input type="hidden" name="c_endDate" />
 		<input type="hidden" name="c_no" />
 		<input type="hidden" name="c_postDate" />
-	
-		<span>${clubDto.c_title}</span>
 	
 		<input type="button" value="finish" onclick="fn_finish(this.form)" />
 		
