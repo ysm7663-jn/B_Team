@@ -10,6 +10,15 @@
 <script type="text/javascript" src="resources//js/place-view.js" ></script> 
 <script>
 	let facilityList = JSON.parse('${facilityList}');
+	/* 리뷰작성 성공 */
+	if('${insertResult}'>0){
+		alert('작성해주셔서 감사합니다.');
+	} else if ('${insertResult}') {
+		alert('리뷰 작성에 실패했습니다.');
+	}
+	
+	
+	/* 리뷰 수정 modal 띄우기 */
 	function fn_modal(f){
 		let rv_no = f.rv_no.value;
 		let rv_star = f.rv_star.value;
@@ -26,9 +35,13 @@
 		$('#modal-rv-no').val(rv_no);
 		$('.modal').addClass('active');
 	}
+
+	/* 리뷰 수정 modal 닫기 */
 	function fn_modalClose(){
 		$('.modal').removeClass('active');
 	}
+	
+	/* 리뷰 수정 */
 	function fn_reviewUpdate(f){
  		let rv_content = $('#modal-rv-content').val();
 		let rv_no = $('#modal-rv-no').val();
@@ -56,6 +69,8 @@
 		
 		});
 	}
+	
+	/* 리뷰 삭제 */
 	function fn_reviewDelete(f){
 		
 		if(confirm('정말삭제하시겠습니까?')){
@@ -82,6 +97,54 @@
 			});
 		}
 	}
+	
+	/* 이벤트 부여를 위한 onload 이벤트 */
+	$(function(){
+		fn_star();
+	})
+	
+	/* 별 클릭 시 이전 형제요소들(input)의 checked 속성 true/false */
+	/*
+		좀 더 보완이 필요할 것 같다.
+		현재 문제는 체크박스라서 클릭한 요소까지 체크가 해제되어 버린다.
+		-> 해결
+	*/
+	function fn_star(){
+		$('.star').click(function(){
+			if($(this).prop('checked')){
+				$(this).prevAll('input').prop('checked', true);
+				$('#star-score').val($(this).val());
+			} else {
+				$(this).nextAll('input').prop('checked', false);
+				$(this).prop('checked', true);
+				$('#star-score').val($(this).val());
+			}
+			
+		});
+		/*
+			before선택자 대체할 방법 생각하기
+		$('.star').hover(function(){
+			let cssObj = {
+				'content' : '\f005',
+				'font-family' : 'Font Awesome 5 Free',
+				'font-weight' : 400
+			}
+			$(this).prevAll('label:before').css(cssObj);
+		});
+		*/
+	}
+	
+	/* 리뷰 삽입 전 검사 */
+	function fn_reviewInsert(f){
+		let contentRegExp = /.{5}/;
+		if(!contentRegExp.test(f.rv_content.value)){
+			alert('리뷰는 5글자 이상 작성해주세요');
+			f.rv_content.focus();
+			return;
+		}
+		f.action='reviewInsert.review';
+		f.submit();
+	}
 </script>
 
 <div class="modal">
@@ -99,6 +162,14 @@
 		<input type="button" value="수정완료" onclick="fn_reviewUpdate()" />
 		<input type="button" value="돌아가기" onclick="fn_modalClose()" />
 		</div>
+	</div>
+</div>
+<!-- 전화버튼눌렀을때 나올 modal -->
+<div class="modal2">
+	<div class="modal-content2">
+		전화번호
+		
+		<button type="button" onclick="fn_modalClose()"> 확인</button>
 	</div>
 </div>
 <div class="title-area">
@@ -208,6 +279,10 @@ asjdf
 			</pre>
 			
 		</div>
+		<div class="place-map">
+			<h3>위치</h3>
+			
+		</div>
 		<div id="place-remark" class="place-remark">
 			<h3>유의사항</h3>
 			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
@@ -229,10 +304,16 @@ jas
 		<div id="place-review" class="place-review">
 			<h3>리뷰</h3>
 			<div class="review-insert">
-				<form method="post" enctype="multipart/form-data" >
+				<form id="review-insert-form" method="post" enctype="multipart/form-data" >
 					<div class="review-insert-star">
-						
-						<input type="hidden" name="rv_star" />
+						<p>
+							<input id="star1" class="star" type="checkbox" value="1" /><label for="star1"></label> 
+							<input id="star2" class="star" type="checkbox" value="2" /><label for="star2"></label>
+							<input id="star3" class="star" type="checkbox" value="3" /><label for="star3"></label>
+							<input id="star4" class="star" type="checkbox" value="4" /><label for="star4"></label>
+							<input id="star5" class="star" type="checkbox" value="5" /><label for="star5"></label>
+						</p>
+						<input id="star-score" type="hidden" name="rv_star" />
 					</div>
 					<c:if test="${loginDto eq null }">
 						<textarea rows="5" cols="50" placeholder="로그인한 회원만 리뷰작성이 가능합니다." readonly></textarea>
@@ -241,8 +322,12 @@ jas
 						<textarea rows="5" cols="50" name="rv_content" placeholder="댓글은 마음의 창입니다." ></textarea>
 					</c:if>
 					<div class="review-insert-btn-wrap">
-						<button>작성하기</button>
-						<input type="button" value="다시작성하기" />
+						<!-- hidden -->
+						<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+						<input type="hidden" name="p_no" value="${placeDto.p_no}" />
+						<input type="file" name="rv_img" value="이미지첨부" />
+						<input type="button" value="작성하기" onclick="fn_reviewInsert(this.form)" />
+						<input type="button" value="다시작성하기" onclick="fn_reviewReset()" />
 					</div>
 				</form>
 			</div>
@@ -302,6 +387,11 @@ jas
 									<input type="hidden" name="rv_content" value="${reviewDto.rv_content}" />
 									<input type="hidden" name="rv_no" value="${reviewDto.rv_no}" />
 								</div>
+								<c:if test="${reviewDto.rv_img ne null}">
+									<div class="review-img-box" >
+										<img alt="img" src="resources/images/ReviewImages/${reviewDto.rv_img}" />
+									</div>
+								</c:if>
 								<div class="review-btns" >
 									<c:if test="${loginDto.m_no eq reviewDto.m_no}">
 										<input type="button" value="수정하기" onclick="fn_modal(this.form)" />

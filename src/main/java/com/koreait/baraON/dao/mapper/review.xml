@@ -16,5 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE RV_NO = #{param1}
 	</update>
 	
+	<insert id="reviewInsert">
+		INSERT
+		INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+		VALUES (REVIEW_SEQ.NEXTVAL, #{param1}, #{param2}, 0, #{param3}, #{param4}, SYSDATE, SYSDATE, #{param5})
+	</insert>
 	
 </mapper>

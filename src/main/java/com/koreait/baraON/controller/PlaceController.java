@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.place.PlaceListCommand;
 import com.koreait.baraON.command.place.PlaceViewCommand;
@@ -37,8 +38,9 @@ public class PlaceController {
 	}
 	
 	@RequestMapping(value="placeViewPage.place", method=RequestMethod.GET)
-	public String placeViewPage(HttpServletRequest request,  Model model) {
+	public String placeViewPage(HttpServletRequest request, RedirectAttributes rttr, Model model) {
 		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
 		placeViewCommand.execute(sqlSession, model);
 		return "place/placeViewPage";
 	}
