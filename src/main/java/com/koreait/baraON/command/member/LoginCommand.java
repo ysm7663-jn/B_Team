@@ -1,9 +1,7 @@
 package com.koreait.baraON.command.member;
 import java.util.Map;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,7 +21,8 @@ public class LoginCommand implements BaraONCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
+		String pw = Sha256.sha256(request.getParameter("pw"));
+		String grade = request.getParameter("grade");
 		
 		if(request.getParameter("grade").equals("member")) { // 등급이 member일때
 			MemberDto loginMemberDto = memberDao.memberLogin(id, pw);

@@ -44,5 +44,6 @@
 	<beans:bean id="findPwCommand" class="com.koreait.baraON.command.member.FindPwCommand" />	
 	<beans:bean id="emailAuthCommmand" class="com.koreait.baraON.command.member.EmailAuthCommmand" />	
 	<beans:bean id="changePwCommand" class="com.koreait.baraON.command.member.ChangePwCommand" />	
+	<beans:bean id="kakaoAPI" class="com.koreait.baraON.command.member.KakaoAPI" />	
 	
 </beans:beans>

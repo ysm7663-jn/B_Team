@@ -34,12 +34,20 @@ div {
 	border-radius: 15px;
 }
 .main-aside {
-	position: relative;
+	position: absolute;
 	width: 70%;
-	left: 16%;
-	top: 10%;
+	top: 50%;
+	left: 50%;
+	margin: -50px 0 0 -50px;
 	
 }
+/* .main-aside {
+	position: relative;
+	width: 70%;
+	left: 20%;
+	top: 10%;
+	
+} */
 #findId, #findPw {
 	display: none;
 }
