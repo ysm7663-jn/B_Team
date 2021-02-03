@@ -18,7 +18,7 @@ public class SellerDto {
 	private String s_birth;
 	private String s_email;
 	private Date s_regDate;
-	private char s_auth;
+	private int s_auth;
 	private int s_agreement;
 	private String s_companyNo;
 }
