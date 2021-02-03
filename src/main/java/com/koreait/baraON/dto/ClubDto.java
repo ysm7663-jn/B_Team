@@ -21,10 +21,10 @@ public class ClubDto {
 	private int c_max;			
 	private int c_count;		
 	private int c_totalClass;	
-	private String mainThumnail;
-	private String subThumbnail1;
-	private String subThumbnail2;
-	private String subThumbnail3;
+	private String c_mainThumnail;
+	private String c_subThumbnail1;
+	private String c_subThumbnail2;
+	private String c_subThumbnail3;
 	private int c_money;		
 	
 }

@@ -14,8 +14,8 @@
 	<form method="get">
 		<div class="insert-wrap">
 		
-			<div id="image">
-				<input type="file" name="mainThumbnail" />
+			<div id="main_image">
+				<input type="file" name="c_mainThumnail" />
 			</div>
 		
 			<div class="inputs">
@@ -36,18 +36,32 @@
 					
 				<span class="title">활동종료날짜</span>
 					<input type="text" name="c_endDate" placeholder="활동 종료 날짜를 입력해주세요" /><br/>
+					
+				<span class="title">클럽내용</span><br/>
+					<textarea rows="20" cols="100" placeholder="2000자 이내로 작성해주세요" name="c_content"></textarea>
+				<br/><br/>
+				
+				<span class="title">사진첨부(3장)</span><br/>
+				<input type="file" name="c_subThumbnail1" /><br/>
+				<input type="file" name="c_subThumbnail2" /><br/>
+				<input type="file" name="c_subThumbnail3" /><br/>
+				
+				<span class="title">커리큘럼</span>
+				
 			</div>
 		</div>
 		
-		<input type="button" name="btn" value="next >" onclick="fn_next(this.form)" />
+		<input type="button" name="btn" value="finish" onclick="fn_next(this.form)" />
 		
 	</form>
 	
 	<script type="text/javascript">
 	
 		function fn_next(f) {
-			f.action='clubInsertPage2.club';
-			f.submit();
+			if (confirm('새 클럽을 등록하겠습니까?')) {
+				f.action='clubInsert.club';
+				f.submit();
+			}
 		}
 	
 	</script>

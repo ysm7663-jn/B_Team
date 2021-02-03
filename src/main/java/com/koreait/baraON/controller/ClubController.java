@@ -31,25 +31,9 @@ public class ClubController {
 		this.clubInsertCommand = clubInsertCommand;
 	}
 
-	@RequestMapping(value="clubInsertPage1.club", method=RequestMethod.GET)
-	public String clubInsertPage(ClubDto clubDto, Model model) {
-		
-		model.addAttribute("c_title", clubDto.getC_title());
-		model.addAttribute("c_min", clubDto.getC_min());
-		model.addAttribute("c_max", clubDto.getC_max());
-		model.addAttribute("c_money", clubDto.getC_money());
-		model.addAttribute("c_startDate", clubDto.getC_startDate());
-		model.addAttribute("c_endDate", clubDto.getC_endDate());
-		
-		model.addAttribute("clubDto", clubDto);
-		
-		return "club/clubInsertPage1";
-	}
-	
-  	@RequestMapping(value="clubInsertPage2.club", method=RequestMethod.GET)
-	public String clubInsertPage2() {
-		
-		return "club/clubInsertPage2";
+	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
+	public String clubInsertPage() {
+		return "club/clubInsertPage";
 	}
 	
 	// method 이동
