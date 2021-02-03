@@ -36,7 +36,7 @@ DROP TABLE MEMBER;
 -- MEMBER Table Create SQL
 CREATE TABLE MEMBER
 (
-    M_NO           NUMBER              PRIMARY KEY, 
+    M_NO           NUMBER           PRIMARY KEY, 
     M_ID           VARCHAR2(100)    NOT NULL UNIQUE,
     M_PW           VARCHAR2(100)    NOT NULL, 
     M_PHONE        VARCHAR2(20)     NOT NULL UNIQUE, 
@@ -45,8 +45,7 @@ CREATE TABLE MEMBER
     M_NICK         VARCHAR2(100)    NOT NULL UNIQUE, 
     M_EMAIL        VARCHAR2(100)    NOT NULL UNIQUE, 
     M_REGDATE      DATE             NOT NULL, 
-    M_AUTH         NUMBER              NOT NULL, 
-    M_AGREEMENT    NUMBER              NOT NULL
+    M_AGREEMENT    NUMBER           NOT NULL
 );
 
 CREATE SEQUENCE MEMBER_SEQ
@@ -55,38 +54,34 @@ INCREMENT BY 1
 NOCYCLE
 NOCACHE;
 
--- CATEGORY Table Create SQL
-CREATE TABLE CATEGORY
-(
-    CT_NO      NUMBER              PRIMARY KEY, 
-    CT_NAME    VARCHAR2(100)    NOT NULL
-);
-
-CREATE SEQUENCE CATEGORY_SEQ
-START WITH 21
-INCREMENT BY 1
-NOCYCLE
-NOCACHE;
-
-
 -- CLUB Table Create SQL
 CREATE TABLE CLUB
 (
-    C_NO           NUMBER               PRIMARY KEY, 
-    CT_NO          NUMBER               NOT NULL REFERENCES CATEGORY (CT_NO), 
-    M_NO           NUMBER               NOT NULL REFERENCES MEMBER (M_NO), 
+    C_NO           NUMBER            PRIMARY KEY, 
+    CT_NO          NUMBER            NOT NULL REFERENCES CATEGORY (CT_NO), 
+    M_NO           NUMBER            NOT NULL REFERENCES MEMBER (M_NO), 
     C_TITLE        VARCHAR2(100)     NOT NULL, 
     C_CONTENT      VARCHAR2(4000)    NULL, 
     C_POSTDATE     DATE              NOT NULL, 
-    C_ENJOYDATE    VARCHAR2(1000)    NULL, 
+    C_STARTDATE    DATE    			 NOT NULL, 
     C_ENDDATE      DATE              NOT NULL, 
-    C_MIN          NUMBER               NOT NULL, 
-    C_MAX          NUMBER               NOT NULL, 
-    C_COUNT        NUMBER               NOT NULL, 
-    C_THUMB        VARCHAR2(50)      NULL, 
-    C_DELETE       NUMBER               NOT NULL, 
-    C_PART         NUMBER               NOT NULL
+    C_MIN          NUMBER            NOT NULL, 
+    C_MAX          NUMBER            NOT NULL, 
+    C_COUNT        NUMBER            NOT NULL,
+    C_MAINTHUMNAIL VARCHAR2(1000)	 NULL,
+    C_THUMBNAIL1   VARCHAR2(1000)    NULL, 
+    C_THUMBNAIL2   VARCHAR2(1000)    NULL, 
+    C_THUMBNAIL3   VARCHAR2(1000)    NULL, 
+    C_DELETE       NUMBER            NOT NULL, 
+    C_PART         NUMBER            NOT NULL,
 );
+
+ALTER TABLE CLUB MODIFY C_STARTDATE DATE NOT NULL;
+ALTER TABLE CLUB MODIFY C_MAINTHUMNAIL VARCHAR2(1000);
+ALTER TABLE CLUB MODIFY C_THUMBNAIL1 VARCHAR2(1000);
+ALTER TABLE CLUB MODIFY C_THUMBNAIL2 VARCHAR2(1000);
+ALTER TABLE CLUB MODIFY C_THUMBNAIL3 VARCHAR2(1000);
+SELECT * FROM CLUB;
 
 CREATE SEQUENCE CLUB_SEQ
 START WITH 21
@@ -97,7 +92,7 @@ NOCACHE;
 -- PLACECATEGORY Table Create SQL
 CREATE TABLE PLACECATEGORY
 (
-    PC_NO      NUMBER              PRIMARY KEY, 
+    PC_NO      NUMBER           PRIMARY KEY, 
     PC_NAME    VARCHAR2(100)    NULL
 );
 
@@ -110,7 +105,7 @@ NOCACHE;
 -- SELLER Table Create SQL
 CREATE TABLE SELLER
 (
-    S_NO           NUMBER              PRIMARY KEY, 
+    S_NO           NUMBER           PRIMARY KEY, 
     S_ID           VARCHAR2(100)    NOT NULL UNIQUE, 
     S_PW           VARCHAR2(100)    NOT NULL, 
     S_PHONE        VARCHAR2(20)     NOT NULL UNIQUE, 
@@ -118,8 +113,8 @@ CREATE TABLE SELLER
     S_BIRTH        VARCHAR2(20)     NOT NULL, 
     S_EMAIL        VARCHAR2(100)    NOT NULL UNIQUE, 
     S_REGDATE      DATE             NOT NULL, 
-    S_AUTH         NUMBER          NOT NULL, 
-    S_AGREEMENT    NUMBER              NOT NULL, 
+    S_AUTH         NUMBER           NOT NULL, 
+    S_AGREEMENT    NUMBER           NOT NULL, 
     S_COMPANYNO    VARCHAR2(50)     NOT NULL
 );
 
@@ -135,17 +130,17 @@ CREATE TABLE PLACE
     P_NO         NUMBER               PRIMARY KEY, 
     S_NO         NUMBER               NOT NULL REFERENCES SELLER (S_NO), 
     PC_NO        NUMBER               NOT NULL REFERENCES PLACECATEGORY (PC_NO), 
-    P_TITLE      VARCHAR2(100)     NOT NULL, 
-    P_DESC       VARCHAR2(200)     NOT NULL, 
-    P_CONTENT    VARCHAR2(4000)    NOT NULL, 
-    P_INFO       VARCHAR2(1000)    NOT NULL, 
-    P_NAME       VARCHAR2(200)     NOT NULL, 
-    P_ADDR       VARCHAR2(200)     NOT NULL, 
+    P_TITLE      VARCHAR2(100)        NOT NULL, 
+    P_DESC       VARCHAR2(200)        NOT NULL, 
+    P_CONTENT    VARCHAR2(4000)       NOT NULL, 
+    P_INFO       VARCHAR2(1000)       NOT NULL, 
+    P_NAME       VARCHAR2(200)        NOT NULL, 
+    P_ADDR       VARCHAR2(200)        NOT NULL, 
     P_STAR       NUMBER               NULL, 
-    P_IMG        VARCHAR2(50)      NULL, 
+    P_IMG        VARCHAR2(50)         NULL, 
     P_CONFIRM    NUMBER               , 
-    P_URL        VARCHAR2(100)     NULL, 
-    P_REMARK     VARCHAR2(2000)    NULL, 
+    P_URL        VARCHAR2(100)        NULL, 
+    P_REMARK     VARCHAR2(2000)       NULL, 
     P_DELETE     NUMBER
 );
 
@@ -167,10 +162,8 @@ CREATE TABLE PLACEOPTION
     PO_DAYPRICE    NUMBER             NOT NULL, 
     PO_HOLIDAY     NUMBER             NULL, 
     PO_ADDPRICE    NUMBER             NULL, 
-    PO_IMG1        VARCHAR2(50)    NULL, 
-    PO_IMG2        VARCHAR2(50)    NULL, 
-    PO_IMG3        VARCHAR2(50)    NULL, 
-    PO_FXILITY     VARCHAR2(100)   NULL
+    PO_IMG1        VARCHAR2(50)       NULL, 
+    PO_FXILITY     VARCHAR2(100)      NULL
 );
 
 
@@ -185,7 +178,8 @@ CREATE TABLE CLUBLIST
 (
     CL_NO    NUMBER    PRIMARY KEY, 
     C_NO     NUMBER    NOT NULL REFERENCES CLUB (C_NO), 
-    M_NO     NUMBER    NOT NULL REFERENCES MEMBER (M_NO)
+    M_NO     NUMBER    NOT NULL REFERENCES MEMBER (M_NO),
+    C_CARD   NUMBER    NULL
 );
 
 CREATE SEQUENCE CLUBLIST_SEQ
@@ -200,9 +194,9 @@ CREATE TABLE REPLY
     R_NO          NUMBER               PRIMARY KEY, 
     C_NO          NUMBER               NOT NULL REFERENCES CLUB (C_NO) , 
     M_NO          NUMBER               NOT NULL REFERENCES MEMBER (M_NO), 
-    R_CONTENT     VARCHAR2(4000)    NULL, 
+    R_CONTENT     VARCHAR2(4000)       NULL, 
     R_DELETE      NUMBER               NULL, 
-    R_POSTDATE    DATE              NOT NULL
+    R_POSTDATE    DATE                 NOT NULL
 );
 
 CREATE SEQUENCE REPLY_SEQ
@@ -211,16 +205,15 @@ INCREMENT BY 1
 NOCYCLE
 NOCACHE;
 
-
 -- RESERVATION Table Create SQL
 CREATE TABLE RESERVATION
 (
     RES_NO        NUMBER             PRIMARY KEY, 
     M_NO          NUMBER             NOT NULL REFERENCES MEMBER (M_NO), 
     PO_NO         NUMBER             NOT NULL REFERENCES PLACEOPTION (PO_NO), 
-    RES_DATE      DATE            NOT NULL, 
+    RES_DATE      DATE               NOT NULL, 
     RES_PEOPLE    NUMBER             NOT NULL, 
-    RES_STATE     VARCHAR2(20)    NULL
+    RES_STATE     VARCHAR2(20)       NULL
 );
 
 CREATE SEQUENCE RESERVATION_SEQ
@@ -238,11 +231,12 @@ CREATE TABLE REVIEW
     P_NO         NUMBER               NOT NULL REFERENCES PLACE (P_NO), 
     RV_DELETE    NUMBER               NULL, 
     RV_STAR      NUMBER               NULL, 
-    RV_IMG       VARCHAR2(4000)    NULL,
+    RV_IMG       VARCHAR2(4000)       NULL,
     RV_POSTDATE	 DATE,
     RV_MODIFYDATE DATE,
     RV_CONTENT VARCHAR2(1000)
 );
+
 CREATE SEQUENCE REVIEW_SEQ
 START WITH 21
 INCREMENT BY 1
@@ -253,9 +247,9 @@ NOCACHE;
 CREATE TABLE NOTICE
 (
     N_NO          NUMBER               PRIMARY KEY, 
-    N_TITLE       VARCHAR2(100)     NOT NULL, 
-    N_CONTENT     VARCHAR2(4000)    NOT NULL, 
-    N_POSTDATE    DATE              NOT NULL 
+    N_TITLE       VARCHAR2(100)        NOT NULL, 
+    N_CONTENT     VARCHAR2(4000)       NOT NULL, 
+    N_POSTDATE    DATE                 NOT NULL 
 );
 
 CREATE SEQUENCE NOTICE_SEQ
@@ -268,9 +262,9 @@ NOCACHE;
 CREATE TABLE FAQ
 (
     F_NO          NUMBER               PRIMARY KEY, 
-    F_TITLE       VARCHAR2(100)     NOT NULL, 
-    F_CONTENT     VARCHAR2(4000)    NOT NULL, 
-    F_REGDATE     DATE              NOT NULL, 
+    F_TITLE       VARCHAR2(100)        NOT NULL, 
+    F_CONTENT     VARCHAR2(4000)       NOT NULL, 
+    F_REGDATE     DATE                 NOT NULL, 
     F_CATEGORY    NUMBER               NOT NULL 
 );
 
@@ -279,7 +273,6 @@ START WITH 21
 INCREMENT BY 1
 NOCYCLE
 NOCACHE;
-
 
 -- WISHLIST Table Create SQL
 CREATE TABLE WISHLIST
