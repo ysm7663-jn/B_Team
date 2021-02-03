@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +82,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="loginKakao.member")
-	public String kakaoLogin(@RequestParam(value="code") String code) {
+	public String kakaoLogin(@RequestParam(value="code") String code, HttpSession session) {
 		String access_Token = kakaoAPI.getAccessToken(code);
 		HashMap<String, Object> userInfo = kakaoAPI.getUserInfo(access_Token);
        
@@ -90,13 +91,23 @@ public class MemberController {
 		System.out.println("access_Token : " + access_Token);
 		System.out.println("userInfo : " + userInfo.get("email"));
 		
+		if(userInfo.get("email") != null) {
+			session.setAttribute("userId", userInfo.get("email"));
+			session.setAttribute("access_Token", access_Token);
+		}
+		
 		return "member/loginPage";
 	}
 	
 	@RequestMapping(value="logout.member", method=RequestMethod.GET)
-	public String logout(HttpServletRequest request, Model model) {
+	public String logout(HttpServletRequest request, Model model, HttpSession session) {
 		model.addAttribute("request", request);
 		logoutCommand.execute(sqlSession, model);
+		
+		/** kakao 로그아웃 **/
+		kakaoAPI.kakaoLogout((String)session.getAttribute("access_Token"));
+		session.removeAttribute("access_Token");
+		session.removeAttribute("userId");
 		return "index";
 	}
 	
