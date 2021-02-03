@@ -10,5 +10,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM MEMBER
 		WHERE M_ID= #{m_id}
 	</select>
+	
+	<select id="memberNickSearch" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE M_NICK= #{m_nick}
+	</select>
 
 </mapper>
