@@ -62,7 +62,9 @@ aside {
 label{
 	display: block;
 	cursor:pointer;
-	
+}
+.place-option-wrap div {
+	margin-bottom: 20px;
 }
 .facility {
 	border : 1px solid black;
@@ -70,6 +72,12 @@ label{
 	text-align: center;
 	height: 40px;
 	line-height : 40px;
+	float: left;
+	width : 33%;
+	font-size : 17px;
+}
+.facility:hover {
+	background: rgba(216,191,216, 0.8);
 }
 .option-info-box>.img-box{
 	height: 200px;
@@ -285,7 +293,7 @@ td>a{
 td.ui-datepicker-today{
 	background: rgba(216,191,216, 0.5);
 }
-td:hover{
+td:not(.ui-datepicker-unselectable):hover{
 	background: rgba(216,191,216, 1);
 }
 td:active{

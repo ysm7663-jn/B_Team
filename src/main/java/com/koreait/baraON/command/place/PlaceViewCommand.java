@@ -11,7 +11,7 @@ import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dto.PlaceCategoryDto;
 import com.koreait.baraON.dto.PlaceDto;
 import com.koreait.baraON.dto.PlaceOptionDto;
-import com.koreait.baraON.dto.ReviewDto;
+import com.koreait.baraON.dto.ReviewListDto;
 import com.koreait.baraON.dto.SellerDto;
 
 public class PlaceViewCommand implements PlaceCommand {
@@ -49,8 +49,7 @@ public class PlaceViewCommand implements PlaceCommand {
 		
 		// Review
 		// 가장 최초에는 삭제되지 않은 리뷰중에 가장 최근의 리뷰부터 3개를 가져옴
-		List<ReviewDto> reviewList = placeDao.getReviewListOfViewPage(p_no, 1, 3);
-		
+		List<ReviewListDto> reviewList = placeDao.getReviewListOfViewPage(p_no, 1, 3);
 		
 		model.addAttribute("placeDto", placeDto);
 		model.addAttribute("sellerDto", sellerDto);

@@ -167,9 +167,7 @@ CREATE TABLE PLACEOPTION
     PO_DAYPRICE    NUMBER             NOT NULL, 
     PO_HOLIDAY     NUMBER             NULL, 
     PO_ADDPRICE    NUMBER             NULL, 
-    PO_IMG1        VARCHAR2(50)    NULL, 
-    PO_IMG2        VARCHAR2(50)    NULL, 
-    PO_IMG3        VARCHAR2(50)    NULL, 
+    PO_IMG1        VARCHAR2(200)    NULL, 
     PO_FXILITY     VARCHAR2(100)   NULL
 );
 

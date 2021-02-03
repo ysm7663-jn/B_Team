@@ -18,8 +18,6 @@ public class PlaceOptionDto {
 	private int po_holiday;
 	private int po_addPrice;
 	private String po_img1;
-	private String po_img2;
-	private String po_img3;
 	private String po_fxility;
 	// name 필요할듯..
 }

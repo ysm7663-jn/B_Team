@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	
-	<select id="getReviewListOfViewPage" resultType="com.koreait.baraON.dto.ReviewDto" >
+	<select id="getReviewListOfViewPage" resultType="com.koreait.baraON.dto.ReviewListDto" >
 			SELECT B.*
 		FROM (SELECT ROWNUM RN, A.*
 		FROM (SELECT RV.*, M.M_NICK, M.M_ID

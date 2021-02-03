@@ -11,8 +11,10 @@
 <script>
 	let facilityList = JSON.parse('${facilityList}');
 	let isEnd = false;	
+	let rn=0;
 	/* 이벤트 부여를 위한 onload 이벤트 */
 	$(function(){
+		rn = $('.review-list input[type="hidden"][name="review-rn"]').last().val();
 		fn_star();
 		if($('body').height() > $(window).height()) {
 			$(window).scroll(function(){
@@ -29,72 +31,43 @@
 	})
 	
 	function fn_reviewList(){
+//		let rn = $('.review-list input[type="hidden"][name="review-rn"]').last().val();
+		let no = ${param.no};
+		let sendObj = {
+				'rn':rn,
+				'p_no':no
+		};
 		if(isEnd == true) {
 			return;
 		}
-		alert(1);
-	}
-	
-	
-	/* 리뷰작성 성공 */
-	if('${param.insertResult}'>0){
-		alert('작성해주셔서 감사합니다.');
-	} else if ('${param.insertResult}') {
-		alert('리뷰 작성에 실패했습니다.');
-	}
-	
-	
-	/* 리뷰 수정 modal 띄우기 */
-	function fn_modal(f){
-		let rv_no = f.rv_no.value;
-		let rv_star = f.rv_star.value;
-		let rv_content = f.rv_content.value;
-		$('.modal-star').empty();
-		for(let i = 0 ; i<5 ; i++){
-			if(i<rv_star){
-				$('.modal-star').append('<i class="fas fa-star"></i>');
-			} else {
-				$('.modal-star').append('<i class="far fa-star"></i>');
-			}
-		}
-		$('#modal-rv-content').val(rv_content);
-		$('#modal-rv-no').val(rv_no);
-		$('.modal').addClass('active');
-	}
-
-	/* 리뷰 수정 modal 닫기 */
-	function fn_modalClose(){
-		$('.modal').removeClass('active');
-	}
-	
-	/* 리뷰 수정 */
-	function fn_reviewUpdate(f){
- 		let rv_content = $('#modal-rv-content').val();
-		let rv_no = $('#modal-rv-no').val();
-		let sendObj = {
-				'rv_no' : rv_no,
-				'rv_content' : rv_content
-		};
 		$.ajax({
-			url:'reviewUpdate.review',
-			type:'put',
-			data: JSON.stringify(sendObj),
-			contentType: 'application/json; charset=utf-8',
+			url:'reviewListAppend.review/'+rn+'/'+no,
+//			url:'reviewListAppend.review',
+			type:'get',
+//			data:JSON.stringify(sendObj),
+			contentType:'application/json; charset=utf-8',
 			dataType:'json',
 			success:function(responseObj){
-				if(responseObj.result > 0){
-					alert('수정되었습니다.');
-					location.href='placeViewPage.place?no=${placeDto.p_no}';
-				} else{
-					alert('실패');
-				}
+				let list = responseObj.reviewList;
+				appendList(list);
 			},
-			error:function(){
-				alert('오류가 발생했습니다.');
+			error:function(request,status,error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
-		
 		});
 	}
+	
+	function appendList(list){
+		alert('list : '+list);
+		$.each(list,function(index, reviewDto){
+			alert('reviewDto : '+ reviewDto + index);
+			$('form').append('<input type="hidden" name="review-rn" value="'+reviewDto.rn+'"')
+			.append($('div').addClass('review').append($('div').addClass('reviewer-info')))
+			.appendTo($('.review-list'));
+		});
+	}
+	
+	
 	
 	/* 리뷰 삭제 */
 	function fn_reviewDelete(f){
@@ -123,55 +96,17 @@
 			});
 		}
 	}
-	
-	
-	
-	/* 별 클릭 시 이전 형제요소들(input)의 checked 속성 true/false */
-	/*
-		좀 더 보완이 필요할 것 같다.
-		현재 문제는 체크박스라서 클릭한 요소까지 체크가 해제되어 버린다.
-		-> 해결
-	*/
-	function fn_star(){
-		$('.star').click(function(){
-			if($(this).prop('checked')){
-				$(this).prevAll('input').prop('checked', true);
-				$('#star-score').val($(this).val());
-			} else {
-				$(this).nextAll('input').prop('checked', false);
-				$(this).prop('checked', true);
-				$('#star-score').val($(this).val());
-			}
-			
-		});
-		/*
-			before선택자 대체할 방법 생각하기
-		$('.star').hover(function(){
-			let cssObj = {
-				'content' : '\f005',
-				'font-family' : 'Font Awesome 5 Free',
-				'font-weight' : 400
-			}
-			$(this).prevAll('label:before').css(cssObj);
-		});
-		*/
+	/* 리뷰작성 성공 */
+	if(${param.insertResult gt 0}){
+		alert('작성해주셔서 감사합니다.');
+	} else if (${param.insertResult eq -1}) {
+		alert('지원되는 확장자가 아닙니다.(jpg, jpeg, gif, png)');
+	} else if (${param.insertResult eq 0}) {
+		alert('리뷰 작성에 실패했습니다.');
 	}
+
 	
-	/* 리뷰 삽입 전 검사 */
-	function fn_reviewInsert(f){
-		let contentRegExp = /.{5}/;
-		if(!contentRegExp.test(f.rv_content.value)){
-			alert('리뷰는 5글자 이상 작성해주세요');
-			f.rv_content.focus();
-			return;
-		}
-		if(f.rv_star.value == '' || f.rv_star.value == null){
-			alert('별점을 선택해주세요');
-			return;
-		}
-		f.action='reviewInsert.review';
-		f.submit();
-	}
+	
 </script>
 
 <div class="modal">
@@ -229,20 +164,18 @@
 						</label>
 							
 						<div class="hidden-box">
-							<div class="day-price">&#92; ${optionDto.po_dayPrice}/day</div>
-							<div class="holiday-price">&#92; ${optionDto.po_holiday}/day</div>
+							<div class="day-price"><strong>평일가격</strong> : &#92; ${optionDto.po_dayPrice}/day</div>
+							<div class="holiday-price"><strong>공휴일가격</strong>&#92; ${optionDto.po_holiday}/day</div>
 							<div class="option-info-box">
 								<div class="img-box">
 									<img alt="" src="resources/images/PlaceOptionImages/${optionDto.po_img1}" />
-									<!-- 옵션의 이미지는 한개만하고 공간의 썸네일을 많이 받는게 나을거 같다. -->
 								</div>
 								<div class="person-count">
 									<strong>수용인원</strong>
 									<span>최소 ${optionDto.po_min}명 ~ 최대 ${optionDto.po_max}</span>
 								</div>
 								<div class="facilities${k.count}">
-								<!-- Todo : 각 방마다의 편의시설을 불러올 방법 -->
-								<!-- DB에 저장되어있는 편의시설정보는 json -->
+									<strong>편의시설</strong><br/>
 								</div>
 								<div class="calendar-wrap">
 								<input type="hidden" name="res_date" />
@@ -334,6 +267,7 @@ jas
 				<form id="review-insert-form" method="post" enctype="multipart/form-data" >
 					<div class="review-insert-star">
 						<p>
+						<!-- js 함수로 만들어서 뿌려보자 시간되면 -->
 							<input id="star1" class="star" type="checkbox" value="1" /><label for="star1"></label> 
 							<input id="star2" class="star" type="checkbox" value="2" /><label for="star2"></label>
 							<input id="star3" class="star" type="checkbox" value="3" /><label for="star3"></label>
@@ -380,6 +314,7 @@ jas
 							</div> 
 						</c:if>--%>
 						<form>
+							<input type="hidden" name="review-rn" value="${reviewDto.rn}" />
 							<div class="review">
 								<div class="reviewer-info">
 									<c:if test="${reviewDto.m_nick eq null}">

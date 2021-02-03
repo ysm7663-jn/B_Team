@@ -22,4 +22,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (REVIEW_SEQ.NEXTVAL, #{param1}, #{param2}, 0, #{param3}, #{param4}, SYSDATE, SYSDATE, #{param5})
 	</insert>
 	
+	<select id="reviewListAppend" resultType="com.koreait.baraON.dto.ReviewListDto" >
+		SELECT B.*
+		FROM (SELECT ROWNUM RN, A.*
+		FROM (SELECT RV.*, M.M_NICK, M.M_ID
+			 FROM REVIEW RV LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO AND RV.RV_DELETE = 0
+			 WHERE P_NO = #{param1}
+			 ORDER BY RV.RV_POSTDATE DESC ) A ) B
+		 WHERE RN BETWEEN #{param2} AND #{param3}
+	</select>
+	
 </mapper>

@@ -38,8 +38,9 @@ public class ReviewInsertCommand implements ReviewCommand {
 				String originalFilename = file.getOriginalFilename();
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 				for(int i=0;i<extensions.length;i++) {
-					if(extension.equalsIgnoreCase(extensions[i])) {
+					if(!extension.equalsIgnoreCase(extensions[i])) {
 						System.out.println(extension.equalsIgnoreCase(extensions[i]));
+						model.addAttribute("insertResult", -1);
 						return;
 					}
 				}
