@@ -1,6 +1,7 @@
 package com.koreait.baraON.command.review;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,7 +30,11 @@ public class ReviewInsertCommand implements ReviewCommand {
 		
 		List<MultipartFile> files = multipartRequest.getFiles("rv_img");
 		int size = files.size();
-		String[] extensions = { "jpg", "jpeg", "gif", "png"};
+		List<String> extensionList = new ArrayList<>();
+		extensionList.add("jpg");
+		extensionList.add("jpeg");
+		extensionList.add("git");
+		extensionList.add("png");
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, gif, png로 한다.
@@ -37,13 +42,19 @@ public class ReviewInsertCommand implements ReviewCommand {
 			if (file != null && !file.isEmpty()) {
 				String originalFilename = file.getOriginalFilename();
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
-				for(int i=0;i<extensions.length;i++) {
+				System.out.println(extensionList.contains(extension));
+				/*for(int i=0;i<extensions.length;i++) {
 					if(!extension.equalsIgnoreCase(extensions[i])) {
+						System.out.println(i);
 						System.out.println(extension.equalsIgnoreCase(extensions[i]));
 						model.addAttribute("insertResult", -1);
 						return;
 					}
+				}*/
+				if(!extensionList.contains(extension)) {
+					model.addAttribute("insertResult", -1);
 				}
+				
 				String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
 				System.out.println(2);
 				String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;

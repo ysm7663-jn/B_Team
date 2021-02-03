@@ -52,10 +52,10 @@ public class ReviewController {
 		return reviewUpdateCommand.execute(sqlSession, model);
 	}
 	
-	@RequestMapping(value="reviewDelete,review", method=RequestMethod.PUT, produces="application/json; charset=utf-8")
+	@RequestMapping(value="reviewDelete.review/{rv_no}", method=RequestMethod.PUT, produces="application/json; charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> reviewDelete(@RequestBody int pv_no , Model model) {
-		model.addAttribute("pv_no", pv_no);
+	public Map<String, Object> reviewDelete(@PathVariable int rv_no , Model model) {
+		model.addAttribute("rv_no", rv_no);
 		return reviewDeleteCommand.execute(sqlSession, model);
 	}
 	

@@ -66,15 +66,20 @@ label{
 .place-option-wrap div {
 	margin-bottom: 20px;
 }
+/* 혹시 편의시설이 3개이상일 때 flex설정이 깨진다면 여길 볼 것 */
+div[class*="facilities"] {
+	display : flex;
+	justify-content: space-around;
+}
 .facility {
 	border : 1px solid black;
 	border-radius: 20px;
 	text-align: center;
 	height: 40px;
 	line-height : 40px;
-	float: left;
-	width : 33%;
-	font-size : 17px;
+	width : 30%;
+	font-size : 15px;
+	/* margin : 4px 4px; */
 }
 .facility:hover {
 	background: rgba(216,191,216, 0.8);
@@ -89,7 +94,6 @@ label{
 }
 .option-info-box>.img-box>img:hover{
 	transform: scale(1.2);
-	width:300px;
 }
 .reserve-form > .btn-wrap > button{
 	width : 150px;
@@ -293,6 +297,9 @@ td>a{
 td.ui-datepicker-today{
 	background: rgba(216,191,216, 0.5);
 }
+.ui-datepicker-unselectable:not(.ui-datepicker-other-month) {
+	background : red;
+}
 td:not(.ui-datepicker-unselectable):hover{
 	background: rgba(216,191,216, 1);
 }
@@ -318,5 +325,9 @@ td:active{
 	article{
 		width: 100%;
 		margin: 0 auto;
+	}
+	.option-info-box>.img-box{
+		height: 397px;
+		margin: 20px;
 	}
 }

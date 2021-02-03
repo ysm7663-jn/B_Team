@@ -1,101 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="../template/header.jsp">
 	<jsp:param value="BaraON :: 공간보기" name="title" />
 </jsp:include>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="resources/style/place/place-view.css">
-<script type="text/javascript" src="resources//js/place-view.js" ></script> 
+<script type="text/javascript" src="resources/js/place-view.js" ></script> 
 <script>
 	let facilityList = JSON.parse('${facilityList}');
+	let loginDto_m_no = '${loginDto.m_no}';
+	let no = ${param.no};
+	let lastReviewRN = ${lastReviewRN};
 	let isEnd = false;	
-	let rn=0;
-	/* 이벤트 부여를 위한 onload 이벤트 */
-	$(function(){
-		rn = $('.review-list input[type="hidden"][name="review-rn"]').last().val();
-		fn_star();
-		if($('body').height() > $(window).height()) {
-			$(window).scroll(function(){
-				let $window = $(this);
-				let scrollTop = $window.scrollTop();
-				let windowHeight = $window.height();
-				let documentHeight = $(document).height();
-				
-				if (scrollTop + windowHeight >= documentHeight){
-					fn_reviewList();
-				}
-			});
-		}
-	})
-	
-	function fn_reviewList(){
-//		let rn = $('.review-list input[type="hidden"][name="review-rn"]').last().val();
-		let no = ${param.no};
-		let sendObj = {
-				'rn':rn,
-				'p_no':no
-		};
-		if(isEnd == true) {
-			return;
-		}
-		$.ajax({
-			url:'reviewListAppend.review/'+rn+'/'+no,
-//			url:'reviewListAppend.review',
-			type:'get',
-//			data:JSON.stringify(sendObj),
-			contentType:'application/json; charset=utf-8',
-			dataType:'json',
-			success:function(responseObj){
-				let list = responseObj.reviewList;
-				appendList(list);
-			},
-			error:function(request,status,error){
-				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-			}
-		});
+	if ('${fn:length(reviewList)}'<3){
+		isEnd = true;
 	}
+	let isProgress = false;
+	let isPossible = false;
 	
-	function appendList(list){
-		alert('list : '+list);
-		$.each(list,function(index, reviewDto){
-			alert('reviewDto : '+ reviewDto + index);
-			$('form').append('<input type="hidden" name="review-rn" value="'+reviewDto.rn+'"')
-			.append($('div').addClass('review').append($('div').addClass('reviewer-info')))
-			.appendTo($('.review-list'));
-		});
-	}
-	
-	
-	
-	/* 리뷰 삭제 */
-	function fn_reviewDelete(f){
-		
-		if(confirm('정말삭제하시겠습니까?')){
-			let sendObj = {
-				'rv_no' : f.rv_no.value
-			};
-			$.ajax({
-				url:'reviewDelete.review',
-				type:'put',
-				data:JSON.stringify(sendObj),
-				contentType: 'application/json; charset=utf-8',
-				dataType:'json',
-				success:function(responseObj){
-					if(responseObj.result > 0) {
-						alert('삭제되었습니다.');
-						location.href='placeViewPage.place?no=${placeDto.p_no}';
-					} else {
-						alert('삭제에 실패했습니다.');
-					}
-				},
-				error:function(request,status,error){
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				}
-			});
-		}
-	}
 	/* 리뷰작성 성공 */
 	if(${param.insertResult gt 0}){
 		alert('작성해주셔서 감사합니다.');
@@ -174,8 +99,8 @@
 									<strong>수용인원</strong>
 									<span>최소 ${optionDto.po_min}명 ~ 최대 ${optionDto.po_max}</span>
 								</div>
+								<strong>편의시설</strong><br/>
 								<div class="facilities${k.count}">
-									<strong>편의시설</strong><br/>
 								</div>
 								<div class="calendar-wrap">
 								<input type="hidden" name="res_date" />
@@ -335,20 +260,15 @@ jas
 											<i class="far fa-star"></i>
 										</c:if>
 									 </c:forEach>
-									 <div class="review-date">
-									 	작성일 : ${reviewDto.rv_postDate}<br/>
-									 	<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
-										 	최근수정일 : ${reviewDto.rv_modifyDate}
-									 	</c:if>
-									 </div>
-									 <!-- modal에 표시할 별점 -->
-									 <input type="hidden" name="rv_star" value="${reviewDto.rv_star}" />
+								</div>
+								<div class="review-date">
+									작성일 : ${reviewDto.rv_postDate}<br/>
+									<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
+										최근수정일 : ${reviewDto.rv_modifyDate}
+									</c:if>
 								</div>
 								<div class="review-content" >
 									<p>${reviewDto.rv_content}</p>
-									<!-- modal에 표시할 내용 -->
-									<input type="hidden" name="rv_content" value="${reviewDto.rv_content}" />
-									<input type="hidden" name="rv_no" value="${reviewDto.rv_no}" />
 								</div>
 								<c:if test="${reviewDto.rv_img ne null}">
 									<div class="review-img-box" >
@@ -357,6 +277,11 @@ jas
 								</c:if>
 								<div class="review-btns" >
 									<c:if test="${loginDto.m_no eq reviewDto.m_no}">
+										<!-- modal에 표시할 별점 -->
+										<input type="hidden" name="rv_star" value="${reviewDto.rv_star}" />
+										<!-- modal에 표시할 내용 -->
+										<input type="hidden" name="rv_content" value="${reviewDto.rv_content}" />
+										<input type="hidden" name="rv_no" value="${reviewDto.rv_no}" />
 										<input type="button" value="수정하기" onclick="fn_modal(this.form)" />
 										<input type="button" value="삭제하기" onclick="fn_reviewDelete(this.form)" />
 									</c:if>
@@ -366,6 +291,7 @@ jas
 					</c:forEach>
 				</c:if>
 			</div>
+			<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 		</div>
 	
 	</article>

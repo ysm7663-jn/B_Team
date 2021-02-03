@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.baraON.dao.PlaceDao;
+import com.koreait.baraON.dao.ReviewDao;
 import com.koreait.baraON.dto.PlaceCategoryDto;
 import com.koreait.baraON.dto.PlaceDto;
 import com.koreait.baraON.dto.PlaceOptionDto;
@@ -21,6 +22,7 @@ public class PlaceViewCommand implements PlaceCommand {
 		
 		HttpServletRequest request = (HttpServletRequest)model.asMap().get("request");
 		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
+		ReviewDao reviewDao = sqlSession.getMapper(ReviewDao.class);
 		
 		int no = Integer.parseInt(request.getParameter("no"));
 		
@@ -51,12 +53,15 @@ public class PlaceViewCommand implements PlaceCommand {
 		// 가장 최초에는 삭제되지 않은 리뷰중에 가장 최근의 리뷰부터 3개를 가져옴
 		List<ReviewListDto> reviewList = placeDao.getReviewListOfViewPage(p_no, 1, 3);
 		
+		
+		
 		model.addAttribute("placeDto", placeDto);
 		model.addAttribute("sellerDto", sellerDto);
 		model.addAttribute("categoryName", placeCategoryDto.getPc_name());
 		model.addAttribute("optionList", placeOptionList);
 		model.addAttribute("facilityList",sb.toString());
 		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("lastReviewRN", reviewDao.lastReviewRN(p_no));
 	}
 
 }

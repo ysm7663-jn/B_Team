@@ -11,4 +11,5 @@ public interface ReviewDao {
 	public int reviewDelete(int pv_no);
 	public int reviewInsert(int m_no, int p_no, int rv_star, String rv_img, String rv_content);
 	public List<ReviewListDto> reviewListAppend(int p_no, int begin, int end);
+	public int lastReviewRN(int p_no);
 }
