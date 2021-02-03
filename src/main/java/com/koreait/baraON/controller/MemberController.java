@@ -59,7 +59,6 @@ public class MemberController {
 		this.kakaoAPI = kakaoAPI;
 	}
 	
-	//단순이동
 	@RequestMapping(value="loginPage.member", method=RequestMethod.GET)
 	public String loginPage() {
 		return "member/loginPage";
@@ -74,11 +73,13 @@ public class MemberController {
 		
 		// 로그인
 		loginCommand.execute(sqlSession, model);
-		if(request.getParameter("grade").equals("member")) { // member일때
-			return "member/loginResult";
-		} else {  // seller일때
-			return "member/loginResult2";
-		}
+		HttpSession session = request.getSession();
+		if(session.getAttribute("grade") != null) {
+			if(session.getAttribute("grade").equals("member")) { // member일때
+				return "member/loginResult";
+			}
+		} 
+		return "member/loginResult2";  // seller일때
 	}
 	
 	@RequestMapping(value="loginKakao.member")
@@ -105,13 +106,12 @@ public class MemberController {
 		logoutCommand.execute(sqlSession, model);
 		
 		/** kakao 로그아웃 **/
-		kakaoAPI.kakaoLogout((String)session.getAttribute("access_Token"));
+		/*kakaoAPI.kakaoLogout((String)session.getAttribute("access_Token"));
 		session.removeAttribute("access_Token");
-		session.removeAttribute("userId");
+		session.removeAttribute("userId");*/
 		return "index";
 	}
 	
-	// 단순이동
 	@RequestMapping(value="findPage.member", method=RequestMethod.GET)
 	public String findPage(HttpServletRequest request) {
 		return "member/findPage";
@@ -158,4 +158,12 @@ public class MemberController {
 		changePwCommand.execute(sqlSession, model);
 		return "member/findPwPage3";
 	}
+	
+	
+	/**** 마이페이지 ****/
+	@RequestMapping(value="myPage.member", method=RequestMethod.GET)
+	public String myPage(HttpServletRequest request) {
+		return "member/myPage";
+	}
+	
 }

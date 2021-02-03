@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.mypage_body {
+	display: flex;
+	height: 900px;
+	margin: 2% 5%;
+}
+.mypage_category {
+	margin: 0 2% 2% 3%;
+}
+.mypage_category a {
+	display: block;
+}
+.mypage_category h2 {
+	margin-bottom: 10px;
+}
+.mypage_contents {
+	width: 74%;
+	margin: 0 4% 4% 4%;
+}
+.mypage_contents > h2 {
+	margin-bottom: 12px;
+}
+.mypage_contents hr {
+	height: 3px;
+	background: #dbdbdb;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+}

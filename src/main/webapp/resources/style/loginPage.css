@@ -57,7 +57,7 @@ input[type="radio"] {
 input[type="text"], input[type="password"] {
 	height: 45px;
 	width: 95%;
-	border: 1px solid lightgray;
+	border: 1px solid #dbdbdb;
 }
 a[class="login"] {
 	color: #1bbe9d;
