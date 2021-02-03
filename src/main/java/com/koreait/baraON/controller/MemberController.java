@@ -80,19 +80,14 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="loginKakao.member")
-	public String kakaoLogin(@RequestParam(value="code", required=false) String code, HttpSession session) throws Exception {
+	public String kakaoLogin(@RequestParam(value="code") String code) {
 		String access_Token = kakaoAPI.getAccessToken(code);
 		HashMap<String, Object> userInfo = kakaoAPI.getUserInfo(access_Token);
-		
+       
+		System.out.println("controller access_token : " + access_Token);
 		System.out.println("login Controller: " + userInfo);
 		System.out.println("access_Token : " + access_Token);
 		System.out.println("userInfo : " + userInfo.get("email"));
-		System.out.println("nickname : " + userInfo.get("nickname"));
-		System.out.println("profile_image : " + userInfo.get("profile_image"));
-		/*if(userInfo.get("email") != null) {
-			session.setAttribute("userId", userInfo.get("email"));
-			session.setAttribute("access_Token", access_Token);
-		}*/
 		
 		return "member/loginPage";
 	}

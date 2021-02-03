@@ -61,7 +61,7 @@
 				?client_id=4fd62ed3c510f9b7e565ab78d297d444
 				&redirect_uri=http://localhost:9090/baraON/loginKakao.member
 				&response_type=code">
-    				<img alt="kakaoTalk" src="resources/images/kakao_login_small.png">
+    				<img alt="kakaoLogin" src="resources/images/kakao_login_small.png">
     			</a>
 			</div>
 		</form>
