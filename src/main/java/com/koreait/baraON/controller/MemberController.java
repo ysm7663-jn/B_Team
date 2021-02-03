@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +19,7 @@ import com.koreait.baraON.command.member.ChkIdCommand;
 import com.koreait.baraON.command.member.EmailAuthCommmand;
 import com.koreait.baraON.command.member.FindIdCommand;
 import com.koreait.baraON.command.member.FindPwCommand;
+import com.koreait.baraON.command.member.KakaoAPI;
 import com.koreait.baraON.command.member.LoginCommand;
 import com.koreait.baraON.command.member.LogoutCommand;
 
@@ -28,8 +28,6 @@ public class MemberController {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	@Autowired
-	private KaKaoAPI kakaoAPI;
 	
 	//private BaraONCommand baraONCommand;
 	private LoginCommand loginCommand;
@@ -39,6 +37,7 @@ public class MemberController {
 	private FindPwCommand findPwCommand;
 	private EmailAuthCommmand emailAuthCommmand;
 	private ChangePwCommand changePwCommand;
+	private KakaoAPI kakaoAPI;
 	
 	@Autowired
 	public void setCommand(LoginCommand loginCommand,
@@ -47,7 +46,8 @@ public class MemberController {
 							 FindIdCommand findIdCommand,
 							 FindPwCommand findPwCommand,
 							 EmailAuthCommmand emailAuthCommmand,
-							 ChangePwCommand changePwCommand) {
+							 ChangePwCommand changePwCommand,
+							 KakaoAPI kakaoAPI) {
 		this.loginCommand = loginCommand;
 		this.logoutCommand = logoutCommand;
 		this.chkIdCommand = chkIdCommand;
@@ -55,6 +55,7 @@ public class MemberController {
 		this.findPwCommand = findPwCommand;
 		this.emailAuthCommmand = emailAuthCommmand;
 		this.changePwCommand = changePwCommand;
+		this.kakaoAPI = kakaoAPI;
 	}
 	
 	//단순이동

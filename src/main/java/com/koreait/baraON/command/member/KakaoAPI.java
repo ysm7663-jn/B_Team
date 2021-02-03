@@ -1,4 +1,4 @@
-package com.koreait.baraON.controller;
+package com.koreait.baraON.command.member;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -16,7 +16,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 @Service
-public class KaKaoAPI {
+public class KakaoAPI {
 	 public String getAccessToken (String authorize_code) {
          String access_Token = "";
          String refresh_Token = "";
