@@ -31,7 +31,7 @@
 <div class="box">
 	<div class="inner-box">
 		<form action="login.member" method="post">
-			<h3>로그인해주세요</h3>
+			<h2>로그인해주세요</h2>
 
 			<input type="radio" name="grade" id="member" value="member" checked="checked"/>
 			<label for="member">멤버&nbsp;</label>
@@ -46,8 +46,8 @@
 			</c:if>
 			<!-- 아이디가 쿠키에 없는 경우 -->
 			<c:if test="${id eq null}">
-				<input type="text" name="id" placeholder="아이디" /><br/>
-				<input type="password" name="pw" placeholder="비밀번호" /><br/>
+				<input type="text" name="id" placeholder="     아이디" /><br/>
+				<input type="password" name="pw" placeholder="     비밀번호" /><br/>
 				<input type="checkbox" name="chkId" id="chkId"/><label for="chkId">아이디 기억하기</label><br/>
 			</c:if>
 			
@@ -61,7 +61,7 @@
 				?client_id=4fd62ed3c510f9b7e565ab78d297d444
 				&redirect_uri=http://localhost:9090/baraON/loginKakao.member
 				&response_type=code">
-    				<img alt="kakaoLogin" src="resources/images/kakao_login_small.png">
+    				<img alt="kakaoLogin" src="resources/images/kakao_login_small.png" >
     			</a>
 			</div>
 		</form>

@@ -19,11 +19,13 @@ div {
 }
 
 .resultBox {
+	width: 60%;
+	height: 79px;
+	line-height: 38px;
+	margin: 5% auto;
 	border: 1px solid #494949;
 	border-collapse: collapse;
 	border-radius: 2px;
-	width: 60%;
-	text-align: center;
 }
 input[type="button"] {
 	border: 1px solid #1DD1AD;
@@ -31,9 +33,10 @@ input[type="button"] {
 	background: #1DD1AD;
 	color: white;
 	width: 30%;
-	height: 10%;
+	height: 41px;
+	font-size: 15px;
+	font-weight: bold;
 }
 .login-button {
 	text-align: center;
 }
-

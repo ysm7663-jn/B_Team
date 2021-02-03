@@ -24,7 +24,7 @@ div {
 
 
 .box {
-	background: lightgray;
+	background: #dbdbdb;
 	height: 700px;
 }
 .inner-box {
@@ -35,22 +35,51 @@ div {
 	left: 31%;
 	top:7%;
 	border-radius: 15px;
-}
-.box {
-	text-align: center;
+	text-align: left;
 }
 form {
 	position: relative;
 	top: 50px;
+	padding: 5% 22%;
+}
+form * {
+	margin: 9px;
+}
+h2 {
+	margin-bottom: 20px; 
+}
+label {
+	margin: 0px;
+}
+input[type="radio"] {
+	margin: 0px 0px 0px 11px;
+}
+input[type="text"], input[type="password"] {
+	height: 45px;
+	width: 95%;
+	border: 1px solid lightgray;
 }
 a[class="login"] {
-	color: #1DD1AD;
+	color: #1bbe9d;
+	margin: 3%;
+	font-size: 14px;
+	font-weight: bold;
 }
 button {
-	background: #1DD1AD;
+	background: #1bbe9d;
 	color: white;
-	width: 130px;
-	border: 1px solid #13C7A3;
+	font-size: 15px;
+	font-weight: bold;
+	width: 45%;
+	height: 41px;
+	border: 1px solid #1bbe9d;
 	border-radius: 2px;
+	margin: 12% 27%;
 }
-
+h5 {
+	margin: 0% 30%;
+}
+.kakaoLogin > a > img {
+	margin: 4% 37%;
+	
+}
