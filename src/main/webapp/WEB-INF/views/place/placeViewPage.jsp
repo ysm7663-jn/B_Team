@@ -15,6 +15,8 @@
 	let loginDtoMNo = '${loginDto.m_no}';
 	let reviewImageList = JSON.parse('${reviewImage}');
 	let no = ${param.no};
+	let pAddr = '${placeDto.p_addr}';
+	let pTitle= '${placeDto.p_title}';
 	let lastReviewRN = ${lastReviewRN};
 	let isEnd = false;
 	if ('${fn:length(reviewList)}'<3){
@@ -22,19 +24,6 @@
 	}
 	let isProgress = false;
 	let isPossible = false;
-	
-	$(function(){
-		$.each(reviewImageList, function(key, value){
-			let i=0;
-			if(value !=null){
-				$('.review-img-box').eq(i).append($('<ul>').addClass('img-list'));
-				$.each(value,function(index, reviewImage){
-					$('.img-list').eq(i).append($('<li>').append('<img alt="'+reviewImage+'" src="resources/images/ReviewImages/'+reviewImage+'"/>'));
-				});
-			}
-			i++;
-		});
-	});
 	/* 리뷰작성 성공 */
 	if(${param.insertResult gt 0}){
 		alert('작성해주셔서 감사합니다.');
@@ -42,6 +31,14 @@
 		alert('지원되는 확장자가 아닙니다.(jpg, jpeg, gif, png)');
 	} else if (${param.insertResult eq 0}) {
 		alert('리뷰 작성에 실패했습니다.');
+	}
+	
+	function fn_reserve(f){
+		if($('input:checked').length>1){
+			alert('한 장소만 선택해주세요');
+			return;
+		}
+		/* hidden res-date 선택하는 방법 생각하기 */
 	}
 </script>
 
@@ -123,8 +120,8 @@
 								<div class="facilities${k.count}">
 								</div>
 								<div class="calendar-wrap">
-								<input type="hidden" name="res_date" />
 								</div>
+								<input type="hidden" name="res_date" />
 							</div>
 						</div>
 						
@@ -133,7 +130,7 @@
 			</c:if>
 			<div class="btn-wrap">
 				<button type="button" onclick="fn_modalPhone()"><span><i class="fas fa-mobile-alt"></i>전화</span></button>
-				<button>예약신청하기</button>
+				<button type="button" onclick="fn_reserve(this.form)">예약신청하기</button>
 			</div>
 		</form>
 	</aside>

@@ -93,6 +93,7 @@ label[for*="option"]::before{
 	content:"\f111";
 	font-family: "Font Awesome 5 Free";
 	font-weight: 400;
+	color: rgba(216,100,216,1);
 }
 input[id*="option"]{
 	display : none;
@@ -101,6 +102,7 @@ input[id*="option"]:checked + label::before{
 	content:"\f058";
 	font-family: "Font Awesome 5 Free";
 	font-weight: 400;
+	color: rgba(216,100,216,1);
 }
 
 

@@ -6,10 +6,18 @@ $(function(){
 		});
 	});
 	
-	$(document).on('click', 'input:checkbox', function(){
-		$('input:checkbox').closest('.hidden-box').removeClass('active');
-		$('input:checkbox:checked').closest('.hidden-box').addClass('active');
+	$(document).on('click', 'label[for*="option"]', function(){
+		if($(this).prev().prop('checked')){
+			$(this).next().removeClass('active');
+			// 이 때 만약 날짜를 선택했다면 input hidden name=res_date에 값이 들어가있다.
+			// active 클래스를 없애준 후 해당 값도 없애준다.
+			$(this).next().find('input:hidden').val('');
+		} else {
+			$(this).next().addClass('active');
+		}
 	});
+	
+	fn_reviewImage();
 	fn_scrollEvent();
 	fn_getMap();
 	fn_datepiacker();
@@ -22,6 +30,20 @@ $(function(){
 	}
 	
 })
+
+/* review image */
+function fn_reviewImage(){
+	$.each(reviewImageList, function(key, value){
+		let i=0;
+		if(value !=null){
+			$('.review-img-box').eq(i).append($('<ul>').addClass('img-list'));
+			$.each(value,function(index, reviewImage){
+				$('.img-list').eq(i).append($('<li>').append('<img alt="'+reviewImage+'" src="resources/images/ReviewImages/'+reviewImage+'"/>'));
+			});
+		}
+		i++;
+	});
+}
 
 /* scroll 이벤트 */
 function fn_scrollEvent(){
@@ -53,7 +75,7 @@ function fn_getMap(){
 	let geocoder = new kakao.maps.services.Geocoder();
 	
 	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch('${placeDto.p_addr}', function(result, status) {
+	geocoder.addressSearch( pAddr, function(result, status) {
 	
 		// 정상적으로 검색이 완료됐으면 
 		if (status === kakao.maps.services.Status.OK) {
@@ -67,7 +89,7 @@ function fn_getMap(){
 		
 			// 인포윈도우로 장소에 대한 설명을 표시합니다
 			let infowindow = new kakao.maps.InfoWindow({
-		    'content': '<div style="width:150px;text-align:center;padding:6px 0;">${placeDto.p_title}</div>'
+		    'content': `<div style="width:150px;text-align:center;padding:6px 0;">${pTitle}</div>`
 			});
 			infowindow.open(map, marker);
 		
@@ -105,7 +127,7 @@ function fn_datepiacker(){
         showMonthAfterYear: true,
         yearSuffix: '년',
         onSelect: function(d){
-        	$('input:hidden[name="res_date"]').val(d);
+        	$(this).closest('.calendar-wrap').next().val(d);
         }
 	});
 }
