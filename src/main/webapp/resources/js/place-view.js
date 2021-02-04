@@ -228,11 +228,15 @@ function appendList(list){
 		}
 		$('.review').last().append($('<div class="review-content">').append('<p>'+reviewDto.rv_content+'</p'));
 		if(reviewDto.rv_img != null){
-			$('.review').last().append($('<div class="review-img-box">').append('<img alt="첨부이미지" src="resources/images/ReviewImages/'+reviewDto.rv_img+'"'));
+			let reviewImgArray = JSON.parse(reviewDto.rv_img); 
+			$('.review').last().append($('<div class="review-img-box">').append('<ul class="img-list">'));
+			$.each(reviewImgArray,function(index, reviewImage){
+				$('.img-list').last().append($('<li>').append('<img alt="'+reviewImage+'" src="resources/images/ReviewImages/'+reviewImage+'"/>'));
+			});
 		}
 		$('.review').last().append('<div class="review-btns">');
-		if(loginDto_m_no==reviewDto.m_no){
-			$('review-btns').last().append('<input type="hidden" name="rv_star" value="'+reviewDto.rv_star+'" />')
+		if(loginDtoMNo==reviewDto.m_no){
+			$('.review-btns').last().append('<input type="hidden" name="rv_star" value="'+reviewDto.rv_star+'" />')
 			.append('<input type="hidden" name="rv_content" value="'+reviewDto.rv_content+'" />')
 			.append('<input type="hidden" name="rv_no" value="'+reviewDto.rv_no+'" />')
 			.append('<input type="button" value="수정하기" onclick="fn_modal(this.form)" />')

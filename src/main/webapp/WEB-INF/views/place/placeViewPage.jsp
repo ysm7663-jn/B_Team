@@ -11,7 +11,9 @@
 <script type="text/javascript" src="resources/js/place-view.js" ></script> 
 <script>
 	let facilityList = JSON.parse('${facilityList}');
-	let loginDto_m_no = '${loginDto.m_no}';
+	let loginDtoMNo = '${loginDto.m_no}';
+	alert(loginDtoMNo);
+	let reviewImageList = JSON.parse('${reviewImage}');
 	let no = ${param.no};
 	let lastReviewRN = ${lastReviewRN};
 	let isEnd = false;	
@@ -20,6 +22,19 @@
 	}
 	let isProgress = false;
 	let isPossible = false;
+	
+	$(function(){
+		$.each(reviewImageList, function(key, value){
+			let i=0;
+			if(value !=null){
+				$('.review-img-box').eq(i).append($('<ul>').addClass('img-list'));
+				$.each(value,function(index, reviewImage){
+					$('.img-list').eq(i).append($('<li>').append('<img alt="'+reviewImage+'" src="resources/images/ReviewImages/'+reviewImage+'"/>'));
+				});
+			}
+			i++;
+		});
+	});
 	
 	/* 리뷰작성 성공 */
 	if(${param.insertResult gt 0}){
@@ -164,7 +179,7 @@ asjdf
 			</pre>
 			
 		</div>
-		<div class="place-map">
+		<div id="place-map">
 			<h3>위치</h3>
 			
 		</div>
@@ -270,11 +285,9 @@ jas
 								<div class="review-content" >
 									<p>${reviewDto.rv_content}</p>
 								</div>
-								<c:if test="${reviewDto.rv_img ne null}">
-									<div class="review-img-box" >
-										<img alt="img" src="resources/images/ReviewImages/${reviewDto.rv_img}" />
-									</div>
-								</c:if>
+								<div class="review-img-box" >
+										
+								</div>
 								<div class="review-btns" >
 									<c:if test="${loginDto.m_no eq reviewDto.m_no}">
 										<!-- modal에 표시할 별점 -->

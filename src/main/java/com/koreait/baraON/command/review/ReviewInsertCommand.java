@@ -75,10 +75,10 @@ public class ReviewInsertCommand implements ReviewCommand {
 				}
 				
 				if(files.get(size-1) != file) {
-					sb.append(uploadFilename+", ");
+					sb.append("\""+uploadFilename+"\", ");
 				} else {
-					sb.append(uploadFilename+"]}");
-					sb.insert(0,"{ \"review-image\" : [");
+					sb.append("\""+uploadFilename+"\"]");
+					sb.insert(0,"[");
 				}
 			} else {
 				model.addAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, "", rv_content));

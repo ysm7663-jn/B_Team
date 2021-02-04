@@ -42,4 +42,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			 AND RV.RV_DELETE=0
 			 ORDER BY RV.RV_POSTDATE DESC ) A ) B
 	</select>
+	
+	<select id="getReviewDto" parameterType="int" resultType="com.koreait.baraON.dto.ReviewDto">
+		SELECT *
+		FROM REVIEW
+		WHERE RV_NO=#{param1}
+	</select>
 </mapper>

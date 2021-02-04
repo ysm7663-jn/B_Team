@@ -2,6 +2,8 @@ package com.koreait.baraON.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,7 +20,6 @@ import com.koreait.baraON.command.review.ReviewInsertCommand;
 import com.koreait.baraON.command.review.ReviewListAppendCommand;
 import com.koreait.baraON.command.review.ReviewUpdateCommand;
 import com.koreait.baraON.dto.ReviewDto;
-import com.koreait.baraON.dto.ReviewListDto;
 
 @Controller
 public class ReviewController {
@@ -54,8 +55,9 @@ public class ReviewController {
 	
 	@RequestMapping(value="reviewDelete.review/{rv_no}", method=RequestMethod.PUT, produces="application/json; charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> reviewDelete(@PathVariable int rv_no , Model model) {
+	public Map<String, Object> reviewDelete(@PathVariable int rv_no , HttpServletRequest request, Model model) {
 		model.addAttribute("rv_no", rv_no);
+		model.addAttribute("request",request);
 		return reviewDeleteCommand.execute(sqlSession, model);
 	}
 	
@@ -68,11 +70,8 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value="reviewListAppend.review/{rn}/{p_no}", method=RequestMethod.GET, produces="application/json; charset=utf-8")
-//	@RequestMapping(value="reviewListAppend.review", method=RequestMethod.GET, produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> reviewListAppend(@PathVariable int rn, @PathVariable int p_no, Model model){
-//	public Map<String, Object> reviewListAppend(@RequestBody ReviewListDto reviewListDto, Model model){
-//		model.addAttribute("reviewListDto", reviewListDto);
 		model.addAttribute("rn",rn);
 		model.addAttribute("p_no",p_no);
 		
