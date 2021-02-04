@@ -7,16 +7,16 @@
 </jsp:include>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="resources/style/place/place-view.css">
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b735551da134940779a92513cdbca8f5&libraries=services"></script>
 <script type="text/javascript" src="resources/js/place-view.js" ></script> 
+<link rel="stylesheet" href="resources/style/place/place-view.css">
 <script>
 	let facilityList = JSON.parse('${facilityList}');
 	let loginDtoMNo = '${loginDto.m_no}';
-	alert(loginDtoMNo);
 	let reviewImageList = JSON.parse('${reviewImage}');
 	let no = ${param.no};
 	let lastReviewRN = ${lastReviewRN};
-	let isEnd = false;	
+	let isEnd = false;
 	if ('${fn:length(reviewList)}'<3){
 		isEnd = true;
 	}
@@ -35,7 +35,6 @@
 			i++;
 		});
 	});
-	
 	/* 리뷰작성 성공 */
 	if(${param.insertResult gt 0}){
 		alert('작성해주셔서 감사합니다.');
@@ -44,9 +43,6 @@
 	} else if (${param.insertResult eq 0}) {
 		alert('리뷰 작성에 실패했습니다.');
 	}
-
-	
-	
 </script>
 
 <div class="modal">
@@ -67,11 +63,20 @@
 	</div>
 </div>
 <!-- 전화버튼눌렀을때 나올 modal -->
-<div class="modal2">
-	<div class="modal-content2">
-		전화번호
-		
-		<button type="button" onclick="fn_modalClose()"> 확인</button>
+<div class="modal-phone">
+	<div class="modal-content">
+		<div class="content-wrap">
+			<ul>
+				<li>서로에게 기분 좋은 통화가 될 수 있도록<br/>
+				인사부터 나누도록 해요!
+				</li>
+				<li>
+				${placeDto.p_title}<br/>
+				<span>${sellerDto.s_phone}</span>
+				</li>
+			</ul>
+		</div>
+		<button type="button" onclick="fn_modalPhoneClose()"> 확인</button>
 	</div>
 </div>
 <div class="title-area">
@@ -98,8 +103,8 @@
 			<c:if test="${optionList ne null}">
 				<div class="place-option-wrap">
 					<c:forEach var="optionDto" items="${optionList}" varStatus="k">
-						<label>
-							<input type="checkbox" name="po_no" value="${optionDto.po_no}" />
+						<input id="option${k.count}" type="checkbox" name="po_no" value="${optionDto.po_no}" />
+						<label for="option${k.count}">
 							<strong>${optionDto.po_name}</strong>
 						</label>
 							
@@ -127,7 +132,7 @@
 				</div>		
 			</c:if>
 			<div class="btn-wrap">
-				<button type="button"><span><i class="fas fa-mobile-alt"></i>전화</span></button>
+				<button type="button" onclick="fn_modalPhone()"><span><i class="fas fa-mobile-alt"></i>전화</span></button>
 				<button>예약신청하기</button>
 			</div>
 		</form>
@@ -179,9 +184,13 @@ asjdf
 			</pre>
 			
 		</div>
-		<div id="place-map">
+		<!-- 나중에 커스터마이징 할 시간있으면 한 번 해볼 것. -->
+		<div id="place-map-wrap">
 			<h3>위치</h3>
-			
+			<div id="map" style="width : 100%; height: 500px; overflow:hidden;">
+
+			</div>
+			<h4>${placeDto.p_addr}</h4>
 		</div>
 		<div id="place-remark" class="place-remark">
 			<h3>유의사항</h3>
@@ -242,6 +251,7 @@ jas
 				<c:if test="${reviewList ne null}">
 				<!-- Todo : 리뷰 불러오기는 홀수번째, 짝수번째에 나눠서 다른 css적용 -->
 				<!-- 일단은 모두 같은 css를 적용한다. -->
+				<!-- even, odd라는 선택자 기억해 둘 것. -->
 					<c:forEach var="reviewDto" items="${reviewList}" varStatus="k" >
 						<%-- <c:if test="${(k.index/2) eq 1}">
 							<div class="review-wrap-odd">
@@ -306,9 +316,7 @@ jas
 			</div>
 			<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 		</div>
-	
 	</article>
 </section>
-
 
 <%@ include file="../template/footer.jsp" %>

@@ -11,10 +11,10 @@ section {
 	flex-direction: row-reverse;
 	justify-content: flex-start;
 }
-.modal {
+.modal, .modal-phone {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
+	z-index: 999999; /* Sit on top */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -22,20 +22,47 @@ section {
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-.modal>.modal-content{
+.modal-content{
 	background-color: #fefefe;
 	margin: 15% auto; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
 	width: 50%; /* Could be more or less, depending on screen size */
-	height: 50%;   
-	z-index: 2; 
+	height: 50%;
+	border-radius: 10px;   
 }
 .content-wrap {
-	width : 80%;
+	width : 100%;
 	margin: 0 auto;
-	height : 
 }
+.content-wrap > ul {
+	width: 100%;
+	list-style-type : none;
+}
+.content-wrap > ul li{
+	width : 100%;
+	margin : 5vh auto;
+	border-top : 2px solid rgba(216,191,216, 0.8);
+	text-align : center;
+	padding : 20px 0;
+	font-size : 30px;
+}
+button {
+	background : rgba(216,191,216, 0.8);
+}
+button:hover{
+	background : rgba(216,191,216, 1);
+}
+.modal-content > button {
+	width: 100%;
+	height : 50px;
+	font-size : 20px;
+	border : 0;
+	border-radius: 10px;
+}
+.content-wrap ul li span {
+	color : rgba(216,80,216,1);
+} 
 .close{
 	width: 30px;
 	height: 30px;
@@ -55,14 +82,28 @@ aside {
 	width:324px;
 	height : 80%;
 	margin: 0 auto;
-	border-left : 1px solid rgba(216,191,216, 0.8);
-	border-right : 1px solid rgba(216,191,216, 0.8);
+	border: 1px solid rgba(216,191,216, 0.8);
 	padding : 5px;
 }
 label{
 	display: block;
 	cursor:pointer;
 }
+label[for*="option"]::before{
+	content:"\f111";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 400;
+}
+input[id*="option"]{
+	display : none;
+}
+input[id*="option"]:checked + label::before{
+	content:"\f058";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 400;
+}
+
+
 .place-option-wrap div {
 	margin-bottom: 20px;
 }
@@ -96,19 +137,19 @@ div[class*="facilities"] {
 	transform: scale(1.2);
 }
 .reserve-form > .btn-wrap > button{
-	width : 150px;
-	height : 30px;
-	line-height: 30px;
+	width : 151px;
+	height : 50px;
+	line-height: 50px;
 	text-align: center;
 	background: rgba(216,191,216, 0.5);
 	cursor: pointer;
-	font-size: 15px;
+	font-size: 20px;
 	border : 0;
 	border-radius: 10px;
 }
 .reserve-form > .btn-wrap > button:hover{
-	background: rgba(216,191,216, 1);
-	
+/* 	background: rgba(216,191,216, 1);
+ */	
 }
 .hidden-box{
 	display:none;
@@ -133,6 +174,7 @@ article{
 	top: 0;
 	margin-bottom: 10px;
 	background: #FFF;
+	z-index: 999998;
 }
 
 .place-nav > ul {
@@ -250,7 +292,7 @@ ul.img-list li>img {
 	height : 100%;
 }
 ul.img-list li:hover{
-	z-index:9999;
+	z-index:999997;
 	animation : img-move 2s both; 
 }
 
@@ -268,7 +310,7 @@ ul.img-list li:hover{
 	cursor:pointer;
 }
 .review-btns > button:hover {
-	background : rgba(216,191,216, 1);
+	/* background : rgba(216,191,216, 1); */
 }
 
 /* 캘린더 css */

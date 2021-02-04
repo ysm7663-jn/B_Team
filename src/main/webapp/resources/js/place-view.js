@@ -5,6 +5,90 @@ $(function(){
 			$(facilities).append($('<div class="facility">').text(value));
 		});
 	});
+	
+	$(document).on('click', 'input:checkbox', function(){
+		$('input:checkbox').closest('.hidden-box').removeClass('active');
+		$('input:checkbox:checked').closest('.hidden-box').addClass('active');
+	});
+	fn_scrollEvent();
+	fn_getMap();
+	fn_datepiacker();
+	fn_star();
+	
+	let rn = $('.review-list input[type="hidden"][name="review-rn"]').last().val();
+	if(rn == lastReviewRN){
+		$('#more').text('마지막 리뷰입니다.')
+		isEnd=true;
+	}
+	
+})
+
+/* scroll 이벤트 */
+function fn_scrollEvent(){
+	if($('body').height() > $(window).height()) {
+		$(window).scroll(function(){
+			let $window = $(this);
+			let scrollTop = $window.scrollTop();
+			let windowHeight = $window.height();
+			let documentHeight = $(document).height();
+	
+			if (scrollTop + windowHeight >= documentHeight){
+				fn_reviewList();
+			}
+		});
+	};
+}
+/* 지도 */
+function fn_getMap(){
+	let mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+	mapOption = {
+	    'center': new kakao.maps.LatLng(37.5547568183065, 126.941630702293), // 지도의 중심좌표
+	    'level': 3 // 지도의 확대 레벨
+	};  
+	
+	// 지도를 생성합니다    
+	let map = new kakao.maps.Map(mapContainer, mapOption); 
+	
+	// 주소-좌표 변환 객체를 생성합니다
+	let geocoder = new kakao.maps.services.Geocoder();
+	
+	// 주소로 좌표를 검색합니다
+	geocoder.addressSearch('${placeDto.p_addr}', function(result, status) {
+	
+		// 정상적으로 검색이 완료됐으면 
+		if (status === kakao.maps.services.Status.OK) {
+		
+			let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			// 결과값으로 받은 위치를 마커로 표시합니다
+			let marker = new kakao.maps.Marker({
+			    'map': map,
+			    'position': coords
+			});
+		
+			// 인포윈도우로 장소에 대한 설명을 표시합니다
+			let infowindow = new kakao.maps.InfoWindow({
+		    'content': '<div style="width:150px;text-align:center;padding:6px 0;">${placeDto.p_title}</div>'
+			});
+			infowindow.open(map, marker);
+		
+			// 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			map.setCenter(coords);
+		} else if(status === kakao.maps.services.Status.ZERO_RESULT) {
+			let marker = new kakao.maps.Marker({
+		 	   'map': map,
+		 	   'position': new kakao.maps.LatLng(37.5547568183065, 126.941630702293)
+			});
+	
+			let infowindow = new kakao.maps.InfoWindow({
+				'content': '<div style="width:150px;text-align:center;padding:6px 0;">주소를 찾지 못했어요!</div>'
+			});
+			infowindow.open(map, marker);
+		}
+	});
+}
+
+/* Datepicker */
+function fn_datepiacker(){
 	$('.calendar-wrap').datepicker({
 		dateFormat: 'yy-mm-dd',
 		autoSize: true,
@@ -24,31 +108,7 @@ $(function(){
         	$('input:hidden[name="res_date"]').val(d);
         }
 	});
-	
-	$(document).on('click', 'input:checkbox', function(){
-		$('input:checkbox').parent().next().removeClass('active');
-		$('input:checkbox:checked').parent().next().addClass('active');
-	});
-	fn_star();
-	if($('body').height() > $(window).height()) {
-		$(window).scroll(function(){
-			let $window = $(this);
-			let scrollTop = $window.scrollTop();
-			let windowHeight = $window.height();
-			let documentHeight = $(document).height();
-	
-			if (scrollTop + windowHeight >= documentHeight){
-				fn_reviewList();
-			}
-		});
-	};
-	let rn = $('.review-list input[type="hidden"][name="review-rn"]').last().val();
-	if(rn == lastReviewRN){
-		$('#more').text('마지막 리뷰입니다.')
-		isEnd=true;
-	}
-	
-})
+}
 
 /* 리뷰 수정 modal 띄우기 */
 function fn_modal(f){
@@ -72,6 +132,17 @@ function fn_modal(f){
 function fn_modalClose(){
 	$('.modal').removeClass('active');
 }
+
+/* 전화번호 modal 열기 */
+function fn_modalPhone(){
+	$('.modal-phone').addClass('active');
+}
+
+/* 전화번호 modal 닫기 */
+function fn_modalPhoneClose(){
+	$('.modal-phone').removeClass('active');
+}
+
 
 /* 리뷰 수정 */
 function fn_reviewUpdate(f){
