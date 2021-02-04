@@ -16,8 +16,8 @@ public class ClubDto {
 	private String c_title;		
 	private String c_content;	
 	private Date c_postDate;	
-	private String c_startDate;	
-	private String c_endDate;  	
+	private Date c_startDate;	
+	private Date c_endDate;  	
 	private int c_min;			
 	private int c_max;			
 	private int c_count;		
@@ -26,7 +26,7 @@ public class ClubDto {
 	private String c_img1;
 	private String c_img2;
 	private String c_img3;
-	private boolean c_delete;
-	private String c_part;
+	private int c_delete;
+	private int c_part;
 	
 }

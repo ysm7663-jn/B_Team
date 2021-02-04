@@ -22,11 +22,11 @@
 				<span class="title">클럽명</span>
 					<input type="text" name="c_title" placeholder="제목을 입력해주세요" /><br/>
 					
-				<span class="title">최소인원</span>
+				<!-- <span class="title">최소인원</span>
 					<input type="text" name="c_min" placeholder="최소인원을 입력해주세요" /><br/>
 					
 				<span class="title">최대인원</span>
-					<input type="text" name="c_max" placeholder="최대인원을 입력해주세요" /><br/>
+					<input type="text" name="c_max" placeholder="최대인원을 입력해주세요" /><br/> -->
 					
 				<span class="title">활동시작날짜</span>
 					<input type="text" name="c_startDate" placeholder="활동 시작 날짜를 입력해주세요" /><br/>
@@ -47,6 +47,8 @@
 				
 			</div>
 		</div>
+		
+		<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 		
 		<input type="button" name="btn" value="finish" onclick="fn_next(this.form)" />
 		

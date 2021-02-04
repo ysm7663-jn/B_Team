@@ -13,7 +13,12 @@
 		<div class="body_wrap">
 			<span id="title">정기 활동</span>
 			<div id="btn_create">
-				<input type="button" value="새 클럽 등록하기" onclick="fn_insertPage(this.form)"/>
+				<c:if test="${loginDto eq null}">
+					<input type="button" value="로그인 전 등록하기" onclick="fn_insertPage(this.form)"/>
+				</c:if>
+				<c:if test="${loginDto ne null}">
+					<input type="button" value="새 클럽 등록하기" onclick="fn_insertPage(this.form)"/>
+				</c:if>
 			</div> 
 		</div>
 		

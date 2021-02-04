@@ -8,6 +8,6 @@ public interface ClubDao {
 	
 	public List<ClubDto> clubList();
 	
-	public int clubInsert(int m_no, String c_mainImg, String c_title, String c_startDate, String c_endDate, String c_content);
+	public int clubInsert(int m_no, String c_title, String c_content, int c_min, int c_max, String c_mainImg);
 
 }

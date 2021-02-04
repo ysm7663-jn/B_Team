@@ -15,8 +15,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	-->
  	<insert id="clubInsert">
 		INSERT 
-		  INTO CLUB (C_NO, M_NO, C_MAINIMG, C_TITLE, C_STARTDATE, C_ENDDATE, C_CONTENT, C_POSTDATE)
-		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, SYSDATE)
+		  INTO CLUB (C_NO, M_NO, C_TITLE, C_CONTENT, C_POSTDATE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_COUNT, C_MAINIMG, C_DELETEM C_PART)
+		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, SYSDATE, SYSDATE, SYSDATE,  #{param3}, #{param4}, 0, #{param5}, 0, 0)
 	</insert>
 
 </mapper>

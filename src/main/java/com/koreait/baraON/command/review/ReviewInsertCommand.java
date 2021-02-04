@@ -74,7 +74,6 @@ public class ReviewInsertCommand implements ReviewCommand {
 				}
 			} else {
 				model.addAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, "", rv_content));
-				return;
 			}
 			if ( !sb.toString().isEmpty() && sb.toString() != null) {
 				rv_img = sb.toString();
