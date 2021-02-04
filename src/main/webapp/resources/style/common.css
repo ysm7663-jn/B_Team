@@ -13,6 +13,7 @@
 
 a {
 	text-decoration: none;
+	color: black;
 }
 
 .wrap {
@@ -53,7 +54,9 @@ a {
 }
 
 .head_content {
-	margin: 0 400px;
+	display: flex;
+	justify-content: center;	/* 가로 가운데 정렬 */
+	align-items: center;		/* 세로 가운데 정렬 */
 }
 
 #bottom_head {
@@ -71,22 +74,77 @@ a {
 
 /* body */
 .main {
-	margin-top: 220px;
-	width: 100%;
-	padding: 40px 420px;
-	display: inline-block;
+	margin: 220px;
+	justify-content: center;
+	display: flex;
 	font-size:28px;
 }
 
 /* footer */
-.footer {
+#title {
+	justify-content: center;
+	display: flex;
+	font-weight: 900;
+	font-size: 22px;
+	margin-top: 15px;
+}
+
+#title_text {
+	color: black;
+	font-weight: 900;
+	font-size: 22px;
+}
+
+.footer-wrap {
     width: 100%;
-    margin: 0px;
-    bottom:0;
-    padding: 0px 420px;
 	border: 1px solid white;
-	height: 500px;
-	margin-top: 470px;
-	position:relative;
+	height: 350px;
 	color: gray;
+	background: lightgray;
+}
+
+.left-footer {
+	margin: 30px;
+	padding: 0 50px;
+	justify-content: center;
+	display: flex;
+	font-size:15px;
+}
+
+.partners {
+	display: flex;
+}
+
+.left-partners {
+	margin-left: 250px;
+}
+
+.partners-info {
+	margin-bottom: 30px;	
+}
+
+.right-partners {
+	margin-left: 250px;
+	margin-right: 250px;
+}
+
+
+.name {
+	color: black;
+	list-style-type: none;
+}
+
+.part {
+	margin-bottom: 15px;
+	list-style-type: none;
+	font-weight: 900;
+}
+
+.partners-info > #partner-bold {
+	list-style-type: none;
+	font-weight: 900;
+}
+
+.name > #partner-bold:nth-of-type(n) {
+	list-style-type: none;
 }

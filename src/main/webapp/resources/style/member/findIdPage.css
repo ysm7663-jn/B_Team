@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+.resultBox {
+	width: 60%;
+	height: 79px;
+	line-height: 38px;
+	margin: 5% auto;
+	border: 1px solid #494949;
+	border-collapse: collapse;
+	border-radius: 2px;
+}
+input[type="button"] {
+	border: 1px solid #1DD1AD;
+	border-radius: 3px;
+	background: #1DD1AD;
+	color: white;
+	width: 30%;
+	height: 41px;
+	font-size: 15px;
+	font-weight: bold;
+}
+.login-button {
+	text-align: center;
+}

@@ -1,3 +1,7 @@
+# Properties file
+config.properties
+
+# classpath
 .classpath
 
 # Created by https://www.toptal.com/developers/gitignore/api/maven,java,java-web,eclipse,windows
