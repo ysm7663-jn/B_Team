@@ -23,12 +23,12 @@
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
+	<beans:bean id="memberJoin2Command" class="com.koreait.baraON.command.member.MemberJoin2Command"></beans:bean>
 	<beans:bean id="memberSearchCommand" class="com.koreait.baraON.command.member.MemberSearchCommand"></beans:bean>
 	<beans:bean id="memberSearchNickCommand" class="com.koreait.baraON.command.member.MemberNickSearchCommand"></beans:bean>
-	<beans:bean id="emailAuthCommand" class="com.koreait.baraON.command.member.EmailAuthCommand"></beans:bean>
+	<beans:bean id="emailAuthCommand2" class="com.koreait.baraON.command.member.EmailAuthCommand2"></beans:bean>
 	
-	
-	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
 		<beans:property name="host" value="smtp.gmail.com"/>
 		<beans:property name="port" value="587"/>
 		<beans:property name="username" value="jaepppi@gmail.com"/>

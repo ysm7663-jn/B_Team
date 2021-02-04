@@ -1,6 +1,6 @@
 package com.koreait.baraON.dao;
 
-public interface MemberDao {
+public interface MemberDao2 {
 
 	public int memberSearch(String m_id);
 	
