@@ -5,6 +5,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 	<script>
+	
 		$(function (){
 			$('#chk_all').click(function(){
 				if($('#chk_all').prop('checked')){
@@ -12,24 +13,31 @@
 				}else{
 					$('input[type=checkbox]').prop('checked', false);
 				}
-			})			
-		})
+			});			
+		});
+	
 	
 		function fn_join2(f){
+			var agreeNo=$('#chk_email').val();
+			if(agreeNo!=1){
+				agreeNo=0;
+			}
 			var res = true;
 			if($('#chk_service').is(':checked') == false || $('#chk_privacy').is(':checked') == false){
 				$('#errorMsg').show();
 				res=false;
 			}else{
 				$('#errorMsg').hide();
+				f.action='memberJoin2.member';
 				f.submit();
 			}
 			return res;
 		}
+		
 	</script>
 
 
-	<form id="joinform" method="GET" action="memberJoin2.member">
+	<form id="joinform" method="GET">
 	
 		<input type="checkbox" name="chk_all" id="chk_all" />
 		<label for="chk_all">
@@ -503,7 +511,7 @@ oo는 이용자 혹은 법정 대리인의 요청에 의해 해지 또는 삭제
 				</div>
 			<br/>
 			
-				<input type="checkbox" name="chk_email" id="chk_email"/>
+				<input type="checkbox" name="chk_email" id="chk_email" value="1"/>
 				<label for="chk_email">프로모션 정보 수신 동의</label><br/>
 		
 		

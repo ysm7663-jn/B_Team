@@ -15,6 +15,7 @@
 		fn_birthCheck();
 		fn_emailCheck();
 		fn_emailAuth1();
+		fn_emailAuth2();
 	});
 	
 	
@@ -165,7 +166,7 @@
 			var regExpEMAIL = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
 			var result7 = document.getElementById('result7');
 			if(regExpEMAIL.test(m_email)){
-				result7.textContent = '성공';
+				result7.textContent = '';
 				result7.setAttribute = ('class', 'check-m_email-result-not');
 				return true;
 			}else{
@@ -176,15 +177,23 @@
 		});
 	}
 
+	var authKey=0;
 	function fn_emailAuth1(){
-		$('#emailAuth1').blur(function(){
-			var email=$('#emailAuth1').val();
+		$('#emailAuth1').click(function(){
+			var result7 = document.getElementById('result7');
+			var m_email=$('#m_email').val();
+			var Obj = {
+					'm_email':m_email
+				};
 			$.ajax({
-				url:'emailAuth.member?email='+email,
+				url:'emailAuth.member',
 				type:'post',
+				data: JSON.stringify(Obj),
+				contentType:'application/json',
 				dataType:'json',
 				success: function(data){
-					alert('성공');
+					authKey=data.resultMap;
+					result7.textContent = '인증메일이 발송되었습니다';
 				},
 				error: function(){
 					alert('실패');
@@ -193,6 +202,21 @@
 		});
 	}
 	
+	function fn_emailAuth2(){
+		$('#emailAuth2').click(function(){
+			var email2 = $('#email2').val();
+			var result8 = document.getElementById('result8');
+			if(email2==authKey){
+				result8.textContent = '인증이 완료되었습니다';
+				result8.setAttribute = ('class', 'check-m_email2-result-not');
+				return true;
+			}else{
+				result8.textContent = '제대로 입력하셨는지 다시한번 확인해 주세요.';
+				result8.setAttribute = ('class', 'check-m_email2-result-not');
+				return false;
+			}
+		});
+	}
 </script>
 
 	
@@ -233,15 +257,12 @@
 		<input type="button" value="인증번호받기" id="emailAuth1" name="emailAuth1"/><br/>
 		<div id="result7" class="check-m_email-result"></div>
 		<br/>
-		<input type="text" name="m_emailAuth" id="m_emailAuth" placeholder="인증번호를 입력하세요"/><br/>
-		<input type="button" value="인증완료" onclick=""/><br/>
-		<div id="result8" class="check-m_email-result"></div>
+		<input type="text" name="email2" id="email2" placeholder="인증번호를 입력하세요"/><br/>
+		<input type="button" value="인증완료" name="emailAuth2" id="emailAuth2"/><br/>
+		<div id="result8" class="check-m_email2-result"></div>
 		<br/><br/>
 		
-		
-		
-		
-	
+		<button>가입하기</button>
 	
 	</form>
 	

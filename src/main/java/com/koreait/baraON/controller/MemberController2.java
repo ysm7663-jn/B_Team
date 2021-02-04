@@ -9,36 +9,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.koreait.baraON.command.member.EmailAuthCommand;
+import com.koreait.baraON.command.member.EmailAuthCommand2;
+import com.koreait.baraON.command.member.MemberJoin2Command;
 import com.koreait.baraON.command.member.MemberNickSearchCommand;
 import com.koreait.baraON.command.member.MemberSearchCommand;
+import com.koreait.baraON.dto.MemberDto2;
 
 @Controller
 public class MemberController2 {
 
 	@Autowired
 	private SqlSession sqlSession;
-	private JavaMailSender mailSender;
+	
+	// JavaMailSender mailSender
+	private JavaMailSender javaMailSender;
 	
 	// private BaraONCommand baraONCommand;
 	private MemberSearchCommand memberSearchCommand;
 	private MemberNickSearchCommand memberNickSearchCommand;
-	private EmailAuthCommand emailAuthCommand;
+	private EmailAuthCommand2 emailAuthCommand2;
+	
 	
 	@Autowired
-	public void setCommand(MemberSearchCommand memberSearchCommand,
+	public void setCommand(
+							MemberSearchCommand memberSearchCommand,
 							MemberNickSearchCommand memberNickSearchCommand,
-							EmailAuthCommand emailAuthCommand) {
+							EmailAuthCommand2 emailAuthCommand2,
+							JavaMailSender javaMailSender) {
 		
 		this.memberSearchCommand=memberSearchCommand;
 		this.memberNickSearchCommand=memberNickSearchCommand;
-		this.emailAuthCommand=emailAuthCommand;
-	
+		this.emailAuthCommand2=emailAuthCommand2;
+		this.javaMailSender = javaMailSender;
 	}
 	
 	@RequestMapping(value="/")
@@ -81,11 +89,11 @@ public class MemberController2 {
 					method=RequestMethod.POST,
 					produces="application/json; charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> emailAuth(HttpServletRequest request,
+	public Map<String, Object> emailAuth(@RequestBody MemberDto2 memberDto,
 											Model model) {
-		model.addAttribute("request",request);
-		model.addAttribute("mailSender", mailSender);
-		return emailAuthCommand.execute(sqlSession, model);
+		model.addAttribute("m_email", memberDto.getM_email());
+		model.addAttribute("javaMailSender", javaMailSender);
+		return emailAuthCommand2.execute(sqlSession, model);
 	}
 	
 	
