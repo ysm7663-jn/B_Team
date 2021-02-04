@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class ClubDto {
 
-	private int c_no;			
+	private int c_no;
+	private int m_no;
 	private String c_title;		
 	private String c_content;	
 	private Date c_postDate;	
@@ -21,10 +22,11 @@ public class ClubDto {
 	private int c_max;			
 	private int c_count;		
 	private int c_totalClass;	
-	private String c_mainThumnail;
-	private String c_subThumbnail1;
-	private String c_subThumbnail2;
-	private String c_subThumbnail3;
-	private int c_money;		
+	private String c_mainImg;
+	private String c_img1;
+	private String c_img2;
+	private String c_img3;
+	private boolean c_delete;
+	private String c_part;
 	
 }

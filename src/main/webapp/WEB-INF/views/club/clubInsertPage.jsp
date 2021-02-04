@@ -11,11 +11,11 @@
 </head>
 <body>
 
-	<form method="get">
+	<form method="post" enctype="multipart/form-data">
 		<div class="insert-wrap">
 		
 			<div id="main_image">
-				<input type="file" name="c_mainThumnail" />
+				<input type="file" name="c_mainImg" />
 			</div>
 		
 			<div class="inputs">
@@ -28,9 +28,6 @@
 				<span class="title">최대인원</span>
 					<input type="text" name="c_max" placeholder="최대인원을 입력해주세요" /><br/>
 					
-				<span class="title">활동비용</span>
-					<input type="text" name="c_money" placeholder="총 활동비용을 입력해주세요" /><br/>
-					
 				<span class="title">활동시작날짜</span>
 					<input type="text" name="c_startDate" placeholder="활동 시작 날짜를 입력해주세요" /><br/>
 					
@@ -41,12 +38,12 @@
 					<textarea rows="20" cols="100" placeholder="2000자 이내로 작성해주세요" name="c_content"></textarea>
 				<br/><br/>
 				
-				<span class="title">사진첨부(3장)</span><br/>
-				<input type="file" name="c_subThumbnail1" /><br/>
-				<input type="file" name="c_subThumbnail2" /><br/>
-				<input type="file" name="c_subThumbnail3" /><br/>
+				<!-- <span class="title">사진첨부(3장)</span><br/>
+				<input type="file" name="c_img1" /><br/>
+				<input type="file" name="c_img2" /><br/>
+				<input type="file" name="c_img3" /><br/> -->
 				
-				<span class="title">커리큘럼</span>
+				<!-- <span class="title">커리큘럼</span> -->
 				
 			</div>
 		</div>
