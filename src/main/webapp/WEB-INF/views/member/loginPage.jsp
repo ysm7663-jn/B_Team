@@ -7,7 +7,7 @@
 	<jsp:param value="로그인" name="title"/>
 </jsp:include>
 
-<link rel="stylesheet" href="resources/style/loginPage.css">
+<link rel="stylesheet" href="resources/style/member/loginPage.css">
 
 <script>
 	$(document).ready(function(){

@@ -1,9 +1,28 @@
 @charset "UTF-8";
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
 
 .mypage_body {
 	display: flex;
 	height: 900px;
-	margin: 2% 5%;
+	margin: 2% 18%;
 }
 .mypage_category {
 	margin: 0 2% 2% 3%;
@@ -15,8 +34,10 @@
 	margin-bottom: 10px;
 }
 .mypage_contents {
-	width: 74%;
-	margin: 0 4% 4% 4%;
+	position: relative;
+	right: -10%;
+	width: 79%;
+	margin: 21px 0 4% 0;
 }
 .mypage_contents > h2 {
 	margin-bottom: 12px;

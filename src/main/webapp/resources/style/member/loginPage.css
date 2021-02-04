@@ -5,16 +5,13 @@
 	padding: 0px;
 	margin: 0px;
 }
-
 a {
 	text-decoration: none;
 	color: black;
 }
-
 ul, ol {
 	list-style-type: none;
 }
-
 table {
 	border-collapse: collapse;
 }
@@ -60,19 +57,19 @@ input[type="text"], input[type="password"] {
 	border: 1px solid #dbdbdb;
 }
 a[class="login"] {
-	color: #1bbe9d;
+	color: #5cb196;
 	margin: 3%;
 	font-size: 14px;
 	font-weight: bold;
 }
 button {
-	background: #1bbe9d;
+	background: #5cb196;
 	color: white;
 	font-size: 15px;
 	font-weight: bold;
 	width: 45%;
 	height: 41px;
-	border: 1px solid #1bbe9d;
+	border: 1px solid #5cb196;
 	border-radius: 2px;
 	margin: 12% 27%;
 }

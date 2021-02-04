@@ -160,10 +160,4 @@ public class MemberController {
 	}
 	
 	
-	/**** 마이페이지 ****/
-	@RequestMapping(value="myPage.member", method=RequestMethod.GET)
-	public String myPage(HttpServletRequest request) {
-		return "member/myPage";
-	}
-	
 }
