@@ -21,7 +21,6 @@ public class ClubDto {
 	private int c_min;			
 	private int c_max;			
 	private int c_count;		
-	private int c_totalClass;	
 	private String c_mainImg;
 	private String c_img1;
 	private String c_img2;
