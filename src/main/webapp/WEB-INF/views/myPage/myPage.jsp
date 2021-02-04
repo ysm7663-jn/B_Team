@@ -15,29 +15,29 @@
 					<a href="profile.myPage">내 프로필</a><br/>
 				</li>
 				<li>
-					<a href="">위시리스트</a><br/>
+					<a href="wishList.myPage">위시리스트</a><br/>
 				</li>
 				<li>
-					<a href="">정기 모임</a><br/>
+					<a href="regularClub.myPage">정기 모임</a><br/>
 				</li>
 				<li>
-					<a href="">번개 모임</a><br/>
+					<a href="instantClub.myPage">번개 모임</a><br/>
 				</li>
 				<li>
-					<a href="">결제내역</a><br/>
+					<a href="memberPayment.myPage">결제내역</a><br/>
 				</li>
 				<li>
-					<a href="">탈퇴하기</a><br/>
+					<a href="memberDelete.myPage">탈퇴하기</a><br/>
 				</li>
 			</ul>
 		
 			<h2>모임장</h2>
 			<ul class="member_category">
 				<li>
-					<a href="">모임 관리</a><br/>
+					<a href="clubManage.myPage">모임 관리</a><br/>
 				</li>
 				<li>
-					<a href="">결제내역</a><br/>
+					<a href="clubPayment.myPage">결제내역</a><br/>
 				</li>
 			</ul>
 			
@@ -61,9 +61,4 @@
 		</c:if>
 		
 	</div>
-	<div class="mypage_contents">
-		<h2>내 프로필</h2>
-		<hr>
-		
-	</div>
-</div>
+	
