@@ -68,7 +68,7 @@
 				<div class="right_head_wrap">
 					<nav id="right_head">
 						<div><a href="logout.member">로그아웃</a></div>
-						<div><a href="">마이페이지</a></div>
+						<div><a href="profile.myPage">마이페이지</a></div>
 						<div><a href="">FAQ</a></div>
 					</nav>
 				</div>
