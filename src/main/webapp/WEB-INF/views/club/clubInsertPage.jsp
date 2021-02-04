@@ -48,15 +48,15 @@
 			</div>
 		</div>
 		
-		<input type="hidden" name="m_no" value="1" />
+		<input type="hidden" name="m_no" value="${memberDto.m_no}" />
 		
-		<input type="button" name="btn" value="finish" onclick="fn_next(this.form)" />
+		<input type="button" name="btn" value="finish" onclick="fn_finish(this.form)" />
 		
 	</form>
 	
 	<script type="text/javascript">
 	
-		function fn_next(f) {
+		function fn_finish(f) {
 			if (confirm('새 클럽을 등록하겠습니까?')) {
 				f.action='clubInsert.club';
 				f.submit();
