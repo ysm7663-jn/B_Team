@@ -12,6 +12,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.place.PlaceListCommand;
 import com.koreait.baraON.command.place.PlaceViewCommand;
+import com.koreait.baraON.dao.PlaceDao;
 
 @Controller
 public class PlaceController {
@@ -44,4 +45,11 @@ public class PlaceController {
 		return "place/placeViewPage";
 	}
 	
+	@RequestMapping(value="placeInsertPage.place", method=RequestMethod.GET)
+	public String placeInsertPage(Model model) {
+		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
+		model.addAttribute("categoryList", placeDao.placeCategoryList());
+		
+		return "place/placeInsertPage";
+	}
 }

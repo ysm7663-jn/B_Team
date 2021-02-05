@@ -17,6 +17,8 @@ $(function(){
 		}
 	});
 	
+	fn_minus();
+	fn_plus();
 	fn_reviewImage();
 	fn_scrollEvent();
 	fn_getMap();
@@ -30,6 +32,33 @@ $(function(){
 	}
 	
 })
+
+/* 일단 공간옵션 체크박스를 연속으로 클릭하면 인원 체크박스의 값이 사라진다
+ * 알아볼 것
+ */ 
+/* 최대 최소인원 */
+function fn_minus(){
+	$('.count-minus').click(function(){
+		let current = $(this).next().val();
+		let min = $(this).next().prop('min');
+		if(current<=min){
+			alert('최소인원은 '+min+'명 입니다.');
+			return;
+		}
+		$('#count').val(current-1);
+	});
+}
+function fn_plus(){
+	$('.count-plus').click(function(){
+		let current = $(this).prev().val();
+		let max = $(this).prev().prop('max');
+		if(current>=max){
+			alert('최대인원은 '+max+'명 입니다.');
+			return;
+		}
+		$('#count').val(current+1);
+	});
+}
 
 /* review image */
 function fn_reviewImage(){

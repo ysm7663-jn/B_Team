@@ -25,6 +25,7 @@
 	let isProgress = false;
 	let isPossible = false;
 	/* 리뷰작성 성공 */
+	
 	if(${param.insertResult gt 0}){
 		alert('작성해주셔서 감사합니다.');
 	} else if (${param.insertResult eq -1}) {
@@ -122,9 +123,13 @@
 								<div class="calendar-wrap">
 								</div>
 								<input type="hidden" name="res_date" />
+								<div class="people-count">
+									<button type="button" class="count-minus" ><i class="fad fa-chevron-circle-left"></i></button>
+									<input id="count" type="number" name="res_people" value="${optionDto.po_min}" min="${optionDto.po_min}" max="${optionDto.po_max}" placeholder="${optionDto.po_min}"/>
+									<button type="button" class="count-plus" ><i class="fas fa-chevron-circle-right"></i></button>
+								</div>
 							</div>
 						</div>
-						
 					</c:forEach>
 				</div>		
 			</c:if>
@@ -232,7 +237,7 @@ jas
 						<!-- hidden -->
 						<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 						<input type="hidden" name="p_no" value="${placeDto.p_no}" />
-						<input id="file-upload-btn" type="file" name="rv_img" value="이미지첨부" />
+						<input id="file-upload-btn" type="file" name="rv_img" accept="image/*" value="이미지첨부" />
 						<label id="upload-btn" for="file-upload-btn">파일 업로드</label>
 						<input type="button" value="작성하기" onclick="fn_reviewInsert(this.form)" />
 						<input type="button" value="다시작성하기" onclick="fn_reviewReset()" />

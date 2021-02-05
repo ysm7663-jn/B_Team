@@ -152,8 +152,10 @@ CREATE TABLE PLACE
     P_DESC       VARCHAR2(200)        NOT NULL, 
     P_CONTENT    VARCHAR2(4000)       NOT NULL, 
     P_INFO       VARCHAR2(1000)       NOT NULL, 
-    P_NAME       VARCHAR2(200)        NOT NULL, 
-    P_ADDR       VARCHAR2(200)        NOT NULL, 
+    P_NAME       VARCHAR2(200)        NOT NULL,
+    P_ADDR       VARCHAR2(300)        NOT NULL,
+    P_BNAME		 VARCHAR2(100)		  NOT NULL,
+    P_ADDRDETAIL VARCHAR2(200)		  NULL,
     P_STAR       NUMBER               NULL, 
     P_IMG        VARCHAR2(50)         NULL, 
     P_CONFIRM    NUMBER               , 
@@ -161,7 +163,8 @@ CREATE TABLE PLACE
     P_REMARK     VARCHAR2(2000)       NULL, 
     P_DELETE     NUMBER
 );
-
+-- 동주소만 따로 저장해둘 칼럼 (P_BNAME) 추가
+-- 상세주소를 저장할 칼럼 (P_ADDRDETAIL) 추가
 
 CREATE SEQUENCE PLACE_SEQ
 START WITH 21
@@ -170,6 +173,7 @@ NOCYCLE
 NOCACHE;
 
 -- PLACEOPTION Table Create SQL
+-- PO_ADDPRICE 삭제 21.02.05 17:44
 CREATE TABLE PLACEOPTION
 (
     PO_NO          NUMBER             PRIMARY KEY, 
@@ -179,11 +183,10 @@ CREATE TABLE PLACEOPTION
     PO_MAX         NUMBER             NOT NULL, 
     PO_DAYPRICE    NUMBER             NOT NULL, 
     PO_HOLIDAY     NUMBER             NULL, 
-    PO_ADDPRICE    NUMBER             NULL, 
-    PO_IMG1        VARCHAR2(200)    NULL, 
-    PO_FXILITY     VARCHAR2(100)   NULL
+    PO_IMG1        VARCHAR2(200)      NULL, 
+    PO_FXILITY     VARCHAR2(100)      NULL,
     PO_IMG1        VARCHAR2(50)       NULL, 
-    PO_FXILITY     VARCHAR2(100)      NULL
+    PO_FXILITY     VARCHAR2(100)      NULL,
     PO_IMG1        VARCHAR2(50)       NULL, 
     PO_FXILITY     VARCHAR2(100)      NULL
 );

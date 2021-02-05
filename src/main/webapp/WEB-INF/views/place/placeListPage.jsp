@@ -30,7 +30,7 @@
 <div class="list-wrap">
 	<h3 class="subtitle">공간 목록</h3>
 	<c:if test="${isSeller}">
-		<input type="button" value="공간등록하기" />
+		<a href="placeInsertPage.place">공간등록하기</a>
 	</c:if>
 	<c:if test="${empty list}">
 		<div class="empty-list-box" >등록된 공간이 없어요!</div>
