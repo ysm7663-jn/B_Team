@@ -36,6 +36,7 @@ DROP TABLE MEMBER;
 -- MEMBER Table Create SQL
 CREATE TABLE MEMBER
 (
+<<<<<<< HEAD
     M_NO           NUMBER           PRIMARY KEY, 
     M_ID           VARCHAR2(100)    NOT NULL UNIQUE,
     M_PW           VARCHAR2(100)    NOT NULL, 
