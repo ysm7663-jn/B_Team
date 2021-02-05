@@ -22,16 +22,16 @@
 	}
 	
 	function fn_pwSerch(){
-		var mNo={memberDto2.mNo};
-		var mPw={memberDto2.mPw};
+		var m_no={memberDto2.m_no};
+		var m_pw={memberDto2.m_pw};
 		$('#pw1').blur(function(){
 			$.ajax({
 				url:'pwSearch.member',
 				type:'post',
-				data:'mNo='+mNo,
+				data:'m_no='+m_no,
 				dataType:'json',
 				success:function(resultMap){
-					if(resultMap!=mPw&&$('#text1').css('display')=='none'){
+					if(resultMap!=m_pw&&$('#text1').css('display')=='none'){
 						$('#text1').show();
 					}else{
 						$('#text1').hide();
@@ -50,11 +50,11 @@
 		var result = document.getElementByNick('result');
 		if(regExpID.test(pw2)){
 			result.textContent ='사용가능한 비밀번호입니다.';
-			result.setAttribute('class', 'check-mPw-result-ok');
+			result.setAttribute('class', 'check-m_pw-result-ok');
 			return true;
 		}else{
 			result.textContent = '사용이 불가능한 비밀번호입니다. 영문 대소문자, 숫자를 혼용하셔야 합니다';
-			result.setAttribute('class', 'check-mPw-result-not');
+			result.setAttribute('class', 'check-m_pw-result-not');
 			return false;
 		}
 	}
@@ -67,16 +67,16 @@
 		}
 	}
 	
-	function fn_pwUpdate(f){
-		f.submit();
-		f.action('memberPwUpdate.member');
+	function fn_pwUpdate(){
+		action('memberPwUpdate.member');
+		submit();
 	}
 	
 	function fn_NickSearch(){
 			$.ajax({
 				url:'nickSearch.member',
 				type:'post',
-				data:'mNo='+$('#nick2').value,
+				data:'m_no='+$('#nick2').value,
 				dataType:'json',
 				success:function(resultMap){
 					if(resultMap == null){
@@ -92,13 +92,13 @@
 	}
 	
 	function fn_NickUpdate(){
-		f.submit();
 		f.action('memberNickUpdate.member');
+		f.submit();
 	}
 	
-	function fn_memberUpdate(f){
-		f.submit();
+	function fn_memberUpdate(){
 		f.action('memberUpdate.member');
+		f.submit();
 	}
 	
 	
@@ -135,7 +135,7 @@
 									<td>새 비밀번호</td>
 									<td><input type="password" id="pw2" name="pw2" onblur="fn_pwCheck()"/></td>
 									<td>
-										<div id="result" class="check-mPw-result"></div>
+										<div id="result" class="check-m_pw-result"></div>
 									</td>
 								</tr>
 								<tr>
@@ -144,7 +144,7 @@
 									<td><span id="text3" style="display:none">비밀번호가 일치하지 않습니다.</span></td>
 								</tr>
 								<tr>
-									<td><input type="button" value="수정하기" onclick="fn_pwUpdate(f)"/></td>
+									<td><input type="button" value="수정하기" onclick="fn_pwUpdate()"/></td>
 									<td>*비밀번호 변경시 수정하기 버튼을 누르셔야 합니다</td>
 								</tr>
 							</tbody>
@@ -171,7 +171,7 @@
 									<td><input type="button" value="중복검사하기" onclick="fn_NickSearch()"/></td>
 								</tr>
 								<tr>
-									<td><input type="button" value="수정하기" onclick="fn_NickUpdate(f)"/></td>
+									<td><input type="button" value="수정하기" onclick="fn_NickUpdate()"/></td>
 								</tr>
 							</tbody>
 						</table>
@@ -191,7 +191,7 @@
 					<td><input type="text" placeholder="${memberDto2.mEmail}"/></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="확인" onclick="fn_memberUpdate(f)"/></td>
+					<td><input type="button" value="확인" onclick="fn_memberUpdate()"/></td>
 				</tr>
 				
 			</tbody>

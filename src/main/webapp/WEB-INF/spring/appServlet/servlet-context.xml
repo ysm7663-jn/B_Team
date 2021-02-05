@@ -27,6 +27,8 @@
 	<beans:bean id="memberSearchCommand" class="com.koreait.baraON.command.member.MemberSearchCommand"></beans:bean>
 	<beans:bean id="memberSearchNickCommand" class="com.koreait.baraON.command.member.MemberNickSearchCommand"></beans:bean>
 	<beans:bean id="emailAuthCommand2" class="com.koreait.baraON.command.member.EmailAuthCommand2"></beans:bean>
+	<beans:bean id="memberInsertCommand" class="com.koreait.baraON.command.member.MemberInsertCommand"></beans:bean>
+	<beans:bean id="memberViewCommand" class="com.koreait.baraON.command.member.MemberViewCommand"></beans:bean>
 	
 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
 		<beans:property name="host" value="smtp.gmail.com"/>

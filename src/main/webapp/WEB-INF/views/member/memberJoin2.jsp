@@ -16,6 +16,7 @@
 		fn_emailCheck();
 		fn_emailAuth1();
 		fn_emailAuth2();
+		SignOn();
 	});
 	
 	
@@ -217,6 +218,16 @@
 			}
 		});
 	}
+	
+	function SignOn(){
+		$('#SignOn').click(function(){
+			var d=new Date();
+			var nowDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일";
+			$('#nowDate').val()=nowDate;
+		});
+	}
+		
+	
 </script>
 
 	
@@ -262,7 +273,9 @@
 		<div id="result8" class="check-m_email2-result"></div>
 		<br/><br/>
 		
-		<button>가입하기</button>
+		<input type='hidden' id='nowDate'/>
+				
+		<button id="SignOn">가입하기</button>
 	
 	</form>
 	

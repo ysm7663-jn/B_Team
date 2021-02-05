@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.baraON.command.member.EmailAuthCommand2;
+import com.koreait.baraON.command.member.MemberInsertCommand;
 import com.koreait.baraON.command.member.MemberJoin2Command;
 import com.koreait.baraON.command.member.MemberNickSearchCommand;
 import com.koreait.baraON.command.member.MemberSearchCommand;
+import com.koreait.baraON.command.member.MemberViewCommand;
 import com.koreait.baraON.dto.MemberDto2;
 
 @Controller
@@ -31,22 +33,30 @@ public class MemberController2 {
 	private JavaMailSender javaMailSender;
 	
 	// private BaraONCommand baraONCommand;
+	private MemberJoin2Command memberJoin2Command;
 	private MemberSearchCommand memberSearchCommand;
 	private MemberNickSearchCommand memberNickSearchCommand;
 	private EmailAuthCommand2 emailAuthCommand2;
+	private MemberInsertCommand memberInsertCommand;
+	private MemberViewCommand memberViewCommand;
 	
 	
 	@Autowired
-	public void setCommand(
+	public void setCommand(MemberJoin2Command memberJoin2Command,
 							MemberSearchCommand memberSearchCommand,
 							MemberNickSearchCommand memberNickSearchCommand,
 							EmailAuthCommand2 emailAuthCommand2,
-							JavaMailSender javaMailSender) {
+							JavaMailSender javaMailSender,
+							MemberInsertCommand memberInsertCommand,
+							MemberViewCommand memberViewCommand) {
 		
+		this.memberJoin2Command=memberJoin2Command;
 		this.memberSearchCommand=memberSearchCommand;
 		this.memberNickSearchCommand=memberNickSearchCommand;
 		this.emailAuthCommand2=emailAuthCommand2;
 		this.javaMailSender = javaMailSender;
+		this.memberInsertCommand=memberInsertCommand;
+		this.memberViewCommand=memberViewCommand;
 	}
 	
 	@RequestMapping(value="/")
@@ -89,15 +99,28 @@ public class MemberController2 {
 					method=RequestMethod.POST,
 					produces="application/json; charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> emailAuth(@RequestBody MemberDto2 memberDto,
+	public Map<String, Object> emailAuth(@RequestBody MemberDto2 memberDto2,
 											Model model) {
-		model.addAttribute("m_email", memberDto.getM_email());
+		model.addAttribute("m_email", memberDto2.getM_email());
 		model.addAttribute("javaMailSender", javaMailSender);
 		return emailAuthCommand2.execute(sqlSession, model);
 	}
 	
+	@RequestMapping(value="memberInsert.member",
+					method=RequestMethod.POST)
+	public Map<String, Object> memberInsert(MemberDto2 memberDto2,
+											Model model){
+		model.addAttribute("memberDto2", memberDto2);
+		return memberInsertCommand.execute(sqlSession, model);
+	}
 	
-	
+	@RequestMapping(value="memberView.member",
+					method=RequestMethod.POST)
+	public Map<String, Object> memberView(HttpServletRequest request,
+											Model model){
+		model.addAttribute("request", request);
+		return memberViewCommand.execute(sqlSession, model);
+	}
 	
 	
 	
