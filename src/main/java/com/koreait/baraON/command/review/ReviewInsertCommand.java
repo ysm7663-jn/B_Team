@@ -3,6 +3,7 @@ package com.koreait.baraON.command.review;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -35,31 +36,37 @@ public class ReviewInsertCommand implements ReviewCommand {
 		extensionList.add("jpeg");
 		extensionList.add("git");
 		extensionList.add("png");
+		
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
+		
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, gif, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
 				String originalFilename = file.getOriginalFilename();
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
-				System.out.println(extensionList.contains(extension));
-				/*for(int i=0;i<extensions.length;i++) {
-					if(!extension.equalsIgnoreCase(extensions[i])) {
-						System.out.println(i);
-						System.out.println(extension.equalsIgnoreCase(extensions[i]));
-						model.addAttribute("insertResult", -1);
-						return;
-					}
-				}*/
+				
+				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/ReviewImages");
+				
 				if(!extensionList.contains(extension)) {
+					// 이 때 이 전에 업로드 받았던 파일들은 다 삭제해야한다.
+					// 업로드 된 파일들은 sb에 목록으로 저장되어있다.
+					String fileList = sb.toString().replace("\"", "").replace("[", "").replace("]", "");
+					StringTokenizer st = new StringTokenizer(fileList, ", ");
+					
+					while(st.hasMoreTokens()) {
+						File uploadedFile = new File(realPath, st.nextToken());
+						if (uploadedFile.exists()) {
+							uploadedFile.delete();
+						}
+					}
+					
 					model.addAttribute("insertResult", -1);
 				}
 				
 				String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
-				System.out.println(2);
 				String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
 				
-				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/ReviewImages");
 				
 				File dir = new File(realPath);
 				if(!dir.exists()) {

@@ -7,10 +7,6 @@
 
 
 <section>
-	<aside>
-	
-	</aside>
-	
 	<article>
 	
 	</article>
