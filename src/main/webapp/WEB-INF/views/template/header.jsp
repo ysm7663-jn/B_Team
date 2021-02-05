@@ -39,36 +39,12 @@
 			
 			<div class="right_head_wrap">
 				<nav id="right_head">
-					<div><a href="memberView.member">로그인</a></div>
+					<div><a href="loginPage.member">로그인</a></div>
 					<div><a href="memberJoin.member">회원가입</a></div>
 					<div><a href="">FAQ</a></div>
 				</nav>
 			</div>
 		</div>	<!-- end : header-wrap -->
-			
-			<div class="head_content">
-				<nav id="bottom_head">
-					<div><a href="">소개</a></div>
-					<div><a href="">장기 프로젝트</a></div>
-					<div><a href="">단기 프로젝트</a></div>
-					<div><a href="">장소</a></div>
-					<div><a href="">공지사항&이벤트</a></div>
-				</nav>
-			</div>
-				<div class="left_head_wrap">
-						<a href="index">
-							<img id="logo" alt="로고사진" src="">
-						</a>
-				</div>
-				
-				<div class="right_head_wrap">
-					<nav id="right_head">
-						<div><a href="loginPage.member">로그인</a></div>
-						<div><a href="">회원가입</a></div>
-						<div><a href="">FAQ</a></div>
-					</nav>
-				</div>
-			</div>	<!-- end : header-wrap -->
 				
 			<div class="head_content">
 				<nav id="bottom_head">
