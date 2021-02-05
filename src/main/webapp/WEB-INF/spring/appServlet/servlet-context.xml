@@ -33,7 +33,6 @@
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
-	
 	<beans:bean id="loginCommand" class="com.koreait.baraON.command.member.LoginCommand" />	
 	<beans:bean id="logoutCommand" class="com.koreait.baraON.command.member.LogoutCommand" />	
 	<beans:bean id="chkIdCommand" class="com.koreait.baraON.command.member.ChkIdCommand" />	
@@ -41,5 +40,22 @@
 	<beans:bean id="findPwCommand" class="com.koreait.baraON.command.member.FindPwCommand" />	
 	<beans:bean id="emailAuthCommmand" class="com.koreait.baraON.command.member.EmailAuthCommmand" />	
 	<beans:bean id="changePwCommand" class="com.koreait.baraON.command.member.ChangePwCommand" />	
+	<beans:bean id="kakaoAPI" class="com.koreait.baraON.command.member.KakaoAPI" />	
+	<beans:bean id="memberJoin2Command" class="com.koreait.baraON.command.member.MemberJoin2Command"></beans:bean>
+	<beans:bean id="memberSearchCommand" class="com.koreait.baraON.command.member.MemberSearchCommand"></beans:bean>
+	<beans:bean id="memberSearchNickCommand" class="com.koreait.baraON.command.member.MemberNickSearchCommand"></beans:bean>
+	<beans:bean id="emailAuthCommand2" class="com.koreait.baraON.command.member.EmailAuthCommand2"></beans:bean>
 	
+	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
+		<beans:property name="host" value="smtp.gmail.com"/>
+		<beans:property name="port" value="587"/>
+		<beans:property name="username" value="jaepppi@gmail.com"/>
+		<beans:property name="password" value="Wogur702600"/>
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
 </beans:beans>

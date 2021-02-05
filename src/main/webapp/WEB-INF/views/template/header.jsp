@@ -29,21 +29,22 @@
 	
 		<!-- 로그인 전 -->
 		<c:if test="${loginDto eq null}">
-			<div class="head-wrap">
-				<div class="left_head_wrap">
-						<a href="index">
-							<img id="logo" alt="로고사진" src="">
-						</a>
-				</div>
-				
-				<div class="right_head_wrap">
-					<nav id="right_head">
-						<div><a href="loginPage.member">로그인</a></div>
-						<div><a href="">회원가입</a></div>
-						<div><a href="">FAQ</a></div>
-					</nav>
-				</div>
-			</div>	<!-- end : header-wrap -->
+		<div class="head-wrap">
+			<div class="left_head_wrap">
+					<a href="">
+						<img alt="로고사진" src="">
+					</a>
+			</div>
+			
+			<div class="right_head_wrap">
+				<nav id="right_head">
+					<div><a href="loginPage.member">로그인</a></div>
+					<div><a href="memberJoin.member">회원가입</a></div>
+					<div><a href="">FAQ</a></div>
+				</nav>
+			</div>
+		</div>	<!-- end : header-wrap -->
+			
 				
 			<div class="head_content">
 				<nav id="bottom_head">
@@ -68,7 +69,7 @@
 				<div class="right_head_wrap">
 					<nav id="right_head">
 						<div><a href="logout.member">로그아웃</a></div>
-						<div><a href="">마이페이지</a></div>
+						<div><a href="profile.myPage">마이페이지</a></div>
 						<div><a href="">FAQ</a></div>
 					</nav>
 				</div>

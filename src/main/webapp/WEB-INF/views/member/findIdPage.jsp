@@ -4,8 +4,8 @@
 	<jsp:param value="아이디 찾기" name="title"/>
 </jsp:include>
 
-<link rel="stylesheet" href="resources/style/findPage.css">
-<link rel="stylesheet" href="resources/style/findIdPage.css">
+<link rel="stylesheet" href="resources/style/member/findPage.css">
+<link rel="stylesheet" href="resources/style/member/findIdPage.css">
 
 <script>
 	$(document).ready(function(){

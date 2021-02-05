@@ -6,7 +6,7 @@
 	<jsp:param value="아이디/비밀번호 찾기" name="title"/>
 </jsp:include>
 
-<link rel="stylesheet" href="resources/style/findPage.css">
+<link rel="stylesheet" href="resources/style/member/findPage.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
 	$(function(){
@@ -73,7 +73,7 @@
 	
 	/* 비밀번호 찾기 결과 */
 	if('${findPwResult}') {
-		if(${no == 0}) {
+		if(${dto eq null}) {
 			alert('일치하는 정보가 없습니다.');
 		} else {
 			location.href='findPwPage.member';
@@ -134,10 +134,10 @@
 					<tbody>
 						<tr>
 							<td colspan="2">
-								<input type="radio" name="grade" id="member" value="member" checked="checked"/>
-								<label for="member">멤버&nbsp;</label>
-								<input type="radio" name="grade" id="seller" value="seller" />
-								<label for="seller">호스트&nbsp;</label><br/>
+								<input type="radio" name="grade" id="member2" value="member" checked="checked"/>
+								<label for="member2">멤버&nbsp;</label>
+								<input type="radio" name="grade" id="seller2" value="seller" />
+								<label for="seller2">호스트&nbsp;</label><br/>
 							</td>
 						</tr>
 						<tr class="id">

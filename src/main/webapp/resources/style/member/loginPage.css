@@ -1,0 +1,82 @@
+@charset "UTF-8";
+
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+
+.box {
+	background: #dbdbdb;
+	height: 700px;
+}
+.inner-box {
+	background: white;
+	height: 600px;
+	width: 40%;
+	position: relative;
+	left: 31%;
+	top:7%;
+	border-radius: 15px;
+	text-align: left;
+}
+form {
+	position: relative;
+	top: 50px;
+	padding: 5% 22%;
+}
+form * {
+	margin: 9px;
+}
+h2 {
+	margin-bottom: 20px; 
+}
+label {
+	margin: 0px;
+}
+input[type="radio"] {
+	margin: 0px 0px 0px 11px;
+}
+input[type="text"], input[type="password"] {
+	height: 45px;
+	width: 95%;
+	border: 1px solid #dbdbdb;
+}
+a[class="login"] {
+	color: #5cb196;
+	margin: 3%;
+	font-size: 14px;
+	font-weight: bold;
+}
+button {
+	background: #5cb196;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	width: 45%;
+	height: 41px;
+	border: 1px solid #5cb196;
+	border-radius: 2px;
+	margin: 12% 27%;
+}
+h5 {
+	margin: 0% 30%;
+}
+.kakaoLogin > a > img {
+	margin: 4% 37%;
+	
+}

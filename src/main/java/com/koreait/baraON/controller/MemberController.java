@@ -1,7 +1,10 @@
 package com.koreait.baraON.controller;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +13,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.koreait.baraON.command.member.ChangePwCommand;
 import com.koreait.baraON.command.member.ChkIdCommand;
 import com.koreait.baraON.command.member.EmailAuthCommmand;
 import com.koreait.baraON.command.member.FindIdCommand;
 import com.koreait.baraON.command.member.FindPwCommand;
+import com.koreait.baraON.command.member.KakaoAPI;
 import com.koreait.baraON.command.member.LoginCommand;
 import com.koreait.baraON.command.member.LogoutCommand;
 
@@ -33,6 +38,7 @@ public class MemberController {
 	private FindPwCommand findPwCommand;
 	private EmailAuthCommmand emailAuthCommmand;
 	private ChangePwCommand changePwCommand;
+	private KakaoAPI kakaoAPI;
 	
 	@Autowired
 	public void setCommand(LoginCommand loginCommand,
@@ -41,7 +47,8 @@ public class MemberController {
 							 FindIdCommand findIdCommand,
 							 FindPwCommand findPwCommand,
 							 EmailAuthCommmand emailAuthCommmand,
-							 ChangePwCommand changePwCommand) {
+							 ChangePwCommand changePwCommand,
+							 KakaoAPI kakaoAPI) {
 		this.loginCommand = loginCommand;
 		this.logoutCommand = logoutCommand;
 		this.chkIdCommand = chkIdCommand;
@@ -49,9 +56,9 @@ public class MemberController {
 		this.findPwCommand = findPwCommand;
 		this.emailAuthCommmand = emailAuthCommmand;
 		this.changePwCommand = changePwCommand;
+		this.kakaoAPI = kakaoAPI;
 	}
 	
-	//단순이동
 	@RequestMapping(value="loginPage.member", method=RequestMethod.GET)
 	public String loginPage() {
 		return "member/loginPage";
@@ -66,21 +73,45 @@ public class MemberController {
 		
 		// 로그인
 		loginCommand.execute(sqlSession, model);
-		if(request.getParameter("grade").equals("member")) { // member일때
-			return "member/loginResult";
-		} else {  // seller일때
-			return "member/loginResult2";
+		HttpSession session = request.getSession();
+		if(session.getAttribute("grade") != null) {
+			if(session.getAttribute("grade").equals("member")) { // member일때
+				return "member/loginResult";
+			}
+		} 
+		return "member/loginResult2";  // seller일때
+	}
+	
+	@RequestMapping(value="loginKakao.member")
+	public String kakaoLogin(@RequestParam(value="code") String code, HttpSession session) {
+		String access_Token = kakaoAPI.getAccessToken(code);
+		HashMap<String, Object> userInfo = kakaoAPI.getUserInfo(access_Token);
+       
+		System.out.println("controller access_token : " + access_Token);
+		System.out.println("login Controller: " + userInfo);
+		System.out.println("access_Token : " + access_Token);
+		System.out.println("userInfo : " + userInfo.get("email"));
+		
+		if(userInfo.get("email") != null) {
+			session.setAttribute("userId", userInfo.get("email"));
+			session.setAttribute("access_Token", access_Token);
 		}
+		
+		return "member/loginPage";
 	}
 	
 	@RequestMapping(value="logout.member", method=RequestMethod.GET)
-	public String logout(HttpServletRequest request, Model model) {
+	public String logout(HttpServletRequest request, Model model, HttpSession session) {
 		model.addAttribute("request", request);
 		logoutCommand.execute(sqlSession, model);
+		
+		/** kakao 로그아웃 **/
+		/*kakaoAPI.kakaoLogout((String)session.getAttribute("access_Token"));
+		session.removeAttribute("access_Token");
+		session.removeAttribute("userId");*/
 		return "index";
 	}
 	
-	// 단순이동
 	@RequestMapping(value="findPage.member", method=RequestMethod.GET)
 	public String findPage(HttpServletRequest request) {
 		return "member/findPage";
@@ -127,4 +158,6 @@ public class MemberController {
 		changePwCommand.execute(sqlSession, model);
 		return "member/findPwPage3";
 	}
+	
+	
 }
