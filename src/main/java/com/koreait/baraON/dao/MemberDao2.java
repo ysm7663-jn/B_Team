@@ -11,6 +11,14 @@ public interface MemberDao2 {
 	public int memberInsert(MemberDto2 memberDto2);
 	
 	public MemberDto2 memberView(int m_no);
+	
+	public String memberPwSearch(int m_no);
+	
+	public int memberPwUpdate(MemberDto2 memberDto2);
+	
+	public int memberNickUpdate(MemberDto2 memberDto2);
+	
+	public int memberUpdate(MemberDto2 memberDto2);
 }
 
 

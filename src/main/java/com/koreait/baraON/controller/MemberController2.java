@@ -19,7 +19,11 @@ import com.koreait.baraON.command.member.EmailAuthCommand2;
 import com.koreait.baraON.command.member.MemberInsertCommand;
 import com.koreait.baraON.command.member.MemberJoin2Command;
 import com.koreait.baraON.command.member.MemberNickSearchCommand;
+import com.koreait.baraON.command.member.MemberNickUpdateCommand;
+import com.koreait.baraON.command.member.MemberPwSearchCommand;
+import com.koreait.baraON.command.member.MemberPwUpdateCommand;
 import com.koreait.baraON.command.member.MemberSearchCommand;
+import com.koreait.baraON.command.member.MemberUpdateCommand;
 import com.koreait.baraON.command.member.MemberViewCommand;
 import com.koreait.baraON.dto.MemberDto2;
 
@@ -37,9 +41,13 @@ public class MemberController2 {
 	private MemberSearchCommand memberSearchCommand;
 	private MemberNickSearchCommand memberNickSearchCommand;
 	private EmailAuthCommand2 emailAuthCommand2;
+	private MemberPwSearchCommand memberPwSearchCommand;
 	private MemberInsertCommand memberInsertCommand;
 	private MemberViewCommand memberViewCommand;
-	
+	private MemberPwUpdateCommand memberPwUpdateCommand;
+	private MemberNickUpdateCommand memberNickUpdateCommand;
+	private MemberUpdateCommand memberUpdateCommand;
+
 	
 	@Autowired
 	public void setCommand(MemberJoin2Command memberJoin2Command,
@@ -47,16 +55,24 @@ public class MemberController2 {
 							MemberNickSearchCommand memberNickSearchCommand,
 							EmailAuthCommand2 emailAuthCommand2,
 							JavaMailSender javaMailSender,
+							MemberPwSearchCommand memberPwSearchCommand,
 							MemberInsertCommand memberInsertCommand,
-							MemberViewCommand memberViewCommand) {
+							MemberViewCommand memberViewCommand,
+							MemberPwUpdateCommand memberPwUpdateCommand,
+							MemberNickUpdateCommand memberNickUpdateCommand,
+							MemberUpdateCommand memberUpdateCommand) {
 		
 		this.memberJoin2Command=memberJoin2Command;
 		this.memberSearchCommand=memberSearchCommand;
 		this.memberNickSearchCommand=memberNickSearchCommand;
 		this.emailAuthCommand2=emailAuthCommand2;
 		this.javaMailSender = javaMailSender;
+		this.memberPwSearchCommand =memberPwSearchCommand;
 		this.memberInsertCommand=memberInsertCommand;
 		this.memberViewCommand=memberViewCommand;
+		this.memberPwUpdateCommand=memberPwUpdateCommand;
+		this.memberNickUpdateCommand=memberNickUpdateCommand;
+		this.memberUpdateCommand=memberUpdateCommand;
 	}
 	
 	@RequestMapping(value="/")
@@ -94,6 +110,16 @@ public class MemberController2 {
 		return memberNickSearchCommand.execute(sqlSession, model);
 	}
 	
+	@RequestMapping(value="memberPwSearch.member", 
+			method=RequestMethod.POST,
+			produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> memberPwSearch(@RequestParam("m_pw") String m_pw,
+			Model model) {
+		model.addAttribute("m_pw",m_pw);
+		return memberPwSearchCommand.execute(sqlSession, model);
+	}
+	
 	
 	@RequestMapping(value="emailAuth.member", 
 					method=RequestMethod.POST,
@@ -121,6 +147,43 @@ public class MemberController2 {
 		model.addAttribute("request", request);
 		return memberViewCommand.execute(sqlSession, model);
 	}
+	
+	@RequestMapping(value="memberPwUpdate.member",
+					method=RequestMethod.POST,
+					produces="application/json; charset=utf-8")
+	public Map<String, Object> memberPwUpdate(@RequestBody MemberDto2 memberDto2,
+											Model model){
+		if (memberDto2 != null) {
+			model.addAttribute("memberDto2", memberDto2);
+		}
+		model.addAttribute("memberDto2", memberDto2);
+		return memberPwUpdateCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="memberNickUpdate.member",
+						method=RequestMethod.POST,
+						produces="application/json; charset=utf-8")
+	public Map<String, Object> memberNickUpdate(@RequestBody MemberDto2 memberDto2,
+			Model model){
+		if (memberDto2 != null) {
+			model.addAttribute("memberDto2", memberDto2);
+		}
+		model.addAttribute("memberDto2", memberDto2);
+		return memberNickUpdateCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="memberUpdate.member",
+					method=RequestMethod.POST)
+	public String memberUpdate(@RequestBody MemberDto2 memberDto2,
+			Model model){
+		if (memberDto2 != null) {
+			model.addAttribute("memberDto2", memberDto2);
+		}
+		model.addAttribute("memberDto2", memberDto2);
+		memberUpdateCommand.execute(sqlSession, model);
+		return "index";// 로그인한 메인페이지로 변경할 것
+	}
+
 	
 	
 	

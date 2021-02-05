@@ -16,6 +16,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM MEMBER
 		WHERE M_NICK= #{m_nick}
 	</select>
+	
+	<select id="memberPwSearch" parameterType="int" resultType="String">
+		SELECT M_PW
+		FROM MEMBER
+		WHERE M_NO= #{m_no}
+	</select>
 
 	<insert id="memberInsert" parameterType="com.koreait.baraON.dto.MemberDto2">
 		INSERT INTO
@@ -28,7 +34,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM MEMBER
 		WHERE M_NO=#{m_no}
 	</select>
-
+	
+	<update id="memberPwUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
+		UPDATE MEMBER
+		SET M_PW=#{m_pw}
+		WHERE M_NO = #{m_no}
+	</update>
+	
+	<update id="memberNickUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
+		UPDATE MEMBER
+		SET M_NICK=#{m_nick}
+		WHERE M_NO = #{m_no}
+	</update>
+	
+	<update id="memberUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
+		UPDATE MEMBER
+		SET M_PHONE=#{m_phone}
+			M_EMAIL=#{m_email}
+		WHERE M_NO = #{m_no}
+	</update>
 
 
 </mapper>

@@ -26,7 +26,7 @@
 		var m_pw={memberDto2.m_pw};
 		$('#pw1').blur(function(){
 			$.ajax({
-				url:'pwSearch.member',
+				url:'memberPwSearch.member',
 				type:'post',
 				data:'m_no='+m_no,
 				dataType:'json',
@@ -67,33 +67,76 @@
 		}
 	}
 	
-	function fn_pwUpdate(){
-		action('memberPwUpdate.member');
-		submit();
+	function fn_memberPwUpdate(){
+		var m_no=$('#m_no').val();
+		var m_pw=$('#pw2').val();
+		var obj={
+				"m_no":m_no,
+				"n_pw":m_pw
+		};
+		$.ajax({
+			url:'memberPwUpdate.member',
+			type:'post',
+			dataType:'json',
+			data:JSON.stringify(obj),
+			contentType: 'application/json',
+			success:function(responseObj){
+				if (responseObj.result == 1) {
+					alert('비밀번호가 수정되었습니다.');
+				} else {
+					alert('비밀번호 수정이 실패했습니다.');
+				}
+			},
+			error: function(){
+				alert('실패');
+			}
+		});
 	}
+	
 	
 	function fn_NickSearch(){
-			$.ajax({
-				url:'nickSearch.member',
-				type:'post',
-				data:'m_no='+$('#nick2').value,
-				dataType:'json',
-				success:function(resultMap){
-					if(resultMap == null){
-						alert('사용가능합니다');
-					}else{
-						alert('이미 있는 닉네임입니다');
-					}
-				},
-				error: function(){
-					alert('실패');
+		$.ajax({
+			url:'nickSearch.member',
+			type:'post',
+			data:'m_no='+$('#nick2').value,
+			dataType:'json',
+			success:function(resultMap){
+				if(resultMap == null){
+					alert('사용가능합니다');
+				}else{
+					alert('이미 있는 닉네임입니다');
 				}
-			});
+			},
+			error: function(){
+				alert('실패');
+			}
+		});
 	}
 	
-	function fn_NickUpdate(){
-		f.action('memberNickUpdate.member');
-		f.submit();
+	function fn_memberNickUpdate(){
+		var m_no=$('#m_no').val();
+		var m_nick=$('#nick2').val();
+		var obj={
+				"m_no":m_no,
+				"m_nick":m_nick
+		};
+		$.ajax({
+			url:'memberNickUpdate.member',
+			type:'post',
+			dataType:'json',
+			data:JSON.stringify(obj),
+			contentType: 'application/json',
+			success:function(responseObj){
+				if (responseObj.resultMap == 1) {
+					alert('닉네임이 수정되었습니다.');
+				} else {
+					alert('닉네임 수정이 실패했습니다.');
+				}
+			},
+			error: function(){
+				alert('실패');
+			}
+		});
 	}
 	
 	function fn_memberUpdate(){
@@ -110,11 +153,11 @@
 			<tbody>
 				<tr>
 					<th>아이디</th>
-					<td>${memberDto2.mId}</td>
+					<td>${memberDto2.m_id}</td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td>${memberDto2.mName}</td>
+					<td>${memberDto2.m_name}</td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -154,7 +197,7 @@
 				
 				<tr>
 					<th>닉네임</th>
-					<td> ${memberDto2.mNick} <input type="button" value="닉네임 변경" onclick="fn_NickOpen()"/></td>
+					<td> ${memberDto2.m_nick} <input type="button" value="닉네임 변경" onclick="fn_NickOpen()"/></td>
 				</tr>
 				
 				<!--	닉네임 변경  시작 -->
@@ -180,18 +223,21 @@
 				
 				<tr>
 					<th>생년월일</th>
-					<td>${memberDto2.mBirth}</td>
+					<td>${memberDto2.m_birth}</td>
 				</tr>
 				<tr>
 					<th>휴대전화</th>
-					<td><input type="text" placeholder="${memberDto2.mPhone}"/></td>
+					<td><input type="text" placeholder="${memberDto2.m_phone}"/></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="text" placeholder="${memberDto2.mEmail}"/></td>
+					<td><input type="text" placeholder="${memberDto2.m_email}"/></td>
 				</tr>
 				<tr>
-					<td><input type="button" value="확인" onclick="fn_memberUpdate()"/></td>
+					<td>
+						<input type="hidden" name="m_no" value="${memberDto2.m_no}"/>
+						<input type="button" value="확인" onclick="fn_memberUpdate(this.form)"/>
+					</td>
 				</tr>
 				
 			</tbody>

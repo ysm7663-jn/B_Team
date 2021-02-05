@@ -16,7 +16,7 @@
 		fn_emailCheck();
 		fn_emailAuth1();
 		fn_emailAuth2();
-		SignOn();
+		Conn();
 	});
 	
 	
@@ -219,12 +219,10 @@
 		});
 	}
 	
-	function SignOn(){
-		$('#SignOn').click(function(){
+	function Conn(){
 			var d=new Date();
-			var nowDate = d.getFullYear() + "년 " + ( d.getMonth() + 1 ) + "월 " + d.getDate() + "일";
+			var nowDate = d.getFullYear()+( d.getMonth() + 1 )+ d.getDate();
 			$('#nowDate').val()=nowDate;
-		});
 	}
 		
 	
@@ -275,7 +273,7 @@
 		
 		<input type='hidden' id='nowDate'/>
 				
-		<button id="SignOn">가입하기</button>
+		<button>가입하기</button>
 	
 	</form>
 	
