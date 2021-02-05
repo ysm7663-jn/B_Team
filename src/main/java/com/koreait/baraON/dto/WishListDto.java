@@ -12,7 +12,7 @@ public class WishListDto {
 	private int w_no;
 	private int c_no;
 	private int m_no;
-	private int c_title;
-	private int c_content;
-	private int c_mainImg;
+	private String c_title;
+	private String c_content;
+	private String c_mainimg;
 }

@@ -31,7 +31,7 @@
 		<c:if test="${loginDto eq null}">
 		<div class="head-wrap">
 			<div class="left_head_wrap">
-					<a href="">
+					<a href="index">
 						<img alt="로고사진" src="">
 					</a>
 			</div>

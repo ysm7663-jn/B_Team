@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+.club-wrap {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, 48%);
+	gap: 11px; 
+	text-align: center;
+	color: #FFFFFF;
+	margin-top: 5%; 
+}
+.clubList {
+	position: relative;
+}
+.clubList .title {
+	position: absolute;
+	top: 54%;
+	left: 27%;
+	font-size: 30px;
+	font-weight: bold;
+	transform: translate(-50%, -50%);
+}
+.clubList .content {
+	position: absolute;
+	width: 238px;
+	text-align: left;
+	top: 80%;
+	left: 36%;
+	font-size: 15px;
+	font-weight: bold;
+	transform: translate(-50%, -50%);
+}
+.clubList .wishIcon {
+	position: absolute;
+	top: 12%;
+	right: -3%;
+	color: #1DD1AD;
+	font-size: 50px;
+	transform: translate(-50%, -50%);
+	
+}
+.clubImage > a > img {
+	width: 100%;
+	filter: brightness(70%);
+
+}

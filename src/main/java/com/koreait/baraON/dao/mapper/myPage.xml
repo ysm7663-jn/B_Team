@@ -5,9 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.baraON.dao.MyPageDao">
 	<select id="wishList" parameterType="int" resultType="com.koreait.baraON.dto.WishListDto">
-		SELECT C.C_NO, C.C_TITLE, C.C_CONTENT, C.C_MAINIMG, M.M_NO
+		SELECT W.W_NO, C.C_NO, C.C_TITLE, C.C_CONTENT, C.C_MAINIMG
 			FROM CLUB C JOIN WISHLIST W
 		  ON C.C_NO = W.C_NO
-		 WHERE W.M_NO = #{no}
+		 WHERE W.M_NO = #{param1}
 	</select>
+	<delete id="wishDelete" parameterType="int">
+		DELETE 
+			FROM WISHLIST
+		 WHERE W_NO = #{param1}
+	</delete>
 </mapper>
