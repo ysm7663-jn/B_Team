@@ -11,8 +11,10 @@
 </head>
 <body>
 
-	<form method="post" enctype="multipart/form-data">
+	<form method="get" enctype="multipart/form-data">
 		<div class="insert-wrap">
+		
+		<input type="hidden" name="m_no" value="1" />
 		
 			<div id="main_image">
 				<input type="file" name="c_mainImg" />
@@ -48,9 +50,8 @@
 			</div>
 		</div>
 		
-		<input type="hidden" name="m_no" value="${memberDto.m_no}" />
-		
-		<input type="button" name="btn" value="finish" onclick="fn_finish(this.form)" />
+		<input type="button" name="btn" value="완료하기" onclick="fn_finish(this.form)" />
+		<input type="button" name="btn" value="돌아가기" onclick="location.href='clubListPage.club'" />
 		
 	</form>
 	

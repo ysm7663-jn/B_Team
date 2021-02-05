@@ -7,17 +7,16 @@
 	<jsp:param value="clubList" name="title" />
 </jsp:include>
 <link rel="stylesheet" href="resources/style/common.css" /> 
-
 	
 	<form method="get">
 		<div class="body_wrap">
 			<span id="title">정기 활동</span>
 			<div id="btn_create">
 				<c:if test="${loginDto eq null}">
-					<span>로그인이 안 됐습니다.</span>
+					<input type="button" value="로그인이 안 됐습니다." onclick="location.href='clubInsertPage.club?m_no=1'"/>
 				</c:if>
 				<c:if test="${loginDto ne null}">
-					<input type="button" value="새 클럽 등록하기" onclick="fn_insertPage(this.form)"/>
+					<input type="button" value="새 클럽 등록하기" onclick="location.href='clubInsertPage.club?m_no=1'"/>
 				</c:if>
 			</div> 
 		</div>
@@ -37,14 +36,5 @@
 			</c:forEach>
 		</c:if>
 	</form>
-	
-	<script type="text/javascript">
-
-		function fn_insertPage(f) {
-			f.action = 'clubInsertPage.club';
-			f.submit();
-		}	
-	
-	</script>
 	
 <%@ include file="../template/footer.jsp" %>

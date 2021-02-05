@@ -27,7 +27,7 @@ public class ClubInsertCommand implements ClubCommand {
 		MultipartFile file = multipartRequest.getFile("c_mainImg");
 		
 		if (file != null && !file.isEmpty()) {
-			if (file != null) {
+			
 				String originalFilename = file.getOriginalFilename();
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 				
@@ -50,11 +50,12 @@ public class ClubInsertCommand implements ClubCommand {
 					e.printStackTrace();
 				}
 				
-				model.addAttribute("insertResult", clubDao.clubInsert(m_no, c_title, c_content, c_min, c_max, uploadFilename));
+				//model.addAttribute("insertResult", clubDao.clubInsert(m_no, c_title, c_content, c_min, c_max, uploadFilename));
+				clubDao.clubInsert(m_no, c_title, c_content, c_min, c_max, uploadFilename);
 				
-			}
 		} else {
-			model.addAttribute("insertResult", clubDao.clubInsert(m_no, c_title, c_content, c_min, c_max, "첨부파일 없음"));
+			//model.addAttribute("insertResult", clubDao.clubInsert(m_no, c_title, c_content, c_min, c_max, "첨부파일 없음"));
+			clubDao.clubInsert(m_no, c_title, c_content, c_min, c_max, "첨부파일 없음");
 		}
 		
 	}
