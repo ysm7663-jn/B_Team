@@ -29,7 +29,6 @@
 	
 		<!-- 로그인 전 -->
 		<c:if test="${loginDto eq null}">
-			<div class="head-wrap">
 		<div class="head-wrap">
 			<div class="left_head_wrap">
 					<a href="">
