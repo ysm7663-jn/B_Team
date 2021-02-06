@@ -42,7 +42,7 @@ button:hover{
 input[type="file"]{
 	display:none;
 }
-label[for="upload-btn"]{
+label[for="upload-btn"], label[for="option-thumbnail"]{
 	display : block;
 	width: 150px;
 	border: 0 solid black;
@@ -54,7 +54,7 @@ label[for="upload-btn"]{
 	font-size: 12px;
 	text-align: center;
 }
-label[for="upload-btn"]:hover{
+label[for="upload-btn"]:hover, label[for="option-thumbnail"]:hover{
 	background: rgba(216,191,216,1);
 }
 
@@ -109,7 +109,7 @@ div.sub-content {
 #place-addr{
 	width: 740px;
 }
-#img-box img{
+#img-box img, #option-img-box img{
 	width : 200px;
 	height : 200px;
 	

@@ -30,7 +30,7 @@
 <div class="list-wrap">
 	<h3 class="subtitle">공간 목록</h3>
 	<c:if test="${isSeller}">
-		<a href="placeInsertPage.place">공간등록하기</a>
+		<a id="insert-btn" href="placeInsertPage.place">공간등록하기</a>
 	</c:if>
 	<c:if test="${empty list}">
 		<div class="empty-list-box" >등록된 공간이 없어요!</div>
@@ -47,7 +47,7 @@
 					<div class="place-list-info" >
 						<h3>${placeList.p_title}</h3>
 						<div class="place-list-detail">
-							<span id="place-list-addr"><i class="fas fa-map-marker-alt"></i>${placeList.p_addr}</span>
+							<span id="place-list-addr"><i class="fas fa-map-marker-alt"></i>${placeList.p_bname}</span>
 							<span id="place-list-category"># ${placeList.pc_name}</span><br/>
 
 						</div>
