@@ -237,7 +237,7 @@ jas
 						<!-- hidden -->
 						<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 						<input type="hidden" name="p_no" value="${placeDto.p_no}" />
-						<input id="file-upload-btn" type="file" name="rv_img" accept="image/*" value="이미지첨부" />
+						<input id="file-upload-btn" type="file" name="rv_img" accept="image/*" value="이미지첨부" multiple />
 						<label id="upload-btn" for="file-upload-btn">파일 업로드</label>
 						<input type="button" value="작성하기" onclick="fn_reviewInsert(this.form)" />
 						<input type="button" value="다시작성하기" onclick="fn_reviewReset()" />

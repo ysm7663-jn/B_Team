@@ -131,7 +131,6 @@ CREATE TABLE SELLER
     S_BIRTH        VARCHAR2(20)     NOT NULL, 
     S_EMAIL        VARCHAR2(100)    NOT NULL UNIQUE, 
     S_REGDATE      DATE             NOT NULL, 
-    S_AUTH         NUMBER           NOT NULL, 
     S_AGREEMENT    NUMBER           NOT NULL, 
     S_COMPANYNO    VARCHAR2(50)     NOT NULL
 );
@@ -149,18 +148,17 @@ CREATE TABLE PLACE
     S_NO         NUMBER               NOT NULL REFERENCES SELLER (S_NO), 
     PC_NO        NUMBER               NOT NULL REFERENCES PLACECATEGORY (PC_NO), 
     P_TITLE      VARCHAR2(100)        NOT NULL, 
-    P_DESC       VARCHAR2(200)        NOT NULL, 
+    P_DESC       VARCHAR2(300)        NOT NULL, 
     P_CONTENT    VARCHAR2(4000)       NOT NULL, 
     P_INFO       VARCHAR2(1000)       NOT NULL, 
     P_NAME       VARCHAR2(200)        NOT NULL,
-    P_ADDR       VARCHAR2(300)        NOT NULL,
-    P_BNAME		 VARCHAR2(100)		  NOT NULL,
-    P_ADDRDETAIL VARCHAR2(200)		  NULL,
-    P_STAR       NUMBER               NULL, 
-    P_IMG        VARCHAR2(50)         NULL, 
-    P_CONFIRM    NUMBER               , 
-    P_URL        VARCHAR2(100)        NULL, 
-    P_REMARK     VARCHAR2(2000)       NULL, 
+    P_ADDR       VARCHAR2(200)        NOT NULL,
+    P_BNAME		 VARCHAR2(20)		  NOT NULL,
+    P_ADDRDETAIL VARCHAR2(100)		  NULL,
+    P_IMG        VARCHAR2(1000)       NULL, 
+    P_CONFIRM    NUMBER               NOT NULL, 
+    P_URL        VARCHAR2(50)        NULL,
+    P_REMARK     VARCHAR2(1000)       NULL,
     P_DELETE     NUMBER
 );
 -- 동주소만 따로 저장해둘 칼럼 (P_BNAME) 추가
@@ -183,12 +181,8 @@ CREATE TABLE PLACEOPTION
     PO_MAX         NUMBER             NOT NULL, 
     PO_DAYPRICE    NUMBER             NOT NULL, 
     PO_HOLIDAY     NUMBER             NULL, 
-    PO_IMG1        VARCHAR2(200)      NULL, 
-    PO_FXILITY     VARCHAR2(100)      NULL,
-    PO_IMG1        VARCHAR2(50)       NULL, 
-    PO_FXILITY     VARCHAR2(100)      NULL,
-    PO_IMG1        VARCHAR2(50)       NULL, 
-    PO_FXILITY     VARCHAR2(100)      NULL
+    PO_IMG1        VARCHAR2(50)      NULL, 
+    PO_FXILITY     VARCHAR2(1000)      NULL,
 );
 
 
@@ -221,7 +215,7 @@ CREATE TABLE REPLY
     M_NO          NUMBER               NOT NULL REFERENCES MEMBER (M_NO), 
     R_CONTENT     VARCHAR2(4000)       NULL, 
     R_DELETE      NUMBER               NULL, 
-    R_POSTDATE    DATE                 NOT NULL
+    R_POSTDATE    DATE                NOT NULL
 );
 
 CREATE SEQUENCE REPLY_SEQ
@@ -236,7 +230,7 @@ CREATE TABLE RESERVATION
     RES_NO        NUMBER             PRIMARY KEY, 
     M_NO          NUMBER             NOT NULL REFERENCES MEMBER (M_NO), 
     PO_NO         NUMBER             NOT NULL REFERENCES PLACEOPTION (PO_NO), 
-    RES_DATE      DATE               NOT NULL, 
+    RES_DATE      DATE              NOT NULL, 
     RES_PEOPLE    NUMBER             NOT NULL, 
     RES_STATE     VARCHAR2(20)       NULL
 );
@@ -251,15 +245,15 @@ NOCACHE;
 SELECT * FROM REVIEW
 CREATE TABLE REVIEW
 (
-    RV_NO        NUMBER               PRIMARY KEY, 
-    M_NO         NUMBER               NOT NULL REFERENCES MEMBER (M_NO), 
-    P_NO         NUMBER               NOT NULL REFERENCES PLACE (P_NO), 
-    RV_DELETE    NUMBER               NULL, 
-    RV_STAR      NUMBER               NULL, 
-    RV_IMG       VARCHAR2(4000)       NULL,
-    RV_POSTDATE	 DATE,
+    RV_NO         NUMBER               PRIMARY KEY, 
+    M_NO          NUMBER               NOT NULL REFERENCES MEMBER (M_NO), 
+    P_NO          NUMBER               NOT NULL REFERENCES PLACE (P_NO), 
+    RV_DELETE     NUMBER               NULL, 
+    RV_STAR       NUMBER               NULL, 
+    RV_IMG        VARCHAR2(1000)       NULL,
+    RV_POSTDATE	  DATE,
     RV_MODIFYDATE DATE,
-    RV_CONTENT VARCHAR2(1000)
+    RV_CONTENT    VARCHAR2(1000)
 );
 
 CREATE SEQUENCE REVIEW_SEQ
@@ -274,7 +268,7 @@ CREATE TABLE NOTICE
     N_NO          NUMBER               PRIMARY KEY, 
     N_TITLE       VARCHAR2(100)        NOT NULL, 
     N_CONTENT     VARCHAR2(4000)       NOT NULL, 
-    N_POSTDATE    DATE                 NOT NULL 
+    N_POSTDATE    DATE                NOT NULL 
 );
 
 CREATE SEQUENCE NOTICE_SEQ
@@ -289,7 +283,7 @@ CREATE TABLE FAQ
     F_NO          NUMBER               PRIMARY KEY, 
     F_TITLE       VARCHAR2(100)        NOT NULL, 
     F_CONTENT     VARCHAR2(4000)       NOT NULL, 
-    F_REGDATE     DATE                 NOT NULL, 
+    F_POSTGDATE   DATE                NOT NULL, 
     F_CATEGORY    NUMBER               NOT NULL 
 );
 
