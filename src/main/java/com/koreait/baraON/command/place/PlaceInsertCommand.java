@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dto.PlaceDto;
+import com.koreait.baraON.dto.PlaceOptionDto;
 
 public class PlaceInsertCommand implements PlaceCommand {
 
@@ -144,6 +145,12 @@ public class PlaceInsertCommand implements PlaceCommand {
 		int po_holiday = Integer.parseInt(multipartRequest.getParameter("po_holiday"));
 		int po_min = Integer.parseInt(multipartRequest.getParameter("po_min"));
 		int po_max = Integer.parseInt(multipartRequest.getParameter("po_max"));
+		// facility의 경우 모두 다 같은 name을 가진 input에 들어 있다.
+		// name=facility-count의 개수로 몇개의 옵션을 추가했는지 알 수 있고,
+		// 그 input의 value로 각 option에 추가된 편의시설의 개수를 알 수 있다.
+		// 이를 이용해 for문으로 List<PlaceOptionDto>를 만들고 mapper에서
+		// <foreach> 태그로 insert한다.
+		// 이 때, p_no는 PLACE_SEQ.CURRVAL로 한다.
 		
 		
 	}
