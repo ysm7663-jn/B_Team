@@ -11,10 +11,7 @@ import com.koreait.baraON.dao.ReviewDao;
 public class ReviewListAppendCommand {
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		ReviewDao reviewDao = sqlSession.getMapper(ReviewDao.class);
-//		ReviewListDto reviewListDto = (ReviewListDto)model.asMap().get("reviewListDto");
-		
-//		int rn = reviewListDto.getRn();
-//		int p_no = reviewListDto.getP_no();
+
 		int rn = (int)model.asMap().get("rn");
 		int p_no = (int)model.asMap().get("p_no");
 		Map<String, Object> resultMap = new HashMap<String, Object>();

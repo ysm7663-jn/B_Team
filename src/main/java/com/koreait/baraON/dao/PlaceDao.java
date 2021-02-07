@@ -20,4 +20,5 @@ public interface PlaceDao {
 	public PlaceCategoryDto getPlaceCategoryByPCNo(int pc_no);
 	public List<ReviewListDto> getReviewListOfViewPage(int p_no, int beginRecord, int endRecord);
 	public int getTotalReviewCount(int p_no);
+	public int placeInsert(PlaceDto placeDto);
 }

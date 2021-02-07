@@ -21,6 +21,7 @@
 	})
 	function fn_placeInsert(f){
 		if(f.pc_no.value==''){
+			alert(f.p_content.value);
 			alert('카테고리를 선택해 주세요');
 			return;
 		}
@@ -48,7 +49,7 @@
 	}
 	function fn_clickCategory(){
 		$('body').on('click', '#category-list li>a', function(){
-			$(this).closest('#category-list').next().val($(this).text());
+			$(this).closest('#category-list').next().val($(this).next().val());
 			$('#category-list li>a').css('background', '');
 			$(this).css('background','rgba(216,100,216,1)');
 			
@@ -142,12 +143,13 @@
 	}
 	function fn_previewThumbnail(btn){
 		$(btn).on('change', function(event){
+			$(btn).next().empty();
 			for (let image of event.target.files) { 
 				
 				let reader = new FileReader();
 			
 				reader.onload = function(event) {
-					$(btn).next().next().append($('<img>').prop('src', event.target.result));
+					$(btn).next().append($('<img>').prop('src', event.target.result));
 				};
 			reader.readAsDataURL(image);
 			}
@@ -164,31 +166,47 @@
 			<div class="sub-content">
 				<ul id="category-list">
 					<c:forEach var="categoryDto" items="${categoryList}" >
-					<li><a href="javascript:void(0);" role="button">${categoryDto.pc_name}</a></li>
+					<li>
+						<a href="javascript:void(0);" role="button">${categoryDto.pc_name}</a>
+						<input type="hidden" value="${categoryDto.pc_no}" />
+					</li>
 					</c:forEach>
 				</ul>
 				<input type="hidden" name="pc_no" required/>
 			</div>
 		</article>
 		<article class="place-insert-list">
-			<div class="subtitle">공간명 <span class="required-data">필수 사항</span> </div>
+			<div class="subtitle">공간 이름<span class="required-data">필수 사항</span> </div>
+			<div class="sub-content">
+				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" required/>
+				<span id="character-length" ></span>자 / 50자<br/>
+				<p class="example-box" style="white-space:pre-line;">
+					리스트에 공개 될 제목입니다.
+				</p>
+			</div>
+		</article>
+		<article class="place-insert-list">
+			<div class="subtitle">사업장명 <span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
 				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" required/>
-				<span id="character-length" ></span>
+				<span id="character-length" ></span>자 / 50자
+				<p class="example-box" style="white-space:pre-line;">
+					사업자로 등록되어 있는 사업장 이름을 적어주세요.
+				</p>
 			</div>
 		</article>
 		<article class="place-insert-list">
 			<div class="subtitle">공간 한줄 소개</div>
 			<div class="sub-content">
 				<input class="place-input" type="text" name="p_desc" placeholder="최대 150자" />
-				<span id="character-length" ></span>
+				<span id="character-length" ></span>자 / 150자
 			</div>
 		</article>
 		<article class="place-insert-list">
 			<div class="subtitle">공간 소개 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
 				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required></textarea>
-				<span id="character-length" ></span>
+				<span id="character-length" ></span>자 / 2000자
 			</div>
 		</article>
 		<article class="place-insert-list">
@@ -246,7 +264,6 @@
 					<!-- 업로드 이미지 미리보기 -->
 				</div>
 			</div>
-			<span class="character-length"></span>
 			<p class="example-box" style="width: 100%; white-space:pre-line;">
 				등록 가능 이미지 : JPEG, JPG, PNG
 				등록 제한 이미지 : 허위 거짓 이미지, 음란물, 텍스트가 포함된 이미지, 제 3자의 재산권.초상권을 침해하는 이미지 등의 등록 제한 이미지를 업로드하시는 경우, 공간 노출이 제한됩니다.

@@ -1,9 +1,5 @@
 @charset "UTF-8";
 
-/* css 확인을 위한 border 설정 */
-* {
-	/* border : 1px solid silver; */
-}
 ul {
 	list-style-type : none;
 }
@@ -73,18 +69,19 @@ header.title-area {
 /* 카테고리 목록 */
 ul#category-list {
 	display : grid;
-	grid-template-columns : repeat(8, 100px);
+	grid-template-columns : repeat(8, 110px);
 	list-style-type: none;
 	justify-content: center;
 }
 
 ul#category-list li>a {
 	display : inline-block;
-	width: 100px;
+	width: 110px;
 	border : 1px solid rgba(216,100,216, 0.8);
 	border-collapse:collapse;
 	text-align: center;
 	padding : 10px 0;;
+	font-size: 12px;
 }
 #category-list li > a:hover{
 	background: rgba(216,100,216,0.5);

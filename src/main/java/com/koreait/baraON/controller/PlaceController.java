@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.command.place.PlaceInsertCommand;
 import com.koreait.baraON.command.place.PlaceListCommand;
 import com.koreait.baraON.command.place.PlaceViewCommand;
 import com.koreait.baraON.dao.PlaceDao;
@@ -22,12 +24,15 @@ public class PlaceController {
 	
 	private PlaceListCommand placeListCommand;
 	private PlaceViewCommand placeViewCommand;
+	private PlaceInsertCommand placeInsertCommand;
 	
 	@Autowired
 	public void setCommand(PlaceListCommand placeListCommand,
-							PlaceViewCommand placeViewCommand) {
+							PlaceViewCommand placeViewCommand,
+							PlaceInsertCommand placeInsertCommand) {
 		this.placeListCommand = placeListCommand;
 		this.placeViewCommand = placeViewCommand;
+		this.placeInsertCommand = placeInsertCommand;
 	}
 	
 	@RequestMapping(value="placeListPage.place", method=RequestMethod.GET)
@@ -51,5 +56,14 @@ public class PlaceController {
 		model.addAttribute("categoryList", placeDao.placeCategoryList());
 		
 		return "place/placeInsertPage";
+	}
+	
+	@RequestMapping(value="placeInsert.place", method=RequestMethod.POST)
+	public String placeInsert(MultipartHttpServletRequest multipartRequest, Model model) {
+		model.addAttribute("multipartRequest", multipartRequest);
+		
+		placeInsertCommand.execute(sqlSession, model);
+		
+		return "redirect:placeListPage.place";
 	}
 }

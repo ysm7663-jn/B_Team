@@ -1,19 +1,19 @@
 $(function(){
-	$.each(facilityList, function(index, item){
-		let facilities = $('.facilities'+(index+1));
-		$.each(item, function(key, value){
-			$(facilities).append($('<div class="facility">').text(value));
+	$.each(facilityList, function(index, option){
+		let facilities = $('#facilities'+index);
+		$.each(option, function(idx, facility){
+			$(facilities).append($('<div class="facility">').text(facility));
 		});
 	});
 	
-	$(document).on('click', 'label[for*="option"]', function(){
-		if($(this).prev().prop('checked')){
-			$(this).next().removeClass('active');
+	$(document).on('click', 'label[for*="option"]', function(event){
+		if($(event.target).prev().prop('checked')){
+			$(event.target).next().removeClass('active');
 			// 이 때 만약 날짜를 선택했다면 input hidden name=res_date에 값이 들어가있다.
 			// active 클래스를 없애준 후 해당 값도 없애준다.
-			$(this).next().find('input:hidden').val('');
+			$(event.target).next().find('input[type="hidden"]').val('');
 		} else {
-			$(this).next().addClass('active');
+			$(event.target).next().addClass('active');
 		}
 	});
 	
@@ -25,7 +25,7 @@ $(function(){
 	fn_datepiacker();
 	fn_star();
 	
-	let rn = $('.review-list input[type="hidden"][name="review-rn"]').last().val();
+	let rn = $('.review-list input[type="hidden"][name="rn"]').last().val();
 	if(rn == lastReviewRN){
 		$('#more').text('마지막 리뷰입니다.')
 		isEnd=true;
@@ -38,25 +38,25 @@ $(function(){
  */ 
 /* 최대 최소인원 */
 function fn_minus(){
-	$('.count-minus').click(function(){
-		let current = $(this).next().val();
-		let min = $(this).next().prop('min');
+	$('.count-minus').click(function(event){
+		let current = parseInt($(event.target).next().val());
+		let min = $(event.target).next().prop('min');
 		if(current<=min){
 			alert('최소인원은 '+min+'명 입니다.');
 			return;
 		}
-		$('#count').val(current-1);
+		$(event.target).next().val(current-1);
 	});
 }
 function fn_plus(){
-	$('.count-plus').click(function(){
-		let current = $(this).prev().val();
-		let max = $(this).prev().prop('max');
+	$('.count-plus').click(function(event){
+		let current = parseInt($(event.target).prev().val());
+		let max = $(event.target).prev().prop('max');
 		if(current>=max){
 			alert('최대인원은 '+max+'명 입니다.');
 			return;
 		}
-		$('#count').val(current+1);
+		$(event.target).prev().val(current+1);
 	});
 }
 
@@ -255,14 +255,14 @@ function fn_reviewDelete(f){
 	-> 해결
 */
 function fn_star(){
-	$('.star').click(function(){
-		if($(this).prop('checked')){
-			$(this).prevAll('input').prop('checked', true);
-			$('#star-score').val($(this).val());
+	$('.star').click(function(event){
+		if($(event.target).prop('checked')){
+			$(event.target).prevAll('input').prop('checked', true);
+			$('#star-score').val($(event.target).val());
 		} else {
-			$(this).nextAll('input').prop('checked', false);
-			$(this).prop('checked', true);
-			$('#star-score').val($(this).val());
+			$(event.target).nextAll('input').prop('checked', false);
+			$(event.target).prop('checked', true);
+			$('#star-score').val($(event.target).val());
 		}
 		
 	});
@@ -271,7 +271,7 @@ function fn_star(){
 /* 리뷰 삽입 전 검사 */
 function fn_reviewInsert(f){
 	let contentRegExp = /.{5}/;
-	if(!contentRegExp.test(f.rv_content.value)){
+	if( f.rv_content.value=='' || !contentRegExp.test(f.rv_content.value)){
 		alert('리뷰는 5글자 이상 작성해주세요');
 		f.rv_content.focus();
 		return;
@@ -285,7 +285,7 @@ function fn_reviewInsert(f){
 }
 
 function fn_reviewList(){
-	let rn = $('.review-list input[type="hidden"][name="review-rn"]').last().val();
+	let rn = $('.review-list input[type="hidden"][name="rn"]').last().val();
 	let sendObj = {
 			'rn':rn,
 			'p_no':no
