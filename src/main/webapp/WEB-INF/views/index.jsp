@@ -7,70 +7,19 @@
 	
 	<div class="main">
 	
+		<div id="main_img">
+			<!-- 사진 넣는 공간 -->
+		</div>
+			
+		main main main main main main main main main main main <br/>
+		main main main main main main main main main main main <br/>
+		main main main main main main main main main main main <br/>
+		main main main main main main main main main main main <br/>
+		main main main main main main main main main main main <br/>
+		main main main main main main main main main main main <br/>
+		main main main main main main main main main main main <br/>
+		main main main main main main main main main main main <br/>
 
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
-			main main main main main main main main main main main <br/>
 			
 	</div>
 

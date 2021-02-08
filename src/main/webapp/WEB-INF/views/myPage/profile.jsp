@@ -44,3 +44,6 @@ function openPop(){
 	</div> 
 </body>
 </html>
+
+
+<%@ include file="../template/footer.jsp" %>
