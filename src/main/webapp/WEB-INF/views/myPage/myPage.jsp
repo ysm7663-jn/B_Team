@@ -24,9 +24,6 @@
 					<a href="instantClub.myPage">번개 모임</a><br/>
 				</li>
 				<li>
-					<a href="memberPayment.myPage">결제내역</a><br/>
-				</li>
-				<li>
 					<a href="memberDelete.myPage">탈퇴하기</a><br/>
 				</li>
 			</ul>

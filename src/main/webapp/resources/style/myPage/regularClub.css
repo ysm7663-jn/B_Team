@@ -1,0 +1,92 @@
+@charset "UTF-8";
+
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+hr {
+	margin-bottom: 15px;
+}
+.state {
+	display: flex;
+}
+.state a {
+	margin:10px 10px 10px 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+.clubList {
+	display: flex;
+}
+.clubList > .clubImage {
+	width: 30%;
+}
+.clubList > .clubImage > a > img {
+	display: block;
+	width: 100%;
+}
+.clubContent {
+	width: 50%;
+	height: 170px;
+	border: 1px solid lightgray;
+	border-radius: 8px;
+	padding: 12px 26px;
+}
+.clubContent > .title {
+	font-size: 24px;
+	font-weight: bold;
+}
+.clubContent > .startDate {
+	font-size: 14px;
+}
+.clubImage, .clubContent {
+	margin: 1.5% 1.5% 1.5% 0;
+}
+.clubContent > .content {
+	margin-top: 8px;
+	font-size: 15px;
+}
+.summary {
+	display: flex;
+}
+.summary > .readerName {
+	width: 47%;
+}
+.reader {
+	font-size: 11px;
+	font-weight: bold;
+	color: #cecece;
+}
+.startDate {
+	font-size: 16px;
+	font-weight: bold;
+	color: #c3c3c3;
+}
+.clubContent > .quit > input {
+	width: 65px;
+	height: 34px;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	background: #e73e26;
+	border: 1px solid #d52f17;
+	border-radius: 17px;
+}
+.quit {
+	text-align: right;
+}
