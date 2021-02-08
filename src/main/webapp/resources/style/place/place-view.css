@@ -11,10 +11,10 @@ section {
 	flex-direction: row-reverse;
 	justify-content: flex-start;
 }
-.modal {
+.modal, .modal-phone {
 	display: none; /* Hidden by default */
 	position: fixed; /* Stay in place */
-	z-index: 1; /* Sit on top */
+	z-index: 999999; /* Sit on top */
 	left: 0;
 	top: 0;
 	width: 100%; /* Full width */
@@ -22,20 +22,47 @@ section {
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
-.modal>.modal-content{
+.modal-content{
 	background-color: #fefefe;
 	margin: 15% auto; /* 15% from the top and centered */
 	padding: 20px;
 	border: 1px solid #888;
 	width: 50%; /* Could be more or less, depending on screen size */
-	height: 50%;   
-	z-index: 2; 
+	height: 50%;
+	border-radius: 10px;   
 }
 .content-wrap {
-	width : 80%;
+	width : 100%;
 	margin: 0 auto;
-	height : 
 }
+.content-wrap > ul {
+	width: 100%;
+	list-style-type : none;
+}
+.content-wrap > ul li{
+	width : 100%;
+	margin : 5vh auto;
+	border-top : 2px solid rgba(216,191,216, 0.8);
+	text-align : center;
+	padding : 20px 0;
+	font-size : 30px;
+}
+button {
+	background : rgba(216,191,216, 0.8);
+}
+button:hover{
+	background : rgba(216,191,216, 1);
+}
+.modal-content > button {
+	width: 100%;
+	height : 50px;
+	font-size : 20px;
+	border : 0;
+	border-radius: 10px;
+}
+.content-wrap ul li span {
+	color : rgba(216,80,216,1);
+} 
 .close{
 	width: 30px;
 	height: 30px;
@@ -55,14 +82,37 @@ aside {
 	width:324px;
 	height : 80%;
 	margin: 0 auto;
-	border-left : 1px solid rgba(216,191,216, 0.8);
-	border-right : 1px solid rgba(216,191,216, 0.8);
+	border: 1px solid rgba(216,191,216, 0.8);
 	padding : 5px;
 }
 label{
 	display: block;
 	cursor:pointer;
-	
+}
+label[for*="option"]::before{
+	content:"\f111";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 400;
+	color: rgba(216,100,216,1);
+}
+input[id*="option"]{
+	display : none;
+}
+input[id*="option"]:checked + label::before{
+	content:"\f058";
+	font-family: "Font Awesome 5 Free";
+	font-weight: 400;
+	color: rgba(216,100,216,1);
+}
+
+
+.place-option-wrap div {
+	margin-bottom: 20px;
+}
+/* 혹시 편의시설이 3개이상일 때 flex설정이 깨진다면 여길 볼 것 */
+div[class*="facilities"] {
+	display : flex;
+	justify-content: space-around;
 }
 .facility {
 	border : 1px solid black;
@@ -70,6 +120,12 @@ label{
 	text-align: center;
 	height: 40px;
 	line-height : 40px;
+	width : 30%;
+	font-size : 15px;
+	/* margin : 4px 4px; */
+}
+.facility:hover {
+	background: rgba(216,191,216, 0.8);
 }
 .option-info-box>.img-box{
 	height: 200px;
@@ -81,22 +137,21 @@ label{
 }
 .option-info-box>.img-box>img:hover{
 	transform: scale(1.2);
-	width:300px;
 }
 .reserve-form > .btn-wrap > button{
-	width : 150px;
-	height : 30px;
-	line-height: 30px;
+	width : 151px;
+	height : 50px;
+	line-height: 50px;
 	text-align: center;
 	background: rgba(216,191,216, 0.5);
 	cursor: pointer;
-	font-size: 15px;
+	font-size: 20px;
 	border : 0;
 	border-radius: 10px;
 }
 .reserve-form > .btn-wrap > button:hover{
-	background: rgba(216,191,216, 1);
-	
+/* 	background: rgba(216,191,216, 1);
+ */	
 }
 .hidden-box{
 	display:none;
@@ -114,29 +169,37 @@ article{
 	border-right : 1px solid rgba(216,191,216, 0.8);
 	padding : 20px;
 }
+
+/* 메인 nav-bar css */
 .place-nav {
 	position : sticky;
 	top: 0;
 	margin-bottom: 10px;
 	background: #FFF;
+	z-index: 999998;
 }
+
 .place-nav > ul {
 	display: flex;
 	list-style-type : none;
-	width: 80%;
+	width: 100%;
 	margin : 0 auto;
 }
 .place-nav > ul > li {
+	width:25%;
 	border-left : 1px solid purple ; 
 	border-right : 1px solid purple ;
 	background: #FFF;
 }
 .place-nav > ul > li > a {
 	display: inline-block;
-	width : 150px;
+	width : 100%;
 	height: 30px;
 	line-height: 30px;
 	text-align : center;
+}
+.place-nav > ul > li > a:hover{
+	background: rgba(216,191,216,0.8);
 }
 div[id*="place-"]{
 	padding-top:30px;
@@ -187,22 +250,57 @@ textarea {
 }
 
 /* 리뷰작성 버튼 */
-.review-insert-btn-wrap > input[type="button"]{
+#file-upload-btn{
+	display:none;
+}
+
+.review-insert-btn-wrap > input[type="button"], #upload-btn{
+	display: inline-block;
 	width : 150px;
 	height : 30px;
 	font-size: 15px;
+	text-align : center;
+	line-height : 30px;
 	border : 0;
 	border-radius: 10px;
 	background: rgba(216,191,216, 0.5);
 	cursor:pointer;	
 }
-.review-insert-btn-wrap > input[type="button"]:hover{
+.review-insert-btn-wrap > input[type="button"]:hover, #upload-btn:hover{
 	background: rgba(216,191,216, 1);
 }
 
 /* 작성된 review */
+.review{
+	margin : 10px auto;
+	border-top : 2px solid rgba(216,191,216, 0.8);
+	padding-top : 20px;
+	padding-bottom : 20px;
+}
 .review-star, .modal-star{
 	color: rgb(216,191,216);
+}
+ul.img-list{
+	display: flex;
+	list-style-type: none;
+}
+ul.img-list li {
+	width : 80px;
+	height : 80px;
+	position: relative;
+}
+ul.img-list li>img {
+	width : 100%;
+	height : 100%;
+}
+ul.img-list li:hover{
+	z-index:999997;
+	animation : img-move 2s both; 
+}
+
+@keyframes img-move {
+	0% {left : 0px;}
+	100% {left : 50%; transform: scale(6.0);}
 }
 .review-btns > input[type="button"] {
 	width: 150px;
@@ -214,7 +312,7 @@ textarea {
 	cursor:pointer;
 }
 .review-btns > button:hover {
-	background : rgba(216,191,216, 1);
+	/* background : rgba(216,191,216, 1); */
 }
 
 /* 캘린더 css */
@@ -265,7 +363,10 @@ td>a{
 td.ui-datepicker-today{
 	background: rgba(216,191,216, 0.5);
 }
-td:hover{
+.ui-datepicker-unselectable:not(.ui-datepicker-other-month) {
+	background : red;
+}
+td:not(.ui-datepicker-unselectable):hover{
 	background: rgba(216,191,216, 1);
 }
 td:active{
@@ -290,5 +391,9 @@ td:active{
 	article{
 		width: 100%;
 		margin: 0 auto;
+	}
+	.option-info-box>.img-box{
+		height: 397px;
+		margin: 20px;
 	}
 }

@@ -42,12 +42,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		
 	</select>
 	
-	<select id="getReviewListOfViewPage" resultType="com.koreait.baraON.dto.ReviewDto" >
-			SELECT B.*
+	<select id="getReviewListOfViewPage" resultType="com.koreait.baraON.dto.ReviewListDto" >
+		SELECT B.*
 		FROM (SELECT ROWNUM RN, A.*
 		FROM (SELECT RV.*, M.M_NICK, M.M_ID
-			 FROM REVIEW RV LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO AND RV.RV_DELETE = 0
+			 FROM REVIEW RV LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO
 			 WHERE P_NO = #{param1}
+			 AND RV.RV_DELETE=0
 			 ORDER BY RV.RV_POSTDATE DESC ) A ) B
 		 WHERE RN BETWEEN #{param2} AND #{param3}
 	</select>

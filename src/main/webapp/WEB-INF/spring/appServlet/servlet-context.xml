@@ -29,6 +29,7 @@
 	<beans:bean id="reviewUpdateCommand" class="com.koreait.baraON.command.review.ReviewUpdateCommand" />
 	<beans:bean id="reviewDeleteCommand" class="com.koreait.baraON.command.review.ReviewDeleteCommand" />
 	<beans:bean id="reviewInsertCommand" class="com.koreait.baraON.command.review.ReviewInsertCommand" />
+	<beans:bean id="reviewListAppendCommand" class="com.koreait.baraON.command.review.ReviewListAppendCommand" />
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
