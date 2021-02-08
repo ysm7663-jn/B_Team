@@ -51,7 +51,6 @@
 	<beans:bean id="emailAuthCommand2" class="com.koreait.baraON.command.member.EmailAuthCommand2"></beans:bean>
 	<beans:bean id="memberPwSearchCommand" class="com.koreait.baraON.command.member.MemberPwSearchCommand"></beans:bean>
 	<beans:bean id="memberInsertCommand" class="com.koreait.baraON.command.member.MemberInsertCommand"></beans:bean>
-	<beans:bean id="memberViewCommand" class="com.koreait.baraON.command.member.MemberViewCommand"></beans:bean>
 	<beans:bean id="memberPwUpdateCommand" class="com.koreait.baraON.command.member.MemberPwUpdateCommand"></beans:bean>
 	<beans:bean id="memberNickUpdateCommand" class="com.koreait.baraON.command.member.MemberNickUpdateCommand"></beans:bean>
 	<beans:bean id="memberUpdateCommand" class="com.koreait.baraON.command.member.MemberUpdateCommand"></beans:bean>

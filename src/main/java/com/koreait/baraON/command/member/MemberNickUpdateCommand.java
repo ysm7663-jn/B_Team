@@ -22,7 +22,7 @@ public class MemberNickUpdateCommand implements MemberCommand {
 		
 		MemberDao2 memberDao2 = sqlSession.getMapper(MemberDao2.class);
 		
-		resultMap.put("result", memberDao2.memberPwUpdate(memberDto2));
+		resultMap.put("result", memberDao2.memberNickUpdate(memberDto2));
 		
 		return resultMap;
 	}

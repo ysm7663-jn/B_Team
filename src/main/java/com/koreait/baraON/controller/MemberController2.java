@@ -43,7 +43,6 @@ public class MemberController2 {
 	private EmailAuthCommand2 emailAuthCommand2;
 	private MemberPwSearchCommand memberPwSearchCommand;
 	private MemberInsertCommand memberInsertCommand;
-	private MemberViewCommand memberViewCommand;
 	private MemberPwUpdateCommand memberPwUpdateCommand;
 	private MemberNickUpdateCommand memberNickUpdateCommand;
 	private MemberUpdateCommand memberUpdateCommand;
@@ -57,7 +56,6 @@ public class MemberController2 {
 							JavaMailSender javaMailSender,
 							MemberPwSearchCommand memberPwSearchCommand,
 							MemberInsertCommand memberInsertCommand,
-							MemberViewCommand memberViewCommand,
 							MemberPwUpdateCommand memberPwUpdateCommand,
 							MemberNickUpdateCommand memberNickUpdateCommand,
 							MemberUpdateCommand memberUpdateCommand) {
@@ -69,7 +67,6 @@ public class MemberController2 {
 		this.javaMailSender = javaMailSender;
 		this.memberPwSearchCommand =memberPwSearchCommand;
 		this.memberInsertCommand=memberInsertCommand;
-		this.memberViewCommand=memberViewCommand;
 		this.memberPwUpdateCommand=memberPwUpdateCommand;
 		this.memberNickUpdateCommand=memberNickUpdateCommand;
 		this.memberUpdateCommand=memberUpdateCommand;
@@ -114,9 +111,9 @@ public class MemberController2 {
 			method=RequestMethod.POST,
 			produces="application/json; charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> memberPwSearch(@RequestParam("m_pw") String m_pw,
-			Model model) {
-		model.addAttribute("m_pw",m_pw);
+	public Map<String, Object> memberPwSearch(@RequestBody MemberDto2 memberDto2,
+												Model model) {
+		model.addAttribute("m_id",memberDto2.getM_id());
 		return memberPwSearchCommand.execute(sqlSession, model);
 	}
 	
@@ -142,11 +139,8 @@ public class MemberController2 {
 	
 	@RequestMapping(value="memberView.member",
 					method=RequestMethod.GET)
-	public String memberView(HttpServletRequest request,
-											Model model){
-		model.addAttribute("request", request);
-		memberViewCommand.execute(sqlSession, model);
-		return "member/memberView";
+	public String memberView(){
+		return "myPage/memberView";
 	}
 	
 	@RequestMapping(value="memberPwUpdate.member",

@@ -12,9 +12,9 @@ public interface MemberDao2 {
 	
 	public MemberDto2 memberView(int m_no);
 	
-	public String memberPwSearch(int m_no);
+	public String memberPwSearch(String m_id);
 	
-	public int memberPwUpdate(MemberDto2 memberDto2);
+	public int memberPwUpdate(MemberDto2 memberDto);
 	
 	public int memberNickUpdate(MemberDto2 memberDto2);
 	

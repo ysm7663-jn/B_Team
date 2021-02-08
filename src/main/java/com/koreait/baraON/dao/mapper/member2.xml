@@ -17,10 +17,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE M_NICK= #{m_nick}
 	</select>
 	
-	<select id="memberPwSearch" parameterType="int" resultType="String">
+	<select id="memberPwSearch" parameterType="String" resultType="String">
 		SELECT M_PW
 		FROM MEMBER
-		WHERE M_NO= #{m_no}
+		WHERE M_ID= #{m_id}
 	</select>
 
 	<insert id="memberInsert" parameterType="com.koreait.baraON.dto.MemberDto2">
@@ -35,10 +35,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE M_NO=#{m_no}
 	</select>
 	
-	<update id="memberPwUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
+	<update id="memberPwUpdate"  parameterType="HashMap">
 		UPDATE MEMBER
 		SET M_PW=#{m_pw}
-		WHERE M_NO = #{m_no}
+		WHERE M_ID = #{m_id}
 	</update>
 	
 	<update id="memberNickUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">

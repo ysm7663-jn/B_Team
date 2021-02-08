@@ -5,6 +5,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
 
+
 	function fn_pwOpen(){
 		if($('#divPwChange').css('display')=='none'){
 			$('#divPwChange').show();
@@ -21,17 +22,17 @@
 		}
 	}
 	
-	function fn_pwSerch(){
-		var m_no={memberDto2.m_no};
-		var m_pw={memberDto2.m_pw};
+	function fn_pwSerch(){	// 현재 비밀번호를 입력했을 시 DB에 검색하여 일치하지 않으면 #text1(비밀번호가 일치하지 않습니다)를 display:block한다
+		var m_id='${loginDto.m_id}';
+		var m_pw='${loginDto.m_pw}';
 		$('#pw1').blur(function(){
 			$.ajax({
 				url:'memberPwSearch.member',
 				type:'post',
-				data:'m_no='+m_no,
+				data:'m_id='+m_id,
 				dataType:'json',
-				success:function(resultMap){
-					if(resultMap!=m_pw&&$('#text1').css('display')=='none'){
+				success:function(data){
+					if(data.result!=m_pw && $('#text1').css('display')=='none'){
 						$('#text1').show();
 					}else{
 						$('#text1').hide();
@@ -40,15 +41,15 @@
 				error: function(){
 					alert('실패');
 				}
-			})
+			});
 		});
 	}
 	
-	function fn_pwCheck(){
-		var pw2=$('#pw2').value;
+	function fn_pwCheck(){	// 새로운 비밀번호가 정규식에 맞는지 검사한다.
+		var pw2=$('#pw2').val();
 		var regExpPw = /[a-zA-Z0-9가-힣]{6,16}$/;
-		var result = document.getElementByNick('result');
-		if(regExpID.test(pw2)){
+		var result = document.getElementById('result');
+		if(regExpPw.test(pw2)){
 			result.textContent ='사용가능한 비밀번호입니다.';
 			result.setAttribute('class', 'check-m_pw-result-ok');
 			return true;
@@ -59,7 +60,7 @@
 		}
 	}
 	
-	function fn_pwCheck2(){
+	function fn_pwCheck2(){		// 새로운 비밀번호와 새로운 비밀번호가 맞는지 확인하여 맞는 문장을 출력한다.
 		if($('#pw2').value == $('#pw3').value){
 			$('#text1').hide();
 		}else{
@@ -67,12 +68,13 @@
 		}
 	}
 	
-	function fn_memberPwUpdate(){
-		var m_no=$('#m_no').val();
+	
+	function fn_memberPwUpdate(){	// 비밀번호를 업데이트 한다.
+		var m_id=$('#m_id').val();
 		var m_pw=$('#pw2').val();
 		var obj={
-				"m_no":m_no,
-				"n_pw":m_pw
+				"m_id": m_id,
+				"m_pw": m_pw
 		};
 		$.ajax({
 			url:'memberPwUpdate.member',
@@ -153,11 +155,11 @@
 			<tbody>
 				<tr>
 					<th>아이디</th>
-					<td>${memberDto2.m_id}</td>
+					<td>${loginDto.m_id}</td>
 				</tr>
 				<tr>
 					<th>이름</th>
-					<td>${memberDto2.m_name}</td>
+					<td>${loginDto.m_name}</td>
 				</tr>
 				<tr>
 					<th>비밀번호</th>
@@ -187,7 +189,7 @@
 									<td><span id="text3" style="display:none">비밀번호가 일치하지 않습니다.</span></td>
 								</tr>
 								<tr>
-									<td><input type="button" value="수정하기" onclick="fn_pwUpdate()"/></td>
+									<td><input type="button" value="수정하기" onclick="fn_memberPwUpdate()"/></td>
 									<td>*비밀번호 변경시 수정하기 버튼을 누르셔야 합니다</td>
 								</tr>
 							</tbody>
@@ -197,7 +199,7 @@
 				
 				<tr>
 					<th>닉네임</th>
-					<td> ${memberDto2.m_nick} <input type="button" value="닉네임 변경" onclick="fn_NickOpen()"/></td>
+					<td> ${loginDto.m_nick} <input type="button" value="닉네임 변경" onclick="fn_NickOpen()"/></td>
 				</tr>
 				
 				<!--	닉네임 변경  시작 -->
@@ -223,19 +225,19 @@
 				
 				<tr>
 					<th>생년월일</th>
-					<td>${memberDto2.m_birth}</td>
+					<td>${loginDto.m_birth}</td>
 				</tr>
 				<tr>
 					<th>휴대전화</th>
-					<td><input type="text" placeholder="${memberDto2.m_phone}"/></td>
+					<td><input type="text" placeholder="${loginDto.m_phone}"/></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="text" placeholder="${memberDto2.m_email}"/></td>
+					<td><input type="text" placeholder="${loginDto.m_email}"/></td>
 				</tr>
 				<tr>
 					<td>
-						<input type="hidden" name="m_no" value="${memberDto2.m_no}"/>
+						<input type="hidden" name="m_no" value="${loginDto.m_no}"/>
 						<input type="button" value="확인" onclick="fn_memberUpdate(this.form)"/>
 					</td>
 				</tr>

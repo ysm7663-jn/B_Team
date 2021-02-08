@@ -16,15 +16,15 @@ public class MemberPwSearchCommand implements MemberCommand {
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 
 		Map<String, Object> map = model.asMap();
-		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		int m_no = Integer.parseInt(request.getParameter("m_no"));
 		
+		String m_id = (String)map.get("m_id");
+
 		MemberDao2 memberDao = sqlSession.getMapper(MemberDao2.class);
-		
+
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		
-		resultMap.put("result", memberDao.memberPwSearch(m_no));
-		
+
+		resultMap.put("result", memberDao.memberPwSearch(m_id));
+
 		return resultMap;
 		
 	}
