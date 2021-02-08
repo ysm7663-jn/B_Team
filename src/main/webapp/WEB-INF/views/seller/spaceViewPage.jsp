@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+0<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../template/header.jsp" />
@@ -47,7 +47,9 @@
 				dataType: 'json',
 				success: function(resultMap){
 					alert('성공'); //지울것
-					
+					if(data.result == true){
+						placeListTable(data.list)
+					}
 				},
 				error: function(){
 					alert('실패');
@@ -65,13 +67,16 @@
 				's_no':s_no
 			};
 			$.ajax({
-				url:'placeCaSearch.seller',
+				url:'placeCaSearch2.seller',
 				type:'post',
 				data: JSON.stringify(sendObj),	
 				contentType:'application/json',
 				dataType: 'json',
 				success: function(resultMap){
 					alert('성공');
+					if(data.result == true){
+						placeListTable(data.list)
+					}
 				},
 				error: function(){
 					alert('실패');
@@ -80,6 +85,15 @@
 		});
 	});
 
+	function placeListTable2(list){
+		$('#placeList').empty();
+		$.each(list, function(idx, place){
+			$('<tr>')
+			.append($('<td>').html(place.p_img))
+			.appendTo('#placeList2');
+		});
+	}
+	
 </script>
 
 
@@ -119,6 +133,14 @@
 			</c:forEach>
 	</select>
 </form>
+
+
+<table>
+	<tbody id="placeList2">
+	
+	</tbody>
+</table>
+
 
 <table>
 	<tbody>

@@ -39,6 +39,7 @@
 	<beans:bean id="spaceViewPageCommand" class="com.koreait.baraON.command.seller.SpaceViewPageCommand"></beans:bean>
 	<beans:bean id="allPlaceSearchCommand" class="com.koreait.baraON.command.seller.AllPlaceSearchCommand"></beans:bean>
 	<beans:bean id="placeCaSearchCommand" class="com.koreait.baraON.command.seller.PlaceCaSearchCommand"></beans:bean>
+	<beans:bean id="placeCaSearch2Command" class="com.koreait.baraON.command.seller.PlaceCaSearch2Command"></beans:bean>
 		
 	
 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->

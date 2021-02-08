@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import com.koreait.baraON.dao.PlaceDao2;
 import com.koreait.baraON.dto.PlaceDto2;
 
-public class PlaceCaSearchCommand implements SellerCommand {
+public class PlaceCaSearch2Command implements SellerCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
@@ -30,7 +30,7 @@ public class PlaceCaSearchCommand implements SellerCommand {
 		map2.put("s_no", s_no);
 		map2.put("pc_no", pc_no);
 		
-		placeDto2 = placeDao2.placeCaSearch(map2);
+		placeDto2 = placeDao2.placeCaSearch2(map2);
 		
 		if(placeDto2 != null) {	
 			resultMap.put("placeDto2", placeDto2);
