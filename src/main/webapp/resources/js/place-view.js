@@ -17,13 +17,13 @@ $(function(){
 		}
 	});
 	
-	fn_minus();
-	fn_plus();
-	fn_reviewImage();
-	fn_scrollEvent();
-	fn_getMap();
-	fn_datepiacker();
-	fn_star();
+	$.each(thumbnail, function(idx, img){
+		if(idx==0){
+			$('.thumbnail-box').append($('<img class="thumbnail">').prop('src', 'resources/images/PlaceImages/'+img));
+		}else{
+			$('.thumbnail-box').append($('<img class="thumbnail" style="display:none;">').prop('src', 'resources/images/PlaceImages/'+img));
+		}
+	});
 	
 	let rn = $('.review-list input[type="hidden"][name="rn"]').last().val();
 	if(rn == lastReviewRN){
@@ -31,7 +31,44 @@ $(function(){
 		isEnd=true;
 	}
 	
+	fn_minus();
+	fn_plus();
+	fn_reviewImage();
+	fn_scrollEvent();
+	fn_getMap();
+	fn_datepiacker();
+	fn_star();
+	fn_sildeImg();
+	fn_appendList(remarkList, '#remark-list');
+	fn_appendList(infoList, '#info-list');
+	
+	
+	
 })
+
+/* 리스트 삽입 */
+function fn_appendList(list, appendToTag){
+	$.each(list,function(idx, item){
+		$(appendToTag).append('<li>'+item+'</li>');
+	});
+}
+
+
+/* 클릭시 썸네일 변경 */
+function fn_sildeImg(){
+	$('body').on('click', '.thumbnail', function(event){
+		let length = $('.thumbnail').length;
+		if($(event.target).index()==(length-1)){
+			$('.thumbnail').first().css('display', 'block');
+			$(event.target).css('display', 'none');
+		} else {
+			$(event.target).next().css('display', 'block');
+			$(event.target).css('display', 'none');
+		}
+		
+		
+	});
+}
 
 /* 일단 공간옵션 체크박스를 연속으로 클릭하면 인원 체크박스의 값이 사라진다
  * 알아볼 것

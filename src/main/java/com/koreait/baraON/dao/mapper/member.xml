@@ -52,4 +52,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SET S_PW = #{param1}
 		 WHERE S_ID = #{param2}
 	</update>
+	
+	
+	<!-- place -->
+	<select id="getSellerDto" parameterType="int" resultType="com.koreait.baraON.dto.SellerDto" >
+		SELECT *
+		FROM SELLER
+		WHERE P_NO=#{p_no}
+	</select>
 </mapper>

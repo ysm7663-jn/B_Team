@@ -12,14 +12,11 @@
 <link rel="stylesheet" href="resources/style/place/place-view.css">
 <script>
 	let facilityList = JSON.parse('${facilityList}');
+	let isSeller = ${isSeller};
 	let loginDtoMNo = null;
-	try {
-		if(${loginDto ne null}) {
-			loginDtoMNo = '${loginDto.m_no}';
-		}
-	} catch (e) {
-		alert('에러');
-		loginDtoMno = '${loginDto.m_no}';
+	alert(isSeller);
+	if(!isSeller){
+		alert(isSeller);
 	}
 	let thumbnail = JSON.parse('${placeDto.p_img}');
 	let infoList = JSON.parse('${placeDto.p_info}');
@@ -39,6 +36,7 @@
 	}
 	let isProgress = false;
 	let isPossible = false;
+	
 	/* 리뷰작성 성공 */
 	
 	if(${param.insertResult gt 0}){
@@ -50,24 +48,22 @@
 	}
 	
 	$(function(){
-		$.each(thumbnail, function(idx, img){
-			$('.thumbnail-box').append($('<img>').prop('src', 'resources/images/PlaceImages/'+img));
-		});
-		fn_appendList(infoList, '#info-list');
-		fn_appendList(remarkList, '#remark-list');
+		
 	});
-	function fn_appendList(list, appendToTag){
-		$.each(list,function(idx, item){
-			$(appendToTag).append('<li>'+item+'</li>');
-		});
-	}
+	
 	
 	function fn_reserve(f){
-		if($('input:checked').length>1){
+		if($('.place-option-wrap input:checked').length>1){
 			alert('한 장소만 선택해주세요');
 			return;
 		}
+		let chked = $('.place-option-wrap input:checked');
 		/* hidden res-date 선택하는 방법 생각하기 */
+		if($(chked).next().next().find('input[name="res_date"]').val() ==''){
+			alert('날짜를 선택해 주세요');
+			return;
+		}
+		
 	}
 </script>
 
@@ -75,7 +71,7 @@
 	<div class="modal-content">
 		<div class="close" onclick="fn_modalClose()">&times;</div>
 		<div class="content-wrap">
-		<span>ID : ${loginDto.m_id}</span><br/>
+		<span id="modal-m-id">ID : ${loginDto.m_id}</span><br/>
 		
 		<span class="modal-star">
 			
@@ -169,6 +165,7 @@
 	</aside>
 	<article>
 		<div class="thumbnail-box">
+		
 		</div>
 		<div class="place-line-desc2">
 			${placeDto.p_desc}
@@ -199,7 +196,7 @@
 			<div id="map" style="width : 100%; height: 500px; overflow:hidden;">
 
 			</div>
-			<h4>${placeDto.p_addr}</h4>
+			<h4>${placeDto.p_addr}&nbsp;${placeDto.p_addrdetail}</h4>
 		</div>
 		<div id="place-remark" class="place-remark">
 			<h3>예약시 주의사항</h3>
@@ -301,9 +298,9 @@
 							</div>
 						</form>
 					</c:forEach>
+				<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 				</c:if>
 			</div>
-			<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 		</div>
 	</article>
 </section>

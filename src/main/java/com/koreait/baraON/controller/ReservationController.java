@@ -9,17 +9,21 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.koreait.baraON.command.reservation.ReservationInsertCommand;
+import com.koreait.baraON.command.reservation.ReservationPageCommand;
 
 @Controller
 public class ReservationController {
 
 	private SqlSession sqlSession;
 	private ReservationInsertCommand reservationInsertCommand;
+	private ReservationPageCommand reservationPageCommand;
 	
 	@Autowired
 	public void setCommand(SqlSession sqlSession,
-							ReservationInsertCommand reservationInsertCommand) {
+							ReservationInsertCommand reservationInsertCommand,
+							ReservationPageCommand reservationPageCommand) {
 		this.sqlSession = sqlSession;
+		this.reservationPageCommand = reservationPageCommand;
 		this.reservationInsertCommand = reservationInsertCommand;
 	}
 	

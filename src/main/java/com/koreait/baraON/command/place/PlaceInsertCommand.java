@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dao.PlaceOptionDao;
@@ -21,6 +22,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 	public void execute(SqlSession sqlSession, Model model) {
 
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)model.asMap().get("multipartRequest");
+		RedirectAttributes rttr = (RedirectAttributes)model.asMap().get("rttr");
 		
 		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
 		PlaceOptionDao placeOptionDao = sqlSession.getMapper(PlaceOptionDao.class);
@@ -109,7 +111,8 @@ public class PlaceInsertCommand implements PlaceCommand {
 					}
 					// 이미지파일이 아닐경우 -1
 					// 파일형식이 맞지 않으므로 메소드를 끝낸다.
-					model.addAttribute("insertResult", -1);
+					rttr.addFlashAttribute("insertResult", -1);
+					return;
 				}
 				
 				String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
@@ -138,7 +141,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 			} else {
 				// 이미지파일을 첨부하지 않은경우 -2
 				// 최소 하나의 파일을 첨부해야하는 상황이므로 메소드를 끝낸다.
-				model.addAttribute("insertResult", -2);
+				rttr.addFlashAttribute("insertResult", -2);
 				return;
 			}
 		}
@@ -187,6 +190,10 @@ public class PlaceInsertCommand implements PlaceCommand {
 			String originalFilename = file.getOriginalFilename();
 			String extension = originalFilename.substring(originalFilename.lastIndexOf(".")+1);
 			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceOptionImages");
+			
+			if(!extensionList.contains(extension)) {continue;}
+			
+			
 			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
 			String po_img = filename + "-" + System.currentTimeMillis() + "." + extension;
 			
@@ -215,12 +222,12 @@ public class PlaceInsertCommand implements PlaceCommand {
 			prevCount = count;
 		}
 		if(insertCount == poNameList.length) {
-			model.addAttribute("insertResult", 1);
+			rttr.addFlashAttribute("insertResult", 1);
 		} else {
-			model.addAttribute("insertResult", -2);
+			rttr.addFlashAttribute("insertResult", -3);
 		}
 		
-		model.addAttribute("currPNo", currPNo);
+		rttr.addFlashAttribute("currPNo", currPNo);
 	}
 
 }

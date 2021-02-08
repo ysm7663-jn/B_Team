@@ -91,7 +91,24 @@
 		<article class="res-insert-list">
 			<div class="subtitle">예약자 정보</div>
 			<div class="sub-content">
-				
+				<ul>
+					<li>
+						예약자 <input type="text" name="res_name" value="${loginDto.m_name}" />
+					</li>
+					<li>
+						연락처 <input type="text" name="res_phone" value="${loginDto.m_phone}" />
+					</li>
+					<li>
+						이메일 <input type="text" name="res_email" value="${loginDto.m_email}" />
+					</li>
+					<li>
+						사용목적 <input type="text" name="res_purpose" />
+					</li>
+					<li>
+						요구사항 
+						<textarea rows="5" cols="50" name="requirement"></textarea>
+					</li>
+				</ul>
 			</div>
 		</article>
 		<article class="res-insert-list">

@@ -75,7 +75,7 @@ CREATE TABLE CLUB
     C_SUBCONTENT2  VARCHAR2(1000)	 NULL,
     C_SUBCONTENT3  VARCHAR2(1000)	 NULL,
     C_DELETE       NUMBER            NOT NULL,
-    C_PART         NUMBER            NOT NULL,
+    C_PART         NUMBER            NOT NULL
 );
 
 SELECT * FROM CLUB;
@@ -120,8 +120,6 @@ INCREMENT BY 1
 NOCYCLE
 NOCACHE;
 
-delete from review where rv_no=2;
-select * from review;
 -- PLACE Table Create SQL
 CREATE TABLE PLACE
 (
