@@ -32,6 +32,9 @@
 	<beans:bean id="reviewInsertCommand" class="com.koreait.baraON.command.review.ReviewInsertCommand" />
 	<beans:bean id="reviewListAppendCommand" class="com.koreait.baraON.command.review.ReviewListAppendCommand" />
 	
+	<!-- reservation command -->
+	<beans:bean id="reservationInsertCommand" class="com.koreait.baraON.command.reservation.ReservationInsertCommand" />
+	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
 	<!-- login -->

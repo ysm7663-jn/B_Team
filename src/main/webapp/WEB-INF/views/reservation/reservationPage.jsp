@@ -80,41 +80,69 @@
 <!-- <link rel="stylesheet" href="resorces/style/reserve.css" /> -->
 
 <div>
-	<section class="right">
-		<aside class="">
+	<form>
+	<section class="left">
+		<article class="res-insert-list">
+			<div class="subtitle">예약 공간</div>
+			<div class="sub-content">
+				
+			</div>
+		</article>
+		<article class="res-insert-list">
+			<div class="subtitle">예약자 정보</div>
+			<div class="sub-content">
+				
+			</div>
+		</article>
+		<article class="res-insert-list">
+			<div class="subtitle">호스트 정보</div>
+			<div class="sub-content">
+				
+			</div>
+		</article>
+		<article class="res-insert-list">
+			<div class="subtitle">예약시 주의사항</div>
+			<div class="sub-content">
+				
+			</div>
+		</article>
+		<article class="res-insert-list">
+			<div class="subtitle">서비스 동의<span class="required-data" >필수 사항</span></div>
+			<div class="sub-content">
+				
+			</div>
+		</article>
+		<article class="res-insert-list">
 			<div class="subtitle"></div>
-			<div class=""
+			<div class="sub-content">
+				
+			</div>
+		</article>
+		<article class="res-insert-list">
+			<div class="subtitle"></div>
+			<div class="sub-content">
+				
+			</div>
+		</article>
+		<article class="res-insert-list">
+			<div class="subtitle"></div>
+			<div class="sub-content">
+				
+			</div>
+		</article>
+	</section>
+	<section class="right">
+		<aside class="res-insert-list">
+			<div class="subtitle">결제 예정금액</div>
+			<div class="sub-content">
+				
+			</div>
+			<div class="btn-box">
+				<button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
+			</div>
 		</aside>
 	</section>
-	<section class="left">
-		<article>
-			<div class="subtitle"></div>
-		</article>
-		<article>
-			<div class="subtitle"></div>
-		</article>
-		<article>
-			<div class="subtitle"></div>
-		</article>
-		<article>
-			<div class="subtitle"></div>
-		</article>
-		<article>
-			<div class="subtitle"></div>
-		</article>
-		<article>
-			<div class="subtitle"></div>
-		</article>
-		<article>
-			<div class="subtitle"></div>
-		</article>
-		<article>
-			<div class="subtitle"></div>
-		</article>
-	</section>
-	<p>
-		<p>아임 서포트 결제 모듈 테스트 해보기</p>
-		<button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
-	</p>
+	<p>아임 서포트 결제 모듈 테스트 해보기</p>
+	</form>
 </div>
 <%@ include file="../template/footer.jsp" %>
