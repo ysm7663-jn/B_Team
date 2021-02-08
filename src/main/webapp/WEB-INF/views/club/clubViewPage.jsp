@@ -11,16 +11,30 @@
 
 <script>
 	$(function() {
-		  $('#btn1').click( function() {
-		    if( $(this).val() == '참여하기' ) {
-		      $(this).val('탈퇴하기');
-		    }
-		    else {
-		      $(this).val('참여하기');
-		    }
-		  });
+		$('#btn1').click(function() {
+			var m_enjoy = document.getElementById('m_enjoy').val();
+			alert('m_enjoy');
+			if (m_enjoy == 'N') {
+				alert('m_enjoy');
+				m_enjoy = 'Y';
+			} else {
+				alert('m_enjoy');
+				m_enjoy.value = 'N';
+				}
+			});
 		});
 </script>
+
+<script type="text/javascript">
+		function fn_delete(f) {
+			if (confirm('정말 클럽 신청을 마감하시겠습니까?')) {
+				f.action='clubDelete.club';
+				f.submit();
+			}
+		}
+</script>
+
+<form>
 
 	<div class="wrap">
 
@@ -44,7 +58,14 @@
 				</div>
 
 				<div class="side_content">
-					<input type="button" value="참여하기" id="btn1" />
+					<c:if test="${memberDto.m_enjoy eq N}">
+						<input type="button" value="참여하기" id="btn1"/>
+					</c:if>
+					
+					<c:if test="${memberDto.m_enjoy ne N}">
+						<input type="button" value="탈퇴하기" id="btn1" />
+					</c:if>
+					
 				</div>
 			</div>
 		</c:if>
@@ -65,7 +86,8 @@
 				</div>
 
 				<div class="side_content">
-					<input type="button" value="탈퇴하기" onclick="" />
+					<input type="button" value="장소등록하기" onclick="location.href='placeListPage.place'" /> 
+					<input type="button" value="클럽해제하기" onclick="fn_delete(this.form)" />
 				</div>
 			</div>
 		</c:if>
@@ -97,13 +119,8 @@
 		</div>
 
 		<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
-
-
 	</div>
 
-<c:if test="${loginDto eq null}">
-	로그인 되지 않았습니다.
-	
-</c:if>
+</form>
 
 <%@ include file="../template/footer.jsp"%>

@@ -14,5 +14,7 @@ public interface ClubDao {
 	public ClubDto clubView(int c_no);
 	
 	public MemberDto clubView2(int m_no);
+	
+	public int clubDelete(int c_no);
 
 }

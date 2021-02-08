@@ -32,5 +32,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 				  FROM CLUB
 		 				 WHERE C_NO = #{param1} )
 	</select>
+	
+	<delete id="clubDelete" parameterType="int">
+		DELETE 
+		  FROM CLUB
+		 WHERE C_NO = ${c_no}
+	</delete>
 
 </mapper>

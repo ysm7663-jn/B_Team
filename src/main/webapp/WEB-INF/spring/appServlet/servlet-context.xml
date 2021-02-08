@@ -38,6 +38,8 @@
 	<beans:bean id="clubListCommand" class="com.koreait.baraON.command.club.ClubListCommand" />
 	<beans:bean id="clubInsertCommand" class="com.koreait.baraON.command.club.ClubInsertCommand" />
 	<beans:bean id="clubViewCommand" class="com.koreait.baraON.command.club.ClubViewCommand" />
+	<beans:bean id="clubUpdateCommand" class="com.koreait.baraON.command.club.ClubUpdateCommand" />
+	<beans:bean id="clubDeleteCommand" class="com.koreait.baraON.command.club.ClubDeleteCommand" />
 	
 
 	<!-- login -->
