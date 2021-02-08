@@ -27,5 +27,8 @@ public class ClubDto {
 	private String c_img3;
 	private int c_delete;
 	private int c_part;
+	private String c_subContent1;
+	private String c_subContent2;
+	private String c_subContent3;
 	
 }

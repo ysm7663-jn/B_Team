@@ -34,6 +34,7 @@
 	
 	<beans:bean id="clubListCommand" class="com.koreait.baraON.command.club.ClubListCommand" />
 	<beans:bean id="clubInsertCommand" class="com.koreait.baraON.command.club.ClubInsertCommand" />
+	<beans:bean id="clubViewCommand" class="com.koreait.baraON.command.club.ClubViewCommand" />
 	
 	<!-- member -->
 	

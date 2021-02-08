@@ -3,18 +3,14 @@
     
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
     
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<jsp:include page="../template/header.jsp">
+	<jsp:param value="새 클럽 생성" name="title" />
+</jsp:include>
+<link rel="stylesheet" href="resources/style/common.css" />    
+    
 
 	<form method="get" enctype="multipart/form-data">
 		<div class="insert-wrap">
-		
-		<input type="hidden" name="m_no" value="1" />
 		
 			<div id="main_image">
 				<input type="file" name="c_mainImg" />
@@ -40,15 +36,18 @@
 					<textarea rows="20" cols="100" placeholder="2000자 이내로 작성해주세요" name="c_content"></textarea>
 				<br/><br/>
 				
-				<!-- <span class="title">사진첨부(3장)</span><br/>
+				<span class="title">사진첨부(3장)</span><br/>
 				<input type="file" name="c_img1" /><br/>
 				<input type="file" name="c_img2" /><br/>
-				<input type="file" name="c_img3" /><br/> -->
+				<input type="file" name="c_img3" /><br/>
 				
 				<!-- <span class="title">커리큘럼</span> -->
 				
 			</div>
 		</div>
+		
+		<input type="hidden" name="m_no" value="${clubDto.c_no}" />
+		<input type="hidden" name="m_no" value="${clubDto.m_no}" />
 		
 		<input type="button" name="btn" value="완료하기" onclick="fn_finish(this.form)" />
 		<input type="button" name="btn" value="돌아가기" onclick="location.href='clubListPage.club'" />
@@ -66,5 +65,5 @@
 	
 	</script>
 
-</body>
-</html>
+
+<%@ include file="../template/footer.jsp"%>
