@@ -9,10 +9,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM CLUB C JOIN WISHLIST W
 		  ON C.C_NO = W.C_NO
 		 WHERE W.M_NO = #{param1}
+		 AND C.C_DELETE = 0
 	</select>
 	<delete id="wishDelete" parameterType="int">
 		DELETE 
 			FROM WISHLIST
 		 WHERE W_NO = #{param1}
 	</delete>
+	<select id="regularClubList" parameterType="int" resultType="com.koreait.baraON.dto.RegularClubListDto">
+		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.M_NO, CL.CL_CARD
+			FROM CLUBLIST CL JOIN CLUB C
+		 ON CL.C_NO = C.C_NO
+		 WHERE CL.M_NO = #{param1}
+		 	AND C.C_PART = #{param2}
+		 	AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+			AND C.C_DELETE = 0
+	</select>
+	<select id="regularLastClubList" parameterType="int" resultType="com.koreait.baraON.dto.RegularClubListDto">
+		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.M_NO, CL.CL_CARD
+			FROM CLUBLIST CL JOIN CLUB C
+		 ON CL.C_NO = C.C_NO
+		 WHERE CL.M_NO = #{param1}
+		 	AND C.C_PART = #{param2}
+		 	AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') &lt; TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+			AND C.C_DELETE = 0
+	</select>
 </mapper>

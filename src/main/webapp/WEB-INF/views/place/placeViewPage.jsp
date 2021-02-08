@@ -1,149 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="../template/header.jsp">
 	<jsp:param value="BaraON :: 공간보기" name="title" />
 </jsp:include>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b735551da134940779a92513cdbca8f5&libraries=services"></script>
+<script type="text/javascript" src="resources/js/place-view.js" ></script> 
 <link rel="stylesheet" href="resources/style/place/place-view.css">
-<script type="text/javascript" src="resources//js/place-view.js" ></script> 
 <script>
 	let facilityList = JSON.parse('${facilityList}');
+	let loginDtoMNo = '${loginDto.m_no}';
+	let reviewImageList = JSON.parse('${reviewImage}');
+	let no = ${param.no};
+	let pAddr = '${placeDto.p_addr}';
+	let pTitle= '${placeDto.p_title}';
+	let lastReviewRN = ${lastReviewRN};
+	let isEnd = false;
+	if ('${fn:length(reviewList)}'<3){
+		isEnd = true;
+	}
+	let isProgress = false;
+	let isPossible = false;
 	/* 리뷰작성 성공 */
-	if('${insertResult}'>0){
+	
+	if(${param.insertResult gt 0}){
 		alert('작성해주셔서 감사합니다.');
-	} else if ('${insertResult}') {
+	} else if (${param.insertResult eq -1}) {
+		alert('지원되는 확장자가 아닙니다.(jpg, jpeg, gif, png)');
+	} else if (${param.insertResult eq 0}) {
 		alert('리뷰 작성에 실패했습니다.');
 	}
 	
-	
-	/* 리뷰 수정 modal 띄우기 */
-	function fn_modal(f){
-		let rv_no = f.rv_no.value;
-		let rv_star = f.rv_star.value;
-		let rv_content = f.rv_content.value;
-		$('.modal-star').empty();
-		for(let i = 0 ; i<5 ; i++){
-			if(i<rv_star){
-				$('.modal-star').append('<i class="fas fa-star"></i>');
-			} else {
-				$('.modal-star').append('<i class="far fa-star"></i>');
-			}
-		}
-		$('#modal-rv-content').val(rv_content);
-		$('#modal-rv-no').val(rv_no);
-		$('.modal').addClass('active');
-	}
-
-	/* 리뷰 수정 modal 닫기 */
-	function fn_modalClose(){
-		$('.modal').removeClass('active');
-	}
-	
-	/* 리뷰 수정 */
-	function fn_reviewUpdate(f){
- 		let rv_content = $('#modal-rv-content').val();
-		let rv_no = $('#modal-rv-no').val();
-		let sendObj = {
-				'rv_no' : rv_no,
-				'rv_content' : rv_content
-		};
-		$.ajax({
-			url:'reviewUpdate.review',
-			type:'put',
-			data: JSON.stringify(sendObj),
-			contentType: 'application/json; charset=utf-8',
-			dataType:'json',
-			success:function(responseObj){
-				if(responseObj.result > 0){
-					alert('수정되었습니다.');
-					location.href='placeViewPage.place?no=${placeDto.p_no}';
-				} else{
-					alert('실패');
-				}
-			},
-			error:function(){
-				alert('오류가 발생했습니다.');
-			}
-		
-		});
-	}
-	
-	/* 리뷰 삭제 */
-	function fn_reviewDelete(f){
-		
-		if(confirm('정말삭제하시겠습니까?')){
-			let sendObj = {
-				'rv_no' : f.rv_no.value
-			};
-			$.ajax({
-				url:'reviewDelete.review',
-				type:'put',
-				data:JSON.stringify(sendObj),
-				contentType: 'application/json; charset=utf-8',
-				dataType:'json',
-				success:function(responseObj){
-					if(responseObj.result > 0) {
-						alert('삭제되었습니다.');
-						location.href='placeViewPage.place?no=${placeDto.p_no}';
-					} else {
-						alert('삭제에 실패했습니다.');
-					}
-				},
-				error:function(request,status,error){
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				}
-			});
-		}
-	}
-	
-	/* 이벤트 부여를 위한 onload 이벤트 */
-	$(function(){
-		fn_star();
-	})
-	
-	/* 별 클릭 시 이전 형제요소들(input)의 checked 속성 true/false */
-	/*
-		좀 더 보완이 필요할 것 같다.
-		현재 문제는 체크박스라서 클릭한 요소까지 체크가 해제되어 버린다.
-		-> 해결
-	*/
-	function fn_star(){
-		$('.star').click(function(){
-			if($(this).prop('checked')){
-				$(this).prevAll('input').prop('checked', true);
-				$('#star-score').val($(this).val());
-			} else {
-				$(this).nextAll('input').prop('checked', false);
-				$(this).prop('checked', true);
-				$('#star-score').val($(this).val());
-			}
-			
-		});
-		/*
-			before선택자 대체할 방법 생각하기
-		$('.star').hover(function(){
-			let cssObj = {
-				'content' : '\f005',
-				'font-family' : 'Font Awesome 5 Free',
-				'font-weight' : 400
-			}
-			$(this).prevAll('label:before').css(cssObj);
-		});
-		*/
-	}
-	
-	/* 리뷰 삽입 전 검사 */
-	function fn_reviewInsert(f){
-		let contentRegExp = /.{5}/;
-		if(!contentRegExp.test(f.rv_content.value)){
-			alert('리뷰는 5글자 이상 작성해주세요');
-			f.rv_content.focus();
+	function fn_reserve(f){
+		if($('input:checked').length>1){
+			alert('한 장소만 선택해주세요');
 			return;
 		}
-		f.action='reviewInsert.review';
-		f.submit();
+		/* hidden res-date 선택하는 방법 생각하기 */
 	}
 </script>
 
@@ -165,11 +61,20 @@
 	</div>
 </div>
 <!-- 전화버튼눌렀을때 나올 modal -->
-<div class="modal2">
-	<div class="modal-content2">
-		전화번호
-		
-		<button type="button" onclick="fn_modalClose()"> 확인</button>
+<div class="modal-phone">
+	<div class="modal-content">
+		<div class="content-wrap">
+			<ul>
+				<li>서로에게 기분 좋은 통화가 될 수 있도록<br/>
+				인사부터 나누도록 해요!
+				</li>
+				<li>
+				${placeDto.p_title}<br/>
+				<span>${sellerDto.s_phone}</span>
+				</li>
+			</ul>
+		</div>
+		<button type="button" onclick="fn_modalPhoneClose()"> 확인</button>
 	</div>
 </div>
 <div class="title-area">
@@ -196,39 +101,41 @@
 			<c:if test="${optionList ne null}">
 				<div class="place-option-wrap">
 					<c:forEach var="optionDto" items="${optionList}" varStatus="k">
-						<label>
-							<input type="checkbox" name="po_no" value="${optionDto.po_no}" />
+						<input id="option${k.count}" type="checkbox" name="po_no" value="${optionDto.po_no}" />
+						<label for="option${k.count}">
 							<strong>${optionDto.po_name}</strong>
 						</label>
 							
 						<div class="hidden-box">
-							<div class="day-price">&#92; ${optionDto.po_dayPrice}/day</div>
-							<div class="holiday-price">&#92; ${optionDto.po_holiday}/day</div>
+							<div class="day-price"><strong>평일가격</strong> : &#92; ${optionDto.po_dayPrice}/day</div>
+							<div class="holiday-price"><strong>공휴일가격</strong>&#92; ${optionDto.po_holiday}/day</div>
 							<div class="option-info-box">
 								<div class="img-box">
 									<img alt="" src="resources/images/PlaceOptionImages/${optionDto.po_img1}" />
-									<!-- 옵션의 이미지는 한개만하고 공간의 썸네일을 많이 받는게 나을거 같다. -->
 								</div>
 								<div class="person-count">
 									<strong>수용인원</strong>
 									<span>최소 ${optionDto.po_min}명 ~ 최대 ${optionDto.po_max}</span>
 								</div>
+								<strong>편의시설</strong><br/>
 								<div class="facilities${k.count}">
-								<!-- Todo : 각 방마다의 편의시설을 불러올 방법 -->
-								<!-- DB에 저장되어있는 편의시설정보는 json -->
 								</div>
 								<div class="calendar-wrap">
+								</div>
 								<input type="hidden" name="res_date" />
+								<div class="people-count">
+									<button type="button" class="count-minus" ><i class="fad fa-chevron-circle-left"></i></button>
+									<input id="count" type="number" name="res_people" value="${optionDto.po_min}" min="${optionDto.po_min}" max="${optionDto.po_max}" placeholder="${optionDto.po_min}"/>
+									<button type="button" class="count-plus" ><i class="fas fa-chevron-circle-right"></i></button>
 								</div>
 							</div>
 						</div>
-						
 					</c:forEach>
 				</div>		
 			</c:if>
 			<div class="btn-wrap">
-				<button type="button"><span><i class="fas fa-mobile-alt"></i>전화</span></button>
-				<button>예약신청하기</button>
+				<button type="button" onclick="fn_modalPhone()"><span><i class="fas fa-mobile-alt"></i>전화</span></button>
+				<button type="button" onclick="fn_reserve(this.form)">예약신청하기</button>
 			</div>
 		</form>
 	</aside>
@@ -279,9 +186,13 @@ asjdf
 			</pre>
 			
 		</div>
-		<div class="place-map">
+		<!-- 나중에 커스터마이징 할 시간있으면 한 번 해볼 것. -->
+		<div id="place-map-wrap">
 			<h3>위치</h3>
-			
+			<div id="map" style="width : 100%; height: 500px; overflow:hidden;">
+
+			</div>
+			<h4>${placeDto.p_addr}</h4>
 		</div>
 		<div id="place-remark" class="place-remark">
 			<h3>유의사항</h3>
@@ -307,6 +218,7 @@ jas
 				<form id="review-insert-form" method="post" enctype="multipart/form-data" >
 					<div class="review-insert-star">
 						<p>
+						<!-- js 함수로 만들어서 뿌려보자 시간되면 -->
 							<input id="star1" class="star" type="checkbox" value="1" /><label for="star1"></label> 
 							<input id="star2" class="star" type="checkbox" value="2" /><label for="star2"></label>
 							<input id="star3" class="star" type="checkbox" value="3" /><label for="star3"></label>
@@ -325,7 +237,8 @@ jas
 						<!-- hidden -->
 						<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 						<input type="hidden" name="p_no" value="${placeDto.p_no}" />
-						<input type="file" name="rv_img" value="이미지첨부" />
+						<input id="file-upload-btn" type="file" name="rv_img" accept="image/*" value="이미지첨부" multiple />
+						<label id="upload-btn" for="file-upload-btn">파일 업로드</label>
 						<input type="button" value="작성하기" onclick="fn_reviewInsert(this.form)" />
 						<input type="button" value="다시작성하기" onclick="fn_reviewReset()" />
 					</div>
@@ -340,6 +253,7 @@ jas
 				<c:if test="${reviewList ne null}">
 				<!-- Todo : 리뷰 불러오기는 홀수번째, 짝수번째에 나눠서 다른 css적용 -->
 				<!-- 일단은 모두 같은 css를 적용한다. -->
+				<!-- even, odd라는 선택자 기억해 둘 것. -->
 					<c:forEach var="reviewDto" items="${reviewList}" varStatus="k" >
 						<%-- <c:if test="${(k.index/2) eq 1}">
 							<div class="review-wrap-odd">
@@ -352,6 +266,7 @@ jas
 							</div> 
 						</c:if>--%>
 						<form>
+							<input type="hidden" name="review-rn" value="${reviewDto.rn}" />
 							<div class="review">
 								<div class="reviewer-info">
 									<c:if test="${reviewDto.m_nick eq null}">
@@ -372,28 +287,26 @@ jas
 											<i class="far fa-star"></i>
 										</c:if>
 									 </c:forEach>
-									 <div class="review-date">
-									 	작성일 : ${reviewDto.rv_postDate}<br/>
-									 	<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
-										 	최근수정일 : ${reviewDto.rv_modifyDate}
-									 	</c:if>
-									 </div>
-									 <!-- modal에 표시할 별점 -->
-									 <input type="hidden" name="rv_star" value="${reviewDto.rv_star}" />
+								</div>
+								<div class="review-date">
+									작성일 : ${reviewDto.rv_postDate}<br/>
+									<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
+										최근수정일 : ${reviewDto.rv_modifyDate}
+									</c:if>
 								</div>
 								<div class="review-content" >
 									<p>${reviewDto.rv_content}</p>
-									<!-- modal에 표시할 내용 -->
-									<input type="hidden" name="rv_content" value="${reviewDto.rv_content}" />
-									<input type="hidden" name="rv_no" value="${reviewDto.rv_no}" />
 								</div>
-								<c:if test="${reviewDto.rv_img ne null}">
-									<div class="review-img-box" >
-										<img alt="img" src="resources/images/ReviewImages/${reviewDto.rv_img}" />
-									</div>
-								</c:if>
+								<div class="review-img-box" >
+										
+								</div>
 								<div class="review-btns" >
 									<c:if test="${loginDto.m_no eq reviewDto.m_no}">
+										<!-- modal에 표시할 별점 -->
+										<input type="hidden" name="rv_star" value="${reviewDto.rv_star}" />
+										<!-- modal에 표시할 내용 -->
+										<input type="hidden" name="rv_content" value="${reviewDto.rv_content}" />
+										<input type="hidden" name="rv_no" value="${reviewDto.rv_no}" />
 										<input type="button" value="수정하기" onclick="fn_modal(this.form)" />
 										<input type="button" value="삭제하기" onclick="fn_reviewDelete(this.form)" />
 									</c:if>
@@ -403,10 +316,9 @@ jas
 					</c:forEach>
 				</c:if>
 			</div>
+			<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 		</div>
-	
 	</article>
 </section>
-
 
 <%@ include file="../template/footer.jsp" %>

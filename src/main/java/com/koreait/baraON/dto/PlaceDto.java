@@ -17,6 +17,9 @@ public class PlaceDto {
 	private String p_info;
 	private String p_name;
 	private String p_addr;
+	private String p_bname;
+	private String p_addrdetail;
+	// 동주소 칼럼, 상세주소 칼럼추가
 	private int p_star;
 	private String p_img;
 	private int p_confirm;
