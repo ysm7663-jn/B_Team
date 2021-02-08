@@ -12,6 +12,20 @@
 			<img alt="main사진" src="resources/images/club/${clubDto.c_mainImg}">
 		</div>
 		
+		<div class="side">
+			<div class="side_content">
+				<span id="content">${clubDto.c_title}</span>
+			</div>
+			
+			<div class="side_content">
+				<span id="content">활동 시작일 : ${clubDto.c_startDate}</span>
+			</div>
+			
+			<div class="side_content">
+				<span id="content">활동 종료일 : ${clubDto.c_endDate}</span>
+			</div>
+		</div>
+		
 		<div class="contents-wrap">
 			<div class="content">
 				<span id="title">클럽명</span>
@@ -43,6 +57,10 @@
 				<span id="content">${clubDto.c_subContent3}</span>
 			</div>
 		</div>
+		
+		
+		
+		
 		
 		<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
 		
