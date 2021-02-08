@@ -16,5 +16,5 @@ public class PlaceListDto {
 	private int maxPeople;
 	private String p_title;
 	private String p_img;
-	private String p_addr;
+	private String p_bname;
 }

@@ -19,9 +19,5 @@ public class ReviewDto {
 	private Date rv_postDate;
 	private Date rv_modifyDate;
 	// 작성일 필요할거같다.
-	
-	// view page에서 쓰기 위해 추가한 필드
 	private String rv_content;
-	private String m_nick;
-	private String m_id;
 }

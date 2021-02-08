@@ -7,6 +7,18 @@
 
 <link rel="stylesheet" href="resources/style/place/place-list.css">
 
+<script>
+	let imgList = JSON.parse('${imgList}');
+	$(function(){
+		$.each(imgList, function(idx, img){
+			$.each(img, function(i, placeImg){
+				let imgTag = '<img class="list-thumbnail" alt="'+placeImg+'" src="resources/images/PlaceImages/'+placeImg+'">';
+				$('.thumbnail-box').eq(idx).append(imgTag);
+			}) 
+		});
+	})
+</script>
+
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
 <div class="category-wrap">
@@ -30,7 +42,7 @@
 <div class="list-wrap">
 	<h3 class="subtitle">공간 목록</h3>
 	<c:if test="${isSeller}">
-		<input type="button" value="공간등록하기" />
+		<a id="insert-btn" href="placeInsertPage.place">공간등록하기</a>
 	</c:if>
 	<c:if test="${empty list}">
 		<div class="empty-list-box" >등록된 공간이 없어요!</div>
@@ -42,12 +54,11 @@
 
 				<a href="placeViewPage.place?no=${placeList.p_no}">
 					<div class="thumbnail-box">
-						<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/PlaceImages/${placeList.p_img}">
 					</div>
 					<div class="place-list-info" >
 						<h3>${placeList.p_title}</h3>
 						<div class="place-list-detail">
-							<span id="place-list-addr"><i class="fas fa-map-marker-alt"></i>${placeList.p_addr}</span>
+							<span id="place-list-addr"><i class="fas fa-map-marker-alt"></i>${placeList.p_bname}</span>
 							<span id="place-list-category"># ${placeList.pc_name}</span><br/>
 
 						</div>

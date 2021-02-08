@@ -10,13 +10,13 @@
 <context:property-placeholder location="/config/*.properties" />  <!-- 혹시 properties 파일이 더 있을까봐 -->
 	
 	<!-- HikariConfig -->
+	<!-- HikariConfig -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="${spring.hikariConfig.driverClassName}" />
 		<property name="jdbcUrl" value="${spring.hikariConfig.jdbcUrl}" />
 		<property name="username" value="${spring.hikariConfig.username}" />
 		<property name="password" value="${spring.hikariConfig.password}" />
 	</bean>
-	
 	<!-- HikariDataSource -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
@@ -54,20 +54,5 @@
 		<property name="password" value="1111" />
 	</bean>
 	-->
-	
-	<!-- 이메일 인증 -->
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="baraontest@gmail.com" />
-		<property name="password" value="asdfzxcv12!" />
-		<property name="javaMailProperties">
-			<props>
-                <prop key="mail.transport.protocol">smtp</prop>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-                <prop key="mail.debug">true</prop>
-            </props>
-		</property>
-	</bean>
+		
 </beans>

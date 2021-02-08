@@ -8,11 +8,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.command.place.PlaceInsertCommand;
 import com.koreait.baraON.command.place.PlaceListCommand;
 import com.koreait.baraON.command.place.PlaceViewCommand;
+import com.koreait.baraON.dao.PlaceDao;
 
 @Controller
 public class PlaceController {
@@ -22,12 +24,15 @@ public class PlaceController {
 	
 	private PlaceListCommand placeListCommand;
 	private PlaceViewCommand placeViewCommand;
+	private PlaceInsertCommand placeInsertCommand;
 	
 	@Autowired
 	public void setCommand(PlaceListCommand placeListCommand,
-							PlaceViewCommand placeViewCommand) {
+							PlaceViewCommand placeViewCommand,
+							PlaceInsertCommand placeInsertCommand) {
 		this.placeListCommand = placeListCommand;
 		this.placeViewCommand = placeViewCommand;
+		this.placeInsertCommand = placeInsertCommand;
 	}
 	
 	@RequestMapping(value="placeListPage.place", method=RequestMethod.GET)
@@ -45,6 +50,20 @@ public class PlaceController {
 		return "place/placeViewPage";
 	}
 	
+	@RequestMapping(value="placeInsertPage.place", method=RequestMethod.GET)
+	public String placeInsertPage(Model model) {
+		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
+		model.addAttribute("categoryList", placeDao.placeCategoryList());
+		
+		return "place/placeInsertPage";
+	}
 	
-	
+	@RequestMapping(value="placeInsert.place", method=RequestMethod.POST)
+	public String placeInsert(MultipartHttpServletRequest multipartRequest, Model model) {
+		model.addAttribute("multipartRequest", multipartRequest);
+		
+		placeInsertCommand.execute(sqlSession, model);
+		
+		return "redirect:placeViewPage.place?no="+(int)model.asMap().get("currPNo");
+	}
 }
