@@ -11,10 +11,7 @@
 			alert('오류가 발생했습니다. 관리자에게 문의하세요.');
 		}
 	}
-
-			alert(${delete});
-			alert(${deleteResult});
-			alert(${list});
+	
 </script>
 	<div class="mypage_contents">
 		<h2>위시 리스트</h2>
@@ -29,10 +26,11 @@
 				<c:forEach var="wishListDto" items="${list}">
 					<div class="clubList">
 						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${wishListDto.c_mainimg}"></a></div>
-						<!-- hidden -->
-						<input type="hidden" name="wNo" value="${wishListDto.w_no}" />
-						<input type="hidden" name="mNo" value="${wishListDto.m_no}" />
-						<a href="wishDelete.myPage"><span class="wishIcon"><i class="fas fa-heart"></i></span></a>
+						<form action="wishDelete.myPage" method="post">
+							<!-- hidden -->
+							<input type="hidden" name="wNo" value="${wishListDto.w_no}" />
+							<button><span class="wishIcon"><i class="fas fa-heart"></i></span></button>
+						</form>
 						<div class="title">${wishListDto.c_title}</div>
 						<div class="content">${wishListDto.c_content}</div>
 					</div>

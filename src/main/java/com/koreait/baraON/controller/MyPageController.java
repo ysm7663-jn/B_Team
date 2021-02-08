@@ -40,7 +40,7 @@ public class MyPageController {
 		return "myPage/wishList";
 	}
 	
-	@RequestMapping(value="wishDelete.myPage", method=RequestMethod.GET)
+	@RequestMapping(value="wishDelete.myPage", method=RequestMethod.POST)
 	public String wishDelete(HttpServletRequest request, Model model, RedirectAttributes rttr) {
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);

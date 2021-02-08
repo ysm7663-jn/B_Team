@@ -3,7 +3,6 @@ package com.koreait.baraON.command.myPage;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -21,14 +20,9 @@ public class WishDeleteCommand implements BaraONCommand {
 		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
 		
 		int wNo = 0;
-		int mNo = 0;
 		if(request.getParameter("wNo") != null) {
 			wNo = Integer.parseInt(request.getParameter("wNo"));
 		}
-		if(request.getParameter("mNo") != null) {
-			mNo = Integer.parseInt(request.getParameter("mNo"));
-		}
-		
 		MyPageDao myPageDao = sqlSession.getMapper(MyPageDao.class);
 		// 삭제
 		int result = myPageDao.wishDelete(wNo);

@@ -26,7 +26,10 @@ public class WishListCommand implements BaraONCommand {
 		MyPageDao myPageDao = sqlSession.getMapper(MyPageDao.class);
 		MemberDto loginDto = (MemberDto)session.getAttribute("loginDto");
 		
-		int no = loginDto.getM_no();
+		int no = 0;
+		if(loginDto.getM_no() != 0) {
+			no = loginDto.getM_no();
+		}
 		List<WishListDto> list = myPageDao.wishList(no);
 		
 		session.setAttribute("list", list);
