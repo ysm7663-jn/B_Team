@@ -41,8 +41,6 @@
 				<input type="file" name="c_img2" /><br/>
 				<input type="file" name="c_img3" /><br/>
 				
-				<!-- <span class="title">커리큘럼</span> -->
-				
 			</div>
 		</div>
 		
