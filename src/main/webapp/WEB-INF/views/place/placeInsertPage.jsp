@@ -89,7 +89,7 @@
 						공간이름<span class="required-data">필수 사항</span>
 					</div>
 					<div class="option-content">
-						<input class="option-input" type="text" name="po_title" />
+						<input class="option-input" type="text" name="po_name" />
 						<span id="character-length" ></span>
 					</div>
 				</article>
@@ -160,7 +160,7 @@
 	<h1>공간등록</h1>
 </header>
 <section>
-	<form method="post" enctype="multipart/form-date">
+	<form method="post" enctype="multipart/form-data">
 		<article class="place-insert-list">
 			<div class="subtitle">카테고리 선택	 <span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
@@ -290,7 +290,7 @@
 								공간이름<span class="required-data">필수 사항</span>
 							</div>
 							<div class="option-content">
-								<input class="option-input" type="text" name="po_title" required/>
+								<input class="option-input" type="text" name="po_name" required/>
 								<span id="character-length" ></span>
 							</div>
 						</article>

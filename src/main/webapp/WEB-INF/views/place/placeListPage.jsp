@@ -7,6 +7,18 @@
 
 <link rel="stylesheet" href="resources/style/place/place-list.css">
 
+<script>
+	let imgList = JSON.parse('${imgList}');
+	$(function(){
+		$.each(imgList, function(idx, img){
+			$.each(img, function(i, placeImg){
+				let imgTag = '<img class="list-thumbnail" alt="'+placeImg+'" src="resources/images/PlaceImages/'+placeImg+'">';
+				$('.thumbnail-box').eq(idx).append(imgTag);
+			}) 
+		});
+	})
+</script>
+
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
 <div class="category-wrap">
@@ -42,7 +54,6 @@
 
 				<a href="placeViewPage.place?no=${placeList.p_no}">
 					<div class="thumbnail-box">
-						<img class="list-thumbnail" alt="${placeList.p_title}" src="resources/images/PlaceImages/${placeList.p_img}">
 					</div>
 					<div class="place-list-info" >
 						<h3>${placeList.p_title}</h3>

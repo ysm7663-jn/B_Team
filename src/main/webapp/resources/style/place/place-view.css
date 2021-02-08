@@ -78,7 +78,7 @@ button:hover{
 /* 공간 옵션 css */
 aside {
 	position : sticky;
-	top : 50px;
+	top : 0px;
 	width:324px;
 	height : 80%;
 	margin: 0 auto;
@@ -106,14 +106,14 @@ input[id*="option"]:checked + label::before{
 }
 
 
-.place-option-wrap div {
-	margin-bottom: 20px;
+.place-option-wrap div:not(.facility) {
+	margin-bottom: 10px;
 }
 /* 혹시 편의시설이 3개이상일 때 flex설정이 깨진다면 여길 볼 것 */
 div[id*="facilities"] {
 	display : grid;
 	grid-template-columns : repeat(3,30%);
-	gap : 10px 5%;
+	gap : 5px 5%;
 	justify-content: space-around;
 }
 .facility {
@@ -122,7 +122,6 @@ div[id*="facilities"] {
 	text-align: center;
 	height: 40px;
 	line-height : 40px;
-	
 	font-size : 15px;
 	/* margin : 4px 4px; */
 }

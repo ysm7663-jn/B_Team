@@ -89,10 +89,17 @@ public class PlaceViewCommand implements PlaceCommand {
 		if(reviewList != null && !reviewList.isEmpty()) {
 			sb.append("[");
 			for(int i=0, size=reviewList.size();i<size;i++) {
+				String img = reviewList.get(i).getRv_img();
 				if(i != size-1) {
-					sb.append(reviewList.get(i).getRv_img()+", ");
+					sb.append(img+", ");
+				} else if (img == null) {
+					if(i!=size-1) {	
+						sb.append("[], ");
+					} else {
+						sb.append("[]");
+					}
 				} else {
-					sb.append(reviewList.get(i).getRv_img());
+					sb.append(img);
 				}
 			}
 			sb.append("]");

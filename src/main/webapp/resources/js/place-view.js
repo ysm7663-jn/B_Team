@@ -62,16 +62,19 @@ function fn_plus(){
 
 /* review image */
 function fn_reviewImage(){
-	$.each(reviewImageList, function(key, value){
-		let i=0;
-		if(value !=null){
-			$('.review-img-box').eq(i).append($('<ul>').addClass('img-list'));
-			$.each(value,function(index, reviewImage){
-				$('.img-list').eq(i).append($('<li>').append('<img alt="'+reviewImage+'" src="resources/images/ReviewImages/'+reviewImage+'"/>'));
-			});
-		}
-		i++;
-	});
+	if(reviewImageList!=null){
+		$.each(reviewImageList, function(idx, reviewImage){
+			let imgList = $('<ul class="img-list">');
+			if(reviewImage!=''){
+				$.each(reviewImage, function(i, img){
+					$(imgList).append('<li><img src="resources/images/ReviewImages/'+img+'" alt="리뷰이미지" /></li>');
+					$('.review-img-box').eq(idx).append($(imgList));
+				});
+			}
+		});
+	}
+		
+	
 }
 
 /* scroll 이벤트 */
@@ -212,7 +215,7 @@ function fn_reviewUpdate(f){
 		success:function(responseObj){
 			if(responseObj.result > 0){
 				alert('수정되었습니다.');
-				location.href='placeViewPage.place?no=${placeDto.p_no}';
+				location.href='placeViewPage.place?no='+no;
 			} else{
 				alert('실패');
 			}
@@ -236,7 +239,7 @@ function fn_reviewDelete(f){
 			success:function(responseObj){
 				if(responseObj.result > 0) {
 					alert('삭제되었습니다.');
-					location.href='placeViewPage.place?no=${placeDto.p_no}#place-review';
+					location.href='placeViewPage.place?no='+no+'#place-review';
 				} else {
 					alert('삭제에 실패했습니다.');
 				}

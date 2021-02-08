@@ -72,14 +72,12 @@ INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_H
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (02, 01, '음공 스튜디오 키친02', 2, 15, 40000, 50000, 'PO_IMG201.jpg', '["의자/테이블","탈의실","전신거울","음식물 반입가능"]');
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (03, 01, '음공 스튜디오 키친03', 2, 15, 40000, 50000, 'PO_IMG301.jpg', '["내부화장실","금연","PC/노트북","WIFI"]' );
 
+select * from place
+select * from placeoption
+delete from place where p_no in (3 , 4);
 
-
-
-
-
-
-
-
+update place set p_confirm = 1 where p_no=5;
+update place set p_info = '["시설안내입니다.1","시설안내입니다.2"]', p_remark= '["주의사항입니다."]' where p_no=5;
 
 
 

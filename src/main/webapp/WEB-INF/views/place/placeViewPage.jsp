@@ -12,11 +12,21 @@
 <link rel="stylesheet" href="resources/style/place/place-view.css">
 <script>
 	let facilityList = JSON.parse('${facilityList}');
-	let loginDtoMNo = '${loginDto.m_no}';
-	let reviewImageList = null;
+	let loginDtoMNo = null;
+	try {
+		if(${loginDto ne null}) {
+			loginDtoMNo = '${loginDto.m_no}';
+		}
+	} catch (e) {
+		alert('에러');
+		loginDtoMno = '${loginDto.m_no}';
+	}
 	let thumbnail = JSON.parse('${placeDto.p_img}');
+	let infoList = JSON.parse('${placeDto.p_info}');
+	let remarkList = JSON.parse('${placeDto.p_remark}');
+	let reviewImageList = null;
 	if ('${reviewImage}'!=''){
-		reviewImageList = JSON.parse('${reviewImage}');
+			reviewImageList = JSON.parse('${reviewImage}');
 	}
 	let no = ${param.no};
 	let pAddr = '${placeDto.p_addr}';
@@ -34,7 +44,7 @@
 	if(${param.insertResult gt 0}){
 		alert('작성해주셔서 감사합니다.');
 	} else if (${param.insertResult eq -1}) {
-		alert('지원되는 확장자가 아닙니다.(jpg, jpeg, gif, png)');
+		alert('지원되는 확장자가 아닙니다.(jpg, jpeg, png)');
 	} else if (${param.insertResult eq 0}) {
 		alert('리뷰 작성에 실패했습니다.');
 	}
@@ -43,7 +53,14 @@
 		$.each(thumbnail, function(idx, img){
 			$('.thumbnail-box').append($('<img>').prop('src', 'resources/images/PlaceImages/'+img));
 		});
+		fn_appendList(infoList, '#info-list');
+		fn_appendList(remarkList, '#remark-list');
 	});
+	function fn_appendList(list, appendToTag){
+		$.each(list,function(idx, item){
+			$(appendToTag).append('<li>'+item+'</li>');
+		});
+	}
 	
 	function fn_reserve(f){
 		if($('input:checked').length>1){
@@ -166,35 +183,15 @@
 		</div>
 		<div id="place-main-info" class="place-main-info">
 			<h3>공간소개</h3>
-			<p>
+			<p style="white-space:pre-line">
 				${placeDto.p_content}
 			</p>
-			<pre>
-asdj
-asdjf
-ajsd
-fja
-sdfj
-asdjf
-		</pre>
 		</div>
 		<div id="place-info" class="place-info">
 			<h3>시설안내</h3>
-			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
-			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
-			<p>
-			${placeDto.p_info}
-			</p>
-			<pre>
-asdj
-asdjf
-ajsd
-fja
-sdfj
-asdjf
-asjdf
-			</pre>
+			<ol id="info-list">
 			
+			</ol>
 		</div>
 		<!-- 나중에 커스터마이징 할 시간있으면 한 번 해볼 것. -->
 		<div id="place-map-wrap">
@@ -205,22 +202,12 @@ asjdf
 			<h4>${placeDto.p_addr}</h4>
 		</div>
 		<div id="place-remark" class="place-remark">
-			<h3>유의사항</h3>
+			<h3>예약시 주의사항</h3>
 			<!-- db에 저장된건 json을 string으로 변환한 데이터 -->
 			<!-- Todo : 다시 js에서 json타입으로 변환후에 뿌려준다. -->
-			<p>
-			${placeDto.p_remark}
-			</p>
-			<pre>
-asdj
-asdjf
-ajsd
-fja
-sdfj
-asdjf
-asjdf
-jas
-		</pre>
+			<ol id="remark-list">
+			
+			</ol>
 		</div>
 		<div id="place-review" class="place-review">
 			<h3>리뷰</h3>
@@ -314,9 +301,9 @@ jas
 							</div>
 						</form>
 					</c:forEach>
-					<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 				</c:if>
 			</div>
+			<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 		</div>
 	</article>
 </section>

@@ -64,6 +64,6 @@ public class PlaceController {
 		
 		placeInsertCommand.execute(sqlSession, model);
 		
-		return "redirect:placeListPage.place";
+		return "redirect:placeViewPage.place?no="+(int)model.asMap().get("currPNo");
 	}
 }
