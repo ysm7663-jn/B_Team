@@ -21,8 +21,9 @@ div {
 
 .mypage_body {
 	display: flex;
-	height: 900px;
-	margin: 2% 18%;
+	overflow: hidden;
+	height: auto;
+	margin: 2% 18% 12% 18%;
 }
 .mypage_category {
 	margin: 0 2% 2% 3%;

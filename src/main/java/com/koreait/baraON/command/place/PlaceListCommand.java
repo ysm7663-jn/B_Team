@@ -40,9 +40,21 @@ public class PlaceListCommand implements PlaceCommand {
 		} catch (ClassCastException e) {
 			isSeller=false;
 		}
+		StringBuffer sb = new StringBuffer();
+		sb.trimToSize();
+		sb.append("[");
+		for(int i = 0, size=list.size();i<size;i++) {
+			if(i!=(size-1)) {
+				sb.append(list.get(i).getP_img()+", ");
+			} else {
+				sb.append(list.get(i).getP_img()+"]");
+				
+			}
+		}
 		
 		model.addAttribute("list", list);
 		model.addAttribute("isSeller", isSeller);
+		model.addAttribute("imgList", sb.toString());
 		model.addAttribute("categoryList", placeDao.placeCategoryList());
 	}
 
