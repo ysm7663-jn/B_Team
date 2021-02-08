@@ -16,13 +16,20 @@ public class PlaceCaSearchCommand implements SellerCommand {
 
 		Map<String, Object> map = model.asMap();
 		
-		PlaceDto2 placeDto2 = (PlaceDto2)map.get("placeDto2");
+		PlaceDao2 placeDao2 = sqlSession.getMapper(PlaceDao2.class);
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		PlaceDao2 placeDao2 = sqlSession.getMapper(PlaceDao2.class);
+		PlaceDto2 placeDto2 = (PlaceDto2)map.get("placeDto2");
 		
-		resultMap.put("result", placeDao2.placeCaSearch(placeDto2));
+		
+		
+		if(placeDto2 != null) {	
+			resultMap.put("placeDto2", placeDto2);
+			resultMap.put("result", true);
+		}else {
+			resultMap.put("result", false);
+		}
 		
 		return resultMap;
 	}

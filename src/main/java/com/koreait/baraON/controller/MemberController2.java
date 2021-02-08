@@ -141,11 +141,12 @@ public class MemberController2 {
 	}
 	
 	@RequestMapping(value="memberView.member",
-					method=RequestMethod.POST)
-	public Map<String, Object> memberView(HttpServletRequest request,
+					method=RequestMethod.GET)
+	public String memberView(HttpServletRequest request,
 											Model model){
 		model.addAttribute("request", request);
-		return memberViewCommand.execute(sqlSession, model);
+		memberViewCommand.execute(sqlSession, model);
+		return "member/memberView";
 	}
 	
 	@RequestMapping(value="memberPwUpdate.member",

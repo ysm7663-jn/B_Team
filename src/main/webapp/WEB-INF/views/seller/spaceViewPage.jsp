@@ -12,7 +12,7 @@
 			data:'s_no='+s_no,
 			dataType: 'json',
 			success: function(data){
-				alert('성공');
+				alert('성공');	//지울것
 				if(data.result == true){
 					placeListTable(data.list)
 				}
@@ -46,7 +46,8 @@
 				contentType:'application/json',
 				dataType: 'json',
 				success: function(resultMap){
-					alert('성공');
+					alert('성공'); //지울것
+					
 				},
 				error: function(){
 					alert('실패');

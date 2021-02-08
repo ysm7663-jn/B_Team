@@ -15,6 +15,7 @@ public class AllPlaceSearchCommand implements SellerCommand {
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
 		Map<String, Object> map = model.asMap();
+		
 		int s_no = (int)map.get("s_no");
 		
 		PlaceDao2 placeDao2 = sqlSession.getMapper(PlaceDao2.class);
