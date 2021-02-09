@@ -140,7 +140,7 @@
 				<span id="content">${clubDto.c_img3}</span> <span id="content">${clubDto.c_subContent3}</span>
 			</div>
 		</div>
-
+		
 		<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
 	</div>
 

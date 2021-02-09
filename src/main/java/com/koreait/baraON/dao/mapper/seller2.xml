@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.baraON.dao.SellerDao">
+
+	<select id="sellerPwSearch" parameterType="int" resultType="String">
+		SELECT S_PW
+		FROM SELLER
+		WHERE S_NO= #{s_no}
+	</select>
+
+	<update id="sellerPwUpdate"  parameterType="com.koreait.baraON.dto.SellerDto">
+		UPDATE SELLER
+		SET S_PW=#{s_pw}
+		WHERE S_NO = #{s_no}
+	</update>
+
+	<update id="sellerUpdate"  parameterType="com.koreait.baraON.dto.SellerDto">
+		UPDATE SELLER
+		SET S_PHONE=#{s_phone},
+			S_EMAIL=#{s_email}
+		WHERE S_NO = #{s_no}
+	</update>
+
+</mapper>

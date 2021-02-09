@@ -9,6 +9,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.ReviewDao;
 
@@ -18,7 +19,7 @@ public class ReviewInsertCommand implements ReviewCommand {
 	public void execute(SqlSession sqlSession, Model model) {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)model.asMap().get("multipartRequest");
-//		RedirectAttributes rttr = (RedirectAttributes)model.asMap().get("rttr");
+		RedirectAttributes rttr = (RedirectAttributes)model.asMap().get("rttr");
 //		System.out.println(rttr);
 		
 		int m_no = Integer.parseInt(multipartRequest.getParameter("m_no"));
@@ -37,7 +38,7 @@ public class ReviewInsertCommand implements ReviewCommand {
 		
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
-		
+		System.out.println(sb.length());
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
@@ -59,7 +60,7 @@ public class ReviewInsertCommand implements ReviewCommand {
 						}
 					}
 					
-					model.addAttribute("insertResult", -1);
+					rttr.addFlashAttribute("insertResult", -1);
 				}
 				
 				String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
@@ -85,14 +86,16 @@ public class ReviewInsertCommand implements ReviewCommand {
 					sb.append("\""+uploadFilename+"\"]");
 					sb.insert(0,"[");
 				}
-			} else {
-				model.addAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, "", rv_content));
-			}
-			if ( !sb.toString().isEmpty() && sb.toString() != null) {
-				rv_img = sb.toString();
 			}
 		}
-		model.addAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, rv_img, rv_content));
+		if ( !sb.toString().isEmpty() && sb.toString() != null) {
+			System.out.println("1");
+			rv_img = sb.toString();
+			rttr.addFlashAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, rv_img, rv_content));
+		} else {
+			System.out.println("2");
+			rttr.addFlashAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, sb.toString(), rv_content));
+		}
 	}
 
 }

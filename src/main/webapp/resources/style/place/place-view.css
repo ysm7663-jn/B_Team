@@ -328,6 +328,9 @@ ul.img-list li:hover{
 	display: flex;
 	position:relative;
 }
+td.ui-datepicker-current-day{
+	background: rgba(216,191,216,1);
+}
 .ui-datepicker-title{
 	width:100%;
 	text-align: center;
@@ -370,10 +373,7 @@ td.ui-datepicker-today{
 td:not(.ui-datepicker-unselectable):hover{
 	background: rgba(216,191,216, 1);
 }
-td:active{
-	background: rgba(216,191,216, 1);
-}
-.ui-datepicker-week-end{
+.ui-datepicker-week-end:not(.ui-datepicker-unselectable)>a{
 	color: red;
 }
 @media screen and (max-width : 1100px){

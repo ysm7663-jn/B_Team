@@ -74,6 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="placeInsert" parameterType="com.koreait.baraON.dto.PlaceDto" >
+
 		<selectKey keyProperty="p_no" resultType="int" order="BEFORE">
 			SELECT PLACE_SEQ.NEXTVAL
 			  FROM DUAL
@@ -82,6 +83,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
 		VALUES (#{p_no}, #{s_no}, #{pc_no}, #{p_title}, #{p_name}, #{p_desc}, #{p_content}, #{p_info}, #{p_addr}, #{p_bname}, #{p_addrdetail}, #{p_img}, 1, #{p_url}, #{p_remark}, 0)
 	</insert>
-	
 	
 </mapper>
