@@ -14,7 +14,7 @@ import com.koreait.baraON.dao.MyPageDao;
 import com.koreait.baraON.dto.MemberDto;
 import com.koreait.baraON.dto.RegularClubListDto;
 
-public class RegularClubCommand implements BaraONCommand {
+public class InstantClubCommand implements BaraONCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
@@ -24,7 +24,7 @@ public class RegularClubCommand implements BaraONCommand {
 		
 		int state = 0;
 		int mNo = 0;
-		int cPart = 0; // 정기 모임
+		int cPart = 1; // 정기 모임
 
 		if(request.getParameter("state") != null) {
 			state = Integer.parseInt(request.getParameter("state"));
@@ -46,6 +46,7 @@ public class RegularClubCommand implements BaraONCommand {
 		}
 		
 		model.addAttribute("list", list);
+
 	}
 
 }

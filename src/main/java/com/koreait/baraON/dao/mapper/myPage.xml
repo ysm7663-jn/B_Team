@@ -16,8 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM WISHLIST
 		 WHERE W_NO = #{param1}
 	</delete>
-	<select id="regularClubList" parameterType="int" resultType="com.koreait.baraON.dto.RegularClubListDto">
-		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.M_NO, CL.CL_CARD
+	<select id="clubList" parameterType="int" resultType="com.koreait.baraON.dto.RegularClubListDto">
+		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.M_NO, CL.CL_CARD, CL.CL_NO
 			FROM CLUBLIST CL JOIN CLUB C
 		 ON CL.C_NO = C.C_NO
 		 WHERE CL.M_NO = #{param1}
@@ -25,8 +25,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 			AND C.C_DELETE = 0
 	</select>
-	<select id="regularLastClubList" parameterType="int" resultType="com.koreait.baraON.dto.RegularClubListDto">
-		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.M_NO, CL.CL_CARD
+	<select id="lastClubList" parameterType="int" resultType="com.koreait.baraON.dto.RegularClubListDto">
+		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.M_NO, CL.CL_CARD, CL.CL_NO
 			FROM CLUBLIST CL JOIN CLUB C
 		 ON CL.C_NO = C.C_NO
 		 WHERE CL.M_NO = #{param1}
@@ -34,4 +34,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') &lt; TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 			AND C.C_DELETE = 0
 	</select>
+	<delete id="clubListDelete" parameterType="int">
+		DELETE
+			FROM CLUBLIST
+		  WHERE CL_NO = #{param1}
+	</delete>
 </mapper>

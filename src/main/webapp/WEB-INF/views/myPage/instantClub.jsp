@@ -15,16 +15,21 @@
 			f.submit();
 		}
 	}
-	
-	if('${delete}') { //clubDelete에서 왔으면
-		if('${deleteResult} != null') {
+	/* if('${delete}') { //clubDelete에서 왔으면
+		alert('${delete}');
+		alert('${deleteResult}');
+		if('${deleteResult} != 1') {
 			alert('일시적인 오류가 발생했습니다. 다시 시도해주세요.');			
 		}
+	} */
+	
+	if(${param.state == 1}) {  // 지난 모임이면
+		$('.empty').html('진행했던 모임이 없습니다.');
+		$('.quit').remove();
 	}
-	console.log('${param.state}');
 </script>
 	<div class="mypage_contents">
-		<h2>정기모임</h2>
+		<h2>번개 모임</h2>
 		<hr class="top">
 			
 		<ul class="state">

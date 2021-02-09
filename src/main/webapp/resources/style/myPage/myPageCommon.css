@@ -43,9 +43,10 @@ div {
 .mypage_contents > h2 {
 	margin-bottom: 12px;
 }
-.mypage_contents hr {
+.mypage_contents .top {
 	height: 3px;
 	background: #dbdbdb;
 	border: 1px solid #dbdbdb;
 	border-radius: 3px;
+	margin-bottom: 15px;
 }

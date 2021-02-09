@@ -61,6 +61,8 @@
 	<beans:bean id="wishListCommand" class="com.koreait.baraON.command.myPage.WishListCommand" />	
 	<beans:bean id="wishDeleteCommand" class="com.koreait.baraON.command.myPage.WishDeleteCommand" />	
 	<beans:bean id="regularClubCommand" class="com.koreait.baraON.command.myPage.RegularClubCommand" />	
+	<beans:bean id="instantClubCommand" class="com.koreait.baraON.command.myPage.InstantClubCommand" />	
+	<beans:bean id="clubListDeleteCommand" class="com.koreait.baraON.command.myPage.ClubListDeleteCommand" />	
 	
 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
 		<beans:property name="host" value="smtp.gmail.com"/>
