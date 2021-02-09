@@ -46,9 +46,19 @@
 	}
 	
 	$(function(){
-		
+		fn_submitTo('#place-update-btn', 'placeUpdatePage.place', '수정');
+		fn_submitTo('#place-delete-btn', 'placeDelete.place', '삭제');
 	});
 	
+	function fn_submitTo(btn, actionTo, execute){
+		$(btn).click(function(){
+			if(execute=='삭제' && confirm('삭제하시면 더 이상 해당 공간이 노출되지 않습니다. 정말 삭제하시겠습니까?')){
+				('#update-form').prop('action', actionTo).submit();
+			} else {
+				('#update-form').prop('action', actionTo).submit();
+			}
+		});
+	}
 	
 	function fn_reserve(f){
 		if(isSeller){
@@ -120,6 +130,15 @@
 	<div>
 		<span># ${categoryName}</span>
 	</div>
+	<c:if test="${isSeller && (sellerDto.s_no eq loginDto.s_no)}">
+		<div class="btn-wrap">
+			<form id="update-form" method="post">
+				<input type="hidden" name="p_no" value="${placeDto.p_no}" />
+				<button type="button" id="place-update-btn">수정하기</button>
+				<button type="button" id="place-delete-btn">삭제하기</button>
+			</form>
+		</div>
+	</c:if>
 </div>
 <section>
 	<aside>

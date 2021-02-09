@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.command.place.PlaceDeleteCommand;
 import com.koreait.baraON.command.place.PlaceInsertCommand;
 import com.koreait.baraON.command.place.PlaceListCommand;
+import com.koreait.baraON.command.place.PlaceUpdateCommand;
 import com.koreait.baraON.command.place.PlaceViewCommand;
 import com.koreait.baraON.dao.PlaceDao;
 
@@ -25,14 +27,20 @@ public class PlaceController {
 	private PlaceListCommand placeListCommand;
 	private PlaceViewCommand placeViewCommand;
 	private PlaceInsertCommand placeInsertCommand;
+	private PlaceUpdateCommand placeUpdateCommand;
+	private PlaceDeleteCommand placeDeleteCommand;
 	
 	@Autowired
 	public void setCommand(PlaceListCommand placeListCommand,
 							PlaceViewCommand placeViewCommand,
-							PlaceInsertCommand placeInsertCommand) {
+							PlaceInsertCommand placeInsertCommand,
+							PlaceUpdateCommand placeUpdateCommand,
+							PlaceDeleteCommand placeDeleteCommand) {
 		this.placeListCommand = placeListCommand;
 		this.placeViewCommand = placeViewCommand;
 		this.placeInsertCommand = placeInsertCommand;
+		this.placeUpdateCommand = placeUpdateCommand;
+		this.placeDeleteCommand = placeDeleteCommand;
 	}
 	
 	@RequestMapping(value="placeListPage.place", method=RequestMethod.GET)
@@ -70,4 +78,13 @@ public class PlaceController {
 		placeInsertCommand.execute(sqlSession, model);
 		
 		return "redirect:placeInsertResult.place";	}
+	
+	@RequestMapping(value="placeUpdatePage.place", method=RequestMethod.POST)
+	public String placeUpdatePage(int p_no, Model model) {
+		model.addAttribute("p_no", p_no);
+		
+		return "place/placeUpdatePage";
+	}
+	
+	
 }

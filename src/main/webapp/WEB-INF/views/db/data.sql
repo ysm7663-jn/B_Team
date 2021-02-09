@@ -1,5 +1,5 @@
 -- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
-select * from reservation
+
 -- DROP SEQUENCES
 DROP SEQUENCE WISHLIST_SEQ;
 DROP SEQUENCE FAQ_SEQ;
