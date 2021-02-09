@@ -16,5 +16,43 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM MEMBER
 		WHERE M_NICK= #{m_nick}
 	</select>
+	
+	<select id="memberPwSearch" parameterType="String" resultType="String">
+		SELECT M_PW
+		FROM MEMBER
+		WHERE M_ID= #{m_id}
+	</select>
+
+	<insert id="memberInsert" parameterType="com.koreait.baraON.dto.MemberDto2">
+		INSERT INTO
+		MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL, M_REGDATE, M_AGREEMENT)
+		VALUES (MEMBER_SEQ.NEXTVAL, #{m_id}, #{m_pw}, #{m_phone}, #{m_name}, #{m_birth}, #{m_nick}, #{m_email}, #{m_regDate}, #{m_agreement})
+	</insert>
+	
+	<select id="memberView"  parameterType="int" resultType="com.koreait.baraON.dto.MemberDto2"> 
+		SELECT *
+		FROM MEMBER
+		WHERE M_NO=#{m_no}
+	</select>
+	
+	<update id="memberPwUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
+		UPDATE MEMBER
+		SET M_PW=#{m_pw}
+		WHERE M_NO = #{m_no}
+	</update>
+	
+	<update id="memberNickUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
+		UPDATE MEMBER
+		SET M_NICK=#{m_nick}
+		WHERE M_NO = #{m_no}
+	</update>
+	
+	<update id="memberUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
+		UPDATE MEMBER
+		SET M_PHONE=#{m_phone},
+			M_EMAIL=#{m_email}
+		WHERE M_NO = #{m_no}
+	</update>
+
 
 </mapper>

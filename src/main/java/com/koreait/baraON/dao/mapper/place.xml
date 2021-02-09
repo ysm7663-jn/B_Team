@@ -74,6 +74,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<insert id="placeInsert" parameterType="com.koreait.baraON.dto.PlaceDto" >
+
 		<selectKey keyProperty="p_no" resultType="int" order="BEFORE">
 			SELECT PLACE_SEQ.NEXTVAL
 			  FROM DUAL
@@ -94,5 +95,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET
 		WHERE P_NO=#{param1}
 	</update>
-	
+
 </mapper>

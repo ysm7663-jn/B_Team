@@ -517,6 +517,7 @@ oo는 이용자 혹은 법정 대리인의 요청에 의해 해지 또는 삭제
 		
 		<div id="errorMsg"  class="result" style="display:none;">바라온 이용약관과 개인정보 수집 및 이용에 대한 안내 모두 동의해 주세요</div>
 		<br/>
+		
 	<input type="button" value="확인" name="btn1" id="btn1" onclick="fn_join2(this.form)"/>
 	<input type="button" value="취소" name="btn2" id="btn2" onclick="location.href=''"/>
 	

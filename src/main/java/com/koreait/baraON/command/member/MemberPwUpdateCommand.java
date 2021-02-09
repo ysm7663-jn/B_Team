@@ -7,21 +7,24 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.koreait.baraON.dao.MemberDao2;
+import com.koreait.baraON.dto.MemberDto2;
 
-public class MemberNickSearchCommand implements MemberCommand{
+public class MemberPwUpdateCommand implements MemberCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
-		
-		Map<String, Object> map = model.asMap();
-		String m_nick = (String)map.get("m_nick");
 
-		MemberDao2 memberDao = sqlSession.getMapper(MemberDao2.class);
+		Map<String, Object> map = model.asMap();
+		MemberDto2 memberDto2  = (MemberDto2)map.get("memberDto2");
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		resultMap.put("result", memberDao.memberNickSearch(m_nick));
+		MemberDao2 memberDao2 = sqlSession.getMapper(MemberDao2.class);
+		
+		resultMap.put("result", memberDao2.memberPwUpdate(memberDto2));
 		
 		return resultMap;
+		
 	}
+
 }
