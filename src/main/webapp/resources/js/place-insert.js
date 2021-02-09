@@ -153,7 +153,11 @@ function fn_addOption(){
 			</div>
 			</article>
 		`;
-		$('section.option').last().after(strHtml);
+		if($('section.option').length == 0){
+			$('section.btn-box').before(strHtml);
+		} else {
+			$('section.option').last().after(strHtml);
+		}
 		fn_addFacility($('.add-facility-btn').last());
 		fn_previewThumbnail('#option-thumbnail');
 	});
