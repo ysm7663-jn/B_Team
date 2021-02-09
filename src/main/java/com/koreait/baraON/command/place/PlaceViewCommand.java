@@ -112,9 +112,11 @@ public class PlaceViewCommand implements PlaceCommand {
 			}
 		} catch (ClassCastException e) {
 			isSeller=false;
+			
 		}
 		
 		// 로그인된 멤버가 해당 공간을 예약해서 사용한적 있는지 판단
+		
 		if (!isSeller) {
 			
 		}

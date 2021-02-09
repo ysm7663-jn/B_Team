@@ -8,7 +8,7 @@
 <script type="text/javascript" src="resources/js/reserve.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-let isProgress=false;
+	let isProgress=false;
 	$(function(){
 		$("#res-update").click(function() {
 			if(isProgress){
@@ -72,6 +72,8 @@ let isProgress=false;
 						success:function(responseObj){
 							if(responseObj.result){
 								alert('결제에 성공했습니다. 예약대기상태로 변경됩니다.');
+							} else {
+								alert('결제에 실패했습니다. 다시 시도해주세요');
 							}
 						},
 						error:function(request,status,error){
@@ -102,6 +104,7 @@ let isProgress=false;
 		<article class="res-insert-list">
 			<div class="subtitle">예약 공간</div>
 			<div class="sub-content">
+				
 				
 			</div>
 		</article>

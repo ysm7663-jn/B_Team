@@ -22,6 +22,7 @@ public class PlaceUpdatePageCommand implements PlaceCommand {
 		
 		model.addAttribute("placeDto", placeDao.getPlaceDto(p_no));
 		model.addAttribute("placeOptionDto", placeOptionDao.getPlaceOptionByPNo(p_no));
+		model.addAttribute("categoryList", categoryList);
 	}
 
 }

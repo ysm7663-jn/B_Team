@@ -8,7 +8,7 @@
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b735551da134940779a92513cdbca8f5&libraries=services"></script>
-<script type="text/javascript" src="resources/js/place-view.js" ></script> 
+<script type="text/javascript" src="resources/js/place-view.js" defer ></script> 
 <link rel="stylesheet" href="resources/style/place/place-view.css">
 <script>
 	let facilityList = JSON.parse('${facilityList}');
@@ -43,21 +43,6 @@
 		alert('지원되는 확장자가 아닙니다.(jpg, jpeg, png)');
 	} else if (${insertResult eq 0}) {
 		alert('리뷰 작성에 실패했습니다.');
-	}
-	
-	$(function(){
-		fn_submitTo('#place-update-btn', 'placeUpdatePage.place', '수정');
-		fn_submitTo('#place-delete-btn', 'placeDelete.place', '삭제');
-	});
-	
-	function fn_submitTo(btn, actionTo, execute){
-		$(btn).click(function(){
-			if(execute=='삭제' && confirm('삭제하시면 더 이상 해당 공간이 노출되지 않습니다. 정말 삭제하시겠습니까?')){
-				$('#update-form').prop('action', actionTo).submit();
-			} else {
-				$('#update-form').prop('action', actionTo).submit();
-			}
-		});
 	}
 	
 	function fn_reserve(f){

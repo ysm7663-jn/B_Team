@@ -41,10 +41,23 @@ $(function(){
 	fn_sildeImg();
 	fn_appendList(remarkList, '#remark-list');
 	fn_appendList(infoList, '#info-list');
-	
-	
-	
+	fn_submitTo('#place-update-btn', 'placeUpdatePage.place', '수정');
+	fn_submitTo('#place-delete-btn', 'placeDelete.place', '삭제');
 })
+
+/* 공간 수정 삭제버튼 */
+function fn_submitTo(btn, actionTo, execute){
+	$(btn).click(function(){
+		if(execute=='삭제' && confirm('삭제하시면 더 이상 해당 공간이 노출되지 않습니다. 정말 삭제하시겠습니까?')){
+			$('#update-form').prop('action', actionTo).submit();
+			return;
+		} 
+		if(execute=='수정'){
+			$('#update-form').prop('action', actionTo).submit();
+			return;
+		}
+	});
+}
 
 /* 리스트 삽입 */
 function fn_appendList(list, appendToTag){

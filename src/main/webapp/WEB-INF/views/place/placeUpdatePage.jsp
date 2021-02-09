@@ -82,6 +82,10 @@
 	}
 	function fn_addOption(){
 		$('#add-option-btn').click(function(event){
+			if($('section.option').length>5){
+				alert('');
+				return;
+			}
 			let strHtml =`
 				<section class="option">
 				<article class="option-box">
@@ -178,7 +182,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">공간 이름<span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
-				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" required/>
+				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" value="${placeDto.p_title}" required/>
 				<span id="character-length" ></span>자 / 50자<br/>
 				<p class="example-box" style="white-space:pre-line;">
 					리스트에 공개 될 제목입니다.
@@ -188,7 +192,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">사업장명 <span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
-				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" required/>
+				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" value="${placeDto.p_name}" required/>
 				<span id="character-length" ></span>자 / 50자
 				<p class="example-box" style="white-space:pre-line;">
 					사업자로 등록되어 있는 사업장 이름을 적어주세요.
@@ -198,14 +202,14 @@
 		<article class="place-insert-list">
 			<div class="subtitle">공간 한줄 소개</div>
 			<div class="sub-content">
-				<input class="place-input" type="text" name="p_desc" placeholder="최대 150자" />
+				<input class="place-input" type="text" name="p_desc" placeholder="최대 150자" value="${placeDto.p_desc}" />
 				<span id="character-length" ></span>자 / 150자
 			</div>
 		</article>
 		<article class="place-insert-list">
 			<div class="subtitle">공간 소개 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required></textarea>
+				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" value="${placeDto.p_content}" required></textarea>
 				<span id="character-length" ></span>자 / 2000자
 			</div>
 		</article>
