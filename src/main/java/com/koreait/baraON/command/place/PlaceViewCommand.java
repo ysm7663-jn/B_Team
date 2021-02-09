@@ -104,6 +104,21 @@ public class PlaceViewCommand implements PlaceCommand {
 			}
 			sb.append("]");
 		}
+		boolean isSeller = false;
+		try {
+			SellerDto loginDto = (SellerDto)request.getSession().getAttribute("loginDto");
+			if(loginDto != null) {
+				isSeller=true;
+			}
+		} catch (ClassCastException e) {
+			isSeller=false;
+		}
+		
+		// 로그인된 멤버가 해당 공간을 예약해서 사용한적 있는지 판단
+		if (!isSeller) {
+			
+		}
+		model.addAttribute("isSeller", isSeller);
 		model.addAttribute("reviewImage", sb.toString());
 		
 		model.addAttribute("placeDto", placeDto);

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.review.ReviewDeleteCommand;
 import com.koreait.baraON.command.review.ReviewInsertCommand;
@@ -62,8 +63,9 @@ public class ReviewController {
 	}
 	
 	@RequestMapping(value="reviewInsert.review", method=RequestMethod.POST)
-	public String reviewInsert(MultipartHttpServletRequest multipartRequest, Model model) {
+	public String reviewInsert(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
+		model.addAttribute("rttr", rttr);
 		
 		reviewInsertCommand.execute(sqlSession, model);
 		return "redirect:placeViewPage.place?no="+multipartRequest.getParameter("p_no");

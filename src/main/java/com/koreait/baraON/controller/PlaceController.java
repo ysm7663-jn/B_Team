@@ -58,12 +58,16 @@ public class PlaceController {
 		return "place/placeInsertPage";
 	}
 	
+	@RequestMapping(value="placeInsertResult.place")
+	public String placeInsertResultPage() {
+		return "place/placeInsertResult";
+	}
 	@RequestMapping(value="placeInsert.place", method=RequestMethod.POST)
-	public String placeInsert(MultipartHttpServletRequest multipartRequest, Model model) {
+	public String placeInsert(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
+		model.addAttribute("rttr", rttr);
 		
 		placeInsertCommand.execute(sqlSession, model);
 		
-		return "redirect:placeViewPage.place?no="+(int)model.asMap().get("currPNo");
-	}
+		return "redirect:placeInsertResult.place";	}
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.baraON.dao.ClubDao">
+
+	<select id="clubList" resultType="com.koreait.baraON.dto.ClubDto">
+		SELECT *
+		  FROM CLUB
+	</select>
+	
+	<!--
+	 INTO CLUB (C_NO, C_MAINTHUMNAIL, C_TITLE, C_MIN, C_MAX, C_STARTDATE, C_ENDDATE, C_CONTENT, C_THUMBNAIL1, C_THUMBNAIL2, C_THUMBNAIL3, C_POSTDATE)
+ 	-->
+ 	<insert id="clubInsert">
+		INSERT 
+		  INTO CLUB (C_NO, M_NO, C_TITLE, C_CONTENT, C_POSTDATE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_COUNT, C_MAINIMG, C_DELETEM, C_PART)
+		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, SYSDATE, SYSDATE, SYSDATE,  #{param4}, #{param5}, 0, #{param6}, 0, 0)
+	</insert>
+
+	<select id="clubView" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
+		SELECT * 
+		  FROM CLUB
+		 WHERE C_NO = #{param1}
+	</select>
+	
+	<select id="clubView2" parameterType="int" resultType="com.koreait.baraON.dto.MemberDto">
+		SELECT M_NICK 
+		  FROM MEMBER
+		 WHERE M_NO = ( SELECT M_NO
+		 				  FROM CLUB
+		 				 WHERE C_NO = #{param1} )
+	</select>
+
+</mapper>
