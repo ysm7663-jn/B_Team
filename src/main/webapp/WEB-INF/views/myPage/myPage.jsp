@@ -8,18 +8,17 @@
 <link rel="stylesheet" href="resources/style/myPage/myPageCommon.css">
 <script>
 	$(function(){
-
 		$('body').on('click', '.member_category li > a', function(event){
-			$('.member_category li>a').css('background','');
+			$('.member_category li > a').css('background','');
 			$(this).css('color', 'red');
 		});
 	});
 </script>
-<div class="mypage_body">
-	<div class="mypage_category">
+<div class="mypage-body">
+	<div class="mypage-category">
 		<c:if test="${grade eq 'member'}">
 			<h2>일반</h2>
-			<ul class="member_category">
+			<ul class="member-category">
 				<li>
 					<a class="btn" href="profile.myPage">내 프로필</a><br/>
 				</li>
@@ -38,7 +37,7 @@
 			</ul>
 		
 			<h2>모임장</h2>
-			<ul class="member_category">
+			<ul class="member-category">
 				<li>
 					<a href="clubManage.myPage">모임 관리</a><br/>
 				</li>
@@ -50,7 +49,7 @@
 		</c:if>
 		<c:if test="${grade eq 'seller'}">
 			<h2>호스트</h2>
-			<ul class="seller_category">
+			<ul class="seller-category">
 				<li>
 					<a href="">내 프로필</a><br/>
 				</li>

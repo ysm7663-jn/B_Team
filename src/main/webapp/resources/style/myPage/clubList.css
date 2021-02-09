@@ -19,6 +19,22 @@ div {
 	box-sizing: border-box;
 }
 
+.emptyList {
+	width: 400px;
+	height: 200px;
+	text-align: center;
+	margin: 40px auto;
+}
+.emptyList > div:last-of-type {
+	font-weight: bold;
+	margin-top: 26px;
+	padding: 0 0 0 15px;
+}
+.fa-exclamation-circle:before {
+	font-size: 90px;
+	color: cadetblue;	
+}
+
 .section {
 	margin-top: 20px;
 	background: lightgray;
@@ -80,7 +96,7 @@ div {
 .summary > .readerName {
 	width: 100%;
 }
-.cl_card {
+.cl-card {
 	margin-left: 10px;
 	margin-right: 5px;
 }
@@ -103,9 +119,6 @@ div {
 .fa-skull:before {
 	color: #cc0000;
 	font-size: 28px;
-}
-.cl_card {
-	margin-left: 20px;
 }
 .quit input {
 	width: 65px;

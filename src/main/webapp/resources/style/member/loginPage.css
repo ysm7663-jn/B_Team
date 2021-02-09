@@ -51,10 +51,17 @@ label {
 input[type="radio"] {
 	margin: 0px 0px 0px 11px;
 }
-input[type="text"], input[type="password"] {
+.id-box, .pw-box {
 	height: 45px;
 	width: 95%;
 	border: 1px solid #dbdbdb;
+}
+.id-box > input, .pw-box > input {
+	width: 93%;
+	height: 100%;
+	line-height: 39px;
+	margin: 0 0 0 9px;
+	border: none;
 }
 a[class="login"] {
 	color: #5cb196;
@@ -62,7 +69,7 @@ a[class="login"] {
 	font-size: 14px;
 	font-weight: bold;
 }
-button {
+input[type="button"] {
 	background: #5cb196;
 	color: white;
 	font-size: 15px;
@@ -74,7 +81,7 @@ button {
 	margin: 12% 27%;
 }
 h5 {
-	margin: 0% 30%;
+	margin: 0% 26%;
 }
 .kakaoLogin > a > img {
 	margin: 4% 37%;

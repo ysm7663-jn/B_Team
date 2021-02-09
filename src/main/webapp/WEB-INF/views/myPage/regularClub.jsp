@@ -29,12 +29,12 @@
 			$('.startDate').remove();
 			$('.cl_card').remove();
 			$('.clubImage > a').css('pointer-events', 'none').css('cursor', 'default');
+			$('.clubImage > a > img').css('-webkit-filter', 'grayscale(100%)').css('filter', gray);
 		}
-		
 	});
 
 </script>
-	<div class="mypage_contents">
+	<div class="mypage-contents">
 		<h2>정기모임</h2>
 		<hr class="top">
 			
@@ -48,8 +48,10 @@
 		</ul>	
 				
 		<c:if test="${empty list}">
-			<div><i class="fas fa-exclamation-circle"></i></div>
-			<div class="empty">진행중인 모임이 없습니다.</div>
+			<div class="emptyList">
+				<div><i class="fas fa-exclamation-circle"></i></div>
+				<div class="empty">진행중인 모임이 없습니다.</div>
+			</div>
 		</c:if>
 		<c:if test="${not empty list}">
 			<div class="clubwrap">

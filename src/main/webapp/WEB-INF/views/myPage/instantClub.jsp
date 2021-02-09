@@ -22,15 +22,18 @@
 		}
 	}
 	
-	if(${param.state == 1}) {    // 지난 모임이면
-		$('.empty').html('진행했던 모임이 없습니다.');
-		$('.quit').remove();
-		$('.startDate').remove();
-		$('.cl_card').remove();
-		$('.clubImage > a').css('pointer-events', 'none').css('cursor', 'default');
-	}
+	$(function(){
+		if(${param.state == 1}) {    // 지난 모임이면
+			$('.empty').text('진행했던 모임이 없습니다.');
+			$('.quit').remove();
+			$('.startDate').remove();
+			$('.cl_card').remove();
+			$('.clubImage > a').css('pointer-events', 'none').css('cursor', 'default');
+		}
+	});
+	
 </script>
-	<div class="mypage_contents">
+	<div class="mypage-contents">
 		<h2>번개 모임</h2>
 		<hr class="top">
 			
@@ -44,8 +47,10 @@
 		</ul>	
 				
 		<c:if test="${empty list}">
-			<div><i class="fas fa-exclamation-circle"></i></div>
-			<div>진행중인 모임이 없습니다.</div>
+			<div class="emptyList">
+				<div><i class="fas fa-exclamation-circle"></i></div>
+				<div class="empty">진행중인 모임이 없습니다.</div>
+			</div>
 		</c:if>
 		<c:if test="${not empty list}">
 			<div class="clubwrap">
@@ -62,7 +67,7 @@
 								<div class="readerName"><i class="fas fa-user-circle">&nbsp;${ClubListDto.m_nick}&nbsp;&nbsp;</i><span class="reader">리더</span></div><br/>
 								<div class="startDate">${ClubListDto.c_startDate} 첫 모임</div><br/>
 							</div>
-							<div class="cl_card">
+							<div class="cl-card">
 								<c:forEach begin="1" end="${ClubListDto.cl_card}" step="1">
 									<span><i class="fas fa-skull" ></i></span>
 								</c:forEach>

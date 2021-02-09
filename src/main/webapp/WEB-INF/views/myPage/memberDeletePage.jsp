@@ -4,9 +4,9 @@
 <link rel="stylesheet" href="resources/style/myPage/memberDelete.css">	    
 <jsp:include page="myPage.jsp" />
 
-	<div class="mypage_contents">
+	<div class="mypage-contents">
 		<h2>탈퇴하기</h2>
-		<hr>
+		<hr class="top">
 		
 		<div class="content-wrap">
 			<p>지금 탈퇴하시면</p>
