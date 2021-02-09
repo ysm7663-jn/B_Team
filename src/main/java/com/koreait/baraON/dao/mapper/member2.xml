@@ -35,10 +35,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE M_NO=#{m_no}
 	</select>
 	
-	<update id="memberPwUpdate"  parameterType="HashMap">
+	<update id="memberPwUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
 		UPDATE MEMBER
 		SET M_PW=#{m_pw}
-		WHERE M_ID = #{m_id}
+		WHERE M_NO = #{m_no}
 	</update>
 	
 	<update id="memberNickUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="memberUpdate"  parameterType="com.koreait.baraON.dto.MemberDto2">
 		UPDATE MEMBER
-		SET M_PHONE=#{m_phone}
+		SET M_PHONE=#{m_phone},
 			M_EMAIL=#{m_email}
 		WHERE M_NO = #{m_no}
 	</update>

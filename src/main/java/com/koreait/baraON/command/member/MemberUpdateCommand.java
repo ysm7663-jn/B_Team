@@ -9,9 +9,9 @@ import org.springframework.ui.Model;
 import com.koreait.baraON.dao.MemberDao2;
 import com.koreait.baraON.dto.MemberDto2;
 
-public class MemberUpdateCommand {
+public class MemberUpdateCommand implements MemberCommand {
 
-	public void execute(SqlSession sqlSession, Model model) {
+	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 
 		Map<String, Object> map = model.asMap();
 		
@@ -23,6 +23,6 @@ public class MemberUpdateCommand {
 		
 		resultMap.put("result", memberDao2.memberUpdate(memberDto2));
 		
+		return resultMap;
 	}
-
 }

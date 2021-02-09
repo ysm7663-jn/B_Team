@@ -146,59 +146,40 @@ public class MemberController2 {
 	@RequestMapping(value="memberPwUpdate.member",
 					method=RequestMethod.POST,
 					produces="application/json; charset=utf-8")
+	@ResponseBody
 	public Map<String, Object> memberPwUpdate(@RequestBody MemberDto2 memberDto2,
 											Model model){
 		if (memberDto2 != null) {
 			model.addAttribute("memberDto2", memberDto2);
 		}
-		model.addAttribute("memberDto2", memberDto2);
 		return memberPwUpdateCommand.execute(sqlSession, model);
 	}
 	
 	@RequestMapping(value="memberNickUpdate.member",
-						method=RequestMethod.POST,
-						produces="application/json; charset=utf-8")
+			method=RequestMethod.POST,
+			produces="application/json; charset=utf-8")
+	@ResponseBody
 	public Map<String, Object> memberNickUpdate(@RequestBody MemberDto2 memberDto2,
-			Model model){
+													Model model){
 		if (memberDto2 != null) {
 			model.addAttribute("memberDto2", memberDto2);
 		}
-		model.addAttribute("memberDto2", memberDto2);
 		return memberNickUpdateCommand.execute(sqlSession, model);
 	}
 	
+	
+	
 	@RequestMapping(value="memberUpdate.member",
-					method=RequestMethod.POST)
-	public String memberUpdate(@RequestBody MemberDto2 memberDto2,
-			Model model){
+					method=RequestMethod.POST,
+					produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> memberUpdate(@RequestBody MemberDto2 memberDto2,
+												Model model){
 		if (memberDto2 != null) {
 			model.addAttribute("memberDto2", memberDto2);
 		}
-		model.addAttribute("memberDto2", memberDto2);
-		memberUpdateCommand.execute(sqlSession, model);
-		return "index";// 로그인한 메인페이지로 변경할 것
+		return memberUpdateCommand.execute(sqlSession, model);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

@@ -101,7 +101,7 @@
 				success: function(data){
 					var regExpNick = /[a-zA-Z0-9가-힣]{1,14}$/;
 					var result4 = document.getElementById('result4');
-					if (data.resultMap2 == 1) {
+					if (data.result == 1) {
 						result4.textContent ='이미 등록되어있는 닉네임 입니다.';
 						result4.setAttribute('class', 'check-m_nick-result-not2');
 						return false;
