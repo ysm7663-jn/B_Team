@@ -83,5 +83,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES (#{p_no}, #{s_no}, #{pc_no}, #{p_title}, #{p_name}, #{p_desc}, #{p_content}, #{p_info}, #{p_addr}, #{p_bname}, #{p_addrdetail}, #{p_img}, 1, #{p_url}, #{p_remark}, 0)
 	</insert>
 	
+	<update id="placeDelete" parameterType="int">
+		UPDATE PLACE
+		SET P_DELETE=1
+		WHERE P_NO=#{param1}
+	</update>
+	
+	<update id="placeUpdate" parameterType="com.koreait.baraON.dto.PlaceDto">
+		UPDATE PLACE
+		SET
+		WHERE P_NO=#{param1}
+	</update>
 	
 </mapper>

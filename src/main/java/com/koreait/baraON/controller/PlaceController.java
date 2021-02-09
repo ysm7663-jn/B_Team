@@ -15,6 +15,7 @@ import com.koreait.baraON.command.place.PlaceDeleteCommand;
 import com.koreait.baraON.command.place.PlaceInsertCommand;
 import com.koreait.baraON.command.place.PlaceListCommand;
 import com.koreait.baraON.command.place.PlaceUpdateCommand;
+import com.koreait.baraON.command.place.PlaceUpdatePageCommand;
 import com.koreait.baraON.command.place.PlaceViewCommand;
 import com.koreait.baraON.dao.PlaceDao;
 
@@ -29,18 +30,21 @@ public class PlaceController {
 	private PlaceInsertCommand placeInsertCommand;
 	private PlaceUpdateCommand placeUpdateCommand;
 	private PlaceDeleteCommand placeDeleteCommand;
+	private PlaceUpdatePageCommand placeUpdatePageCommand;
 	
 	@Autowired
 	public void setCommand(PlaceListCommand placeListCommand,
 							PlaceViewCommand placeViewCommand,
 							PlaceInsertCommand placeInsertCommand,
 							PlaceUpdateCommand placeUpdateCommand,
-							PlaceDeleteCommand placeDeleteCommand) {
+							PlaceDeleteCommand placeDeleteCommand,
+							PlaceUpdatePageCommand placeUpdatePageCommand) {
 		this.placeListCommand = placeListCommand;
 		this.placeViewCommand = placeViewCommand;
 		this.placeInsertCommand = placeInsertCommand;
 		this.placeUpdateCommand = placeUpdateCommand;
 		this.placeDeleteCommand = placeDeleteCommand;
+		this.placeUpdatePageCommand = placeUpdatePageCommand;
 	}
 	
 	@RequestMapping(value="placeListPage.place", method=RequestMethod.GET)
@@ -83,7 +87,26 @@ public class PlaceController {
 	public String placeUpdatePage(int p_no, Model model) {
 		model.addAttribute("p_no", p_no);
 		
+		placeUpdatePageCommand.execute(sqlSession, model);
 		return "place/placeUpdatePage";
+	}
+	
+	@RequestMapping(value="placeUpdate.place", method=RequestMethod.POST)
+	public String placeUpdate(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		
+		placeUpdateCommand.execute(sqlSession, model);
+		return "redirect:placeResultPage.place";
+	}
+	
+	@RequestMapping(value="placeDelete.place", method=RequestMethod.POST)
+	public String placeDelete(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		
+		placeDeleteCommand.execute(sqlSession, model);
+		return "redirect:placeListPage.place";
 	}
 	
 	

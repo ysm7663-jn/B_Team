@@ -15,7 +15,8 @@ DROP SEQUENCE PLACECATEGORY_SEQ;
 DROP SEQUENCE CLUB_SEQ;
 DROP SEQUENCE MEMBER_SEQ;
 
-
+select * from place
+update place set p_delete=1 where p_no=1;
 -- DROP TABLES
 
 DROP TABLE WISHLIST;

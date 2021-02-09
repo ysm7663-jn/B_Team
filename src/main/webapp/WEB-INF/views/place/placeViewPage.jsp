@@ -53,9 +53,9 @@
 	function fn_submitTo(btn, actionTo, execute){
 		$(btn).click(function(){
 			if(execute=='삭제' && confirm('삭제하시면 더 이상 해당 공간이 노출되지 않습니다. 정말 삭제하시겠습니까?')){
-				('#update-form').prop('action', actionTo).submit();
+				$('#update-form').prop('action', actionTo).submit();
 			} else {
-				('#update-form').prop('action', actionTo).submit();
+				$('#update-form').prop('action', actionTo).submit();
 			}
 		});
 	}

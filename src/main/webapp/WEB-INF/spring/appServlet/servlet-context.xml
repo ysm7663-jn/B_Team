@@ -25,6 +25,7 @@
 	<beans:bean id="placeListCommand" class="com.koreait.baraON.command.place.PlaceListCommand" />
 	<beans:bean id="placeViewCommand" class="com.koreait.baraON.command.place.PlaceViewCommand" />
 	<beans:bean id="placeInsertCommand" class="com.koreait.baraON.command.place.PlaceInsertCommand" />
+	<beans:bean id="placeUpdatePageCommand" class="com.koreait.baraON.command.place.PlaceUpdatePageCommand" />
 	<beans:bean id="placeUpdateCommand" class="com.koreait.baraON.command.place.PlaceUpdateCommand" />
 	<beans:bean id="placeDeleteCommand" class="com.koreait.baraON.command.place.PlaceDeleteCommand" />
 	
