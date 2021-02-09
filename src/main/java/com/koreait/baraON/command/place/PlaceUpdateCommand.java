@@ -11,12 +11,7 @@ public class PlaceUpdateCommand implements PlaceCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
-		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
-		PlaceOptionDao placeOptionDao = sqlSession.getMapper(PlaceOptionDao.class);
-		
-		int p_no = (int)model.asMap().get("p_no");
-		
-		PlaceDto placeDto = placeDao.getPlaceDto(p_no);
+	
 		
 	}
 
