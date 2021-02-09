@@ -9,4 +9,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY)
 		VALUES (PLACEOPTION_SEQ.NEXTVAL, #{p_no}, #{po_name}, #{po_min}, #{po_max}, #{po_dayPrice}, #{po_holiday}, #{po_img}, #{po_fxility})
 	</insert>
+	<select id="getPlaceOptionDto" parameterType="int" resultType="com.koreait.baraON.dto.PlaceOptionDto" >
+		SELECT *
+		FROM PLACEOPTION
+		WHERE PO_NO=#{param1}
+	</select>
 </mapper>

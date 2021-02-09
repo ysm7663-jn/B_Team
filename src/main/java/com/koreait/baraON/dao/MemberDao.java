@@ -13,4 +13,7 @@ public interface MemberDao {
 	public int changeMemberPw(String pw, String id);
 	public int changeSellerPw(String pw, String id);
 	
+	
+	// place
+	public SellerDto getSellerDto(int s_no);
 }

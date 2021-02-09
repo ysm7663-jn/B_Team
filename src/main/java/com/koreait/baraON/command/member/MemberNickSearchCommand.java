@@ -20,7 +20,7 @@ public class MemberNickSearchCommand implements MemberCommand{
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		resultMap.put("resultMap2", memberDao.memberNickSearch(m_nick));
+		resultMap.put("result", memberDao.memberNickSearch(m_nick));
 		
 		return resultMap;
 	}

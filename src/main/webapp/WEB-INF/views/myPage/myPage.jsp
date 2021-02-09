@@ -20,7 +20,7 @@
 			<h2>일반</h2>
 			<ul class="member-category">
 				<li>
-					<a class="btn" href="profile.myPage">내 프로필</a><br/>
+					<a class="btn" href="pwCheck.myPage">내 프로필</a><br/>
 				</li>
 				<li>
 					<a class="btn" href="wishList.myPage">위시리스트</a><br/>
@@ -51,16 +51,16 @@
 			<h2>호스트</h2>
 			<ul class="seller-category">
 				<li>
-					<a href="">내 프로필</a><br/>
+					<a href="pwCheck2.seller">내 프로필</a><br/>
 				</li>
 				<li>
-					<a href="">공간정보 관리</a><br/>
+					<a href="spaceViewPage.seller">공간정보 관리</a><br/>
 				</li>
 				<li>
-					<a href="">이용후기 관리</a><br/>
+					<a href="reviewPage.seller">이용후기 관리</a><br/>
 				</li>
 				<li>
-					<a href="">예약리스트</a><br/>
+					<a href="reservation.seller">예약리스트</a><br/>
 				</li>
 			</ul>
 		</c:if>

@@ -10,10 +10,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ReservationDto {
-	private int res_no;
-	private int m_no;
-	private int po_no;
-	private Date res_date;
-	private int res_people;
-	private int res_state;
+	private int res_no;				// 인덱스
+	private int m_no;					// 예약 회원 번호
+	private int po_no;					// 옵션번호
+	private Date res_date;				// 예약날짜
+	private int res_people;			// 예약인원
+	private int res_state;				// 예약상태 0 = 결제대기, 1 = 결제완료&예약대기, 2 = 예약완료, 3 = 사용완료
+	private String res_email;			// 예약자메일
+	private int res_price;				// 결제금액
+	private int res_applynum;			// 카드승인번호
+	private String res_purpose;		// 사용목적
+	private String res_requirement;	// 요구사항
 }

@@ -14,6 +14,7 @@ public class MemberSearchCommand implements MemberCommand{
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
 		Map<String, Object> map = model.asMap();
+		
 		String m_id = (String)map.get("m_id");
 
 		MemberDao2 memberDao2 = sqlSession.getMapper(MemberDao2.class);
