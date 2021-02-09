@@ -37,6 +37,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="clubListDelete" parameterType="int">
 		DELETE
 			FROM CLUBLIST
-		  WHERE CL_NO = #{param1}
+		 WHERE CL_NO = #{param1}
+	</delete>
+	<delete id="infoMemberDelete" parameterType="int">
+		DELETE
+			FROM MEMBER
+		 WHERE M_NO = #{param1}
+	</delete>
+	<delete id="infoSellerDelete" parameterType="int">
+		DELETE
+			FROM SELLER
+		 WHERE S_NO = #{param1}
 	</delete>
 </mapper>

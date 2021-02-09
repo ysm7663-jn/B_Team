@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
+import com.koreait.baraON.command.myPage.InfoDeleteCommand;
 import com.koreait.baraON.command.myPage.InstantClubCommand;
 import com.koreait.baraON.command.myPage.RegularClubCommand;
 import com.koreait.baraON.command.myPage.WishDeleteCommand;
@@ -26,18 +27,21 @@ public class MyPageController {
 	private RegularClubCommand regularClubCommand;
 	private InstantClubCommand instantClubCommand;
 	private ClubListDeleteCommand clubListDeleteCommand;
+	private InfoDeleteCommand infoDeleteCommand;
 	
 	@Autowired
 	public void setCommand(WishListCommand wishListCommand,
 							 WishDeleteCommand wishDeleteCommand,
 							 RegularClubCommand regularClubCommand,
 							 InstantClubCommand instantClubCommand,
-							 ClubListDeleteCommand clubListDeleteCommand) {
+							 ClubListDeleteCommand clubListDeleteCommand,
+							 InfoDeleteCommand InfoDeleteCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
 		this.regularClubCommand = regularClubCommand;
 		this.instantClubCommand = instantClubCommand;
 		this.clubListDeleteCommand = clubListDeleteCommand;
+		this.infoDeleteCommand = InfoDeleteCommand;
 	}
 	
 	@RequestMapping(value="profile.myPage", method=RequestMethod.GET)
@@ -88,6 +92,14 @@ public class MyPageController {
 	@RequestMapping(value="memberDeletePage.myPage", method=RequestMethod.GET)
 	public String memberDeletePage(HttpServletRequest request) {
 		return "myPage/memberDeletePage";
+	}
+	
+	@RequestMapping(value="memberDelete.myPage", method=RequestMethod.GET)
+	public String memberDelete(HttpServletRequest request, Model model, RedirectAttributes rttr) {
+		model.addAttribute("request",request);
+		model.addAttribute("rttr",rttr);
+		infoDeleteCommand.execute(sqlSession, model);
+		return "redirect:profile.myPage";
 	}
 	
 	

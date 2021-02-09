@@ -11,4 +11,6 @@ public interface MyPageDao {
 	public List<ClubListDto> clubList(int mNo, int cPart);
 	public List<ClubListDto> lastClubList(int mNo, int cPart);
 	public int clubListDelete(int clNo);
+	public int infoMemberDelete(int no);
+	public int infoSellerDelete(int no);
 }
