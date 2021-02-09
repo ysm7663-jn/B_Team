@@ -6,16 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.koreait.baraON.dao.PlaceDao">
 	
 	<select id="placeList" resultType="com.koreait.baraON.dto.PlaceListDto" >
-		SELECT A.P_NO, A.RVCOUNT, PC.PC_NAME, MIN(PO.PO_DAYPRICE) AS MINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE, P2.P_TITLE, P2.P_IMG, P2.P_ADDR
-		  FROM (SELECT P.P_NO, P.PC_NO, COUNT(RV.P_NO) AS RVCOUNT
+		SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) ASMINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
+		  FROM (SELECT P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG, COUNT(RV.P_NO) AS RVCOUNT
 				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO
-				 WHERE P.P_CONFIRM = 1 
+				 WHERE P.P_CONFIRM = 1
 				   AND P.P_DELETE = 0
-				   AND RV.RV_DELETE = 0
-			  GROUP BY P.P_NO, P.PC_NO) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
-										  LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
-										  LEFT JOIN PLACE P2 ON A.P_NO = P2.P_NO
-	  GROUP BY A.P_NO, A.PC_NO, A.RVCOUNT, PC.PC_NAME, P2.P_TITLE, P2.P_IMG, P2.P_ADDR
+				   AND (RV.RV_DELETE IS NULL OR RV.RV_DELETE = 0)
+			  GROUP BY P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
+																		 LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
+	  GROUP BY A.P_NO, A.PC_NO, A.P_TITLE, A.P_BNAME, A.P_IMG, A.RVCOUNT, PC.PC_NAME
 	  ORDER BY A.P_NO
 	</select>
 	<select id="placeCategoryList" resultType="com.koreait.baraON.dto.PlaceCategoryDto" >
@@ -48,7 +47,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM (SELECT RV.*, M.M_NICK, M.M_ID
 			 FROM REVIEW RV LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO
 			 WHERE P_NO = #{param1}
-			 AND RV.RV_DELETE=0
+			 AND (RV.RV_DELETE=0 OR RV.RV_DELETE IS NULL)
 			 ORDER BY RV.RV_POSTDATE DESC ) A ) B
 		 WHERE RN BETWEEN #{param2} AND #{param3}
 	</select>
@@ -60,17 +59,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getPlaceListDtoByCategory" parameterType="int" resultType="com.koreait.baraON.dto.PlaceListDto">
-		SELECT A.P_NO, A.RVCOUNT, PC.PC_NAME, MIN(PO.PO_DAYPRICE) AS MINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE, P2.P_TITLE, P2.P_IMG, P2.P_ADDR
-		  FROM (SELECT P.P_NO, P.PC_NO, COUNT(RV.P_NO) AS RVCOUNT
-				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO AND P.PC_NO=#{param1}
-				 WHERE P.P_CONFIRM = 1 
+	  SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) ASMINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
+		  FROM (SELECT P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG, COUNT(RV.P_NO) AS RVCOUNT
+				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO 
+				 WHERE P.P_CONFIRM = 1
+				   AND P.PC_NO=#{param1}
 				   AND P.P_DELETE = 0
-				   AND RV.RV_DELETE = 0
-			  GROUP BY P.P_NO, P.PC_NO) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
-										  LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
-										  LEFT JOIN PLACE P2 ON A.P_NO = P2.P_NO 
-	  GROUP BY A.P_NO, A.PC_NO, A.RVCOUNT, PC.PC_NAME, P2.P_TITLE, P2.P_IMG, P2.P_ADDR
+				   AND (RV.RV_DELETE IS NULL OR RV.RV_DELETE = 0)
+			  GROUP BY P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
+																		 LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
+	  GROUP BY A.P_NO, A.PC_NO, A.P_TITLE, A.P_BNAME, A.P_IMG, A.RVCOUNT, PC.PC_NAME
 	  ORDER BY A.P_NO
+	  
 	</select>
+	
+	<insert id="placeInsert" parameterType="com.koreait.baraON.dto.PlaceDto" >
+		<selectKey keyProperty="p_no" resultType="int" order="BEFORE">
+			SELECT PLACE_SEQ.NEXTVAL
+			  FROM DUAL
+		</selectKey>
+		INSERT INTO
+		PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
+		VALUES (#{p_no}, #{s_no}, #{pc_no}, #{p_title}, #{p_name}, #{p_desc}, #{p_content}, #{p_info}, #{p_addr}, #{p_bname}, #{p_addrdetail}, #{p_img}, 1, #{p_url}, #{p_remark}, 0)
+	</insert>
+	
 	
 </mapper>

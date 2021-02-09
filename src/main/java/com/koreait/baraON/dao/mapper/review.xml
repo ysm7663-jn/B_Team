@@ -34,7 +34,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="lastReviewRN" parameterType="int" resultType="int">
-		SELECT MAX(RN)
+		SELECT COUNT(RN)
 		FROM (SELECT ROWNUM RN, A.*
 		FROM (SELECT RV.*, M.M_NICK, M.M_ID
 			 FROM REVIEW RV LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO

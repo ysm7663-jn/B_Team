@@ -24,6 +24,7 @@
 	<!-- place command -->
 	<beans:bean id="placeListCommand" class="com.koreait.baraON.command.place.PlaceListCommand" />
 	<beans:bean id="placeViewCommand" class="com.koreait.baraON.command.place.PlaceViewCommand" />
+	<beans:bean id="placeInsertCommand" class="com.koreait.baraON.command.place.PlaceInsertCommand" />
 	
 	<!-- review command -->
 	<beans:bean id="reviewUpdateCommand" class="com.koreait.baraON.command.review.ReviewUpdateCommand" />
@@ -33,7 +34,14 @@
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
+
+	<beans:bean id="clubListCommand" class="com.koreait.baraON.command.club.ClubListCommand" />
+	<beans:bean id="clubInsertCommand" class="com.koreait.baraON.command.club.ClubInsertCommand" />
+	<beans:bean id="clubViewCommand" class="com.koreait.baraON.command.club.ClubViewCommand" />
+	
+
 	<!-- login -->
+
 	<beans:bean id="loginCommand" class="com.koreait.baraON.command.member.LoginCommand" />	
 	<beans:bean id="logoutCommand" class="com.koreait.baraON.command.member.LogoutCommand" />	
 	<beans:bean id="chkIdCommand" class="com.koreait.baraON.command.member.ChkIdCommand" />	

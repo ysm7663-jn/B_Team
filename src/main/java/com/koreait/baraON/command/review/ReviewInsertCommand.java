@@ -33,13 +33,12 @@ public class ReviewInsertCommand implements ReviewCommand {
 		List<String> extensionList = new ArrayList<>();
 		extensionList.add("jpg");
 		extensionList.add("jpeg");
-		extensionList.add("git");
 		extensionList.add("png");
 		
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
 		
-		// 지원하는 이미지파일 확장자는 jpg, jpeg, gif, png로 한다.
+		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
 				String originalFilename = file.getOriginalFilename();
@@ -88,13 +87,12 @@ public class ReviewInsertCommand implements ReviewCommand {
 				}
 			} else {
 				model.addAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, "", rv_content));
-				return;
 			}
 			if ( !sb.toString().isEmpty() && sb.toString() != null) {
 				rv_img = sb.toString();
 			}
-			model.addAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, rv_img, rv_content));
 		}
+		model.addAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, rv_img, rv_content));
 	}
 
 }

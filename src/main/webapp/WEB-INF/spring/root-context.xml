@@ -39,6 +39,8 @@
 		<property name="maxUploadSize" value="10485760" /> <!-- 10MB(10485760)  = 1024 * 1024 * 10 byte -->
 	</bean>
 	
+	<!-- <bean id="clubListCommand" class="com.koreait.baraON.command.club.ClubListCommand" /> -->
+	
 	<!-- Mybatis용 dataSource, sqlSessionFactory, sqlSession -->
 	
 	<!-- 스프링에서 지원하는 DataSource를 HiKariDataSource로 변경할 수 있습니다. -->
