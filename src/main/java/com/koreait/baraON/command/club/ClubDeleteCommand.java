@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.ClubDao;
 
@@ -17,9 +18,9 @@ public class ClubDeleteCommand implements ClubCommand {
 
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
 		
 		int c_no = Integer.parseInt(request.getParameter("c_no"));
-		int m_no = Integer.parseInt(request.getParameter("m_no"));
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 
@@ -41,6 +42,9 @@ public class ClubDeleteCommand implements ClubCommand {
 			file3.delete();
 		}
 
+		rttr.addFlashAttribute("deleteResult", deleteResult);
+		rttr.addFlashAttribute("afterDelete", true);
+		
 	}
 
 }

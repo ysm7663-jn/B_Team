@@ -9,10 +9,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.club.ClubDeleteCommand;
 import com.koreait.baraON.command.club.ClubInsertCommand;
 import com.koreait.baraON.command.club.ClubListCommand;
+import com.koreait.baraON.command.club.ClubUpdateCommand;
 import com.koreait.baraON.command.club.ClubViewCommand;
 
 @Controller
@@ -25,16 +27,19 @@ public class ClubController {
 	private ClubInsertCommand clubInsertCommand;
 	private ClubViewCommand clubViewCommand;
 	private ClubDeleteCommand clubDeleteCommand;
+	private ClubUpdateCommand clubUpdateCommand;
 	
 	@Autowired
 	public void setCommand(ClubListCommand clubListCommand,
 						   ClubInsertCommand clubInsertCommand,
 						   ClubViewCommand clubViewCommand,
-						   ClubDeleteCommand clubDeleteCommand) {
+						   ClubDeleteCommand clubDeleteCommand,
+						   ClubUpdateCommand clubUpdateCommand) {
 		this.clubListCommand = clubListCommand;
 		this.clubInsertCommand = clubInsertCommand;
 		this.clubViewCommand = clubViewCommand;
 		this.clubDeleteCommand = clubDeleteCommand;
+		this.clubUpdateCommand = clubUpdateCommand;
 	}
 
 	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
@@ -67,13 +72,34 @@ public class ClubController {
 		return "club/clubViewPage";
 	}
 	
-	@RequestMapping(value="clubDelete.club", method=RequestMethod.GET)
-	public String clubDelete(HttpServletRequest request, Model model) {
+	@RequestMapping(value="clubDelete.club", method=RequestMethod.POST)
+	public String clubDelete(HttpServletRequest request, RedirectAttributes rttr, Model model) {
 		
 		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
 		clubDeleteCommand.execute(sqlSession, model);
 		
 		return "redirect:clubListPage.club";
+	}
+	
+	@RequestMapping(value="clubUpdatePage.club", method=RequestMethod.POST)
+	public String clubUpdatePage(Model model) {
+		
+		return "club/clubUpdatePage";
+	}
+	
+	@RequestMapping(value="clubUpdate.club", method=RequestMethod.POST)
+	public String simpleUpdate(HttpServletRequest request,
+			                   RedirectAttributes rttr,
+			                   Model model) {
+
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		
+		clubUpdateCommand.execute(sqlSession, model);
+		
+		return "redirect:clubViewPage.do?no=" + request.getParameter("c_no");
+		
 	}
 	
 }

@@ -38,5 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM CLUB
 		 WHERE C_NO = ${c_no}
 	</delete>
+	
+	<update id="clubUpdate">
+		UPDATE CLUB
+		   SET C_TITLE = #{param1}, 
+		   	  C_MIN = #{param2}, 
+		   	  C_MAX = #{param3},
+		   	  C_CONTENT = #{param4}
+		 WHERE C_NO = #{param5}
+	</update>
 
 </mapper>

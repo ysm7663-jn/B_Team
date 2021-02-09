@@ -27,11 +27,33 @@
 
 <script type="text/javascript">
 		function fn_delete(f) {
-			if (confirm('정말 클럽 신청을 마감하시겠습니까?')) {
+			if (confirm('정말 클럽을 해제하시겠습니까?')) {
 				f.action='clubDelete.club';
 				f.submit();
 			}
 		}
+</script>
+
+<script>
+	var afterDelete = ${afterDelete};
+	if (afterDelete) {
+		var afterDelete = ${afterDelete};
+		if (afterDelete > 0) {
+			alert('삭제되었습니다.');
+		} else {
+			alert('실패했습니다.');
+		}
+	}
+	
+	var afterUpdate = ${afterUpdate};
+	if (afterUpdate) {
+		var afterUpdate = ${afterUpdate};
+		if (afterUpdate > 0) {
+			alert('수정되었습니다.');
+		} else {
+			alert('실패했습니다.');
+		}
+	}
 </script>
 
 <form>
@@ -87,6 +109,7 @@
 
 				<div class="side_content">
 					<input type="button" value="장소등록하기" onclick="location.href='placeListPage.place'" /> 
+					<input type="button" value="장소수정하기" onclick="location.href='fn_update(this.form)'" /> 
 					<input type="button" value="클럽해제하기" onclick="fn_delete(this.form)" />
 				</div>
 			</div>
