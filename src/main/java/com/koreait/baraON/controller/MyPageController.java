@@ -84,4 +84,12 @@ public class MyPageController {
 			return "redirect:instantClub.myPage";
 		}
 	}
+	
+	@RequestMapping(value="memberDeletePage.myPage", method=RequestMethod.GET)
+	public String memberDeletePage(HttpServletRequest request) {
+		return "myPage/memberDeletePage";
+	}
+	
+	
+	
 }
