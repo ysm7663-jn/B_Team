@@ -1,5 +1,5 @@
 -- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
-select * from reservation
+
 -- DROP SEQUENCES
 DROP SEQUENCE WISHLIST_SEQ;
 DROP SEQUENCE FAQ_SEQ;
@@ -58,7 +58,8 @@ CREATE TABLE CLUB
 (
     C_NO           NUMBER           PRIMARY KEY, 
     M_NO           NUMBER            NOT NULL REFERENCES MEMBER (M_NO), 
-    C_TITLE        VARCHAR2(100)     NOT NULL, 
+    C_TITLE        VARCHAR2(100)     NOT NULL,
+    C_DESC		   VARCHAR2(300)	 NOT NULL,
     C_CONTENT      VARCHAR2(4000)    NULL, 
     C_POSTDATE     DATE              NOT NULL, 
     C_STARTDATE    DATE    			 NOT NULL, 

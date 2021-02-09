@@ -1,29 +1,65 @@
 @charset "UTF-8";
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+.emptyList {
+	width: 400px;
+	height: 200px;
+	text-align: center;
+	margin: 40px auto;
+}
+.emptyList > div:last-of-type {
+	font-weight: bold;
+	margin-top: 26px;
+	padding: 0 0 0 15px;
+}
+.fa-exclamation-circle:before {
+	font-size: 90px;
+	color: cadetblue;	
+}
 
 .club-wrap {
 	display: grid;
 	grid-template-columns: repeat(auto-fill, 48%);
 	gap: 11px; 
 	text-align: center;
-	color: #FFFFFF;
 	margin-top: 5%; 
 }
 .clubList {
 	position: relative;
 }
-.clubList .title {
+.clubList .title  a {
+	display: block;
 	position: absolute;
+	color: #FFFFFF;
 	top: 54%;
 	left: 27%;
 	font-size: 30px;
 	font-weight: bold;
 	transform: translate(-50%, -50%);
 }
-.clubList .content {
+.clubList .content  a {
 	position: absolute;
 	width: 238px;
+	color: #FFFFFF;
 	text-align: left;
-	top: 80%;
+	top: 75%;
 	left: 36%;
 	font-size: 15px;
 	font-weight: bold;

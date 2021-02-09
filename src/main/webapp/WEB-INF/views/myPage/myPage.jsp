@@ -6,33 +6,38 @@
 </jsp:include> 
     
 <link rel="stylesheet" href="resources/style/myPage/myPageCommon.css">
-<div class="mypage_body">
-	<div class="mypage_category">
+<script>
+	$(function(){
+		$('body').on('click', '.member_category li > a', function(event){
+			$('.member_category li > a').css('background','');
+			$(this).css('color', 'red');
+		});
+	});
+</script>
+<div class="mypage-body">
+	<div class="mypage-category">
 		<c:if test="${grade eq 'member'}">
 			<h2>일반</h2>
-			<ul class="member_category">
+			<ul class="member-category">
 				<li>
-					<a href="pwCheck.myPage">내 프로필</a><br/>
+					<a class="btn" href="pwCheck.myPage">내 프로필</a><br/>
 				</li>
 				<li>
-					<a href="wishList.myPage">위시리스트</a><br/>
+					<a class="btn" href="wishList.myPage">위시리스트</a><br/>
 				</li>
 				<li>
-					<a href="regularClub.myPage">정기 모임</a><br/>
+					<a class="btn" href="regularClub.myPage?state=0">정기 모임</a><br/>
 				</li>
 				<li>
-					<a href="instantClub.myPage">번개 모임</a><br/>
+					<a class="btn active" href="instantClub.myPage?state=0">번개 모임</a><br/>
 				</li>
 				<li>
-					<a href="memberPayment.myPage">결제내역</a><br/>
-				</li>
-				<li>
-					<a href="memberDelete.myPage">탈퇴하기</a><br/>
+					<a class="btn" href="memberDeletePage.myPage">탈퇴하기</a><br/>
 				</li>
 			</ul>
 		
 			<h2>모임장</h2>
-			<ul class="member_category">
+			<ul class="member-category">
 				<li>
 					<a href="clubManage.myPage">모임 관리</a><br/>
 				</li>
@@ -44,7 +49,7 @@
 		</c:if>
 		<c:if test="${grade eq 'seller'}">
 			<h2>호스트</h2>
-			<ul class="seller_category">
+			<ul class="seller-category">
 				<li>
 					<a href="pwCheck2.seller">내 프로필</a><br/>
 				</li>
