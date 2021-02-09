@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.baraON.dao.PlaceOptionDao">
+	<insert id="placeOptionInsert" parameterType="com.koreait.baraON.dto.PlaceOptionDto" >
+		INSERT INTO
+		PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY)
+		VALUES (PLACEOPTION_SEQ.NEXTVAL, #{p_no}, #{po_name}, #{po_min}, #{po_max}, #{po_dayPrice}, #{po_holiday}, #{po_img}, #{po_fxility})
+	</insert>
+</mapper>

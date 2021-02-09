@@ -57,7 +57,6 @@ public class PlaceViewCommand implements PlaceCommand {
 		// Review
 		// 가장 최초에는 삭제되지 않은 리뷰중에 가장 최근의 리뷰부터 3개를 가져옴
 		List<ReviewListDto> reviewList = placeDao.getReviewListOfViewPage(p_no, 1, 3);
-		
 		// rv_img칼럼에는 데이터가 JSON 객체로 들어있다.
 		// 그 객체에는 review-image라는 프로퍼티에 배열로 첨부한 이미지들이 저장되어있다.
 		/*
@@ -88,15 +87,22 @@ public class PlaceViewCommand implements PlaceCommand {
 		// sb = new StringBuilder();
 		
 		if(reviewList != null && !reviewList.isEmpty()) {
-			sb.append("{");
+			sb.append("[");
 			for(int i=0, size=reviewList.size();i<size;i++) {
+				String img = reviewList.get(i).getRv_img();
 				if(i != size-1) {
-					sb.append("\"rv-img"+(i+1)+"\":"+reviewList.get(i).getRv_img()+", ");
+					sb.append(img+", ");
+				} else if (img == null) {
+					if(i!=size-1) {	
+						sb.append("[], ");
+					} else {
+						sb.append("[]");
+					}
 				} else {
-					sb.append("\"rv-img"+(i+1)+"\":"+reviewList.get(i).getRv_img());
+					sb.append(img);
 				}
 			}
-			sb.append("}");
+			sb.append("]");
 		}
 		model.addAttribute("reviewImage", sb.toString());
 		

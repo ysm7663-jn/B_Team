@@ -6,25 +6,34 @@
 </jsp:include> 
     
 <link rel="stylesheet" href="resources/style/myPage/myPageCommon.css">
+<script>
+	$(function(){
+
+		$('body').on('click', '.member_category li > a', function(event){
+			$('.member_category li>a').css('background','');
+			$(this).css('color', 'red');
+		});
+	});
+</script>
 <div class="mypage_body">
 	<div class="mypage_category">
 		<c:if test="${grade eq 'member'}">
 			<h2>일반</h2>
 			<ul class="member_category">
 				<li>
-					<a href="profile.myPage">내 프로필</a><br/>
+					<a class="btn" href="profile.myPage">내 프로필</a><br/>
 				</li>
 				<li>
-					<a href="wishList.myPage">위시리스트</a><br/>
+					<a class="btn" href="wishList.myPage">위시리스트</a><br/>
 				</li>
 				<li>
-					<a href="regularClub.myPage">정기 모임</a><br/>
+					<a class="btn" href="regularClub.myPage?state=0">정기 모임</a><br/>
 				</li>
 				<li>
-					<a href="instantClub.myPage">번개 모임</a><br/>
+					<a class="btn active" href="instantClub.myPage?state=0">번개 모임</a><br/>
 				</li>
 				<li>
-					<a href="memberDelete.myPage">탈퇴하기</a><br/>
+					<a class="btn" href="memberDeletePage.myPage">탈퇴하기</a><br/>
 				</li>
 			</ul>
 		
