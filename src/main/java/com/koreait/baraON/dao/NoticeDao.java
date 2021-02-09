@@ -10,4 +10,10 @@ public interface NoticeDao {
 	public int totalRecord();
 	
 	public NoticeDto noticeView(int no);
+	
+	public int noticeInsert(String title, String content);
+	
+	public int noticeDelete(int no);
+	
+	public int noticeUpdate(String title, String content , int no);
 }

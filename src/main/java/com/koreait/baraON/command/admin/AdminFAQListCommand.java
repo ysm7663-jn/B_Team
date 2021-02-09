@@ -1,4 +1,4 @@
-package com.koreait.baraON.command.board;
+package com.koreait.baraON.command.admin;
 
 import java.util.List;
 import java.util.Map;
@@ -6,46 +6,50 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import com.koreait.baraON.command.board.NoticeCommand;
-import com.koreait.baraON.dao.NoticeDao;
-import com.koreait.baraON.dto.NoticeDto;
+import com.koreait.baraON.command.board.Paging;
+import com.koreait.baraON.dao.FAQDao;
+import com.koreait.baraON.dto.FAQDto;
 
-public class NoticeListCommand implements NoticeCommand {
-	
-	@Autowired
-	public void execute(SqlSession sqlSession, Model model){
+
+public class AdminFAQListCommand implements NoticeCommand {
+
+	@Override
+	public void execute(SqlSession sqlSession, Model model) {
 		
-		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
+		FAQDao faqDao = sqlSession.getMapper(FAQDao.class);
 		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+		
+		int category = 1;
+		if(request.getParameter("category") != null) {
+			category = Integer.parseInt(request.getParameter("category"));
+		}
 		
 		int page = 1;
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		int totalRecord = noticeDao.totalRecord();
+		int totalRecord = faqDao.totalRecord();
 		
-		int recordPerPage = 5; 
+		int recordPerPage = 10; 
 		
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = beginRecord + recordPerPage - 1;
 		endRecord = endRecord < totalRecord ? endRecord : totalRecord;
+	
+		List<FAQDto> list = faqDao.faqList(beginRecord , endRecord , category);
 		
-		List<NoticeDto> list = noticeDao.noticeList(beginRecord , endRecord);
-		
-		String paging = Paging.getPaging("noticeListPage.notice" , totalRecord, recordPerPage, page);
-		
-		model.addAttribute("list", list);
-		
-		model.addAttribute("paging" , paging);
+		String paging = Paging.getPaging("faqListPage.faq", totalRecord, recordPerPage, page);
+	
+		model.addAttribute("list" , list);
 		model.addAttribute("totalRecord" , totalRecord);
 		model.addAttribute("page" , page);
 		model.addAttribute("recordPerPage" , recordPerPage);
-		
 	}
+
 }

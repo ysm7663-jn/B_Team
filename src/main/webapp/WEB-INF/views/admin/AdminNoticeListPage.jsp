@@ -40,10 +40,8 @@
 </head>
 <body>
 <h3>공지사항(NOTICE)</h3>
-	<!-- 
-	<input type="button" value="새글작성하러가기" onclick="location.href='simpleInsertPage.do'" /><br/><br/>
-	 -->
-
+	
+	<input type="button" value="공지사항추가" onclick="location.href='noticeInsertPage.admin'" /><br/><br/>
 	
 		<div  style="display: flex; flex-direction: column;">
 			<section class="top">
@@ -59,7 +57,7 @@
 			<c:if test="${not empty list}">
 				<c:forEach var="noticeDto" items="${list}" varStatus="k">
 					<div>
-						<div class="title1"><a href="noticeViewPage.notice?no=${noticeDto.n_no}&page=${page}">${noticeDto.n_title}</a></div>
+						<div class="title1"><a href="noticeViewPage.admin?no=${noticeDto.n_no}&page=${page}">${noticeDto.n_title}</a></div>
 						<div>
 						<span class="date1">${noticeDto.n_postDate}</span>
 						</div>

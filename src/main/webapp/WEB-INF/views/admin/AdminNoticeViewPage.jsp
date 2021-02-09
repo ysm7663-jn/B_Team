@@ -18,30 +18,29 @@
 	</div>
 	
 	<div class="c_foot">
-	<form method="post">
-		<input type="button" name="list" value="목록보기" onclick="location.href='noticeListPage.notice'" />
+	<form>
+		<input type="button" name="list" value="목록보기" onclick="location.href='noticeListPage.admin'" />
 		<input type="hidden" name="no" value="${noticeDto.n_no}" />
 		<input type="hidden" name="title" value="${noticeDto.n_title}" />
 		<input type="hidden" name="content" value="${noticeDto.n_content}" />
-	<!-- 
-		<input type="button" value="수정하러가기" onclick="fn_simpleUpdatePage(this.form)" />
-		<input type="button" value="삭제하기" onclick="fn_simpleDelete(this.form)" />
-	 -->
+		<input type="button" value="수정하러가기" onclick="fn_noticeUpdatePage(this.form)" />
+		<input type="button" value="삭제하기" onclick="fn_noticeDelete(this.form)" />
+	
 	</form>
 	</div>
-	<!-- 
+	
 	<script type="text/javascript">
-		function fn_simpleUpdatePage(f) {
-			f.action = 'simpleUpdatePage.do';
+		function fn_noticeUpdatePage(f) {
+			f.action = 'noticeUpdatePage.admin';
 			f.submit();
 		}
-		function fn_simpleDelete(f) {
+		function fn_noticeDelete(f) {
 			if (confirm('삭제할까요?')) {
-				f.action = 'simpleDelete.do';
+				f.action = 'noticeDelete.admin';
 				f.submit();
 			}
 		}
-	 -->
 	</script>
+
 </body>
 </html>

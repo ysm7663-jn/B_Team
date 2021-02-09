@@ -281,6 +281,17 @@ CREATE TABLE FAQ
     F_CATEGORY    NUMBER               NOT NULL 
 );
 
+INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '바라온 환불정책' , '바라온은 아래와 같은 환불정책을 따릅니다.' , SYSDATE, 1);
+INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '바라온 환불정책' , '바라온은 아래와 같은 환불정책을 따릅니다.' , SYSDATE, 2);
+INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '탈퇴는 어떻게하나요?' , '더보기 => 내 정보 => 탈퇴하기' , SYSDATE, 1);
+INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '탈퇴는 어떻게하나요?' , '더보기 => 내 정보 => 탈퇴하기' , SYSDATE, 3);
+INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '정기vs번개' , '편한걸로' , SYSDATE, 1);
+INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '정기vs번개' , '편한걸로' , SYSDATE, 4);
+
+
+
+SELECT * FROM FAQ;
+
 CREATE SEQUENCE FAQ_SEQ
 START WITH 1
 INCREMENT BY 1

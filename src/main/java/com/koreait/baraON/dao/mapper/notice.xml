@@ -25,4 +25,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE N_NO = #{no}
 	</select>
 	
+	<insert id="noticeInsert">
+		INSERT INTO
+		NOTICE (N_NO, N_TITLE, N_CONTENT, N_POSTDATE)
+		VALUES (NOTICE_SEQ.NEXTVAL, #{param1}, #{param2}, SYSDATE)
+	</insert>
+	
+	<delete id="noticeDelete">
+		DELETE
+		FROM NOTICE
+		WHERE N_NO = #{no}
+	</delete>
+	
+	<update id="noticeUpdate">
+		UPDATE NOTICE
+		SET N_TITLE = #{param1},
+			N_CONTENT = #{param2}
+		WHERE N_NO = #{param3}
+	</update>
+	
 </mapper>

@@ -1,4 +1,4 @@
-package com.koreait.baraON.command.board;
+package com.koreait.baraON.command.admin;
 
 import java.util.List;
 import java.util.Map;
@@ -10,10 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import com.koreait.baraON.command.board.NoticeCommand;
+import com.koreait.baraON.command.board.Paging;
 import com.koreait.baraON.dao.NoticeDao;
 import com.koreait.baraON.dto.NoticeDto;
 
-public class NoticeListCommand implements NoticeCommand {
+public class AdminNoticeListCommand implements NoticeCommand {
 	
 	@Autowired
 	public void execute(SqlSession sqlSession, Model model){
@@ -38,10 +39,9 @@ public class NoticeListCommand implements NoticeCommand {
 		
 		List<NoticeDto> list = noticeDao.noticeList(beginRecord , endRecord);
 		
-		String paging = Paging.getPaging("noticeListPage.notice" , totalRecord, recordPerPage, page);
+		String paging = Paging.getPaging("admin/noticeListPage.admin" , totalRecord, recordPerPage, page);
 		
 		model.addAttribute("list", list);
-		
 		model.addAttribute("paging" , paging);
 		model.addAttribute("totalRecord" , totalRecord);
 		model.addAttribute("page" , page);
