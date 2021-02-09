@@ -5,22 +5,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.koreait.baraON.dao.PlaceDao2">
 	
-	<select id="allPlaceSearch" parameterType="int" resultType="com.koreait.baraON.dto.PlaceDto2">
+	<select id="allPlaceSearch"  parameterType="com.koreait.baraON.dto.PlaceDto2" resultType="com.koreait.baraON.dto.PlaceDto2">
 		SELECT *
 		FROM PLACE
-		WHERE S_NO={s_no}
+		WHERE S_NO = #{s_no} AND P_DELETE = 0
 	</select>
 	
-	<select id="placeCaSearch" parameterType="HashMap" resultType="com.koreait.baraON.dto.PlaceDto2">
+	<select id="placeCaSearch"  parameterType="com.koreait.baraON.dto.PlaceDto2" resultType="com.koreait.baraON.dto.PlaceDto2">
 		SELECT *
 		FROM PLACE
-		WHERE S_NO={s_no} AND PC_NO={pc_no}
-	</select>
-	
-	<select id="placeCaSearch2" parameterType="HashMap" resultType="com.koreait.baraON.dto.PlaceDto2">
-		SELECT *
-		FROM PLACE
-		WHERE S_NO={s_no} AND PC_NO={pc_no} AND P_DELETE=0
+		WHERE S_NO=#{s_no} AND PC_NO=#{pc_no} P_DELETE = 0
 	</select>
 	
 </mapper>

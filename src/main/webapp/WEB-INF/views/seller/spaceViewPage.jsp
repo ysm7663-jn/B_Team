@@ -4,95 +4,142 @@
 <jsp:include page="../template/header.jsp" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
-	function fn_allPlaceSearch(){
-		var s_no='';	// 이부분 채울것
-		$.ajax({
-			url:'allPlaceSearch.seller',
-			type:'get',
-			data:'s_no='+s_no,
-			dataType: 'json',
-			success: function(data){
-				alert('성공');	//지울것
-				if(data.result == true){
-					placeListTable(data.list)
+
+	$(function(){
+		fn_placeSearch();	
+		fn_placeSearch2();	
+	});
+
+	function fn_placeSearch(){
+		var pc_no = $('select[name="category1"]').val();
+		var obj1={
+			's_no':'${loginDto.s_no}'
+		};
+		var obj2={
+			'pc_no':pc_no,	
+			's_no':'${loginDto.s_no}'
+		};
+		if(pc_no==0){
+			$.ajax({
+				url:'allPlaceSearch.seller',
+				type:'post',
+				data: JSON.stringify(obj1),
+				contentType:'application/json',
+				dataType: 'json',
+				success: function(data){
+					alert('성공1');	//지울것
+					console.log('result:' + data.result);
+					console.log('result:' + data.list);
+					if(data.result == true){
+						placeListTable(data.list);
+					}
+				},
+				error: function(){
+					alert('실패');
 				}
-			},
-			error: function(){
-				alert('실패');
-			}
-		});
+			});
+		} else {
+			console.log('pc_no: ' + pc_no);		//지울것
+			console.log('s_no: ' + '${loginDto.s_no}');//지울것
+			$.ajax({
+				url:'placeCaSearch.seller',
+				type:'post',
+				data: JSON.stringify(obj2),	
+				contentType:'application/json',
+				dataType: 'json',
+				success: function(data){
+					alert('성공2'); //지울것
+					console.log('result:' + data.result);
+					console.log('result:' + data.list);
+					if(data.result == true){
+						placeListTable(data.list);
+					}
+				},
+				error: function(){
+					alert('실패');
+				}
+			});
+		}
 	}
 	
 	function placeListTable(list){
 		$('#placeList').empty();
 		$.each(list, function(idx, place){
 			$('<tr>')
-			.append($('<td>').html(place.p_img))
+			.append($('<td>').html(place.s_no))
 			.appendTo('#placeList');
 		});
 	}
+
 	
-	$(function(){
-		$('#category1').change(function(){
-			var pc_no=''; 	// 이부분 채울것
-			var obj={
-				'pc_no':pc_no,	
-				's_no':s_no
-			};
+	
+	// 두번째 select
+	function fn_placeSearch2(){
+		var pc_no = $('select[name="category1"]').val();
+		var obj1={
+			's_no':'${loginDto.s_no}'
+		};
+		var obj2={
+			'pc_no':pc_no,	
+			's_no':'${loginDto.s_no}'
+		};
+		if(pc_no==0){
+			$.ajax({
+				url:'allPlaceSearch.seller',
+				type:'post',
+				data: JSON.stringify(obj1),
+				contentType:'application/json',
+				dataType: 'json',
+				success: function(data){
+					alert('성공1');	//지울것
+					console.log('result:' + data.result);
+					console.log('result:' + data.list);
+					if(data.result == true){
+						placeListTable(data.list);
+					}
+				},
+				error: function(){
+					alert('실패');
+				}
+			});
+		} else {
+			console.log('pc_no: ' + pc_no);		//지울것
+			console.log('s_no: ' + '${loginDto.s_no}');//지울것
 			$.ajax({
 				url:'placeCaSearch.seller',
 				type:'post',
-				data: JSON.stringify(sendObj),	
+				data: JSON.stringify(obj2),	
 				contentType:'application/json',
 				dataType: 'json',
-				success: function(resultMap){
-					alert('성공'); //지울것
+				success: function(data){
+					alert('성공2'); //지울것
+					console.log('result:' + data.result);
+					console.log('result:' + data.list);
 					if(data.result == true){
-						placeListTable(data.list)
+						placeListTable(data.list);
 					}
 				},
 				error: function(){
 					alert('실패');
 				}
 			});
-		});
-	});
+		}
+	}
 	
-	
-	$(function(){
-		$('#category2').change(function(){
-			var pc_no=''; 	// 이부분 채울것
-			var obj={
-				'pc_no':pc_no,	
-				's_no':s_no
-			};
-			$.ajax({
-				url:'placeCaSearch2.seller',
-				type:'post',
-				data: JSON.stringify(sendObj),	
-				contentType:'application/json',
-				dataType: 'json',
-				success: function(resultMap){
-					alert('성공');
-					if(data.result == true){
-						placeListTable(data.list)
-					}
-				},
-				error: function(){
-					alert('실패');
-				}
-			});
-		});
-	});
 
 	function placeListTable2(list){
-		$('#placeList').empty();
+		$('#placeList2').empty();
 		$.each(list, function(idx, place){
 			$('<tr>')
 			.append($('<td>').html(place.p_img))
 			.appendTo('#placeList2');
 		});
 	}
+
+	
+	
+	
+	
 	
 </script>
 
@@ -102,10 +149,10 @@
 <h3>OPEN</h3>
 <br/>
 <form method="get">
-	<select name="category1" id="category1">
-		<option value="">전체</option>
+	<select name="category1" id="category1" onchange="fn_placeSearch()">
+		<option value="0" selected>전체</option>
 			<c:forEach var="PlaceCategoryDto" items="${list}">
-				<option id="category${PlaceCategoryDto.pc_no}"value="${PlaceCategoryDto.pc_no}">
+				<option value="${PlaceCategoryDto.pc_no}">
 					${PlaceCategoryDto.pc_name}
 				</option>
 			</c:forEach>
@@ -124,10 +171,10 @@
 <br/>
 
 <form method="get">
-	<select name="category2" id="category2">
+	<select name="category2" id="category2" onchange="fn_placeSearch2()">
 		<option value="">전체</option>
 			<c:forEach var="PlaceCategoryDto" items="${list}">
-				<option id="category${PlaceCategoryDto.pc_no}"value="${PlaceCategoryDto.pc_no}" onclick="fn_PlaceCaSearch()">
+				<option value="${PlaceCategoryDto.pc_no}">
 					${PlaceCategoryDto.pc_name}
 				</option>
 			</c:forEach>
@@ -152,7 +199,7 @@
 		<c:if test="${not empty list}">
 			<c:forEach var="PlaceDto2" items="${list}">
 				<tr>
-					<td>${PlaceDto2.p_img}</td>
+				
 				</tr>
 		</c:forEach>
 		</c:if>	
