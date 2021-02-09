@@ -42,6 +42,7 @@ div {
 	width: 97%;
 	height: 87%;
 	border: 2px solid lightgray;
+	border-radius: 6px;
 	margin: 24px 10px 20px 0;
 	padding: 10px;
 }
@@ -69,12 +70,17 @@ div {
 	margin-top: 8px;
 	font-size: 15px;
 }
-.summary {
+.detail { 
 	display: flex;
+}
+.summary {
 	padding: 0 10px;
 }
 .summary > .readerName {
-	width: 38%;
+	width: 100%;
+}
+.readerName > i {
+	color: cadetblue;
 }
 .reader {
 	font-size: 11px;
@@ -88,6 +94,13 @@ div {
 }
 .fa-user-circle:before {
 	color: cadetblue;
+}
+.fa-skull:before {
+	color: #cc0000;
+	font-size: 28px;
+}
+.cl_card {
+	margin-left: 20px;
 }
 .quit input {
 	width: 65px;

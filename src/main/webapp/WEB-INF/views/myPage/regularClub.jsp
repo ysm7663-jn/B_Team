@@ -16,12 +16,23 @@
 		}
 	}
 	
-	if('${delete}') { //clubDelete에서 왔으면
-		if('${deleteResult} != null') {
+	if(${isDelete eq true}) { //clubDelete에서 왔으면
+		if(${deleteResult lt 1}) {
 			alert('일시적인 오류가 발생했습니다. 다시 시도해주세요.');			
 		}
 	}
-	console.log('${param.state}');
+	
+	$(function(){
+		if(${param.state == 1}) {    // 지난 모임이면
+			$('.empty').text('진행했던 모임이 없습니다.');
+			$('.quit').remove();
+			$('.startDate').remove();
+			$('.cl_card').remove();
+			$('.clubImage > a').css('pointer-events', 'none').css('cursor', 'default');
+		}
+		
+	});
+
 </script>
 	<div class="mypage_contents">
 		<h2>정기모임</h2>
@@ -38,36 +49,35 @@
 				
 		<c:if test="${empty list}">
 			<div><i class="fas fa-exclamation-circle"></i></div>
-			<div>진행중인 모임이 없습니다.</div>
+			<div class="empty">진행중인 모임이 없습니다.</div>
 		</c:if>
 		<c:if test="${not empty list}">
 			<div class="clubwrap">
-				<c:forEach var="regularClubListDto" items="${list}">
+				<c:forEach var="ClubListDto" items="${list}">
 					<div class="clubList">
-						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${regularClubListDto.c_mainimg}"></a></div>
+						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${ClubListDto.c_mainimg}"></a></div>
 						<hr class="section">
 						<div class="clubContent">
-							<div class="title">${regularClubListDto.c_title}</div>
-							<div class="content">${regularClubListDto.c_content}</div><br/>
+							<div class="title">${ClubListDto.c_title}</div>
+							<div class="content">${ClubListDto.c_content}</div><br/>
 						</div>
-						<div class="summary">
-							<div class="readerName"><i class="fas fa-user-circle"></i>&nbsp;${regularClubListDto.m_no}&nbsp;&nbsp;<span class="reader">리더</span></div><br/>
-							<div class="startDate">${regularClubListDto.c_startDate} 첫 모임</div><br/>
+						<div class="detail">
+							<div class="summary">
+								<div class="readerName"><i class="fas fa-user-circle">&nbsp;${ClubListDto.m_nick}&nbsp;&nbsp;</i><span class="reader">리더</span></div><br/>
+								<div class="startDate">${ClubListDto.c_startDate} 첫 모임</div><br/>
+							</div>
+							<div class="cl_card">
+								<c:forEach begin="1" end="${ClubListDto.cl_card}" step="1">
+									<span><i class="fas fa-skull" ></i></span>
+								</c:forEach>
+							</div>
+							<br/><br/>
 						</div>
-						<div class="cl_card">
-							<script>
-								$('.cl_card').empty();
-								var count = ${regularClubListDto.cl_card};
-								for(var num in count) {
-									$('.cl_card').append('<span><i class="fas fa-bookmark"></i></span>');
-								}
-							</script>	
-						</div><br/><br/>
 						<div class="quit">
 							<form method="post">
 								<!-- hidden -->
 								<input type="hidden" name="clubNo" value="0" />
-								<input type="hidden" name="clNo" value="${regularClubListDto.cl_no}" />
+								<input type="hidden" name="clNo" value="${ClubListDto.cl_no}" />
 								<input type="button" value="Quit >" onclick="fn_quit(this.form)" />
 							</form>
 						</div>

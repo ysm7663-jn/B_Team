@@ -26,9 +26,15 @@ public class WishDeleteCommand implements BaraONCommand {
 		MyPageDao myPageDao = sqlSession.getMapper(MyPageDao.class);
 		// 삭제
 		int result = myPageDao.wishDelete(wNo);
+		
+		boolean isDelete = false;
+		if(result > 0) { 
+			isDelete = true;
+		}
+		
 		// 삭제 후 리스트 다시 가져오기
-		rttr.addAttribute("delete", true);
-		rttr.addAttribute("deleteResult", result);
+		rttr.addFlashAttribute("isDelete", isDelete);
+		rttr.addFlashAttribute("deleteResult", result);
 	}
 
 }

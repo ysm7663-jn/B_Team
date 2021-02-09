@@ -12,7 +12,7 @@ import org.springframework.ui.Model;
 import com.koreait.baraON.command.BaraONCommand;
 import com.koreait.baraON.dao.MyPageDao;
 import com.koreait.baraON.dto.MemberDto;
-import com.koreait.baraON.dto.RegularClubListDto;
+import com.koreait.baraON.dto.ClubListDto;
 
 public class InstantClubCommand implements BaraONCommand {
 
@@ -37,7 +37,7 @@ public class InstantClubCommand implements BaraONCommand {
 			}
 		}
 		
-		List<RegularClubListDto> list = null;
+		List<ClubListDto> list = null;
 		MyPageDao myPageDao = sqlSession.getMapper(MyPageDao.class);
 		if(state == 0) {
 			list = myPageDao.clubList(mNo, cPart);
