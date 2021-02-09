@@ -58,6 +58,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getSellerDto" parameterType="int" resultType="com.koreait.baraON.dto.SellerDto" >
 		SELECT *
 		FROM SELLER
-		WHERE P_NO=#{p_no}
+		WHERE S_NO=#{param1}
 	</select>
 </mapper>

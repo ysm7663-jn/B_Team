@@ -13,11 +13,9 @@
 <script>
 	let facilityList = JSON.parse('${facilityList}');
 	let isSeller = ${isSeller};
-	let loginDtoMNo = null;
-	alert(isSeller);
-	if(!isSeller){
-		alert(isSeller);
-	}
+	<c:if test="${not isSeller}">
+		let loginMNo = '${loginDto.m_no}';
+	</c:if>
 	let thumbnail = JSON.parse('${placeDto.p_img}');
 	let infoList = JSON.parse('${placeDto.p_info}');
 	let remarkList = JSON.parse('${placeDto.p_remark}');
@@ -39,11 +37,11 @@
 	
 	/* 리뷰작성 성공 */
 	
-	if(${param.insertResult gt 0}){
+	if(${insertResult gt 0}){
 		alert('작성해주셔서 감사합니다.');
-	} else if (${param.insertResult eq -1}) {
+	} else if (${insertResult eq -1}) {
 		alert('지원되는 확장자가 아닙니다.(jpg, jpeg, png)');
-	} else if (${param.insertResult eq 0}) {
+	} else if (${insertResult eq 0}) {
 		alert('리뷰 작성에 실패했습니다.');
 	}
 	
@@ -53,8 +51,17 @@
 	
 	
 	function fn_reserve(f){
-		if($('.place-option-wrap input:checked').length>1){
-			alert('한 장소만 선택해주세요');
+		if(isSeller){
+			alert('호스트는 예약할 수 없습니다.');
+			return;
+		}
+		if(${loginDto eq null}){
+			alert('로그인이 필요합니다.');
+			location.href='loginPage.member';
+			return;
+		}
+		if($('.place-option-wrap input:checked').length!=1){
+			alert('예약하려는 장소 하나만 선택해주세요');
 			return;
 		}
 		let chked = $('.place-option-wrap input:checked');
@@ -63,6 +70,8 @@
 			alert('날짜를 선택해 주세요');
 			return;
 		}
+		f.action='reservationPage.reservation';
+		f.submit();
 		
 	}
 </script>
@@ -71,7 +80,7 @@
 	<div class="modal-content">
 		<div class="close" onclick="fn_modalClose()">&times;</div>
 		<div class="content-wrap">
-		<span id="modal-m-id">ID : ${loginDto.m_id}</span><br/>
+		<span id="modal-m-id"><c:if test="${not isSeller}">ID : ${loginDto.m_id}</c:if></span><br/>
 		
 		<span class="modal-star">
 			
@@ -116,7 +125,7 @@
 	<aside>
 		<h4>세부 공간 선택</h4>
 		<!-- Todo : 세부옵션 추가 -->
-		<form class="reserve-form">
+		<form class="reserve-form" method="post">
 			<c:if test="${optionList eq null}">
 				<div>
 					<h4>등록된 공간이 없습니다.</h4>
@@ -148,6 +157,7 @@
 								</div>
 								<input type="hidden" name="res_date" />
 								<div class="people-count">
+									<strong>예약인원</strong>
 									<button type="button" class="count-minus" >&lt;</button>
 									<input class="count" type="number" name="res_people" value="${optionDto.po_min}" min="${optionDto.po_min}" max="${optionDto.po_max}" placeholder="${optionDto.po_min}"/>
 									<button type="button" class="count-plus" >&gt;</button>
@@ -190,7 +200,6 @@
 			
 			</ol>
 		</div>
-		<!-- 나중에 커스터마이징 할 시간있으면 한 번 해볼 것. -->
 		<div id="place-map-wrap">
 			<h3>위치</h3>
 			<div id="map" style="width : 100%; height: 500px; overflow:hidden;">
@@ -221,16 +230,22 @@
 						</p>
 						<input id="star-score" type="hidden" name="rv_star" />
 					</div>
-					<c:if test="${loginDto eq null }">
+					<!-- 해당 공간을 이용한 클럽의 회원만 댓글가능하도록 수정해야함 -->
+					<c:if test="${isSeller}">
+						<textarea rows="5" cols="50" name="rv_content" placeholder="호스트는 댓글을 달 수 없습니다." readonly></textarea>
+					</c:if>
+					<c:if test="${loginDto eq null}">
 						<textarea rows="5" cols="50" name="rv_content" placeholder="로그인한 회원만 리뷰작성이 가능합니다." readonly></textarea>
 					</c:if>
-					<c:if test="${loginDto ne null }">
+					<c:if test="${(not isSeller) && (loginDto ne null)}">
 						<textarea rows="5" cols="50" name="rv_content" placeholder="댓글은 마음의 창입니다." ></textarea>
 						<input id="file-upload-btn" type="file" name="rv_img" accept="image/*" value="이미지첨부" multiple />
 					</c:if>
 					<div class="review-insert-btn-wrap">
 						<!-- hidden -->
-						<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+						<c:if test="${not isSeller}">
+							<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+						</c:if>
 						<input type="hidden" name="p_no" value="${placeDto.p_no}" />
 						<label id="upload-btn" for="file-upload-btn" >파일 업로드</label>
 						<input type="button" value="작성하기" onclick="fn_reviewInsert(this.form)" />
@@ -285,7 +300,7 @@
 										
 								</div>
 								<div class="review-btns" >
-									<c:if test="${loginDto.m_no eq reviewDto.m_no}">
+									<c:if test="${(not isSeller) && (loginDto.m_no eq reviewDto.m_no)}">
 										<!-- modal에 표시할 별점 -->
 										<input type="hidden" name="rv_star" value="${reviewDto.rv_star}" />
 										<!-- modal에 표시할 내용 -->

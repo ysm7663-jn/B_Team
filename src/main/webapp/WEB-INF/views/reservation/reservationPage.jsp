@@ -8,9 +8,13 @@
 <script type="text/javascript" src="resources/js/reserve.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-
+let isProgress=false;
 	$(function(){
-		$("#check_module").click(function() {
+		$("#res-update").click(function() {
+			if(isProgress){
+				return;
+			}
+			isProgress=true;
 			var IMP = window.IMP; // 생략가능
 			IMP.init('imp97817701');
 			// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -40,20 +44,14 @@
 				/*
 				merchant_uid에 경우
 				https://docs.iamport.kr/implementation/payment
-				위에 url에 따라가시면 넣을 수 있는 방법이 있습니다.
-				참고하세요.
-				나중에 포스팅 해볼게요.
 				 */
-				name : '주문명:결제테스트',
+				name : '${placeOptionDto.po_name}',
 				//결제창에서 보여질 이름
-				amount : 1000,
+				amount : $('[name="res_price"]').val(),
 				//가격
-				buyer_email : 'iamport@siot.do',
-				buyer_name : '구매자이름',
-				buyer_tel : '010-1234-5678',
-				buyer_addr : '서울특별시 강남구 삼성동',
-				buyer_postcode : '123-456',
-				m_redirect_url : 'https://www.yourdomain.com/payments/complete'
+				buyer_email : $('[name="res_email"]').val(),
+				buyer_name : $('[name="res_name"]').val(),
+				buyer_tel : $('[name="res_phone"]').val(),
 			/*
 			모바일 결제시,
 			결제가 끝나고 랜딩되는 URL을 지정
@@ -63,15 +61,40 @@
 				console.log(rsp);
 				if (rsp.success) {
 					var msg = '결제가 완료되었습니다.';
-					msg += '고유ID : ' + rsp.imp_uid;
-					msg += '상점 거래ID : ' + rsp.merchant_uid;
-					msg += '결제 금액 : ' + rsp.paid_amount;
-					msg += '카드 승인번호 : ' + rsp.apply_num;
+					let sendObj = {
+							'res_no' : '${reservationDto.res_no}',
+							'res_email' : rsp.buyer_email,
+							'res_price' : rsp.paid_amount,
+							'res_applynum' : rsp.apply_num,
+							'res_purpose' : $('[name="res_purpose"]').val(),
+							'res_requirement' : $('[name="requirement"]').val()
+					};
+					$.ajax({
+						url:'reservationUpdate.reservation',
+						type:'put',
+						data:JSON.stringify(sendObj),
+						contentType:'application/json; charset=utf-8',
+						dataType:'json',
+						success:function(responseObj){
+							if(responseObj.result){
+								alert('결제에 성공했습니다. 예약대기상태로 변경됩니다.');
+								location.href='placeListPage.place';
+							}
+						},
+						error:function(request,status,error){
+							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+						},
+						complete:function(){
+							setTimeout(function(){
+								isProgress = false;
+							},1000);
+						}
+					});
 				} else {
 					var msg = '결제에 실패하였습니다.';
 					msg += '에러내용 : ' + rsp.error_msg;
+					alert(msg);
 				}
-				alert(msg);
 			});
 		});
 		
@@ -80,7 +103,7 @@
 <!-- <link rel="stylesheet" href="resorces/style/reserve.css" /> -->
 
 <div>
-	<form>
+	<form method="post" id="res-form">
 	<section class="left">
 		<article class="res-insert-list">
 			<div class="subtitle">예약 공간</div>
@@ -93,16 +116,19 @@
 			<div class="sub-content">
 				<ul>
 					<li>
-						예약자 <input type="text" name="res_name" value="${loginDto.m_name}" />
+						예약자<span class="required-data">필수사항</span><br/>
+						<input type="text" name="res_name" value="${memberDto.m_name}" />
 					</li>
 					<li>
-						연락처 <input type="text" name="res_phone" value="${loginDto.m_phone}" />
+						연락처<span class="required-data">필수사항</span><br/>
+						<input type="text" name="res_phone" value="${memberDto.m_phone}" />
 					</li>
 					<li>
-						이메일 <input type="text" name="res_email" value="${loginDto.m_email}" />
+						이메일<input type="text" name="res_email" value="${memberDto.m_email}" />
 					</li>
 					<li>
-						사용목적 <input type="text" name="res_purpose" />
+						사용목적<span class="required-data">필수사항</span><br/>
+						<input type="text" name="res_purpose" />
 					</li>
 					<li>
 						요구사항 
@@ -114,6 +140,34 @@
 		<article class="res-insert-list">
 			<div class="subtitle">호스트 정보</div>
 			<div class="sub-content">
+				<table>
+					<tbody>
+						<tr>
+							<th>상호</th>
+							<td>${placeDto.p_name}</td>
+						</tr>
+						<tr>
+							<th>대표자명</th>
+							<td>${sellerDto.s_name}</td>
+						</tr>
+						<tr>
+							<th>사업장 위치</th>
+							<td>${placeDto.p_addr}&nbsp;${placeDto.p_addrdetail}</td>
+						</tr>
+						<tr>
+							<th>사업자 번호</th>
+							<td>${sellerDto.s_companyNo}</td>
+						</tr>
+						<tr>
+							<th>연락처</th>
+							<td>${sellerDto.s_phone}</td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td>${sellerDto.s_email}</td>
+						</tr>
+					</tbody>
+				</table>
 				
 			</div>
 		</article>
@@ -129,37 +183,31 @@
 				
 			</div>
 		</article>
-		<article class="res-insert-list">
-			<div class="subtitle"></div>
-			<div class="sub-content">
-				
-			</div>
-		</article>
-		<article class="res-insert-list">
-			<div class="subtitle"></div>
-			<div class="sub-content">
-				
-			</div>
-		</article>
-		<article class="res-insert-list">
-			<div class="subtitle"></div>
-			<div class="sub-content">
-				
-			</div>
-		</article>
 	</section>
 	<section class="right">
 		<aside class="res-insert-list">
 			<div class="subtitle">결제 예정금액</div>
 			<div class="sub-content">
-				
+				<strong>예약날짜</strong><br/>
+				<span class="res-data">${reservationDto.res_date}</span>
+				<strong>예약인원</strong>
+				<span class="res-data">${reservationDto.res_people}</span>
+				<div class="res-date" id="res-price">
+					<c:if test="${isWeekend}">
+						${placeOptionDto.po_holiday}
+						<input type="hidden" name="res_price" value="${placeOptionDto.po_holiday}" />
+					</c:if>
+					<c:if test="${not isWeekend}">
+						${placeOptionDto.po_dayPrice}
+						<input type="hidden" name="res_price" value="${placeOptionDto.po_dayPrice}" />
+					</c:if>
+				</div>
 			</div>
 			<div class="btn-box">
-				<button id="check_module" type="button">아임 서포트 결제 모듈 테스트 해보기</button>
+				<button id="res-update" type="button">결제하기</button>
 			</div>
 		</aside>
 	</section>
-	<p>아임 서포트 결제 모듈 테스트 해보기</p>
 	</form>
 </div>
 <%@ include file="../template/footer.jsp" %>

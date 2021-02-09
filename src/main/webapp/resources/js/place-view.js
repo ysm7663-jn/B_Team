@@ -397,7 +397,7 @@ function appendList(list){
 			});
 		}
 		$('.review').last().append('<div class="review-btns">');
-		if(loginDtoMNo==reviewDto.m_no){
+		if(!isSeller && loginDtoMNo==reviewDto.m_no){
 			$('.review-btns').last().append('<input type="hidden" name="rv_star" value="'+reviewDto.rv_star+'" />')
 			.append('<input type="hidden" name="rv_content" value="'+reviewDto.rv_content+'" />')
 			.append('<input type="hidden" name="rv_no" value="'+reviewDto.rv_no+'" />')

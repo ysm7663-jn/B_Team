@@ -15,5 +15,5 @@ public interface MemberDao {
 	
 	
 	// place
-	public SellerDto getSellerDto(int p_no);
+	public SellerDto getSellerDto(int s_no);
 }
