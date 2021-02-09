@@ -338,7 +338,10 @@
 							</div>
 						</article>
 					</section>
-					<button type="button" id="add-option-btn" >옵션추가</button>
+					<section>
+						<button type="button" id="add-option-btn" >옵션추가</button>
+						<button type="button" id="remove-option-btn">옵션삭제</button>
+					</section>
 				</div>
 			</div>
 		</article>

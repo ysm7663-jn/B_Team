@@ -18,6 +18,7 @@
 		fn_clickCategory();
 		fn_previewThumbnail('#upload-btn');
 		fn_previewThumbnail('#option-thumbnail');
+		fn_removeOption();
 	})
 	function fn_placeInsert(f){
 		if(f.pc_no.value==''){
@@ -140,6 +141,11 @@
 			fn_addFacility($('.add-facility-btn').last());
 			fn_previewThumbnail('#option-thumbnail');
 		});
+	}
+	function fn_removeOption(){
+		$('#remove-option-btn').click(function(){
+			$('section.option').last().remove();
+		})
 	}
 	function fn_previewThumbnail(btn){
 		$(btn).on('change', function(event){
@@ -338,7 +344,10 @@
 							</div>
 						</article>
 					</section>
-					<button type="button" id="add-option-btn" >옵션추가</button>
+					<section>
+						<button type="button" id="add-option-btn" >옵션추가</button>
+						<button type="button" id="remove-option-btn">옵션삭제</button>
+					</section>
 				</div>
 			</div>
 		</article>
