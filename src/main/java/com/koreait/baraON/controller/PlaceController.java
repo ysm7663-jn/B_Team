@@ -101,8 +101,8 @@ public class PlaceController {
 	}
 	
 	@RequestMapping(value="placeDelete.place", method=RequestMethod.POST)
-	public String placeDelete(HttpServletRequest request, RedirectAttributes rttr, Model model) {
-		model.addAttribute("request", request);
+	public String placeDelete(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
+		model.addAttribute("multipartRequest", multipartRequest);
 		model.addAttribute("rttr", rttr);
 		
 		placeDeleteCommand.execute(sqlSession, model);

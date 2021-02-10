@@ -2,6 +2,7 @@ package com.koreait.baraON.command.place;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -42,7 +43,9 @@ public class PlaceInsertCommand implements PlaceCommand {
 		String p_bname=multipartRequest.getParameter("p_bname");
 		String p_addrdetail=multipartRequest.getParameter("p_addrdetail");
 		
-		
+		List<String> list = new ArrayList<>();
+		// info나 remark는 문자열에 ","가 포함되어있을 수 있으니 list로 넣은 후
+		// js에서 split()으로 만드는것이 타당치 못하다
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
 		sb.append("[");
@@ -78,8 +81,6 @@ public class PlaceInsertCommand implements PlaceCommand {
 		placeDto.setP_addrdetail(p_addrdetail);
 		
 		
-		
-		String p_img = null;
 		List<MultipartFile> files = multipartRequest.getFiles("p_img");
 		int size = files.size();
 		List<String> extensionList = new ArrayList<>();
@@ -87,12 +88,11 @@ public class PlaceInsertCommand implements PlaceCommand {
 		extensionList.add("jpeg");
 		extensionList.add("png");
 		
-		sb.setLength(0);
 		
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
-				String originalFilename = file.getOriginalFilename();
+				String originalFilename = file.getOriginalFilename().replace(",", "");
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 				
 				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceImages");
@@ -100,12 +100,11 @@ public class PlaceInsertCommand implements PlaceCommand {
 				if(!extensionList.contains(extension)) {
 					// 이 때 이 전에 업로드 받았던 파일들은 다 삭제해야한다.
 					// 업로드 된 파일들은 sb에 목록으로 저장되어있다.
-					String fileList = sb.toString().replace("\"", "").replace("[", "").replace("]", "");
-					StringTokenizer st = new StringTokenizer(fileList, ", ");
 					
-					while(st.hasMoreTokens()) {
-						File uploadedFile = new File(realPath, st.nextToken());
-						if (uploadedFile.exists()) {
+					Iterator it = list.iterator();
+					while(it.hasNext()) {
+						File uploadedFile = new File(realPath, (String)it.next());
+						if(uploadedFile.exists()) {
 							uploadedFile.delete();
 						}
 					}
@@ -132,12 +131,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 					e.printStackTrace();
 				}
 				
-				if(files.get(size-1) != file) {
-					sb.append("\""+uploadFilename+"\", ");
-				} else {
-					sb.append("\""+uploadFilename+"\"]");
-					sb.insert(0,"[");
-				}
+				list.add(uploadFilename);
 			} else {
 				// 이미지파일을 첨부하지 않은경우 -2
 				// 최소 하나의 파일을 첨부해야하는 상황이므로 메소드를 끝낸다.
@@ -145,8 +139,8 @@ public class PlaceInsertCommand implements PlaceCommand {
 				return;
 			}
 		}
-		if ( !sb.toString().isEmpty() && sb.toString() != null) {
-			placeDto.setP_img(sb.toString());
+		if ( list.size()!=0) {
+			placeDto.setP_img(list.toString());
 		}
 		placeDao.placeInsert(placeDto);
 		int currPNo = placeDto.getP_no();

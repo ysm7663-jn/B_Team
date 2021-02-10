@@ -135,7 +135,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">옵션</div>
 			<div class="sub-content" >
-				<div class="option-list" style="margin: 0 auto; width:640px; display:grid; grid-template-columns: repeat(3,200px); gap: 10px 20px; ">
+				<div class="option-list" >
 					<section class="option">
 						<article class="option-box">
 							<div class="option-subtitle">
@@ -190,12 +190,12 @@
 							</div>
 						</article>
 					</section>
-					<section>
-						<button type="button" id="add-option-btn" >옵션추가</button>
-						<button type="button" id="remove-option-btn">옵션삭제</button>
-					</section>
 				</div>
 			</div>
+			<section>
+				<button type="button" id="add-option-btn" >옵션추가</button>
+				<button type="button" id="remove-option-btn">옵션삭제</button>
+			</section>
 		</article>
 		<!-- hidden -->
 		<input type="hidden" name="s_no" value="${loginDto.s_no}" />

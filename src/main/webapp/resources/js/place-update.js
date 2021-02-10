@@ -7,7 +7,6 @@ $(function(){
 	fn_removeInput('#remove-remark-list-btn', '#place-remark-list');
 	fn_addFacility($('.add-facility-btn').last());
 	fn_addOption();
-	fn_clickCategory();
 	fn_previewThumbnail('#upload-btn');
 	fn_previewThumbnail('#option-thumbnail');
 	fn_removeOption();
@@ -71,14 +70,7 @@ function fn_removeInput(btn, tag){
 		$(tag).find('li').last().remove();
 	});
 }
-function fn_clickCategory(){
-	$('body').on('click', '#category-list li>a', function(){
-		$(this).closest('#category-list').next().val($(this).next().val());
-		$('#category-list li>a').css('background', '');
-		$(this).css('background','rgba(216,100,216,1)');
-		
-	});
-}
+
 function fn_addFacility(btn){
 	$(btn).click(function(event){
 		let facilityInput = $(event.target).prev();

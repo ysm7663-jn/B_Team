@@ -83,9 +83,6 @@ function fn_sildeImg(){
 	});
 }
 
-/* 일단 공간옵션 체크박스를 연속으로 클릭하면 인원 체크박스의 값이 사라진다
- * 알아볼 것
- */ 
 /* 최대 최소인원 */
 function fn_minus(){
 	$('.count-minus').click(function(event){
@@ -381,7 +378,7 @@ function appendList(list){
 	$.each(list,function(index, reviewDto){
 		$('<form>').append('<input type="hidden" name="review-rn" value="'+reviewDto.rn+'" />')
 		.append($('<div>').addClass('review').append($('<div>').addClass('reviewer-info')))
-		.appendTo($('.review-list'));
+		.appendTo($($('form').last()));
 		if(reviewDto.m_nick == null){
 			$('.reviewer-info').last().append($('<span>').addClass('review-id').text('ID : '+reviewDto.m_id));
 		} else {

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dao.PlaceOptionDao;
 import com.koreait.baraON.dto.PlaceCategoryDto;
+import com.koreait.baraON.dto.PlaceDto;
 import com.koreait.baraON.dto.PlaceOptionDto;
 
 public class PlaceUpdatePageCommand implements PlaceCommand {
@@ -19,9 +20,14 @@ public class PlaceUpdatePageCommand implements PlaceCommand {
 		int p_no = (int)model.asMap().get("p_no");
 		List<PlaceCategoryDto> categoryList = placeDao.placeCategoryList();
 		
+		List<PlaceOptionDto> placeOptionList = placeDao.getPlaceOptionList(p_no);
 		
-		model.addAttribute("placeDto", placeDao.getPlaceDto(p_no));
-		model.addAttribute("placeOptionList", placeOptionDao.getPlaceOptionByPNo(p_no));
+		PlaceDto placeDto = placeDao.getPlaceDto(p_no);
+		PlaceCategoryDto placeCategoryDto = placeDao.getPlaceCategoryByPCNo(placeDto.getPc_no());
+
+		model.addAttribute("placeDto", placeDto);
+		model.addAttribute("placeCategoryDto", placeCategoryDto);
+		model.addAttribute("placeOptionList", placeOptionList);
 		model.addAttribute("categoryList", categoryList);
 	}
 

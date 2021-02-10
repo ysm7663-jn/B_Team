@@ -11,10 +11,19 @@
 <script type="text/javascript" src="resources/js/place-view.js" defer ></script> 
 <link rel="stylesheet" href="resources/style/place/place-view.css">
 <script>
-	let facilityList = JSON.parse('${facilityList}');
+	//let facilityList = JSON.parse('${facilityList}');
+	let facilityList = new Array();
+		let facility = '';
+	<c:forEach var="optionDto" items="${optionList}" varStatus="k" >
+		facility = '${optionDto.po_fxility}';
+		// facilty는 스트링타입
+		// 이를 앞뒤의 [ ]를 지우고, 배열로 된 걸 facilityList 배열에 순차적으로 저장
+		facilityList.push(facility.replace('[','').replace(']','').split(','));
+		alert(facilityList[${k.index}]);
+	</c:forEach>
 	let isSeller = ${isSeller};
 	<c:if test="${not isSeller}">
-		let loginMNo = '${loginDto.m_no}';
+		let loginDtoMNo = '${loginDto.m_no}';
 	</c:if>
 	let thumbnail = JSON.parse('${placeDto.p_img}');
 	let infoList = JSON.parse('${placeDto.p_info}');
@@ -317,7 +326,7 @@
 							</div>
 						</form>
 					</c:forEach>
-				<h2 id="more">리뷰 더보기 Scroll Down!</h2>
+					<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 				</c:if>
 			</div>
 		</div>

@@ -3,28 +3,63 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="../template/header.jsp">
-	<jsp:param name="title" value="BaraON :: 공간등록" />
+	<jsp:param name="title" value="BaraON :: 공간수정" />
 </jsp:include>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script src="resources/js/place-insert.js" defer ></script>
+<script src="resources/js/place-update.js" defer ></script>
 <link rel="stylesheet" href="resources/style/place/place-insert.css" />
+<link rel="stylesheet" href="resources/style/place/place-update.css" />
 
 <script>
 	let infoList = JSON.parse('${placeDto.p_info}');
 	let remarkList = JSON.parse('${placeDto.p_remark}');
 	let thumbnailList = JSON.parse('${placeDto.p_img}');
+	let poFacilities = new Array();
+	<c:forEach items="${placeOptionList}" var="optionDto">
+		poFacilities.push(JSON.parse('${optionDto.po_fxility}'));
+	</c:forEach>
 	$(function(){
 		fn_appendList(infoList, '#place-info-list', 'p_info');
 		fn_appendList(remarkList, '#place-remark-list', 'p_remark');
+		fn_uploadedImg();
+		let selectedCategory = $('input[value="${placeCategoryDto.pc_no}"]');
+		$(selectedCategory).prev('a').css('background', 'rgba(216,100,216,1)');
+		fn_optionFacility('#facility-list', poFacilities);
 	});
-	
-	function fn_appendList(list, appendToTag, name){
-		$.each(list,function(idx, item){
-			let i = item;
-			$(appendToTag).append(`<li><input class="place-input" type="text" name="${name}" value="`+item+`" placeholder="추가하려면 추가 버튼을 눌러주세요" required/></li>`);
-			
+	function fn_optionFacility(tagTo, list){
+		$.each(list, function(idx,facilityList){
+			$.each(facilityList, function(i, facility){
+				$(tagTo).eq(idx).append('<li>'+facility+'<input type="hidden" name="po_facility" value="'+facility+'" /><span class="remove" onclick="fn_removeFacility(event)">&times;</span></li>');
+			});
 		});
 	}
+	function placeUpdate(f){
+		
+	}
+	function fn_appendList(list, appendToTag, name){
+		$.each(list,function(idx, item){
+			$(appendToTag).append(`<li><input class="place-input" type="text" name="${name}" value="`+item+`" placeholder="추가하려면 추가 버튼을 눌러주세요" required/></li>`);
+		});
+	}
+	function fn_uploadedImg(){
+		$.each(thumbnailList, function(idx, img){
+			let strHtml =`
+			<div class="uploaded-img-box">
+				<img alt="이미지" src="resources/images/PlaceImages/`+img+`" />
+				<input type="hidden" value="`+img+`" />
+				<button type="button" onclick="fn_deleteThumbnail(event)" >&times;</button>
+			</div>
+			`;
+			$('#uploaded-thumb-list').append(strHtml);
+		});
+	}
+	function fn_deleteThumbnail(e){
+		let strHtml = '<input type="hidden" name="deleted_img" value="'+$(e.target).prev().val()+'"/>'
+		$('#uploaded-thumb-list').append(strHtml);
+		$(e.target).parent().remove();
+		
+	}
+	
 </script>
 
 <header class="title-area">
@@ -33,7 +68,7 @@
 <section>
 	<form method="post" enctype="multipart/form-data">
 		<article class="place-insert-list">
-			<div class="subtitle">카테고리 선택	<span class="required-data">필수 사항</span> </div>
+			<div class="subtitle">카테고리 선택	<span class="required-data">변경 불가</span> </div>
 			<div class="sub-content">
 				<ul id="category-list">
 					<c:forEach var="categoryDto" items="${categoryList}" >
@@ -43,7 +78,7 @@
 					</li>
 					</c:forEach>
 				</ul>
-				<input type="hidden" name="pc_no" required/>
+				<input type="hidden" name="pc_no" value="${placeCategoryDto.pc_no}" required/>
 			</div>
 		</article>
 		<article class="place-insert-list">
@@ -135,7 +170,8 @@
 				<div id="img-box">
 					<!-- 업로드 이미지 미리보기 -->
 				</div>
-				<div id="uploaded-img-box">
+				<div id="uploaded-thumb-list">
+					<strong>기존 이미지</strong><br/>
 								
 				<!-- 이미 올라와있는 사진들을 보여주고 삭제 버튼을 누르면 삭제할 파일들의 이름을 input:hidden[name="deleted-img"]에 저장 -->
 				</div>
@@ -159,7 +195,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">옵션</div>
 			<div class="sub-content" >
-				<div class="option-list" style="margin: 0 auto; width:640px; display:grid; grid-template-columns: repeat(3,200px); gap: 10px 20px; ">
+				<div class="option-list">
 					<c:forEach var="optionDto" items="${placeOptionList}">
 						<section class="option">
 							<article class="option-box">
@@ -211,25 +247,25 @@
 									<input id="option-thumbnail" type="file" name="po_img" accept="image/*" required/>
 									<div id="option-img-box">
 									
-									</div>
-									<div id="uploaded-img-box">
-									
-									<!-- 이미 올라와있는 사진들을 보여주고 삭제 버튼을 누르면 삭제할 파일들의 이름을 input:hidden[name="deleted-img"]에 저장 -->
+										<div id="uploaded-img-box">
+											<img src="resources/images/PlaceOptionImages/${optionDto.po_img}" />
+										<!-- 이미 올라와있는 사진들을 보여주고 삭제 버튼을 누르면 삭제할 파일들의 이름을 input:hidden[name="deleted-img"]에 저장 -->
+										</div>
 									</div>
 								</div>
 							</article>
 						</section>
 					</c:forEach>
-					<section class="btn-box">
-						<button type="button" id="add-option-btn" >옵션추가</button>
-						<button type="button" id="remove-option-btn">옵션삭제</button>
-					</section>
 				</div>
 			</div>
+			<section class="btn-box">
+				<button type="button" id="add-option-btn" >옵션추가</button>
+				<button type="button" id="remove-option-btn">옵션삭제</button>
+			</section>
 		</article>
 		<!-- hidden -->
-		<input type="hidden" name="s_no" value="${loginDto.s_no}" />
-		<button type="button" onclick="fn_placeInsert(this.form)">등록하기</button>
+		<input type="hidden" name="p_no" value="${placeDto.p_no}" />
+		<button type="button" onclick="fn_placeUpdate(this.form)">수정하기</button>
 		<button type="button" onclick="location.href='placeListPage.place'" >목록으로 돌아가기</button>
 	</form>
 </section>
