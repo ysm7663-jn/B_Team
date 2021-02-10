@@ -27,8 +27,9 @@
 			$('.empty').text('진행했던 모임이 없습니다.');
 			$('.quit').remove();
 			$('.startDate').remove();
-			$('.cl_card').remove();
+			$('.cl-card').remove();
 			$('.clubImage > a').css('pointer-events', 'none').css('cursor', 'default');
+			$('.clubImage > a > img').css('-webkit-filter', 'grayscale(100%)').css('filter', gray);
 		}
 	});
 	

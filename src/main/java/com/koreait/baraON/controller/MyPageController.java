@@ -89,17 +89,16 @@ public class MyPageController {
 		}
 	}
 	
-	@RequestMapping(value="memberDeletePage.myPage", method=RequestMethod.GET)
-	public String memberDeletePage(HttpServletRequest request) {
-		return "myPage/memberDeletePage";
+	@RequestMapping(value="infoDeletePage.myPage", method=RequestMethod.GET)
+	public String infoDeletePage(HttpServletRequest request) {
+		return "myPage/infoDeletePage";
 	}
 	
-	@RequestMapping(value="memberDelete.myPage", method=RequestMethod.GET)
-	public String memberDelete(HttpServletRequest request, Model model, RedirectAttributes rttr) {
+	@RequestMapping(value="infoDelete.myPage", method=RequestMethod.GET)
+	public String infoDelete(HttpServletRequest request, Model model) {
 		model.addAttribute("request",request);
-		model.addAttribute("rttr",rttr);
 		infoDeleteCommand.execute(sqlSession, model);
-		return "redirect:profile.myPage";
+		return "myPage/infoDeleteResult";
 	}
 	
 	
