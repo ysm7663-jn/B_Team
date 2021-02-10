@@ -92,6 +92,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
+				// 일단 list를 사용하기 위해 replace() method로 ","를 지워준다
 				String originalFilename = file.getOriginalFilename().replace(",", "");
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 				
@@ -101,7 +102,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 					// 이 때 이 전에 업로드 받았던 파일들은 다 삭제해야한다.
 					// 업로드 된 파일들은 sb에 목록으로 저장되어있다.
 					
-					Iterator it = list.iterator();
+					Iterator<String> it = list.iterator();
 					while(it.hasNext()) {
 						File uploadedFile = new File(realPath, (String)it.next());
 						if(uploadedFile.exists()) {
