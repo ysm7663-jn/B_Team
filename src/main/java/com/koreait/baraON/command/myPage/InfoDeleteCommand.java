@@ -31,7 +31,6 @@ public class InfoDeleteCommand implements BaraONCommand {
 			no = memberDto.getM_no();
 			int canDelete1 = myPageDao.canMemberDelete1(no);
 			int canDelete2 = myPageDao.canMemberDelete2(no);
-			System.out.println(canDelete1 + ", " + canDelete2);
 			if(canDelete1 == 0 && canDelete2 == 0) {
 				result = myPageDao.infoMemberDelete1(no);
 				myPageDao.infoMemberDelete2(no);
@@ -41,9 +40,15 @@ public class InfoDeleteCommand implements BaraONCommand {
 				model.addAttribute("canDelete", 1);
 			}
 		} else { // seller이면
-			SellerDto sellerDto = (SellerDto)session.getAttribute("sellerDto");
+			SellerDto sellerDto = (SellerDto)session.getAttribute("loginDto");
 			no = sellerDto.getS_no();
-			myPageDao.infoSellerDelete(no);
+			int canDelete3 = myPageDao.canSellerDelete(no);
+			if(canDelete3 == 0) {
+				result = myPageDao.infoSellerDelete1(no);
+				myPageDao.infoSellerDelete2(no);
+			} else {
+				model.addAttribute("canDelete", 2); // 예약된 장소가 있으면
+			}
 		}
 		
 		if(result == 1) {

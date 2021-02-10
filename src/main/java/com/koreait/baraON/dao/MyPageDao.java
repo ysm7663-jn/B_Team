@@ -15,5 +15,7 @@ public interface MyPageDao {
 	public int canMemberDelete2(int no);
 	public int infoMemberDelete1(int no);
 	public int infoMemberDelete2(int no);
-	public int infoSellerDelete(int no);
+	public int canSellerDelete(int no);
+	public int infoSellerDelete1(int no);
+	public int infoSellerDelete2(int no);
 }
