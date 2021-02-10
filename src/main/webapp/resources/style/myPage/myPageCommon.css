@@ -18,7 +18,9 @@ div {
 	box-sizing: border-box;
 }
 
-
+.btn selected {
+	color: red;
+}
 .mypage-body {
 	display: flex;
 	overflow: hidden;

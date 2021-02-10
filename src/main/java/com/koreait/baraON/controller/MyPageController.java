@@ -101,6 +101,13 @@ public class MyPageController {
 		return "myPage/infoDeleteResult";
 	}
 	
+	@RequestMapping(value="clubManagePage.myPage", method=RequestMethod.GET)
+	public String clubManagePage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		regularClubCommand.execute(sqlSession, model);
+		instantClubCommand.execute(sqlSession, model);
+		return "myPage/clubManagePage";
+	}
 	
 	
 }
