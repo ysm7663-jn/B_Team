@@ -39,14 +39,52 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM CLUBLIST
 		 WHERE CL_NO = #{param1}
 	</delete>
-	<delete id="infoMemberDelete" parameterType="int">
+	<select id="canMemberDelete1" resultType="int">
+		SELECT COUNT(*)
+			FROM CLUB C JOIN MEMBER M
+		  ON C.M_NO = M.M_NO
+		 WHERE 
+		 	C.C_DELETE = 0 AND
+		 	C.M_NO = #{param1} AND
+		 	TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	<select id="canMemberDelete2" resultType="int">
+		SELECT COUNT(*)
+			FROM RESERVATION R JOIN MEMBER M
+		  ON R.M_NO = M.M_NO
+		 WHERE 
+		 	R.M_NO = #{param1} AND
+		 	TO_CHAR(R.RES_DATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	<delete id="infoMemberDelete1" parameterType="int">
 		DELETE
 			FROM MEMBER
 		 WHERE M_NO = #{param1}
 	</delete>
-	<delete id="infoSellerDelete" parameterType="int">
+	<update id="infoMemberDelete2" parameterType="int">
+		UPDATE CLUB
+			SET C_DELETE = 1
+		 WHERE M_NO = #{param1}
+	</update>
+	<select id="canSellerDelete" resultType="int">
+		SELECT COUNT(*)
+			FROM RESERVATION R JOIN PLACEOPTION PO
+		  ON R.PO_NO IN (SELECT PO.PO_NO
+		  					FROM PLACEOPTION PO JOIN PLACE P
+		  				  ON PO.P_NO IN (SELECT P.P_NO
+		  				  					FROM PLACE P JOIN SELLER S
+		  				  				  ON P.S_NO = S.S_NO
+		  				  				 WHERE S.S_NO = #{param1}))
+		 WHERE TO_CHAR(R.RES_DATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	<delete id="infoSellerDelete1" parameterType="int">
 		DELETE
 			FROM SELLER
 		 WHERE S_NO = #{param1}
 	</delete>
+	<update id="infoSellerDelete2" parameterType="int">
+		UPDATE PLACE
+			SET P_DELETE = 1
+		 WHERE S_NO = #{param1}
+	</update>
 </mapper>
