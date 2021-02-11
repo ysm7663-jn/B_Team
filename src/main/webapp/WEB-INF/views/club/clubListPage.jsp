@@ -12,6 +12,7 @@
 	<div class="body_wrap">
 		<span id="title">정기 활동</span>
 		<div id="btn_create">
+
 			<c:if test="${loginDto ne null}">
 				<input type="button" value="새 클럽 등록하기" onclick="location.href='clubInsertPage.club'" />
 			</c:if>
