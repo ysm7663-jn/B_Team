@@ -2,9 +2,7 @@ package com.koreait.baraON.command.place;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -12,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.common.FileRemover;
 import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dao.PlaceOptionDao;
 import com.koreait.baraON.dto.PlaceDto;
@@ -102,13 +101,8 @@ public class PlaceInsertCommand implements PlaceCommand {
 					// 이 때 이 전에 업로드 받았던 파일들은 다 삭제해야한다.
 					// 업로드 된 파일들은 sb에 목록으로 저장되어있다.
 					
-					Iterator<String> it = list.iterator();
-					while(it.hasNext()) {
-						File uploadedFile = new File(realPath, (String)it.next());
-						if(uploadedFile.exists()) {
-							uploadedFile.delete();
-						}
-					}
+					new FileRemover(list, realPath);
+					
 					// 이미지파일이 아닐경우 -1
 					// 파일형식이 맞지 않으므로 메소드를 끝낸다.
 					rttr.addFlashAttribute("insertResult", -1);
