@@ -3,7 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../template/header.jsp">
-	<jsp:param value="클럽 내용 보기" name="title" />
+	<jsp:param value="클럽 내용 상세 보기" name="title" />
 </jsp:include>
 
 <link rel="stylesheet" href="resources/style/common.css" />
@@ -128,7 +128,7 @@
 
 				<div class="side_content">
 					<input type="button" value="장소등록하기" onclick="location.href='placeListPage.place'" /> 
-					<input type="button" value="장소수정하기" onclick="location.href='fn_update(this.form)'" /> 
+					<input type="button" value="클럽수정하기" onclick="location.href='clubUpdatePage.club" /> 
 					<input type="button" value="클럽해제하기" onclick="fn_delete(this.form)" />
 				</div>
 			</div>

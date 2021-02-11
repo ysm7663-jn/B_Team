@@ -49,7 +49,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="updateStat">
-		UPDATE CLUB
+		UPDATE MEMBER
 		   SET M_ENJOY = #{m_enjoy}
 		 WHERE M_NO = #{m_no}
 	</update>
