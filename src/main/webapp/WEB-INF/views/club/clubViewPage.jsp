@@ -12,15 +12,31 @@
 <script>
 	$(function() {
 		$('#btn1').click(function() {
-			var m_enjoy = document.getElementById('m_enjoy').val();
-			alert('m_enjoy');
-			if (m_enjoy == 'N') {
-				alert('m_enjoy');
-				m_enjoy = 'Y';
-			} else {
-				alert('m_enjoy');
-				m_enjoy.value = 'N';
+			$(this).val('탈퇴하기');
+			var m_enjoy = $('input[name=m_enjoy]').val();
+			var m_no = $('input[name=m_no]').val();
+			
+			var send = {"m_enjoy": m_enjoy, "m_no": m_no};
+			
+			$.ajax({
+				url: 'updateStat.club',
+				type: 'put',
+				data: send,
+				dataType: 'json',
+				success: function(responseJson) {
+					if(responseJson.updateResult == 1) {
+						alert('성공');
+						$('#btn1').val('참여하기');
+					} else {
+						alert('실패실패');
+					}
+				},
+				error: function() {
+					alert('실패');
 				}
+			});
+			
+			
 			});
 		});
 </script>
@@ -34,7 +50,7 @@
 		}
 </script>
 
-<script>
+<!-- <script>
 	var afterDelete = ${afterDelete};
 	if (afterDelete) {
 		var afterDelete = ${afterDelete};
@@ -54,7 +70,7 @@
 			alert('실패했습니다.');
 		}
 	}
-</script>
+</script> -->
 
 <form>
 
@@ -82,6 +98,9 @@
 				<div class="side_content">
 					<c:if test="${memberDto.m_enjoy eq N}">
 						<input type="button" value="참여하기" id="btn1"/>
+						<input type="hidden" value="N" name="m_enjoy" />
+						<input type="hidden" value="${clubDto.m_no}" name="m_no" />
+						<input type="hidden" value="${afterUpdate}" />
 					</c:if>
 					
 					<c:if test="${memberDto.m_enjoy ne N}">

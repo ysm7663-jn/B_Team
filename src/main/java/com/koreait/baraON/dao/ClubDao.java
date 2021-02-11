@@ -18,5 +18,7 @@ public interface ClubDao {
 	public int clubDelete(int c_no);
 
 	public int clubUpdate(String c_title, int c_min, int c_max, String c_content, int c_no);
+	
+	public int updateStat(String m_enjoy, int m_no);
 
 }

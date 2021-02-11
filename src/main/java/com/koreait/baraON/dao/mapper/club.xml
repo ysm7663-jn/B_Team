@@ -47,5 +47,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   	  C_CONTENT = #{param4}
 		 WHERE C_NO = #{param5}
 	</update>
+	
+	<update id="updateStat">
+		UPDATE CLUB
+		   SET M_ENJOY = #{m_enjoy}
+		 WHERE M_NO = #{m_no}
+	</update>
 
 </mapper>
