@@ -27,15 +27,15 @@
 		</c:if>
 		<c:if test="${not empty list}">
 			<div class="clubwrap">
-				<c:forEach var="ClubListDto" items="${list}">
+				<c:forEach var="clubListDto" items="${list}">
 					<div class="clubList">
-						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${ClubListDto.c_mainimg}"></a></div>
+						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${clubListDto.c_mainImg}"></a></div>
 						<div class="clubContent">
-							<div class="title">${ClubListDto.c_title}</div>
-							<div class="startDate">${ClubListDto.c_startDate} 시작</div>
-							<div class="min">최소 인원 : ${ClubListDto.c_min} 명</div>
-							<div class="max">최대 인원 : ${ClubListDto.c_max} 명</div>
-							<div class="count">총 인원 : ${ClubListDto.c_count} 명</div>
+							<div class="title">${clubListDto.c_title}</div>
+							<div class="startDate">${clubListDto.c_startDate} 시작</div>
+							<div class="min">최소 인원 : ${clubListDto.c_min} 명</div>
+							<div class="max">최대 인원 : ${clubListDto.c_max} 명</div>
+							<div class="count">총 인원 : ${clubListDto.c_count} 명</div>
 							<input type="button" value="자세히" onclick="location.href=clubManageDetailPage.myPage" />
 						</div>
 					</div>

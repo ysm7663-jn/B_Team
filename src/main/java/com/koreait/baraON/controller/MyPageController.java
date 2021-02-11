@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
+import com.koreait.baraON.command.myPage.ClubManageListCommand;
 import com.koreait.baraON.command.myPage.InfoDeleteCommand;
 import com.koreait.baraON.command.myPage.InstantClubCommand;
 import com.koreait.baraON.command.myPage.RegularClubCommand;
@@ -28,6 +29,7 @@ public class MyPageController {
 	private InstantClubCommand instantClubCommand;
 	private ClubListDeleteCommand clubListDeleteCommand;
 	private InfoDeleteCommand infoDeleteCommand;
+	private ClubManageListCommand clubManageListCommand;
 	
 	@Autowired
 	public void setCommand(WishListCommand wishListCommand,
@@ -35,13 +37,15 @@ public class MyPageController {
 							 RegularClubCommand regularClubCommand,
 							 InstantClubCommand instantClubCommand,
 							 ClubListDeleteCommand clubListDeleteCommand,
-							 InfoDeleteCommand InfoDeleteCommand) {
+							 InfoDeleteCommand InfoDeleteCommand,
+							 ClubManageListCommand clubManageListCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
 		this.regularClubCommand = regularClubCommand;
 		this.instantClubCommand = instantClubCommand;
 		this.clubListDeleteCommand = clubListDeleteCommand;
 		this.infoDeleteCommand = InfoDeleteCommand;
+		this.clubManageListCommand = clubManageListCommand;
 	}
 	
 	@RequestMapping(value="profile.myPage", method=RequestMethod.GET)
@@ -104,8 +108,7 @@ public class MyPageController {
 	@RequestMapping(value="clubManagePage.myPage", method=RequestMethod.GET)
 	public String clubManagePage(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		regularClubCommand.execute(sqlSession, model);
-		instantClubCommand.execute(sqlSession, model);
+		clubManageListCommand.execute(sqlSession, model);
 		return "myPage/clubManagePage";
 	}
 	

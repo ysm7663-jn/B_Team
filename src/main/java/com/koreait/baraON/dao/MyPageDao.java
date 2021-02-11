@@ -2,6 +2,7 @@ package com.koreait.baraON.dao;
 
 import java.util.List;
 
+import com.koreait.baraON.dto.ClubDto;
 import com.koreait.baraON.dto.ClubListDto;
 import com.koreait.baraON.dto.WishListDto;
 
@@ -18,4 +19,6 @@ public interface MyPageDao {
 	public int canSellerDelete(int no);
 	public int infoSellerDelete1(int no);
 	public int infoSellerDelete2(int no);
+	public List<ClubDto> clubManageList(int no);
+	public List<ClubDto> lastClubManageList(int no);
 }
