@@ -53,8 +53,7 @@ div {
 .min, .max, .count {
 	font-size: 13px;
 }
-.clubContent > input {
-	display: block;
+.clubContent > form button {
 	position: relative;
 	width: 85px;
 	height: 38px;

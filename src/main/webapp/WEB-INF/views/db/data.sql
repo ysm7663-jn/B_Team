@@ -65,7 +65,6 @@ CREATE TABLE CLUB
     C_ENDDATE      DATE              NOT NULL, 
     C_MIN          NUMBER            NOT NULL, 
     C_MAX          NUMBER            NOT NULL, 
-    C_COUNT        NUMBER            NOT NULL,
     C_MAINIMG	   VARCHAR2(1000)	 NOT NULL,
     C_IMG1		   VARCHAR2(1000)    NULL, 
     C_IMG2		   VARCHAR2(1000)    NULL, 

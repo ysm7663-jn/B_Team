@@ -28,14 +28,17 @@ public class ClubManageListCommand implements BaraONCommand {
 		}
 		
 		MemberDto memberDto = (MemberDto)session.getAttribute("loginDto");
-		int no = memberDto.getM_no();
+		int mNo = 0;
+		if(memberDto != null) {
+			mNo = memberDto.getM_no();
+		}
 		
 		MyPageDao myPageDao = sqlSession.getMapper(MyPageDao.class);
 		List<ClubDto> list = null;
 		if(state == 0) {
-			list = myPageDao.clubManageList(no);
+			list = myPageDao.clubManageList(mNo);
 		} else {
-			list = myPageDao.lastClubManageList(no);
+			list = myPageDao.lastClubManageList(mNo);
 		}
 		
 		model.addAttribute("list", list);

@@ -4,7 +4,26 @@
 <link rel="stylesheet" href="resources/style/myPage/clubManagePage.css">	    
 <jsp:include page="myPage.jsp" />
 <script>
-	
+	$(document).ready(function() {
+		clubCount();
+	});
+
+	function clubCount() {
+		var cNo = $('#cNo').val();
+		
+		$.ajax({
+			url: 'clubCount/' + cNo,
+			type: 'get',
+			dataType: 'json',
+			success: function(responseObj){
+				$('.count').html('총 인원 :  ' + responseObj.clubCount + '명');
+			},
+			error: function() {
+				alert('실패');
+			}
+		});
+		
+	}
 </script>
 	<div class="mypage-contents">
 		<h2>모임 관리</h2>
@@ -35,8 +54,11 @@
 							<div class="startDate">${clubListDto.c_startDate} 시작</div>
 							<div class="min">최소 인원 : ${clubListDto.c_min} 명</div>
 							<div class="max">최대 인원 : ${clubListDto.c_max} 명</div>
-							<div class="count">총 인원 : ${clubListDto.c_count} 명</div>
-							<input type="button" value="자세히" onclick="location.href=clubManageDetailPage.myPage" />
+							<div class="count"></div>
+							<form action="clubManageDetailPage.myPage" method="post">
+								<input type="hidden" name="cNo" id="cNo" value="${clubListDto.c_no}" />
+								<button>자세히</button>
+							</form>
 						</div>
 					</div>
 				</c:forEach>

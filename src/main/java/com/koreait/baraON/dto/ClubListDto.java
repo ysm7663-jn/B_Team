@@ -17,7 +17,6 @@ public class ClubListDto {
 	private Date c_startDate;
 	private int c_min;
 	private int c_max;
-	private int c_count;
 	private String c_mainimg;
 	private int cl_card;
 }
