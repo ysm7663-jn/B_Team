@@ -8,11 +8,17 @@
 <link rel="stylesheet" href="resources/style/myPage/myPageCommon.css">
 <script>
 	$(function(){
+		$('.member-category > li > a').click(function(){
+			$('.member_category li > a').addClass('btn selected');
+		});	
+	});
+
+	/* $(function(){
 		$('body').on('click', '.member_category li > a', function(event){
 			$('.member_category li > a').css('background','');
-			$(this).css('color', 'red');
+			$(this).css('color', 'red'); 
 		});
-	});
+	}); */
 </script>
 <div class="mypage-body">
 	<div class="mypage-category">
@@ -39,7 +45,7 @@
 			<h2>모임장</h2>
 			<ul class="member-category">
 				<li>
-					<a href="clubManage.myPage">모임 관리</a><br/>
+					<a href="clubManagePage.myPage?state=0">모임 관리</a><br/>
 				</li>
 				<li>
 					<a href="clubPayment.myPage">결제내역</a><br/>

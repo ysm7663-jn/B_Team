@@ -20,7 +20,6 @@ public class ClubDto {
 	private Date c_endDate;  	
 	private int c_min;			
 	private int c_max;			
-	private int c_count;		
 	private String c_mainImg;
 	private String c_img1;
 	private String c_img2;
