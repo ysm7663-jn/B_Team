@@ -3,8 +3,9 @@
 <jsp:include page="../template/header.jsp" >
 	<jsp:param value="아이디 찾기" name="title"/>
 </jsp:include>
-
-<link rel="stylesheet" href="resources/style/findPage.css">
+<link rel="stylesheet" href="resources/style/member/findPage.css">
+<link rel="stylesheet" href="resources/style/member/findPwPage.css">
+ 
 <script>
 	$(function(){
 		$(".footer-wrap").css("background" , "white");
@@ -33,22 +34,22 @@
 				<label for="findPw">비밀번호 찾기<hr></label>
 			</div>
 			<form method="post">
-				<table>
+				<table class="findPwPage2">
 					<tbody>
 						<tr>
-							<td>새 비밀번호</td>
+							<td class="newPw">새 비밀번호</td>
 							<td>
 								<input type="password" name="newPassword" placeholder="변경하실 비밀번호를 입력해주세요." />
 							</td>
 						</tr>
 						<tr>
-							<td>비밀번호 확인</td>
+							<td class="newPw">비밀번호 확인</td>
 							<td>
 								<input type="password" name="newPassword2" placeholder="비밀번호를 다시 입력해주세요." />
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2">
+							<td colspan="2" class="confirmBtn">
 								<input type="button" value="확인" onclick="fn_checkPassword(this.form)">
 							</td>
 						</tr>

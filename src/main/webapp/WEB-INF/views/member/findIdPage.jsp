@@ -30,7 +30,7 @@
 				<div id="findIdResult"></div>
 			</div>
 			<div class="login-button">
-				<input type="button" value="로그인" onclick="loginPage.member"/>
+				<input type="button" value="로그인" onclick="location.href='loginPage.member'"/>
 			</div>
 		</div>
 	</div>

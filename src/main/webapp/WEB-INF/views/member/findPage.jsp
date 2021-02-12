@@ -93,7 +93,7 @@
 				</div>
 				
 				<!-- 아이디 찾기 -->
-				<table class="tab-contents">
+				<table class="tab-contents"> 
 					<tbody>
 						<tr>
 							<td colspan="2">
@@ -113,8 +113,7 @@
 							<td class="emailBox">가입 이메일</td>
 							<td>
 								<input type="text" name="email" placeholder="이메일" />
-								@
-								<input type="text" name="domains" list="domains" placeholder="직접입력" />
+								@<input type="text" name="domains" list="domains" placeholder="직접입력" />
 								<datalist id="domains">
 									<option value="naver.com" />
 									<option value="nate.com" />

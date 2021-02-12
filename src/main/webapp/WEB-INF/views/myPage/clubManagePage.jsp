@@ -19,11 +19,19 @@
 				$('.count').html('총 인원 :  ' + responseObj.clubCount + '명');
 			},
 			error: function() {
-				alert('실패');
+				alert('총 인원을 구하는데 문제가 발생했습니다.');
 			}
 		});
-		
 	}
+
+	$(function(){
+		if(${param.state == 1}) {    // 지난 모임이면
+			$('.empty').text('진행했던 모임이 없습니다.');
+			$('.clubImage > a').css('pointer-events', 'none').css('cursor', 'default');
+			$('.clubImage > a > img').css('-webkit-filter', 'grayscale(100%)').css('filter', gray);
+			$('.detailBtn > form button').css('background', '#d3d3d3').css('color', '#b2b2b2').css('border', '1px solid #d3d3d3');
+		}
+	});
 </script>
 	<div class="mypage-contents">
 		<h2>모임 관리</h2>
@@ -50,11 +58,22 @@
 					<div class="clubList">
 						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${clubListDto.c_mainImg}"></a></div>
 						<div class="clubContent">
-							<div class="title">${clubListDto.c_title}</div>
+							<div class="title">
+								<span class="part">
+									<c:if test="${clubListDto.c_part == 0}">
+										(정기)
+									</c:if>
+									<c:if test="${clubListDto.c_part == 1}">
+										(번개)
+									</c:if>
+								</span>
+								${clubListDto.c_title}</div>
 							<div class="startDate">${clubListDto.c_startDate} 시작</div>
 							<div class="min">최소 인원 : ${clubListDto.c_min} 명</div>
 							<div class="max">최대 인원 : ${clubListDto.c_max} 명</div>
 							<div class="count"></div>
+						</div>
+						<div class="detailBtn">
 							<form action="clubManageDetailPage.myPage" method="post">
 								<input type="hidden" name="cNo" id="cNo" value="${clubListDto.c_no}" />
 								<button>자세히</button>
