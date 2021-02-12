@@ -91,14 +91,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE CL.C_NO = #{param1}
 	</select>
 	<select id="clubManageList" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
-		SELECT C_NO, C_TITLE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG
+		SELECT C_NO, C_TITLE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG, C_PART
 			FROM CLUB
 		 WHERE M_NO = #{param1}
 		 	 AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 			 AND C_DELETE = 0
 	</select>
 	<select id="lastClubManageList" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
-		SELECT C_NO, C_TITLE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG
+		SELECT C_NO, C_TITLE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG, C_PART
 			FROM CLUB
 		 WHERE M_NO = #{param1}
 		 	 AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') &lt; TO_CHAR(SYSDATE, 'YYYY-MM-DD')

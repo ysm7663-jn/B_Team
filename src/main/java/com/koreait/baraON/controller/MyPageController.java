@@ -133,4 +133,5 @@ public class MyPageController {
 		return "myPage/clubManageDetailPage";
 	}
 	
+	
 }
