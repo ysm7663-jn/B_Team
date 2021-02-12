@@ -19,7 +19,7 @@
 				$('.count').html('총 인원 :  ' + responseObj.clubCount + '명');
 			},
 			error: function() {
-				alert('실패');
+				alert('총 인원을 구하는데 문제가 발생했습니다.');
 			}
 		});
 		

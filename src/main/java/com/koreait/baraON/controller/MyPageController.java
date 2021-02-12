@@ -130,7 +130,7 @@ public class MyPageController {
 	
 	@RequestMapping(value="clubManageDetailPage.myPage", method=RequestMethod.POST)
 	public String clubManageDetailPage(HttpServletRequest request) {
-		return "";
+		return "myPage/clubManageDetailPage";
 	}
 	
 }
