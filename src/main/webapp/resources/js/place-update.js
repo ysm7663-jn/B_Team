@@ -10,7 +10,32 @@ $(function(){
 	fn_previewThumbnail('#upload-btn');
 	fn_previewThumbnail('#option-thumbnail');
 	fn_removeOption();
+	fn_deleteOption();
 })
+/* 등록되어 있던 옵션 삭제 */
+function fn_deleteOption(){
+	$('.select-remove-btn').click(function(event){
+		if(confirm('복구가 불가능합니다 삭제하시겠습니까?')){
+			$.ajax({
+				url:'placeOptionDelete.place/'+$(event.target).prev().val(),
+				type:'delete',
+				dataType:'json',
+				success:function(responseObj){
+					if(responseObj.result > 0){
+						alert('삭제되었습니다.');
+					} else {
+						alert('삭제에 실패했습니다. 다시 시도해주세요');
+					}
+				},
+				error:function(request, status, error){
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				}
+			});
+		}
+	});
+}
+
+
 /* 주소 찾기 */
 function fn_searchPopUp(){
 	new daum.Postcode({
@@ -94,7 +119,9 @@ function fn_addFacility(btn){
 	});
 }
 function fn_removeFacility(e){
+	let facilityCount = $(e.target).closest('#facility-list').next();
 	$(e.target).parent().remove();
+	$(facilityCount).val(parseInt($(facilityCount).val())-1);
 }
 function fn_addOption(){
 	$('#add-option-btn').click(function(event){
@@ -178,7 +205,8 @@ function fn_previewThumbnail(btn){
 			reader.onload = function(event) {
 				$(btn).next().append($('<img>').prop('src', event.target.result));
 			};
-		reader.readAsDataURL(image);
+			reader.readAsDataURL(image);
 		}
+		$(btn).parent().next().val(1);
 	});
 }

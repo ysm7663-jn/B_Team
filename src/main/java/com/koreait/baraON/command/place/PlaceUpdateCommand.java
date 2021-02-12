@@ -28,12 +28,9 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
 		PlaceOptionDao placeOptionDao = sqlSession.getMapper(PlaceOptionDao.class);
 		
-		PlaceDto placeDto = new PlaceDto();
 		
 		int p_no=Integer.parseInt(multipartRequest.getParameter("p_no"));
-		int pc_no=Integer.parseInt(multipartRequest.getParameter("pc_no"));
 		String p_title=multipartRequest.getParameter("p_title");
-		String p_name=multipartRequest.getParameter("p_name");
 		String p_desc=multipartRequest.getParameter("p_desc");
 		String p_content=multipartRequest.getParameter("p_content");
 		String[] p_infoList=multipartRequest.getParameterValues("p_info");
@@ -44,13 +41,19 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		String p_addrdetail=multipartRequest.getParameter("p_addrdetail");
 		String[] deletedImg = multipartRequest.getParameterValues("deleted_img"); 
 		
+		
+		PlaceDto placeDto = placeDao.getPlaceDto(p_no);
+		String p_img = placeDto.getP_img().replace("[", "").replace("]", "");
 		// 기존이미지에서 삭제한 이미지 삭제
 		for(int i = 0; i<deletedImg.length;i++) {
 			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceImages");
 			File file = new File(realPath, deletedImg[i]);
 			if(file.exists()) {
+				System.out.println(file.getName());
+				p_img = p_img.replace(deletedImg[i], "");
 				file.delete();
 			}
+			
 		}
 		
 		
@@ -77,9 +80,7 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		}
 		placeDto.setP_remark(sb.toString());
 		
-		placeDto.setPc_no(pc_no);
 		placeDto.setP_title(p_title);
-		placeDto.setP_name(p_name);
 		placeDto.setP_desc(p_desc);
 		placeDto.setP_content(p_content);
 		placeDto.setP_url(p_url);
@@ -97,6 +98,8 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		extensionList.add("png");
 		
 		sb.setLength(0);
+		
+		
 		
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
@@ -120,7 +123,7 @@ public class PlaceUpdateCommand implements PlaceCommand {
 					}
 					// 이미지파일이 아닐경우 -1
 					// 파일형식이 맞지 않으므로 메소드를 끝낸다.
-					rttr.addFlashAttribute("insertResult", -1);
+					rttr.addFlashAttribute("updateResult", -1);
 					return;
 				}
 				
@@ -150,35 +153,32 @@ public class PlaceUpdateCommand implements PlaceCommand {
 			} else {
 				// 이미지파일을 첨부하지 않은경우 -2
 				// 최소 하나의 파일을 첨부해야하는 상황이므로 메소드를 끝낸다.
-				rttr.addFlashAttribute("insertResult", -2);
+				rttr.addFlashAttribute("updateResult", -2);
 				return;
 			}
 		}
+		// 기존 이미지 
+		StringTokenizer st = new StringTokenizer(p_img,", ");
+		while(st.hasMoreTokens()) {
+			sb.insert(sb.indexOf("[") , st.nextToken()+", ");
+		}
+	
 		if ( !sb.toString().isEmpty() && sb.toString() != null) {
 			placeDto.setP_img(sb.toString());
 		}
-		placeDao.placeInsert(placeDto);
-		int currPNo = placeDto.getP_no();
+		placeDao.placeUpdate(placeDto);
 		
 		String[] poNameList= multipartRequest.getParameterValues("po_name");
 		String[] poDayPriceList = multipartRequest.getParameterValues("po_dayPrice");
 		String[] poHolidayList = multipartRequest.getParameterValues("po_holiday");
 		String[] poMinList = multipartRequest.getParameterValues("po_min");
 		String[] poMaxList = multipartRequest.getParameterValues("po_max");
+		String[] change = multipartRequest.getParameterValues("change");
 		
-		PlaceOptionDto placeOptionDto = new PlaceOptionDto();
-		placeOptionDto.setP_no(currPNo);
-		
-		// facility의 경우 모두 다 같은 name을 가진 input에 들어 있다.
-		// name=facility-count의 개수로 몇개의 옵션을 추가했는지 알 수 있고,
-		// 그 input의 value로 각 option에 추가된 편의시설의 개수를 알 수 있다.
-		// 이를 이용해 for문으로 List<PlaceOptionDto>를 만들고 mapper에서
-		// <foreach> 태그로 insert한다.
-		// 이 때, p_no는 PLACE_SEQ.CURRVAL로 한다. -> selectKey 사용
 		String[] facilityCount= multipartRequest.getParameterValues("facility-count");
 		
 		int prevCount = 0;
-		int insertCount = 0;
+		int updateCount = 0;
 		List<MultipartFile> optionImgList = multipartRequest.getFiles("po_img");
 		String[] po_facilityList = multipartRequest.getParameterValues("po_facility");
 		for(int i = 0; i<facilityCount.length;i++) {
@@ -200,7 +200,10 @@ public class PlaceUpdateCommand implements PlaceCommand {
 			String extension = originalFilename.substring(originalFilename.lastIndexOf(".")+1);
 			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceOptionImages");
 			
-			if(!extensionList.contains(extension)) {continue;}
+			if(!extensionList.contains(extension)) {
+				rttr.addFlashAttribute("updateResult", -1);
+				continue;
+			}
 			
 			
 			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
@@ -226,17 +229,16 @@ public class PlaceUpdateCommand implements PlaceCommand {
 			placeOptionDto.setPo_img(po_img);
 			placeOptionDto.setPo_fxility(po_facility);
 			
-			insertCount += placeOptionDao.placeOptionInsert(placeOptionDto);
+			updateCount += placeOptionDao.placeOptionUpdate(placeOptionDto);
 			
 			prevCount = count;
 		}
-		if(insertCount == poNameList.length) {
-			rttr.addFlashAttribute("insertResult", 1);
+		if(updateCount == poNameList.length) {
+			rttr.addFlashAttribute("updateResult", 1);
 		} else {
-			rttr.addFlashAttribute("insertResult", -3);
+			rttr.addFlashAttribute("updateResult", -3);
 		}
 		
-		rttr.addFlashAttribute("currPNo", currPNo);
 		
 		
 	}

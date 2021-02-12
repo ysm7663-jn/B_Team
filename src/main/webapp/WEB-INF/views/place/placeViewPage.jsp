@@ -11,8 +11,8 @@
 <script type="text/javascript" src="resources/js/place-view.js" defer ></script> 
 <link rel="stylesheet" href="resources/style/place/place-view.css">
 <script>
-	//let facilityList = JSON.parse('${facilityList}');
-	let facilityList = new Array();
+	let facilityList = JSON.parse('${facilityList}');
+	/* let facilityList = new Array();
 		let facility = '';
 	<c:forEach var="optionDto" items="${optionList}" varStatus="k" >
 		facility = '${optionDto.po_fxility}';
@@ -20,9 +20,9 @@
 		// 이를 앞뒤의 [ ]를 지우고, 배열로 된 걸 facilityList 배열에 순차적으로 저장
 		facilityList.push(facility.replace('[','').replace(']','').split(','));
 		alert(facilityList[${k.index}]);
-	</c:forEach>
+	</c:forEach> */
 	let isSeller = ${isSeller};
-	<c:if test="${not isSeller}">
+	<c:if test="${loginDto ne null && not isSeller}">
 		let loginDtoMNo = '${loginDto.m_no}';
 	</c:if>
 	let thumbnail = JSON.parse('${placeDto.p_img}');
@@ -30,7 +30,7 @@
 	let remarkList = JSON.parse('${placeDto.p_remark}');
 	let reviewImageList = null;
 	if ('${reviewImage}'!=''){
-			reviewImageList = JSON.parse('${reviewImage}');
+		reviewImageList = JSON.parse('${reviewImage}');
 	}
 	let no = ${param.no};
 	let pAddr = '${placeDto.p_addr}';

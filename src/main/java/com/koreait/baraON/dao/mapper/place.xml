@@ -56,6 +56,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM PLACEOPTION
 		WHERE P_NO=#{param1}
+		ORDER BY PO_NO
 	</select>
 	
 	<select id="getPlaceListDtoByCategory" parameterType="int" resultType="com.koreait.baraON.dto.PlaceListDto">
@@ -92,8 +93,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="placeUpdate" parameterType="com.koreait.baraON.dto.PlaceDto">
 		UPDATE PLACE
-		SET
-		WHERE P_NO=#{param1}
+		SET P_TITLE=#{p_title}, P_DESC=#{p_desc}, P_CONTENT=#{p_content}, P_INFO=#{p_info}, P_ADDR=#{p_addr}, P_BNAME=#{p_bname}, P_ADDRDETAIL=#{p_addrdetail}, P_IMG=#{p_img}, P_URL=#{p_url}, P_REMARK=#{p_remark}
+		WHERE P_NO=#{p_no}
 	</update>
+	
+	<delete id="placeFullDelete" parameterType="int" >
+		DELETE FROM
+		PLACE
+		WHERE P_NO=#{param1}
+	</delete>
 
 </mapper>

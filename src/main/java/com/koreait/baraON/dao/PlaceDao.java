@@ -23,4 +23,6 @@ public interface PlaceDao {
 	public int placeInsert(PlaceDto placeDto);
 	public int placeDelete(int p_no);
 	public int placeUpdate(PlaceDto placeDto);
+	public int placeFullDelete(int p_no);
+	
 }

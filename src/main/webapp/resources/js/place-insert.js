@@ -102,7 +102,10 @@ function fn_addFacility(btn){
 	});
 }
 function fn_removeFacility(e){
+	let facilityCount = $(e.target).closest('#facility-list').next();
+	alert($(facilityCount).val());
 	$(e.target).parent().remove();
+	$(facilityCount).val(parseInt($(facilityCount).val())-1);
 }
 function fn_addOption(){
 	$('#add-option-btn').click(function(event){

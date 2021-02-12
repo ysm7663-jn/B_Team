@@ -14,9 +14,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM PLACEOPTION
 		WHERE PO_NO=#{param1}
 	</select>
-	<select id="getPlaceOptionByPNo" parameterType="int" resultType="com.koreait.baraON.dto.PlaceOptionDto">
-		SELECT *
-		FROM PLACEOPTION
-		WHERE P_NO=#{param1}
-	</select>
+	<update id="placeOptionUpdate" parameterType="com.koreait.baraON.dto.PlaceOptionDto">
+		UPDATE PLACEOPTION
+		SET
+		WHERE PO_NO=#{po_no}
+	</update>
+	<delete id="placeOptionDelete" parameterType="int">
+		DELETE FROM
+		PLACEOPTION
+		WHERE PO_NO=#{param1}
+	</delete>
 </mapper>

@@ -31,6 +31,7 @@
 			$.each(facilityList, function(i, facility){
 				$(tagTo).eq(idx).append('<li>'+facility+'<input type="hidden" name="po_facility" value="'+facility+'" /><span class="remove" onclick="fn_removeFacility(event)">&times;</span></li>');
 			});
+			$(tagTo).next().val(facilityList.length);
 		});
 	}
 	function placeUpdate(f){
@@ -82,7 +83,7 @@
 			</div>
 		</article>
 		<article class="place-insert-list">
-			<div class="subtitle">공간 이름<span class="required-data">필수 사항</span> </div>
+			<div class="subtitle">공간 이름 <span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
 				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" value="${placeDto.p_title}" required/>
 				<span id="character-length" >${fn:length(placeDto.p_title)}</span>자 / 50자<br/>
@@ -92,9 +93,9 @@
 			</div>
 		</article>
 		<article class="place-insert-list">
-			<div class="subtitle">사업장명 <span class="required-data">필수 사항</span> </div>
+			<div class="subtitle">사업장명 <span class="required-data">변경불가</span> </div>
 			<div class="sub-content">
-				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" value="${placeDto.p_name}" required/>
+				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" value="${placeDto.p_name}" required readonly/>
 				<span id="character-length" >${fn:length(placeDto.p_name)}</span>자 / 50자
 				<p class="example-box" style="white-space:pre-line;">
 					사업자로 등록되어 있는 사업장 이름을 적어주세요.
@@ -111,9 +112,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">공간 소개 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required>
-				${placeDto.p_content}
-				</textarea>
+				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required>${placeDto.p_content}</textarea>
 				<span id="character-length" >${fn:length(placeDto.p_content)}</span>자 / 2000자
 			</div>
 		</article>
@@ -246,21 +245,20 @@
 									<label for="option-thumbnail">사진 고르기</label>
 									<input id="option-thumbnail" type="file" name="po_img" accept="image/*" required/>
 									<div id="option-img-box">
-									
-										<div id="uploaded-img-box">
-											<img src="resources/images/PlaceOptionImages/${optionDto.po_img}" />
-										<!-- 이미 올라와있는 사진들을 보여주고 삭제 버튼을 누르면 삭제할 파일들의 이름을 input:hidden[name="deleted-img"]에 저장 -->
-										</div>
+										<img src="resources/images/PlaceOptionImages/${optionDto.po_img}" />
 									</div>
 								</div>
+								<input type="hidden" name="change" value="0" />
 							</article>
+							<input type="hidden" name="po_no" value="${optionDto.po_no}" />
+							<button type="button" class="select-remove-btn" >해당옵션 삭제</button>
 						</section>
 					</c:forEach>
 				</div>
 			</div>
 			<section class="btn-box">
-				<button type="button" id="add-option-btn" >옵션추가</button>
-				<button type="button" id="remove-option-btn">옵션삭제</button>
+				<button type="button" id="add-option-btn" >옵션 입력 추가</button>
+				<button type="button" id="remove-option-btn">옵션 입력 삭제</button>
 			</section>
 		</article>
 		<!-- hidden -->

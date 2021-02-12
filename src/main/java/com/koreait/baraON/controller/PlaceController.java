@@ -109,5 +109,4 @@ public class PlaceController {
 		return "redirect:placeListPage.place";
 	}
 	
-	
 }

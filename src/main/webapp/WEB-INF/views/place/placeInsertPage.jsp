@@ -197,8 +197,6 @@
 				<button type="button" id="remove-option-btn">옵션삭제</button>
 			</section>
 		</article>
-		<!-- hidden -->
-		<input type="hidden" name="s_no" value="${loginDto.s_no}" />
 		<button type="button" onclick="fn_placeInsert(this.form)">등록하기</button>
 		<button type="button" onclick="location.href='placeListPage.place'" >목록으로 돌아가기</button>
 	</form>

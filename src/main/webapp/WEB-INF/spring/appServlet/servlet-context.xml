@@ -29,6 +29,9 @@
 	<beans:bean id="placeUpdateCommand" class="com.koreait.baraON.command.place.PlaceUpdateCommand" />
 	<beans:bean id="placeDeleteCommand" class="com.koreait.baraON.command.place.PlaceDeleteCommand" />
 	
+	<!-- placeOption command -->
+	<beans:bean id="optionDeleteCommand" class="com.koreait.baraON.command.option.OptionDeleteCommand" />
+	
 	<!-- review command -->
 	<beans:bean id="reviewUpdateCommand" class="com.koreait.baraON.command.review.ReviewUpdateCommand" />
 	<beans:bean id="reviewDeleteCommand" class="com.koreait.baraON.command.review.ReviewDeleteCommand" />

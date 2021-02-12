@@ -1,0 +1,23 @@
+package com.koreait.baraON.command.option;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.ui.Model;
+
+import com.koreait.baraON.dao.PlaceOptionDao;
+
+public class OptionDeleteCommand {
+
+	public Map<String, Object> execute(SqlSession sqlSession, Model model){
+		
+		int po_no = (int) model.asMap().get("po_no");
+		PlaceOptionDao placeOptionDao = sqlSession.getMapper(PlaceOptionDao.class);
+		
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		resultMap.put("result", placeOptionDao.placeOptionDelete(po_no));
+		return resultMap;
+	}
+}

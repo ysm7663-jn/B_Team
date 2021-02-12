@@ -3,6 +3,7 @@ package com.koreait.baraON.command.place;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dao.PlaceOptionDao;
 import com.koreait.baraON.dto.PlaceDto;
 import com.koreait.baraON.dto.PlaceOptionDto;
+import com.koreait.baraON.dto.SellerDto;
 
 public class PlaceInsertCommand implements PlaceCommand {
 
@@ -29,7 +31,8 @@ public class PlaceInsertCommand implements PlaceCommand {
 		
 		PlaceDto placeDto = new PlaceDto();
 		// 먼저 place에 대한 데이터를 insert한다
-		int s_no=Integer.parseInt(multipartRequest.getParameter("s_no"));
+		SellerDto sellerDto = (SellerDto)(multipartRequest.getSession().getAttribute("loginDto"));
+		int s_no=sellerDto.getS_no();
 		int pc_no=Integer.parseInt(multipartRequest.getParameter("pc_no"));
 		String p_title=multipartRequest.getParameter("p_title");
 		String p_name=multipartRequest.getParameter("p_name");
@@ -68,6 +71,8 @@ public class PlaceInsertCommand implements PlaceCommand {
 		}
 		placeDto.setP_remark(sb.toString());
 		
+		sb.setLength(0);
+		
 		placeDto.setS_no(s_no);
 		placeDto.setPc_no(pc_no);
 		placeDto.setP_title(p_title);
@@ -91,8 +96,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
-				// 일단 list를 사용하기 위해 replace() method로 ","를 지워준다
-				String originalFilename = file.getOriginalFilename().replace(",", "");
+				String originalFilename = file.getOriginalFilename();
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 				
 				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceImages");
@@ -100,9 +104,15 @@ public class PlaceInsertCommand implements PlaceCommand {
 				if(!extensionList.contains(extension)) {
 					// 이 때 이 전에 업로드 받았던 파일들은 다 삭제해야한다.
 					// 업로드 된 파일들은 sb에 목록으로 저장되어있다.
+					String fileList = sb.toString().replace("\"", "").replace("[", "").replace("]", "");
+					StringTokenizer st = new StringTokenizer(fileList, ", ");
 					
-					new FileRemover(list, realPath);
-					
+					while(st.hasMoreTokens()) {
+						File uploadedImg = new File(realPath, st.nextToken());
+						if (uploadedImg.exists()) {
+							uploadedImg.delete();
+						}
+					}
 					// 이미지파일이 아닐경우 -1
 					// 파일형식이 맞지 않으므로 메소드를 끝낸다.
 					rttr.addFlashAttribute("insertResult", -1);
@@ -126,7 +136,12 @@ public class PlaceInsertCommand implements PlaceCommand {
 					e.printStackTrace();
 				}
 				
-				list.add(uploadFilename);
+				if(files.get(size-1) != file) {
+					sb.append("\""+uploadFilename+"\", ");
+				} else {
+					sb.append("\""+uploadFilename+"\"]");
+					sb.insert(0,"[");
+				}
 			} else {
 				// 이미지파일을 첨부하지 않은경우 -2
 				// 최소 하나의 파일을 첨부해야하는 상황이므로 메소드를 끝낸다.
@@ -134,8 +149,8 @@ public class PlaceInsertCommand implements PlaceCommand {
 				return;
 			}
 		}
-		if ( list.size()!=0) {
-			placeDto.setP_img(list.toString());
+		if ( !sb.toString().isEmpty() && sb.toString() != null) {
+			placeDto.setP_img(sb.toString());
 		}
 		placeDao.placeInsert(placeDto);
 		int currPNo = placeDto.getP_no();
@@ -180,7 +195,28 @@ public class PlaceInsertCommand implements PlaceCommand {
 			String extension = originalFilename.substring(originalFilename.lastIndexOf(".")+1);
 			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceOptionImages");
 			
-			if(!extensionList.contains(extension)) {continue;}
+			if(!extensionList.contains(extension)) {
+				List<PlaceOptionDto> insertedPlaceOptionList = placeDao.getPlaceOptionList(currPNo);
+				String placeImgList = placeDto.getP_img().replace("\"", "").replace("[", "").replace("]", "");
+				StringTokenizer st = new StringTokenizer(placeImgList, ", ");
+				while(st.hasMoreTokens()) {
+					File uploadedImg = new File("resources/images/PlaceImages", st.nextToken());
+					if(uploadedImg.exists()) {
+						uploadedImg.delete();
+					}
+				}
+				for(int j = 0, listSize = insertedPlaceOptionList.size();j<listSize;j++) {
+					File uploadedImg = new File(realPath, insertedPlaceOptionList.get(j).getPo_img());
+					if(uploadedImg.exists()) {
+						uploadedImg.delete();
+					}
+				}
+				// insert된 place데이터를 지운다.
+				placeDao.placeFullDelete(currPNo);
+				
+				rttr.addFlashAttribute("insertResult", -1);
+				return;
+			}
 			
 			
 			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
