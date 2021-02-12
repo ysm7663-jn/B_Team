@@ -58,7 +58,7 @@ NOCACHE;
 -- CLUB Table Create SQL
 CREATE TABLE CLUB
 (
-    C_NO           NUMBER           PRIMARY KEY, 
+    C_NO           NUMBER            PRIMARY KEY, 
     M_NO           NUMBER            NULL, 
     C_TITLE        VARCHAR2(100)     NOT NULL, 
     C_DESC         VARCHAR2(300)     NOT NULL, 

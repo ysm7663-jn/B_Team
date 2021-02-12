@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+	background: white;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.body_wrap {
+	width : 100%;
+}
+
+#btn_create {
+	width : 250px;
+	background: skyblue;
+	color: black;
+	
+}

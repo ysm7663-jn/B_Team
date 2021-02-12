@@ -39,7 +39,6 @@
 					<textarea rows="20" cols="100" placeholder="2000자 이내로 작성해주세요" name="c_content"></textarea>
 				<br/><br/>
 				
-				<span class="ch_title">선택사항입니다.</span><br/>
 				<input type="file" name="c_img1" /><br/>
 				<input type="text" name="c_subContent1" placeholder="한설명을 입력해주세요"/><br/>
 				

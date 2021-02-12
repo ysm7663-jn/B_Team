@@ -21,7 +21,6 @@ public class ClubInsertCommand implements ClubCommand {
 		
 		int c_no = Integer.parseInt(multipartRequest.getParameter("c_no"));
 		int m_no = Integer.parseInt(multipartRequest.getParameter("m_no"));
-		String m_nick = multipartRequest.getParameter("m_nick");
 		
 		String c_title = multipartRequest.getParameter("c_title");
 		String c_desc = multipartRequest.getParameter("c_desc");

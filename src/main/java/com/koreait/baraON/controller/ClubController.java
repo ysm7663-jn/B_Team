@@ -20,8 +20,6 @@ import com.koreait.baraON.command.club.ClubListCommand;
 import com.koreait.baraON.command.club.ClubUpdateCommand;
 import com.koreait.baraON.command.club.ClubUpdateStatCommand;
 import com.koreait.baraON.command.club.ClubViewCommand;
-import com.koreait.baraON.command.member.MemberUpdateCommand;
-import com.koreait.baraON.dto.ClubDto;
 
 @Controller
 public class ClubController {
@@ -64,7 +62,7 @@ public class ClubController {
 		return "club/clubListPage";
 	}
 	
-	@RequestMapping(value="clubInsert.club", method=RequestMethod.GET)
+	@RequestMapping(value="clubInsert.club", method=RequestMethod.POST)
 	public String clubInsert(MultipartHttpServletRequest multipartRequest, Model model) {
 		
 		model.addAttribute("multipartRequest", multipartRequest);
