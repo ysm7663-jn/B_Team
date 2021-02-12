@@ -10,15 +10,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM CLUB
 	</select>
 	
-	<!--
-	 INTO CLUB (C_NO, C_MAINTHUMNAIL, C_TITLE, C_MIN, C_MAX, C_STARTDATE, C_ENDDATE, C_CONTENT, C_THUMBNAIL1, C_THUMBNAIL2, C_THUMBNAIL3, C_POSTDATE)
- 	-->
  	<insert id="clubInsert">
 		INSERT 
-		  INTO CLUB (C_NO, M_NO, C_TITLE, C_CONTENT, C_POSTDATE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_COUNT, C_MAINIMG, C_DELETEM, C_PART)
-		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, SYSDATE, SYSDATE, SYSDATE,  #{param4}, #{param5}, 0, #{param6}, 0, 0)
+		  INTO CLUB (C_NO, M_NO, C_TITLE, C_DESC, C_MIN, C_MAX, C_STARTDATE, C_ENDDATE, C_CONTENT, C_POSTDATE, C_MAINIMG, C_DELETE, C_PART)
+		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, SYSDATE,  #{param9}, 0, 0)
 	</insert>
-
+	
 	<select id="clubView" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
 		SELECT * 
 		  FROM CLUB
@@ -49,7 +46,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<update id="updateStat">
-		UPDATE CLUB
+		UPDATE MEMBER
 		   SET M_ENJOY = #{m_enjoy}
 		 WHERE M_NO = #{m_no}
 	</update>
