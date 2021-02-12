@@ -13,6 +13,7 @@
 	$(document).ready(function(){
 		$(".footer-wrap").css("background" , "white");
 	});
+	
 <%
 	String id = null;
 
@@ -26,11 +27,25 @@
 	}
 	pageContext.setAttribute("id", id);
 %>
+
+	function fn_login(f){
+		if(f.id.value == '') {
+			alert('아이디를 입력하세요.');
+			f.id.focus();
+			return;
+		} else if(f.pw.value == '') {
+			alert('비밀번호를 입력하세요.');
+			f.pw.focus();
+			return;
+		}
+		f.action = 'login.member';
+		f.submit();
+	}
 </script>
 
 <div class="box">
 	<div class="inner-box">
-		<form action="login.member" method="post">
+		<form method="post">
 			<h2>로그인해주세요</h2>
 
 			<input type="radio" name="grade" id="member" value="member" checked="checked"/>
@@ -40,21 +55,21 @@
 			
 			<!-- 아이디가 쿠키에 남아있는 경우 -->
 			<c:if test="${id ne null}">
-				<input type="text" name="id" placeholder="아이디" value="${id}"/><br/>
-				<input type="password" name="pw" placeholder="비밀번호" /><br/>
+				<div class="id-box"><input type="text" name="id" placeholder="아이디" value="${id}" autofocus /></div><br/>
+				<div class="pw-box"><input type="password" name="pw" placeholder="비밀번호" /></div><br/>
 				<input type="checkbox" name="chkId" id="chkId" checked="checked"/><label for="chkId">아이디 기억하기</label><br/>
 			</c:if>
 			<!-- 아이디가 쿠키에 없는 경우 -->
 			<c:if test="${id eq null}">
-				<input type="text" name="id" placeholder="     아이디" /><br/>
-				<input type="password" name="pw" placeholder="     비밀번호" /><br/>
+				<div class="id-box"><input type="text" name="id" placeholder="아이디" autofocus /></div>
+				<div class="pw-box"><input type="password" name="pw" placeholder="비밀번호" /></div>
 				<input type="checkbox" name="chkId" id="chkId"/><label for="chkId">아이디 기억하기</label><br/>
 			</c:if>
 			
 			<a href="" class="login">회원가입&nbsp;</a>
 			<a href="findPage.member" class="login">아이디/비밀번호를 잊으셨나요?</a><br/>
 			
-			<button>로그인</button>
+			<input type="button" value="로그인" onclick="fn_login(this.form)" />
 			<div class="kakaoLogin">
 				<h5>Kakao 계정으로 시작하기</h5>
 				<a href="https://kauth.kakao.com/oauth/authorize

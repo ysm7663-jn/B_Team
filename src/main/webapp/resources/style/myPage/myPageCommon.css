@@ -18,34 +18,37 @@ div {
 	box-sizing: border-box;
 }
 
-
-.mypage_body {
+.btn selected {
+	color: red;
+}
+.mypage-body {
 	display: flex;
 	overflow: hidden;
 	height: auto;
 	margin: 2% 18% 12% 18%;
 }
-.mypage_category {
+.mypage-category {
 	margin: 0 2% 2% 3%;
 }
-.mypage_category a {
+.mypage-category a {
 	display: block;
 }
-.mypage_category h2 {
+.mypage-category h2 {
 	margin-bottom: 10px;
 }
-.mypage_contents {
+.mypage-contents {
 	position: relative;
 	right: -10%;
 	width: 79%;
 	margin: 21px 0 4% 0;
 }
-.mypage_contents > h2 {
+.mypage-contents > h2 {
 	margin-bottom: 12px;
 }
-.mypage_contents hr {
+.mypage-contents .top {
 	height: 3px;
 	background: #dbdbdb;
 	border: 1px solid #dbdbdb;
 	border-radius: 3px;
+	margin-bottom: 15px;
 }

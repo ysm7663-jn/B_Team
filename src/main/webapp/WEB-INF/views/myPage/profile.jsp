@@ -3,9 +3,9 @@
     
 <jsp:include page="myPage.jsp" />
 
-	<div class="mypage_contents">
+	<div class="mypage-contents">
 		<h2>내 프로필</h2>
-		<hr>
+		<hr class="top">
 		
 		
 	</div>

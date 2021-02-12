@@ -13,13 +13,15 @@
 	}
 	
 </script>
-	<div class="mypage_contents">
+	<div class="mypage-contents">
 		<h2>위시 리스트</h2>
-		<hr>
+		<hr class="top">
 		
 		<c:if test="${empty list}">
-			<div><i class="fas fa-exclamation-circle"></i></div>
-			<div>위시리스트에 저장된 내용이 없습니다.</div>
+			<div class="emptyList">
+				<div><i class="fas fa-exclamation-circle"></i></div>
+				<div>위시리스트에 저장된 내용이 없습니다.</div>
+			</div>
 		</c:if>
 		<c:if test="${not empty list}">
 			<div class="club-wrap">
@@ -31,8 +33,8 @@
 							<input type="hidden" name="wNo" value="${wishListDto.w_no}" />
 							<button><span class="wishIcon"><i class="fas fa-heart"></i></span></button>
 						</form>
-						<div class="title">${wishListDto.c_title}</div>
-						<div class="content">${wishListDto.c_content}</div>
+						<div class="title"><a href="">${wishListDto.c_title}</a></div>
+						<div class="content"><a href="">${wishListDto.c_content}</a></div>
 					</div>
 				</c:forEach>
 			</div>
