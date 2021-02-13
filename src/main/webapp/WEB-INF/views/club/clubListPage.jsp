@@ -28,7 +28,7 @@
 			<div class="group-list">
 				<div class="col-4">
 					<a class="ns" href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}"> 
-						<img alt="${clubDto.c_mainImg}" src="resources/images/storage/${clubDto.c_mainImg}">
+						<img alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 					</a>
 					<div class="title-container" style="height: 300px;">
 						<div class="title-content">

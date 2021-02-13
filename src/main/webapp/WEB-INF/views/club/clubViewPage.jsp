@@ -77,7 +77,7 @@
 	<div class="wrap">
 
 		<div class="thumnail">
-			<img alt="main사진" src="resources/images/club/${clubDto.c_mainImg}">
+			<img alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 		</div>
 
 		<c:if test="${clubDto.m_no ne memberDto.m_no}">

@@ -66,7 +66,7 @@ public class ClubInsertCommand implements ClubCommand {
 						
 				String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
 				
-				String realPath = multipartRequest.getServletContext().getRealPath("resources/storage");
+				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/club");
 				
 				File dir = new File(realPath);
 				if(!dir.exists()) {
