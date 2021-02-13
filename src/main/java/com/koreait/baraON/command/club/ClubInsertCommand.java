@@ -26,9 +26,9 @@ public class ClubInsertCommand implements ClubCommand {
 		String c_content = multipartRequest.getParameter("c_content");
 		int c_min = Integer.parseInt(multipartRequest.getParameter("c_min"));
 		int c_max = Integer.parseInt(multipartRequest.getParameter("c_max"));
-		String c_subContent1 = multipartRequest.getParameter("c_subContent1");
+		/*String c_subContent1 = multipartRequest.getParameter("c_subContent1");
 		String c_subContent2 = multipartRequest.getParameter("c_subContent2");
-		String c_subContent3 = multipartRequest.getParameter("c_subContent3");
+		String c_subContent3 = multipartRequest.getParameter("c_subContent3");*/
 		
 		String c_startDate = multipartRequest.getParameter("c_startDate");
 		String c_endDate = multipartRequest.getParameter("c_endDate");

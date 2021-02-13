@@ -13,7 +13,7 @@
 		<div class="insert-wrap">
 		
 			<div id="main_image">
-				<input type="file" name="file" />
+				<input type="file" name="c_mainImg" />
 			</div>
 		
 			<div class="inputs">
@@ -30,10 +30,10 @@
 					<input type="text" name="c_max" placeholder="최대인원을 입력해주세요" /><br/>
 					
 				<span class="title">활동시작날짜</span>
-					<input type="text" name="c_startDate" placeholder="활동 시작 날짜를 입력해주세요" /><br/>
+					<input type="text" name="c_startDate" placeholder="ex)20xx.xx.xx" /><br/>
 					
 				<span class="title">활동종료날짜</span>
-					<input type="text" name="c_endDate" placeholder="활동 종료 날짜를 입력해주세요" /><br/>
+					<input type="text" name="c_endDate" placeholder="ex)20xx.xx.xx" /><br/>
 					
 				<span class="title">클럽내용</span><br/>
 					<textarea rows="20" cols="100" placeholder="2000자 이내로 작성해주세요" name="c_content"></textarea>
@@ -52,9 +52,8 @@
 			</div>
 		</div>
 		
-		<input type="hidden" name="c_no" value="${clubDto.c_no}" />
-		<input type="hidden" name="m_no" value="${clubDto.m_no}" />
-		<input type="hidden" name="m_nick" value="${memberDto.m_nick}" />
+		<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+		<%-- <input type="hidden" name="m_nick" value="${memberDto.m_nick}" /> --%>
 		
 		<input type="button" name="btn" value="완료하기" onclick="fn_finish(this.form)" />
 		<input type="button" name="btn" value="돌아가기" onclick="location.href='clubListPage.club'" />
