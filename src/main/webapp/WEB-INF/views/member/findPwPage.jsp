@@ -4,6 +4,8 @@
 <jsp:include page="../template/header.jsp" >
 	<jsp:param value="비밀번호 찾기" name="title"/>
 </jsp:include> 
+<link rel="stylesheet" href="resources/style/member/findPage.css">
+<link rel="stylesheet" href="resources/style/member/findPwPage.css">
    
 <script>
 	$(function(){
