@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.option.OptionDeleteCommand;
 import com.koreait.baraON.command.option.OptionInsertCommand;
@@ -41,10 +43,10 @@ public class PlaceOptionController {
 		
 		return optionDeleteCommand.execute(sqlSession, model);
 	}
-	@RequestMapping(value="placeOptionUpdate.place/{po_no}", method=RequestMethod.PUT, produces="application/json; charset=utf-8")
+	@RequestMapping(value="placeOptionUpdate.place", method=RequestMethod.POST, produces="application/json; charset=utf-8", headers=("content-type=multipart/*"))
 	@ResponseBody
-	public Map<String, Object> optionUpdate(@PathVariable int po_no, Model model){
-		model.addAttribute("po_no", po_no);
+	public Map<String, Object> optionUpdate(MultipartHttpServletRequest multipartRequest, Model model){
+		model.addAttribute("multipartRequest", multipartRequest);
 		
 		return optionUpdateCommand.execute(sqlSession, model);
 	}

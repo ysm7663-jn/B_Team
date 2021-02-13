@@ -199,7 +199,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 				String placeImgList = placeDto.getP_img().replace("\"", "").replace("[", "").replace("]", "");
 				StringTokenizer st = new StringTokenizer(placeImgList, ", ");
 				while(st.hasMoreTokens()) {
-					File uploadedImg = new File("resources/images/PlaceImages", st.nextToken());
+					File uploadedImg = new File(multipartRequest.getServletContext().getRealPath("resources/images/PlaceImages"), st.nextToken());
 					if(uploadedImg.exists()) {
 						uploadedImg.delete();
 					}

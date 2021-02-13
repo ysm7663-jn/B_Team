@@ -224,5 +224,6 @@ function fn_previewThumbnail(btn){
 			};
 		reader.readAsDataURL(image);
 		}
+		$(appendTarget).parent().next().val(1);
 	});
 }

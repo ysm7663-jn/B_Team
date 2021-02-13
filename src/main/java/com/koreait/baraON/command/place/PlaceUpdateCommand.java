@@ -158,95 +158,11 @@ public class PlaceUpdateCommand implements PlaceCommand {
 				sb.insert(0, "[").append("]");
 			}
 		}
-		// 기존 이미지 
 	
 		if ( !sb.toString().isEmpty() && sb.toString() != null) {
 			placeDto.setP_img(sb.toString());
 		}
-		placeDao.placeUpdate(placeDto);
-		
-		String[] poNameList= multipartRequest.getParameterValues("po_name");
-		String[] poDayPriceList = multipartRequest.getParameterValues("po_dayPrice");
-		String[] poHolidayList = multipartRequest.getParameterValues("po_holiday");
-		String[] poMinList = multipartRequest.getParameterValues("po_min");
-		String[] poMaxList = multipartRequest.getParameterValues("po_max");
-		String[] change = multipartRequest.getParameterValues("change");
-		String[] poNoList = multipartRequest.getParameterValues("po_no");
-		String[] facilityCount= multipartRequest.getParameterValues("facility-count");
-		
-		PlaceOptionDto placeOptionDto = new PlaceOptionDto();
-		placeOptionDto.setP_no(p_no);
-		
-		int changeCount = 0;
-		for(int i = 0; i<change.length;i++) {
-			changeCount += Integer.parseInt(change[i]);
-		}
-		int prevCount = 0;
-		int updateCount = 0;
-		List<MultipartFile> optionImgList = multipartRequest.getFiles("po_img");
-		String[] po_facilityList = multipartRequest.getParameterValues("po_facility");
-		for(int i = 0; i<facilityCount.length;i++) {
-			sb.setLength(0);
-			int count = Integer.parseInt(facilityCount[i]);
-			if (count == 0) {continue;}
-			for(int j =0;j<count;j++) {
-				if(j!=(count-1)){
-					sb.append("\""+po_facilityList[j+prevCount]+"\", ");
-				} else {
-					sb.append("\""+po_facilityList[j+prevCount]+"\"]");
-					sb.insert(0, "[");
-				}
-			}
-			String po_facility = sb.toString();
-			
-			placeOptionDto.setPo_name(poNameList[i]);
-			placeOptionDto.setPo_dayPrice(Integer.parseInt(poDayPriceList[i]));
-			placeOptionDto.setPo_holiday(Integer.parseInt(poHolidayList[i]));
-			placeOptionDto.setPo_min(Integer.parseInt(poMinList[i]));
-			placeOptionDto.setPo_max(Integer.parseInt(poMaxList[i]));
-			placeOptionDto.setPo_fxility(po_facility);
-			if(i<change.length && Integer.parseInt(change[i])==1) {
-				MultipartFile file = optionImgList.get(i);
-				String originalFilename = file.getOriginalFilename();
-				String extension = originalFilename.substring(originalFilename.lastIndexOf(".")+1);
-				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceOptionImages");
-				
-				if(!extensionList.contains(extension)) {
-					continue;
-				}
-				String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
-				String po_img = filename + "-" + System.currentTimeMillis() + "." + extension;
-				
-				File dir = new File(realPath);
-				if(!dir.exists()) {
-					dir.mkdirs();
-				}
-				
-				File uploadFile = new File(realPath, po_img);
-				
-				try {
-					file.transferTo(uploadFile);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				placeOptionDto.setPo_no(Integer.parseInt(poNoList[i]));
-				placeOptionDto.setPo_img(po_img);
-				updateCount += placeOptionDao.placeOptionUpdate(placeOptionDto);
-			} else if(i<change.length && Integer.parseInt(change[i])==0){ // 이미 존재하는 option이고, 이미지 변경이 없을 경우
-				placeOptionDto.setPo_no(Integer.parseInt(poNoList[i]));
-				updateCount += placeOptionDao.placeOptionUpdate(placeOptionDto);
-			} else { // 기존에 없던 option을 새로 작성한 경우
-				updateCount += placeOptionDao.placeOptionInsert(placeOptionDto);
-			}
-			
-			prevCount = count;
-		}
-		if(updateCount == poNameList.length) {
-			rttr.addFlashAttribute("updateResult", 1);
-		} else {
-			rttr.addFlashAttribute("updateResult", -3);
-		}
-		
+		rttr.addFlashAttribute("updateResult", placeDao.placeUpdate(placeDto));
 		rttr.addFlashAttribute("p_no", p_no);
 		
 	}

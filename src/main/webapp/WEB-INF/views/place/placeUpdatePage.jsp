@@ -57,13 +57,27 @@
 		$(e.target).parent().remove();
 	}
 	function fn_optionUpdate(f){
-		let sendObj = new FormDate(f);
+		let sendObj = new FormData(f);
 		$.ajax({
-			url:'placeOptionUpdate.place/'+f.po_no.value,
-			type:'put',
+			url:'placeOptionUpdate.place',
+			type:'post',
 			enctype:'multipart/form-data',
 			data: sendObj,
-			
+			processData: false,
+			contentType: false,
+			dataType:'json',
+			success: function(responseObj){
+				if(responseObj.result==1){
+					alert('수정되었습니다.');
+				} else if(responseObj.result==-1) {
+					alert('파일형식이 맞지않습니다. 파일 변경 후 다시 시도해주세요');
+				} else {
+					alert('수정에 실패했습니다. 다시 시도해 주세요');	
+				}
+			},
+			error: function(request, status, error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
 		});
 	}
 	
@@ -254,7 +268,7 @@
 									</div>
 									<div class="option-content">
 										<label>사진 고르기
-											<input id="option-thumbnail" type="file" name="po_img" accept=".jpg, .jpeg, .png" />
+											<input class="option-thumbnail" id="option-thumbnail" type="file" name="po_img" accept=".jpg, .jpeg, .png" />
 										</label>
 										<div id="option-img-box">
 											<img src="resources/images/PlaceOptionImages/${optionDto.po_img}" />
