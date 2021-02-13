@@ -61,7 +61,7 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_infoList.length;i++) {
 			if(i!=(p_infoList.length-1)) {
-				sb.append("\""+p_infoList[i]+"\", ");
+				sb.append("\""+p_infoList[i]+"\",");
 			} else {
 				sb.append("\""+p_infoList[i]+"\"]");
 			}
@@ -72,7 +72,7 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_remarkList.length;i++) {
 			if(i!=(p_remarkList.length-1)) {
-				sb.append("\""+p_remarkList[i]+"\", ");
+				sb.append("\""+p_remarkList[i]+"\",");
 			} else {
 				sb.append("\""+p_remarkList[i]+"\"]");
 			}
@@ -108,7 +108,7 @@ public class PlaceUpdateCommand implements PlaceCommand {
 					// 이 때 이 전에 업로드 받았던 파일들은 다 삭제해야한다.
 					// 업로드 된 파일들은 sb에 목록으로 저장되어있다.
 					String fileList = sb.toString().replace("\"", "").replace("[", "").replace("]", "");
-					StringTokenizer st = new StringTokenizer(fileList, ", ");
+					StringTokenizer st = new StringTokenizer(fileList, ",");
 					
 					while(st.hasMoreTokens()) {
 						File uploadedFile = new File(realPath, st.nextToken());
@@ -140,25 +140,18 @@ public class PlaceUpdateCommand implements PlaceCommand {
 				}
 				
 				if(files.get(size-1) != file) {
-					sb.append("\""+uploadFilename+"\", ");
+					sb.append("\""+uploadFilename+"\",");
 				} else {
-					sb.append("\""+uploadFilename+"\"]");
-					sb.insert(0, "[");
+					sb.append("\""+uploadFilename+"\"");
 				}
-				StringTokenizer st = new StringTokenizer(p_img,", ");
-				while(st.hasMoreTokens()) {
-					sb.insert(sb.indexOf("[")+1 , "\""+st.nextToken()+"\", ");
-				}
-			} else {
-				StringTokenizer st = new StringTokenizer(p_img,", ");
-				while(st.hasMoreTokens()) {
-					sb.append("\""+st.nextToken()+"\", ");
-				}
-				sb.deleteCharAt(sb.lastIndexOf(","));
-				sb.insert(0, "[").append("]");
-			}
+				
+			} 
 		}
-	
+		StringTokenizer st = new StringTokenizer(p_img,",");
+		while(st.hasMoreTokens()) {
+			sb.append(",\""+st.nextToken()+"\"");
+		}
+		sb.append("]").insert(0, "[");
 		if ( !sb.toString().isEmpty() && sb.toString() != null) {
 			placeDto.setP_img(sb.toString());
 		}

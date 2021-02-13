@@ -45,7 +45,7 @@ public class PlaceListCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0, size=list.size();i<size;i++) {
 			if(i!=(size-1)) {
-				sb.append(list.get(i).getP_img()+", ");
+				sb.append(list.get(i).getP_img()+",");
 			} else {
 				sb.append(list.get(i).getP_img()+"]");
 				

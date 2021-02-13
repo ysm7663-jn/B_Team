@@ -39,7 +39,7 @@ public Map<String, Object> execute(SqlSession sqlSession, Model model){
 		sb.append("[");
 		for(int i = 0;i<facilityList.length;i++) {
 			if(i<facilityList.length-1) {
-				sb.append("\""+facilityList[i]+"\", ");
+				sb.append("\""+facilityList[i]+"\",");
 			} else {
 				sb.append("\""+facilityList[i]+"\"]");
 			}

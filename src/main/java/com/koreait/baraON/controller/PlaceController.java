@@ -99,10 +99,6 @@ public class PlaceController {
 		return "place/placeUpdatePage";
 	}
 
-	@RequestMapping(value="placeUpdateResultPage.place", method=RequestMethod.GET)
-	public String placeUpdateResult() {
-		return "place/placeUpdateResultPage";
-	}
 	
 	@RequestMapping(value="placeUpdate.place", method=RequestMethod.POST)
 	public String placeUpdate(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
@@ -111,6 +107,10 @@ public class PlaceController {
 		
 		placeUpdateCommand.execute(sqlSession, model);
 		return "redirect:placeUpdateResult.place";
+	}
+	@RequestMapping(value="placeUpdateResult.place", method=RequestMethod.GET)
+	public String placeUpdateResult() {
+		return "place/placeUpdateResult";
 	}
 	
 	@RequestMapping(value="placeDelete.place", method=RequestMethod.POST)

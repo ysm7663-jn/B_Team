@@ -52,7 +52,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_infoList.length;i++) {
 			if(i!=(p_infoList.length-1)) {
-				sb.append("\""+p_infoList[i]+"\", ");
+				sb.append("\""+p_infoList[i]+"\",");
 			} else {
 				sb.append("\""+p_infoList[i]+"\"]");
 			}
@@ -63,7 +63,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_remarkList.length;i++) {
 			if(i!=(p_remarkList.length-1)) {
-				sb.append("\""+p_remarkList[i]+"\", ");
+				sb.append("\""+p_remarkList[i]+"\",");
 			} else {
 				sb.append("\""+p_remarkList[i]+"\"]");
 			}
@@ -104,7 +104,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 					// 이 때 이 전에 업로드 받았던 파일들은 다 삭제해야한다.
 					// 업로드 된 파일들은 sb에 목록으로 저장되어있다.
 					String fileList = sb.toString().replace("\"", "").replace("[", "").replace("]", "");
-					StringTokenizer st = new StringTokenizer(fileList, ", ");
+					StringTokenizer st = new StringTokenizer(fileList, ",");
 					
 					while(st.hasMoreTokens()) {
 						File uploadedImg = new File(realPath, st.nextToken());
@@ -136,7 +136,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 				}
 				
 				if(files.get(size-1) != file) {
-					sb.append("\""+uploadFilename+"\", ");
+					sb.append("\""+uploadFilename+"\",");
 				} else {
 					sb.append("\""+uploadFilename+"\"]");
 					sb.insert(0,"[");
@@ -182,7 +182,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 			if (count == 0) {continue;}
 			for(int j =0;j<count;j++) {
 				if(j!=(count-1)){
-					sb.append("\""+po_facilityList[j+prevCount]+"\", ");
+					sb.append("\""+po_facilityList[j+prevCount]+"\",");
 				} else {
 					sb.append("\""+po_facilityList[j+prevCount]+"\"]");
 				}
@@ -197,7 +197,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 			if(!extensionList.contains(extension)) {
 				List<PlaceOptionDto> insertedPlaceOptionList = placeDao.getPlaceOptionList(currPNo);
 				String placeImgList = placeDto.getP_img().replace("\"", "").replace("[", "").replace("]", "");
-				StringTokenizer st = new StringTokenizer(placeImgList, ", ");
+				StringTokenizer st = new StringTokenizer(placeImgList, ",");
 				while(st.hasMoreTokens()) {
 					File uploadedImg = new File(multipartRequest.getServletContext().getRealPath("resources/images/PlaceImages"), st.nextToken());
 					if(uploadedImg.exists()) {

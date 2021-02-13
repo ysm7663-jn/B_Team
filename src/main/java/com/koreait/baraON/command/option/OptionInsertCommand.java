@@ -34,7 +34,7 @@ public class OptionInsertCommand {
 		sb.append("[");
 		for(int i = 0;i<facilityList.length;i++) {
 			if(i<facilityList.length-1) {
-				sb.append("\""+facilityList[i]+"\", ");
+				sb.append("\""+facilityList[i]+"\",");
 			} else {
 				sb.append("\""+facilityList[i]+"\"]");
 			}
