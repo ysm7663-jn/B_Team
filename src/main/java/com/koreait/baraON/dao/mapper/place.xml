@@ -56,13 +56,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT *
 		FROM PLACEOPTION
 		WHERE P_NO=#{param1}
+		ORDER BY PO_NO
 	</select>
 	
 	<select id="getPlaceListDtoByCategory" parameterType="int" resultType="com.koreait.baraON.dto.PlaceListDto">
 	  SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) ASMINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
 		  FROM (SELECT P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG, COUNT(RV.P_NO) AS RVCOUNT
 				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO 
-				 WHERE P.P_CONFIRM = 1
+				 WHERE P.P_CONFIRM LIKE '승인'
 				   AND P.PC_NO=#{param1}
 				   AND P.P_DELETE = 0
 				   AND (RV.RV_DELETE IS NULL OR RV.RV_DELETE = 0)
@@ -81,7 +82,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</selectKey>
 		INSERT INTO
 		PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
-		VALUES (#{p_no}, #{s_no}, #{pc_no}, #{p_title}, #{p_name}, #{p_desc}, #{p_content}, #{p_info}, #{p_addr}, #{p_bname}, #{p_addrdetail}, #{p_img}, 1, #{p_url}, #{p_remark}, 0)
+		VALUES (#{p_no}, #{s_no}, #{pc_no}, #{p_title}, #{p_name}, #{p_desc}, #{p_content}, #{p_info}, #{p_addr}, #{p_bname}, #{p_addrdetail}, #{p_img}, '미승인', #{p_url}, #{p_remark}, 0)
 	</insert>
 	
+	<update id="placeDelete" parameterType="int">
+		UPDATE PLACE
+		SET P_DELETE=1
+		WHERE P_NO=#{param1}
+	</update>
+	
+	<update id="placeUpdate" parameterType="com.koreait.baraON.dto.PlaceDto">
+		UPDATE PLACE
+		SET P_TITLE=#{p_title}, P_DESC=#{p_desc}, P_CONTENT=#{p_content}, P_INFO=#{p_info}, P_ADDR=#{p_addr}, P_BNAME=#{p_bname}, P_ADDRDETAIL=#{p_addrdetail}, P_IMG=#{p_img}, P_URL=#{p_url}, P_REMARK=#{p_remark}
+		WHERE P_NO=#{p_no}
+	</update>
+	
+	<delete id="placeFullDelete" parameterType="int" >
+		DELETE FROM
+		PLACE
+		WHERE P_NO=#{param1}
+	</delete>
+
 </mapper>

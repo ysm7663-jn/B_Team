@@ -13,4 +13,5 @@ public interface ReviewDao {
 	public List<ReviewListDto> reviewListAppend(int p_no, int begin, int end);
 	public int lastReviewRN(int p_no);
 	public ReviewDto getReviewDto(int rv_no);
+	public List<ReviewDto> reviewByPNo(int p_no);
 }

@@ -13,10 +13,28 @@
 		$.each(imgList, function(idx, img){
 			$.each(img, function(i, placeImg){
 				let imgTag = '<img class="list-thumbnail" alt="'+placeImg+'" src="resources/images/PlaceImages/'+placeImg+'">';
-				$('.thumbnail-box').eq(idx).append(imgTag);
-			}) 
+				if (i==0){
+					$('.thumbnail-box').eq(idx).append($(imgTag).css('display', 'block'));
+				} else {
+					$('.thumbnail-box').eq(idx).append($(imgTag).css('display', 'none'));
+				}
+			}); 
 		});
+	/* setTimeout(function(){
+		alert(1);
+		let length = $('.thumbnail img').length;
+		if($('.thumbnail-box img').index()==(length-1)){
+			$('.thumbnail-box img').first().css('display','block');
+			$('.thumbnail-box img').last().css('display','none');
+		} else{
+			let curr = $($('.thumbnail-box img').css('display')=='block');
+			$(curr).next().css('display','block');
+			$(curr).css('display', 'none');
+		}
+	}, 500); */
 	})
+
+	
 </script>
 
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>

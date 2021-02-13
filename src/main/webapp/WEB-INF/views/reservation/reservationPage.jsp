@@ -8,7 +8,7 @@
 <script type="text/javascript" src="resources/js/reserve.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script>
-let isProgress=false;
+	let isProgress=false;
 	$(function(){
 		$("#res-update").click(function() {
 			if(isProgress){
@@ -40,7 +40,7 @@ let isProgress=false;
 				'vbank':가상계좌,
 				'phone':휴대폰소액결제
 				 */
-				merchant_uid : 'merchant_' + new Date().getTime(),
+				merchant_uid : '${reservationDto.res_no},
 				/*
 				merchant_uid에 경우
 				https://docs.iamport.kr/implementation/payment
@@ -48,19 +48,12 @@ let isProgress=false;
 				name : '${placeOptionDto.po_name}',
 				//결제창에서 보여질 이름
 				amount : $('[name="res_price"]').val(),
-				//가격
 				buyer_email : $('[name="res_email"]').val(),
 				buyer_name : $('[name="res_name"]').val(),
 				buyer_tel : $('[name="res_phone"]').val(),
-			/*
-			모바일 결제시,
-			결제가 끝나고 랜딩되는 URL을 지정
-			(카카오페이, 페이코, 다날의 경우는 필요없음. PC와 마찬가지로 callback함수로 결과가 떨어짐)
-			 */
 			}, function(rsp) {
 				console.log(rsp);
 				if (rsp.success) {
-					var msg = '결제가 완료되었습니다.';
 					let sendObj = {
 							'res_no' : '${reservationDto.res_no}',
 							'res_email' : rsp.buyer_email,
@@ -78,7 +71,8 @@ let isProgress=false;
 						success:function(responseObj){
 							if(responseObj.result){
 								alert('결제에 성공했습니다. 예약대기상태로 변경됩니다.');
-								location.href='placeListPage.place';
+							} else {
+								alert('결제에 실패했습니다. 다시 시도해주세요');
 							}
 						},
 						error:function(request,status,error){
@@ -88,6 +82,7 @@ let isProgress=false;
 							setTimeout(function(){
 								isProgress = false;
 							},1000);
+							location.href='placeListPage.place';
 						}
 					});
 				} else {
@@ -108,6 +103,7 @@ let isProgress=false;
 		<article class="res-insert-list">
 			<div class="subtitle">예약 공간</div>
 			<div class="sub-content">
+				
 				
 			</div>
 		</article>

@@ -32,6 +32,11 @@ DROP TABLE CLUB;
 DROP TABLE MEMBER;
 
 select * from member;
+select * from place;
+select * from placeoption;
+select * from review
+update review set rv_postdate where 
+update place set p_img = '["P_IMG01.jpg", "P_IMG02.jpg", "P_IMG03.jpg"]' where p_no=7;
 
 -- MEMBER Table Create SQL
 CREATE TABLE MEMBER
@@ -62,9 +67,9 @@ CREATE TABLE CLUB
     C_TITLE        VARCHAR2(100)     NOT NULL, 
     C_DESC         VARCHAR2(300)     NOT NULL, 
     C_CONTENT      VARCHAR2(4000)    NULL, 
-    C_POSTDATE     DATE              NOT NULL, 
-    C_STARTDATE    DATE    		  NOT NULL, 
-    C_ENDDATE      DATE   		  NOT NULL, 
+    C_POSTDATE     DATE             NOT NULL,
+    C_STARTDATE    DATE    			 NOT NULL, 
+    C_ENDDATE      DATE              NOT NULL, 
     C_MIN          NUMBER            NOT NULL, 
     C_MAX          NUMBER            NOT NULL, 
     C_MAINIMG	    VARCHAR2(1000)	  NOT NULL,
@@ -137,7 +142,7 @@ CREATE TABLE PLACE
     P_BNAME         VARCHAR2(20)      NOT NULL, 
     P_ADDRDETAIL    VARCHAR2(100)     NULL, 
     P_IMG           VARCHAR2(1000)    NOT NULL, 
-    P_CONFIRM       NUMBER          NOT NULL, 
+    P_CONFIRM       VARCHAR2(40)      NOT NULL, 
     P_URL           VARCHAR2(100)     NULL, 
     P_REMARK        VARCHAR2(1000)    NOT NULL, 
     P_DELETE        NUMBER            NOT NULL,
@@ -163,7 +168,7 @@ CREATE TABLE PLACEOPTION
     PO_HOLIDAY     NUMBER           NOT NULL, 
     PO_IMG         VARCHAR2(100)    NOT NULL, 
     PO_FXILITY     VARCHAR2(200)    NULL,
-    CONSTRAINT FK_P_PO FOREIGN KEY (P_NO) REFERENCES PLACE(P_NO) ON DELETE SET NULL
+    CONSTRAINT FK_P_PO FOREIGN KEY (P_NO) REFERENCES PLACE(P_NO) ON DELETE CASCADE
 );
 
 CREATE SEQUENCE PLACEOPTION_SEQ
@@ -207,6 +212,7 @@ START WITH 1
 INCREMENT BY 1
 NOCYCLE
 NOCACHE;
+
 
 -- RESERVATION Table Create SQL
 CREATE TABLE RESERVATION
@@ -289,8 +295,8 @@ NOCACHE;
 CREATE TABLE WISHLIST
 (
     W_NO    NUMBER    PRIMARY KEY, 
-    C_NO    NUMBER    NOT NULL REFERENCES CLUB (C_NO), 
-    M_NO    NUMBER    NOT NULL REFERENCES MEMBER (M_NO),
+    C_NO    NUMBER    , 
+    M_NO    NUMBER    ,
     CONSTRAINT FK_C_W FOREIGN KEY (C_NO) REFERENCES CLUB(C_NO) ON DELETE SET NULL,
     CONSTRAINT FK_M_W FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE CASCADE
 );

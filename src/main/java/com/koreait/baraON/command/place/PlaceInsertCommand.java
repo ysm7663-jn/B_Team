@@ -15,6 +15,7 @@ import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dao.PlaceOptionDao;
 import com.koreait.baraON.dto.PlaceDto;
 import com.koreait.baraON.dto.PlaceOptionDto;
+import com.koreait.baraON.dto.SellerDto;
 
 public class PlaceInsertCommand implements PlaceCommand {
 
@@ -29,7 +30,8 @@ public class PlaceInsertCommand implements PlaceCommand {
 		
 		PlaceDto placeDto = new PlaceDto();
 		// 먼저 place에 대한 데이터를 insert한다
-		int s_no=Integer.parseInt(multipartRequest.getParameter("s_no"));
+		SellerDto sellerDto = (SellerDto)(multipartRequest.getSession().getAttribute("loginDto"));
+		int s_no=sellerDto.getS_no();
 		int pc_no=Integer.parseInt(multipartRequest.getParameter("pc_no"));
 		String p_title=multipartRequest.getParameter("p_title");
 		String p_name=multipartRequest.getParameter("p_name");
@@ -42,13 +44,15 @@ public class PlaceInsertCommand implements PlaceCommand {
 		String p_bname=multipartRequest.getParameter("p_bname");
 		String p_addrdetail=multipartRequest.getParameter("p_addrdetail");
 		
-		
+		List<String> list = new ArrayList<>();
+		// info나 remark는 문자열에 ","가 포함되어있을 수 있으니 list로 넣은 후
+		// js에서 split()으로 만드는것이 타당치 못하다
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
 		sb.append("[");
 		for(int i = 0; i<p_infoList.length;i++) {
 			if(i!=(p_infoList.length-1)) {
-				sb.append("\""+p_infoList[i]+"\", ");
+				sb.append("\""+p_infoList[i]+"\",");
 			} else {
 				sb.append("\""+p_infoList[i]+"\"]");
 			}
@@ -59,12 +63,14 @@ public class PlaceInsertCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_remarkList.length;i++) {
 			if(i!=(p_remarkList.length-1)) {
-				sb.append("\""+p_remarkList[i]+"\", ");
+				sb.append("\""+p_remarkList[i]+"\",");
 			} else {
 				sb.append("\""+p_remarkList[i]+"\"]");
 			}
 		}
 		placeDto.setP_remark(sb.toString());
+		
+		sb.setLength(0);
 		
 		placeDto.setS_no(s_no);
 		placeDto.setPc_no(pc_no);
@@ -78,8 +84,6 @@ public class PlaceInsertCommand implements PlaceCommand {
 		placeDto.setP_addrdetail(p_addrdetail);
 		
 		
-		
-		String p_img = null;
 		List<MultipartFile> files = multipartRequest.getFiles("p_img");
 		int size = files.size();
 		List<String> extensionList = new ArrayList<>();
@@ -87,7 +91,6 @@ public class PlaceInsertCommand implements PlaceCommand {
 		extensionList.add("jpeg");
 		extensionList.add("png");
 		
-		sb.setLength(0);
 		
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
@@ -101,12 +104,12 @@ public class PlaceInsertCommand implements PlaceCommand {
 					// 이 때 이 전에 업로드 받았던 파일들은 다 삭제해야한다.
 					// 업로드 된 파일들은 sb에 목록으로 저장되어있다.
 					String fileList = sb.toString().replace("\"", "").replace("[", "").replace("]", "");
-					StringTokenizer st = new StringTokenizer(fileList, ", ");
+					StringTokenizer st = new StringTokenizer(fileList, ",");
 					
 					while(st.hasMoreTokens()) {
-						File uploadedFile = new File(realPath, st.nextToken());
-						if (uploadedFile.exists()) {
-							uploadedFile.delete();
+						File uploadedImg = new File(realPath, st.nextToken());
+						if (uploadedImg.exists()) {
+							uploadedImg.delete();
 						}
 					}
 					// 이미지파일이 아닐경우 -1
@@ -133,7 +136,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 				}
 				
 				if(files.get(size-1) != file) {
-					sb.append("\""+uploadFilename+"\", ");
+					sb.append("\""+uploadFilename+"\",");
 				} else {
 					sb.append("\""+uploadFilename+"\"]");
 					sb.insert(0,"[");
@@ -179,7 +182,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 			if (count == 0) {continue;}
 			for(int j =0;j<count;j++) {
 				if(j!=(count-1)){
-					sb.append("\""+po_facilityList[j+prevCount]+"\", ");
+					sb.append("\""+po_facilityList[j+prevCount]+"\",");
 				} else {
 					sb.append("\""+po_facilityList[j+prevCount]+"\"]");
 				}
@@ -191,7 +194,28 @@ public class PlaceInsertCommand implements PlaceCommand {
 			String extension = originalFilename.substring(originalFilename.lastIndexOf(".")+1);
 			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceOptionImages");
 			
-			if(!extensionList.contains(extension)) {continue;}
+			if(!extensionList.contains(extension)) {
+				List<PlaceOptionDto> insertedPlaceOptionList = placeDao.getPlaceOptionList(currPNo);
+				String placeImgList = placeDto.getP_img().replace("\"", "").replace("[", "").replace("]", "");
+				StringTokenizer st = new StringTokenizer(placeImgList, ",");
+				while(st.hasMoreTokens()) {
+					File uploadedImg = new File(multipartRequest.getServletContext().getRealPath("resources/images/PlaceImages"), st.nextToken());
+					if(uploadedImg.exists()) {
+						uploadedImg.delete();
+					}
+				}
+				for(int j = 0, listSize = insertedPlaceOptionList.size();j<listSize;j++) {
+					File uploadedImg = new File(realPath, insertedPlaceOptionList.get(j).getPo_img());
+					if(uploadedImg.exists()) {
+						uploadedImg.delete();
+					}
+				}
+				// insert된 place데이터를 지운다.
+				placeDao.placeFullDelete(currPNo);
+				
+				rttr.addFlashAttribute("insertResult", -1);
+				return;
+			}
 			
 			
 			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));

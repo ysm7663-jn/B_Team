@@ -4,7 +4,8 @@
 	<jsp:param value="비밀번호 찾기" name="title"/>
 </jsp:include> 
    
-<link rel="stylesheet" href="resources/style/findPage.css">
+<link rel="stylesheet" href="resources/style/member/findPage.css">
+<link rel="stylesheet" href="resources/style/member/findPwPage.css">
 <script>
 	$(function(){
 		$(".footer-wrap").css("background" , "white");
@@ -28,10 +29,10 @@
 				<label for="findId">아이디 찾기<hr></label>&nbsp;&nbsp;&nbsp;
 				<label for="findPw">비밀번호 찾기<hr></label>
 			</div>
-			<div class="resultBox">
+			<div class="resultBox Pw3">
 				<h3></h3>
 			</div>
-			<input type="button" name="loginButton" value="로그인" onclick="location.href='loginPage.member'" />
+			<input type="button" name="loginButton" class="loginButton" value="로그인" onclick="location.href='loginPage.member'" />
 		</div>
 	</div>
 </div>

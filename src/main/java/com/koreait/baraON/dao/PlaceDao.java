@@ -21,4 +21,8 @@ public interface PlaceDao {
 	public List<ReviewListDto> getReviewListOfViewPage(int p_no, int beginRecord, int endRecord);
 	public int getTotalReviewCount(int p_no);
 	public int placeInsert(PlaceDto placeDto);
+	public int placeDelete(int p_no);
+	public int placeUpdate(PlaceDto placeDto);
+	public int placeFullDelete(int p_no);
+	
 }

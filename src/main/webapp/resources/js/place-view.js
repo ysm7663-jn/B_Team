@@ -41,10 +41,23 @@ $(function(){
 	fn_sildeImg();
 	fn_appendList(remarkList, '#remark-list');
 	fn_appendList(infoList, '#info-list');
-	
-	
-	
+	fn_submitTo('#place-update-btn', 'placeUpdatePage.place', '수정');
+	fn_submitTo('#place-delete-btn', 'placeDelete.place', '삭제');
 })
+
+/* 공간 수정 삭제버튼 */
+function fn_submitTo(btn, actionTo, execute){
+	$(btn).click(function(){
+		if(execute=='삭제' && confirm('삭제하시면 더 이상 해당 공간이 노출되지 않습니다. 정말 삭제하시겠습니까?')){
+			$('#update-form').prop('action', actionTo).submit();
+			return;
+		} 
+		if(execute=='수정'){
+			$('#update-form').prop('action', actionTo).submit();
+			return;
+		}
+	});
+}
 
 /* 리스트 삽입 */
 function fn_appendList(list, appendToTag){
@@ -70,9 +83,6 @@ function fn_sildeImg(){
 	});
 }
 
-/* 일단 공간옵션 체크박스를 연속으로 클릭하면 인원 체크박스의 값이 사라진다
- * 알아볼 것
- */ 
 /* 최대 최소인원 */
 function fn_minus(){
 	$('.count-minus').click(function(event){
@@ -368,7 +378,7 @@ function appendList(list){
 	$.each(list,function(index, reviewDto){
 		$('<form>').append('<input type="hidden" name="review-rn" value="'+reviewDto.rn+'" />')
 		.append($('<div>').addClass('review').append($('<div>').addClass('reviewer-info')))
-		.appendTo($('.review-list'));
+		.appendTo($($('form').last()));
 		if(reviewDto.m_nick == null){
 			$('.reviewer-info').last().append($('<span>').addClass('review-id').text('ID : '+reviewDto.m_id));
 		} else {
