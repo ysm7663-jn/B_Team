@@ -22,6 +22,7 @@
 	<c:if test="${empty list}">
 		<div id="none_content">등록된 클럽이 없습니다.</div>
 	</c:if>
+	
 	<c:if test="${not empty list}">
 		<c:forEach var="clubDto" items="${list}">
 			<div class="group-list">

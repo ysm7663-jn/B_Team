@@ -19,7 +19,6 @@ public class ClubInsertCommand implements ClubCommand {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) map.get("multipartRequest");
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 		
-		int c_no = Integer.parseInt(multipartRequest.getParameter("c_no"));
 		int m_no = Integer.parseInt(multipartRequest.getParameter("m_no"));
 		
 		String c_title = multipartRequest.getParameter("c_title");

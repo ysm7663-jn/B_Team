@@ -18,7 +18,6 @@ import com.koreait.baraON.command.club.ClubDeleteCommand;
 import com.koreait.baraON.command.club.ClubInsertCommand;
 import com.koreait.baraON.command.club.ClubListCommand;
 import com.koreait.baraON.command.club.ClubUpdateCommand;
-import com.koreait.baraON.command.club.ClubUpdateStatCommand;
 import com.koreait.baraON.command.club.ClubViewCommand;
 
 @Controller
@@ -32,21 +31,19 @@ public class ClubController {
 	private ClubViewCommand clubViewCommand;
 	private ClubDeleteCommand clubDeleteCommand;
 	private ClubUpdateCommand clubUpdateCommand;
-	private ClubUpdateStatCommand clubUpdateStatCommand;
 	
 	@Autowired
 	public void setCommand(ClubListCommand clubListCommand,
 						   ClubInsertCommand clubInsertCommand,
 						   ClubViewCommand clubViewCommand,
 						   ClubDeleteCommand clubDeleteCommand,
-						   ClubUpdateCommand clubUpdateCommand,
-						   ClubUpdateStatCommand clubUpdateStatCommand) {
+						   ClubUpdateCommand clubUpdateCommand
+						  ) {
 		this.clubListCommand = clubListCommand;
 		this.clubInsertCommand = clubInsertCommand;
 		this.clubViewCommand = clubViewCommand;
 		this.clubDeleteCommand = clubDeleteCommand;
 		this.clubUpdateCommand = clubUpdateCommand;
-		this.clubUpdateStatCommand = clubUpdateStatCommand;
 	}
 
 	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
@@ -108,16 +105,5 @@ public class ClubController {
 		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no");
 		
 	}
-	
-	@RequestMapping(value="updateStat.club",
-            method=RequestMethod.PUT,
-            produces="application/json; charset=utf-8")
-	@ResponseBody
-	public Map<String, Object> memberUpdate(HttpServletRequest request, Model model) {
-		model.addAttribute("request", request);
-		
-	return clubUpdateStatCommand.execute(sqlSession, model);
-}
-	
 	
 }
