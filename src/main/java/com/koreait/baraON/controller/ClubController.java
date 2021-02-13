@@ -58,11 +58,11 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value="clubInsert.club", method=RequestMethod.POST)
-	public String clubInsert(MultipartHttpServletRequest multipartRequest, Model model) {
+	public String clubInsert(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
 		
 		model.addAttribute("multipartRequest", multipartRequest);
+		model.addAttribute("rttr", rttr);
 		clubInsertCommand.execute(sqlSession, model);
-		
 		return "redirect:clubListPage.club";
 	}
 	

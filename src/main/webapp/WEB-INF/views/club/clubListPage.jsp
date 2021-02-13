@@ -9,6 +9,30 @@
 <link rel="stylesheet" href="resources/style/common.css" />
 <link rel="stylesheet" href="resources/style/club/clubList.css" />
 
+<script>
+
+var afterInsert = ${afterInsert};
+if (afterInsert) {  
+	var insertResult = ${insertResult};
+	if (insertResult > 0) {   
+		alert('삽입되었습니다.');
+	} else {
+		alert('실패하였습니다.');
+	}
+}
+
+var afterDelete = ${afterDelete};
+if (afterDelete) {
+	var afterDelete = ${afterDelete};
+	if (afterDelete > 0) {
+		alert('삭제되었습니다.');
+	} else {
+		alert('실패했습니다.');
+	}
+} 
+
+</script>
+
 <form method="get">
 	<div class="body_wrap">
 		<span id="title">정기 활동</span>

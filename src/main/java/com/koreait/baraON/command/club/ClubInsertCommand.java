@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.ClubDao;
 
@@ -17,6 +18,8 @@ public class ClubInsertCommand implements ClubCommand {
 
 		Map<String, Object> map = model.asMap();
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) map.get("multipartRequest");
+		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
+		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 		
 		int m_no = Integer.parseInt(multipartRequest.getParameter("m_no"));
@@ -81,9 +84,15 @@ public class ClubInsertCommand implements ClubCommand {
 					e.printStackTrace();
 				}
 				
-				//model.addAttribute("insertResult", clubDao.clubInsert(m_no, c_title, c_content, c_min, c_max, uploadFilename));
-				clubDao.clubInsert(m_no, c_title, c_desc, c_min, c_max, c_startDate, c_endDate, c_content, uploadFilename);
+				int insertResult = clubDao.clubInsert(m_no, c_title, c_desc, c_min, c_max, c_startDate, c_endDate, c_content, uploadFilename);
 				
+				boolean afterInsert = false;
+				if(insertResult > 0) { 
+					afterInsert = true;
+				}
+				
+				rttr.addFlashAttribute("insertResult", insertResult);
+				rttr.addFlashAttribute("afterInsert", afterInsert);
 		} 
 		
 	}

@@ -58,16 +58,6 @@
 </script>
 
  <script>
-	/* var afterDelete = ${afterDelete};
-	if (afterDelete) {
-		var afterDelete = ${afterDelete};
-		if (afterDelete > 0) {
-			alert('삭제되었습니다.');
-		} else {
-			alert('실패했습니다.');
-		}
-	} */
-	
  	var afterUpdate = ${afterUpdate};
 	if (afterUpdate) {
 		var afterUpdate = ${afterUpdate};
@@ -131,8 +121,8 @@
 				</div>
 
 				<%-- hidden --%>
-
 				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+				<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
 				<input type="hidden" name="c_title" value="${clubDto.c_title}" />
 				<input type="hidden" name="c_min" value="${clubDto.c_min}" />
 				<input type="hidden" name="c_max" value="${clubDto.c_max}" />

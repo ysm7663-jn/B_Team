@@ -29,17 +29,12 @@ public class ClubDeleteCommand implements ClubCommand {
 
 		int deleteResult = clubDao.clubDelete(c_no);
 		
-		String fileName = request.getParameter("c_mainImg");
-		
-		/*String c_img1 = request.getParameter("c_img1");
-		String c_img2 = request.getParameter("c_img2");
-		String c_img3 = request.getParameter("c_img3");*/
+		String c_mainImg = request.getParameter("c_mainImg");
 		String realPath = request.getServletContext().getRealPath("resources/images/club");
-		File file = new File(realPath, fileName);
-		/*File file1 = new File(realPath, c_img1);
-		File file2 = new File(realPath, c_img2);
-		File file3 = new File(realPath, c_img3);*/
-		if (file.exists() ) {
+		
+		File file = new File(realPath, c_mainImg);
+		
+		if (file.exists()) {
 			file.delete();
 		}
 
