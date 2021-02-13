@@ -7,21 +7,20 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.koreait.baraON.dao.AdminReviewDao;
-import com.koreait.baraON.dao.AdminSellerDao;
-import com.koreait.baraON.dto.AdminReviewDto;
-import com.koreait.baraON.dto.AdminSellerDto;
+import com.koreait.baraON.dao.AdminConfirmDao;
+import com.koreait.baraON.dto.AdminConfirmDto;
 
-public class AdminReviewListCommand implements AdminMemberCommand {
+public class AdminConfirmListCommand implements AdminMemberCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
+
 		Map<String, Object> map = model.asMap();
 		int page = (int)map.get("page");
 		
-		AdminReviewDao adminReviewDao = sqlSession.getMapper(AdminReviewDao.class);
+		AdminConfirmDao adminConfirmDao = sqlSession.getMapper(AdminConfirmDao.class);
 
-		int totalRecord = adminReviewDao.reviewCount();
+		int totalRecord = adminConfirmDao.confirmCount();
 		int recordPerPage = 10;
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = beginRecord + recordPerPage - 1;
@@ -47,7 +46,7 @@ public class AdminReviewListCommand implements AdminMemberCommand {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("paging", paging);
 		
-		List<AdminReviewDto> list = adminReviewDao.adminReviewList(beginRecord, endRecord);
+		List<AdminConfirmDto> list = adminConfirmDao.adminConfirmList(beginRecord, endRecord);
 		result.put("list", list);
 
 		if (list.size() > 0) {

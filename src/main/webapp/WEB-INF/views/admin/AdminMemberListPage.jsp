@@ -212,6 +212,7 @@
 	}
 </script>
 <title></title>
+<link rel="stylesheet" href="resources/style/common.css">
 <style type="text/css">
 	.wrap {
 		display: flex;
@@ -222,7 +223,8 @@
 	}
 	.right {
 		width: 1200px;
-		margin-left: 200px;
+		margin: 50px 0 0 200px;
+		height: 570px;
 	}
 	table {
 		border-collapse: collapse;
@@ -302,6 +304,6 @@
 			<input type="button" value="수정" id="btnUpdate" />
 		</div>
 	</div>
-			
+<%@ include file="../template/footer.jsp" %>			
 </body>
 </html>

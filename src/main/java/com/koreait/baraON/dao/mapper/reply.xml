@@ -6,8 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.koreait.baraON.dao.AdminReplyDao">
 
 	<select id="adminReplyList" resultType="com.koreait.baraON.dto.AdminReplyDto">
-		SELECT *
-		  FROM REPLY
+			SELECT B.*
+		  FROM (SELECT A.*, ROWNUM AS RN
+		          FROM (SELECT *
+		                  FROM REPLY
+		              ORDER BY R_NO DESC) A) B
+		 WHERE B.RN BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="replyCount" resultType="int">
+		SELECT COUNT(*)
+		FROM REPLY
 	</select>
 	
 	<delete id="adminReplyDelete" parameterType="int">

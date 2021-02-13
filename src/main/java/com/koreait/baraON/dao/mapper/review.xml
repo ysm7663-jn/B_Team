@@ -6,8 +6,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.koreait.baraON.dao.AdminReviewDao">
 
 	<select id="adminReviewList" resultType="com.koreait.baraON.dto.AdminReviewDto">
-		SELECT *
-		  FROM REVIEW
+			SELECT B.*
+		  FROM (SELECT A.*, ROWNUM AS RN
+		          FROM (SELECT *
+		                  FROM REVIEW
+		              ORDER BY RV_NO DESC) A) B
+		 WHERE B.RN BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="reviewCount" resultType="int">
+		SELECT COUNT(*)
+		FROM REVIEW
 	</select>
 	
 	<delete id="adminReviewDelete" parameterType="int">

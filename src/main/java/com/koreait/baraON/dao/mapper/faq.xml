@@ -10,8 +10,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	 FROM (SELECT A.*, ROWNUM AS RN
                FROM (SELECT *
                      FROM FAQ
+                     <if test="param3 != 1">
                      WHERE F_CATEGORY = #{param3}
-                     AND F_CATEGORY BETWEEN 1 AND 4
+                     </if>
 	              ORDER BY F_NO DESC) A) B
          WHERE B.RN BETWEEN #{param1} AND #{param2}
 	</select>

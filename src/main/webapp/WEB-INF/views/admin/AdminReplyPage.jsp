@@ -10,23 +10,79 @@
 		replyList();
 		replyDelete();
 	});
-	function replyList() {
+	var page = 1;
+	function replyList(){
+	var obj= {
+			"page": page
+		};
+		
 		$.ajax({
 			url: 'reply',
-			type: 'get',
+			type: 'post',
+			data: JSON.stringify(obj),  // 컨트롤러로 보내는 JSON 데이터
+			contentType: 'application/json',  // 컨트롤러로 보내는 데이터의 타입
 			dataType: 'json',
-			success: function(responseList) {
-				if (responseList.result == true) {
-					replyListTable(responseList.list);  // 서브 함수 호출
+			success: function(result) {
+				
+				var paging = result.paging;
+				
+				$('#replyList').empty();  // 기존 목록 제거
+				
+				// 회원이 있으면,
+				if (result.exist) {
+					$('#totalRecord').html('전체 : ' + paging.totalRecord + '명');  // 전체 인원수 출력
+					replyListTable(result.list);  // 목록 출력
+				}
+				// 회원이 없으면,
+				else {
+					$('<tr>')
+					.append($('<td colspan="6" style="height: 20px;">').html('데이터가 없습니다.'))
+					.appendTo('#replyList');
+				}
+				$('#paging').empty();  // 기존 페이징 초기화
+				
+				if (paging.beginPage <= paging.pagePerBlock) {
+					$('#paging').append('<div class="disable"><a>◀</a></div>');
+				} else {
+					$('#paging').append('<div class="prev-block go-page" data-page="' + (paging.beginPage - 1) + '"><a>◀</a></div>');
+				}
+				
+				for (let p = paging.beginPage; p <= paging.endPage; p++) {
+					if (paging.page == p) {  // 현재페이지는 링크가 안 됩니다.
+						$('#paging').append('<div class="now-page"><a>' + p + '</a></div>')
+					} else {
+						$('#paging').append('<div class="go-page" data-page="' + p + '"><a>' + p + '</a></div>');
+					}
+				}
+				
+				// ▶
+				if (paging.endPage >= paging.totalPage) {
+					$('#paging').append('<div class="disable"><a>▶</a></div>');
+				} else {
+					$('#paging').append('<div class="next-block go-page" data-page="' + (paging.endPage + 1) + '"><a>▶</a></div>');
 				}
 			},
 			error: function(){
 				alert('실패');
 			}
+			
+		});
+		
+		// 링크가 걸릴 때 이동할 페이지 번호를 알아내서 다시 목록을 뿌리는 함수들
+		$('body').on('click', '.prev-block', function(){
+			page = $(this).attr('data-page');
+			replyList();
+		});
+		$('body').on('click', '.go-page', function(){
+			page = $(this).attr('data-page');
+			replyList();
+		});
+		$('body').on('click', '.next-block', function(){
+			page = $(this).attr('data-page');
+			replyList();
 		});
 	}
 	function replyListTable(list) {
-		$('#replyList').empty();  
 		$.each(list, function(idx, reply){
 			$('<tr>')
 			.append( $('<td>').html(reply.r_no) )
@@ -63,7 +119,11 @@
 	}
 </script>
 <title></title>
+<link rel="stylesheet" href="resources/style/common.css">
 <style type="text/css">
+	body{
+		background:#F8EBEE;
+	}
 	
 	table {
 		border-collapse: collapse;
@@ -75,24 +135,58 @@
 		text-align: center;
 	}
 	th {
-		background: silver;
+		background: #3ED0C8;
+	}
+	.reply{
+		width: 800px;
+		height:570px;
+		margin:50px 0 0 100px;
+	}
+	#pagingBox{
+		width: 500px;
+		padding-left: 200px;
+	}
+	#paging {
+		display: flex;
+		text-align: center;
+	}
+	#paging div {
+		width: 40px;
+		height: 20px;
+	}
+	#paging .go-page:hover {
+		cursor: pointer;
+	}
+	#paging .now-page {
+		color: red;
+	}
+	#paging .disable {
+		color: black;
 	}
 </style>
 </head>
 <body>
 	<div class="reply">
-			<h3>댓글 목록</h3>
+			<h3>답글 목록</h3><br/>
 			<table>
 				<thead>
 					<tr>
-						<th>댓글번호</th>
+						<th>답글번호</th>
 						<th>댓글내용</th>
 						<th>작성일자</th>
-						<th colspan="2">비고</th>
+						<th>비고</th>
 					</tr>
 				</thead>
 				<tbody id="replyList"></tbody>
+				<tfoot>
+					<tr>
+						<td id="pagingBox" colspan="4">
+							<div id="paging"></div>
+						</td>
+					</tr>
+				</tfoot>
 			</table>
 		</div>
+<%@ include file="../template/footer.jsp" %>	
 </body>
 </html>

@@ -66,4 +66,8 @@
 	<beans:bean id="adminReviewListCommand" class="com.koreait.baraON.command.admin.AdminReviewListCommand" />
 	<beans:bean id="adminReviewDeleteCommand" class="com.koreait.baraON.command.admin.AdminReviewDeleteCommand" />
 	
+	<beans:bean id="adminConfirmListCommand" class="com.koreait.baraON.command.admin.AdminConfirmListCommand" />
+	<beans:bean id="adminConfirmViewCommand" class="com.koreait.baraON.command.admin.AdminConfirmViewCommand" />
+	<beans:bean id="adminConfirmUpdateCommand" class="com.koreait.baraON.command.admin.AdminConfirmUpdateCommand" />
+	
 </beans:beans>

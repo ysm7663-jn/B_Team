@@ -41,7 +41,7 @@ public class FAQListCommand implements NoticeCommand {
 	
 		List<FAQDto> list = faqDao.faqList(beginRecord , endRecord , f_category);
 		
-		String paging = Paging.getPaging("faqListPage.faq", totalRecord, recordPerPage, page);
+		String paging = Paging1.getPaging("faqListPage.faq?", totalRecord, recordPerPage, page, f_category);
 	
 		
 		model.addAttribute("list" , list);

@@ -15,7 +15,8 @@ $(document).ready(function(){
 });
 	function fn_allList(){
 	$('#allBtn').click(function(){
-		location.href = 'adminFaqListPage.admin?f_category=${faqDto.f_category}' + 1;
+		location.href = 'adminFaqListPage.admin?';
+		
 	});
 	}
 	function fn_payList() {

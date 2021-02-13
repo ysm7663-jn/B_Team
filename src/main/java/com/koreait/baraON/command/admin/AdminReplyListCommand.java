@@ -14,18 +14,47 @@ public class AdminReplyListCommand implements AdminMemberCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
-		AdminReplyDao adminReplyDao = sqlSession.getMapper(AdminReplyDao.class);
-		List<AdminReplyDto> list = adminReplyDao.adminReplyList();
+		Map<String, Object> map = model.asMap();
+		int page = (int)map.get("page");
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("list", list);
+		AdminReplyDao adminReplyDao = sqlSession.getMapper(AdminReplyDao.class);
+
+		int totalRecord = adminReplyDao.replyCount();
+		int recordPerPage = 10;
+		int beginRecord = (page - 1) * recordPerPage + 1;
+		int endRecord = beginRecord + recordPerPage - 1;
+		endRecord = (endRecord < totalRecord) ? endRecord : totalRecord;
+		int totalPage = totalRecord / recordPerPage;  // 전체 페이지의 개수
+		if (totalRecord % recordPerPage != 0) {
+			totalPage++;
+		}
+		totalPage = (totalPage >= page) ? totalPage : page;
+		int pagePerBlock = 5;
+		int beginPage = ((page - 1) / pagePerBlock) * pagePerBlock + 1;
+		int endPage = beginPage + pagePerBlock - 1;
+		endPage = endPage < totalPage ? endPage : totalPage;
+		
+		Map<String, Integer> paging = new HashMap<>();
+		paging.put("totalRecord", totalRecord);
+		paging.put("page", page);
+		paging.put("totalPage", totalPage);
+		paging.put("pagePerBlock", pagePerBlock);
+		paging.put("beginPage", beginPage);
+		paging.put("endPage", endPage);
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("paging", paging);
+		
+		List<AdminReplyDto> list = adminReplyDao.adminReplyList(beginRecord, endRecord);
+		result.put("list", list);
+
 		if (list.size() > 0) {
-			map.put("result", true);
+			result.put("exist", true);
 		} else {
-			map.put("result", false);
+			result.put("exist", false);
 		}
 		
-		return map;
+		return result;
 	}
 
 }

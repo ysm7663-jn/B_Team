@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.command.admin.AdminConfirmListCommand;
+import com.koreait.baraON.command.admin.AdminConfirmUpdateCommand;
+import com.koreait.baraON.command.admin.AdminConfirmViewCommand;
 import com.koreait.baraON.command.admin.AdminEventListCommand;
 import com.koreait.baraON.command.admin.AdminEventViewCommand;
 import com.koreait.baraON.command.admin.AdminFAQListCommand;
@@ -46,6 +49,7 @@ import com.koreait.baraON.command.board.NoticeCommand;
 import com.koreait.baraON.command.board.NoticeDeleteCommand;
 import com.koreait.baraON.command.board.NoticeInsertCommand;
 import com.koreait.baraON.command.board.NoticeUpdateCommand;
+import com.koreait.baraON.dto.AdminConfirmDto2;
 import com.koreait.baraON.dto.AdminMemberDto2;
 import com.koreait.baraON.dto.AdminSellerDto2;
 import com.koreait.baraON.dto.EventDto;
@@ -58,7 +62,6 @@ public class AdminController {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	
 	private AdminNoticeListCommand adminNoticeListCommand;
 	private AdminNoticeViewCommand adminNoticeViewCommand;
 	private NoticeInsertCommand noticeInsertCommand;
@@ -86,6 +89,9 @@ public class AdminController {
 	private AdminReplyDeleteCommand adminReplyDeleteCommand;
 	private AdminReviewListCommand adminReviewListCommand;
 	private AdminReviewDeleteCommand adminReviewDeleteCommand;
+	private AdminConfirmListCommand adminConfirmListCommand;
+	private AdminConfirmViewCommand adminConfirmViewCommand;
+	private AdminConfirmUpdateCommand adminConfirmUpdateCommand;
 
 	
 	@Autowired
@@ -115,7 +121,10 @@ public class AdminController {
 							AdminReplyListCommand adminReplyListCommand,
 							AdminReplyDeleteCommand adminReplyDeleteCommand,
 							AdminReviewListCommand adminReviewListCommand,
-							AdminReviewDeleteCommand adminReviewDeleteCommand) {
+							AdminReviewDeleteCommand adminReviewDeleteCommand,
+							AdminConfirmListCommand adminConfirmListCommand,
+							AdminConfirmUpdateCommand adminConfirmUpdateCommand,
+							AdminConfirmViewCommand adminConfirmViewCommand) {
 		this.adminNoticeListCommand = adminNoticeListCommand;
 		this.adminNoticeViewCommand = adminNoticeViewCommand;
 		this.noticeInsertCommand = noticeInsertCommand;
@@ -143,7 +152,9 @@ public class AdminController {
 		this.adminReplyDeleteCommand = adminReplyDeleteCommand;
 		this.adminReviewListCommand = adminReviewListCommand;
 		this.adminReviewDeleteCommand  = adminReviewDeleteCommand;
-		
+		this.adminConfirmListCommand =  adminConfirmListCommand;
+		this.adminConfirmUpdateCommand = adminConfirmUpdateCommand;
+		this.adminConfirmViewCommand = adminConfirmViewCommand;
 	}
 			
 	
@@ -198,7 +209,10 @@ public class AdminController {
 	model.addAttribute("eventDto", eventDto);
 	return "admin/AdminEventUpdatePage";
 	}
-	
+	@RequestMapping(value="adminConfirmPage.admin", method=RequestMethod.GET)
+	public String confirmListPage() {
+		return "admin/AdminConfirmPage";
+}
 	//BOARD
 	@RequestMapping(value="adminNoticeListPage.admin",method=RequestMethod.GET)
 		public String noticeListPage(HttpServletRequest request, Model model){
@@ -401,10 +415,11 @@ public class AdminController {
 	
 	
 	//REPLY
-	@RequestMapping(value="reply", method=RequestMethod.GET,
+	@RequestMapping(value="reply", method=RequestMethod.POST,
 			produces="application/json; charset=utf-8")
 	@ResponseBody
-		public Map<String, Object> replyList(Model model) {
+		public Map<String, Object> replyList(@RequestBody PageVo pageVo, Model model) {
+		model.addAttribute("page" , pageVo.getPage());
 		return adminReplyListCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="reply/{no}",method=RequestMethod.DELETE,
@@ -418,10 +433,11 @@ public class AdminController {
 	
 	
 	//REVIEW
-	@RequestMapping(value="review", method=RequestMethod.GET,
+	@RequestMapping(value="review", method=RequestMethod.POST,
 					produces="application/json; charset=utf-8")
 	@ResponseBody
-		public Map<String, Object> reviewList(Model model) {
+		public Map<String, Object> reviewList(@RequestBody PageVo pageVo, Model model) {
+		model.addAttribute("page" , pageVo.getPage());
 		return adminReviewListCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="review/{no}",method=RequestMethod.DELETE,
@@ -431,5 +447,31 @@ public class AdminController {
 												Model model) {
 		model.addAttribute("no", no);
 		return adminReviewDeleteCommand.execute(sqlSession, model);
+	}
+	@RequestMapping(value="confirm", method=RequestMethod.POST,
+				produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> confirmList(@RequestBody PageVo pageVo, Model model) {
+	model.addAttribute("page" , pageVo.getPage());
+	return adminConfirmListCommand.execute(sqlSession, model);
+	}
+	@RequestMapping(value="confirm/{no}", method=RequestMethod.GET,
+					produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> confirmView(@PathVariable("no") int no,
+	                          			Model model) {
+	model.addAttribute("no", no);
+	return adminConfirmViewCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="confirm", method=RequestMethod.PUT,
+    		produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> confirmUpdate(@RequestBody AdminConfirmDto2 adminConfirmDto2,
+	                             			Model model) {
+	if (adminConfirmDto2 != null) {
+	model.addAttribute("adminConfirmDto2", adminConfirmDto2);
+	}
+	return adminConfirmUpdateCommand.execute(sqlSession, model);
 	}
 }
