@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 <script>
-	$(function() {
+/* 	$(function() {
 		$('#btn1').click(function() {
 			$(this).val('탈퇴하기');
 			var m_enjoy = $('input[name=m_enjoy]').val();
@@ -38,7 +38,7 @@
 			
 			
 			});
-		});
+		}); */
 </script>
 
 <script type="text/javascript">
@@ -48,10 +48,17 @@
 				f.submit();
 			}
 		}
+		
+		function fn_update(f) {
+			if (confirm('클럽 정보를 수정하시겠습니까?')) {
+				f.action='clubUpdatePage.club';
+				f.submit();
+			}
+		}
 </script>
 
-<!-- <script>
-	var afterDelete = ${afterDelete};
+ <script>
+	/* var afterDelete = ${afterDelete};
 	if (afterDelete) {
 		var afterDelete = ${afterDelete};
 		if (afterDelete > 0) {
@@ -59,9 +66,9 @@
 		} else {
 			alert('실패했습니다.');
 		}
-	}
+	} */
 	
-	var afterUpdate = ${afterUpdate};
+ 	var afterUpdate = ${afterUpdate};
 	if (afterUpdate) {
 		var afterUpdate = ${afterUpdate};
 		if (afterUpdate > 0) {
@@ -69,10 +76,10 @@
 		} else {
 			alert('실패했습니다.');
 		}
-	}
-</script> -->
+	} 
+</script>
 
-<form>
+<form method="post">
 
 	<div class="wrap">
 
@@ -80,7 +87,7 @@
 			<img alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 		</div>
 
-		<c:if test="${clubDto.m_no ne memberDto.m_no}">
+		<c:if test="${clubDto.m_no ne loginDto.m_no}">
 			<div class="side">
 
 				<div class="side_content">
@@ -96,14 +103,11 @@
 				</div>
 
 				<div class="side_content">
-					<c:if test="${memberDto.m_enjoy eq N}">
+					<c:if test="${empty clubListDto.cl_no}">
 						<input type="button" value="참여하기" id="btn1"/>
-						<input type="hidden" value="N" name="m_enjoy" />
-						<input type="hidden" value="${clubDto.m_no}" name="m_no" />
-						<input type="hidden" value="${afterUpdate}" />
 					</c:if>
 					
-					<c:if test="${memberDto.m_enjoy ne N}">
+					<c:if test="${not empty clubListDto.cl_no}">
 						<input type="button" value="탈퇴하기" id="btn1" />
 					</c:if>
 					
@@ -111,7 +115,7 @@
 			</div>
 		</c:if>
 
-		<c:if test="${clubDto.m_no eq memberDto.m_no}">
+		<c:if test="${clubDto.m_no eq loginDto.m_no}">
 			<div class="side">
 
 				<div class="side_content">
@@ -126,9 +130,19 @@
 					<span id="content">활동 종료일 : ${clubDto.c_endDate}</span>
 				</div>
 
+				<%-- hidden --%>
+
+				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+				<input type="hidden" name="c_title" value="${clubDto.c_title}" />
+				<input type="hidden" name="c_min" value="${clubDto.c_min}" />
+				<input type="hidden" name="c_max" value="${clubDto.c_max}" />
+				<input type="hidden" name="c_startDate" value="${clubDto.c_startDate}" />
+				<input type="hidden" name="c_endDate" value="${clubDto.c_endDate}" />
+				<input type="hidden" name="c_content" value="${clubDto.c_content}" />
+
 				<div class="side_content">
 					<input type="button" value="장소등록하기" onclick="location.href='placeListPage.place'" /> 
-					<input type="button" value="클럽수정하기" onclick="location.href='clubUpdatePage.club" /> 
+					<input type="button" value="클럽수정하기" onclick="fn_update(this.form)" /> 
 					<input type="button" value="클럽해제하기" onclick="fn_delete(this.form)" />
 				</div>
 			</div>

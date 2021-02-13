@@ -24,9 +24,11 @@ public class ClubUpdateCommand implements ClubCommand {
 		int c_max = Integer.parseInt(request.getParameter("c_max"));
 		String c_title = request.getParameter("c_title");
 		String c_content = request.getParameter("c_content");
+		String c_startDate = request.getParameter("c_startDate");
+		String c_endDate = request.getParameter("c_endDate");
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
-		int updateResult = clubDao.clubUpdate(c_title, c_min, c_max, c_content, c_no);
+		int updateResult = clubDao.clubUpdate(c_title, c_min, c_max, c_content, c_startDate, c_endDate, c_no);
 		
 		rttr.addFlashAttribute("updateResult", updateResult);
 		rttr.addFlashAttribute("afterUpdate", true);

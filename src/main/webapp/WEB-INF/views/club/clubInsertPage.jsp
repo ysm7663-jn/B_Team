@@ -51,9 +51,8 @@
 				
 			</div>
 		</div>
-		
+		<%-- hidden --%>
 		<input type="hidden" name="m_no" value="${loginDto.m_no}" />
-		<%-- <input type="hidden" name="m_nick" value="${memberDto.m_nick}" /> --%>
 		
 		<input type="button" name="btn" value="완료하기" onclick="fn_finish(this.form)" />
 		<input type="button" name="btn" value="돌아가기" onclick="location.href='clubListPage.club'" />

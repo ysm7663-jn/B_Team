@@ -20,30 +20,36 @@ public class ClubDeleteCommand implements ClubCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
 		
-		int c_no = Integer.parseInt(request.getParameter("c_no"));
+		int c_no = 0;
+		if(request.getParameter("c_no") != null) {
+			c_no = Integer.parseInt(request.getParameter("c_no"));
+		}
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 
 		int deleteResult = clubDao.clubDelete(c_no);
 		
-		String c_mainImg = request.getParameter("c_mainImg");
-		String c_img1 = request.getParameter("c_img1");
+		String fileName = request.getParameter("c_mainImg");
+		
+		/*String c_img1 = request.getParameter("c_img1");
 		String c_img2 = request.getParameter("c_img2");
-		String c_img3 = request.getParameter("c_img3");
-		String realPath = request.getServletContext().getRealPath("resources/storage");
-		File file = new File(realPath, c_mainImg);
-		File file1 = new File(realPath, c_img1);
+		String c_img3 = request.getParameter("c_img3");*/
+		String realPath = request.getServletContext().getRealPath("resources/images/club");
+		File file = new File(realPath, fileName);
+		/*File file1 = new File(realPath, c_img1);
 		File file2 = new File(realPath, c_img2);
-		File file3 = new File(realPath, c_img3);
-		if (file.exists() || file1.exists() || file2.exists() || file3.exists()) {
+		File file3 = new File(realPath, c_img3);*/
+		if (file.exists() ) {
 			file.delete();
-			file1.delete();
-			file2.delete();
-			file3.delete();
 		}
 
+		boolean afterDelete = false;
+		if(deleteResult > 0) { 
+			afterDelete = true;
+		}
+		
 		rttr.addFlashAttribute("deleteResult", deleteResult);
-		rttr.addFlashAttribute("afterDelete", true);
+		rttr.addFlashAttribute("afterDelete", afterDelete);
 		
 	}
 
