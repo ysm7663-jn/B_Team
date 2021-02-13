@@ -38,7 +38,7 @@ button:hover{
 input[type="file"]{
 	display:none;
 }
-label[for="upload-btn"], label[for="option-thumbnail"]{
+label{
 	display : block;
 	width: 150px;
 	border: 0 solid black;
@@ -50,7 +50,7 @@ label[for="upload-btn"], label[for="option-thumbnail"]{
 	font-size: 12px;
 	text-align: center;
 }
-label[for="upload-btn"]:hover, label[for="option-thumbnail"]:hover{
+label:hover{
 	background: rgba(216,191,216,1);
 }
 
@@ -133,6 +133,7 @@ ul#facility-list{
 	justify-content: space-between;
 }
 ul#facility-list li {
+	text-align: center;
 	border : 1px solid rgba(216,100,216, 0.8);
 	border-radius: 10px;
 }

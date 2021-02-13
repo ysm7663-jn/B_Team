@@ -24,7 +24,7 @@
 		fn_uploadedImg();
 		let selectedCategory = $('input[value="${placeCategoryDto.pc_no}"]');
 		$(selectedCategory).prev('a').css('background', 'rgba(216,100,216,1)');
-		fn_optionFacility('#facility-list', poFacilities);
+		fn_optionFacility('.facility-list', poFacilities);
 	});
 	function fn_optionFacility(tagTo, list){
 		$.each(list, function(idx,facilityList){
@@ -34,12 +34,9 @@
 			$(tagTo).next().val(facilityList.length);
 		});
 	}
-	function placeUpdate(f){
-		
-	}
 	function fn_appendList(list, appendToTag, name){
 		$.each(list,function(idx, item){
-			$(appendToTag).append(`<li><input class="place-input" type="text" name="${name}" value="`+item+`" placeholder="추가하려면 추가 버튼을 눌러주세요" required/></li>`);
+			$(appendToTag).append(`<li><input class="place-input" type="text" name="`+name+`" value="`+item+`" placeholder="추가하려면 추가 버튼을 눌러주세요" required /></li>`);
 		});
 	}
 	function fn_uploadedImg(){
@@ -58,7 +55,16 @@
 		let strHtml = '<input type="hidden" name="deleted_img" value="'+$(e.target).prev().val()+'"/>'
 		$('#uploaded-thumb-list').append(strHtml);
 		$(e.target).parent().remove();
-		
+	}
+	function fn_optionUpdate(f){
+		let sendObj = new FormDate(f);
+		$.ajax({
+			url:'placeOptionUpdate.place/'+f.po_no.value,
+			type:'put',
+			enctype:'multipart/form-data',
+			data: sendObj,
+			
+		});
 	}
 	
 </script>
@@ -79,13 +85,13 @@
 					</li>
 					</c:forEach>
 				</ul>
-				<input type="hidden" name="pc_no" value="${placeCategoryDto.pc_no}" required/>
+				<input type="hidden" name="pc_no" value="${placeCategoryDto.pc_no}" required />
 			</div>
 		</article>
 		<article class="place-insert-list">
 			<div class="subtitle">공간 이름 <span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
-				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" value="${placeDto.p_title}" required/>
+				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" value="${placeDto.p_title}" required />
 				<span id="character-length" >${fn:length(placeDto.p_title)}</span>자 / 50자<br/>
 				<p class="example-box" style="white-space:pre-line;">
 					리스트에 공개 될 제목입니다.
@@ -95,7 +101,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">사업장명 <span class="required-data">변경불가</span> </div>
 			<div class="sub-content">
-				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" value="${placeDto.p_name}" required readonly/>
+				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" value="${placeDto.p_name}" required readonly />
 				<span id="character-length" >${fn:length(placeDto.p_name)}</span>자 / 50자
 				<p class="example-box" style="white-space:pre-line;">
 					사업자로 등록되어 있는 사업장 이름을 적어주세요.
@@ -112,14 +118,13 @@
 		<article class="place-insert-list">
 			<div class="subtitle">공간 소개 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required>${placeDto.p_content}</textarea>
+				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required >${placeDto.p_content}</textarea>
 				<span id="character-length" >${fn:length(placeDto.p_content)}</span>자 / 2000자
 			</div>
 		</article>
 		<article class="place-insert-list">
 			<div class="subtitle">시설안내 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<!-- 추가버튼이 있고 추가버튼을 누르면 li추가와 동시에 input 생성 js로 구현 -->
 				<ul id="place-info-list">
 				
 				</ul>
@@ -140,7 +145,6 @@
 		<article class="place-insert-list">
 			<div class="subtitle">예약시 주의사항 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<!-- 추가버튼이 있고 추가버튼을 누르면 li추가와 동시에 input 생성 js로 구현 -->
 				<ul id="place-remark-list">
 				</ul>
 				<button id="add-remark-list-btn" type="button">추가</button>
@@ -164,8 +168,9 @@
 		<article class="place-insert-list">
 			<div class="subtitle">썸네일</div>
 			<div class="sub-content">
-				<label for="upload-btn">사진 고르기</label>
-				<input id="upload-btn" class="place-input" type="file" name="p_img" accept="image/*" placeholder="이미지 파일을 추가해주세요 (JPG,JPEG, PNG)" multiple required />
+				<label>사진 고르기
+					<input id="upload-btn" class="place-input" type="file" name="p_img" accept=".jpg, .jpeg, .png" placeholder="이미지 파일을 추가해주세요 (JPG,JPEG, PNG)" multiple />
+				</label>
 				<div id="img-box">
 					<!-- 업로드 이미지 미리보기 -->
 				</div>
@@ -185,87 +190,91 @@
 		<article class="place-insert-list">
 			<div class="subtitle">주소(위치) <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<input class="place-input" id="place-addr" type="text" name="p_addr" value="${placeDto.p_addr}" placeholder="주소를 등록해주세요" readonly required/>
+				<input class="place-input" id="place-addr" type="text" name="p_addr" value="${placeDto.p_addr}" placeholder="주소를 등록해주세요" readonly required />
 				<button type="button" id="addr-search-btn">주소등록</button>
 				<input class="place-input" id="place-addr-detail" type="text" name="p_addrdetail" value="${placeDto.p_addrdetail}" placeholder="상세 주소를 입력해주세요" />
 				<input id="place-bname" type="hidden" name="p_bname" value="${placeDto.p_bname}" />
 			</div>
-		</article>
-		<article class="place-insert-list">
-			<div class="subtitle">옵션</div>
-			<div class="sub-content" >
-				<div class="option-list">
-					<c:forEach var="optionDto" items="${placeOptionList}">
-						<section class="option">
-							<article class="option-box">
-								<div class="option-subtitle">
-									공간이름<span class="required-data">필수 사항</span>
-								</div>
-								<div class="option-content">
-									<input class="option-input" type="text" name="po_name" value="${optionDto.po_name}" required/>
-									<span id="character-length" ></span>
-								</div>
-							</article>
-							<article class="option-box">
-								<div class="option-subtitle">
-									가격<span class="required-data">필수 사항</span>
-								</div>
-								<div class="option-content">
-									평일 : <input type="number" name="po_dayPrice" value="${optionDto.po_dayPrice}" required />원
-									주말(공휴일) : <input type="number" name="po_holiday" value="${optionDto.po_holiday}" required />원
-								</div>
-							</article>
-							<article class="option-box">
-								<div class="option-subtitle">
-									인원<span class="required-data">필수 사항</span>
-								</div>
-								<div class="option-content">
-									최소 : <input type="number" name="po_min" value="${optionDto.po_min}" required />
-									최대 : <input type="number" name="po_max" value="${optionDto.po_max}" required />
-								</div>
-							</article>
-							<article class="option-box">
-								<div class="option-title">
-									편의시설
-								</div>
-								<div class="option-content">
-									<input type="text" />
-									<button type="button" class="add-facility-btn" >편의시설 추가</button>
-									<ul id="facility-list">
-										<!-- 추가버튼을 누르면 여기에 input hidden과 li태그 추가 -->
-									</ul>
-									<input type="hidden" name="facility-count" value="0" />
-								</div>
-							</article>
-							<article class="option-box">
-								<div class="option-subtitle">
-									썸네일<span class="required-data">필수 사항</span>
-								</div>
-								<div class="option-content">
-									<label for="option-thumbnail">사진 고르기</label>
-									<input id="option-thumbnail" type="file" name="po_img" accept="image/*" required/>
-									<div id="option-img-box">
-										<img src="resources/images/PlaceOptionImages/${optionDto.po_img}" />
-									</div>
-								</div>
-								<input type="hidden" name="change" value="0" />
-							</article>
-							<input type="hidden" name="po_no" value="${optionDto.po_no}" />
-							<button type="button" class="select-remove-btn" >해당옵션 삭제</button>
-						</section>
-					</c:forEach>
-				</div>
-			</div>
-			<section class="btn-box">
-				<button type="button" id="add-option-btn" >옵션 입력 추가</button>
-				<button type="button" id="remove-option-btn">옵션 입력 삭제</button>
-			</section>
 		</article>
 		<!-- hidden -->
 		<input type="hidden" name="p_no" value="${placeDto.p_no}" />
 		<button type="button" onclick="fn_placeUpdate(this.form)">수정하기</button>
 		<button type="button" onclick="location.href='placeListPage.place'" >목록으로 돌아가기</button>
 	</form>
+		<article class="place-insert-list">
+			<div class="subtitle">옵션</div>
+			<div class="sub-content" >
+				<div class="option-list">
+					<c:forEach var="optionDto" items="${placeOptionList}">
+						<form method="post" enctype="multipart/form-data">
+							<section class="option">
+								<article class="option-box">
+									<div class="option-subtitle">
+										공간이름<span class="required-data">필수 사항</span>
+									</div>
+									<div class="option-content">
+										<input class="option-input" type="text" name="po_name" value="${optionDto.po_name}" required />
+										<span id="character-length" ></span>
+									</div>
+								</article>
+								<article class="option-box">
+									<div class="option-subtitle">
+										가격<span class="required-data">필수 사항</span>
+									</div>
+									<div class="option-content">
+										평일 : <input type="number" name="po_dayPrice" value="${optionDto.po_dayPrice}" required />원<br/>
+										주말(공휴일) : <input type="number" name="po_holiday" value="${optionDto.po_holiday}" required />원
+									</div>
+								</article>
+								<article class="option-box">
+									<div class="option-subtitle">
+										인원<span class="required-data">필수 사항</span>
+									</div>
+									<div class="option-content">
+										최소 : <input type="number" name="po_min" value="${optionDto.po_min}" required />명<br/>
+										최대 : <input type="number" name="po_max" value="${optionDto.po_max}" required />명
+									</div>
+								</article>
+								<article class="option-box">
+									<div class="option-subtitle">
+										편의시설
+									</div>
+									<div class="option-content">
+										<input type="text" />
+										<button type="button" class="add-facility-btn" >편의시설 추가</button>
+										<ul class="facility-list">
+											<!-- 추가버튼을 누르면 여기에 input hidden과 li태그 추가 -->
+										</ul>
+										<input type="hidden" name="facility-count" value="0" />
+									</div>
+								</article>
+								<article class="option-box">
+									<div class="option-subtitle">
+										썸네일<span class="required-data">필수 사항</span>
+									</div>
+									<div class="option-content">
+										<label>사진 고르기
+											<input id="option-thumbnail" type="file" name="po_img" accept=".jpg, .jpeg, .png" />
+										</label>
+										<div id="option-img-box">
+											<img src="resources/images/PlaceOptionImages/${optionDto.po_img}" />
+										</div>
+									</div>
+									<input type="hidden" name="change" value="0" />
+								</article>
+								<input type="hidden" name="po_no" value="${optionDto.po_no}" />
+								<button type="button" class="select-update-btn" onclick="fn_optionUpdate(this.form)" >옵션 수정</button>
+								<button type="button" class="select-remove-btn" >옵션 삭제</button>
+							</section>
+						</form>
+					</c:forEach>
+				</div>
+			</div>
+			<section class="btn-box">
+				<button type="button" id="add-option-btn" >옵션 입력 추가</button>
+			</section>
+		</article>
+		
 </section>
 
 

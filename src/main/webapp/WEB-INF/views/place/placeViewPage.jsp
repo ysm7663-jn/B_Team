@@ -12,15 +12,6 @@
 <link rel="stylesheet" href="resources/style/place/place-view.css">
 <script>
 	let facilityList = JSON.parse('${facilityList}');
-	/* let facilityList = new Array();
-		let facility = '';
-	<c:forEach var="optionDto" items="${optionList}" varStatus="k" >
-		facility = '${optionDto.po_fxility}';
-		// facilty는 스트링타입
-		// 이를 앞뒤의 [ ]를 지우고, 배열로 된 걸 facilityList 배열에 순차적으로 저장
-		facilityList.push(facility.replace('[','').replace(']','').split(','));
-		alert(facilityList[${k.index}]);
-	</c:forEach> */
 	let isSeller = ${isSeller};
 	<c:if test="${loginDto ne null && not isSeller}">
 		let loginDtoMNo = '${loginDto.m_no}';
@@ -84,7 +75,9 @@
 	<div class="modal-content">
 		<div class="close" onclick="fn_modalClose()">&times;</div>
 		<div class="content-wrap">
-		<span id="modal-m-id"><c:if test="${not isSeller}">ID : ${loginDto.m_id}</c:if></span><br/>
+		<span id="modal-m-id">
+			<c:if test="${not isSeller && loginDto ne null}">ID : ${loginDto.m_id}</c:if>
+		</span><br/>
 		
 		<span class="modal-star">
 			
@@ -219,6 +212,7 @@
 
 			</div>
 			<h4>${placeDto.p_addr}&nbsp;${placeDto.p_addrdetail}</h4>
+			<a href="${placeDto.p_url}">${placeDto.p_url}</a>
 		</div>
 		<div id="place-remark" class="place-remark">
 			<h3>예약시 주의사항</h3>
@@ -256,7 +250,7 @@
 					</c:if>
 					<div class="review-insert-btn-wrap">
 						<!-- hidden -->
-						<c:if test="${not isSeller}">
+						<c:if test="${not isSeller && loginDto ne null}">
 							<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 						</c:if>
 						<input type="hidden" name="p_no" value="${placeDto.p_no}" />

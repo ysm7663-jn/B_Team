@@ -40,7 +40,7 @@
 				'vbank':가상계좌,
 				'phone':휴대폰소액결제
 				 */
-				merchant_uid : 'merchant_' + new Date().getTime(),
+				merchant_uid : '${reservationDto.res_no},
 				/*
 				merchant_uid에 경우
 				https://docs.iamport.kr/implementation/payment
@@ -54,7 +54,6 @@
 			}, function(rsp) {
 				console.log(rsp);
 				if (rsp.success) {
-					var msg = '결제가 완료되었습니다.';
 					let sendObj = {
 							'res_no' : '${reservationDto.res_no}',
 							'res_email' : rsp.buyer_email,

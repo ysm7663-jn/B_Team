@@ -31,7 +31,9 @@ DROP TABLE PLACECATEGORY;
 DROP TABLE CLUB;
 DROP TABLE MEMBER;
 
-select * from member;
+select * from place;
+select * from placeoption;
+update place set p_img = '["P_IMG01.jpg", "P_IMG02.jpg", "P_IMG03.jpg"]' where p_no=7;
 
 -- MEMBER Table Create SQL
 CREATE TABLE MEMBER

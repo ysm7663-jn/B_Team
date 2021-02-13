@@ -16,7 +16,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<update id="placeOptionUpdate" parameterType="com.koreait.baraON.dto.PlaceOptionDto">
 		UPDATE PLACEOPTION
-		SET
+		SET PO_NAME=#{po_name}, PO_DAYPRICE=#{po_dayPrice}, PO_HOLIDAY=#{po_holiday}, PO_MIN=#{po_min}, PO_MAX=#{po_max}, PO_FXILITY=#{po_fxility} 
+		<if test="po_img != null">
+			, PO_IMG=#{po_img}
+		</if>
 		WHERE PO_NO=#{po_no}
 	</update>
 	<delete id="placeOptionDelete" parameterType="int">

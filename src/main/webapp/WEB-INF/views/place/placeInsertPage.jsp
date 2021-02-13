@@ -30,7 +30,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">공간 이름<span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
-				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" required/>
+				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" required />
 				<span id="character-length" ></span>자 / 50자<br/>
 				<p class="example-box" style="white-space:pre-line;">
 					리스트에 공개 될 제목입니다.
@@ -40,7 +40,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">사업장명 <span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
-				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" required/>
+				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" required />
 				<span id="character-length" ></span>자 / 50자
 				<p class="example-box" style="white-space:pre-line;">
 					사업자로 등록되어 있는 사업장 이름을 적어주세요.
@@ -57,7 +57,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">공간 소개 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required></textarea>
+				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required ></textarea>
 				<span id="character-length" ></span>자 / 2000자
 			</div>
 		</article>
@@ -66,7 +66,7 @@
 			<div class="sub-content">
 				<!-- 추가버튼이 있고 추가버튼을 누르면 li추가와 동시에 input 생성 js로 구현 -->
 				<ul id="place-info-list">
-					<li><input class="place-input" type="text" name="p_info" placeholder="추가하려면 추가 버튼을 눌러주세요" required/></li>
+					<li><input class="place-input" type="text" name="p_info" placeholder="추가하려면 추가 버튼을 눌러주세요" required /></li>
 				</ul>
 				<button id="add-info-list-btn" type="button">추가</button>
 				<button id="remove-info-list-btn" type="button">삭제</button>
@@ -108,10 +108,11 @@
 			</div>
 		</article>
 		<article class="place-insert-list">
-			<div class="subtitle">썸네일</div>
+			<div class="subtitle">썸네일<span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<label for="upload-btn">사진 고르기</label>
-				<input id="upload-btn" class="place-input" type="file" name="p_img" accept="image/*" placeholder="이미지 파일을 추가해주세요 (JPG,JPEG, PNG)" multiple required />
+				<label>사진 고르기
+					<input id="upload-btn" class="place-input" type="file" name="p_img" accept="image/*" placeholder="이미지 파일을 추가해주세요 (JPG,JPEG, PNG)" multiple required />
+				</label>
 				<div id="img-box">
 					<!-- 업로드 이미지 미리보기 -->
 				</div>
@@ -126,7 +127,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">주소(위치) <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<input class="place-input" id="place-addr" type="text" name="p_addr" placeholder="주소를 등록해주세요" readonly required/>
+				<input class="place-input" id="place-addr" type="text" name="p_addr" placeholder="주소를 등록해주세요" readonly required />
 				<button type="button" id="addr-search-btn">주소등록</button>
 				<input class="place-input" id="place-addr-detail" type="text" name="p_addrdetail" placeholder="상세 주소를 입력해주세요" />
 				<input id="place-bname" type="hidden" name="p_bname" />
@@ -142,7 +143,7 @@
 								공간이름<span class="required-data">필수 사항</span>
 							</div>
 							<div class="option-content">
-								<input class="option-input" type="text" name="po_name" required/>
+								<input class="option-input" type="text" name="po_name" required />
 								<span id="character-length" ></span>
 							</div>
 						</article>
@@ -182,8 +183,9 @@
 								썸네일<span class="required-data">필수 사항</span>
 							</div>
 							<div class="option-content">
-								<label for="option-thumbnail">사진 고르기</label>
-								<input id="option-thumbnail" type="file" name="po_img" accept="image/*" required/>
+								<label>사진 고르기
+									<input class="option-thumbnail" id="option-thumbnail" class="option-thumbnail" type="file" name="po_img" accept="image/*" required />
+								</label>
 								<div id="option-img-box">
 								
 								</div>

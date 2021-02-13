@@ -8,7 +8,7 @@ $(function(){
 	fn_addFacility($('.add-facility-btn').last());
 	fn_addOption();
 	fn_previewThumbnail('#upload-btn');
-	fn_previewThumbnail('#option-thumbnail');
+	fn_previewThumbnail('.option-thumbnail');
 	fn_removeOption();
 	fn_deleteOption();
 })
@@ -31,6 +31,7 @@ function fn_deleteOption(){
 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 				}
 			});
+			$(event.target).parent().remove();
 		}
 	});
 }
@@ -57,21 +58,30 @@ function fn_searchPopUp(){
 	}).open();
 }
 
-/* insert submit 전 카테고리 선택 검사 */
-function fn_placeInsert(f){
+/* update submit 전 카테고리 선택 검사 */
+function fn_placeUpdate(f){
 	if(f.pc_no.value==''){
 		alert('카테고리를 선택해 주세요');
 		return;
 	}
-	if(f.p_img.value==''){
-		alert('공간 썸네일을 선택해주세요');
+	$.each($('input:required'), function(idx, requiredInput){
+		if($(requiredInput).val()== null || $(requiredInput).val()==''){
+			alert('누락된 필수입력사항이 있습니다. 확인해주세요');
+			$(requiredInput).focus();
+			return;
+		}
+	});
+	if($('.uploaded-img-box img').length==0 && $('#upload-btn').val()==''){
+		alert('적어도 하나의 이미지는 첨부해야 합니다.');
+		return;
+		
+	}
+	if(f.p_content.value==''){
+		alert('누락된 필수입력사항이 있습니다. 확인해주세요');
+		f.p_content.focus();
 		return;
 	}
-	if(f.po_img.value==''){
-		alert('옵션의 이미지파일을 선택해주세요');
-		return;
-	}
-	f.action = 'placeInsert.place';
+	f.action = 'placeUpdate.place';
 	f.submit();
 }
 
@@ -84,6 +94,7 @@ function fn_addInput(inputName, btn, tag){
 		}
 		let addInput = '<li><input class="place-input" type="text" name="'+inputName+'" placeholder="추가하려면 추가 버튼을 눌러주세요" required /></li>';
 		$(tag).append(addInput);
+		$(tag).find('input').last().focus();
 	})
 }
 function fn_removeInput(btn, tag){
@@ -141,8 +152,8 @@ function fn_addOption(){
 					가격<span class="required-data">필수 사항</span>
 				</div>
 				<div class="option-content">
-					평일 : <input type="number" name="po_dayPrice" required />원
-					주말(공휴일) : <input type="number" name="po_holiday" required/>원
+					평일 : <input type="number" name="po_dayPrice" required />원<br/>
+					주말(공휴일) : <input type="number" name="po_holiday" required />원
 				</div>
 			</article>
 			<article class="option-box">
@@ -150,12 +161,12 @@ function fn_addOption(){
 					인원<span class="required-data">필수 사항</span>
 				</div>
 				<div class="option-content">
-					최소 : <input type="number" name="po_min" required />
-					최대 : <input type="number" name="po_max" required />
+					최소 : <input type="number" name="po_min" required />명<br/>
+					최대 : <input type="number" name="po_max" required />명
 				</div>
 			</article>
 			<article class="option-box">
-				<div class="option-title">
+				<div class="option-subtitle">
 					편의시설
 				</div>
 				<div class="option-content">
@@ -164,6 +175,7 @@ function fn_addOption(){
 					<ul id="facility-list">
 						
 					</ul>
+					<input type="hidden" name="facility-count" value="0" />
 				</div>
 			</article>
 			<article class="option-box">
@@ -171,13 +183,16 @@ function fn_addOption(){
 				썸네일<span class="required-data">필수 사항</span>
 			</div>
 			<div class="option-content">
-				<label for="option-thumbnail">사진 고르기</label>
-				<input id="option-thumbnail" type="file" name="po_img" required/>
+				<label>사진 고르기
+					<input class="option-thumbnail" id="option-thumbnail" type="file" name="po_img" required />
+				</label>
 				<div id="option-img-box">
 				
 				</div>
 			</div>
 			</article>
+			<button type="button" class="remove-option-btn" >해당옵션 삭제</button>
+			</section>
 		`;
 		if($('section.option').length == 0){
 			$('section.btn-box').before(strHtml);
@@ -185,28 +200,29 @@ function fn_addOption(){
 			$('section.option').last().after(strHtml);
 		}
 		fn_addFacility($('.add-facility-btn').last());
-		fn_previewThumbnail('#option-thumbnail');
+		fn_previewThumbnail($('.option-thumbnail').last());
+		fn_removeOption();
 	});
 }
 function fn_removeOption(){
-	$('#remove-option-btn').click(function(){
-		$('section.option').last().remove();
+	$('.remove-option-btn').click(function(event){
+		$(event.target).parent().remove();
 	})
 }
 
 /* 첨부이미지 미리보기 */
 function fn_previewThumbnail(btn){
 	$(btn).on('change', function(event){
-		$(btn).next().empty();
+		let appendTarget = $(event.target).parent().next();
+		$(appendTarget).empty();
 		for (let image of event.target.files) { 
 			
 			let reader = new FileReader();
 		
 			reader.onload = function(event) {
-				$(btn).next().append($('<img>').prop('src', event.target.result));
+				$(appendTarget).append($('<img>').prop('src', event.target.result));
 			};
-			reader.readAsDataURL(image);
+		reader.readAsDataURL(image);
 		}
-		$(btn).parent().next().val(1);
 	});
 }
