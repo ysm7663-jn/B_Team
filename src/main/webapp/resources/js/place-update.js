@@ -137,67 +137,71 @@ function fn_removeFacility(e){
 function fn_addOption(){
 	$('#add-option-btn').click(function(event){
 		let strHtml =`
-			<section class="option">
-			<article class="option-box">
+			<form class="option-form" method="post" enctype="multipart/form-data">
+				<section class="option">
+				<article class="option-box">
+					<div class="option-subtitle">
+						공간이름<span class="required-data">필수 사항</span>
+					</div>
+					<div class="option-content">
+						<input class="option-input" type="text" name="po_name" />
+						<span id="character-length" ></span>
+					</div>
+				</article>
+				<article class="option-box">
+					<div class="option-subtitle">
+						가격<span class="required-data">필수 사항</span>
+					</div>
+					<div class="option-content">
+						평일 : <input type="number" name="po_dayPrice" required />원<br/>
+						주말(공휴일) : <input type="number" name="po_holiday" required />원
+					</div>
+				</article>
+				<article class="option-box">
+					<div class="option-subtitle">
+						인원<span class="required-data">필수 사항</span>
+					</div>
+					<div class="option-content">
+						최소 : <input type="number" name="po_min" required />명<br/>
+						최대 : <input type="number" name="po_max" required />명
+					</div>
+				</article>
+				<article class="option-box">
+					<div class="option-subtitle">
+						편의시설
+					</div>
+					<div class="option-content">
+						<input type="text" />
+						<button type="button" class="add-facility-btn" >편의시설 추가</button>
+						<ul id="facility-list">
+							
+						</ul>
+						<input type="hidden" name="facility-count" value="0" />
+					</div>
+				</article>
+				<article class="option-box">
 				<div class="option-subtitle">
-					공간이름<span class="required-data">필수 사항</span>
+					썸네일<span class="required-data">필수 사항</span>
 				</div>
 				<div class="option-content">
-					<input class="option-input" type="text" name="po_name" />
-					<span id="character-length" ></span>
+					<label>사진 고르기
+						<input class="option-thumbnail" id="option-thumbnail" type="file" name="po_img" required />
+					</label>
+					<div id="option-img-box">
+					
+					</div>
 				</div>
-			</article>
-			<article class="option-box">
-				<div class="option-subtitle">
-					가격<span class="required-data">필수 사항</span>
-				</div>
-				<div class="option-content">
-					평일 : <input type="number" name="po_dayPrice" required />원<br/>
-					주말(공휴일) : <input type="number" name="po_holiday" required />원
-				</div>
-			</article>
-			<article class="option-box">
-				<div class="option-subtitle">
-					인원<span class="required-data">필수 사항</span>
-				</div>
-				<div class="option-content">
-					최소 : <input type="number" name="po_min" required />명<br/>
-					최대 : <input type="number" name="po_max" required />명
-				</div>
-			</article>
-			<article class="option-box">
-				<div class="option-subtitle">
-					편의시설
-				</div>
-				<div class="option-content">
-					<input type="text" />
-					<button type="button" class="add-facility-btn" >편의시설 추가</button>
-					<ul id="facility-list">
-						
-					</ul>
-					<input type="hidden" name="facility-count" value="0" />
-				</div>
-			</article>
-			<article class="option-box">
-			<div class="option-subtitle">
-				썸네일<span class="required-data">필수 사항</span>
-			</div>
-			<div class="option-content">
-				<label>사진 고르기
-					<input class="option-thumbnail" id="option-thumbnail" type="file" name="po_img" required />
-				</label>
-				<div id="option-img-box">
-				
-				</div>
-			</div>
-			</article>
-			<button type="button" class="remove-option-btn" >해당옵션 삭제</button>
-			</section>
+				</article>
+				<input type="hidden" name="p_no" value="${placeNo}" />
+				<button type="button" class="select-insert-btn" onclick="fn_optionInsert(this.form)" >옵션 추가</button>
+				<button type="button" class="remove-option-btn" >해당옵션 삭제</button>
+				</section>
+			</form>
 		`;
-		if($('section.option').length == 0){
-			$('section.btn-box').before(strHtml);
+		if($('form.option-form').length == 0){
+			$('div.option-list').append(strHtml);
 		} else {
-			$('section.option').last().after(strHtml);
+			$('form.option-form').last().after(strHtml);
 		}
 		fn_addFacility($('.add-facility-btn').last());
 		fn_previewThumbnail($('.option-thumbnail').last());
@@ -206,7 +210,7 @@ function fn_addOption(){
 }
 function fn_removeOption(){
 	$('.remove-option-btn').click(function(event){
-		$(event.target).parent().remove();
+		$(event.target).closest('form').remove();
 	})
 }
 

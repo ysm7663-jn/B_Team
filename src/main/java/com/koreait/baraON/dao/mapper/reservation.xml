@@ -19,4 +19,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SET RES_EMAIL=#{res_email}, RES_PRICE=#{res_price}, RES_APPLYNUM=#{res_applynum}, RES_PURPOSE=#{res_purpose}, RES_REQUIREMENT=#{res_requirement}, RES_STATE='예약대기'
 		WHERE RES_NO=#{res_no}
 	</update>
+	
 </mapper>

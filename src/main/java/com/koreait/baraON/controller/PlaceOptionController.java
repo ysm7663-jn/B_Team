@@ -50,10 +50,10 @@ public class PlaceOptionController {
 		
 		return optionUpdateCommand.execute(sqlSession, model);
 	}
-	@RequestMapping(value="placeOptionInsert.place/{p_no}", method=RequestMethod.POST, produces="application/json; charset=utf-8")
+	@RequestMapping(value="placeOptionInsert.place", method=RequestMethod.POST, produces="application/json; charset=utf-8", headers=("content-type=multipart/*"))
 	@ResponseBody
-	public Map<String, Object> optionInsert(@PathVariable int p_no, Model model){
-		model.addAttribute("p_no", p_no);
+	public Map<String, Object> optionInsert(MultipartHttpServletRequest multipartRequest, Model model){
+		model.addAttribute("multipartRequest", multipartRequest);
 		
 		return optionInsertCommand.execute(sqlSession, model);
 	}

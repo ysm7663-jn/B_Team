@@ -14,6 +14,7 @@
 	let infoList = JSON.parse('${placeDto.p_info}');
 	let remarkList = JSON.parse('${placeDto.p_remark}');
 	let thumbnailList = JSON.parse('${placeDto.p_img}');
+	let placeNo = ${placeDto.p_no};
 	let poFacilities = new Array();
 	<c:forEach items="${placeOptionList}" var="optionDto">
 		poFacilities.push(JSON.parse('${optionDto.po_fxility}'));
@@ -78,6 +79,31 @@
 			error: function(request, status, error){
 				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			}
+		});
+	}
+	function fn_optionInsert(f){
+		let sendObj = new FormData(f);
+		$.ajax({
+			url:'placeOptionInsert.place',
+			type:'post',
+			enctype:'multipart/form-data',
+			data: sendObj,
+			processData: false,
+			contentType: false,
+			dataType:'json',
+			success:function(responseObj){
+				if(responseObj.result==1){
+					alert('옵션이 추가되었습니다.');
+				} else if(responseObj.result==-1) {
+					alert('파일형식이 맞지않습니다. 파일 변경 후 다시 시도해주세요');
+				} else {
+					alert('옵션 추가에 실패했습니다. 다시 시도해 주세요');	
+				}
+			},
+			error: function(request, status, error){
+				alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			}
+			
 		});
 	}
 	
@@ -220,7 +246,7 @@
 			<div class="sub-content" >
 				<div class="option-list">
 					<c:forEach var="optionDto" items="${placeOptionList}">
-						<form method="post" enctype="multipart/form-data">
+						<form class="option-form" method="post" enctype="multipart/form-data">
 							<section class="option">
 								<article class="option-box">
 									<div class="option-subtitle">

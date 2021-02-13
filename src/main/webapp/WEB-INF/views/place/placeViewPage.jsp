@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="../template/header.jsp">
 	<jsp:param value="BaraON :: 공간보기" name="title" />
 </jsp:include>
@@ -295,9 +296,9 @@
 									 </c:forEach>
 								</div>
 								<div class="review-date">
-									작성일 : ${reviewDto.rv_postDate}<br/>
+									작성일 : <fmt:formatDate value="${reviewDto.rv_postDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
 									<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
-										최근수정일 : ${reviewDto.rv_modifyDate}
+										최근수정일 : <fmt:formatDate value="${reviewDto.rv_modifyDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
 									</c:if>
 								</div>
 								<div class="review-content" >

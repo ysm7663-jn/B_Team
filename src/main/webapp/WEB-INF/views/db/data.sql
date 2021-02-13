@@ -34,6 +34,8 @@ DROP TABLE MEMBER;
 select * from member;
 select * from place;
 select * from placeoption;
+select * from review
+update review set rv_postdate where 
 update place set p_img = '["P_IMG01.jpg", "P_IMG02.jpg", "P_IMG03.jpg"]' where p_no=7;
 
 -- MEMBER Table Create SQL
@@ -141,7 +143,7 @@ CREATE TABLE PLACE
     P_BNAME         VARCHAR2(20)      NOT NULL, 
     P_ADDRDETAIL    VARCHAR2(100)     NULL, 
     P_IMG           VARCHAR2(1000)    NOT NULL, 
-    P_CONFIRM       NUMBER          NOT NULL, 
+    P_CONFIRM       VARCHAR2(40)      NOT NULL, 
     P_URL           VARCHAR2(100)     NULL, 
     P_REMARK        VARCHAR2(1000)    NOT NULL, 
     P_DELETE        NUMBER            NOT NULL,
