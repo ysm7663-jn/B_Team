@@ -30,12 +30,12 @@ public class Paging {
 		
 		// 1) 이전 버튼
 		if (beginPage <= pagePerBlock) {
-			sb.append("이전&nbsp;");
+			sb.append("◀&nbsp;");
 		} else {
 			if (path.indexOf("?") > 0) {  
-				sb.append("<a href=\"" + path + "&page=" + (beginPage - 1) + "\">이전&nbsp;</a>");
+				sb.append("<a href=\"" + path + "&page=" + (beginPage - 1) + "\">◀&nbsp;</a>");
 			} else {  // 경로에 ?가 없을 때(파라미터가 없을 때)
-				sb.append("<a href=\"" + path + "?page=" + (beginPage - 1) + "\">이전&nbsp;</a>");				
+				sb.append("<a href=\"" + path + "?page=" + (beginPage - 1) + "\">◀&nbsp;</a>");				
 			}
 		}
 		
@@ -54,12 +54,12 @@ public class Paging {
 		
 		// 3) 다음 버튼
 		if (endPage >= totalPage) { 
-			sb.append("다음");
+			sb.append("▶");
 		} else {
 			if (path.indexOf("?") > 0) {
-				sb.append("<a href=\"" + path + "&page=" + (endPage + 1) + "\">다음</a>");
+				sb.append("<a href=\"" + path + "&page=" + (endPage + 1) + "\">▶</a>");
 			} else {
-				sb.append("<a href=\"" + path + "?page=" + (endPage + 1) + "\">다음</a>");
+				sb.append("<a href=\"" + path + "?page=" + (endPage + 1) + "\">▶</a>");
 			}
 		}
 		

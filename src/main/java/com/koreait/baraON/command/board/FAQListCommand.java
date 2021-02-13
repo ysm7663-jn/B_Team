@@ -33,7 +33,7 @@ public class FAQListCommand implements NoticeCommand {
 		
 		int totalRecord = faqDao.totalRecord();
 		
-		int recordPerPage = 10; 
+		int recordPerPage = 5; 
 		
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = beginRecord + recordPerPage - 1;
@@ -47,6 +47,7 @@ public class FAQListCommand implements NoticeCommand {
 		model.addAttribute("list" , list);
 		model.addAttribute("totalRecord" , totalRecord);
 		model.addAttribute("page" , page);
+		model.addAttribute("paging" , paging);
 		model.addAttribute("recordPerPage" , recordPerPage);
 	}
 

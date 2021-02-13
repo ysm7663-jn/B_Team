@@ -12,9 +12,9 @@ public interface FAQDao {
 	
 	public FAQDto faqView(int no);
 	
-	public int faqInsert(String title, String content);
+	public int faqInsert(String title, String content , int f_category);
 	
 	public int faqDelete(int no);
 	
-	public int faqUpdate(String title, String content , int no);
+	public int faqUpdate(String title, String content ,int no);
 }

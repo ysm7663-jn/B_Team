@@ -31,7 +31,7 @@ public class AdminNoticeListCommand implements NoticeCommand {
 		
 		int totalRecord = noticeDao.totalRecord();
 		
-		int recordPerPage = 5; 
+		int recordPerPage = 10; 
 		
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = beginRecord + recordPerPage - 1;
@@ -39,7 +39,7 @@ public class AdminNoticeListCommand implements NoticeCommand {
 		
 		List<NoticeDto> list = noticeDao.noticeList(beginRecord , endRecord);
 		
-		String paging = Paging.getPaging("admin/noticeListPage.admin" , totalRecord, recordPerPage, page);
+		String paging = Paging.getPaging("adminNoticeListPage.admin" , totalRecord, recordPerPage, page);
 		
 		model.addAttribute("list", list);
 		model.addAttribute("paging" , paging);

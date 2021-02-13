@@ -5,6 +5,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="resources/style/common.css">
+<%@ include file="../template/header.jsp" %>
+<style type="text/css">
+	 a:link { color: black; text-decoration: none;}
+ 	 a:visited { color: black; text-decoration: none;}
+	 a:hover { color: blue; text-decoration: underline;}
+	
+	 #wrap{
+	 	height: 300px;
+	 	margin-bottom: 20px;
+	 }
+	 
+	 body{
+	 	background: #F8EBEE;
+	 }
+	 .disable{
+	 	margin:0 10px 0 10px;
+	 }
+	 #paging > a{
+	 	margin: 0 10px 0 10px;
+	 }
+</style>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -15,7 +37,7 @@
 	});
 function fn_allList(){
 	$('#allBtn').click(function(){
-		location.href = 'faqListPage.faq?f_category=${faqDto.f_category}'+ 1;
+		location.href = 'faqListPage.faq';
 	});
 }
 function fn_payList() {
@@ -37,41 +59,45 @@ function fn_usingList(){
 <title></title>
 </head>
 <body>
-<h3>자주묻는질문(FAQ)</h3>
-	<div  style="display: flex; flex-direction: column;">
-		<div>
-			<form>
-				<input type="button" id="allBtn" value="전체">
-				<input type="button" id="payBtn" value="결제 및 환불">
-				<input type="button" id="accountBtn" value="계정">
-				<input type="button" id="usingBtn" value="이용안내">
-			</form>
-		</div>
-			<section class="top">
-				<div>
+			<div id="wrap" style="width :1020px; margin: 0 auto;">
+				<h3>자주묻는질문(FAQ)</h3>
+				<form style="text-align: center">
+					<input type="button" id="allBtn" value="전체">
+					<input type="button" id="payBtn" value="결제 및 환불">
+					<input type="button" id="accountBtn" value="계정">
+					<input type="button" id="usingBtn" value="이용안내">
+				</form><br/>
+				<section>
 					<div>
-						<span class="title">제목</span>
-						<span class="date">작성일</span>
-					</div>
-				</div>
-			</section>
-			<section class="content">
-			<c:if test="${empty list}"></c:if>
-			<c:if test="${not empty list}">
-				<c:forEach var="faqDto" items="${list}" varStatus="k">
-					<div>
-						<div class="title1"><a href="faqViewPage.faq?no=${faqDto.f_no}&page=${page}">${faqDto.f_title}</a></div>
-						<div>
-						<span class="date1">${faqDto.f_regDate}</span>
+						<div style="width:620px; margin: 0 auto; height:50px; line-height:50px;
+						float: left; text-align: center; font-weight: 800px; 
+						font-size: 24px; background:#3ED0C8; border-top: 1px solid black; border-bottom: 1px solid black">
+								제목
 						</div>
-					</div>	
-						
-				</c:forEach>
-			</c:if>
-			<div>
-				<span class="paging">${paging}</span>
+						<div style="width:400px; margin: 0 auto; height:50px; line-height:50px;
+						float: left; text-align: center; font-weight: 800px; 
+						font-size: 24px; background:#3ED0C8; border-top: 1px solid black; border-bottom: 1px solid black">
+								작성일
+						</div>
+					</div>
+				</section>
+				<section class="content">
+				<c:if test="${empty list}"></c:if>
+				<c:if test="${not empty list}">
+					<c:forEach var="faqDto" items="${list}" varStatus="k">
+							<div style="width:620px; margin: 0 auto; float: left; text-align: center; border-bottom: 1px solid black; height:40px; line-height:40px">
+								<a href="faqViewPage.faq?no=${faqDto.f_no}&page=${page}">${faqDto.f_title}</a>
+							</div>
+							<div style="width:400px; margin: 0 auto; float: left; text-align: center; border-bottom: 1px solid black; height:40px; line-height:40px;">
+								${faqDto.f_regDate}
+							</div>
+					</c:forEach>
+				</c:if>
+					<div id="paging" style="width:1020px; margin: 0 auto; float: left; text-align: center; font-weight: 800px; font-size: 20px">
+						${paging}
+					</div>
+				</section>		
 			</div>
-			</section>		
-		</div>
+<%@ include file="../template/footer.jsp" %>
 </body>
 </html>

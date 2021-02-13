@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.koreait.baraON.command.board.EventListCommand;
+import com.koreait.baraON.command.board.EventViewCommand;
 import com.koreait.baraON.command.board.FAQListCommand;
 import com.koreait.baraON.command.board.FAQViewCommand;
 import com.koreait.baraON.command.board.NoticeCommand;
@@ -52,5 +54,20 @@ public class BoardController {
 		noticeCommand = new FAQViewCommand();
 		noticeCommand.execute(sqlSession, model);
 		return "board/faqViewPage";
+	}
+	@RequestMapping(value="eventListPage.event",method=RequestMethod.GET)
+	public String eventListPage(HttpServletRequest request, Model model){
+		model.addAttribute("request" , request);
+		noticeCommand = new EventListCommand();
+		noticeCommand.execute(sqlSession, model);
+		return "board/eventListPage";
+	}
+	@RequestMapping(value="eventViewPage.event",method=RequestMethod.GET)
+	public String eventViewPage(HttpServletRequest request,
+									Model model) {
+		model.addAttribute("request" , request);
+		noticeCommand = new EventViewCommand();
+		noticeCommand.execute(sqlSession, model);
+		return "board/eventViewPage";
 	}
 }

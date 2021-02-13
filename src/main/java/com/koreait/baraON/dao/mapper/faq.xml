@@ -4,12 +4,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.koreait.baraON.dao.FAQDao">
+
 	<select id="faqList" resultType="com.koreait.baraON.dto.FAQDto">
 		SELECT B.*
 	 	 FROM (SELECT A.*, ROWNUM AS RN
                FROM (SELECT *
                      FROM FAQ
                      WHERE F_CATEGORY = #{param3}
+                     AND F_CATEGORY BETWEEN 1 AND 4
 	              ORDER BY F_NO DESC) A) B
          WHERE B.RN BETWEEN #{param1} AND #{param2}
 	</select>

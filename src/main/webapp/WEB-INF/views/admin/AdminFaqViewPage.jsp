@@ -4,30 +4,46 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="resources/style/common.css">
+<style type="text/css">
+	body{
+		margin-top: 50px;
+		background: #F8EBEE;
+	}
+</style>
 <title></title>
 </head>
 <body>
-	<div class="c_head1">
-		${faqDto.f_title}
-	</div>
-	<div class="c_head2">
-		${faqDto.f_regDate}
-	</div>
-	<div class="c_body">
-		${faqDto.f_content}<br/><br/>
-	</div>
+	<h1>자주묻는질문(FAQ) - 관리자모드</h1>
+	<div style="width :1020px; margin: 0 auto;">
+		<div style="background:#3ED0C8; border-top: 1px solid black; border-bottom: 1px solid black">
+			<div style="width:600px; margin: 0 0 0 10px; font-weight: 800px; font-size: 24px;">	
+				${faqDto.f_title}
+			</div>
+			<div style="width:600px; margin:10px 0 10px 10px; font-weight: 800px; font-size: 16px;">
+				${faqDto.f_regDate}
+			</div>
+		</div>
+			<div style="height:400px; padding:30px 0 0 10px; font-weight: 800px; font-size: 20px; border-bottom:1px solid black">
+				${faqDto.f_content}<br/><br/>
+			</div><br/>
 	
-	<div class="c_foot">
-	<form>
-		<input type="button" name="list" value="목록보기" onclick="location.href='faqListPage.admin'" />
-		<input type="hidden" name="no" value="${faqDto.f_no}" />
-		<input type="hidden" name="title" value="${faqDto.f_title}" />
-		<input type="hidden" name="content" value="${faqDto.f_content}" />
-		<input type="button" value="수정하러가기" onclick="fn_faqUpdatePage(this.form)" />
-		<input type="button" value="삭제하기" onclick="fn_faqDelete(this.form)" />
-	</form>
+		<div>
+			<form>
+				<input type="button" name="list" value="목록보기" style="font-size: 16px" onclick="location.href='adminFaqListPage.admin'" />
+				<input type="hidden" name="no" value="${faqDto.f_no}" />
+				<input type="hidden" name="title" value="${faqDto.f_title}" />
+				<input type="hidden" name="content" value="${faqDto.f_content}" />
+				<input type="button" value="수정하러가기" style="font-size: 16px" onclick="fn_faqUpdatePage(this.form)" />
+				<input type="button" value="삭제하기" style="font-size: 16px" onclick="fn_faqDelete(this.form)" />
+				
+				<input type="hidden" name="f_no" value="${faqDto.f_no}" />
+				<input type="hidden" name="f_title" value="${faqDto.f_title}" />
+				<input type="hidden" name="f_content" value="${faqDto.f_content}" />
+			</form>
+		</div>
 	</div>
-	
+	<br/><br/>
 	<script type="text/javascript">
 		function fn_faqUpdatePage(f) {
 			f.action = 'faqUpdatePage.admin';
@@ -40,5 +56,6 @@
 			}
 		}
 	</script>
+<%@ include file="../template/footer.jsp" %>	
 </body>
 </html>

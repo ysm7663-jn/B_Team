@@ -1,25 +1,44 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="resources/style/common.css">
+<script type="text/javascript">
+	function fn_noticeUpdate(f){
+		if (confirm('수정하시겠습니까?')) {
+			f.action = 'noticeUpdate.admin';
+			f.submit();
+			}
+		}
+</script>
+<title></title>
+<style type="text/css">
+	body{
+	background: #F8EBEE;
+	}
+	#titlebox{
+		width: 400px;
+		height: 30px;
+		font-size: 16px;
+		margin-top: 10px;
+	}
+</style>
 </head>
 <body>
-	<h3>수정 페이지</h3>
-	
-	<form action="noticeUpdate.admin">
-		
-		${noticeDto.n_no}번 공지사항입니다.<br/><br/>
-		제목<br/>
-		<input type="text" name="title" value="${noticeDto.n_title}" /><br/><br/>
-		내용<br/>
-		<input type="text" name="content" value="${noticeDto.n_content}" /><br/><br/>
-		
-		<input type="hidden" name="no" value="${noticeDto.n_no}" />
-		<button>수정하기</button>
-		
-	</form>
+	<div style="width :1020px; height:555px; margin: 20px 0 0 100px; ">
+			<h1>공지사항 수정 페이지</h1><br/>
+			<h3>${noticeDto.n_title} 제목의 공지사항입니다.</h3><br/>
+			<form action="noticeUpdate.admin">
+				<span style="font-size: 20px">제목</span><br/>
+				<input type="text" id="titlebox" name="title" value="${noticeDto.n_title}" /><br/><br/>
+				<span style="font-size: 20px">내용</span><br/>
+				<textarea rows="4" cols="20" style="width:400px; height:200px; font-size:16px; margin-top:10px" name="content">${noticeDto.n_content}</textarea><br/><br/>
+				<input type="hidden" name="no" value="${noticeDto.n_no}" />
+				<input type="button" value="수정하기" onclick="fn_noticeUpdate(this.form)">
+			</form>
+	</div><br/><br/>
+<%@ include file="../template/footer.jsp" %>
 </body>
 </html>

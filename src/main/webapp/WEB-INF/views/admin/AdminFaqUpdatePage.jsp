@@ -4,22 +4,41 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" href="resources/style/common.css">
+<style type="text/css">
+	body{
+	background: #F8EBEE;
+	}
+	#titlebox{
+		width: 400px;
+		height: 30px;
+		font-size: 16px;
+		margin-top: 10px;
+	}
+</style>
+<script type="text/javascript">
+function fn_faqUpdate(f){
+	if (confirm('수정하시겠습니까?')) {
+		f.action = 'faqUpdate.admin';
+		f.submit();
+		}
+	}
+</script>
+<title>I</title>
 </head>
 <body>
-	<h3>수정 페이지</h3>
-	
-	<form action="faqUpdate.admin">
-		
-		${faqDto.n_no}번 FAQ입니다.<br/><br/>
-		제목<br/>
-		<input type="text" name="title" value="${faqDto.f_title}" /><br/><br/>
-		내용<br/>
-		<input type="text" name="content" value="${faqDto.f_content}" /><br/><br/>
-		
-		<input type="hidden" name="no" value="${faqDto.f_no}" />
-		<button>수정하기</button>
-		
-	</form>
+	<div style="width :1020px; height:555px; margin: 20px 0 0 100px; ">
+		<h1>FAQ 수정 페이지</h1><br/>
+		<h3>${faqDto.f_title} 제목의 FAQ입니다.</h3><br/>
+		<form action="faqUpdate.admin">
+			<span style="font-size: 20px">제목</span><br/>
+			<input type="text" id="titlebox" name="title" value="${faqDto.f_title}" /><br/><br/>
+			<span style="font-size: 20px">내용</span><br/>
+			<textarea rows="4" cols="20" style="width:400px; height:200px; font-size:16px; margin-top:10px" name="content">${faqDto.f_content}" /></textarea><br/><br/>
+			<input type="hidden" name="no" value="${faqDto.f_no}" />
+			<input type="button" value="수정하기" onclick="fn_faqUpdate(this.form)">
+		</form>
+	</div><br/><br/>
+<%@ include file="../template/footer.jsp" %>	
 </body>
 </html>

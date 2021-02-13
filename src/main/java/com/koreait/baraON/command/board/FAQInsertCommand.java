@@ -20,10 +20,11 @@ public class FAQInsertCommand implements NoticeCommand {
 		
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+		int f_category = Integer.parseInt(request.getParameter("f_category"));
 		
 		FAQDao faqDao = sqlSession.getMapper(FAQDao.class);
 		
-		int insertResult = faqDao.faqInsert(title, content);
+		int insertResult = faqDao.faqInsert(title, content, f_category);
 		
 		rttr.addAttribute("a", insertResult).addFlashAttribute("insertResult", insertResult);
 		
