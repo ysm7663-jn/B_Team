@@ -16,7 +16,7 @@ import com.koreait.baraON.dto.NoticeDto;
 
 public class AdminNoticeListCommand implements NoticeCommand {
 	
-	@Autowired
+	@Override
 	public void execute(SqlSession sqlSession, Model model){
 		
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);

@@ -15,13 +15,15 @@ import com.koreait.baraON.dto.NoticeDto;
 
 public class NoticeListCommand implements NoticeCommand {
 	
-	@Autowired
+	@Override
 	public void execute(SqlSession sqlSession, Model model){
 		
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		
+		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
+	
 		
 		int page = 1;
 		if(request.getParameter("page") != null) {

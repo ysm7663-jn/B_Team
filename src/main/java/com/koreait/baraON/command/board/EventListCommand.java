@@ -17,7 +17,7 @@ import com.koreait.baraON.dto.NoticeDto;
 
 public class EventListCommand implements NoticeCommand {
 	
-	@Autowired
+	@Override
 	public void execute(SqlSession sqlSession, Model model){
 		
 		EventDao eventDao = sqlSession.getMapper(EventDao.class);

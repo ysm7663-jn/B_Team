@@ -17,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.admin.AdminEventListCommand;
 import com.koreait.baraON.command.admin.AdminEventViewCommand;
+import com.koreait.baraON.command.admin.AdminFAQListCommand;
+import com.koreait.baraON.command.admin.AdminFAQViewCommand;
 import com.koreait.baraON.command.admin.AdminMemberCommand;
 import com.koreait.baraON.command.admin.AdminMemberDeleteCommand;
 import com.koreait.baraON.command.admin.AdminMemberListCommand;
@@ -57,9 +59,93 @@ public class AdminController {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private NoticeCommand noticeCommand;
-	private AdminMemberCommand adminMemberCommand;
+	private AdminNoticeListCommand adminNoticeListCommand;
+	private AdminNoticeViewCommand adminNoticeViewCommand;
+	private NoticeInsertCommand noticeInsertCommand;
+	private NoticeDeleteCommand noticeDeleteCommand;
+	private NoticeUpdateCommand noticeUpdateCommand;
+	private AdminFAQListCommand adminFaqListCommand;
+	private AdminFAQViewCommand adminFaqViewCommand;
+	private FAQInsertCommand faqInsertCommand;
+	private FAQDeleteCommand faqDeleteCommand;
+	private FAQUpdateCommand faqUpdateCommand;
+	private AdminEventListCommand adminEventListCommand;
+	private AdminEventViewCommand adminEventViewCommand;
+	private EventInsertCommand eventInsertCommand;
+	private EventDeleteCommand eventDeleteCommand;
+	private EventUpdateCommand eventUpdateCommand;
+	private AdminMemberListCommand adminMemberListCommand;
+	private AdminMemberViewCommand adminMemberViewCommand;
+	private AdminMemberDeleteCommand adminMemberDeleteCommand;
+	private AdminMemberUpdateCommand adminMemberUpdateCommand;
+	private AdminSellerListCommand adminSellerListCommand;
+	private AdminSellerViewCommand adminSellerViewCommand;
+	private AdminSellerDeleteCommand adminSellerDeleteCommand;
+	private AdminSellerUpdateCommand adminSellerUpdateCommand;
+	private AdminReplyListCommand adminReplyListCommand;
+	private AdminReplyDeleteCommand adminReplyDeleteCommand;
+	private AdminReviewListCommand adminReviewListCommand;
+	private AdminReviewDeleteCommand adminReviewDeleteCommand;
+
 	
+	@Autowired
+	public void setCommand(AdminNoticeListCommand adminNoticeListCommand,
+							AdminNoticeViewCommand adminNoticeViewCommand,
+							NoticeInsertCommand noticeInsertCommand,
+							NoticeDeleteCommand noticeDeleteCommand,
+							NoticeUpdateCommand noticeUpdateCommand,
+							AdminFAQListCommand adminFaqListCommand,
+							AdminFAQViewCommand adminFaqViewCommand,
+							FAQInsertCommand faqInsertCommand,
+							FAQDeleteCommand faqDeleteCommand,
+							FAQUpdateCommand faqUpdateCommand,
+							AdminEventListCommand adminEventListCommand,
+							AdminEventViewCommand adminEventViewCommand,
+							EventInsertCommand eventInsertCommand,
+							EventDeleteCommand eventDeleteCommand,
+							EventUpdateCommand eventUpdateCommand,
+							AdminMemberListCommand adminMemberListCommand,
+							AdminMemberViewCommand adminMemberViewCommand,
+							AdminMemberUpdateCommand adminMemberUpdateCommand,
+							AdminMemberDeleteCommand adminMemberDeleteCommand,
+							AdminSellerListCommand adminSellerListCommand,
+							AdminSellerViewCommand adminSellerViewCommand,
+							AdminSellerDeleteCommand adminSellerDeleteCommand,
+							AdminSellerUpdateCommand adminSellerUpdateCommand,
+							AdminReplyListCommand adminReplyListCommand,
+							AdminReplyDeleteCommand adminReplyDeleteCommand,
+							AdminReviewListCommand adminReviewListCommand,
+							AdminReviewDeleteCommand adminReviewDeleteCommand) {
+		this.adminNoticeListCommand = adminNoticeListCommand;
+		this.adminNoticeViewCommand = adminNoticeViewCommand;
+		this.noticeInsertCommand = noticeInsertCommand;
+		this.noticeDeleteCommand = noticeDeleteCommand;
+		this.noticeUpdateCommand = noticeUpdateCommand;
+		this.adminFaqListCommand = adminFaqListCommand;
+		this.adminFaqViewCommand = adminFaqViewCommand;
+		this.faqInsertCommand = faqInsertCommand;
+		this.faqDeleteCommand = faqDeleteCommand;
+		this.faqUpdateCommand = faqUpdateCommand;
+		this.adminEventListCommand = adminEventListCommand;
+		this.adminEventViewCommand = adminEventViewCommand;
+		this.eventInsertCommand = eventInsertCommand;
+		this.eventDeleteCommand = eventDeleteCommand;
+		this.eventUpdateCommand = eventUpdateCommand;
+		this.adminMemberListCommand = adminMemberListCommand;
+		this.adminMemberViewCommand = adminMemberViewCommand;
+		this.adminMemberDeleteCommand = adminMemberDeleteCommand;
+		this.adminMemberUpdateCommand = adminMemberUpdateCommand;
+		this.adminSellerListCommand = adminSellerListCommand;
+		this.adminSellerViewCommand = adminSellerViewCommand;
+		this.adminSellerDeleteCommand = adminSellerDeleteCommand;
+		this.adminSellerUpdateCommand = adminSellerUpdateCommand;
+		this.adminReplyListCommand = adminReplyListCommand;
+		this.adminReplyDeleteCommand = adminReplyDeleteCommand;
+		this.adminReviewListCommand = adminReviewListCommand;
+		this.adminReviewDeleteCommand  = adminReviewDeleteCommand;
+		
+	}
+			
 	
 	// 단순이동
 	@RequestMapping(value="admin", method=RequestMethod.GET)
@@ -117,15 +203,13 @@ public class AdminController {
 	@RequestMapping(value="adminNoticeListPage.admin",method=RequestMethod.GET)
 		public String noticeListPage(HttpServletRequest request, Model model){
 			model.addAttribute("request" , request);
-			noticeCommand = new AdminNoticeListCommand();
-			noticeCommand.execute(sqlSession, model);
+			adminNoticeListCommand.execute(sqlSession, model);
 			return "admin/AdminNoticeListPage";
 	}
 	@RequestMapping(value="noticeViewPage.admin",method=RequestMethod.GET)
 		public String noticeViewPage(HttpServletRequest request, Model model) {
 			model.addAttribute("request" , request);
-			noticeCommand = new AdminNoticeViewCommand();
-			noticeCommand.execute(sqlSession, model);
+			adminNoticeViewCommand.execute(sqlSession, model);
 			return "admin/AdminNoticeViewPage";
 	}
 	@RequestMapping(value="noticeInsert.admin" , method=RequestMethod.GET)
@@ -134,8 +218,7 @@ public class AdminController {
 										Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
-		noticeCommand = new NoticeInsertCommand();
-		noticeCommand.execute(sqlSession, model);
+		noticeInsertCommand.execute(sqlSession, model);
 		return "redirect:adminNoticeListPage.admin";
 	}
 	@RequestMapping(value="noticeDelete.admin" , method=RequestMethod.GET)
@@ -145,8 +228,7 @@ public class AdminController {
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
 		
-		noticeCommand = new NoticeDeleteCommand();
-		noticeCommand.execute(sqlSession, model);
+		noticeDeleteCommand.execute(sqlSession, model);
 		
 		return "redirect:adminNoticeListPage.admin";
 	}
@@ -157,23 +239,20 @@ public class AdminController {
 
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
-		noticeCommand = new NoticeUpdateCommand();
-		noticeCommand.execute(sqlSession, model);
+		noticeUpdateCommand.execute(sqlSession, model);
 		
 		return "redirect:noticeViewPage.admin?no=" + request.getParameter("no");
 	}
 	@RequestMapping(value="adminFaqListPage.admin" , method=RequestMethod.GET)
 		public String FAQListPage(HttpServletRequest request, Model model) {
 			model.addAttribute("request" , request);
-			noticeCommand = new FAQListCommand();
-			noticeCommand.execute(sqlSession, model);
+			adminFaqListCommand.execute(sqlSession, model);
 			return "admin/AdminFaqListPage";
 	}
 	@RequestMapping(value="faqViewPage.admin", method=RequestMethod.GET)
 		public String faqViewPage(HttpServletRequest request, Model model) {
 			model.addAttribute("request" , request);
-			noticeCommand = new FAQViewCommand();
-			noticeCommand.execute(sqlSession, model);
+			adminFaqViewCommand.execute(sqlSession, model);
 			return "admin/AdminFaqViewPage";
 	}
 	@RequestMapping(value="faqInsert.admin" , method=RequestMethod.GET)
@@ -183,8 +262,7 @@ public class AdminController {
 			
 			model.addAttribute("request", request);
 			model.addAttribute("rttr", rttr);
-			noticeCommand = new FAQInsertCommand();
-			noticeCommand.execute(sqlSession, model);
+			faqInsertCommand.execute(sqlSession, model);
 			return "redirect:adminFaqListPage.admin";
 	}
 	@RequestMapping(value="faqDelete.admin" , method=RequestMethod.GET)
@@ -194,8 +272,7 @@ public class AdminController {
 			
 			model.addAttribute("request", request);
 			model.addAttribute("rttr", rttr);
-			noticeCommand = new FAQDeleteCommand();
-			noticeCommand.execute(sqlSession, model);
+			faqDeleteCommand.execute(sqlSession, model);
 			return "redirect:adminFaqListPage.admin";
 	}
 	@RequestMapping(value="faqUpdate.admin", method=RequestMethod.GET)
@@ -205,22 +282,19 @@ public class AdminController {
 
 			model.addAttribute("request", request);
 			model.addAttribute("rttr", rttr);
-			noticeCommand = new FAQUpdateCommand();
-			noticeCommand.execute(sqlSession, model);
+			faqUpdateCommand.execute(sqlSession, model);
 			return "redirect:faqViewPage.admin?no=" + request.getParameter("no");
 	}
 	@RequestMapping(value="adminEventListPage.admin",method=RequestMethod.GET)
 	public String eventListPage(HttpServletRequest request, Model model){
 		model.addAttribute("request" , request);
-		noticeCommand = new AdminEventListCommand();
-		noticeCommand.execute(sqlSession, model);
+		adminEventListCommand.execute(sqlSession, model);
 		return "admin/AdminEventListPage";
 }
 	@RequestMapping(value="eventViewPage.admin",method=RequestMethod.GET)
 		public String eventViewPage(HttpServletRequest request, Model model) {
 			model.addAttribute("request" , request);
-			noticeCommand = new AdminEventViewCommand();
-			noticeCommand.execute(sqlSession, model);
+			adminEventViewCommand.execute(sqlSession, model);
 			return "admin/AdminEventViewPage";
 	}
 	@RequestMapping(value="eventInsert.admin" , method=RequestMethod.GET)
@@ -229,8 +303,7 @@ public class AdminController {
 										Model model) {
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
-		noticeCommand = new EventInsertCommand();
-		noticeCommand.execute(sqlSession, model);
+		eventInsertCommand.execute(sqlSession, model);
 		return "redirect:adminEventListPage.admin";
 	}
 	@RequestMapping(value="eventDelete.admin" , method=RequestMethod.GET)
@@ -240,8 +313,7 @@ public class AdminController {
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
 		
-		noticeCommand = new EventDeleteCommand();
-		noticeCommand.execute(sqlSession, model);
+		eventDeleteCommand.execute(sqlSession, model);
 		
 		return "redirect:adminEventListPage.admin";
 	}
@@ -252,8 +324,7 @@ public class AdminController {
 	
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
-		noticeCommand = new EventUpdateCommand();
-		noticeCommand.execute(sqlSession, model);
+		eventUpdateCommand.execute(sqlSession, model);
 		
 		return "redirect:eventViewPage.admin?no=" + request.getParameter("no");
 	}
@@ -265,8 +336,7 @@ public class AdminController {
 	@ResponseBody
 		public Map<String, Object> memberList(@RequestBody PageVo pageVo, Model model) {
 		model.addAttribute("page" , pageVo.getPage());
-		adminMemberCommand = new AdminMemberListCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminMemberListCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="member/{no}", method=RequestMethod.GET,
 	        		produces="application/json; charset=utf-8")
@@ -274,8 +344,7 @@ public class AdminController {
 		public Map<String, Object> memberView(@PathVariable("no") int no,
 		                              			Model model) {
 		model.addAttribute("no", no);
-		adminMemberCommand = new AdminMemberViewCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminMemberViewCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="member", method=RequestMethod.PUT,
 	            	produces="application/json; charset=utf-8")
@@ -285,8 +354,7 @@ public class AdminController {
 	if (adminMemberDto2 != null) {
 		model.addAttribute("adminMemberDto2", adminMemberDto2);
 	}
-		adminMemberCommand = new AdminMemberUpdateCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminMemberUpdateCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="member/{no}",method=RequestMethod.DELETE,
             		produces="application/json; charset=utf-8")
@@ -294,8 +362,7 @@ public class AdminController {
 		public Map<String, Object> memberDelete(@PathVariable("no") int no,
 												Model model) {
 		model.addAttribute("no", no);
-		adminMemberCommand = new AdminMemberDeleteCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminMemberDeleteCommand.execute(sqlSession, model);
 	}
 	// SELLER
 	@RequestMapping(value="seller", method=RequestMethod.POST,
@@ -303,8 +370,7 @@ public class AdminController {
 	@ResponseBody
 		public Map<String, Object> sellerList(@RequestBody PageVo pageVo, Model model) {
 		model.addAttribute("page" , pageVo.getPage());
-		adminMemberCommand = new AdminSellerListCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminSellerListCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="seller/{no}", method=RequestMethod.GET,
 	    			produces="application/json; charset=utf-8")
@@ -312,8 +378,7 @@ public class AdminController {
 	public Map<String, Object> sellerView(@PathVariable("no") int no,
 	                              			Model model) {
 		model.addAttribute("no", no);
-		adminMemberCommand = new AdminSellerViewCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminSellerViewCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="seller", method=RequestMethod.PUT,
 	        		produces="application/json; charset=utf-8")
@@ -323,8 +388,7 @@ public class AdminController {
 	if (adminSellerDto2 != null) {
 	model.addAttribute("adminSellerDto2", adminSellerDto2);
 	}
-	adminMemberCommand = new AdminSellerUpdateCommand();
-	return adminMemberCommand.execute(sqlSession, model);
+	return adminSellerUpdateCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="seller/{no}",method=RequestMethod.DELETE,
 	    			produces="application/json; charset=utf-8")
@@ -332,8 +396,7 @@ public class AdminController {
 	public Map<String, Object> sellerDelete(@PathVariable("no") int no,
 											Model model) {
 		model.addAttribute("no", no);
-		adminMemberCommand = new AdminSellerDeleteCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminSellerDeleteCommand.execute(sqlSession, model);
 	}
 	
 	
@@ -342,8 +405,7 @@ public class AdminController {
 			produces="application/json; charset=utf-8")
 	@ResponseBody
 		public Map<String, Object> replyList(Model model) {
-		adminMemberCommand = new AdminReplyListCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminReplyListCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="reply/{no}",method=RequestMethod.DELETE,
     				produces="application/json; charset=utf-8")
@@ -351,8 +413,7 @@ public class AdminController {
 		public Map<String, Object> replyDelete(@PathVariable("no") int no,
 												Model model) {
 		model.addAttribute("no", no);
-		adminMemberCommand = new AdminReplyDeleteCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminReplyDeleteCommand.execute(sqlSession, model);
 	}
 	
 	
@@ -361,8 +422,7 @@ public class AdminController {
 					produces="application/json; charset=utf-8")
 	@ResponseBody
 		public Map<String, Object> reviewList(Model model) {
-		adminMemberCommand = new AdminReviewListCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminReviewListCommand.execute(sqlSession, model);
 	}
 	@RequestMapping(value="review/{no}",method=RequestMethod.DELETE,
     				produces="application/json; charset=utf-8")
@@ -370,7 +430,6 @@ public class AdminController {
 		public Map<String, Object> reviewDelete(@PathVariable("no") int no,
 												Model model) {
 		model.addAttribute("no", no);
-		adminMemberCommand = new AdminReviewDeleteCommand();
-		return adminMemberCommand.execute(sqlSession, model);
+		return adminReviewDeleteCommand.execute(sqlSession, model);
 	}
 }

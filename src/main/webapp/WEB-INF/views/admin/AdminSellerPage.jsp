@@ -160,10 +160,10 @@
 			var pw = $('input:text[name="pw"]').val();
 			var phone = $('input:text[name="phone"]').val();
 			var sendObj = {
-					"no": no,
-					"name": name,
-					"pw": pw,
-					"phone" : phone
+					"s_no": no,
+					"s_name": name,
+					"s_pw": pw,
+					"s_phone" : phone
 				};
 			$.ajax({
 				url: 'seller',

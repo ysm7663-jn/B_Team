@@ -14,8 +14,8 @@
 <title></title>
 </head>
 <body>
-	<h1>자주묻는질문(FAQ) - 관리자모드</h1>
 	<div style="width :1020px; margin: 0 auto;">
+	<h1>자주묻는질문(FAQ) - 관리자모드</h1>
 		<div style="background:#3ED0C8; border-top: 1px solid black; border-bottom: 1px solid black">
 			<div style="width:600px; margin: 0 0 0 10px; font-weight: 800px; font-size: 24px;">	
 				${faqDto.f_title}

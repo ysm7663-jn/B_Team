@@ -184,10 +184,10 @@
 			var pw = $('input:text[name="pw"]').val();
 			var phone = $('input:text[name="phone"]').val();
 			var sendObj = {
-					"no": no,
-					"name": name,
-					"pw": pw,
-					"phone" : phone
+					"m_no": no,
+					"m_name": name,
+					"m_pw": pw,
+					"m_phone" : phone
 				};
 			$.ajax({
 				url: 'member',
