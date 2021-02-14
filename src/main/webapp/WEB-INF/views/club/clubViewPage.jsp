@@ -28,14 +28,15 @@
 			if (confirm('해당 클럽을 참여하시겠습니까?')) {
 				f.action = 'joinClub.club';
 				f.submit();
+			}
 		}
 			
 		function fn_chkOut(f) {
 			if (confirm('해당 클럽을 탈퇴하시겠습니까?')) {
 				f.action = 'chkOutClub.club';
 				f.submit();
+			}
 		}
-			
 			
 </script>
 
@@ -54,7 +55,17 @@
 	if (afterJoin) {
 		var joinResult = ${joinResult};
 		if (joinResult > 0) {
-			alert('가입되었습니다.');
+			alert('클럽에 가입되었습니다.');
+		} else {
+			alert('실패했습니다.');
+		}
+	}
+	
+	var afterChkOut = ${afterChkOut};
+	if (afterChkOut) {
+		var chkOutResult = ${chkOutResult};
+		if (chkOutResult > 0) {
+			alert('클럽을 탈퇴했습니다.');
 		} else {
 			alert('실패했습니다.');
 		}

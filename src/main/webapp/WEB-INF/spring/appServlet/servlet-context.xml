@@ -55,6 +55,7 @@
 	<beans:bean id="clubUpdateCommand" class="com.koreait.baraON.command.club.ClubUpdateCommand" />
 	<beans:bean id="clubDeleteCommand" class="com.koreait.baraON.command.club.ClubDeleteCommand" />
 	<beans:bean id="joinClubCommand" class="com.koreait.baraON.command.club.JoinClubCommand" />
+	<beans:bean id="chkOutClubCommand" class="com.koreait.baraON.command.club.ChkOutClubCommand" />
 
 	<!-- login -->
 

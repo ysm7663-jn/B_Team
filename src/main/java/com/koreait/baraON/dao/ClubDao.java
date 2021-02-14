@@ -20,4 +20,6 @@ public interface ClubDao {
 	public int clubUpdate(String c_title, int c_min, int c_max, String c_content, String c_startDate, String c_endDate, int c_no);
 	
 	public int joinClub(int c_no, int m_no);
+	
+	public int chkOutClub(int cl_no);
  }

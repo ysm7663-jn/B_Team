@@ -53,4 +53,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  VALUES (CLUBLIST_SEQ.NEXTVAL, #{param1}, #{param2}, 0)
 	</insert>
 	
+	<delete id="chkOutClub" parameterType="int">
+		DELETE 
+		  FROM CLUBLIST
+		 WHERE CL_NO = #{param1}
+	</delete>
+	
 </mapper>

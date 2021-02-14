@@ -118,4 +118,14 @@ public class ClubController {
 		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no");
 	}
 	
+	@RequestMapping(value="chkOutClub.club", method=RequestMethod.POST)
+	public String chkOutClub(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+		
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		clubDeleteCommand.execute(sqlSession, model);
+		
+		return "redirect:clubListPage.club";
+	}
+	
 }

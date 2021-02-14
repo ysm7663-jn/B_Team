@@ -20,9 +20,9 @@ public class JoinClubCommand implements ClubCommand {
 		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
-		
-		int c_no = Integer.parseInt(request.getParameter("c_no"));
-		int m_no = Integer.parseInt(request.getParameter("m_no"));
+
+		int	c_no = Integer.parseInt(request.getParameter("c_no"));
+		int	m_no = Integer.parseInt(request.getParameter("m_no"));
 
 		int joinResult = clubDao.joinClub(c_no, m_no);
 	
