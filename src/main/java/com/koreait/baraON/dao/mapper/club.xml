@@ -47,4 +47,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE C_NO = #{param7}
 	</update>
 	
+	<insert id="joinClub">
+		INSERT 
+		  INTO CLUBLIST (CL_NO, C_NO, M_NO, CL_CARD)
+		  VALUES (CLUBLIST_SEQ.NEXTVAL, #{param1}, #{param2}, 0)
+	</insert>
+	
 </mapper>

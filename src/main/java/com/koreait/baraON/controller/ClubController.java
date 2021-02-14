@@ -16,6 +16,7 @@ import com.koreait.baraON.command.club.ClubInsertCommand;
 import com.koreait.baraON.command.club.ClubListCommand;
 import com.koreait.baraON.command.club.ClubUpdateCommand;
 import com.koreait.baraON.command.club.ClubViewCommand;
+import com.koreait.baraON.command.club.JoinClubCommand;
 import com.koreait.baraON.dto.ClubDto;
 
 @Controller
@@ -29,19 +30,23 @@ public class ClubController {
 	private ClubViewCommand clubViewCommand;
 	private ClubDeleteCommand clubDeleteCommand;
 	private ClubUpdateCommand clubUpdateCommand;
+	private JoinClubCommand joinClubCommand;
 	
 	@Autowired
 	public void setCommand(ClubListCommand clubListCommand,
 						   ClubInsertCommand clubInsertCommand,
 						   ClubViewCommand clubViewCommand,
 						   ClubDeleteCommand clubDeleteCommand,
-						   ClubUpdateCommand clubUpdateCommand
+						   ClubUpdateCommand clubUpdateCommand,
+						   JoinClubCommand joinClubCommand
 						  ) {
 		this.clubListCommand = clubListCommand;
 		this.clubInsertCommand = clubInsertCommand;
 		this.clubViewCommand = clubViewCommand;
 		this.clubDeleteCommand = clubDeleteCommand;
 		this.clubUpdateCommand = clubUpdateCommand;
+		this.joinClubCommand = joinClubCommand;
+		
 	}
 
 	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
@@ -93,9 +98,7 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value="clubUpdate.club", method=RequestMethod.POST)
-	public String simpleUpdate(HttpServletRequest request,
-			                   RedirectAttributes rttr,
-			                   Model model) {
+	public String simpleUpdate(HttpServletRequest request, RedirectAttributes rttr, Model model) {
 
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
@@ -104,6 +107,15 @@ public class ClubController {
 		
 		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no") + "&m_no=" + request.getParameter("m_no");
 		
+	}
+	
+	@RequestMapping(value="joinClub.club", method=RequestMethod.POST)
+	public String joinClub(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+		
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		joinClubCommand.execute(sqlSession, model);
+		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no");
 	}
 	
 }

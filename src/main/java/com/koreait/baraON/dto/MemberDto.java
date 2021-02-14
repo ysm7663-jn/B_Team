@@ -20,5 +20,4 @@ public class MemberDto {
 	private String m_email;
 	private Date m_regDate;
 	private int m_agreement;
-	private String m_enjoy;
 }

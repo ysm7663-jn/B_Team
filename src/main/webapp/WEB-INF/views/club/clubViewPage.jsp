@@ -9,38 +9,6 @@
 <link rel="stylesheet" href="resources/style/common.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
-<script>
-/* 	$(function() {
-		$('#btn1').click(function() {
-			$(this).val('탈퇴하기');
-			var m_enjoy = $('input[name=m_enjoy]').val();
-			var m_no = $('input[name=m_no]').val();
-			
-			var send = {"m_enjoy": m_enjoy, "m_no": m_no};
-			
-			$.ajax({
-				url: 'updateStat.club',
-				type: 'put',
-				data: send,
-				dataType: 'json',
-				success: function(responseJson) {
-					if(responseJson.updateResult == 1) {
-						alert('성공');
-						$('#btn1').val('참여하기');
-					} else {
-						alert('실패실패');
-					}
-				},
-				error: function() {
-					alert('실패');
-				}
-			});
-			
-			
-			});
-		}); */
-</script>
-
 <script type="text/javascript">
 		function fn_delete(f) {
 			if (confirm('정말 클럽을 해제하시겠습니까?')) {
@@ -55,6 +23,20 @@
 				f.submit();
 			}
 		}
+		
+		function fn_joinClub(f) {
+			if (confirm('해당 클럽을 참여하시겠습니까?')) {
+				f.action = 'joinClub.club';
+				f.submit();
+		}
+			
+		function fn_chkOut(f) {
+			if (confirm('해당 클럽을 탈퇴하시겠습니까?')) {
+				f.action = 'chkOutClub.club';
+				f.submit();
+		}
+			
+			
 </script>
 
  <script>
@@ -67,6 +49,17 @@
 			alert('실패했습니다.');
 		}
 	} 
+	
+	var afterJoin = ${afterJoin};
+	if (afterJoin) {
+		var joinResult = ${joinResult};
+		if (joinResult > 0) {
+			alert('가입되었습니다.');
+		} else {
+			alert('실패했습니다.');
+		}
+	} 
+	
 </script>
 
 <form method="post">
@@ -93,12 +86,12 @@
 				</div>
 
 				<div class="side_content">
-					<c:if test="${empty clubListDto.cl_no}">
-						<input type="button" value="참여하기" id="btn1"/>
+					<c:if test="${clubListDto.m_no ne loginDto.m_no}">
+						<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)" />
 					</c:if>
 					
-					<c:if test="${not empty clubListDto.cl_no}">
-						<input type="button" value="탈퇴하기" id="btn1" />
+					<c:if test="${clubListDto.m_no eq loginDto.m_no}">
+						<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/>
 					</c:if>
 					
 				</div>
@@ -122,6 +115,7 @@
 
 				<%-- hidden --%>
 				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+				<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 				<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
 				<input type="hidden" name="c_title" value="${clubDto.c_title}" />
 				<input type="hidden" name="c_min" value="${clubDto.c_min}" />
