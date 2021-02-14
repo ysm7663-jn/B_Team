@@ -19,7 +19,7 @@ public class Paging1 {
 		int beginPage = 0;		
 		int endPage = 0;		
 		beginPage = ((page - 1) / pagePerBlock) * pagePerBlock + 1;
-		endPage = beginPage + pagePerBlock - 1;
+		endPage = beginPage + pagePerBlock + f_category - 1;
 		endPage = endPage < totalPage ? endPage : totalPage;
 		
 		

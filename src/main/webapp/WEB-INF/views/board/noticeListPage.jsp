@@ -64,6 +64,10 @@
 				</div>
 			</section>		
 		</div>
+		<div>
+				<a href="noticeListPage.notice">공지사항(NOTICE)</a>
+				<a href="eventListPage.event">이벤트(NOTICE)</a>
+		</div>
 <%@ include file="../template/footer.jsp" %>		
 </body>
 </html>

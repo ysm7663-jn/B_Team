@@ -21,17 +21,17 @@ $(document).ready(function(){
 	}
 	function fn_payList() {
 	$('#payBtn').click(function(){
-		location.href = 'adminFaqListPage.admin?f_category=${faqDto.f_category}' + 2;  // location은 get 방식의 요청이고, 별도 파라미터를 가지고 가지 않기 때문에 ?로 직접 파라미터를 추가해서 보내줘야 합니다. 컨트롤러는 request에 f_category가 저장되어 있다고 보면 됩니다. 
+		location.href = 'adminFaqListPage.admin?f_category=2';  // location은 get 방식의 요청이고, 별도 파라미터를 가지고 가지 않기 때문에 ?로 직접 파라미터를 추가해서 보내줘야 합니다. 컨트롤러는 request에 f_category가 저장되어 있다고 보면 됩니다. 
 	});
 	}
 	function fn_accountList(){
 	$('#accountBtn').click(function(){
-		location.href = 'adminFaqListPage.admin?f_category=${faqDto.f_category}' + 3; 
+		location.href = 'adminFaqListPage.admin?f_category=3'; 
 	});
 	}
 	function fn_usingList(){
 	$('#usingBtn').click(function(){
-		location.href = 'adminFaqListPage.admin?f_category=${faqDto.f_category}' + 4; 
+		location.href = 'adminFaqListPage.admin?f_category=4'; 
 	});
 	}
 </script>

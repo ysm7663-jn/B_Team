@@ -26,7 +26,7 @@
 				<nav id="right_head">
 					<div><a href="">로그인</a></div>
 					<div><a href="">회원가입</a></div>
-					<div><a href="">FAQ</a></div>
+					<div><a href="faqListPage.faq">FAQ</a></div>
 				</nav>
 			</div>
 		</div>	<!-- end : header-wrap -->
@@ -37,7 +37,7 @@
 					<div><a href="">정기 활동</a></div>
 					<div><a href="">번개 활동</a></div>
 					<div><a href="">장소 공유</a></div>
-					<div><a href="">공지사항&이벤트</a></div>
+					<div><a href="noticeListPage.notice">공지사항&이벤트</a></div>
 				</nav>
 			</div>
 		
