@@ -32,7 +32,7 @@
 		<div class="head-wrap">
 			<div class="left_head_wrap">
 					<a href="index">
-						<img alt="로고사진" src="">
+						<img alt="로고사진" src="resources/images/logo.png">
 					</a>
 			</div>
 			
