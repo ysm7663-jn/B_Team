@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.myPage.ClubCountCommand;
 import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
+import com.koreait.baraON.command.myPage.ClubManageDetailCommand;
 import com.koreait.baraON.command.myPage.ClubManageListCommand;
 import com.koreait.baraON.command.myPage.InfoDeleteCommand;
 import com.koreait.baraON.command.myPage.InstantClubCommand;
@@ -36,6 +37,7 @@ public class MyPageController {
 	private InfoDeleteCommand infoDeleteCommand;
 	private ClubManageListCommand clubManageListCommand;
 	private ClubCountCommand clubCountCommand;
+	private ClubManageDetailCommand clubManageDetailCommand;
 	
 	@Autowired
 	public void setCommand(WishListCommand wishListCommand,
@@ -45,7 +47,8 @@ public class MyPageController {
 							 ClubListDeleteCommand clubListDeleteCommand,
 							 InfoDeleteCommand InfoDeleteCommand,
 							 ClubManageListCommand clubManageListCommand,
-							 ClubCountCommand clubCountCommand) {
+							 ClubCountCommand clubCountCommand,
+							 ClubManageDetailCommand clubManageDetailCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
 		this.regularClubCommand = regularClubCommand;
@@ -55,6 +58,7 @@ public class MyPageController {
 		this.clubManageListCommand = clubManageListCommand;
 		this.clubManageListCommand = clubManageListCommand;
 		this.clubCountCommand = clubCountCommand;
+		this.clubManageDetailCommand = clubManageDetailCommand;
 	}
 	
 	@RequestMapping(value="profile.myPage", method=RequestMethod.GET)
@@ -129,7 +133,9 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="clubManageDetailPage.myPage", method=RequestMethod.POST)
-	public String clubManageDetailPage(HttpServletRequest request) {
+	public String clubManageDetailPage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		clubManageDetailCommand.execute(sqlSession, model);
 		return "myPage/clubManageDetailPage";
 	}
 	

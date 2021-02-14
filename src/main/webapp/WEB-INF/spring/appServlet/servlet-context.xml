@@ -104,6 +104,7 @@
 	<beans:bean id="infoDeleteCommand" class="com.koreait.baraON.command.myPage.InfoDeleteCommand" />	
 	<beans:bean id="clubManageListCommand" class="com.koreait.baraON.command.myPage.ClubManageListCommand" />	
 	<beans:bean id="clubCountCommand" class="com.koreait.baraON.command.myPage.ClubCountCommand" />	
+	<beans:bean id="clubManageDetailCommand" class="com.koreait.baraON.command.myPage.ClubManageDetailCommand" />	
 	
 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
 		<beans:property name="host" value="smtp.gmail.com"/>
