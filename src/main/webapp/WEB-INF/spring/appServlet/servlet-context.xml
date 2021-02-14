@@ -21,6 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- index command -->
+	<beans:bean id="indexCommand" class="com.koreait.baraON.command.IndexCommand" />
+	
 	<!-- place command -->
 	<beans:bean id="placeListCommand" class="com.koreait.baraON.command.place.PlaceListCommand" />
 	<beans:bean id="placeViewCommand" class="com.koreait.baraON.command.place.PlaceViewCommand" />
