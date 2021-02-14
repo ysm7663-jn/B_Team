@@ -20,4 +20,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE RES_NO=#{res_no}
 	</update>
 	
+	<!-- seller에서 쓰는중 -->
+	<select id="reservationList" resultType="com.koreait.baraON.dto.ReservationDto">
+		SELECT B.*
+		  FROM (SELECT A.*, ROWNUM AS RN 
+		          FROM (SELECT *
+			              FROM RESERVATION
+			          ORDER BY RES_NO DESC) A) B
+	     WHERE B.RN BETWEEN #{param1} AND #{param2}
+	</select>
+	
+	<select id="reservationCount" resultType="int">
+		SELECT COUNT(*)
+		FROM RESERVATION
+	</select>
+	
+	<update id="stateChange" parameterType="com.koreait.baraON.dto.ReservationDto">
+		UPDATE RESERVATION
+		SET RES_STATE=2
+		WHERE RES_NO=#{res_no}
+	</update>
+	
 </mapper>

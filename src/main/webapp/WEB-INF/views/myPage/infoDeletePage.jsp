@@ -40,7 +40,7 @@
 			</div>
 		</form>
 	</div>
-</div>
+
 
 
 <%@ include file="../template/footer.jsp" %>

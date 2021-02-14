@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.baraON.command.member.EmailAuthCommand2;
+import com.koreait.baraON.command.member.MemberDeleteCommand;
 import com.koreait.baraON.command.member.MemberInsertCommand;
 import com.koreait.baraON.command.member.MemberJoin2Command;
 import com.koreait.baraON.command.member.MemberNickSearchCommand;
@@ -24,7 +25,6 @@ import com.koreait.baraON.command.member.MemberPwSearchCommand;
 import com.koreait.baraON.command.member.MemberPwUpdateCommand;
 import com.koreait.baraON.command.member.MemberSearchCommand;
 import com.koreait.baraON.command.member.MemberUpdateCommand;
-import com.koreait.baraON.command.member.MemberViewCommand;
 import com.koreait.baraON.dto.MemberDto2;
 
 @Controller
@@ -76,13 +76,17 @@ public class MemberController2 {
 	public String index() {
 		return "index";
 	}
+	@RequestMapping(value="memberJoin3.member" ,method=RequestMethod.GET)
+	public String memberJoin3() {
+		return "member/memberJoin3";
+	}
 	
 	@RequestMapping(value="memberJoin.member" ,method=RequestMethod.GET)
 	public String memberJoin() {
 		return "member/memberJoin";
 	}
 	
-	@RequestMapping(value="memberJoin2.member" ,method=RequestMethod.GET)
+	@RequestMapping(value="memberJoin2.member" ,method=RequestMethod.POST)
 	public String memberJoin2() {
 		return "member/memberJoin2";
 	}
@@ -167,8 +171,6 @@ public class MemberController2 {
 		return memberNickUpdateCommand.execute(sqlSession, model);
 	}
 	
-	
-	
 	@RequestMapping(value="memberUpdate.member",
 					method=RequestMethod.POST,
 					produces="application/json; charset=utf-8")
@@ -180,7 +182,6 @@ public class MemberController2 {
 		}
 		return memberUpdateCommand.execute(sqlSession, model);
 	}
-	
 	
 	
 }
