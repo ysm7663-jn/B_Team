@@ -22,7 +22,7 @@
 	line-height: 50px;
 }
 .category>a:hover{
-	background: lightgray;
+	background: rgba(95, 158, 160, 0.8);
 }
 
 h1, h3{
@@ -45,14 +45,14 @@ a#insert-btn{
 	border: 0 solid black;
 	border-radius: 10px;
 	padding: 10px 0;
-	background : rgba(216,191,216, 0.8);
+	background : rgba(95, 158, 160, 0.8);
 	cursor: pointer;
 	margin: 5px 0;
 	font-size: 12px;
 	text-align: center;
 }
 a#insert-btn:hover{
-	background: rgba(216,191,216, 1);
+	background: rgba(95, 158, 160, 1);
 }
 .place-list-wrap{
 	width : 100%;

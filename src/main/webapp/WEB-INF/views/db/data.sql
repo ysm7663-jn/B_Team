@@ -31,13 +31,6 @@ DROP TABLE PLACECATEGORY;
 DROP TABLE CLUB;
 DROP TABLE MEMBER;
 
-select * from member;
-select * from place;
-select * from placeoption;
-select * from review
-update review set rv_postdate where 
-update place set p_img = '["P_IMG01.jpg", "P_IMG02.jpg", "P_IMG03.jpg"]' where p_no=7;
-
 -- MEMBER Table Create SQL
 CREATE TABLE MEMBER
 (
@@ -137,14 +130,14 @@ CREATE TABLE PLACE
     P_NAME          VARCHAR2(50)      NOT NULL, 
     P_DESC          VARCHAR2(300)     NOT NULL, 
     P_CONTENT       VARCHAR2(4000)    NOT NULL, 
-    P_INFO          VARCHAR2(1000)    NOT NULL, 
+    P_INFO          VARCHAR2(2000)    NOT NULL, 
     P_ADDR          VARCHAR2(200)     NOT NULL, 
     P_BNAME         VARCHAR2(20)      NOT NULL, 
     P_ADDRDETAIL    VARCHAR2(100)     NULL, 
     P_IMG           VARCHAR2(1000)    NOT NULL, 
     P_CONFIRM       VARCHAR2(40)      NOT NULL, 
     P_URL           VARCHAR2(100)     NULL, 
-    P_REMARK        VARCHAR2(1000)    NOT NULL, 
+    P_REMARK        VARCHAR2(2000)    NOT NULL, 
     P_DELETE        NUMBER            NOT NULL,
     CONSTRAINT FK_S_P FOREIGN KEY (S_NO) REFERENCES SELLER(S_NO) ON DELETE SET NULL,
     CONSTRAINT FK_PC_P FOREIGN KEY (PC_NO) REFERENCES PLACECATEGORY(PC_NO) ON DELETE SET NULL

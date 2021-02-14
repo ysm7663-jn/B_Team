@@ -1,15 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="../template/header.jsp" >
 	<jsp:param value="BaraON :: 예약" name="title"/>
 </jsp:include>
 
 <script type="text/javascript" src="resources/js/reserve.js" ></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<link rel="stylesheet" href="resources/style/reservation/reservation-insert.css" />
 <script>
+	let remarkList = JSON.parse('${placeDto.p_remark}');
+	let facilityList = JSON.parse('${placeOptionDto.po_fxility}');
+	function fn_facilityList(list, appendTo){
+		$.each(list, function(idx, facility){
+			let strHtml = '<div class="facility">'+facility+'</div>';
+			$(appendTo).append(strHtml);
+		});
+	}
+	function fn_remarkList(list, appendTo){
+		$.each(list, function(idx, remark){
+			let strHtml = '<li class="remark">'+remark+'</li>';
+			$(appendTo).append(strHtml);
+		});
+	}
 	let isProgress=false;
 	$(function(){
+		fn_facilityList(facilityList, '#facility-list');
+		fn_remarkList(remarkList, '#remark-list');
 		$("#res-update").click(function() {
 			if(isProgress){
 				return;
@@ -40,7 +58,7 @@
 				'vbank':가상계좌,
 				'phone':휴대폰소액결제
 				 */
-				merchant_uid : '${reservationDto.res_no},
+				merchant_uid : '${reservationDto.res_no}'+ new Date().getTime(),
 				/*
 				merchant_uid에 경우
 				https://docs.iamport.kr/implementation/payment
@@ -50,7 +68,7 @@
 				amount : $('[name="res_price"]').val(),
 				buyer_email : $('[name="res_email"]').val(),
 				buyer_name : $('[name="res_name"]').val(),
-				buyer_tel : $('[name="res_phone"]').val(),
+				buyer_tel : $('[name="res_phone"]').val()
 			}, function(rsp) {
 				console.log(rsp);
 				if (rsp.success) {
@@ -60,7 +78,8 @@
 							'res_price' : rsp.paid_amount,
 							'res_applynum' : rsp.apply_num,
 							'res_purpose' : $('[name="res_purpose"]').val(),
-							'res_requirement' : $('[name="requirement"]').val()
+							'res_requirement' : $('[name="requirement"]').val(),
+							'res_impid' : rsp.imp_uid
 					};
 					$.ajax({
 						url:'reservationUpdate.reservation',
@@ -95,7 +114,6 @@
 		
 	})
 </script>
-<!-- <link rel="stylesheet" href="resorces/style/reserve.css" /> -->
 
 <div>
 	<form method="post" id="res-form">
@@ -103,8 +121,26 @@
 		<article class="res-insert-list">
 			<div class="subtitle">예약 공간</div>
 			<div class="sub-content">
-				
-				
+				<div class="place-detail">
+					<h4>${placeDto.p_title}</h4>
+					<span>${placeDto.p_desc}</span>
+					<div class="option-img-box">
+						<img alt="${placeOptionDto.po_name}" src="resources/images/PlaceOptionImages/${placeOptionDto.po_img}" />
+					</div>
+				</div>
+				<ul class="option-detail">
+					<li>
+						<span>카테고리</span>
+						<span># ${category}</span>
+					</li>
+					<li>
+						<span>예약인원</span>
+						<span>최소 ${placeOptionDto.po_min}명 ~ 최대 ${placeOptionDto.po_max}명</span>
+					</li>
+				</ul>
+				<div id="facility-list">
+					
+				</div>
 			</div>
 		</article>
 		<article class="res-insert-list">
@@ -120,14 +156,15 @@
 						<input type="text" name="res_phone" value="${memberDto.m_phone}" />
 					</li>
 					<li>
-						이메일<input type="text" name="res_email" value="${memberDto.m_email}" />
+						이메일<br/>
+						<input type="text" name="res_email" value="${memberDto.m_email}" />
 					</li>
 					<li>
 						사용목적<span class="required-data">필수사항</span><br/>
 						<input type="text" name="res_purpose" />
 					</li>
 					<li>
-						요구사항 
+						요구사항<br/>
 						<textarea rows="5" cols="50" name="requirement"></textarea>
 					</li>
 				</ul>
@@ -170,7 +207,9 @@
 		<article class="res-insert-list">
 			<div class="subtitle">예약시 주의사항</div>
 			<div class="sub-content">
-				
+				<ol id="remark-list">
+					
+				</ol>
 			</div>
 		</article>
 		<article class="res-insert-list">
@@ -185,16 +224,16 @@
 			<div class="subtitle">결제 예정금액</div>
 			<div class="sub-content">
 				<strong>예약날짜</strong><br/>
-				<span class="res-data">${reservationDto.res_date}</span>
-				<strong>예약인원</strong>
-				<span class="res-data">${reservationDto.res_people}</span>
-				<div class="res-date" id="res-price">
+				<span class="res-data">${reservationDto.res_date}</span><br/>
+				<strong>예약인원</strong><br/>
+				<span class="res-data">${reservationDto.res_people}</span><br/>
+				<div class="res-data" id="res-price">
 					<c:if test="${isWeekend}">
-						${placeOptionDto.po_holiday}
+						<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${placeOptionDto.po_holiday}" /> 
 						<input type="hidden" name="res_price" value="${placeOptionDto.po_holiday}" />
 					</c:if>
 					<c:if test="${not isWeekend}">
-						${placeOptionDto.po_dayPrice}
+						<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${placeOptionDto.po_dayPrice}" />
 						<input type="hidden" name="res_price" value="${placeOptionDto.po_dayPrice}" />
 					</c:if>
 				</div>
