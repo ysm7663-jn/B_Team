@@ -15,7 +15,7 @@ public class ReservationDto {
 	private int po_no;					// 옵션번호
 	private Date res_date;				// 예약날짜
 	private int res_people;			// 예약인원
-	private String res_state;				// 예약상태 0 = 결제대기, 1 = 결제완료&예약대기, 2 = 예약완료, 3 = 사용완료
+	private String res_state;			// 예약상태 = {결제대기, 예약대기, 예약완료, 사용완료}
 	private String res_email;			// 예약자메일
 	private int res_price;				// 결제금액
 	private int res_applynum;			// 카드승인번호

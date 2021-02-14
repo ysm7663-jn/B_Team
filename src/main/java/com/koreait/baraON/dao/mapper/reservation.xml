@@ -11,12 +11,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		</selectKey>
 		INSERT INTO
 		RESERVATION (RES_NO, M_NO, PO_NO, RES_DATE, RES_PEOPLE, RES_STATE)
-		VALUES (#{res_no}, #{m_no}, #{po_no}, #{res_date}, #{res_people}, 0)
+		VALUES (#{res_no}, #{m_no}, #{po_no}, #{res_date}, #{res_people}, '결제대기')
 	</insert>
 	
 	<update id="reserveUpdate" parameterType="com.koreait.baraON.dto.ReservationDto">
 		UPDATE RESERVATION
-		SET RES_EMAIL=#{res_email}, RES_PRICE=#{res_price}, RES_APPLYNUM=#{res_applynum}, RES_PURPOSE=#{res_purpose}, RES_REQUIREMENT=#{res_requirement}, RES_STATE=1
+		SET RES_EMAIL=#{res_email}, RES_PRICE=#{res_price}, RES_APPLYNUM=#{res_applynum}, RES_PURPOSE=#{res_purpose}, RES_REQUIREMENT=#{res_requirement}, RES_STATE='예약대기'
 		WHERE RES_NO=#{res_no}
 	</update>
 	

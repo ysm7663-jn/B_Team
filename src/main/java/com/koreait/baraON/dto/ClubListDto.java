@@ -10,11 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ClubListDto {
-	private String m_nick;
 	private int cl_no;
+	private String m_nick;
 	private String c_title;		
 	private String c_content;		
-	private Date c_startDate;	
 	private String c_mainimg;
+	private Date c_startDate;
+	private Date c_endDate;
+	private int c_min;
+	private int c_max;
 	private int cl_card;
 }

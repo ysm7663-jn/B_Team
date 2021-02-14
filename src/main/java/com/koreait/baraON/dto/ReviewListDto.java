@@ -1,6 +1,7 @@
 package com.koreait.baraON.dto;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,8 +18,8 @@ public class ReviewListDto {
 	private int rv_delete;
 	private int rv_star;
 	private String rv_img;
-	private Date rv_postDate;
-	private Date rv_modifyDate;
+	private Timestamp rv_postDate;
+	private Timestamp rv_modifyDate;
 	// 작성일 필요할거같다.
 	
 	// view page에서 쓰기 위해 추가한 필드

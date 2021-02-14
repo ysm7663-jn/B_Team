@@ -65,16 +65,15 @@ INSERT INTO PLACECATEGORY (PC_NO, PC_NAME) VALUES (19, '야외시설');
 INSERT INTO PLACECATEGORY (PC_NO, PC_NAME) VALUES (20, '할인');
 
 -- PLACE
-INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE) VALUES (01, 01, 01, '음공 스튜디오 앤 키친', '음공 스튜디오&키친', '음공은 천천히 머물다가는 따뜻한 공간입니다.', 'P_CONTENT 01', 'P_INFO 01', '서울특별시 마포구 연남동 224-6', '연남동', '1층 음공 스튜디오&키친', '["P_IMG01.jpg"]', 1, 'P_URL 01', '["주의1","주의2","주의3"]', 0);
-
+INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE) VALUES (01, 01, 01, '음공 스튜디오 앤 키친', '음공 스튜디오&키친', '음공은 천천히 머물다가는 따뜻한 공간입니다.', 'P_CONTENT1', '["시설안내입니다.1","시설안내입니다.2"]', '서울특별시 마포구 연남동 224-6', '연남동', '1층 음공 스튜디오&키친', '["P_IMG01.jpg"]', 1, 'P_URL 01', '["주의1","주의2","주의3"]', 0);
 -- PLACEOPTION
-INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (01, 01, '음공 스튜디오 키친01', 2, 15, 40000, 50000, 'PO_IMG101.jpg', '["tv", "주류반입가능", "마이크"]');
-INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (02, 01, '음공 스튜디오 키친02', 2, 15, 40000, 50000, 'PO_IMG201.jpg', '["의자/테이블","탈의실","전신거울","음식물 반입가능"]');
-INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (03, 01, '음공 스튜디오 키친03', 2, 15, 40000, 50000, 'PO_IMG301.jpg', '["내부화장실","금연","PC/노트북","WIFI"]' );
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (01, 01, '음공 스튜디오 키친01', 2, 15, 40000, 50000, 'PO_IMG101.jpg', '[tv, 주류반입가능, 마이크]');
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (02, 01, '음공 스튜디오 키친02', 2, 15, 40000, 50000, 'PO_IMG201.jpg', '[의자/테이블,탈의실,전신거울,음식물 반입가능]');
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (03, 01, '음공 스튜디오 키친03', 2, 15, 40000, 50000, 'PO_IMG301.jpg', '[내부화장실,금연,PC/노트북,WIFI]' );
 
 select * from place
 select * from placeoption
-delete from place where p_no in (3 , 4);
+delete from placeoption where p_no =1;
 
 update place set p_confirm = 1 where p_no=5;
 update place set p_info = '["시설안내입니다.1","시설안내입니다.2"]', p_remark= '["주의사항입니다."]' where p_no=5;

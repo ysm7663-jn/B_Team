@@ -23,7 +23,7 @@
 			$('#result').text('이미지가 첨부되지 않은 항목이 있습니다.');
 		} else if('${insertResult}'==-3) {
 			$('#result').text('첨부되지 않은 세부공간이 있습니다. 공간관리에서 확인해주세요');
-		} else {
+		} else if('${insertResult}'==1){
 			$('#result').text('등록 완료!');
 			fn_btnUrl('#view-btn', 'placeViewPage.place?no=${currPNo}');
 		}

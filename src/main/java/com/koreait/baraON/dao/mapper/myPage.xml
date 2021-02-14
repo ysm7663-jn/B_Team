@@ -17,22 +17,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE W_NO = #{param1}
 	</delete>
 	<select id="clubList" parameterType="int" resultType="com.koreait.baraON.dto.ClubListDto">
-		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, CL.CL_CARD, M.M_NICK
+		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.C_MIN, C.C_MAX, CL.CL_CARD, M.M_NICK
 			FROM CLUBLIST CL JOIN CLUB C ON CL.C_NO = C.C_NO
 				JOIN MEMBER M ON M.M_NO = C.M_NO
 			WHERE CL.M_NO = #{param1}
-	 		AND C.C_PART = #{param2}
-	 		AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-	 		AND C.C_DELETE = 0
+	 			AND C.C_PART = #{param2}
+	 			AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	 			AND C.C_DELETE = 0
 	</select>
 	<select id="lastClubList" parameterType="int" resultType="com.koreait.baraON.dto.ClubListDto">
-		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, CL.CL_CARD, M.M_NICK
+		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.C_MIN, C.C_MAX, CL.CL_CARD, M.M_NICK
 			FROM CLUBLIST CL JOIN CLUB C ON CL.C_NO = C.C_NO
 				JOIN MEMBER M ON M.M_NO = C.M_NO
 			WHERE CL.M_NO = #{param1}
-	 		AND C.C_PART = #{param2}
-	 		AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') &lt; TO_CHAR(SYSDATE, 'YYYY-MM-DD')
-	 		AND C.C_DELETE = 0
+	 			AND C.C_PART = #{param2}
+	 			AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') &lt; TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	<delete id="clubListDelete" parameterType="int">
 		DELETE
@@ -43,18 +42,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT COUNT(*)
 			FROM CLUB C JOIN MEMBER M
 		  ON C.M_NO = M.M_NO
-		 WHERE 
-		 	C.C_DELETE = 0 AND
-		 	C.M_NO = #{param1} AND
-		 	TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		 WHERE C.C_DELETE = 0 
+		 	AND C.M_NO = #{param1}
+		 	AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	<select id="canMemberDelete2" resultType="int">
 		SELECT COUNT(*)
 			FROM RESERVATION R JOIN MEMBER M
 		  ON R.M_NO = M.M_NO
-		 WHERE 
-		 	R.M_NO = #{param1} AND
-		 	TO_CHAR(R.RES_DATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		 WHERE R.M_NO = #{param1} 
+		 	AND TO_CHAR(R.RES_DATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	<delete id="infoMemberDelete1" parameterType="int">
 		DELETE
@@ -87,4 +84,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			SET P_DELETE = 1
 		 WHERE S_NO = #{param1}
 	</update>
+	<select id="clubCount" parameterType="int" resultType="int">
+		SELECT COUNT(*)
+			FROM CLUB C JOIN CLUBLIST CL
+		  ON C.C_NO = CL.C_NO
+		 WHERE CL.C_NO = #{param1}
+	</select>
+	<select id="clubManageList" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
+		SELECT C_NO, C_TITLE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG, C_PART
+			FROM CLUB
+		 WHERE M_NO = #{param1}
+		 	 AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+			 AND C_DELETE = 0
+	</select>
+	<select id="lastClubManageList" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
+		SELECT C_NO, C_TITLE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG, C_PART
+			FROM CLUB
+		 WHERE M_NO = #{param1}
+		 	 AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') &lt; TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
 </mapper>

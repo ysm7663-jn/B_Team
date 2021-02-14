@@ -2,26 +2,27 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="../template/header.jsp">
 	<jsp:param value="BaraON :: 공간보기" name="title" />
 </jsp:include>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b735551da134940779a92513cdbca8f5&libraries=services"></script>
-<script type="text/javascript" src="resources/js/place-view.js" ></script> 
+<script type="text/javascript" src="resources/js/place-view.js" defer ></script> 
 <link rel="stylesheet" href="resources/style/place/place-view.css">
 <script>
 	let facilityList = JSON.parse('${facilityList}');
 	let isSeller = ${isSeller};
-	<c:if test="${not isSeller}">
-		let loginMNo = '${loginDto.m_no}';
+	<c:if test="${loginDto ne null && not isSeller}">
+		let loginDtoMNo = '${loginDto.m_no}';
 	</c:if>
 	let thumbnail = JSON.parse('${placeDto.p_img}');
 	let infoList = JSON.parse('${placeDto.p_info}');
 	let remarkList = JSON.parse('${placeDto.p_remark}');
 	let reviewImageList = null;
 	if ('${reviewImage}'!=''){
-			reviewImageList = JSON.parse('${reviewImage}');
+		reviewImageList = JSON.parse('${reviewImage}');
 	}
 	let no = ${param.no};
 	let pAddr = '${placeDto.p_addr}';
@@ -44,11 +45,6 @@
 	} else if (${insertResult eq 0}) {
 		alert('리뷰 작성에 실패했습니다.');
 	}
-	
-	$(function(){
-		
-	});
-	
 	
 	function fn_reserve(f){
 		if(isSeller){
@@ -80,7 +76,9 @@
 	<div class="modal-content">
 		<div class="close" onclick="fn_modalClose()">&times;</div>
 		<div class="content-wrap">
-		<span id="modal-m-id"><c:if test="${not isSeller}">ID : ${loginDto.m_id}</c:if></span><br/>
+		<span id="modal-m-id">
+			<c:if test="${not isSeller && loginDto ne null}">ID : ${loginDto.m_id}</c:if>
+		</span><br/>
 		
 		<span class="modal-star">
 			
@@ -120,6 +118,15 @@
 	<div>
 		<span># ${categoryName}</span>
 	</div>
+	<c:if test="${isSeller && (sellerDto.s_no eq loginDto.s_no)}">
+		<div class="btn-wrap">
+			<form id="update-form" method="post">
+				<input type="hidden" name="p_no" value="${placeDto.p_no}" />
+				<button type="button" id="place-update-btn">수정하기</button>
+				<button type="button" id="place-delete-btn">삭제하기</button>
+			</form>
+		</div>
+	</c:if>
 </div>
 <section>
 	<aside>
@@ -206,6 +213,7 @@
 
 			</div>
 			<h4>${placeDto.p_addr}&nbsp;${placeDto.p_addrdetail}</h4>
+			<a href="${placeDto.p_url}">${placeDto.p_url}</a>
 		</div>
 		<div id="place-remark" class="place-remark">
 			<h3>예약시 주의사항</h3>
@@ -243,7 +251,7 @@
 					</c:if>
 					<div class="review-insert-btn-wrap">
 						<!-- hidden -->
-						<c:if test="${not isSeller}">
+						<c:if test="${not isSeller && loginDto ne null}">
 							<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 						</c:if>
 						<input type="hidden" name="p_no" value="${placeDto.p_no}" />
@@ -288,9 +296,9 @@
 									 </c:forEach>
 								</div>
 								<div class="review-date">
-									작성일 : ${reviewDto.rv_postDate}<br/>
+									작성일 : <fmt:formatDate value="${reviewDto.rv_postDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
 									<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
-										최근수정일 : ${reviewDto.rv_modifyDate}
+										최근수정일 : <fmt:formatDate value="${reviewDto.rv_modifyDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
 									</c:if>
 								</div>
 								<div class="review-content" >
@@ -313,7 +321,7 @@
 							</div>
 						</form>
 					</c:forEach>
-				<h2 id="more">리뷰 더보기 Scroll Down!</h2>
+					<h2 id="more">리뷰 더보기 Scroll Down!</h2>
 				</c:if>
 			</div>
 		</div>

@@ -30,6 +30,14 @@ div {
 	left: 21%;
 	top: 16%;
 }
+.content-wrap > div {
+	font-size: 17px;
+	font-weight: bold;
+	margin-bottom: 21px;
+}
+.content-wrap span {
+	margin: 0 10px;
+}
 .fa-sad-tear:before {
 	font-size: 21px;
 	margin-left: 4px;
@@ -39,6 +47,9 @@ div {
 	position: relative;
 	left: 34%;
 	top: 17%;
+}
+.buttons > .pwCheck {
+	margin-left: 4%;
 }
 .buttons > input {
 	width: 77px;

@@ -1,16 +1,22 @@
 package com.koreait.baraON.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.command.myPage.ClubCountCommand;
 import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
+import com.koreait.baraON.command.myPage.ClubManageListCommand;
 import com.koreait.baraON.command.myPage.InfoDeleteCommand;
 import com.koreait.baraON.command.myPage.InstantClubCommand;
 import com.koreait.baraON.command.myPage.RegularClubCommand;
@@ -28,6 +34,8 @@ public class MyPageController {
 	private InstantClubCommand instantClubCommand;
 	private ClubListDeleteCommand clubListDeleteCommand;
 	private InfoDeleteCommand infoDeleteCommand;
+	private ClubManageListCommand clubManageListCommand;
+	private ClubCountCommand clubCountCommand;
 	
 	@Autowired
 	public void setCommand(WishListCommand wishListCommand,
@@ -35,13 +43,18 @@ public class MyPageController {
 							 RegularClubCommand regularClubCommand,
 							 InstantClubCommand instantClubCommand,
 							 ClubListDeleteCommand clubListDeleteCommand,
-							 InfoDeleteCommand InfoDeleteCommand) {
+							 InfoDeleteCommand InfoDeleteCommand,
+							 ClubManageListCommand clubManageListCommand,
+							 ClubCountCommand clubCountCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
 		this.regularClubCommand = regularClubCommand;
 		this.instantClubCommand = instantClubCommand;
 		this.clubListDeleteCommand = clubListDeleteCommand;
 		this.infoDeleteCommand = InfoDeleteCommand;
+		this.clubManageListCommand = clubManageListCommand;
+		this.clubManageListCommand = clubManageListCommand;
+		this.clubCountCommand = clubCountCommand;
 	}
 	
 	@RequestMapping(value="profile.myPage", method=RequestMethod.GET)
@@ -101,6 +114,24 @@ public class MyPageController {
 		return "myPage/infoDeleteResult";
 	}
 	
+	@RequestMapping(value="clubManagePage.myPage", method=RequestMethod.GET)
+	public String clubManagePage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		clubManageListCommand.execute(sqlSession, model);
+		return "myPage/clubManagePage";
+	}
+	
+	@RequestMapping(value="clubCount/{cNo}", method=RequestMethod.GET, produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> clubCount(@PathVariable("cNo") int cNo, Model model) {
+		model.addAttribute("cNo", cNo);
+		return clubCountCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="clubManageDetailPage.myPage", method=RequestMethod.POST)
+	public String clubManageDetailPage(HttpServletRequest request) {
+		return "myPage/clubManageDetailPage";
+	}
 	
 	
 }

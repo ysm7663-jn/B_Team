@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+.state {
+	display: flex;
+}
+.state a {
+	margin:10px 10px 10px 0;
+	font-size: 20px;
+	font-weight: bold;
+}
+.clubList {
+	display: flex;
+	height: 160px;
+	margin: 35px 0;
+}
+.clubImage {
+	width: 30%;
+	margin-right: 18px;
+}
+.clubImage > a > img {
+	width: 100%;
+}
+.part {
+	font-size: 22px;
+	color: cadetblue;
+}
+.clubContent > .title {
+	font-size: 26px;
+	font-weight: 600;
+}
+.clubContent > .startDate {
+	font-weight: 600;
+	margin-top: 10px;
+}
+.clubContent > .min {
+	margin-top: 25px;	
+}
+.min, .max, .count {
+	font-size: 13px;
+}
+.clubList > .detailBtn {
+	margin: 123px 0 0 35px;
+	
+}
+.detailBtn > form button {
+	width: 85px;
+	height: 38px;
+	background: cadetblue;
+	color: white;
+	border: 1px solid cadetblue;
+	border-radius: 32px;
+	font-size: 17px;
+	font-weight: 600;
+}

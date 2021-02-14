@@ -48,4 +48,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM REVIEW
 		WHERE RV_NO=#{param1}
 	</select>
+	
+	<select id="reviewByPNo" parameterType="int" resultType="com.koreait.baraON.dto.ReviewDto" >
+		SELECT *
+		FROM REVIEW
+		WHERE P_NO=#{param1}
+	</select>
 </mapper>
