@@ -35,6 +35,7 @@
 	<!-- reservation command -->
 	<beans:bean id="reservationUpdateCommand" class="com.koreait.baraON.command.reservation.ReservationUpdateCommand" />
 	<beans:bean id="reservationPageCommand" class="com.koreait.baraON.command.reservation.ReservationPageCommand" />
+	<beans:bean id="stateChangeCommand" class="com.koreait.baraON.command.reservation.StateChangeCommand" />
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
@@ -67,13 +68,18 @@
 	<beans:bean id="memberUpdateCommand" class="com.koreait.baraON.command.member.MemberUpdateCommand"></beans:bean>
 	
 	<!-- seller -->
-	<beans:bean id="spaceViewPageCommand" class="com.koreait.baraON.command.seller.SpaceViewPageCommand"></beans:bean>
-	<beans:bean id="allPlaceSearchCommand" class="com.koreait.baraON.command.seller.AllPlaceSearchCommand"></beans:bean>
-	<beans:bean id="placeCaSearchCommand" class="com.koreait.baraON.command.seller.PlaceCaSearchCommand"></beans:bean>
-	<beans:bean id="placeCaSearch2Command" class="com.koreait.baraON.command.seller.PlaceCaSearch2Command"></beans:bean>
-	<beans:bean id="sellerPwSearchCommand" class="com.koreait.baraON.command.seller.SellerPwSearchCommand"></beans:bean>
-	<beans:bean id="sellerPwUpdateCommand" class="com.koreait.baraON.command.seller.SellerPwUpdateCommand"></beans:bean>
-	<beans:bean id="sellerUpdateCommand" class="com.koreait.baraON.command.seller.SellerUpdateCommand"></beans:bean>
+	<beans:bean id="spaceViewPageCommand" class="com.koreait.baraON.command.seller.SpaceViewPageCommand"/>
+	<beans:bean id="allPlaceSearchCommand" class="com.koreait.baraON.command.seller.AllPlaceSearchCommand"/>
+	<beans:bean id="allPlaceSearch2Command" class="com.koreait.baraON.command.seller.AllPlaceSearch2Command"/>
+	<beans:bean id="placeCaSearchCommand" class="com.koreait.baraON.command.seller.PlaceCaSearchCommand"/>
+	<beans:bean id="placeCaSearch2Command" class="com.koreait.baraON.command.seller.PlaceCaSearch2Command"/>
+	<beans:bean id="sellerPwSearchCommand" class="com.koreait.baraON.command.seller.SellerPwSearchCommand"/>
+	<beans:bean id="sellerPwUpdateCommand" class="com.koreait.baraON.command.seller.SellerPwUpdateCommand"/>
+	<beans:bean id="sellerUpdateCommand" class="com.koreait.baraON.command.seller.SellerUpdateCommand"/>
+	<beans:bean id="placeList2Command" class="com.koreait.baraON.command.seller.PlaceList2Command"/>
+	<beans:bean id="reservationListCommand" class="com.koreait.baraON.command.seller.ReservationListCommand"/>
+	<beans:bean id="sellerSearchCommand" class="com.koreait.baraON.command.seller.SellerSearchCommand"/>
+	<beans:bean id="sellerEmailAuthCommand" class="com.koreait.baraON.command.seller.SellerEmailAuthCommand"/>
 		
 	
 	<!-- myPage -->
@@ -83,7 +89,7 @@
 	<beans:bean id="instantClubCommand" class="com.koreait.baraON.command.myPage.InstantClubCommand" />	
 	<beans:bean id="clubListDeleteCommand" class="com.koreait.baraON.command.myPage.ClubListDeleteCommand" />	
 	<beans:bean id="infoDeleteCommand" class="com.koreait.baraON.command.myPage.InfoDeleteCommand" />	
-	
+	<beans:bean id="memberDeleteCommand" class="com.koreait.baraON.command.member.MemberDeleteCommand" />
 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
 		<beans:property name="host" value="smtp.gmail.com"/>
 		<beans:property name="port" value="587"/>

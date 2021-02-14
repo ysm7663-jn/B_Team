@@ -18,7 +18,7 @@
 			<input type="button" value="취소" onclick="location.href='profile.myPage'" />
 		</div>
 	</div>
-</div>
+
 
 
 <%@ include file="../template/footer.jsp" %>

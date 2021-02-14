@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.koreait.baraON.command.member.EmailAuthCommand2;
+import com.koreait.baraON.command.member.MemberDeleteCommand;
 import com.koreait.baraON.command.member.MemberInsertCommand;
 import com.koreait.baraON.command.member.MemberJoin2Command;
 import com.koreait.baraON.command.member.MemberNickSearchCommand;
@@ -24,7 +25,6 @@ import com.koreait.baraON.command.member.MemberPwSearchCommand;
 import com.koreait.baraON.command.member.MemberPwUpdateCommand;
 import com.koreait.baraON.command.member.MemberSearchCommand;
 import com.koreait.baraON.command.member.MemberUpdateCommand;
-import com.koreait.baraON.command.member.MemberViewCommand;
 import com.koreait.baraON.dto.MemberDto2;
 
 @Controller
@@ -46,6 +46,7 @@ public class MemberController2 {
 	private MemberPwUpdateCommand memberPwUpdateCommand;
 	private MemberNickUpdateCommand memberNickUpdateCommand;
 	private MemberUpdateCommand memberUpdateCommand;
+	private MemberDeleteCommand memberDeleteCommand;
 
 	
 	@Autowired
@@ -58,7 +59,8 @@ public class MemberController2 {
 							MemberInsertCommand memberInsertCommand,
 							MemberPwUpdateCommand memberPwUpdateCommand,
 							MemberNickUpdateCommand memberNickUpdateCommand,
-							MemberUpdateCommand memberUpdateCommand) {
+							MemberUpdateCommand memberUpdateCommand,
+							MemberDeleteCommand memberDeleteCommand) {
 		
 		this.memberJoin2Command=memberJoin2Command;
 		this.memberSearchCommand=memberSearchCommand;
@@ -70,11 +72,16 @@ public class MemberController2 {
 		this.memberPwUpdateCommand=memberPwUpdateCommand;
 		this.memberNickUpdateCommand=memberNickUpdateCommand;
 		this.memberUpdateCommand=memberUpdateCommand;
+		this.memberDeleteCommand=memberDeleteCommand;
 	}
 	
 	@RequestMapping(value="/")
 	public String index() {
 		return "index";
+	}
+	@RequestMapping(value="memberJoin3.member" ,method=RequestMethod.GET)
+	public String memberJoin3() {
+		return "member/memberJoin3";
 	}
 	
 	@RequestMapping(value="memberJoin.member" ,method=RequestMethod.GET)
@@ -82,7 +89,7 @@ public class MemberController2 {
 		return "member/memberJoin";
 	}
 	
-	@RequestMapping(value="memberJoin2.member" ,method=RequestMethod.GET)
+	@RequestMapping(value="memberJoin2.member" ,method=RequestMethod.POST)
 	public String memberJoin2() {
 		return "member/memberJoin2";
 	}
@@ -167,8 +174,6 @@ public class MemberController2 {
 		return memberNickUpdateCommand.execute(sqlSession, model);
 	}
 	
-	
-	
 	@RequestMapping(value="memberUpdate.member",
 					method=RequestMethod.POST,
 					produces="application/json; charset=utf-8")
@@ -181,6 +186,12 @@ public class MemberController2 {
 		return memberUpdateCommand.execute(sqlSession, model);
 	}
 	
-	
+	@RequestMapping(value="memberDelete.member",
+					method=RequestMethod.POST)
+	public String memberDelete(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		memberDeleteCommand.execute(sqlSession, model);
+		return "index";	
+	}
 	
 }

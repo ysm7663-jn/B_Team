@@ -8,23 +8,21 @@ import org.springframework.ui.Model;
 
 import com.koreait.baraON.dao.SellerDao;
 
-public class SellerPwSearchCommand implements SellerCommand {
+public class SellerSearchCommand implements SellerCommand{
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
-
+		
 		Map<String, Object> map = model.asMap();
 		
-		int s_no = (int)map.get("s_no");
+		String s_id = (String)map.get("s_id");
 
 		SellerDao sellerDao = sqlSession.getMapper(SellerDao.class);
-
-		Map<String, Object> resultMap = new HashMap<String, Object>();
-
-		resultMap.put("result", sellerDao.sellerPwSearch(s_no));
-
-		return resultMap;	  
 		
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
+		resultMap.put("resultMap", sellerDao.sellerSearch(s_id));
+		
+		return resultMap;
 	}
-
 }

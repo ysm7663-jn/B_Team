@@ -9,13 +9,12 @@ import org.springframework.ui.Model;
 
 import com.koreait.baraON.dao.PlaceDao2;
 import com.koreait.baraON.dto.PlaceDto;
-import com.koreait.baraON.dto.PlaceDto2;
 import com.koreait.baraON.dto.PlaceListDto;
 
-public class PlaceCaSearchCommand implements SellerCommand {
+public class AllPlaceSearch2Command implements SellerCommand {
 
 	@Override
-	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
+public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
 		Map<String, Object> map = model.asMap();
 		
@@ -25,7 +24,7 @@ public class PlaceCaSearchCommand implements SellerCommand {
 		
 		PlaceDao2 placeDao2 = sqlSession.getMapper(PlaceDao2.class);
 		
-		List<PlaceListDto> list = placeDao2.allPlaceSearch(placeDto);
+		List<PlaceListDto> list = placeDao2.allPlaceSearch2(placeDto);
 
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();

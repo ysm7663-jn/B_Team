@@ -15,12 +15,18 @@ public class MyPageController2 {
 	
 	
 	@Autowired
-	public void setCommand() {
-	}
+	public void setCommand() {}
 	
 	@RequestMapping(value="pwCheck.myPage", method=RequestMethod.GET)
 	public String myPage(HttpServletRequest request) {
 		return "myPage/pwCheck";
 	}
+	
+	@RequestMapping(value="memberDelete.myPage", method=RequestMethod.GET)
+	public String memberDelete(HttpServletRequest request) {
+		return "myPage/memberDelete";
+	}
+	
+	
 	
 }

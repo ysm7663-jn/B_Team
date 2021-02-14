@@ -1,0 +1,25 @@
+@charset "UTF-8";
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+.list-thumbnail {
+	width:30%;
+	height:30%;
+}
+.placeList{
+	background: red;
+}

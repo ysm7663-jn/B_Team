@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="memberInsert" parameterType="com.koreait.baraON.dto.MemberDto2">
 		INSERT INTO
 		MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL, M_REGDATE, M_AGREEMENT)
-		VALUES (MEMBER_SEQ.NEXTVAL, #{m_id}, #{m_pw}, #{m_phone}, #{m_name}, #{m_birth}, #{m_nick}, #{m_email}, #{m_regDate}, #{m_agreement})
+		VALUES (MEMBER_SEQ.NEXTVAL, #{m_id}, #{m_pw}, #{m_phone}, #{m_name}, #{m_birth}, #{m_nick}, #{m_email}, SYSDATE, #{m_agreement})
 	</insert>
 	
 	<select id="memberView"  parameterType="int" resultType="com.koreait.baraON.dto.MemberDto2"> 
@@ -53,6 +53,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			M_EMAIL=#{m_email}
 		WHERE M_NO = #{m_no}
 	</update>
+
+	<delete id="memberDelete" parameterType="int">
+		DELETE 
+		FROM MEMBER
+		WHERE M_NO =#{m_no}
+	</delete>
 
 
 </mapper>
