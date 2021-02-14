@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.koreait.baraON.command.BaraONCommand;
 import com.koreait.baraON.dao.MyPageDao;
 
 public class ClubCountCommand implements myPageAjaxCommand {

@@ -27,7 +27,7 @@
 
 			<div class="side_content">
 			    <span class="title">클럽명</span>
-				<input type="text" name="c_title" value="${clubDto.c_title}" /><br/>
+				${clubDto.c_title}<br/>
 			</div>
 			
 			<span class="title">최소인원</span> 
@@ -37,10 +37,10 @@
 			<input type="text" name="c_max" value="${clubDto.c_max}" /><br/>
 			 
 			<span class="title">활동시작날짜</span> 
-			<input type="text" name="c_startDate" value="${clubDto.c_startDate}" /><br/>
+			${clubDto.c_startDate}<br/>
 			
 			<span class="title">활동종료날짜</span> 
-			<input type="text" name="c_endDate" value="${clubDto.c_endDate}" /><br/>
+			${clubDto.c_endDate}<br/>
 			
 			<span class="title">클럽내용</span><br />
 			<textarea rows="20" cols="100" placeholder="${clubDto.c_content}" name="c_content"></textarea>
