@@ -38,13 +38,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="clubUpdate">
 		UPDATE CLUB
-		   SET C_TITLE = #{param1}, 
-		   	  C_MIN = #{param2}, 
-		   	  C_MAX = #{param3},
-		   	  C_CONTENT = #{param4},
-		   	  C_STARTDATE = #{param5},
-		   	  C_ENDDATE = #{param6}
-		 WHERE C_NO = #{param7}
+		   SET 
+		   	  C_MIN = #{param1}, 
+		   	  C_MAX = #{param2},
+		   	  C_CONTENT = #{param3}
+		 WHERE C_NO = #{param4}
 	</update>
 	
 	<insert id="joinClub">
