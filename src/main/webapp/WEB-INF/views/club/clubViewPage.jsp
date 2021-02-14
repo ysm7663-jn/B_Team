@@ -37,6 +37,16 @@
 				f.submit();
 			}
 		}
+		
+		function fn_likeClub(f) {
+				f.action = 'likeClub.club';
+				f.submit();
+		}
+		
+		function fn_unlikeClub(f) {
+				f.action = 'unLikeClub.club';
+				f.submit();
+		}
 			
 </script>
 
@@ -96,6 +106,9 @@
 					<span id="content">활동 종료일 : ${clubDto.c_endDate}</span>
 				</div>
 
+				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+				<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+
 				<div class="side_content">
 					<c:if test="${clubListDto.m_no ne loginDto.m_no}">
 						<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)" />
@@ -103,6 +116,14 @@
 					
 					<c:if test="${clubListDto.m_no eq loginDto.m_no}">
 						<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/>
+					</c:if>
+					
+					<c:if test="${wishListDto.m_no ne loginDto.m_no}">
+						<input type="button" value="♥" id="btn2" onclick="fn_likeClub(this.form)" />
+					</c:if>
+					
+					<c:if test="${wishListDto.m_no eq loginDto.m_no}">
+						<input type="button" value="♡" id="btn2" onclick="fn_unlikeClub(this.form)"/>
 					</c:if>
 					
 				</div>

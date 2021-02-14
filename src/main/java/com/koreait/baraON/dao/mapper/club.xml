@@ -38,7 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="clubUpdate">
 		UPDATE CLUB
-		   SET 
+		  SET 
 			  C_MAINIMG = #{param1},		   
 			  C_DESC = #{param2},		   
 		   	  C_MIN = #{param3}, 
@@ -57,6 +57,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE 
 		  FROM CLUBLIST
 		 WHERE CL_NO = #{param1}
+	</delete>
+	
+	<insert id="likeClub">
+		INSERT 
+		  INTO WISHLIST (W_NO, C_NO, M_NO)
+		  VALUES (WISHLIST_SEQ.NEXTVAL, #{param1}, #{param2})
+	</insert>
+	
+	<delete id="unlikeClub" parameterType="int">
+		DELETE 
+		  FROM WISHLIST
+		 WHERE W_NO = #{param1}
 	</delete>
 	
 </mapper>

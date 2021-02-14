@@ -25,11 +25,20 @@
 
 		<div class="side">
 
-			
 			<div class="side_content">
+				<span class="title">파일첨부<br/></span>
 				<input type="file" name="c_mainImg" /> 
+		
+				<c:if test="${empty clubDto.c_mainImg}">
+					[기존 첨부파일: 없음]<br/><br/>
+					<input type="file" name="c_mainImg" /> 
+				</c:if>
+				<c:if test="${not empty clubDto.c_mainImg}">
+					[기존 첨부파일: ${clubDto.c_mainImg}]<br/><br/>
+					<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
+				</c:if>
 			</div>
-
+			
 			<div class="side_content">
 			    <span class="title">클럽명</span>
 				${clubDto.c_title}<br/>
@@ -56,6 +65,7 @@
 			
 			<input type="hidden" name="c_no" value="${clubDto.c_no}" />
 			<input type="hidden" name="m_no" value="${clubDto.m_no}" />
+			<input type="hidden" name="c_mainImg2" value="${clubDto.c_mainImg}" />
 			
 			<input type="button" value="수정하기" onclick="fn_update(this.form)" />
 			<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />

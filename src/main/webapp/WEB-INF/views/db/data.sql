@@ -86,6 +86,9 @@ CREATE TABLE CLUB
 
 select * from club;
 select * from member;
+select * from clublist;
+select * from wishlist;
+
 CREATE SEQUENCE CLUB_SEQ
 START WITH 1
 INCREMENT BY 1
