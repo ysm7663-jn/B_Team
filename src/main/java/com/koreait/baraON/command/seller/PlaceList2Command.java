@@ -7,9 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dao.PlaceDao2;
-import com.koreait.baraON.dto.PlaceDto;
+import com.koreait.baraON.dto.ReviewCheckDto;
 
 public class PlaceList2Command implements SellerCommand {
 
@@ -18,7 +17,7 @@ public class PlaceList2Command implements SellerCommand {
 		
 		Map<String, Object> map = model.asMap();
 		int page = (int)map.get("page");
-		
+		int s_no= (int)map.get("s_no");
 		PlaceDao2 placeDao2 = sqlSession.getMapper(PlaceDao2.class);
 
 		int totalRecord = placeDao2.placeCount();
@@ -47,7 +46,9 @@ public class PlaceList2Command implements SellerCommand {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("paging", paging);
 		
-		List<PlaceDto> list = placeDao2.placeList(beginRecord, endRecord);
+		
+		
+		List<ReviewCheckDto> list = placeDao2.placeList(s_no ,beginRecord, endRecord);
 		result.put("list", list);
 
 		if (list.size() > 0) {
