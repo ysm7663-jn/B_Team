@@ -46,7 +46,6 @@ public class MemberController2 {
 	private MemberPwUpdateCommand memberPwUpdateCommand;
 	private MemberNickUpdateCommand memberNickUpdateCommand;
 	private MemberUpdateCommand memberUpdateCommand;
-	private MemberDeleteCommand memberDeleteCommand;
 
 	
 	@Autowired
@@ -59,8 +58,7 @@ public class MemberController2 {
 							MemberInsertCommand memberInsertCommand,
 							MemberPwUpdateCommand memberPwUpdateCommand,
 							MemberNickUpdateCommand memberNickUpdateCommand,
-							MemberUpdateCommand memberUpdateCommand,
-							MemberDeleteCommand memberDeleteCommand) {
+							MemberUpdateCommand memberUpdateCommand) {
 		
 		this.memberJoin2Command=memberJoin2Command;
 		this.memberSearchCommand=memberSearchCommand;
@@ -72,7 +70,6 @@ public class MemberController2 {
 		this.memberPwUpdateCommand=memberPwUpdateCommand;
 		this.memberNickUpdateCommand=memberNickUpdateCommand;
 		this.memberUpdateCommand=memberUpdateCommand;
-		this.memberDeleteCommand=memberDeleteCommand;
 	}
 	
 	@RequestMapping(value="/")
@@ -186,12 +183,5 @@ public class MemberController2 {
 		return memberUpdateCommand.execute(sqlSession, model);
 	}
 	
-	@RequestMapping(value="memberDelete.member",
-					method=RequestMethod.POST)
-	public String memberDelete(HttpServletRequest request, Model model) {
-		model.addAttribute("request", request);
-		memberDeleteCommand.execute(sqlSession, model);
-		return "index";	
-	}
 	
 }
