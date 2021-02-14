@@ -10,13 +10,13 @@
 <context:property-placeholder location="/config/*.properties" />  <!-- 혹시 properties 파일이 더 있을까봐 -->
 	
 	<!-- HikariConfig -->
+	<!-- HikariConfig -->
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="${spring.hikariConfig.driverClassName}" />
 		<property name="jdbcUrl" value="${spring.hikariConfig.jdbcUrl}" />
 		<property name="username" value="${spring.hikariConfig.username}" />
 		<property name="password" value="${spring.hikariConfig.password}" />
 	</bean>
-	
 	<!-- HikariDataSource -->
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
@@ -38,6 +38,8 @@
 		<property name="defaultEncoding" value="utf-8" />
 		<property name="maxUploadSize" value="10485760" /> <!-- 10MB(10485760)  = 1024 * 1024 * 10 byte -->
 	</bean>
+	
+	<!-- <bean id="clubListCommand" class="com.koreait.baraON.command.club.ClubListCommand" /> -->
 	
 	<!-- Mybatis용 dataSource, sqlSessionFactory, sqlSession -->
 	

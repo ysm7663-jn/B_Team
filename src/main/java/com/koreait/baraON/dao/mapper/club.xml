@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.koreait.baraON.dao.ClubDao">
+
+	<select id="clubList" resultType="com.koreait.baraON.dto.ClubDto">
+		SELECT *
+		  FROM CLUB
+	</select>
+	
+ 	<insert id="clubInsert">
+		INSERT 
+		  INTO CLUB (C_NO, M_NO, C_TITLE, C_DESC, C_MIN, C_MAX, C_STARTDATE, C_ENDDATE, C_CONTENT, C_POSTDATE, C_MAINIMG, C_DELETE, C_PART)
+		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, SYSDATE,  #{param9}, 0, 0)
+	</insert>
+	
+	<select id="clubView" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
+		SELECT * 
+		  FROM CLUB
+		 WHERE C_NO = #{param1}
+	</select>
+	
+	<select id="clubView2" parameterType="int" resultType="com.koreait.baraON.dto.MemberDto">
+		SELECT M_NICK 
+		  FROM MEMBER
+		 WHERE M_NO = ( SELECT M_NO
+		 				  FROM CLUB
+		 				 WHERE C_NO = #{param1} )
+	</select>
+	
+	<delete id="clubDelete" parameterType="int">
+		DELETE 
+		  FROM CLUB
+		 WHERE C_NO = ${c_no}
+	</delete>
+	
+	<update id="clubUpdate">
+		UPDATE CLUB
+		   SET C_TITLE = #{param1}, 
+		   	  C_MIN = #{param2}, 
+		   	  C_MAX = #{param3},
+		   	  C_CONTENT = #{param4}
+		 WHERE C_NO = #{param5}
+	</update>
+	
+	<update id="updateStat">
+		UPDATE MEMBER
+		   SET M_ENJOY = #{m_enjoy}
+		 WHERE M_NO = #{m_no}
+	</update>
+
+</mapper>

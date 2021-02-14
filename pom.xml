@@ -189,12 +189,13 @@
 		</dependency>
 		
 		<!-- 이메일 인증 처리를 위한 2개 디펜던시 -->
-		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
 		    <groupId>javax.mail</groupId>
-		    <artifactId>javax.mail-api</artifactId>
+		    <artifactId>mail</artifactId>
 		    <version>1.4.7</version>
 		</dependency>
+
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
 		<dependency>
@@ -203,6 +204,13 @@
 		    <version>5.1.4.RELEASE</version><!--  = ${org.springframework-version} -->
 		</dependency>
 		
+		<!-- kakao API 로그인 사용시 필요 -->
+		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.8.5</version>
+		</dependency>
 		
 	</dependencies>
     <build>

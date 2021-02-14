@@ -1,0 +1,70 @@
+@charset "UTF-8";
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+.content-wrap {
+	position: relative;
+	width: 45%;
+	height: 116px;
+	text-align: center;
+	font-size: 14px;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	padding: 17px 0;
+	left: 21%;
+	top: 16%;
+}
+.content-wrap > div {
+	font-size: 17px;
+	font-weight: bold;
+	margin-bottom: 21px;
+}
+.content-wrap span {
+	margin: 0 10px;
+}
+.fa-sad-tear:before {
+	font-size: 21px;
+	margin-left: 4px;
+	color: slategrey;
+}
+.buttons {
+	position: relative;
+	left: 34%;
+	top: 17%;
+}
+.buttons > .pwCheck {
+	margin-left: 4%;
+}
+.buttons > input {
+	width: 77px;
+	height: 33px;
+	font-weight: bold;
+}
+.buttons > input:first-of-type {
+	background: lightgray;
+	border: 1px solid lightgray;
+	border-radius: 3px;
+	margin-right: 15px;
+}
+.buttons > input:last-of-type {
+	color: white;
+	background: cadetblue;
+	border: 1px solid cadetblue;
+	border-radius: 3px;
+}
