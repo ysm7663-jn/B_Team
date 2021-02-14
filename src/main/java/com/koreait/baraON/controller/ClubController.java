@@ -98,14 +98,14 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value="clubUpdate.club", method=RequestMethod.POST)
-	public String simpleUpdate(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+	public String simpleUpdate(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
 
-		model.addAttribute("request", request);
+		model.addAttribute("multipartRequest", multipartRequest);
 		model.addAttribute("rttr", rttr);
 		
 		clubUpdateCommand.execute(sqlSession, model);
 		
-		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no") + "&m_no=" + request.getParameter("m_no");
+		return "redirect:clubViewPage.club?c_no=" + multipartRequest.getParameter("c_no") + "&m_no=" + multipartRequest.getParameter("m_no");
 		
 	}
 	

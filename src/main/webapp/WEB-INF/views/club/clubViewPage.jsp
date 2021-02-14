@@ -87,7 +87,7 @@
 				<div class="side_content">
 					<span id="content">${clubDto.c_title}</span>
 				</div>
-
+				
 				<div class="side_content">
 					<span id="content">활동 시작일 : ${clubDto.c_startDate}</span>
 				</div>
@@ -145,28 +145,44 @@
 
 		<div class="contents-wrap">
 			<div class="content">
-				<span id="title">클럽명</span> <span id="content">${clubDto.c_title}</span>
+				<span id="title">클럽명</span> 
+				<span id="content">${clubDto.c_title}</span>
 			</div>
 
 			<div class="content">
-				<span id="title">리더 소개</span> <span id="content">${memberDto.m_nick}</span>
+				<span id="title">한 줄 설명</span> 
+				<span id="content">${clubDto.c_desc}</span>
+			</div>
+	
+			<div class="content">
+				<span id="title">리더 소개</span> 
+				<span id="content">${memberDto.m_nick}</span>
 			</div>
 
 			<div class="content">
-				<span id="title">클럽내용</span> <span id="content">${clubDto.c_content}</span>
+				<span id="title">클럽내용</span> 
+				<span id="content">${clubDto.c_content}</span>
 			</div>
 
 			<div class="content">
-				<span id="content">${clubDto.c_img1}</span> <span id="content">${clubDto.c_subContent1}</span>
+				<span id="content">${clubDto.c_img1}</span>
+				 <span id="content">${clubDto.c_subContent1}</span>
 			</div>
 
 			<div class="content">
-				<span id="content">${clubDto.c_img2}</span> <span id="content">${clubDto.c_subContent2}</span>
+				<span id="content">${clubDto.c_img2}</span>
+				<span id="content">${clubDto.c_subContent2}</span>
 			</div>
 
 			<div class="content">
-				<span id="content">${clubDto.c_img3}</span> <span id="content">${clubDto.c_subContent3}</span>
+				<span id="content">${clubDto.c_img3}</span> 
+				<span id="content">${clubDto.c_subContent3}</span>
 			</div>
+			
+			<div class="content">
+				<span id="content">${clubDto.c_postDate}</span>
+			</div>
+			
 		</div>
 		
 		<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />

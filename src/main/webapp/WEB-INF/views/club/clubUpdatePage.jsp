@@ -25,10 +25,18 @@
 
 		<div class="side">
 
+			
+			<div class="side_content">
+				<input type="file" name="c_mainImg" /> 
+			</div>
+
 			<div class="side_content">
 			    <span class="title">클럽명</span>
 				${clubDto.c_title}<br/>
 			</div>
+			
+			<span class="title">한 줄 설명</span> 
+			<input type="text" name="c_desc" value="${clubDto.c_desc}" /><br/>
 			
 			<span class="title">최소인원</span> 
 			<input type="text" name="c_min" value="${clubDto.c_min}" /><br/>
