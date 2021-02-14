@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.koreait.baraON.dao.PlaceDao">
 	
 	<select id="placeList" resultType="com.koreait.baraON.dto.PlaceListDto" >
-		SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) ASMINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
+		SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) AS MINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
 		  FROM (SELECT P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG, COUNT(RV.P_NO) AS RVCOUNT
 				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO
 				 WHERE P.P_CONFIRM LIKE '승인'
@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  GROUP BY P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
 																		 LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
 	  GROUP BY A.P_NO, A.PC_NO, A.P_TITLE, A.P_BNAME, A.P_IMG, A.RVCOUNT, PC.PC_NAME
-	  ORDER BY A.P_NO
+	  ORDER BY A.P_NO DESC
 	</select>
 	<select id="placeCategoryList" resultType="com.koreait.baraON.dto.PlaceCategoryDto" >
 		SELECT *
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getPlaceListDtoByCategory" parameterType="int" resultType="com.koreait.baraON.dto.PlaceListDto">
-	  SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) ASMINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
+	  SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) AS MINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
 		  FROM (SELECT P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG, COUNT(RV.P_NO) AS RVCOUNT
 				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO 
 				 WHERE P.P_CONFIRM LIKE '승인'
@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  GROUP BY P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
 																		 LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
 	  GROUP BY A.P_NO, A.PC_NO, A.P_TITLE, A.P_BNAME, A.P_IMG, A.RVCOUNT, PC.PC_NAME
-	  ORDER BY A.P_NO
+	  ORDER BY A.P_NO DESC
 	  
 	</select>
 	

@@ -28,7 +28,9 @@
 
 	
 </script>
-
+<div class="search-wrap">
+	
+</div>
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
 <div class="category-wrap">
