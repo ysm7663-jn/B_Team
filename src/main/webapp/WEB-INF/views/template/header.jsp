@@ -53,7 +53,6 @@
 			</div>	<!-- end : header-wrap -->
 			<div class="head-content">
 				<nav id="bottom-head">
-					<div><a href="">바라온 소개</a></div>
 					<div><a href="clubListPage.club">정기 활동</a></div>
 					<div><a href="">번개 활동</a></div>
 					<div><a href="placeListPage.place">장소 공유</a></div>
