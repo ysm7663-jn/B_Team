@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body {
+	background: white;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.body_wrap {
+	width : 100%;
+	display: flex;
+	justify-content: center;	/* 가로 가운데 정렬 */
+	align-items: center;		/* 세로 가운데 정렬 */
+}
+
+#title:nth-of-type(n) {
+	color: cadetblue;
+	font-size: 25px;
+}
+
+#content:nth-of-type(n) {
+	margin-top: 15px;
+	text-align: center;
+	font-weight: 900;
+	font-size: 20px;
+	color: gray;
+}
+
+.thumnail {
+	margin-top: 20px;
+	background: limegreen;
+}
+
+

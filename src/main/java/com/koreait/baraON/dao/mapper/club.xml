@@ -13,7 +13,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<insert id="clubInsert">
 		INSERT 
 		  INTO CLUB (C_NO, M_NO, C_TITLE, C_DESC, C_MIN, C_MAX, C_STARTDATE, C_ENDDATE, C_CONTENT, C_POSTDATE, C_MAINIMG, C_DELETE, C_PART)
-		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, SYSDATE,  #{param9}, 0, 1)
+		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, SYSDATE,  #{param9}, 0, 0)
 	</insert>
 	
 	<select id="clubView" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
@@ -38,11 +38,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="clubUpdate">
 		UPDATE CLUB
-		   SET 
-		   	  C_MIN = #{param1}, 
-		   	  C_MAX = #{param2},
-		   	  C_CONTENT = #{param3}
-		 WHERE C_NO = #{param4}
+		  SET 
+			  C_MAINIMG = #{param1},		   
+			  C_DESC = #{param2},		   
+		   	  C_MIN = #{param3}, 
+		   	  C_MAX = #{param4},
+		   	  C_CONTENT = #{param5}
+		 WHERE C_NO = #{param6}
 	</update>
 	
 	<insert id="joinClub">
@@ -55,6 +57,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE 
 		  FROM CLUBLIST
 		 WHERE CL_NO = #{param1}
+	</delete>
+	
+	<insert id="likeClub">
+		INSERT 
+		  INTO WISHLIST (W_NO, C_NO, M_NO)
+		  VALUES (WISHLIST_SEQ.NEXTVAL, #{param1}, #{param2})
+	</insert>
+	
+	<delete id="unlikeClub" parameterType="int">
+		DELETE 
+		  FROM WISHLIST
+		 WHERE W_NO = #{param1}
 	</delete>
 	
 </mapper>

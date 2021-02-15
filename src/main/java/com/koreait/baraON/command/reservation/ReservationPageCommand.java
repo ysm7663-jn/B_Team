@@ -30,6 +30,7 @@ public class ReservationPageCommand implements ReservationCommand {
 		
 		int po_no = Integer.parseInt(request.getParameter("po_no"));
 		Date res_date = Date.valueOf(request.getParameter("res_date"));
+		
 		int res_people = Integer.parseInt(request.getParameter("res_people"));
 		
 		MemberDto memberDto = (MemberDto)request.getSession().getAttribute("loginDto");
@@ -63,6 +64,7 @@ public class ReservationPageCommand implements ReservationCommand {
 		model.addAttribute("reservationDto", reservationDto);
 		model.addAttribute("placeOptionDto", placeOptionDto);
 		model.addAttribute("placeDto", placeDto);
+		model.addAttribute("category",placeDao.getPlaceCategoryByPCNo(placeDto.getPc_no()).getPc_name());
 		
 		
 	}

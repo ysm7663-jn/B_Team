@@ -8,7 +8,11 @@
 <link rel="stylesheet" href="resources/style/place/place-list.css">
 
 <script>
-	let imgList = JSON.parse('${imgList}');
+	let imgList = new Array();
+	<c:forEach var="list" items="${list}">
+		imgList.push(JSON.parse('${list.p_img}'));
+	</c:forEach>
+	let categoryNo = '${param.categoryNo}';
 	$(function(){
 		$.each(imgList, function(idx, img){
 			$.each(img, function(i, placeImg){
@@ -20,23 +24,16 @@
 				}
 			}); 
 		});
-	/* setTimeout(function(){
-		alert(1);
-		let length = $('.thumbnail img').length;
-		if($('.thumbnail-box img').index()==(length-1)){
-			$('.thumbnail-box img').first().css('display','block');
-			$('.thumbnail-box img').last().css('display','none');
-		} else{
-			let curr = $($('.thumbnail-box img').css('display')=='block');
-			$(curr).next().css('display','block');
-			$(curr).css('display', 'none');
+		if(categoryNo != ''){
+			$('div.category').eq(categoryNo-1).css('background','rgba(95, 158, 160, 1)');
 		}
-	}, 500); */
 	})
 
 	
 </script>
-
+<div class="search-wrap">
+	
+</div>
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
 <div class="category-wrap">

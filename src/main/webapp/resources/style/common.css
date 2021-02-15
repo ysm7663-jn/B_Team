@@ -4,6 +4,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: normal;
 }
 
 .body {
@@ -23,58 +25,49 @@ a {
 
 /* header */
 .head-wrap {
-	margin: 0px;
-	width: 100%;
-	padding: 40px 420px;
-	border: 1px solid white;
+	margin: 0 auto;
+	max-width:  1080px;
+	height:90px;
 	background: white;
     display: flex;
     justify-content: space-between;
 }
-
-.left_head_wrap {
-	margin-top: 28px;
+#logo {
+	width:200px;
 }
 
-.right_head_wrap {
-	padding:20px 0px;
-}
-
-#right_head div:nth-of-type(n) {
-	display: inline;
-	margin-left: 100px;
-	font-weight: 700;
-    font-size: 18px;
-    padding:18px;
-}
-
-#right_head {
+#right-head {
+    font-size: 16px;
 	display: flex;
-	padding: 20px 0px;
+	padding: 35px 0px;
+	vertical-align: middle;
+}
+#right-head div a {
+	margin-left: 34px;
 }
 
-.head_content {
+.head-content {
 	display: flex;
 	justify-content: center;	/* 가로 가운데 정렬 */
 	align-items: center;		/* 세로 가운데 정렬 */
+	margin-bottom: 20px;
 }
 
-#bottom_head {
+#bottom-head {
 	display: flex;
-	padding: 20px 0px;
+	width: 700px;
+	justify-content: space-between;
 }
 
-#bottom_head div:nth-of-type(n) {
-	display: inline;
-	margin-left: 100px;
-	font-weight: 700;
-    font-size: 15px;
-    padding:18px;
+#bottom-head div{
+    font-size: 20px;
+    line-height:40px; 
 }
 
 /* body */
 .main {
-	margin: 220px;
+	width: 1080px;
+	margin: 0 auto;
 	justify-content: center;
 	display: flex;
 	font-size:28px;
@@ -100,7 +93,8 @@ a {
 	border: 1px solid white;
 	height: 350px;
 	color: gray;
-	background: lightgray;
+	background: rgba(95, 158, 160, 0.7);
+	
 }
 
 .left-footer {

@@ -34,8 +34,10 @@ public class OptionInsertCommand {
 		sb.append("[");
 		for(int i = 0;i<facilityList.length;i++) {
 			if(i<facilityList.length-1) {
+				facilityList[i]=facilityList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+facilityList[i]+"\",");
 			} else {
+				facilityList[i]=facilityList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+facilityList[i]+"\"]");
 			}
 		}
@@ -57,7 +59,7 @@ public class OptionInsertCommand {
 		Map<String, Object> resultMap = new HashMap<>();
 		
 		MultipartFile file = multipartRequest.getFile("po_img");
-		String originalFilename = file.getOriginalFilename();
+		String originalFilename = file.getOriginalFilename().replace("'","");
 		String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 		if(!extensionList.contains(extension)) {
 			resultMap.put("result", -1);
