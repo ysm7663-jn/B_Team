@@ -31,11 +31,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="placeList" resultType="com.koreait.baraON.dto.ReviewCheckDto">
 		SELECT B.*
-			FROM (SELECT A.*, ROWNUM AS RN 
-				FROM (SELECT *
-					  FROM PLACE
-					  ORDER BY P_NO DESC) A) B
-			  WHERE B.RN BETWEEN #{param1} AND #{param2} 
+			FROM (SELECT ROWNUM RN , A.P_TITLE, A.RV_CONTENT, A.RV_STAR, A.M_ID
+				FROM (SELECT RV.*, P.*, M.*
+					FROM REVIEW RV LEFT JOIN PLACE P ON RV.P_NO=P.P_NO
+					LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO
+					WHERE P.P_DELETE = 0
+					AND P.P_CONFIRM LIKE '승인'
+					AND P.S_NO={param1}) A) B
+			WHERE RN BETWEEN {param2} AND {param3}
 	</select>
 	
 	<select id="placeCount" resultType="int">
