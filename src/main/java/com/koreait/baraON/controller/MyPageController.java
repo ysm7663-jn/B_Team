@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.command.myPage.CardPlusCommand;
 import com.koreait.baraON.command.myPage.ClubCountCommand;
 import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
 import com.koreait.baraON.command.myPage.ClubManageDetailCommand;
@@ -38,6 +39,7 @@ public class MyPageController {
 	private ClubManageListCommand clubManageListCommand;
 	private ClubCountCommand clubCountCommand;
 	private ClubManageDetailCommand clubManageDetailCommand;
+	private CardPlusCommand cardPlusCommand;
 	
 	@Autowired
 	public void setCommand(WishListCommand wishListCommand,
@@ -48,7 +50,8 @@ public class MyPageController {
 							 InfoDeleteCommand InfoDeleteCommand,
 							 ClubManageListCommand clubManageListCommand,
 							 ClubCountCommand clubCountCommand,
-							 ClubManageDetailCommand clubManageDetailCommand) {
+							 ClubManageDetailCommand clubManageDetailCommand,
+							 CardPlusCommand cardPlusCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
 		this.regularClubCommand = regularClubCommand;
@@ -59,6 +62,7 @@ public class MyPageController {
 		this.clubManageListCommand = clubManageListCommand;
 		this.clubCountCommand = clubCountCommand;
 		this.clubManageDetailCommand = clubManageDetailCommand;
+		this.cardPlusCommand = cardPlusCommand;
 	}
 	
 	@RequestMapping(value="profile.myPage", method=RequestMethod.GET)
@@ -139,5 +143,16 @@ public class MyPageController {
 		return "myPage/clubManageDetailPage";
 	}
 	
+	@RequestMapping(value="infoPopUp.myPage", method=RequestMethod.GET)
+	public String infoPopUp(HttpServletRequest request) {
+		return "myPage/infoPopUp";
+	}
 	
+	@RequestMapping(value="cardPlus.myPage", method=RequestMethod.POST)
+	public String cardPlus(HttpServletRequest request, Model model, RedirectAttributes rttr) {
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		cardPlusCommand.execute(sqlSession, model);
+		return "";
+	}
 }

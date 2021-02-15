@@ -4,7 +4,7 @@
 <jsp:include page="myPage.jsp" />
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
- <link rel="stylesheet" href="resources/style/myPage/clubManageDetailPage.css">	
+<link rel="stylesheet" href="resources/style/myPage/clubManageDetailPage.css">	
 <script>
 	function fn_clubDelete(f){
 		if(confirm('정말로 모임을 삭제하시겠습니까?')) {
@@ -18,7 +18,14 @@
 			$('.ing').remove();
 		}
 	});
-</script>
+	
+	function fn_infoPopUp() {
+		window.name = 'detailPage';
+		window.open('infoPopUp.myPage', 'infoPopUp', 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no');	
+		
+		infoForm.submit();
+	}
+	</script>
 	<div class="mypage-contents">
 		<h2>모임 관리</h2>
 		<hr class="top">
@@ -94,7 +101,17 @@
 								</div>
 							</div>
 							<div class="detailBtn">
-								<input type="button" value="자세히" onclick="" />
+								<form name="infoForm" method="post">
+									<!-- hidden -->
+									<input type="hidden" id="name" value="${memberDto.m_name}" />
+									<input type="hidden" id="nick" value="${memberDto.m_nick}" />
+									<input type="hidden" id="birth" value="${memberDto.m_birth}" />
+									<input type="hidden" id="phone" value="${memberDto.m_phone}" />
+									<input type="hidden" id="email" value="${memberDto.m_email}" />
+									<input type="hidden" id="cl_no" value="${memberDto.cl_no}" />
+									<input type="hidden" id="card" value="${memberDto.cl_card}" />
+									<input type="button" value="자세히" onclick="fn_infoPopUp()" />
+								</form>
 							</div>
 						</div>
 				</c:forEach>
