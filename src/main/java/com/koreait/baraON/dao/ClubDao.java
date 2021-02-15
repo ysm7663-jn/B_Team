@@ -13,13 +13,18 @@ public interface ClubDao {
 	
 	public ClubDto clubView(int c_no);
 	
-	public MemberDto clubView2(int m_no);
+	public MemberDto clubView2(int c_no);
 	
 	public int clubDelete(int c_no);
 
-	public int clubUpdate(int c_min, int c_max, String c_content, int c_no);
+	public int clubUpdate(String c_mainImg, String c_desc, int c_min, int c_max, String c_content, int c_no);
 	
 	public int joinClub(int c_no, int m_no);
 	
 	public int chkOutClub(int cl_no);
+	
+	public int likeClub(int c_no, int m_no);
+	
+	public int unlikeClub(int w_no);
+	
  }

@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.command.club.ChkOutClubCommand;
 import com.koreait.baraON.command.club.ClubDeleteCommand;
 import com.koreait.baraON.command.club.ClubInsertCommand;
 import com.koreait.baraON.command.club.ClubListCommand;
 import com.koreait.baraON.command.club.ClubUpdateCommand;
 import com.koreait.baraON.command.club.ClubViewCommand;
 import com.koreait.baraON.command.club.JoinClubCommand;
+import com.koreait.baraON.command.club.LikeClubCommand;
+import com.koreait.baraON.command.club.UnLikeClubCommand;
 import com.koreait.baraON.dto.ClubDto;
 
 @Controller
@@ -31,6 +34,9 @@ public class ClubController {
 	private ClubDeleteCommand clubDeleteCommand;
 	private ClubUpdateCommand clubUpdateCommand;
 	private JoinClubCommand joinClubCommand;
+	private LikeClubCommand likeClubCommand;
+	private UnLikeClubCommand unLikeClubCommand;
+	private ChkOutClubCommand chkOutClubCommand;
 	
 	@Autowired
 	public void setCommand(ClubListCommand clubListCommand,
@@ -38,7 +44,10 @@ public class ClubController {
 						   ClubViewCommand clubViewCommand,
 						   ClubDeleteCommand clubDeleteCommand,
 						   ClubUpdateCommand clubUpdateCommand,
-						   JoinClubCommand joinClubCommand
+						   JoinClubCommand joinClubCommand,
+						   ChkOutClubCommand chkOutClubCommand,
+						   LikeClubCommand likeClubCommand,
+						   UnLikeClubCommand unLikeClubCommand
 						  ) {
 		this.clubListCommand = clubListCommand;
 		this.clubInsertCommand = clubInsertCommand;
@@ -46,7 +55,9 @@ public class ClubController {
 		this.clubDeleteCommand = clubDeleteCommand;
 		this.clubUpdateCommand = clubUpdateCommand;
 		this.joinClubCommand = joinClubCommand;
-		
+		this.likeClubCommand = likeClubCommand;
+		this.unLikeClubCommand = unLikeClubCommand;
+		this.chkOutClubCommand = chkOutClubCommand;
 	}
 
 	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
@@ -98,14 +109,14 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value="clubUpdate.club", method=RequestMethod.POST)
-	public String simpleUpdate(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+	public String simpleUpdate(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
 
-		model.addAttribute("request", request);
+		model.addAttribute("multipartRequest", multipartRequest);
 		model.addAttribute("rttr", rttr);
 		
 		clubUpdateCommand.execute(sqlSession, model);
 		
-		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no") + "&m_no=" + request.getParameter("m_no");
+		return "redirect:clubViewPage.club?c_no=" + multipartRequest.getParameter("c_no") + "&m_no=" + multipartRequest.getParameter("m_no");
 		
 	}
 	
@@ -123,8 +134,22 @@ public class ClubController {
 		
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
-		clubDeleteCommand.execute(sqlSession, model);
+		chkOutClubCommand.execute(sqlSession, model);
 		
+		return "redirect:clubListPage.club";
+	}
+	
+	@RequestMapping(value="likeClub.club", method=RequestMethod.POST)
+	public String joinClub(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		likeClubCommand.execute(sqlSession, model);
+		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no");
+	}
+	
+	@RequestMapping(value="unLikeClub.club", method=RequestMethod.POST)
+	public String chkOutClub(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		unLikeClubCommand.execute(sqlSession, model);
 		return "redirect:clubListPage.club";
 	}
 	
