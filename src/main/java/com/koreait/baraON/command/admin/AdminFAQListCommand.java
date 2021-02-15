@@ -34,7 +34,7 @@ public class AdminFAQListCommand implements NoticeCommand {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
-		//int totalRecord = faqDao.totalRecord();
+		int totalRecord = faqDao.totalRecord();
 		
 		int recordPerPage = 5; 
 		
