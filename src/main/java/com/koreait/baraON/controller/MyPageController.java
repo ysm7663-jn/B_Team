@@ -70,6 +70,11 @@ public class MyPageController {
 		return "myPage/profile";
 	}
 	
+	@RequestMapping(value="pwCheck.myPage", method=RequestMethod.GET)
+	public String pwCheck(HttpServletRequest request) {
+		return "myPage/pwCheck";
+	}
+	
 	@RequestMapping(value="wishList.myPage", method=RequestMethod.GET)
 	public String wishList(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);

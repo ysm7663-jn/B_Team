@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import com.koreait.baraON.dao.ReservationDao;
 import com.koreait.baraON.dto.ReservationDto;
 
-public class StateChangeCommand {
+public class StateCancleCommand {
 
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
@@ -19,7 +19,7 @@ public class StateChangeCommand {
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		resultMap.put("result", reservationDao.stateChange(reservationDto));
+		resultMap.put("result", reservationDao.stateCancle(reservationDto));
 		
 		return resultMap;
 	}

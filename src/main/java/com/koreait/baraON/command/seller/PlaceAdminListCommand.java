@@ -7,21 +7,20 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.koreait.baraON.dao.ReservationDao;
-import com.koreait.baraON.dto.ReservationDto;
+import com.koreait.baraON.dao.PlaceDao;
+import com.koreait.baraON.dto.ReviewCheckDto;
 
-public class ReservationListCommand implements SellerCommand {
+public class PlaceAdminListCommand implements SellerCommand {
 
 	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		
 		Map<String, Object> map = model.asMap();
 		int page = (int)map.get("page");
-		int s_no = (int)map.get("s_no");
-		
-		ReservationDao reservationDao = sqlSession.getMapper(ReservationDao.class);
+		int s_no= (int)map.get("s_no");
+		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
 
-		int totalRecord = reservationDao.reservationCount();
+		int totalRecord = placeDao.placeCount();
 		int recordPerPage = 5;
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = beginRecord + recordPerPage - 1;
@@ -47,10 +46,9 @@ public class ReservationListCommand implements SellerCommand {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("paging", paging);
 		
-		List<ReservationDto> list = reservationDao.reservationList(s_no, beginRecord, endRecord);
-		//for (ReservationDto dto : list) {
-		//	System.out.println("[" + dto + "]");
-		//}
+		
+		
+		List<ReviewCheckDto> list = placeDao.placeAdminList(s_no ,beginRecord, endRecord);
 		result.put("list", list);
 
 		if (list.size() > 0) {

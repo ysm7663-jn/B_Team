@@ -144,9 +144,13 @@ function fn_placeSearch2(){
 </form>
 
 <br/>
-	<div class="placeList">
-	
-	</div>
+<div class="place-wrap">
+	<a href="placeViewPage.place?no=${placeList.p_no}">	<!-- 수정페이지로 전환 -->
+		<div class="placeList">
+		
+		</div>
+	</a>
+</div>
 
 
 <br/><br/>
@@ -164,9 +168,10 @@ function fn_placeSearch2(){
 	</select>
 </form>
 
-
+<div class="place-wrap2">
 	<div id="placeList2">
 	</div>
+</div>
 
 	</div>
 	</div>	

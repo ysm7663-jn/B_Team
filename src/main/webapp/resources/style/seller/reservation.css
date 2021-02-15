@@ -20,11 +20,11 @@ div {
 .box{
 		display: inline-flex;
 }
-th{
+th,td{
 	width: 200px;
 	height: 50px;
+	text-align: center;
 }
-
 #paging{
 	display:flex;
 	text-align :center;

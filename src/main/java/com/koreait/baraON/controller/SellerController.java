@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.koreait.baraON.command.reservation.StateCancleCommand;
 import com.koreait.baraON.command.reservation.StateChangeCommand;
 import com.koreait.baraON.command.seller.AllPlaceSearch2Command;
 import com.koreait.baraON.command.seller.AllPlaceSearchCommand;
+import com.koreait.baraON.command.seller.PlaceAdminListCommand;
 import com.koreait.baraON.command.seller.PlaceCaSearch2Command;
 import com.koreait.baraON.command.seller.PlaceCaSearchCommand;
-import com.koreait.baraON.command.seller.PlaceList2Command;
 import com.koreait.baraON.command.seller.ReservationListCommand;
 import com.koreait.baraON.command.seller.SellerEmailAuthCommand;
 import com.koreait.baraON.command.seller.SellerPwSearchCommand;
@@ -47,11 +48,12 @@ public class SellerController {
 	private SellerPwSearchCommand sellerPwSearchCommand;
 	private SellerPwUpdateCommand sellerPwUpdateCommand;
 	private SellerUpdateCommand sellerUpdateCommand;
-	private PlaceList2Command placeList2Command;
+	private PlaceAdminListCommand placeAdminListCommand;
 	private ReservationListCommand reservationListCommand;
 	private SellerSearchCommand sellerSearchCommand;
 	private SellerEmailAuthCommand sellerEmailAuthCommand;
 	private StateChangeCommand stateChangeCommand;
+	private StateCancleCommand stateCancleCommand;
 	
 	@Autowired
 	public void setCommand(SpaceViewPageCommand spaceViewPageCommand,
@@ -62,12 +64,13 @@ public class SellerController {
 							SellerPwSearchCommand sellerPwSearchCommand,
 							SellerPwUpdateCommand sellerPwUpdateCommand,
 							SellerUpdateCommand sellerUpdateCommand,
-							PlaceList2Command placeList2Command,
+							PlaceAdminListCommand placeAdminListCommand,
 							ReservationListCommand reservationListCommand,
 							SellerSearchCommand sellerSearchCommand,
 							JavaMailSender javaMailSender,
 							SellerEmailAuthCommand sellerEmailAuthCommand,
-							StateChangeCommand stateChangeCommand) {
+							StateChangeCommand stateChangeCommand,
+							StateCancleCommand stateCancleCommand) {
 		this.spaceViewPageCommand=spaceViewPageCommand;
 		this.allPlaceSearchCommand=allPlaceSearchCommand;
 		this.allPlaceSearch2Command=allPlaceSearch2Command;
@@ -76,12 +79,13 @@ public class SellerController {
 		this.sellerPwSearchCommand=sellerPwSearchCommand;
 		this.sellerPwUpdateCommand=sellerPwUpdateCommand;
 		this.sellerUpdateCommand=sellerUpdateCommand;
-		this.placeList2Command=placeList2Command;
+		this.placeAdminListCommand=placeAdminListCommand;
 		this.reservationListCommand=reservationListCommand;
 		this.sellerSearchCommand=sellerSearchCommand;
 		this.javaMailSender=javaMailSender;
 		this.sellerEmailAuthCommand=sellerEmailAuthCommand;
 		this.stateChangeCommand=stateChangeCommand;
+		this.stateCancleCommand=stateCancleCommand;
 	}
 	
 	@RequestMapping(value="sellerJoin.seller")
@@ -224,7 +228,8 @@ public class SellerController {
 	@ResponseBody
 	public Map<String, Object> placeList(@RequestBody PageVo pageVo, Model model) {
 	model.addAttribute("page", pageVo.getPage());
-	return placeList2Command.execute(sqlSession, model);
+	model.addAttribute("s_no", pageVo.getS_no());
+	return placeAdminListCommand.execute(sqlSession, model);
 	}
 	
 	@RequestMapping(value="reservation.seller")
@@ -232,23 +237,46 @@ public class SellerController {
 		return "seller/reservation";
 	}
 	
+	
 	@RequestMapping(value="reservationList.seller",
 				     method=RequestMethod.POST,
 				     produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> reservationList(@RequestBody PageVo pageVo, Model model) {
-	model.addAttribute("page", pageVo.getPage());
-	return reservationListCommand.execute(sqlSession, model);
+		model.addAttribute("page", pageVo.getPage());
+		model.addAttribute("s_no", pageVo.getS_no());
+		return reservationListCommand.execute(sqlSession, model);
 	}
 	
-	@RequestMapping(value="reservation/{res_no}",	// 경로에 포함된 
-			method=RequestMethod.GET,
-			produces="application/json; charset=utf-8")
+	
+	@RequestMapping(value="stateChange.seller",	
+					method= RequestMethod.POST, 
+					produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> stateChange(@RequestBody ReservationDto reservationDto, Model model) {
 		model.addAttribute("reservationDto", reservationDto);
 		return stateChangeCommand.execute(sqlSession, model);
 	}
 	
+	@RequestMapping(value="stateCancle.seller",	
+			method= RequestMethod.POST, 
+			produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> stateCancle(@RequestBody ReservationDto reservationDto, Model model) {
+		model.addAttribute("reservationDto", reservationDto);
+		return stateCancleCommand.execute(sqlSession, model);
+	}
+	
 	
 }
+
+
+
+
+
+
+
+
+
+
+
