@@ -15,7 +15,7 @@
 <title></title>
 </head>
 <body>
-	<div style="width :1020px; margin: 0 auto;">
+	<div style="width :1200px; height: auto;margin: 0 auto;">
 	<h1>공지사항(NOTICE) - 관리자모드</h1>
 		<div style="background:#3ED0C8; border-top: 1px solid black; border-bottom: 1px solid black" >
 			<div style="width:600px; margin: 0 0 0 10px; font-weight: 800px; font-size: 24px;">
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 		<div>
-			<div style="height:400px; padding:30px 0 0 10px; font-weight: 800px; font-size: 20px; border-bottom:1px solid black">
+			<div style="height:auto; padding:30px 0 0 10px; font-weight: 800px; font-size: 18px; border-bottom:1px solid black">
 				<pre>${noticeDto.n_content}</pre><br/><br/>
 			</div><br/>
 		</div>
@@ -42,10 +42,9 @@
 				<input type="hidden" name="n_no" value="${noticeDto.n_no}" />
 				<input type="hidden" name="n_title" value="${noticeDto.n_title}" />
 				<input type="hidden" name="n_content" value="${noticeDto.n_content}" />
-			</form>
+			</form><br/>
 		</div>
 	</div>
-	<br/><br/>
 	
 	<script type="text/javascript">
 		function fn_noticeUpdatePage(f) {
