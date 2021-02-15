@@ -72,11 +72,6 @@ CREATE TABLE CLUB
     CONSTRAINT FK_MEMBER_CLUB FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE SET NULL
 );
 
-select * from club;
-select * from member;
-select * from clublist;
-select * from wishlist;
-
 CREATE SEQUENCE CLUB_SEQ
 START WITH 1
 INCREMENT BY 1

@@ -15,5 +15,5 @@ public interface FAQDao {
 	public int faqUpdate(String title, String content ,int no);
 	
 	
-	public List<FAQDto> indexFaq();
+	public List<FAQDto> indexFaq(int beginRecord, int endRecord);
 }

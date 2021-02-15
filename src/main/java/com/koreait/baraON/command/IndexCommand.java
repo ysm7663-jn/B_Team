@@ -16,7 +16,7 @@ public class IndexCommand implements BaraONCommand {
 		NoticeDao noticeDao = sqlSession.getMapper(NoticeDao.class);
 		
 		model.addAttribute("eventList", eventDao.eventList(1, 6));
-		model.addAttribute("faqList",faqDao.indexFaq());
+		model.addAttribute("faqList",faqDao.indexFaq(1, 3));
 		model.addAttribute("noticeList", noticeDao.noticeList(1, 3));
 		
 	}

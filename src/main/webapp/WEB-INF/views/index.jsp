@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
 <%-- 머리글 포함(파라미터(title)가 있으므로 동적 페이지 포함) --%>
 <jsp:include page="template/header.jsp" />
@@ -23,8 +23,8 @@
 				</div>
 			</div>
 			<div class="main-content">
-				<c:if test="${eventList eq null }">
-					<div class="not-exist">
+				<c:if test="${eventList eq null}">
+					<div>
 						진행중인 이벤트가 없습니다.
 					</div>
 				</c:if>
