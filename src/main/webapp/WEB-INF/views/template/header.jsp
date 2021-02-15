@@ -58,7 +58,7 @@
 					<div><a href="clubListPage.club">정기 활동</a></div>
 					<div><a href="">번개 활동</a></div>
 					<div><a href="placeListPage.place">장소 공유</a></div>
-					<div><a href="">공지사항&이벤트</a></div>
+					<div><a href="">공지사항&amp;이벤트</a></div>
 				</nav>
 			</div>
 		</header>

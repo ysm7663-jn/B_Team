@@ -213,7 +213,7 @@
 
 			</div>
 			<h4>${placeDto.p_addr}&nbsp;${placeDto.p_addrdetail}</h4>
-			<a href="${placeDto.p_url}">${placeDto.p_url}</a>
+			<a href="${placeDto.p_url}" target="_blank" >${placeDto.p_url}</a>
 		</div>
 		<div id="place-remark" class="place-remark">
 			<h3>예약시 주의사항</h3>

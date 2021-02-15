@@ -11,7 +11,94 @@ $(function(){
 	fn_previewThumbnail('.option-thumbnail');
 	fn_removeOption();
 	fn_deleteOption();
+	fn_appendList(infoList, '#place-info-list', 'p_info');
+	fn_appendList(remarkList, '#place-remark-list', 'p_remark');
+	fn_uploadedImg();
+	let selectedCategory = $('input[value="${placeCategoryDto.pc_no}"]');
+	$(selectedCategory).prev('a').css('background', 'rgba(216,100,216,1)');
+	fn_optionFacility('.facility-list', poFacilities);
 })
+
+function fn_optionFacility(tagTo, list){
+	$.each(list, function(idx,facilityList){
+		$.each(facilityList, function(i, facility){
+			$(tagTo).eq(idx).append('<li>'+facility+'<input type="hidden" name="po_facility" value="'+facility+'" /><span class="remove" onclick="fn_removeFacility(event)">&times;</span></li>');
+		});
+		$(tagTo).next().val(facilityList.length);
+	});
+}
+function fn_appendList(list, appendToTag, name){
+	$.each(list,function(idx, item){
+		$(appendToTag).append(`<li><input class="place-input" type="text" name="`+name+`" value="`+item+`" placeholder="추가하려면 추가 버튼을 눌러주세요" required /></li>`);
+	});
+}
+function fn_uploadedImg(){
+	$.each(thumbnailList, function(idx, img){
+		let strHtml =`
+		<div class="uploaded-img-box">
+			<img alt="이미지" src="resources/images/PlaceImages/`+img+`" />
+			<input type="hidden" value="`+img+`" />
+			<button type="button" onclick="fn_deleteThumbnail(event)" >&times;</button>
+		</div>
+		`;
+		$('#uploaded-thumb-list').append(strHtml);
+	});
+}
+function fn_deleteThumbnail(e){
+	let strHtml = '<input type="hidden" name="deleted_img" value="'+$(e.target).prev().val()+'"/>'
+	$('#uploaded-thumb-list').append(strHtml);
+	$(e.target).parent().remove();
+}
+function fn_optionUpdate(f){
+	let sendObj = new FormData(f);
+	$.ajax({
+		url:'placeOptionUpdate.place',
+		type:'post',
+		enctype:'multipart/form-data',
+		data: sendObj,
+		processData: false,
+		contentType: false,
+		dataType:'json',
+		success: function(responseObj){
+			if(responseObj.result==1){
+				alert('수정되었습니다.');
+			} else if(responseObj.result==-1) {
+				alert('파일형식이 맞지않습니다. 파일 변경 후 다시 시도해주세요');
+			} else {
+				alert('수정에 실패했습니다. 다시 시도해 주세요');	
+			}
+		},
+		error: function(request, status, error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+	});
+}
+function fn_optionInsert(f){
+	let sendObj = new FormData(f);
+	$.ajax({
+		url:'placeOptionInsert.place',
+		type:'post',
+		enctype:'multipart/form-data',
+		data: sendObj,
+		processData: false,
+		contentType: false,
+		dataType:'json',
+		success:function(responseObj){
+			if(responseObj.result==1){
+				alert('옵션이 추가되었습니다.');
+			} else if(responseObj.result==-1) {
+				alert('파일형식이 맞지않습니다. 파일 변경 후 다시 시도해주세요');
+			} else {
+				alert('옵션 추가에 실패했습니다. 다시 시도해 주세요');	
+			}
+		},
+		error: function(request, status, error){
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		}
+		
+	});
+}
+
 /* 등록되어 있던 옵션 삭제 */
 function fn_deleteOption(){
 	$('.select-remove-btn').click(function(event){

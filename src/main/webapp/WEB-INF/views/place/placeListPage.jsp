@@ -8,7 +8,10 @@
 <link rel="stylesheet" href="resources/style/place/place-list.css">
 
 <script>
-	let imgList = JSON.parse('${imgList}');
+	let imgList = new Array();
+	<c:forEach var="list" items="${list}">
+		imgList.push(JSON.parse('${list.p_img}'));
+	</c:forEach>
 	let categoryNo = '${param.categoryNo}';
 	$(function(){
 		$.each(imgList, function(idx, img){

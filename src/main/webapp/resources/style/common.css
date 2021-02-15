@@ -26,7 +26,7 @@ a {
 /* header */
 .head-wrap {
 	margin: 0 auto;
-	max-width:  964px;
+	max-width:  1080px;
 	height:90px;
 	background: white;
     display: flex;
@@ -39,26 +39,29 @@ a {
 #right-head {
     font-size: 16px;
 	display: flex;
-	padding: 20px 0px;
+	padding: 35px 0px;
 	vertical-align: middle;
 }
 #right-head div a {
-	margin-right: 34px;
+	margin-left: 34px;
 }
 
 .head-content {
 	display: flex;
 	justify-content: center;	/* 가로 가운데 정렬 */
 	align-items: center;		/* 세로 가운데 정렬 */
+	margin-bottom: 20px;
 }
 
 #bottom-head {
 	display: flex;
+	width: 700px;
+	justify-content: space-between;
 }
 
 #bottom-head div{
     font-size: 20px;
-    padding:18px;
+    line-height:40px; 
 }
 
 /* body */
