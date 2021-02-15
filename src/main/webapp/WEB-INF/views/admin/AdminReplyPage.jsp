@@ -167,7 +167,7 @@
 </head>
 <body>
 	<div class="reply">
-			<h3>답글 목록</h3><br/>
+			<h1>답글 목록</h1><br/>
 			<table>
 				<thead>
 					<tr>
@@ -186,6 +186,7 @@
 					</tr>
 				</tfoot>
 			</table>
+		<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
 		</div>
 <%@ include file="../template/footer.jsp" %>	
 </body>

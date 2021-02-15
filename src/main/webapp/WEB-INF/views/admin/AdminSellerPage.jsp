@@ -215,7 +215,7 @@
 		background: #3ED0C8;
 	}
 	body{
-		background: #DADADA;
+		background: #F8EBEE;
 	}
 	#pagingBox{
 		padding-left: 350px;
@@ -268,6 +268,7 @@
 					</tr>
 				</tfoot>
 			</table>
+		<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
 		</div>
 		<div class="left">
 			<h3>판매자 수정/보기</h3>

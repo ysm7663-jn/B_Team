@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class AdminConfirmDto2 {
 	private int s_no;
+	private String p_addr;
+	private String p_addrdetail;
 	private String p_confirm;
 }

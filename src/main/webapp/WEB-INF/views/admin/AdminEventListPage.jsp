@@ -31,7 +31,7 @@
 <body>
 	<div id="wrap" style="width :1020px; margin: 0 auto;">
 	<br/>
-	<h1>이벤트(NOTICE)-관리자모드</h1>
+	<h1>이벤트(NOTICE)-관리자모드</h1><br/>
 	<h3>전체 :${totalRecord}개 이벤트</h3>
 	<input type="button" value="이벤트 추가" style="float: right" onclick="location.href='eventInsertPage.admin'" /><br/><br/>
 		<div>
@@ -62,6 +62,7 @@
 					</div>	
 				</c:forEach>
 			</c:if>
+			<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
 			<div id="paging"style="width:1020px; margin: 0 auto; float: left; text-align: center; font-weight: 800px; font-size: 20px">
 				${paging}
 			</div>

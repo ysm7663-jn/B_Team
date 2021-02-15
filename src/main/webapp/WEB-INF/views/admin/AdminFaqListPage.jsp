@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script type="text/javascript">
+/* 
 $(document).ready(function(){
 	fn_allList();	
 	fn_payList();
@@ -34,6 +35,7 @@ $(document).ready(function(){
 		location.href = 'adminFaqListPage.admin?f_category=4'; 
 	});
 	}
+*/
 </script>
 <title></title>
 <link rel="stylesheet" href="resources/style/common.css">
@@ -55,13 +57,20 @@ $(document).ready(function(){
 	 #paging > a{
 	 	margin: 0 10px 0 10px;
 	 }
-	 #allBtn,#payBtn,#accountBtn,#usingBtn{
+	  .categoryList > a{
+	 	margin:20px;
+	 	font-weight: bold;
+	 	font-size: 20px;
+	 }
+	/* 
+	  #allBtn,#payBtn,#accountBtn,#usingBtn{
 	 	background: none;
 		border: none;
 		font-size: 16px;
 		margin: 0 20px 0 20px;
 		font-weight: 600px;
 	 }
+	 */
 </style>
 </head>
 <body>
@@ -72,12 +81,20 @@ $(document).ready(function(){
 	<input type="button" value="FAQ추가" style="float:right; width:100px" onclick="location.href='faqInsertPage.admin'" /><br/><br/>
 	<div  style="display: flex; flex-direction: column;">
 		<div style="text-align: center">
-			<form>
+			<!-- 
+			 <form>
 				<input type="button" id="allBtn"value="전체">
 				<input type="button" id="payBtn"value="결제 및 환불">
 				<input type="button" id="accountBtn"value="계정">
 				<input type="button" id="usingBtn"value="이용안내">
 			</form><br/>
+			 -->
+			 <div class="categoryList" style="width: 1020px; text-align: center; margin:20px;">
+						<a href="adminFaqListPage.admin">전체</a>
+						<a href="adminFaqListPage.admin?f_category=2">결제 및 환불</a>
+						<a href="adminFaqListPage.admin?f_category=3">계정</a>
+						<a href="adminFaqListPage.admin?f_category=4">이용안내</a>
+			</div><br/>	
 		</div>
 			<section>
 				<div style="background:#3ED0C8">
@@ -106,6 +123,7 @@ $(document).ready(function(){
 				</c:forEach>
 			</c:if>
 			<br/><br/>
+			<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
 			<div id="paging"style="width:1020px; margin: 0 auto; float: left; text-align: center; font-weight: 800px; font-size: 20px">
 				${paging}
 			</div>

@@ -24,7 +24,7 @@
 				${faqDto.f_regDate}
 			</div>
 		</div>
-			<div style="height:400px; padding:30px 0 0 10px; font-weight: 800px; font-size: 20px; border-bottom:1px solid black">
+			<div style="height:400px; padding:10px 0 0 10px; font-weight: 800px; font-size: 20px; border-bottom:1px solid black">
 				${faqDto.f_content}<br/><br/>
 			</div><br/>
 	

@@ -13,7 +13,7 @@
 	 a:hover { color: blue; text-decoration: underline;}
 	 
 	 #wrap{
-	 	height: 600px;
+	 	height: 700px;
 	 }
 	 
 	 body{
@@ -25,16 +25,17 @@
 	 #paging > a{
 	 	margin: 0 10px 0 10px;
 	 }
+	
+	
 </style>
 </head>
 <body>
-	<div id="wrap" style="width :1020px; margin: 0 auto;">
+		<div id="wrap" style="width :1020px; margin: 0 auto;">
 	<br/>
 	<h1>공지사항(NOTICE)-관리자모드</h1><br/>
 	<h3>전체 :${totalRecord}개 공지사항</h3>
 	<input type="button" value="공지사항추가" style="float: right" onclick="location.href='noticeInsertPage.admin'" /><br/><br/>
 		<div>
-			<section>
 				<div style="background:#3ED0C8">
 					<div style="width:620px; margin: 0 auto; height:50px; line-height:50px;
 						float: left; text-align: center; font-weight: 800px; 
@@ -47,8 +48,6 @@
 						작성일
 					</div>
 				</div>
-			</section>
-			<section class="content">
 			<c:if test="${empty list}"></c:if>
 			<c:if test="${not empty list}">
 				<c:forEach var="noticeDto" items="${list}" varStatus="k">
@@ -58,13 +57,13 @@
 						<div style="width:400px; margin: 0 auto; float: left; text-align: center; border-bottom: 1px solid black; height:40px; line-height:40px;">
 							${noticeDto.n_postDate}
 						</div>
-					</div>	
+					</div>
 				</c:forEach>
 			</c:if>
+			<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
 			<div id="paging"style="width:1020px; margin: 0 auto; float: left; text-align: center; font-weight: 800px; font-size: 20px">
 				${paging}
 				</div>
-			</section>		
 		</div>
 	</div>
 	<br/><br/>

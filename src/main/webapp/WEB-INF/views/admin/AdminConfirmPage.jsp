@@ -32,7 +32,7 @@
 		background: #3ED0C8;
 	}
 	body{
-		background: #DADADA;
+		background: #F8EBEE;
 	}
 	#pagingBox{
 		width: 500px;
@@ -175,9 +175,14 @@
 		$('#btnUpdate').click(function(){
 			var no = $(this).parents('div.confirmbox').find('input:hidden[name="no"]').val();  // 수정할 회원의 회원번호
 			var confirm = $('input:text[name="confirm"]').val();
+			var addr = $('input:text[name="addr"]').val();
+			var addrdetail = $('input:text[name="addrdetail"]').val();
 			var sendObj = {
 					"s_no": no,
-					"p_confirm" : confirm
+					"p_confirm" : confirm,
+					"p_addr":addr,
+					"p_addrdetail":addrdetail,
+					
 				};
 			$.ajax({
 				url: 'confirm',
@@ -224,6 +229,7 @@
 					</tr>
 				</tfoot>
 			</table>
+		<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
 		</div>
 		<div class="confirmbox">
 			<h3>공간 조회/승인</h3>

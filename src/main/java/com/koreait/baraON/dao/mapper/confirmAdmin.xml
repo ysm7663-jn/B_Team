@@ -28,7 +28,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="adminConfirmUpdate" parameterType="com.koreait.baraON.dto.AdminConfirmDto2">
 		UPDATE PLACE
-		   SET P_CONFIRM = #{p_confirm,jdbcType=VARCHAR}
+		   SET P_CONFIRM = #{p_confirm,jdbcType=VARCHAR},
+		   	   P_ADDR = #{p_addr,jdbcType=VARCHAR},
+		   	   P_ADDRDETAIL = #{p_addrdetail,jdbcType=VARCHAR}
 		 WHERE S_NO = #{s_no,jdbcType=INTEGER}
 	</update>
 </mapper>
