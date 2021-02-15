@@ -20,34 +20,35 @@ public class ClubUpdateCommand implements ClubCommand {
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)map.get("multipartRequest");
 		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
 		
+		String realPath = multipartRequest.getServletContext().getRealPath("resources/images/club");
+		
 		int c_no = Integer.parseInt(multipartRequest.getParameter("c_no"));
 		int c_min = Integer.parseInt(multipartRequest.getParameter("c_min"));
 		int c_max = Integer.parseInt(multipartRequest.getParameter("c_max"));
 		String c_content = multipartRequest.getParameter("c_content");
 		String c_desc = multipartRequest.getParameter("c_desc");
 		
-		MultipartFile file = multipartRequest.getFile("c_mainImg");
+		MultipartFile newFile = multipartRequest.getFile("c_mainImg");
 		
-		if (file != null && !file.isEmpty()) {
+		String oldFile = multipartRequest.getParameter("c_mainImg2");
+		
+		if ( newFile != null && oldFile != null ) {
 	
-			String originalFilename = file.getOriginalFilename();
+			String originalFilename = newFile.getOriginalFilename();
 			String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 			
 			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
 					
 			String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
-			
-			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/club");
-			
-			File dir = new File(realPath);
-			if(!dir.exists()) {
-				dir.mkdirs();
+				
+			File file = new File(realPath, oldFile);
+			if(file.exists()) {
+				file.delete();
 			}
 			
 			File uploadFile = new File(realPath, uploadFilename);
-
 			try {
-				file.transferTo(uploadFile);
+				newFile.transferTo(uploadFile);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

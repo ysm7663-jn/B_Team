@@ -9,7 +9,7 @@
 	});
 
 	function clubCount() {
-		var cNo = $('#cNo').val();
+		var cNo = $('#c_no').val();
 		
 		$.ajax({
 			url: 'clubCount/' + cNo,
@@ -54,28 +54,31 @@
 		</c:if>
 		<c:if test="${not empty list}">
 			<div class="clubwrap">
-				<c:forEach var="clubListDto" items="${list}">
+				<c:forEach var="clubDto" items="${list}">
 					<div class="clubList">
-						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${clubListDto.c_mainImg}"></a></div>
+						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${clubDto.c_mainImg}"></a></div>
 						<div class="clubContent">
 							<div class="title">
 								<span class="part">
-									<c:if test="${clubListDto.c_part == 0}">
+									<c:if test="${clubDto.c_part == 0}">
 										(정기)
 									</c:if>
-									<c:if test="${clubListDto.c_part == 1}">
+									<c:if test="${clubDto.c_part == 1}">
 										(번개)
 									</c:if>
 								</span>
-								${clubListDto.c_title}</div>
-							<div class="startDate">${clubListDto.c_startDate} 시작</div>
-							<div class="min">최소 인원 : ${clubListDto.c_min} 명</div>
-							<div class="max">최대 인원 : ${clubListDto.c_max} 명</div>
+								${clubDto.c_title}
+								</div>
+							<div class="startDate">${clubDto.c_startDate} 시작</div>
+							<div class="min">최소 인원 : ${clubDto.c_min} 명</div>
+							<div class="max">최대 인원 : ${clubDto.c_max} 명</div>
 							<div class="count"></div>
 						</div>
 						<div class="detailBtn">
 							<form action="clubManageDetailPage.myPage" method="post">
-								<input type="hidden" name="cNo" id="cNo" value="${clubListDto.c_no}" />
+								<input type="hidden" id="c_no" name="c_no" value="${clubDto.c_no}" />
+								<input type="hidden" name="c_part" value="${clubDto.c_part}" />
+								<input type="hidden" name="state" value="${param.state}" />
 								<button>자세히</button>
 							</form>
 						</div>

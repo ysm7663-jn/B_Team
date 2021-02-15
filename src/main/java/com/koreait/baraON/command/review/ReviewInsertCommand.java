@@ -42,7 +42,7 @@ public class ReviewInsertCommand implements ReviewCommand {
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
-				String originalFilename = file.getOriginalFilename();
+				String originalFilename = file.getOriginalFilename().replace("'", "");
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 				
 				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/ReviewImages");
