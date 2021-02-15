@@ -33,22 +33,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="clubDelete" parameterType="int">
 		DELETE 
 		  FROM CLUB
-		 WHERE C_NO = ${c_no}
+		 WHERE C_NO = #{param1}
 	</delete>
 	
 	<update id="clubUpdate">
 		UPDATE CLUB
-		   SET C_TITLE = #{param1}, 
-		   	  C_MIN = #{param2}, 
-		   	  C_MAX = #{param3},
-		   	  C_CONTENT = #{param4}
-		 WHERE C_NO = #{param5}
+		   SET 
+			  C_MAINIMG = #{param1},		   
+			  C_DESC = #{param2},		   
+		   	  C_MIN = #{param3}, 
+		   	  C_MAX = #{param4},
+		   	  C_CONTENT = #{param5}
+		 WHERE C_NO = #{param6}
 	</update>
 	
-	<update id="updateStat">
-		UPDATE MEMBER
-		   SET M_ENJOY = #{m_enjoy}
-		 WHERE M_NO = #{m_no}
-	</update>
-
+	<insert id="joinClub">
+		INSERT 
+		  INTO CLUBLIST (CL_NO, C_NO, M_NO, CL_CARD)
+		  VALUES (CLUBLIST_SEQ.NEXTVAL, #{param1}, #{param2}, 0)
+	</insert>
+	
+	<delete id="chkOutClub" parameterType="int">
+		DELETE 
+		  FROM CLUBLIST
+		 WHERE CL_NO = #{param1}
+	</delete>
+	
 </mapper>

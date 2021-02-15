@@ -25,25 +25,38 @@
 
 		<div class="side">
 
+			
 			<div class="side_content">
-				<input type="text" name="c_title" value="${clubDto.c_title}" /><br />
+				<input type="file" name="c_mainImg" /> 
+			</div>
+
+			<div class="side_content">
+			    <span class="title">클럽명</span>
+				${clubDto.c_title}<br/>
 			</div>
 			
+			<span class="title">한 줄 설명</span> 
+			<input type="text" name="c_desc" value="${clubDto.c_desc}" /><br/>
+			
 			<span class="title">최소인원</span> 
-			<input type="text" name="c_min" placeholder="최소인원을 입력해주세요" value="${clubDto.c_min}" /><br />
+			<input type="text" name="c_min" value="${clubDto.c_min}" /><br/>
 			
 			<span class="title">최대인원</span> 
-			<input type="text" name="c_max" placeholder="최대인원을 입력해주세요" value="${clubDto.c_max}" /><br />
+			<input type="text" name="c_max" value="${clubDto.c_max}" /><br/>
 			 
 			<span class="title">활동시작날짜</span> 
-			${clubDto.c_startDate}
+			${clubDto.c_startDate}<br/>
 			
 			<span class="title">활동종료날짜</span> 
-			${clubDto.c_endDate}
+			${clubDto.c_endDate}<br/>
 			
 			<span class="title">클럽내용</span><br />
 			<textarea rows="20" cols="100" placeholder="${clubDto.c_content}" name="c_content"></textarea>
 			<br /><br /> 
+			
+			<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+			<input type="hidden" name="m_no" value="${clubDto.m_no}" />
+			
 			<input type="button" value="수정하기" onclick="fn_update(this.form)" />
 			<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
 		</div>

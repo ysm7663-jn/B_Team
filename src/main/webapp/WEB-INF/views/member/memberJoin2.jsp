@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../template/header.jsp" />
+<link rel="stylesheet" href="resources/style/member/memberJoin3.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 <script>
@@ -16,7 +17,6 @@
 		fn_emailCheck();
 		fn_emailAuth1();
 		fn_emailAuth2();
-		Conn();
 	});
 	
 	
@@ -219,64 +219,63 @@
 		});
 	}
 	
-	function Conn(){
-			var d=new Date();
-			var nowDate = d.getFullYear()+( d.getMonth() + 1 )+ d.getDate();
-			$('#nowDate').val()=nowDate;
-	}
-		
-	
+	function fn_memberInsert(f){
+		f.action='memberInsert.member';
+		f.submit();
+	}	
 </script>
-
-	
-	<form method="post" action="memberInsert.member">
-	
-		<label for="m_id">아이디</label><br/>
-		<input type="text" name="m_id" id="m_id" /><br/>
-		<div id="result" class="check-m_id-result" ></div>
-		<br/><br/>
-	
-		<label for="m_pw">비밀번호</label><br/>
-		<input type="password" name="m_pw" id="m_pw"/><br/>
-		<div id="result2" class="check-m_pw1-result" ></div>
-		<br/><br/>
-	
-		<label for="m_pw2">비밀번호 확인</label><br/>
-		<input type="password" name="m_pw2" id="m_pw2" /><br/>
-		<div id="result3" class="check-m_pw2-result" ></div>
-		<br/><br/>
-	
-		<label for="m_nick">닉네임</label><br/>
-		<input type="text" name="m_nick" id="m_nick" /><br/>
-		<div id="result4" class="check-m_nick-result" ></div>
-		<br/><br/>
+	<br/><br/><br/>
+	<div class="box">
+		<form method="post">
+			${param.chk_email}
+			${param.chk_email}
+			${param.chk_email}
 		
-		<label for="m_name">이름</label><br/>
-		<input type="text" name="m_name" id="m_name" /><br/>
-		<div id="result5" class="check-m_name-result"></div>
-		<br/><br/>
+			<label for="m_id">아이디</label><br/>
+			<input type="text" name="m_id" id="m_id" /><br/>
+			<div id="result" class="check-m_id-result" ></div>
+			<br/>
 		
-		<label for="m_birth">생년월일</label><br/>
-		<input type="text" name="m_birth" id="m_birth" placeholder="예)19990720"/><br/>
-		<div id="result6" class="check-m_birth-result"></div>
-		<br/><br/>
+			<label for="m_pw">비밀번호</label><br/>
+			<input type="password" name="m_pw" id="m_pw"/><br/>
+			<div id="result2" class="check-m_pw1-result" ></div>
+			<br/>
 		
-		<label for="m_email">이메일</label><br/>
-		<input type="text" name="m_email" id="m_email" />
-		<input type="button" value="인증번호받기" id="emailAuth1" name="emailAuth1"/><br/>
-		<div id="result7" class="check-m_email-result"></div>
-		<br/>
-		<input type="text" name="email2" id="email2" placeholder="인증번호를 입력하세요"/><br/>
-		<input type="button" value="인증완료" name="emailAuth2" id="emailAuth2"/><br/>
-		<div id="result8" class="check-m_email2-result"></div>
-		<br/><br/>
+			<label for="m_pw2">비밀번호 확인</label><br/>
+			<input type="password" name="m_pw2" id="m_pw2" /><br/>
+			<div id="result3" class="check-m_pw2-result" ></div>
+			<br/>
 		
-		<input type='hidden' id='nowDate'/>
-				
-		<button>가입하기</button>
-	
-	</form>
-	
+			<label for="m_nick">닉네임</label><br/>
+			<input type="text" name="m_nick" id="m_nick" /><br/>
+			<div id="result4" class="check-m_nick-result" ></div>
+			<br/>
+			
+			<label for="m_name">이름</label><br/>
+			<input type="text" name="m_name" id="m_name" /><br/>
+			<div id="result5" class="check-m_name-result"></div>
+			<br/>
+			
+			<label for="m_birth">생년월일</label><br/>
+			<input type="text" name="m_birth" id="m_birth" placeholder="예)19990720"/><br/>
+			<div id="result6" class="check-m_birth-result"></div>
+			<br/>
+			
+			<label for="m_email">이메일</label><br/>
+			<input type="text" name="m_email" id="m_email" />
+			<input type="button" value="인증번호받기" id="emailAuth1" name="emailAuth1"/><br/>
+			<div id="result7" class="check-m_email-result"></div>
+			<br/>
+			<input type="text" name="m_email2" id="m_email2" placeholder="인증번호를 입력하세요"/><br/><br/>
+			<input type="button" value="인증완료" name="emailAuth2" id="emailAuth2"/><br/>
+			<div id="result8" class="check-m_email2-result"></div>
+			<br/>
+			
+			<input type="hidden" value="${param.chk_email}"name="m_agreement"/>		
+			<input type="button" id="btn" value="가입하기" onclick="fn_memberInsert(this.form)">
+		
+		</form>
+	</div>
 	
 	
 	

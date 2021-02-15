@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.ClubDao;
 
@@ -17,9 +18,10 @@ public class ClubInsertCommand implements ClubCommand {
 
 		Map<String, Object> map = model.asMap();
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) map.get("multipartRequest");
+		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
+		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 		
-		int c_no = Integer.parseInt(multipartRequest.getParameter("c_no"));
 		int m_no = Integer.parseInt(multipartRequest.getParameter("m_no"));
 		
 		String c_title = multipartRequest.getParameter("c_title");
@@ -27,9 +29,9 @@ public class ClubInsertCommand implements ClubCommand {
 		String c_content = multipartRequest.getParameter("c_content");
 		int c_min = Integer.parseInt(multipartRequest.getParameter("c_min"));
 		int c_max = Integer.parseInt(multipartRequest.getParameter("c_max"));
-		String c_subContent1 = multipartRequest.getParameter("c_subContent1");
+		/*String c_subContent1 = multipartRequest.getParameter("c_subContent1");
 		String c_subContent2 = multipartRequest.getParameter("c_subContent2");
-		String c_subContent3 = multipartRequest.getParameter("c_subContent3");
+		String c_subContent3 = multipartRequest.getParameter("c_subContent3");*/
 		
 		String c_startDate = multipartRequest.getParameter("c_startDate");
 		String c_endDate = multipartRequest.getParameter("c_endDate");
@@ -67,7 +69,7 @@ public class ClubInsertCommand implements ClubCommand {
 						
 				String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
 				
-				String realPath = multipartRequest.getServletContext().getRealPath("resources/storage");
+				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/club");
 				
 				File dir = new File(realPath);
 				if(!dir.exists()) {
@@ -82,9 +84,15 @@ public class ClubInsertCommand implements ClubCommand {
 					e.printStackTrace();
 				}
 				
-				//model.addAttribute("insertResult", clubDao.clubInsert(m_no, c_title, c_content, c_min, c_max, uploadFilename));
-				clubDao.clubInsert(m_no, c_title, c_desc, c_min, c_max, c_startDate, c_endDate, c_content, uploadFilename);
+				int insertResult = clubDao.clubInsert(m_no, c_title, c_desc, c_min, c_max, c_startDate, c_endDate, c_content, uploadFilename);
 				
+				boolean afterInsert = false;
+				if(insertResult > 0) { 
+					afterInsert = true;
+				}
+				
+				rttr.addFlashAttribute("insertResult", insertResult);
+				rttr.addFlashAttribute("afterInsert", afterInsert);
 		} 
 		
 	}

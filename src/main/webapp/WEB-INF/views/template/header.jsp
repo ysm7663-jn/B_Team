@@ -41,6 +41,7 @@
 					<div><a href="loginPage.member">로그인</a></div>
 					<div><a href="memberJoin.member">회원가입</a></div>
 					<div><a href="faqListPage.faq">FAQ</a></div>
+
 				</nav>
 			</div>
 		</div>	<!-- end : header-wrap -->

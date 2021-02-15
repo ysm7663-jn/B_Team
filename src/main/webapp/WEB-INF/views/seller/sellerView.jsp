@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<jsp:include page="../template/header.jsp" />
+<jsp:include page="../myPage/myPage.jsp" />
+<link rel="stylesheet" href="resources/style/seller/sellerView.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
 
@@ -92,7 +93,7 @@
 				"s_pw": $('#pw2').val()
 		};
 		$.ajax({
-			url:'sellerPwUpdate.member',
+			url:'sellerPwUpdate.seller',
 			type:'post',
 			
 			data:JSON.stringify(obj),
@@ -142,9 +143,13 @@
 	
 </script>	
 
-<h3>마이페이지</h3>
-	<form id="member">
-		<table>
+<div class="mypage-contents">
+		<h3>마이페이지</h3>
+		<br/>		
+		<div class="content-wrap">
+		
+	<form id="seller">
+		<table id="myInfo">
 			<tbody>
 				<tr>
 					<th>아이디</th>
@@ -167,27 +172,33 @@
 								<tr>
 									<td>현재 비밀번호</td>
 									<td><input type="password" id="pw1" name="pw1"/></td>
-									<td>
+								</tr>
+								<tr>
+									<td colspan="2">
 										<div id="result" class="check-s_pw-result"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>새 비밀번호</td>
 									<td><input type="password" id="pw2" name="pw2" onblur="fn_pwCheck()"/></td>
-									<td>
+								</tr>
+								<tr>	
+									<td colspan="2">
 										<div id="result2" class="check-s_pw2-result2"></div>
 									</td>
 								</tr>
 								<tr>
 									<td>새 비밀번호 확인</td>
 									<td><input type="password" id="pw3" name="pw3" onblur="fn_pwCheck2()"/></td>
-									<td>
+								</tr>
+								<tr>	
+									<td colspan="2">
 										<div id="result3" class="check-s_pw3-result3"></div>
 									</td>
 								</tr>
 								<tr>
 									<td><input type="button" value="수정하기" onclick="fn_sellerPwUpdate()"/></td>
-									<td>*비밀번호 변경시 수정하기 버튼을 누르셔야 합니다</td>
+									<td>*비밀번호 변경시 수정하기 <br/>버튼을 누르셔야 합니다</td>
 								</tr>
 							</tbody>
 						</table>
@@ -216,6 +227,7 @@
 			</tbody>
 		</table>
 	</form>
+	</div></div>
 
 
 <%@ include file="../template/footer.jsp" %>

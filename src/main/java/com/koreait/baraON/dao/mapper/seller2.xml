@@ -23,5 +23,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			S_EMAIL=#{s_email}
 		WHERE S_NO = #{s_no}
 	</update>
+	
+	<select id="sellerSearch" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM SELLER
+		WHERE S_NO= #{s_no}
+	</select>
+	
+	<select id="reviewSearch" parameterType="com.koreait.baraON.dto.ReviewDto" resultType="com.koreait.baraON.dto.ReviewDto">
+		SELECT COUNT(*)
+		FROM SELLER
+		WHERE S_NO= #{s_no}
+	</select>
+
+	
 
 </mapper>

@@ -18,10 +18,9 @@ public class ClubViewCommand implements ClubCommand {
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
 		int c_no = Integer.parseInt(request.getParameter("c_no"));
-		int m_no = Integer.parseInt(request.getParameter("m_no"));
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
-		model.addAttribute("memberDto", clubDao.clubView2(m_no));
+		model.addAttribute("memberDto", clubDao.clubView2(c_no));
 		model.addAttribute("clubDto", clubDao.clubView(c_no));
 
 	}

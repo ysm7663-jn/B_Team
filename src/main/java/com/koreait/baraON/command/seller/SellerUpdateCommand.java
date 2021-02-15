@@ -18,7 +18,6 @@ public class SellerUpdateCommand implements SellerCommand {
 		SellerDto sellerDto  = (SellerDto)map.get("sellerDto");
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		
 		SellerDao sellerDao = sqlSession.getMapper(SellerDao.class);
 		
 		resultMap.put("result", sellerDao.sellerUpdate(sellerDto));

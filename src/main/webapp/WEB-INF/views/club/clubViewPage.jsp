@@ -3,43 +3,11 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page="../template/header.jsp">
-	<jsp:param value="클럽 내용 보기" name="title" />
+	<jsp:param value="클럽 내용 상세 보기" name="title" />
 </jsp:include>
 
 <link rel="stylesheet" href="resources/style/common.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-
-<script>
-	$(function() {
-		$('#btn1').click(function() {
-			$(this).val('탈퇴하기');
-			var m_enjoy = $('input[name=m_enjoy]').val();
-			var m_no = $('input[name=m_no]').val();
-			
-			var send = {"m_enjoy": m_enjoy, "m_no": m_no};
-			
-			$.ajax({
-				url: 'updateStat.club',
-				type: 'put',
-				data: send,
-				dataType: 'json',
-				success: function(responseJson) {
-					if(responseJson.updateResult == 1) {
-						alert('성공');
-						$('#btn1').val('참여하기');
-					} else {
-						alert('실패실패');
-					}
-				},
-				error: function() {
-					alert('실패');
-				}
-			});
-			
-			
-			});
-		});
-</script>
 
 <script type="text/javascript">
 		function fn_delete(f) {
@@ -48,20 +16,32 @@
 				f.submit();
 			}
 		}
+		
+		function fn_update(f) {
+			if (confirm('클럽 정보를 수정하시겠습니까?')) {
+				f.action='clubUpdatePage.club';
+				f.submit();
+			}
+		}
+		
+		function fn_joinClub(f) {
+			if (confirm('해당 클럽을 참여하시겠습니까?')) {
+				f.action = 'joinClub.club';
+				f.submit();
+			}
+		}
+			
+		function fn_chkOut(f) {
+			if (confirm('해당 클럽을 탈퇴하시겠습니까?')) {
+				f.action = 'chkOutClub.club';
+				f.submit();
+			}
+		}
+			
 </script>
 
-<!-- <script>
-	var afterDelete = ${afterDelete};
-	if (afterDelete) {
-		var afterDelete = ${afterDelete};
-		if (afterDelete > 0) {
-			alert('삭제되었습니다.');
-		} else {
-			alert('실패했습니다.');
-		}
-	}
-	
-	var afterUpdate = ${afterUpdate};
+ <script>
+ 	var afterUpdate = ${afterUpdate};
 	if (afterUpdate) {
 		var afterUpdate = ${afterUpdate};
 		if (afterUpdate > 0) {
@@ -69,24 +49,45 @@
 		} else {
 			alert('실패했습니다.');
 		}
+	} 
+	
+	var afterJoin = ${afterJoin};
+	if (afterJoin) {
+		var joinResult = ${joinResult};
+		if (joinResult > 0) {
+			alert('클럽에 가입되었습니다.');
+		} else {
+			alert('실패했습니다.');
+		}
 	}
-</script> -->
+	
+	var afterChkOut = ${afterChkOut};
+	if (afterChkOut) {
+		var chkOutResult = ${chkOutResult};
+		if (chkOutResult > 0) {
+			alert('클럽을 탈퇴했습니다.');
+		} else {
+			alert('실패했습니다.');
+		}
+	} 
+	
+</script>
 
-<form>
+<form method="post">
 
 	<div class="wrap">
 
 		<div class="thumnail">
-			<img alt="main사진" src="resources/images/club/${clubDto.c_mainImg}">
+			<img alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 		</div>
 
-		<c:if test="${clubDto.m_no ne memberDto.m_no}">
+		<c:if test="${clubDto.m_no ne loginDto.m_no}">
 			<div class="side">
 
 				<div class="side_content">
 					<span id="content">${clubDto.c_title}</span>
 				</div>
-
+				
 				<div class="side_content">
 					<span id="content">활동 시작일 : ${clubDto.c_startDate}</span>
 				</div>
@@ -96,22 +97,19 @@
 				</div>
 
 				<div class="side_content">
-					<c:if test="${memberDto.m_enjoy eq N}">
-						<input type="button" value="참여하기" id="btn1"/>
-						<input type="hidden" value="N" name="m_enjoy" />
-						<input type="hidden" value="${clubDto.m_no}" name="m_no" />
-						<input type="hidden" value="${afterUpdate}" />
+					<c:if test="${clubListDto.m_no ne loginDto.m_no}">
+						<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)" />
 					</c:if>
 					
-					<c:if test="${memberDto.m_enjoy ne N}">
-						<input type="button" value="탈퇴하기" id="btn1" />
+					<c:if test="${clubListDto.m_no eq loginDto.m_no}">
+						<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/>
 					</c:if>
 					
 				</div>
 			</div>
 		</c:if>
 
-		<c:if test="${clubDto.m_no eq memberDto.m_no}">
+		<c:if test="${clubDto.m_no eq loginDto.m_no}">
 			<div class="side">
 
 				<div class="side_content">
@@ -126,9 +124,20 @@
 					<span id="content">활동 종료일 : ${clubDto.c_endDate}</span>
 				</div>
 
+				<%-- hidden --%>
+				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+				<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+				<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
+				<input type="hidden" name="c_title" value="${clubDto.c_title}" />
+				<input type="hidden" name="c_min" value="${clubDto.c_min}" />
+				<input type="hidden" name="c_max" value="${clubDto.c_max}" />
+				<input type="hidden" name="c_startDate" value="${clubDto.c_startDate}" />
+				<input type="hidden" name="c_endDate" value="${clubDto.c_endDate}" />
+				<input type="hidden" name="c_content" value="${clubDto.c_content}" />
+
 				<div class="side_content">
 					<input type="button" value="장소등록하기" onclick="location.href='placeListPage.place'" /> 
-					<input type="button" value="장소수정하기" onclick="location.href='fn_update(this.form)'" /> 
+					<input type="button" value="클럽수정하기" onclick="fn_update(this.form)" /> 
 					<input type="button" value="클럽해제하기" onclick="fn_delete(this.form)" />
 				</div>
 			</div>
@@ -136,28 +145,44 @@
 
 		<div class="contents-wrap">
 			<div class="content">
-				<span id="title">클럽명</span> <span id="content">${clubDto.c_title}</span>
+				<span id="title">클럽명</span> 
+				<span id="content">${clubDto.c_title}</span>
 			</div>
 
 			<div class="content">
-				<span id="title">리더 소개</span> <span id="content">${memberDto.m_nick}</span>
+				<span id="title">한 줄 설명</span> 
+				<span id="content">${clubDto.c_desc}</span>
+			</div>
+	
+			<div class="content">
+				<span id="title">리더 소개</span> 
+				<span id="content">${memberDto.m_nick}</span>
 			</div>
 
 			<div class="content">
-				<span id="title">클럽내용</span> <span id="content">${clubDto.c_content}</span>
+				<span id="title">클럽내용</span> 
+				<span id="content">${clubDto.c_content}</span>
 			</div>
 
 			<div class="content">
-				<span id="content">${clubDto.c_img1}</span> <span id="content">${clubDto.c_subContent1}</span>
+				<span id="content">${clubDto.c_img1}</span>
+				 <span id="content">${clubDto.c_subContent1}</span>
 			</div>
 
 			<div class="content">
-				<span id="content">${clubDto.c_img2}</span> <span id="content">${clubDto.c_subContent2}</span>
+				<span id="content">${clubDto.c_img2}</span>
+				<span id="content">${clubDto.c_subContent2}</span>
 			</div>
 
 			<div class="content">
-				<span id="content">${clubDto.c_img3}</span> <span id="content">${clubDto.c_subContent3}</span>
+				<span id="content">${clubDto.c_img3}</span> 
+				<span id="content">${clubDto.c_subContent3}</span>
 			</div>
+			
+			<div class="content">
+				<span id="content">${clubDto.c_postDate}</span>
+			</div>
+			
 		</div>
 		
 		<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
