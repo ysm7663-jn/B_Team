@@ -47,4 +47,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			F_CONTENT = #{param2}
 		WHERE F_NO = #{param3}
 	</update>
+	
+	
+	
+	<select id="indexFaq" resultType="com.koreait.baraON.dto.FAQDto" >
+		SELECT B.*
+		FROM (SELECT ROWNUM RN, A.*
+				FROM (SELECT *
+					FROM FAQ
+				ORDER BY F_REGDATE DESC) A) B
+		WHERE RN BETWEEN 1 AND 3
+	</select>
+	
 </mapper>

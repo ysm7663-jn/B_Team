@@ -36,13 +36,13 @@
 				</a>
 				<div class="right-head-wrap">
 					<nav id="right-head">
-			<!-- 로그인 전 -->
+						<!-- 로그인 전 -->
 						<c:if test="${loginDto eq null}">
 							<div><a href="loginPage.member">로그인</a></div>
 							<div><a href="memberJoin3.member">회원가입</a></div>
 							<div><a href="">FAQ</a></div>
 						</c:if>
-			<!-- 로그인 후 -->
+						<!-- 로그인 후 -->
 						<c:if test="${loginDto ne null}">
 							<div><a href="logout.member">로그아웃</a></div>
 							<div><a href="profile.myPage">마이페이지</a></div>

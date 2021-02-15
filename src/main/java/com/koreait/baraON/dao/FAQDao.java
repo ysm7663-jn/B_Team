@@ -13,4 +13,7 @@ public interface FAQDao {
 	public int faqInsert(String title, String content , int f_category);
 	public int faqDelete(int no);
 	public int faqUpdate(String title, String content ,int no);
+	
+	
+	public List<FAQDto> indexFaq();
 }
