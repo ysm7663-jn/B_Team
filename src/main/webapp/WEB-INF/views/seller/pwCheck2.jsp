@@ -37,7 +37,7 @@ function fn_pwSearch(){
 
 	<div class="box">
 	    <br><br><br><br><br>
-	  	  <b><font size="4" color="gray">비밀번호 확인</font></b>
+	  	  <b><font size="4" color="cadetblue">비밀번호 확인</font></b>
 	    <hr size="1" width="1000">
 	    <br>
 	    <div id="chk">
@@ -46,8 +46,6 @@ function fn_pwSearch(){
 	            <input type="button" value="확인" id="pwCheck"onclick="fn_pwSearch()"/>
 	        </form>
 	        <br>
-	    <div id="msg"></div>
-	        <input id="cancelBtn" type="button" value="취소" onclick="window.close()"><br>
     	</div>
 	</div> 
 </body>

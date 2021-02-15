@@ -6,16 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.koreait.baraON.dao.PlaceDao">
 	
 	<select id="placeList" resultType="com.koreait.baraON.dto.PlaceListDto" >
-		SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) ASMINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
+		SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) AS MINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
 		  FROM (SELECT P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG, COUNT(RV.P_NO) AS RVCOUNT
 				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO
-				 WHERE P.P_CONFIRM = 1
+				 WHERE P.P_CONFIRM LIKE '승인'
 				   AND P.P_DELETE = 0
 				   AND (RV.RV_DELETE IS NULL OR RV.RV_DELETE = 0)
 			  GROUP BY P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
 																		 LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
 	  GROUP BY A.P_NO, A.PC_NO, A.P_TITLE, A.P_BNAME, A.P_IMG, A.RVCOUNT, PC.PC_NAME
-	  ORDER BY A.P_NO
+	  ORDER BY A.P_NO DESC
 	</select>
 	<select id="placeCategoryList" resultType="com.koreait.baraON.dto.PlaceCategoryDto" >
 		SELECT *
@@ -60,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<select id="getPlaceListDtoByCategory" parameterType="int" resultType="com.koreait.baraON.dto.PlaceListDto">
-	  SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) ASMINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
+	  SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) AS MINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
 		  FROM (SELECT P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG, COUNT(RV.P_NO) AS RVCOUNT
 				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO 
 				 WHERE P.P_CONFIRM LIKE '승인'
@@ -70,7 +70,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			  GROUP BY P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
 																		 LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
 	  GROUP BY A.P_NO, A.PC_NO, A.P_TITLE, A.P_BNAME, A.P_IMG, A.RVCOUNT, PC.PC_NAME
-	  ORDER BY A.P_NO
+	  ORDER BY A.P_NO DESC
 	  
 	</select>
 	
@@ -102,5 +102,47 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		PLACE
 		WHERE P_NO=#{param1}
 	</delete>
+
+	<select id="allPlaceSearch"  parameterType="com.koreait.baraON.dto.PlaceDto" resultType="com.koreait.baraON.dto.PlaceListDto">
+		SELECT *
+		FROM PLACE
+		WHERE S_NO = #{s_no} AND P_DELETE = 0
+	</select>
+	
+	<select id="placeCaSearch"  parameterType="com.koreait.baraON.dto.PlaceDto" resultType="com.koreait.baraON.dto.PlaceListDto">
+		SELECT *
+		FROM PLACE
+		WHERE S_NO=#{s_no} AND PC_NO=#{pc_no} P_DELETE = 0
+	</select>
+	
+	<select id="allPlaceSearch2"  parameterType="com.koreait.baraON.dto.PlaceDto" resultType="com.koreait.baraON.dto.PlaceListDto">
+		SELECT *
+		FROM PLACE
+		WHERE S_NO = #{s_no} AND P_DELETE = 1
+	</select>
+
+	<select id="placeCaSearch2"  parameterType="com.koreait.baraON.dto.PlaceDto" resultType="com.koreait.baraON.dto.PlaceListDto">
+		SELECT *
+		FROM PLACE
+		WHERE S_NO=#{s_no} AND PC_NO=#{pc_no} P_DELETE = 1
+	</select>
+	
+	<select id="placeAdminList" resultType="com.koreait.baraON.dto.ReviewCheckDto">
+		SELECT B.*
+			FROM (SELECT ROWNUM RN , A.P_TITLE, A.RV_CONTENT, A.RV_STAR, A.M_ID
+				FROM (SELECT RV.*, P.*, M.*
+					FROM REVIEW RV LEFT JOIN PLACE P ON RV.P_NO=P.P_NO
+					LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO
+					WHERE P.P_DELETE = 0
+					AND P.P_CONFIRM LIKE '승인'
+					AND P.S_NO=#{param1}) A) B
+			WHERE RN BETWEEN #{param2} AND #{param3}
+	</select>
+	
+	<select id="placeCount" resultType="int">
+		SELECT COUNT(*)
+		FROM PLACE
+	</select>
+
 
 </mapper>

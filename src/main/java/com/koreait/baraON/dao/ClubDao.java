@@ -22,4 +22,9 @@ public interface ClubDao {
 	public int joinClub(int c_no, int m_no);
 	
 	public int chkOutClub(int cl_no);
+	
+	public int likeClub(int c_no, int m_no);
+	
+	public int unlikeClub(int w_no);
+	
  }

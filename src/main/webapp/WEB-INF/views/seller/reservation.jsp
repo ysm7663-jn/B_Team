@@ -8,14 +8,17 @@
 
 	$(document).ready(function(){
 		reservationList();
+		stateChange();
+		stateCancle();
 	});
 	
 	var page=1;
 	
-	function reservationList(){
+	function reservationList() {
 		
-		var obj={
-				"page":page
+		var obj = {
+				'page': page,
+				's_no': '${loginDto.s_no}'
 		};
 		
 		$.ajax({
@@ -89,26 +92,55 @@
 			.append( $('<td>').html(reservation.res_people) )
 			.append( $('<td>').html(reservation.res_price) )
 			.append( $('<td>').html(reservation.res_state) )
-			.append( $('<td>').html('<input type="hidden" name="res_no" />').val(reservation.res_no))
+			.append( $('<td>').html('<input type="hidden" name="res_no" value="' + reservation.res_no + '" />' ) )
 			.append( $('<td>').html('<input type="button" value="예약확인" id="btn1" />'))
+			.append( $('<td>').html('<input type="button" value="예약취소" id="btn2" />'))
 			.appendTo('#reservationList');
 		});
 	}
 	
-	function stateChange(){
+	function stateChange() {
 		
-		$('body').on('click', '#btn', function(){
-			var obj={
-				'res_no':$(this).parents('tr').find('input:hidden[name="res_no"]').val()
+		$('body').on('click', '#btn1', function(){
+			var obj = {
+				'res_no': $(this).parents('tr').find('input:hidden[name="res_no"]').val()
 			};
 			$.ajax({
-				url : 'reservation/' + res_no,	// @RequestMapping(value="member/{no}")	
-				type: 'get',
-				data:JSON.stringify(obj),
-				contentType:'application/json',
+				url : 'stateChange.seller',
+				type: 'post',
+				data: JSON.stringify(obj),
+				contentType: 'application/json',
 				dataType: 'json',
 				success:function(data){
-					alert('예약완료되었습니다');
+					if (data.result) {
+						alert('예약완료되었습니다');
+						reservationList();
+					}
+				},
+				error: function(){
+					alert('실패');
+				}
+			});
+		});
+	}
+	
+	function stateCancle() {
+		
+		$('body').on('click', '#btn2', function(){
+			var obj = {
+				'res_no': $(this).parents('tr').find('input:hidden[name="res_no"]').val()
+			};
+			$.ajax({
+				url : 'stateCancle.seller',
+				type: 'post',
+				data: JSON.stringify(obj),
+				contentType: 'application/json',
+				dataType: 'json',
+				success:function(data){
+					if (data.result) {
+						alert('예약취소되었습니다');
+						reservationList();
+					}
 				},
 				error: function(){
 					alert('실패');

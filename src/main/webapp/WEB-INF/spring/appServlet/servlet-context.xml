@@ -21,6 +21,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- index command -->
+	<beans:bean id="indexCommand" class="com.koreait.baraON.command.IndexCommand" />
+	
 	<!-- place command -->
 	<beans:bean id="placeListCommand" class="com.koreait.baraON.command.place.PlaceListCommand" />
 	<beans:bean id="placeViewCommand" class="com.koreait.baraON.command.place.PlaceViewCommand" />
@@ -45,6 +48,7 @@
 	<beans:bean id="reservationUpdateCommand" class="com.koreait.baraON.command.reservation.ReservationUpdateCommand" />
 	<beans:bean id="reservationPageCommand" class="com.koreait.baraON.command.reservation.ReservationPageCommand" />
 	<beans:bean id="stateChangeCommand" class="com.koreait.baraON.command.reservation.StateChangeCommand" />
+	<beans:bean id="stateCancleCommand" class="com.koreait.baraON.command.reservation.StateCancleCommand" />
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
@@ -106,6 +110,8 @@
 	<beans:bean id="clubDeleteCommand" class="com.koreait.baraON.command.club.ClubDeleteCommand" />
 	<beans:bean id="joinClubCommand" class="com.koreait.baraON.command.club.JoinClubCommand" />
 	<beans:bean id="chkOutClubCommand" class="com.koreait.baraON.command.club.ChkOutClubCommand" />
+	<beans:bean id="likeClubCommand" class="com.koreait.baraON.command.club.LikeClubCommand" />
+	<beans:bean id="unLikeClubCommand" class="com.koreait.baraON.command.club.UnLikeClubCommand" />
 
 	<!-- login -->
 
@@ -138,7 +144,7 @@
 	<beans:bean id="sellerPwSearchCommand" class="com.koreait.baraON.command.seller.SellerPwSearchCommand"/>
 	<beans:bean id="sellerPwUpdateCommand" class="com.koreait.baraON.command.seller.SellerPwUpdateCommand"/>
 	<beans:bean id="sellerUpdateCommand" class="com.koreait.baraON.command.seller.SellerUpdateCommand"/>
-	<beans:bean id="placeList2Command" class="com.koreait.baraON.command.seller.PlaceList2Command"/>
+	<beans:bean id="placeAdminListCommand" class="com.koreait.baraON.command.seller.PlaceAdminListCommand"/>
 	<beans:bean id="reservationListCommand" class="com.koreait.baraON.command.seller.ReservationListCommand"/>
 	<beans:bean id="sellerSearchCommand" class="com.koreait.baraON.command.seller.SellerSearchCommand"/>
 	<beans:bean id="sellerEmailAuthCommand" class="com.koreait.baraON.command.seller.SellerEmailAuthCommand"/>
@@ -153,6 +159,8 @@
 	<beans:bean id="infoDeleteCommand" class="com.koreait.baraON.command.myPage.InfoDeleteCommand" />	
 	<beans:bean id="clubManageListCommand" class="com.koreait.baraON.command.myPage.ClubManageListCommand" />	
 	<beans:bean id="clubCountCommand" class="com.koreait.baraON.command.myPage.ClubCountCommand" />	
+	<beans:bean id="clubManageDetailCommand" class="com.koreait.baraON.command.myPage.ClubManageDetailCommand" />	
+	<beans:bean id="cardPlusCommand" class="com.koreait.baraON.command.myPage.CardPlusCommand" />	
 	
 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
 		<beans:property name="host" value="smtp.gmail.com"/>

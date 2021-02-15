@@ -52,8 +52,10 @@ public class PlaceInsertCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_infoList.length;i++) {
 			if(i!=(p_infoList.length-1)) {
+				p_infoList[i]=p_infoList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+p_infoList[i]+"\",");
 			} else {
+				p_infoList[i]=p_infoList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+p_infoList[i]+"\"]");
 			}
 		}
@@ -63,8 +65,10 @@ public class PlaceInsertCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_remarkList.length;i++) {
 			if(i!=(p_remarkList.length-1)) {
+				p_remarkList[i]=p_remarkList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+p_remarkList[i]+"\",");
 			} else {
+				p_remarkList[i]=p_remarkList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+p_remarkList[i]+"\"]");
 			}
 		}
@@ -95,7 +99,7 @@ public class PlaceInsertCommand implements PlaceCommand {
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
-				String originalFilename = file.getOriginalFilename();
+				String originalFilename = file.getOriginalFilename().replace("'", "");
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 				
 				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceImages");
@@ -182,15 +186,17 @@ public class PlaceInsertCommand implements PlaceCommand {
 			if (count == 0) {continue;}
 			for(int j =0;j<count;j++) {
 				if(j!=(count-1)){
+					po_facilityList[j+prevCount]=po_facilityList[j+prevCount].replace("'", "&#39;").replace("\"", "&quot;");
 					sb.append("\""+po_facilityList[j+prevCount]+"\",");
 				} else {
+					po_facilityList[j+prevCount]=po_facilityList[j+prevCount].replace("'", "&#39;").replace("\"", "&quot;");
 					sb.append("\""+po_facilityList[j+prevCount]+"\"]");
 				}
 			}
 			String po_facility = sb.toString();
 			
 			MultipartFile file = optionImgList.get(i);
-			String originalFilename = file.getOriginalFilename();
+			String originalFilename = file.getOriginalFilename().replace("'", "");
 			String extension = originalFilename.substring(originalFilename.lastIndexOf(".")+1);
 			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceOptionImages");
 			
