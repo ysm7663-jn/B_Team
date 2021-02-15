@@ -115,4 +115,30 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  		 WHERE RES.M_NO = #{param1}
 			 AND P.P_DELETE = 0 
 	</select>
+	<select id="memberInfo" parameterType="int" resultType="com.koreait.baraON.dto.ClubListDto">
+		SELECT CL.CL_NO, CL.CL_CARD, M.M_NO, M.M_NAME, M.M_BIRTH, M.M_NICK, M.M_PHONE, M.M_EMAIL
+			FROM CLUBLIST CL JOIN MEMBER M 
+		  ON CL.M_NO = M.M_NO
+ 		 WHERE CL.C_NO = #{param1}
+	</select>
+	<update id="cardPlus" parameterType="int">
+		UPDATE CLUBLIST
+			SET CL_CARD += 1
+ 		 WHERE CL_NO = #{param1}
+	</update>
+	<select id="cardCount" parameterType="int" resultType="int">
+		SELECT CL_CARD
+			FROM CLUBLIST 
+ 		 WHERE CL_NO = #{param1}
+	</select>
+	<delete id="clubMemberDelete" parameterType="int">
+		DELETE FROM CLUBLIST
+		 WHERE CL_NO = #{param1}
+	</delete>
+	
+	<select id="asdfasdf" resultType="com.koreait.baraON.dto.ClubListDto">
+		SELECT *
+		FROM CLUBLIST
+		WHERE CL_NO=#{param1}
+	</select>
 </mapper>

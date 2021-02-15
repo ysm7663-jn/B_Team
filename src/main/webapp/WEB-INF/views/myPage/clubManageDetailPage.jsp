@@ -19,11 +19,19 @@
 		}
 	});
 	
-	function fn_infoPopUp() {
-		window.name = 'detailPage';
-		window.open('infoPopUp.myPage', 'infoPopUp', 'width=500, height=600, top=30, left=30, resizable=no, scrollbars=no, location=no');	
+	let openWin;
+	function fn_infoPopUp(f) {
+		window.name ='parentForm';
+		openWin = window.open('infoPopUp.myPage', 'infoPopUp', 'width=500, height=500, top=30, left=30, resizable=no, scrollbars=no, location=no');	
 		
-		infoForm.submit();
+		//setChildText(e);
+		f.target='infoPopUp';
+		
+		f.submit();
+	}
+	
+	function setChildText(e){
+		//openWin.document.querySelector('#index').value = $(e.target).prev().val();
 	}
 	</script>
 	<div class="mypage-contents">
@@ -89,7 +97,7 @@
 			</c:if>
 			<c:if test="${not empty clubList}">
 				<div class="membersInfo">
-				<c:forEach var="memberDto" items="${clubList}">
+				<c:forEach var="memberDto" items="${clubList}" varStatus="k" >
 						<div class="memberInfo">
 							<div class="memberImg"><i class="fas fa-user-circle"></i></div>
 							<div class="memberDetail">
@@ -103,14 +111,15 @@
 							<div class="detailBtn">
 								<form name="infoForm" method="post">
 									<!-- hidden -->
-									<input type="hidden" id="name" value="${memberDto.m_name}" />
-									<input type="hidden" id="nick" value="${memberDto.m_nick}" />
-									<input type="hidden" id="birth" value="${memberDto.m_birth}" />
-									<input type="hidden" id="phone" value="${memberDto.m_phone}" />
-									<input type="hidden" id="email" value="${memberDto.m_email}" />
-									<input type="hidden" id="cl_no" value="${memberDto.cl_no}" />
-									<input type="hidden" id="card" value="${memberDto.cl_card}" />
-									<input type="button" value="자세히" onclick="fn_infoPopUp()" />
+									<input type="hidden" name="name" id="name" value="${memberDto.m_name}" />
+									<input type="hidden" name="nick" id="nick" value="${memberDto.m_nick}" />
+									<input type="hidden" name="birth" id="birth" value="${memberDto.m_birth}" />
+									<input type="hidden" name="phone" id="phone" value="${memberDto.m_phone}" />
+									<input type="hidden" name="email" id="email" value="${memberDto.m_email}" />
+									<input type="hidden" name="cl_no" id="cl_no" value="${memberDto.cl_no}" />
+									<input type="hidden" name="card" id="card" value="${memberDto.cl_card}" />
+									<input type="hidden" name="index" value="${k.index}"/>
+									<input type="button" value="자세히" onclick="fn_infoPopUp(this.form)" />
 								</form>
 							</div>
 						</div>
