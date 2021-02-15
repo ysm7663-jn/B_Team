@@ -25,4 +25,10 @@ public interface MyPageDao {
 	public List<ClubDto> lastClubManageList(int mNo);
 	public ClubDto clubManageDetail(int cNo);
 	public List<ClubReservationListDto> clubReservationList(int mNo);
+	public List<ClubListDto> memberInfo(int cNo);
+	public int cardPlus(int clNo);
+	public int cardCount(int clNo);
+	public int clubMemberDelete(int clNo);
+	
+	public ClubListDto asdfasdf(int cl_no);
 }
