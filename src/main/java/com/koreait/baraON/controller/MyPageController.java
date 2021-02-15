@@ -8,11 +8,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -21,13 +19,13 @@ import com.koreait.baraON.command.myPage.ClubCountCommand;
 import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
 import com.koreait.baraON.command.myPage.ClubManageDetailCommand;
 import com.koreait.baraON.command.myPage.ClubManageListCommand;
+import com.koreait.baraON.command.myPage.ClubReservationListCommand;
 import com.koreait.baraON.command.myPage.InfoDeleteCommand;
 import com.koreait.baraON.command.myPage.InstantClubCommand;
 import com.koreait.baraON.command.myPage.RegularClubCommand;
 import com.koreait.baraON.command.myPage.WishDeleteCommand;
 import com.koreait.baraON.command.myPage.WishListCommand;
 import com.koreait.baraON.dao.MyPageDao;
-import com.koreait.baraON.dto.ClubListDto;
 
 @Controller
 public class MyPageController {
@@ -44,6 +42,7 @@ public class MyPageController {
 	private ClubCountCommand clubCountCommand;
 	private ClubManageDetailCommand clubManageDetailCommand;
 	private CardPlusCommand cardPlusCommand;
+	private ClubReservationListCommand clubReservationListCommand;
 	
 	@Autowired
 	public void setCommand(WishListCommand wishListCommand,
@@ -55,7 +54,8 @@ public class MyPageController {
 							 ClubManageListCommand clubManageListCommand,
 							 ClubCountCommand clubCountCommand,
 							 ClubManageDetailCommand clubManageDetailCommand,
-							 CardPlusCommand cardPlusCommand) {
+							 CardPlusCommand cardPlusCommand,
+							 ClubReservationListCommand clubReservationListCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
 		this.regularClubCommand = regularClubCommand;
@@ -67,6 +67,7 @@ public class MyPageController {
 		this.clubCountCommand = clubCountCommand;
 		this.clubManageDetailCommand = clubManageDetailCommand;
 		this.cardPlusCommand = cardPlusCommand;
+		this.clubReservationListCommand = clubReservationListCommand;
 	}
 	
 	@RequestMapping(value="profile.myPage", method=RequestMethod.GET)
@@ -159,5 +160,12 @@ public class MyPageController {
 	public Map<String, Object> cardPlus(@PathVariable("cl_no") int clNo, Model model) {
 		model.addAttribute("clNo", clNo);
 		return cardPlusCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="clubReservationList.myPage", method=RequestMethod.GET)
+	public String clubReservationList(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		clubReservationListCommand.execute(sqlSession, model);
+		return "myPage/clubReservationPage";
 	}
 }

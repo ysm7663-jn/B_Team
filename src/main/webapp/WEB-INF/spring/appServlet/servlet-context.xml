@@ -148,7 +148,6 @@
 	<beans:bean id="sellerSearchCommand" class="com.koreait.baraON.command.seller.SellerSearchCommand"/>
 	<beans:bean id="sellerEmailAuthCommand" class="com.koreait.baraON.command.seller.SellerEmailAuthCommand"/>
 		
-	
 	<!-- myPage -->
 	<beans:bean id="wishListCommand" class="com.koreait.baraON.command.myPage.WishListCommand" />	
 	<beans:bean id="wishDeleteCommand" class="com.koreait.baraON.command.myPage.WishDeleteCommand" />	
@@ -160,6 +159,7 @@
 	<beans:bean id="clubCountCommand" class="com.koreait.baraON.command.myPage.ClubCountCommand" />	
 	<beans:bean id="clubManageDetailCommand" class="com.koreait.baraON.command.myPage.ClubManageDetailCommand" />	
 	<beans:bean id="cardPlusCommand" class="com.koreait.baraON.command.myPage.CardPlusCommand" />	
+	<beans:bean id="clubReservationListCommand" class="com.koreait.baraON.command.myPage.ClubReservationListCommand" />	
 	
 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
 		<beans:property name="host" value="smtp.gmail.com"/>

@@ -16,6 +16,8 @@ public class ClubReservationListDto {
 	private String res_state;
 	private int res_price;
 	private String po_name;
+	private String po_img;
+	private String p_title;
 	private String p_name;
 	private String p_addr;
 	private String p_addrDetail;
