@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.koreait.baraON.dto.ClubDto;
 import com.koreait.baraON.dto.ClubListDto;
+import com.koreait.baraON.dto.ClubReservationListDto;
 import com.koreait.baraON.dto.WishListDto;
 
 public interface MyPageDao {
@@ -22,4 +23,6 @@ public interface MyPageDao {
 	public int clubCount(int cNo);
 	public List<ClubDto> clubManageList(int mNo);
 	public List<ClubDto> lastClubManageList(int mNo);
+	public ClubDto clubManageDetail(int cNo);
+	public List<ClubReservationListDto> clubReservationList(int mNo);
 }

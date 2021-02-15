@@ -27,7 +27,7 @@ public class ChkOutClubCommand implements ClubCommand {
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 
-		int chkOutResult = clubDao.clubDelete(cl_no);
+		int chkOutResult = clubDao.chkOutClub(cl_no);
 		
 		String c_mainImg = request.getParameter("c_mainImg");
 		String realPath = request.getServletContext().getRealPath("resources/images/club");

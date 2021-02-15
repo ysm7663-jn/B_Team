@@ -40,24 +40,23 @@
 						<c:if test="${loginDto eq null}">
 							<div><a href="loginPage.member">로그인</a></div>
 							<div><a href="memberJoin3.member">회원가입</a></div>
-							<div><a href="">FAQ</a></div>
+							<div><a href="faqListPage.faq">FAQ</a></div>
 						</c:if>
 						<!-- 로그인 후 -->
 						<c:if test="${loginDto ne null}">
 							<div><a href="logout.member">로그아웃</a></div>
 							<div><a href="profile.myPage">마이페이지</a></div>
-							<div><a href="">FAQ</a></div>
+							<div><a href="faqListPage.faq">FAQ</a></div>
 						</c:if>
 					</nav>
 				</div>
 			</div>	<!-- end : header-wrap -->
 			<div class="head-content">
 				<nav id="bottom-head">
-					<div><a href="">바라온 소개</a></div>
 					<div><a href="clubListPage.club">정기 활동</a></div>
 					<div><a href="">번개 활동</a></div>
 					<div><a href="placeListPage.place">장소 공유</a></div>
-					<div><a href="">공지사항&amp;이벤트</a></div>
+					<div><a href="noticeListPage.notice">공지사항&amp;이벤트</a></div>
 				</nav>
 			</div>
 		</header>

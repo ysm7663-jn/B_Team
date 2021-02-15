@@ -14,7 +14,7 @@
 </style>
 </head>
 <body>
-	<div style="width :1020px; margin: 0 auto;">
+	<div style="width :1200px; height: auto;margin: 0 auto;">
 	<h1>이벤트(EVENT) - 관리자모드</h1>
 		<div style="background:#3ED0C8; border-top: 1px solid black; border-bottom: 1px solid black">
 			<div style="width:600px; margin: 0 0 0 10px; font-weight: 800px; font-size: 24px;">
@@ -29,7 +29,7 @@
 			<div style="height:200px; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 20px;">
 				<img alt="${eventDto.e_filename}" src="resources/storage/${filename}">
 			</div>
-			<div style="height:200px; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 20px;border-bottom:1px solid black">
+			<div style="height:autopx; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 18px;border-bottom:1px solid black">
 				<pre>${eventDto.e_content}</pre>
 			</div><br/>
 		</div>
@@ -45,7 +45,7 @@
 			<input type="hidden" name="e_no" value="${eventDto.e_no}" />
 			<input type="hidden" name="e_title" value="${eventDto.e_title}" />
 			<input type="hidden" name="e_content" value="${eventDto.e_content}" />
-		</form>
+		</form><br/>
 		</div>
 	</div>
 	

@@ -10,8 +10,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ClubListDto {
-	private int cl_no;
+	private int m_no;
+	private String m_phone;
+	private String m_name;
+	private String m_birth;
 	private String m_nick;
+	private String m_email;
 	private String c_title;		
 	private String c_content;		
 	private String c_mainimg;
@@ -19,5 +23,6 @@ public class ClubListDto {
 	private Date c_endDate;
 	private int c_min;
 	private int c_max;
+	private int cl_no;
 	private int cl_card;
 }

@@ -67,16 +67,15 @@ CREATE TABLE CLUB
     C_MIN          NUMBER            NOT NULL, 
     C_MAX          NUMBER            NOT NULL, 
     C_MAINIMG	    VARCHAR2(1000)	  NOT NULL,
-    C_IMG1	    VARCHAR2(1000)    NULL, 
-    C_IMG2	    VARCHAR2(1000)    NULL, 
-    C_IMG3	    VARCHAR2(1000)    NULL, 
-    C_SUBCONTENT1  VARCHAR2(1000)	  NULL,
-    C_SUBCONTENT2  VARCHAR2(1000)	  NULL,
-    C_SUBCONTENT3  VARCHAR2(1000)	  NULL,
     C_DELETE       NUMBER            NOT NULL,
     C_PART         NUMBER            NOT NULL,
     CONSTRAINT FK_MEMBER_CLUB FOREIGN KEY (M_NO) REFERENCES MEMBER(M_NO) ON DELETE SET NULL
 );
+
+select * from club;
+select * from member;
+select * from clublist;
+select * from wishlist;
 
 CREATE SEQUENCE CLUB_SEQ
 START WITH 1

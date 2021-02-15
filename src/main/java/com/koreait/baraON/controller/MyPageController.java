@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.koreait.baraON.command.myPage.CardPlusCommand;
 import com.koreait.baraON.command.myPage.ClubCountCommand;
 import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
+import com.koreait.baraON.command.myPage.ClubManageDetailCommand;
 import com.koreait.baraON.command.myPage.ClubManageListCommand;
 import com.koreait.baraON.command.myPage.InfoDeleteCommand;
 import com.koreait.baraON.command.myPage.InstantClubCommand;
@@ -36,6 +38,8 @@ public class MyPageController {
 	private InfoDeleteCommand infoDeleteCommand;
 	private ClubManageListCommand clubManageListCommand;
 	private ClubCountCommand clubCountCommand;
+	private ClubManageDetailCommand clubManageDetailCommand;
+	private CardPlusCommand cardPlusCommand;
 	
 	@Autowired
 	public void setCommand(WishListCommand wishListCommand,
@@ -45,7 +49,9 @@ public class MyPageController {
 							 ClubListDeleteCommand clubListDeleteCommand,
 							 InfoDeleteCommand InfoDeleteCommand,
 							 ClubManageListCommand clubManageListCommand,
-							 ClubCountCommand clubCountCommand) {
+							 ClubCountCommand clubCountCommand,
+							 ClubManageDetailCommand clubManageDetailCommand,
+							 CardPlusCommand cardPlusCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
 		this.regularClubCommand = regularClubCommand;
@@ -55,11 +61,18 @@ public class MyPageController {
 		this.clubManageListCommand = clubManageListCommand;
 		this.clubManageListCommand = clubManageListCommand;
 		this.clubCountCommand = clubCountCommand;
+		this.clubManageDetailCommand = clubManageDetailCommand;
+		this.cardPlusCommand = cardPlusCommand;
 	}
 	
 	@RequestMapping(value="profile.myPage", method=RequestMethod.GET)
 	public String myPage(HttpServletRequest request) {
 		return "myPage/profile";
+	}
+	
+	@RequestMapping(value="pwCheck.myPage", method=RequestMethod.GET)
+	public String pwCheck(HttpServletRequest request) {
+		return "myPage/pwCheck";
 	}
 	
 	@RequestMapping(value="wishList.myPage", method=RequestMethod.GET)
@@ -129,9 +142,22 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="clubManageDetailPage.myPage", method=RequestMethod.POST)
-	public String clubManageDetailPage(HttpServletRequest request) {
+	public String clubManageDetailPage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		clubManageDetailCommand.execute(sqlSession, model);
 		return "myPage/clubManageDetailPage";
 	}
 	
+	@RequestMapping(value="infoPopUp.myPage", method=RequestMethod.GET)
+	public String infoPopUp(HttpServletRequest request) {
+		return "myPage/infoPopUp";
+	}
 	
+	@RequestMapping(value="cardPlus.myPage", method=RequestMethod.POST)
+	public String cardPlus(HttpServletRequest request, Model model, RedirectAttributes rttr) {
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		cardPlusCommand.execute(sqlSession, model);
+		return "";
+	}
 }
