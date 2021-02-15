@@ -24,7 +24,7 @@
 		</div>
 		<div>
 			<div style="height:200px; padding:30px 0 0 10px; font-size: 18px; border-bottom:1px solid black">
-				${faqDto.f_content}<br/><br/>
+				<pre>${faqDto.f_content}</pre><br/><br/>
 			</div>
 		</div><br/>
 		<div>

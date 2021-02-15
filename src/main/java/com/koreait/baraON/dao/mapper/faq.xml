@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="totalRecord" resultType="int">
 		SELECT COUNT(*)
 		FROM FAQ
+		WHERE F_CATEGORY = #{param3}
 	</select>
 	
 	<select id="faqView" parameterType="int" resultType="com.koreait.baraON.dto.FAQDto">

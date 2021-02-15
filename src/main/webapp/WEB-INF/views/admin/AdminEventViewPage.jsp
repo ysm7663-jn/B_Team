@@ -30,7 +30,7 @@
 				<img alt="${eventDto.e_filename}" src="resources/storage/${filename}">
 			</div>
 			<div style="height:200px; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 20px;border-bottom:1px solid black">
-				${eventDto.e_content}
+				<pre>${eventDto.e_content}</pre>
 			</div><br/>
 		</div>
 		<div class="c_foot">

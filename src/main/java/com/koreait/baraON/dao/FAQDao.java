@@ -8,7 +8,7 @@ public interface FAQDao {
 
 	public List<FAQDto> faqList(int beginRecord, int endRecord, int f_category);
 
-	public int totalRecord();
+	public int totalRecord(int f_category);
 	
 	public FAQDto faqView(int no);
 	

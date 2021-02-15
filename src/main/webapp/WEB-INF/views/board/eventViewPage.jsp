@@ -26,7 +26,7 @@
 				<img alt="${eventDto.e_filename}" src="resources/storage/${filename}"><br/><br/>
 			</div>
 			<div style="height:200px; margin:30px auto;  font-size: 18px; border-bottom:1px solid black">
-				${eventDto.e_content}<br/><br/>
+				<pre>${eventDto.e_content}</pre><br/><br/>
 			</div>
 		</div>
 		<div class="c_foot" >

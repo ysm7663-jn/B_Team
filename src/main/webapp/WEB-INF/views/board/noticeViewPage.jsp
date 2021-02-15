@@ -23,7 +23,7 @@
 		</div>
 		<div>
 			<div style="height:200px; padding:10px 0 0 10px; font-size: 16px; border-bottom:1px solid black">
-				${noticeDto.n_content}<br/><br/>
+				<pre>${noticeDto.n_content}</pre><br/><br/>
 			</div>
 		</div><br/>
 		<div>
