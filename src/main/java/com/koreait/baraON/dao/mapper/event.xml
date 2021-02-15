@@ -39,9 +39,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="eventUpdate">
 		UPDATE EVENT
-		SET E_TITLE = #{param1},
-			E_CONTENT = #{param2},
-			E_FILENAME = #{param4}
+		SET E_TITLE = #{param1,jdbcType=VARCHAR},
+			E_CONTENT = #{param2,jdbcType=VARCHAR},
+			E_FILENAME = #{param4,jdbcType=VARCHAR}
 		WHERE E_NO = #{param3}
 	</update>
 	

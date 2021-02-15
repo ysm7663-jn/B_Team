@@ -14,17 +14,17 @@
 <title></title>
 </head>
 <body>
-	<div style="width :1020px; margin: 0 auto;">
+	<div style="width :1200px; margin: 0 auto;">
 	<h1>자주묻는질문(FAQ) - 관리자모드</h1>
 		<div style="background:#3ED0C8; border-top: 1px solid black; border-bottom: 1px solid black">
-			<div style="width:600px; margin: 0 0 0 10px; font-weight: 800px; font-size: 24px;">	
+			<div style="width:600px; margin: 0 0 0 10px; font-size: 24px;">	
 				${faqDto.f_title}
 			</div>
-			<div style="width:600px; margin:10px 0 10px 10px; font-weight: 800px; font-size: 16px;">
+			<div style="width:600px; margin:10px 0 10px 10px; font-size: 16px;">
 				${faqDto.f_regDate}
 			</div>
 		</div>
-			<div style="height:400px; padding:10px 0 0 10px; font-weight: 800px; font-size: 20px; border-bottom:1px solid black">
+			<div style="height:auto; padding:10px 0 0 10px; font-size: 18px; border-bottom:1px solid black">
 				<pre>${faqDto.f_content}</pre><br/><br/>
 			</div><br/>
 	
@@ -40,10 +40,9 @@
 				<input type="hidden" name="f_no" value="${faqDto.f_no}" />
 				<input type="hidden" name="f_title" value="${faqDto.f_title}" />
 				<input type="hidden" name="f_content" value="${faqDto.f_content}" />
-			</form>
+			</form><br/>
 		</div>
 	</div>
-	<br/><br/>
 	<script type="text/javascript">
 		function fn_faqUpdatePage(f) {
 			f.action = 'faqUpdatePage.admin';

@@ -12,7 +12,7 @@
 </style>
 </head>
 <body>
-	<div style="width :1020px; height:450px; margin: 0 auto;">
+	<div style="width :1200px; height:auto; margin: 0 auto;">
 		<h1 style="margin-left: 10px">자주묻는질문(FAQ)</h1><br/>
 		<div style="background:cadetblue; border-top: 1px solid black; border-bottom: 1px solid black">
 			<div style="width:600px; margin: 0 0 0 10px; font-weight: bold; font-size: 25px;">
@@ -22,10 +22,8 @@
 				${faqDto.f_regDate}
 			</div>
 		</div>
-		<div>
-			<div style="height:200px; padding:30px 0 0 10px; font-size: 18px; border-bottom:1px solid black">
+			<div style="height:auto; padding:30px 0 0 10px; font-size: 18px; border-bottom:1px solid black">
 				<pre>${faqDto.f_content}</pre><br/><br/>
-			</div>
 		</div><br/>
 		<div>
 			<form method="post">
@@ -33,7 +31,7 @@
 				<input type="hidden" name="no" value="${faqDto.f_no}" />
 				<input type="hidden" name="title" value="${faqDto.f_title}" />
 				<input type="hidden" name="content" value="${faqDto.f_content}" />
-			</form>
+			</form><br/>
 		</div>
 	</div>
 <%@ include file="../template/footer.jsp" %>

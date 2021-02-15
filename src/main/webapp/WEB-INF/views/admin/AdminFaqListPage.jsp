@@ -90,7 +90,7 @@ $(document).ready(function(){
 			</form><br/>
 			 -->
 			 <div class="categoryList" style="width: 1020px; text-align: center; margin:20px;">
-						<a href="adminFaqListPage.admin">전체</a>
+						<a href="adminFaqListPage.admin?">전체</a>
 						<a href="adminFaqListPage.admin?f_category=2">결제 및 환불</a>
 						<a href="adminFaqListPage.admin?f_category=3">계정</a>
 						<a href="adminFaqListPage.admin?f_category=4">이용안내</a>
