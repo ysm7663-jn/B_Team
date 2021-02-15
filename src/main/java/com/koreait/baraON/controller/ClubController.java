@@ -148,10 +148,8 @@ public class ClubController {
 	
 	@RequestMapping(value="unLikeClub.club", method=RequestMethod.POST)
 	public String chkOutClub(HttpServletRequest request, Model model) {
-		
 		model.addAttribute("request", request);
 		unLikeClubCommand.execute(sqlSession, model);
-		
 		return "redirect:clubListPage.club";
 	}
 	

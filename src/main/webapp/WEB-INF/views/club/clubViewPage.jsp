@@ -7,6 +7,7 @@
 </jsp:include>
 
 <link rel="stylesheet" href="resources/style/common.css" />
+<link rel="stylesheet" href="resources/style/club/clubView.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
@@ -47,7 +48,6 @@
 				f.action = 'unLikeClub.club';
 				f.submit();
 		}
-			
 </script>
 
  <script>
@@ -85,26 +85,74 @@
 
 <form method="post">
 
-	<div class="wrap">
+	<div class="body_wrap">
 
-		<div class="thumnail">
-			<img alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
+		<div class="left_side">
+			<div class="thumnail">
+				<img alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
+			</div>
+		
+			<div class="contents">
+				<span id="title">클럽명</span> 
+				<div id="content">${clubDto.c_title}</div>
+			</div>
+
+			<div class="contents">
+				<span id="title">한 줄 설명</span> 
+				<div id="content">${clubDto.c_desc}</div>
+			</div>
+	
+			<div class="contents">
+				<span id="title">리더 소개</span> 
+				<div id="content">${memberDto.m_nick}</div>
+			</div>
+
+			<div class="contents">
+				<span id="title">클럽내용</span> 
+				<div id="content">${clubDto.c_content}</div>
+			</div>
+
+			<div class="contents">
+				<span id="content">${clubDto.c_img1}</span>
+				 <div id="content">${clubDto.c_subContent1}</div>
+			</div>
+
+			<div class="contents">
+				<span id="content">${clubDto.c_img2}</span>
+				<div id="content">${clubDto.c_subContent2}</div>
+			</div>
+
+			<div class="contents">
+				<span id="content">${clubDto.c_img3}</span> 
+				<div id="content">${clubDto.c_subContent3}</div>
+			</div>
+			
+			<div class="contents">
+				<div id="content">${clubDto.c_postDate}</div>
+			</div>
+			
 		</div>
-
-		<c:if test="${clubDto.m_no ne loginDto.m_no}">
-			<div class="side">
+		
+		<div class="right_side">
+			<c:if test="${clubDto.m_no ne loginDto.m_no}">
 
 				<div class="side_content">
 					<span id="content">${clubDto.c_title}</span>
 				</div>
 				
+				<br/><br/>
+				
 				<div class="side_content">
 					<span id="content">활동 시작일 : ${clubDto.c_startDate}</span>
 				</div>
 
+				<br/>
+
 				<div class="side_content">
 					<span id="content">활동 종료일 : ${clubDto.c_endDate}</span>
 				</div>
+				
+				<br/><br/>
 
 				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
 				<input type="hidden" name="m_no" value="${loginDto.m_no}" />
@@ -127,23 +175,29 @@
 					</c:if>
 					
 				</div>
-			</div>
-		</c:if>
+			</c:if>
+		</div>
 
 		<c:if test="${clubDto.m_no eq loginDto.m_no}">
-			<div class="side">
+			<div class="right_side">
 
 				<div class="side_content">
 					<span id="content">${clubDto.c_title}</span>
 				</div>
-
+				
+				<br/><br/>
+				
 				<div class="side_content">
 					<span id="content">활동 시작일 : ${clubDto.c_startDate}</span>
 				</div>
 
+				<br/>
+
 				<div class="side_content">
 					<span id="content">활동 종료일 : ${clubDto.c_endDate}</span>
 				</div>
+				
+				<br/><br/>
 
 				<%-- hidden --%>
 				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
@@ -163,51 +217,11 @@
 				</div>
 			</div>
 		</c:if>
-
-		<div class="contents-wrap">
-			<div class="content">
-				<span id="title">클럽명</span> 
-				<span id="content">${clubDto.c_title}</span>
-			</div>
-
-			<div class="content">
-				<span id="title">한 줄 설명</span> 
-				<span id="content">${clubDto.c_desc}</span>
-			</div>
-	
-			<div class="content">
-				<span id="title">리더 소개</span> 
-				<span id="content">${memberDto.m_nick}</span>
-			</div>
-
-			<div class="content">
-				<span id="title">클럽내용</span> 
-				<span id="content">${clubDto.c_content}</span>
-			</div>
-
-			<div class="content">
-				<span id="content">${clubDto.c_img1}</span>
-				 <span id="content">${clubDto.c_subContent1}</span>
-			</div>
-
-			<div class="content">
-				<span id="content">${clubDto.c_img2}</span>
-				<span id="content">${clubDto.c_subContent2}</span>
-			</div>
-
-			<div class="content">
-				<span id="content">${clubDto.c_img3}</span> 
-				<span id="content">${clubDto.c_subContent3}</span>
-			</div>
-			
-			<div class="content">
-				<span id="content">${clubDto.c_postDate}</span>
-			</div>
-			
-		</div>
 		
-		<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
 	</div>
+	
+		<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
+	
 
 </form>
 
