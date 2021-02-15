@@ -26,8 +26,6 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		RedirectAttributes rttr = (RedirectAttributes)model.asMap().get("rttr");
 		
 		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
-		PlaceOptionDao placeOptionDao = sqlSession.getMapper(PlaceOptionDao.class);
-		
 		
 		int p_no=Integer.parseInt(multipartRequest.getParameter("p_no"));
 		String p_title=multipartRequest.getParameter("p_title");
@@ -61,8 +59,10 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_infoList.length;i++) {
 			if(i!=(p_infoList.length-1)) {
+				p_infoList[i]=p_infoList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+p_infoList[i]+"\",");
 			} else {
+				p_infoList[i]=p_infoList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+p_infoList[i]+"\"]");
 			}
 		}
@@ -72,8 +72,10 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		sb.append("[");
 		for(int i = 0; i<p_remarkList.length;i++) {
 			if(i!=(p_remarkList.length-1)) {
+				p_remarkList[i]=p_remarkList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+p_remarkList[i]+"\",");
 			} else {
+				p_remarkList[i]=p_remarkList[i].replace("'", "&#39;").replace("\"", "&quot;");
 				sb.append("\""+p_remarkList[i]+"\"]");
 			}
 		}
@@ -99,7 +101,7 @@ public class PlaceUpdateCommand implements PlaceCommand {
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
-				String originalFilename = file.getOriginalFilename();
+				String originalFilename = file.getOriginalFilename().replace("'", "");
 				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
 				
 				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceImages");

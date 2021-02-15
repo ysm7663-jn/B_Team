@@ -14,9 +14,9 @@
 	function placeList(){
 		
 		var obj={
-				"page":page
+				's_no':'${loginDto.s_no}',
+				'page':page
 		};
-		
 		$.ajax({
 			url:'placeList.seller',
 			type:'post',

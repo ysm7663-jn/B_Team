@@ -17,7 +17,7 @@ public interface PlaceDao2 {
 	public List<PlaceListDto> placeCaSearch2(PlaceDto placeDto);
 	
 	// seller에서 가져다 쓰는 중
-	public List<PlaceDto> placeList(int beginRecord, int endRecord);
+	public List<ReviewCheckDto> placeList(int s_no, int beginRecord, int endRecord);
 	
 	public int placeCount();
 }

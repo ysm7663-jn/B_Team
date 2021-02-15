@@ -9,4 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PageVo {
 	private int page;
+	private int s_no;
 }
