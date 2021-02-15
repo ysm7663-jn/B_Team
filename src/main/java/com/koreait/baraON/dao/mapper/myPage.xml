@@ -17,7 +17,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE W_NO = #{param1}
 	</delete>
 	<select id="clubList" parameterType="int" resultType="com.koreait.baraON.dto.ClubListDto">
-		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.C_MIN, C.C_MAX, CL.CL_CARD, M.M_NICK
+		SELECT *
 			FROM CLUBLIST CL JOIN CLUB C ON CL.C_NO = C.C_NO
 				JOIN MEMBER M ON M.M_NO = C.M_NO
 			WHERE CL.M_NO = #{param1}
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 			AND C.C_DELETE = 0
 	</select>
 	<select id="lastClubList" parameterType="int" resultType="com.koreait.baraON.dto.ClubListDto">
-		SELECT C.C_MAINIMG, C.C_TITLE, C.C_CONTENT, C.C_STARTDATE, C.C_MIN, C.C_MAX, CL.CL_CARD, M.M_NICK
+		SELECT *
 			FROM CLUBLIST CL JOIN CLUB C ON CL.C_NO = C.C_NO
 				JOIN MEMBER M ON M.M_NO = C.M_NO
 			WHERE CL.M_NO = #{param1}
@@ -86,9 +86,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<select id="clubCount" parameterType="int" resultType="int">
 		SELECT COUNT(*)
-			FROM CLUB C JOIN CLUBLIST CL
-		  ON C.C_NO = CL.C_NO
-		 WHERE CL.C_NO = #{param1}
+			FROM CLUBLIST 
+		 WHERE C_NO = #{param1}
 	</select>
 	<select id="clubManageList" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
 		SELECT C_NO, C_TITLE, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG, C_PART
@@ -102,5 +101,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			FROM CLUB
 		 WHERE M_NO = #{param1}
 		 	 AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') &lt; TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</select>
+	<select id="clubManageDetail" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
+		SELECT C_NO, C_TITLE, C_DESC, C_CONTENT, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG, C_IMG1, C_IMG2, C_IMG3, C_SUBCONTENT1, C_SUBCONTENT2, C_SUBCONTENT3, C_PART
+			FROM CLUB
+		 WHERE C_NO = #{param1}
+	</select>
+	<select id="clubReservationList" parameterType="int" resultType="com.koreait.baraON.dto.ClubReservationListDto">
+		SELECT RES.RES_NO, RES.RES_DATE, RES.RES_PEOPLE, RES.RES_STATE, RES.RES_PRICE,
+               PO.PO_NAME, P.P_NAME, P.P_ADDR, P.P_ADDRDETAIL, P.P_IMG
+			FROM RESERVATION RES JOIN PLACEOPTION PO ON RES.PO_NO = PO.PO_NO
+				JOIN PLACE P ON P.P_NO = PO.P_NO
+ 		 WHERE RES.M_NO = #{param1}
+			 AND P.P_DELETE = 0 
 	</select>
 </mapper>
