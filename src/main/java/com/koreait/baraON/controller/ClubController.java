@@ -75,7 +75,6 @@ public class ClubController {
 	
 	@RequestMapping(value="clubInsert.club", method=RequestMethod.POST)
 	public String clubInsert(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
-		
 		model.addAttribute("multipartRequest", multipartRequest);
 		model.addAttribute("rttr", rttr);
 		clubInsertCommand.execute(sqlSession, model);
@@ -117,7 +116,6 @@ public class ClubController {
 		clubUpdateCommand.execute(sqlSession, model);
 		
 		return "redirect:clubViewPage.club?c_no=" + multipartRequest.getParameter("c_no") + "&m_no=" + multipartRequest.getParameter("m_no");
-		
 	}
 	
 	@RequestMapping(value="joinClub.club", method=RequestMethod.POST)

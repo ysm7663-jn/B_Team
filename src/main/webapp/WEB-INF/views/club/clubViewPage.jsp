@@ -83,7 +83,7 @@
 	
 </script>
 
-<form method="post">
+<form method="post" action="wishDelete.myPage">
 
 	<div class="body_wrap">
 
@@ -91,6 +91,8 @@
 			<div class="thumnail">
 				<img alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 			</div>
+			
+			<button><span class="wishIcon"><i class="fas fa-heart"></i></span></button>
 		
 			<div class="contents">
 				<span id="title">클럽명</span> 
@@ -167,11 +169,10 @@
 					</c:if>
 					
 					<c:if test="${wishListDto.m_no ne loginDto.m_no}">
-						<input type="button" value="♥" id="btn2" onclick="fn_likeClub(this.form)" />
+						<input type="button" value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" id="btn1" onclick="fn_likeClub(this.form)"/>
 					</c:if>
-					
 					<c:if test="${wishListDto.m_no eq loginDto.m_no}">
-						<input type="button" value="♡" id="btn2" onclick="fn_unlikeClub(this.form)"/>
+						<input type="button" value="탈퇴하기" id="btn1" onclick="fn_unLikeClub(this.form)"/>
 					</c:if>
 					
 				</div>

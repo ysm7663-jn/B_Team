@@ -10,7 +10,6 @@ import com.koreait.baraON.dao.MyPageDao;
 
 public class ClubCountCommand implements MyPageAjaxCommand {
 
-	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		Map<String, Object> map = model.asMap();
 		int cNo = (int)map.get("cNo");

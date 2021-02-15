@@ -39,16 +39,6 @@
 					<textarea rows="20" cols="100" placeholder="2000자 이내로 작성해주세요" name="c_content"></textarea>
 				<br/><br/>
 				
-				<input type="file" name="c_img1" /><br/>
-				<input type="text" name="c_subContent1" placeholder="한설명을 입력해주세요"/><br/>
-				
-				<input type="file" name="c_img2" /><br/>
-				<input type="text" name="c_subContent2" placeholder="한설명을 입력해주세요"/><br/>
-				
-				<input type="file" name="c_img3" /><br/>
-				<input type="text" name="c_subContent3" placeholder="한설명을 입력해주세요"/><br/>
-				
-				
 			</div>
 		</div>
 		<%-- hidden --%>
@@ -67,8 +57,6 @@
 				f.submit();
 			}
 		}
-	
 	</script>
-
 
 <%@ include file="../template/footer.jsp"%>
