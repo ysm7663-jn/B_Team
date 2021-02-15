@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class EventDto {
-	private	int e_no;
+	private int e_no;
 	private String e_title;
 	private String e_content;
 	private String e_filename;

@@ -17,7 +17,7 @@ public class IndexCommand implements BaraONCommand {
 		
 		model.addAttribute("eventList", eventDao.eventList(1, 6));
 		model.addAttribute("faqList",faqDao.indexFaq());
-		model.addAttribute("noticeDao", noticeDao.noticeList(1, 3));
+		model.addAttribute("noticeList", noticeDao.noticeList(1, 3));
 		
 	}
 
