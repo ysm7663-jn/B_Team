@@ -16,4 +16,17 @@ public interface MemberDao {
 	
 	// place
 	public SellerDto getSellerDto(int s_no);
+	
+	
+	
+	public int memberSearch(String m_id);
+	public int memberNickSearch(String m_nick);
+	public int memberInsert(MemberDto memberDto);
+	public MemberDto memberView(int m_no);
+	public String memberPwSearch(String m_id);
+	public int memberPwUpdate(MemberDto memberDto);
+	public int memberNickUpdate(MemberDto memberDto);
+	public int memberUpdate(MemberDto memberDto);
+	public int memberDelete(int m_no);
+	
 }

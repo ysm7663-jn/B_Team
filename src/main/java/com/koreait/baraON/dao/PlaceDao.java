@@ -6,6 +6,7 @@ import com.koreait.baraON.dto.PlaceCategoryDto;
 import com.koreait.baraON.dto.PlaceDto;
 import com.koreait.baraON.dto.PlaceListDto;
 import com.koreait.baraON.dto.PlaceOptionDto;
+import com.koreait.baraON.dto.ReviewCheckDto;
 import com.koreait.baraON.dto.ReviewListDto;
 import com.koreait.baraON.dto.SellerDto;
 
@@ -24,5 +25,11 @@ public interface PlaceDao {
 	public int placeDelete(int p_no);
 	public int placeUpdate(PlaceDto placeDto);
 	public int placeFullDelete(int p_no);
+	public List<PlaceListDto> allPlaceSearch(PlaceDto placeDto);
+	public List<PlaceListDto> placeCaSearch(PlaceDto placeDto);
+	public List<PlaceListDto> allPlaceSearch2(PlaceDto placeDto);
+	public List<PlaceListDto> placeCaSearch2(PlaceDto placeDto);
+	public List<ReviewCheckDto> placeAdminList(int s_no, int beginRecord, int endRecord);
+	public int placeCount();
 	
 }

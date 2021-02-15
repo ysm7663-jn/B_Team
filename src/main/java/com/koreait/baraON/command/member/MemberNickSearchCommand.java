@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.koreait.baraON.dao.MemberDao2;
+import com.koreait.baraON.dao.MemberDao;
 
 public class MemberNickSearchCommand implements MemberCommand{
 
@@ -16,7 +16,7 @@ public class MemberNickSearchCommand implements MemberCommand{
 		Map<String, Object> map = model.asMap();
 		String m_nick = (String)map.get("m_nick");
 
-		MemberDao2 memberDao = sqlSession.getMapper(MemberDao2.class);
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		

@@ -45,6 +45,7 @@
 	<beans:bean id="reservationUpdateCommand" class="com.koreait.baraON.command.reservation.ReservationUpdateCommand" />
 	<beans:bean id="reservationPageCommand" class="com.koreait.baraON.command.reservation.ReservationPageCommand" />
 	<beans:bean id="stateChangeCommand" class="com.koreait.baraON.command.reservation.StateChangeCommand" />
+	<beans:bean id="stateCancleCommand" class="com.koreait.baraON.command.reservation.StateCancleCommand" />
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
@@ -89,7 +90,7 @@
 	<beans:bean id="sellerPwSearchCommand" class="com.koreait.baraON.command.seller.SellerPwSearchCommand"/>
 	<beans:bean id="sellerPwUpdateCommand" class="com.koreait.baraON.command.seller.SellerPwUpdateCommand"/>
 	<beans:bean id="sellerUpdateCommand" class="com.koreait.baraON.command.seller.SellerUpdateCommand"/>
-	<beans:bean id="placeList2Command" class="com.koreait.baraON.command.seller.PlaceList2Command"/>
+	<beans:bean id="placeAdminListCommand" class="com.koreait.baraON.command.seller.PlaceAdminListCommand"/>
 	<beans:bean id="reservationListCommand" class="com.koreait.baraON.command.seller.ReservationListCommand"/>
 	<beans:bean id="sellerSearchCommand" class="com.koreait.baraON.command.seller.SellerSearchCommand"/>
 	<beans:bean id="sellerEmailAuthCommand" class="com.koreait.baraON.command.seller.SellerEmailAuthCommand"/>

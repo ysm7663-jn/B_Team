@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.koreait.baraON.dao.PlaceDao2;
+import com.koreait.baraON.dao.PlaceDao;
 import com.koreait.baraON.dto.PlaceDto;
 import com.koreait.baraON.dto.PlaceListDto;
 
@@ -22,9 +22,9 @@ public class PlaceCaSearch2Command implements SellerCommand {
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		PlaceDao2 placeDao2 = sqlSession.getMapper(PlaceDao2.class);
+		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
 		
-		List<PlaceListDto> list = placeDao2.allPlaceSearch(placeDto);
+		List<PlaceListDto> list = placeDao.allPlaceSearch(placeDto);
 
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
