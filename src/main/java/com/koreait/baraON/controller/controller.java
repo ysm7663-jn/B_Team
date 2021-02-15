@@ -27,5 +27,6 @@ public class controller {
 		indexCommand.execute(sqlSession, model);
 		return "index";
 	}
+
 	
 }

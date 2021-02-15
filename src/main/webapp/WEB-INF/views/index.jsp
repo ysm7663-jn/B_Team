@@ -4,7 +4,6 @@
     
 <%-- 머리글 포함(파라미터(title)가 있으므로 동적 페이지 포함) --%>
 <jsp:include page="template/header.jsp" />
-	
 	<div class="main">
 	
 		<div id="main_img">

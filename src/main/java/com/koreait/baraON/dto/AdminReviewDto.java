@@ -4,10 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class PageVo {
-	private int page;
-	private int s_no;
+@NoArgsConstructor
+@Data
+public class AdminReviewDto {
+	
+	private int rv_no;
+	private String rv_content;
 }

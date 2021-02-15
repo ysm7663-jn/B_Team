@@ -215,7 +215,31 @@
 		<article class="res-insert-list">
 			<div class="subtitle">서비스 동의<span class="required-data" >필수 사항</span></div>
 			<div class="sub-content">
-				
+				<ul>
+					<li><label><input type="checkbox" />전체 동의</label></li> 
+					<li><label><input type="checkbox" />위 공간의 예약조건 확인 및 결제진행 동의</label><span class="required-data">필수</span></li> 
+					<li><label><input type="checkbox" />환불규정 안내에 대한 동의</label><span class="required-data">필수</span></li> 
+					<li>
+						<div class="confirm-box">
+							<label><input type="checkbox" />개인정보 제3자 제공동의</label><span class="required-data">필수</span>
+						</div>
+						<div class="scroll-box">
+							<ol>
+								<li>개인정보를 제공받는 자: 해당 공간의 호스트</li>
+								<li>제공하는 개인정보 항목</li>
+							</ol>
+							
+ 
+
+- 필수항목: 네이버 아이디, 이름, 연락처, 결제정보(결제방식 및 결제금액)
+- 선택항목: 이메일 주소
+3. 개인정보의 제공목적: 공간예약 및 이용 서비스 제공, 환불처리
+4. 개인정보의 제공기간: 서비스 제공기간(단, 관계법령의 규정에 의하여 보존할 필요가 있는 경우 및 사전 동의를 득한 경우에는 해당 기간 동안 보관합니다.)
+5. 개인정보의 제공을 거부할 권리: 개인정보 주체는 개인정보의 제공을 거부할 권리가 있으나, 공간 예약을 위해 반드시 필요한 개인정보의 제공으로서 이를 거부할 시 공간 예약이 어려울 수 있습니다.
+						</div>
+					</li>
+					<li><label><input type="checkbox" />개인정보 수집 및 이용동의</label><span class="required-data">필수</span></li> 
+				</ul>
 			</div>
 		</article>
 	</section>

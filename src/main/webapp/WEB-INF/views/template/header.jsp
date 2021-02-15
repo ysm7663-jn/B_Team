@@ -34,7 +34,6 @@
 				<a id="logo" href="index">
 					<img  alt="로고사진" src="resources/images/logo.png" style="height: 100%;">
 				</a>
-				
 				<div class="right-head-wrap">
 					<nav id="right-head">
 			<!-- 로그인 전 -->
