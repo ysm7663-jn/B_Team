@@ -42,6 +42,8 @@ div {
 }
 .state {
 	display: flex;
+	height: 28px;
+	line-height: 28px;
 }
 .state a {
 	margin:10px 10px 10px 0;
