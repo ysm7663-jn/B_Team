@@ -13,7 +13,6 @@
 	<form method="post" enctype="multipart/form-data">
 		<div class="insert-wrap">
 			<hr class="line">
-		
 			<div id="main_image">
 				<div class="title">메인 화면 썸네일</div>
 				<input type="file" name="c_mainImg" />

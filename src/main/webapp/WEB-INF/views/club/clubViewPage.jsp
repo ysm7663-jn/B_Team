@@ -105,7 +105,7 @@
 	} 
 	
 </script>
-
+<hr class="line">
 	<div class="body_wrap">
 		<div class="left_side">
 			<div class="thumnail">
