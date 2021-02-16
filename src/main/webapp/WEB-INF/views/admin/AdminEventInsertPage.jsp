@@ -27,13 +27,13 @@
 <body>
 	<div style="width :1020px; height:555px; margin: 20px 0 0 100px; ">
 	<h1>이벤트 추가 페이지</h1><br/>
-		<form action="eventInsert.admin">
+		<form action="eventInsert.admin" method="post" enctype="multipart/form-data">
 			<span style="font-size: 20px">제목</span><br/>
 			<input type="text" id="titlebox" name="title" /><br/>
 			<span style="font-size: 20px">내용</span><br/>
 			<textarea rows="4" cols="20" name="content" style="width:400px; height:200px; font-size:20px; margin-top:10px"></textarea><br/>
 			파일첨부<br/>
-			<input type="file" name="filename" /><br/><br/>
+			<input type="file" name="files" /><br/><br/>
 			<button onclick="fn_insert()">작성완료</button>
 		</form>
 	</div>

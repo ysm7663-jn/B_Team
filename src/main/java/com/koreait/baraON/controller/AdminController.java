@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.command.admin.AdminConfirmListCommand;
@@ -311,12 +313,10 @@ public class AdminController {
 			adminEventViewCommand.execute(sqlSession, model);
 			return "admin/AdminEventViewPage";
 	}
-	@RequestMapping(value="eventInsert.admin" , method=RequestMethod.GET)
-		public String eventInsert(HttpServletRequest request,
-										RedirectAttributes rttr, 
+	@RequestMapping(value="eventInsert.admin" , method=RequestMethod.POST)
+		public String eventInsert(MultipartRequest multipartRequest,
 										Model model) {
-		model.addAttribute("request", request);
-		model.addAttribute("rttr", rttr);
+		model.addAttribute("multipartRequest", multipartRequest);
 		eventInsertCommand.execute(sqlSession, model);
 		return "redirect:adminEventListPage.admin";
 	}
