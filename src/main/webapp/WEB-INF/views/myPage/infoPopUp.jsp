@@ -14,6 +14,9 @@
 	//var year = new Date().getFullYear();
 	
 	$(function() {
+		$(window).on('unload', function(){
+			return;
+		});
 		var formList = $('form[name="infoForm"]', opener.document);
 		$.each(formList, function(idx, f) {
 			var card = $(f).find("#card").val();

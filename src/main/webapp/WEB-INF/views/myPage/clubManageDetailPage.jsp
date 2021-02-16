@@ -6,12 +6,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 <link rel="stylesheet" href="resources/style/myPage/clubManageDetailPage.css">	
 <script>
-	function fn_clubDelete(f){
-		if(confirm('정말로 모임을 삭제하시겠습니까?')) {
-			f.action='clubDelete.club';
-			f.submit();
-		}
-	}
 	
 	$(function() {
 		if(${state == 1}) {   // 지난 모임이면
@@ -21,6 +15,12 @@
 		}
 	});
 	
+	function fn_clubDelete(f){
+		if(confirm('정말로 모임을 삭제하시겠습니까?')) {
+			f.action='clubDelete.club';
+			f.submit();
+		}
+	}
 	/* 팝업 */
 	var openWin;
 	
@@ -30,7 +30,8 @@
 		openWin = window.open(url, 'infoPopUp', options);	
 		
 		openWin.onbeforeunload = function(){
-			fn_memberReload();
+			alert('성공');
+			window.location.reload();
 		};
 	}
 	
@@ -41,6 +42,7 @@
 			type: 'get',
 			dataType: 'json',
 			success: function(responseObj) {
+				
 			},
 			error: function(){
 				alert('reload 중에 문제가 발생했습니다. 다시 시도하세요.');

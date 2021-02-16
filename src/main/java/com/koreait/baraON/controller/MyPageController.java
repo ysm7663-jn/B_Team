@@ -23,7 +23,6 @@ import com.koreait.baraON.command.myPage.ClubManageListCommand;
 import com.koreait.baraON.command.myPage.ClubReservationListCommand;
 import com.koreait.baraON.command.myPage.InfoDeleteCommand;
 import com.koreait.baraON.command.myPage.InstantClubCommand;
-import com.koreait.baraON.command.myPage.MemberReloadCommand;
 import com.koreait.baraON.command.myPage.RegularClubCommand;
 import com.koreait.baraON.command.myPage.WishDeleteCommand;
 import com.koreait.baraON.command.myPage.WishListCommand;
@@ -44,7 +43,6 @@ public class MyPageController {
 	private ClubManageDetailCommand clubManageDetailCommand;
 	private AddCardCommand addCardCommand;
 	private ClubReservationListCommand clubReservationListCommand;
-	private MemberReloadCommand memberReloadCommand;
 	
 	@Autowired
 	public void setCommand(WishListCommand wishListCommand,
@@ -57,8 +55,7 @@ public class MyPageController {
 							 ClubCountCommand clubCountCommand,
 							 ClubManageDetailCommand clubManageDetailCommand,
 							 AddCardCommand addCardCommand,
-							 ClubReservationListCommand clubReservationListCommand,
-							 MemberReloadCommand memberReloadCommand) {
+							 ClubReservationListCommand clubReservationListCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
 		this.regularClubCommand = regularClubCommand;
@@ -71,7 +68,6 @@ public class MyPageController {
 		this.clubManageDetailCommand = clubManageDetailCommand;
 		this.addCardCommand = addCardCommand;
 		this.clubReservationListCommand = clubReservationListCommand;
-		this.memberReloadCommand = memberReloadCommand;
 	}
 	
 	@RequestMapping(value="profile.myPage", method=RequestMethod.GET)
@@ -172,10 +168,4 @@ public class MyPageController {
 		return "myPage/clubReservationPage";
 	}
 	
-	@RequestMapping(value="memberReload/{cNo}", method=RequestMethod.GET, produces="application/json; charset=utf-8")
-	@ResponseBody
-	public Map<String, Object> memberReload(@PathVariable("cNo") int cNo, Model model){
-		model.addAttribute("cNo", cNo);
-		return memberReloadCommand.execute(sqlSession, model);
-	}
 }

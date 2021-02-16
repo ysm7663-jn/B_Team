@@ -160,7 +160,6 @@
 	<beans:bean id="clubManageDetailCommand" class="com.koreait.baraON.command.myPage.ClubManageDetailCommand" />	
 	<beans:bean id="addCardCommand" class="com.koreait.baraON.command.myPage.AddCardCommand" />	
 	<beans:bean id="clubReservationListCommand" class="com.koreait.baraON.command.myPage.ClubReservationListCommand" />	
-	<beans:bean id="memberReloadCommand" class="com.koreait.baraON.command.myPage.MemberReloadCommand" />	
 	
 	<beans:bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> <!-- Impl:class ////Impl앞은 인터페이스 -->
 		<beans:property name="host" value="smtp.gmail.com"/>
