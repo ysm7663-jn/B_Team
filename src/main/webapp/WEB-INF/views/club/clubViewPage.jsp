@@ -53,9 +53,9 @@
 				success: function() {
 					
 				}
-			})
-		})
-	})
+			});
+		});
+	});
 	
 	$(function() {
 		$("#wish_btn").click(function(){
