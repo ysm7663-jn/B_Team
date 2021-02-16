@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <link rel="stylesheet" href="resources/style/common.css">
@@ -26,11 +28,11 @@
 		</div>
 		<hr>
 		<div>
-			<div style="height:200px; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 20px;">
-				<img alt="${eventDto.e_filename}" src="resources/storage/${filename}">
+			<div style="height:auto; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 20px;">
+				<img alt="${eventDto.e_filename}" src="resources/storage/${eventDto.e_filename}.JPG">
 			</div>
-			<div style="height:autopx; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 18px;border-bottom:1px solid black">
-				<pre>${eventDto.e_content}</pre>
+			<div style="height:auto; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 18px;border-bottom:1px solid black">
+				<pre>${eventDto.e_content}</pre><br/>
 			</div><br/>
 		</div>
 		<div class="c_foot">

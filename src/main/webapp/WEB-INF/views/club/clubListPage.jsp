@@ -61,7 +61,7 @@ if (afterDelete) {
 						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_title}</a>
 					</div>
 					<div class="content">
-						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_content}</a>
+						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_desc}</a>
 					</div>
 				</div>	
 			</c:forEach>
