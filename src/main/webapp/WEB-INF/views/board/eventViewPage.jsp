@@ -25,7 +25,7 @@
 		</div>
 		<div>
 			<div style="width:500px; height:auto; margin:30px 0 0 20px;  font-size: 18px">
-				<img alt="${eventDto.e_filename}" src="resources/storage/${eventDto.e_filename}.JPG"><br/><br/>
+				<img alt="${eventDto.e_filename}" src="resources/storage/${eventDto.e_filename}"><br/><br/>
 			</div>
 			<div style="height:auto; margin:30px auto;  font-size: 18px; border-bottom:1px solid black">
 				<pre>${eventDto.e_content}</pre><br/><br/>

@@ -143,7 +143,7 @@
 							<div class=row">
 								<div class="dot"></div>
 								<div class="board-title">${faqDto.f_title}</div>
-								<div class="board-date">${faqDto.f_postDate}</div>
+								<div class="board-date">${faqDto.f_regDate}</div>
 							</div>
 						</a>
 					</c:forEach>
