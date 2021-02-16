@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 /* body */
+
+/* slick */
 section.slide-wrap{
 	width: 100%;
 	height: 400px;
@@ -21,6 +23,13 @@ section.slide-wrap{
 	position:absolute;
 	top:50%;
 	z-index: 2;
+	cursor: pointer;
+	background: rgba(0,0,0,0.5);
+	width: 50px;
+	height: 50px;
+	line-height: 55px;
+	text-align: center;
+	border-radius: 50%;
 }
 .next{
 	right:30px;
@@ -30,13 +39,16 @@ section.slide-wrap{
 	left:30px;
 }
 
+/* main-body */
 section.main {
-	width: 800px;
-	margin: 0 auto;
+	width: 1000px;
+	margin: 0 auto 100px auto;
 	justify-content: center;
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
+
+/* 더보기 */
 div.plus{
 	margin-right: 20px;
 	align-items: baseline;
@@ -60,6 +72,8 @@ div.plus>button{
 	out-line:none;
 	cursor: pointer;
 }
+
+/* notice, faq */
 div.dot{
 	width: 10px;
 	height: 10px;
@@ -67,6 +81,7 @@ div.dot{
 	background: black;
 	margin: 6px;
 }
+
 div.board-title{
 	width: 70%;
 }
@@ -107,4 +122,50 @@ div.smaller-subtitle{
 	height: 23px;
 	font-size: 20px;
 	margin-left: 10px;
+}
+
+/* list */
+.not-exist{
+	color: rgb(95,158,160);
+	font-size: 20px;
+}
+.club-slide {
+	width: 100%;
+	height:280px;
+	overflow: hidden;
+	margin: 0 auto;
+	padding:10px 0px 10px 0px;
+}
+.club-card{
+	width: 280px;
+	height:280px;
+	margin:0px 10px;
+	display:inline-block;
+	background:white;
+	border-radius: 5px;
+	position: relative;
+}
+.club-card>img{
+	width: 100%;
+	height: 100%;
+}
+.club-card .club-card-title{
+	position: absolute;
+	top:40%;
+	left: 20px;
+	font-size: 30px;
+}
+.club-card .club-card-desc{
+	position: absolute;
+	top:70%;
+	left: 25px;
+	font-size:15px;
+}
+.text-stroke{
+	color: white;
+	 text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;  
 }
