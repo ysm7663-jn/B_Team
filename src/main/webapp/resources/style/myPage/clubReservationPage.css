@@ -1,0 +1,73 @@
+@charset "UTF-8";
+/* 초기화 */
+* {
+	padding: 0px;
+	margin: 0px;
+}
+a {
+	text-decoration: none;
+	color: black;
+}
+ul, ol {
+	list-style-type: none;
+}
+table {
+	border-collapse: collapse;
+}
+div {
+	box-sizing: border-box;
+}
+
+.reservation-wrap {
+	margin: 28px 28px 28px 0;
+}
+.content > div > h2 {
+	margin: 10px 3px 10px 0;
+}
+.res_state {
+	height: 32px;
+	line-height: 35px;
+	color: #8c8c8c;
+	background: #e4e4e4;
+	font-size: 19px;
+	padding: 0 0 0 16px;
+}
+.reservation-info {
+	display: flex;
+}
+
+.reservation-info > .img {
+	width: 157px;
+	margin: 4px 10px 10px 2px;
+}
+.reservation-info > div > a > img {
+	width: 100%;
+}
+.content { 
+	display: flex;
+	width: 480px;
+}
+.content > .info {
+	width: 321px;
+	padding: 21px 0 0 27px;
+}
+.content > .payment {
+	position: relative;
+	left: 41px;
+	line-height: 30px;
+	margin-top: 71px;
+}
+.payment > h3 {
+	padding: 4px;
+	color: #ff5a0b;
+}
+.payment > input {
+	width: 71px;
+	height: 31px;
+	color: white;
+	font-size: 18px;
+	font-weight: bold;
+	background: cadetblue;
+	border: 1px solid cadetblue;
+	border-radius: 3px;
+}

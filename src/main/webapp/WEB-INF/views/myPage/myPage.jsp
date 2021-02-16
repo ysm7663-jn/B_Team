@@ -48,7 +48,7 @@
 					<a href="clubManagePage.myPage?state=0">모임 관리</a><br/>
 				</li>
 				<li>
-					<a href="clubPayment.myPage">결제내역</a><br/>
+					<a href="clubReservationList.myPage">예약내역</a><br/>
 				</li>
 			</ul>
 			
