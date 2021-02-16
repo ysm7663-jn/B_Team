@@ -56,7 +56,7 @@
 			<div class="clubwrap">
 				<c:forEach var="clubDto" items="${list}">
 					<div class="clubList">
-						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${clubDto.c_mainImg}"></a></div>
+						<div class="clubImage"><a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no="${loginDto.m_no}><img alt="모임이미지" src="resources/images/club/${clubDto.c_mainImg}"></a></div>
 						<div class="clubContent">
 							<div class="title">
 								<span class="part">
@@ -75,7 +75,7 @@
 							<div class="count"></div>
 						</div>
 						<div class="detailBtn">
-							<form action="clubManageDetailPage.myPage" method="post">
+							<form action="clubManageDetailPage.myPage?state=${param.state}" method="post">
 								<input type="hidden" id="c_no" name="c_no" value="${clubDto.c_no}" />
 								<input type="hidden" name="c_part" value="${clubDto.c_part}" />
 								<input type="hidden" name="state" value="${param.state}" />

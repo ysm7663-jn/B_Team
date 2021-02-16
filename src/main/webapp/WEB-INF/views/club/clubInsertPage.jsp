@@ -7,46 +7,50 @@
 	<jsp:param value="새 클럽 생성" name="title" />
 </jsp:include>
 <link rel="stylesheet" href="resources/style/common.css" />    
+<link rel="stylesheet" href="resources/style/club/clubInsert.css" />    
     
 
 	<form method="post" enctype="multipart/form-data">
 		<div class="insert-wrap">
+			<hr class="line">
 		
 			<div id="main_image">
+				<div class="title">메인 화면 썸네일</div>
 				<input type="file" name="c_mainImg" />
 			</div>
 		
+			<br/><br/>
+		
 			<div class="inputs">
-				<span class="title">클럽명</span>
-					<input type="text" name="c_title" placeholder="제목을 입력해주세요" /><br/>
+				<div class="title">클럽명</div>
+					<input type="text" name="c_title" id="input" placeholder="  제목을 입력해주세요" /><br/><br/>
 					
-				<span class="title">한 줄 설명</span>
-					<input type="text" name="c_desc" placeholder="한 줄 설명을 입력해주세요" /><br/>
+				<div class="title">한 줄 설명</div>
+					<input type="text" name="c_desc" id="input" placeholder="  한 줄 설명을 입력해주세요" /><br/><br/>
 					
-				<span class="title">최소인원</span>
-					<input type="text" name="c_min" placeholder="최소인원을 입력해주세요" /><br/>
+				<div class="title">최소인원</div>
+					<input type="text" name="c_min" id="input" placeholder="  최소인원을 입력해주세요" /><br/><br/>
 					
-				<span class="title">최대인원</span>
-					<input type="text" name="c_max" placeholder="최대인원을 입력해주세요" /><br/>
+				<div class="title">최대인원</div>
+					<input type="text" name="c_max" id="input" placeholder="  최대인원을 입력해주세요" /><br/><br/>
 					
-				<span class="title">활동시작날짜</span>
-					<input type="text" name="c_startDate" placeholder="ex)20xx.xx.xx" /><br/>
+				<div class="title">활동시작날짜</div>
+					<input type="text" name="c_startDate" id="input" placeholder="  ex)20xx.xx.xx" /><br/><br/>
 					
-				<span class="title">활동종료날짜</span>
-					<input type="text" name="c_endDate" placeholder="ex)20xx.xx.xx" /><br/>
+				<div class="title">활동종료날짜</div>
+					<input type="text" name="c_endDate" id="input" placeholder="  ex)20xx.xx.xx" /><br/><br/>
 					
-				<span class="title">클럽내용</span><br/>
-					<textarea rows="20" cols="100" placeholder="2000자 이내로 작성해주세요" name="c_content"></textarea>
+				<div class="title">클럽내용</div>
+					<textarea rows="20" cols="100" id="c_content" placeholder=" 2000자 이내로 작성해주세요" name="c_content"></textarea>
 				<br/><br/>
-				
 			</div>
 		</div>
 		<%-- hidden --%>
 		<input type="hidden" name="m_no" value="${loginDto.m_no}" />
-		
-		<input type="button" name="btn" value="완료하기" onclick="fn_finish(this.form)" />
-		<input type="button" name="btn" value="돌아가기" onclick="location.href='clubListPage.club'" />
-		
+		<div class="btn_wrap">
+			<input type="button" name="btn" id="btn" value="완료하기" onclick="fn_finish(this.form)" />
+			<input type="button" name="btn" id="btn" value="돌아가기" onclick="location.href='clubListPage.club'" />
+		</div>
 	</form>
 	
 	<script type="text/javascript">

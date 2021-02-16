@@ -8,21 +8,20 @@ import org.springframework.ui.Model;
 
 import com.koreait.baraON.dao.MyPageDao;
 
-public class CardPlusCommand implements MyPageAjaxCommand {
+public class AddCardCommand{
 
-	@Override
 	public Map<String, Object> execute(SqlSession sqlSession, Model model) {
 		Map<String, Object> map = model.asMap();
-		int clNo = (int)map.get("clNo");
+		int cl_no = (int)map.get("cl_no");
 		
 		MyPageDao myPageDao = sqlSession.getMapper(MyPageDao.class);
 		// 옐로카드 추가
-		myPageDao.cardPlus(clNo);
+		myPageDao.addCard(cl_no);
 		// 옐로카드 개수
-		int cardCount = myPageDao.cardCount(clNo);
+		int cardCount = myPageDao.cardCount(cl_no);
 		// 옐로카드 3개 이상이면 강퇴
 		if (cardCount >= 3) { 
-			myPageDao.clubMemberDelete(clNo);
+			myPageDao.clubMemberDelete(cl_no);
 		}
 		
 		Map<String, Object> resultMap = new HashMap<>();
