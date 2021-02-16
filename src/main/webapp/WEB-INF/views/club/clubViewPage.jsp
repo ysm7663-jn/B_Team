@@ -38,17 +38,40 @@
 				f.submit();
 			}
 		}
-		
-		function fn_likeClub(f) {
-				f.action = 'likeClub.club';
-				f.submit();
-		}
-		
-		function fn_unlikeClub(f) {
-				f.action = 'unLikeClub.club';
-				f.submit();
-		}
 </script>
+
+<script>
+	$(function() {
+		$("#wish_btn").click(function(){
+			$.ajax({
+				url: "likeClub.club",
+				type: "POST",
+				data: {
+					c_no : ${clubDto.c_no},
+					m_no : ${loginDto.m_no}
+				},
+				success: function() {
+					
+				}
+			})
+		})
+	})
+	
+	$(function() {
+		$("#wish_btn").click(function(){
+			$.ajax({
+				url: "unLikeClub.club",
+				type: "POST",
+				data: {
+					w_no : ${whisListDto.w_no}
+				},
+				success: function() {
+					
+				}
+			})
+		})
+	})
+</script>	
 
  <script>
  	var afterUpdate = ${afterUpdate};
@@ -83,17 +106,19 @@
 	
 </script>
 
-<form method="post" action="wishDelete.myPage">
-
 	<div class="body_wrap">
-
 		<div class="left_side">
 			<div class="thumnail">
 				<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
+					<c:if test="${wishListDto.m_no ne loginDto.m_no}">
+						<button id="wish_btn"><span class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></span></button>
+					</c:if>
+				
+					<c:if test="${wishListDto.m_no eq loginDto.m_no}">
+						<button id="wish_btn"><span class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></span></button>
+					</c:if>
 			</div>
 			
-			<!-- <button><span class="wishIcon"><i class="fas fa-heart"></i></span></button> -->
-		
 			<div class="contents">
 				<span id="title">클럽명</span> 
 				<div id="content">${clubDto.c_title}</div>
@@ -131,103 +156,87 @@
 			
 		</div>
 		
-		<div class="right_side">
-			<c:if test="${clubDto.m_no ne loginDto.m_no}">
-			<div class="right_content">
-			
+		<c:if test="${clubDto.m_no ne loginDto.m_no}">
+			<div class="right_box">
 				<div class="right_content">
-				</div>
-				<div class="side_content">
-					<span id="title">${clubDto.c_title}</span>
-				</div>
-				
-				<br/><br/>
-				<hr class="line">
-				
-				<div class="side_content">
-					<span id="title">활동 시작일 : </span>
-					<span id="date">${clubDto.c_startDate}</span>
-				</div>
-
-				<br/>
-
-				<div class="side_content">
-					<span id="title">활동 종료일 : </span>
-					<span id="date">${clubDto.c_endDate}</span>
-				</div>
-				
-				<br/><br/>
-
-				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
-				<input type="hidden" name="m_no" value="${loginDto.m_no}" />
-
-				<div class="side_content">
-					<div class="box_content">
-						<c:if test="${clubListDto.m_no ne loginDto.m_no}">
-							<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)" /><br/>
-						</c:if>
+					<div class="side_content">
+						<span id="title">${clubDto.c_title}</span>
+					</div>
+					<br/><br/>
+					<hr class="line">
+					<div class="side_content">
+						<span id="title">활동 시작일 : </span>
+						<span id="date">${clubDto.c_startDate}</span>
+					</div>
+					<br/>
+					<div class="side_content">
+						<span id="title">활동 종료일 : </span>
+						<span id="date">${clubDto.c_endDate}</span>
+					</div>
+					<br/><br/>
+					<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+					<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 					
-						<c:if test="${clubListDto.m_no eq loginDto.m_no}">
-							<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/><br/>
-						</c:if>
-						
-						<c:if test="${wishListDto.m_no ne loginDto.m_no}">
-							<input type="button" value="" id="btn1" onclick="fn_likeClub(this.form)"/><br/>
-						</c:if>
-						<c:if test="${wishListDto.m_no eq loginDto.m_no}">
-							<input type="button" value="탈퇴하기" id="btn1" onclick="fn_unLikeClub(this.form)"/><br/>
-						</c:if>
-						
-						<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" />
-					</div>
-					</div>
-				</div>
-			</c:if>
-		</div>
-
-		<div class="right_side">
-			<c:if test="${clubDto.m_no eq loginDto.m_no}">
-				<div class="right_content">
-				<div class="side_content">
-					<span id="content">${clubDto.c_title}</span>
-				</div>
-				
-				<br/><br/>
-				
-				<div class="side_content">
-					<span id="title">활동 시작일 : </span>${clubDto.c_startDate}
-				</div>
-
-				<br/>
-
-				<div class="side_content">
-					<span id="title">활동 종료일 : </span>${clubDto.c_endDate}
-				</div>
-				
-				<br/><br/>
-
-				<%-- hidden --%>
-				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
-				<input type="hidden" name="m_no" value="${loginDto.m_no}" />
-				<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
-				<input type="hidden" name="c_title" value="${clubDto.c_title}" />
-				<input type="hidden" name="c_min" value="${clubDto.c_min}" />
-				<input type="hidden" name="c_max" value="${clubDto.c_max}" />
-				<input type="hidden" name="c_startDate" value="${clubDto.c_startDate}" />
-				<input type="hidden" name="c_endDate" value="${clubDto.c_endDate}" />
-				<input type="hidden" name="c_content" value="${clubDto.c_content}" />
-
-				<div class="side_content">
-					<input type="button" value="장소등록하기" id="btn1" onclick="location.href='placeListPage.place'" /><br/> 
-					<input type="button" value="클럽수정하기" id="btn1" onclick="fn_update(this.form)" /> <br/>
-					<input type="button" value="클럽해제하기" id="btn1" onclick="fn_delete(this.form)" />	<br/>
-					<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" /> <br/>
+					<c:if test="${loginDto ne null}">
+						<div class="side_content">
+							<div class="box_content">
+								<form method="post">
+									<c:if test="${clubListDto.m_no ne loginDto.m_no}">
+										<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)"/>
+									</c:if>
+									<c:if test="${clubListDto.m_no eq loginDto.m_no}">
+										<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/>
+									</c:if>
+								</form>
+								
+								<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" />
+							</div>
+						</div>
+					</c:if>
 				</div>
 			</div>
 		</c:if>
 		
+		
+		<c:if test="${clubDto.m_no eq loginDto.m_no}">
+			<div class="right_box">
+				<div class="right_content">
+					<div class="side_content">
+						<span id="content">${clubDto.c_title}</span>
+					</div>
+					<br/><br/>
+					<hr class="line">
+					<div class="side_content">
+						<span id="title">활동 시작일 : </span>
+						<span id="date">${clubDto.c_startDate}</span>
+					</div>
+					<br/>
+					<div class="side_content">
+						<span id="title">활동 종료일 : </span>
+						<span id="date">${clubDto.c_endDate}</span>
+					</div>
+					<br/><br/>
+					<%-- hidden --%>
+					<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+					<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+					<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
+					<input type="hidden" name="c_title" value="${clubDto.c_title}" />
+					<input type="hidden" name="c_min" value="${clubDto.c_min}" />
+					<input type="hidden" name="c_max" value="${clubDto.c_max}" />
+					<input type="hidden" name="c_startDate" value="${clubDto.c_startDate}" />
+					<input type="hidden" name="c_endDate" value="${clubDto.c_endDate}" />
+					<input type="hidden" name="c_content" value="${clubDto.c_content}" />
+					<form method="post">
+						<div class="side_content">
+							<input type="button" value="장소등록하기" id="btn1" onclick="location.href='placeListPage.place'" /><br/> 
+							<input type="button" value="클럽수정하기" id="btn1" onclick="fn_update(this.form)" /> <br/>
+							<input type="button" value="클럽해제하기" id="btn1" onclick="fn_delete(this.form)" />	<br/>
+							<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" /> <br/>
+						</div>
+					</form>
+				</div>
+			</div>
+		</c:if>
 	</div>
-	
-</form>
 
 <%@ include file="../template/footer.jsp"%>
