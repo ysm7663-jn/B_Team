@@ -16,7 +16,19 @@ table {
 div {
 	box-sizing: border-box;
 }
-.list-thumbnail {
-	width:30%;
-	height:30%;
+#placeList, #placeList2{
+	overflow:hidden;
+}
+.place-wrap, .place-wrap2{
+	width : 100%;
+	margin: 0 auto;
+	margin-left: 300px;
+	display:grid;
+	grid-template-columns : repeat(3,400px);
+	row-gap : 30px;
+	column-gap: 30px;
+	justify-content : space-evenly;
+}
+img{
+	width:80%;
 }

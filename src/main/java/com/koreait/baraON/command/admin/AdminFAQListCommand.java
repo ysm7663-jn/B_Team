@@ -1,5 +1,6 @@
 package com.koreait.baraON.command.admin;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,8 +34,9 @@ public class AdminFAQListCommand implements NoticeCommand {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		
-		//int totalRecord = faqDao.totalRecord();
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("f_category", f_category);
+		int totalRecord = faqDao.totalRecord(paramMap);
 		
 		int recordPerPage = 5; 
 		
@@ -42,9 +44,12 @@ public class AdminFAQListCommand implements NoticeCommand {
 		int endRecord = beginRecord + recordPerPage - 1;
 		endRecord = endRecord < totalRecord ? endRecord : totalRecord;
 	
-		List<FAQDto> list = faqDao.faqList(beginRecord , endRecord , f_category);
+		paramMap.put("beginRecord", beginRecord);
+		paramMap.put("endRecord", endRecord);
 		
-		String paging = Paging1.getPaging("adminFaqListPage.admin?", totalRecord, recordPerPage, page, f_category);
+		List<FAQDto> list = faqDao.faqList(paramMap);
+		
+		String paging = Paging.getPaging("adminFaqListPage.admin?f_category=" + f_category , totalRecord, recordPerPage, page);
 	
 		model.addAttribute("list" , list);
 		model.addAttribute("totalRecord" , totalRecord);

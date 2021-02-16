@@ -17,6 +17,7 @@ public class ReservationListCommand implements SellerCommand {
 		
 		Map<String, Object> map = model.asMap();
 		int page = (int)map.get("page");
+		int s_no = (int)map.get("s_no");
 		
 		ReservationDao reservationDao = sqlSession.getMapper(ReservationDao.class);
 
@@ -46,7 +47,10 @@ public class ReservationListCommand implements SellerCommand {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("paging", paging);
 		
-		List<ReservationDto> list = reservationDao.reservationList(beginRecord, endRecord);
+		List<ReservationDto> list = reservationDao.reservationList(s_no, beginRecord, endRecord);
+		//for (ReservationDto dto : list) {
+		//	System.out.println("[" + dto + "]");
+		//}
 		result.put("list", list);
 
 		if (list.size() > 0) {

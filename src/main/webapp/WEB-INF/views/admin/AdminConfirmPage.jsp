@@ -11,13 +11,12 @@
 		display: flex;
 	}
 	.confirmbox {
-		width: 200px;
-		margin: 50px 0 0 0;
+		margin: 100px 300px 0 0;
 	}
 	.listbox {
-		width: 800px;
-		height:570px;
-		margin:50px 0 0 200px;
+		width: 500px;
+		height:auto;
+		margin:50px auto;
 	}
 	table {
 		border-collapse: collapse;
@@ -210,7 +209,7 @@
 <body>
 	<div class="wrap">
 	<div class="listbox">
-			<h1>공간 승인목록</h1>
+			<span style="font-size: 40px; font-weight: bold">공간 승인목록</span>
 			<div id=""></div><br/>
 			<table>
 				<thead>

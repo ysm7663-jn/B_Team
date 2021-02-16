@@ -7,6 +7,7 @@
 </jsp:include>
 
 <link rel="stylesheet" href="resources/style/common.css" />
+<link rel="stylesheet" href="resources/style/club/clubUpdate.css" />
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 
@@ -22,21 +23,12 @@
 <form method="post">
 
 	<div class="wrap">
-
 		<div class="side">
-
 			<div class="side_content">
 				<span class="title">파일첨부<br/></span>
 				<input type="file" name="c_mainImg" /> 
-		
-				<c:if test="${empty clubDto.c_mainImg}">
-					[기존 첨부파일: 없음]<br/><br/>
-					<input type="file" name="c_mainImg" /> 
-				</c:if>
-				<c:if test="${not empty clubDto.c_mainImg}">
 					[기존 첨부파일: ${clubDto.c_mainImg}]<br/><br/>
 					<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
-				</c:if>
 			</div>
 			
 			<div class="side_content">

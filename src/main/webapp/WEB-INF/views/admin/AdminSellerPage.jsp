@@ -194,13 +194,12 @@
 		display: flex;
 	}
 	.left {
-		width: 200px;
-		margin: 50px 0 0 0;
+		margin: 150px 300px 0 0;
 	}
 	.right {
 		width: 1200px;
-		margin: 50px 0 0 200px;
-		height: 570px;
+		margin: 50px auto;
+		height: auto;
 	}
 	table {
 		border-collapse: collapse;
@@ -237,12 +236,17 @@
 	#paging .disable {
 		color: black;
 	}
+	#totalRecord{
+		font-weight: bold;
+		color: blue;
+		margin: 10px 0 0 10px;
+	}
 </style>
 </head>
 <body>
 	<div class="wrap">
 	<div class="right">
-			<h1>판매자 목록</h1>
+			<span style="font-size: 40px; font-weight: bold">판매자 목록</span><br/>
 			<div id="totalRecord"></div><br/>
 			<table>
 				<thead>
@@ -271,7 +275,7 @@
 		<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
 		</div>
 		<div class="left">
-			<h3>판매자 수정/보기</h3>
+			<span style="font-size:20px; font-weight: bold">판매자 수정/보기</span><br/><br/>
 			이름<br/>
 			<input type="text" name="name" /><br/><br/>
 			비밀번호<br/>

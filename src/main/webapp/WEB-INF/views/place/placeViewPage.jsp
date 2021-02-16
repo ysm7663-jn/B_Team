@@ -147,8 +147,12 @@
 						</label>
 							
 						<div class="hidden-box">
-							<div class="day-price"><strong>평일가격</strong> : &#92; ${optionDto.po_dayPrice}/day</div>
-							<div class="holiday-price"><strong>공휴일가격</strong>&#92; ${optionDto.po_holiday}/day</div>
+							<div class="day-price"><strong>평일가격</strong>
+							<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${optionDto.po_dayPrice}" />/일
+							</div>
+							<div class="holiday-price"><strong>공휴일가격</strong>
+							<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${optionDto.po_holiday}" />/일
+							</div>
 							<div class="option-info-box">
 								<div class="img-box">
 									<img alt="" src="resources/images/PlaceOptionImages/${optionDto.po_img}" />

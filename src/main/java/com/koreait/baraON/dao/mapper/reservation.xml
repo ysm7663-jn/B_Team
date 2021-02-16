@@ -24,10 +24,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="reservationList" resultType="com.koreait.baraON.dto.ReservationDto">
 		SELECT B.*
 		  FROM (SELECT A.*, ROWNUM AS RN 
-		          FROM (SELECT *
-			              FROM RESERVATION
-			          ORDER BY RES_NO DESC) A) B
-	     WHERE B.RN BETWEEN #{param1} AND #{param2}
+		          FROM (SELECT R.RES_NO ,R.M_NO, R.RES_PEOPLE, R.RES_PRICE, R.RES_STATE
+			              FROM SELLER S, PLACE P, PLACEOPTION PO, RESERVATION R
+			             WHERE S.S_NO = P.S_NO
+			               AND P.P_NO = PO.P_NO
+			               AND PO.PO_NO = R.PO_NO
+			               AND S.S_NO = #{param1}
+			          ORDER BY R.RES_NO DESC) A) B
+	     WHERE B.RN BETWEEN #{param2} AND #{param3}
 	</select>
 	
 	<select id="reservationCount" resultType="int">
@@ -37,8 +41,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="stateChange" parameterType="com.koreait.baraON.dto.ReservationDto">
 		UPDATE RESERVATION
-		SET RES_STATE=2
-		WHERE RES_NO=#{res_no}
+		   SET RES_STATE = '예약완료'
+		 WHERE RES_NO = #{res_no}
+	</update>
+	
+	<update id="stateCancle" parameterType="com.koreait.baraON.dto.ReservationDto">
+		UPDATE RESERVATION
+		   SET RES_STATE = '예약취소'
+		 WHERE RES_NO = #{res_no}
 	</update>
 	
 </mapper>

@@ -32,8 +32,8 @@
 <body>
 		<div id="wrap" style="width :1020px; margin: 0 auto;">
 	<br/>
-	<h1>공지사항(NOTICE)-관리자모드</h1><br/>
-	<h3>전체 :${totalRecord}개 공지사항</h3>
+	<span style="font-size: 40px; font-weight: bold">공지사항(NOTICE)-관리자모드</span><br/><br/>
+	<span style="font-size: 15px; color:blue; margin-left:10px;">전체 : ${totalRecord}개 공지사항이 있습니다.</span>
 	<input type="button" value="공지사항추가" style="float: right" onclick="location.href='noticeInsertPage.admin'" /><br/><br/>
 		<div>
 				<div style="background:#3ED0C8">
@@ -48,6 +48,7 @@
 						작성일
 					</div>
 				</div>
+						<form method="post">
 			<c:if test="${empty list}"></c:if>
 			<c:if test="${not empty list}">
 				<c:forEach var="noticeDto" items="${list}" varStatus="k">
@@ -60,6 +61,7 @@
 					</div>
 				</c:forEach>
 			</c:if>
+						</form>
 			<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
 			<div id="paging"style="width:1020px; margin: 0 auto; float: left; text-align: center; font-weight: 800px; font-size: 20px">
 				${paging}

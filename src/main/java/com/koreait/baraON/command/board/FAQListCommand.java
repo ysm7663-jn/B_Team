@@ -19,7 +19,6 @@ public class FAQListCommand implements NoticeCommand {
 		
 		FAQDao faqDao = sqlSession.getMapper(FAQDao.class);
 		Map<String, Object> map = model.asMap();
-		
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		
 		int f_category = 1;
@@ -30,20 +29,22 @@ public class FAQListCommand implements NoticeCommand {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		int totalRecord = faqDao.totalRecord(f_category);
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("f_category", f_category);
+		int totalRecord = faqDao.totalRecord(paramMap);
+
 		int recordPerPage = 5; 
+
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = beginRecord + recordPerPage - 1;
 		endRecord = endRecord < totalRecord ? endRecord : totalRecord;
 	
-		Map<String, Integer> paramMap = new HashMap<String, Integer>();
 		paramMap.put("beginRecord", beginRecord);
 		paramMap.put("endRecord", endRecord);
-		paramMap.put("f_category", f_category);
 
 		List<FAQDto> list = faqDao.faqList(paramMap);
 		
-		String paging = Paging1.getPaging("faqListPage.faq?", totalRecord, recordPerPage, page,f_category);
+		String paging = Paging.getPaging("faqListPage.faq?f_category="+ f_category, totalRecord, recordPerPage, page);
 	
 		
 		model.addAttribute("list" , list);

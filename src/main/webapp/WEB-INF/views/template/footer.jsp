@@ -1,63 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-</div>
-			
-		<div class="footer-wrap">
-			<div class="title">
-				<div id="title"><span id="title_text">상호명</span>&nbsp;&nbsp;바라온</div>
+		</div>
+		<footer>
+			<div class="footer-top">
+				<a id="logo" href="index">
+					<img alt="BaraON" src="resources/images/logo2.png" />
+				</a>
 			</div>
-			
-			<div class="left-footer">
-				<div class="partners">
-					<div class="left-partners">
-                        <ul class="partners-info">
-							<li class="name">박재성</li>
-							<li id="partner-bold">pjs@gmail.com</li>
-							<li id="partner-bold">010-0000-1111</li> 
-						</ul>
-						<ul class="partners-info">
-							<li class="name">정예진</li>
-							<li id="partner-bold">jyj@gmail.com</li>
-							<li id="partner-bold">010-1111-2222</li>
-						</ul>
-						<ul class="partners-info">
-							<li class="name">김재혁</li>
-							<li id="partner-bold">kjh@naver.com</li>
-							<li id="partner-bold">010-2222-3333</li>
-						</ul>
-					</div>
-					<div class="right-partners">	
-						<ul class="partners-info">
-							<li class="name">정빛찬</li>
-							<li id="partner-bold">jbc@naver.com</li>
-							<li id="partner-bold">010-3333-4444</li>
-						</ul>
-						<ul class="partners-info">
-							<li class="name">윤성민</li>
-							<li id="partner-bold">ysm@naver.com</li>
-							<li id="partner-bold">010-4444-5555</li>
-						</ul>
-					</div>
-			
-			<div class="right-footer">
-				<ul class="contact">
-                   <li class="part">
-                      <p class="name">Mail</p>
-                      <span>BaraON@baraON.com</span>
-                   </li>
-                   <li class="part">
-                      <p class="name">Address</p>
-                      <span>경상북도 울릉군 울릉읍 독도리</span>
-                   </li>
-                   <li class="part">
-                      <p class="name">Phone</p>
-                      <span>+82. 010. 1234. 5678</span>
-                   </li>
-                </ul>
+			<div class="footer-middle">
+				<ul id="team-list">
+					<li><span class="footer-subtitle">프로젝트명:</span>&nbsp;BaraON</li>
+					<li><span class="footer-subtitle">조장:</span>&nbsp;윤성민(Club)</li>
+					<li><span class="footer-subtitle">조원:</span>&nbsp;김재혁(Join&nbsp;&amp;&nbsp;MyPage-Host)</li>
+					<li><span class="footer-subtitle">조원:</span>&nbsp;정예진(Login&nbsp;&amp;&nbsp;Find ID,PW&nbsp;&amp;&nbsp;MyPage-Member)</li>
+					<li><span class="footer-subtitle">조원:</span>&nbsp;정빛찬(Admin)</li>
+					<li><span class="footer-subtitle">조원:</span>&nbsp;박재성(Place)</li>
+				</ul>
 			</div>
-		  </div>
-       </div>
+			<div class="footer-bottom">
+				<p style="white-space: pre-line;" >
+					Project BaraON은 Korea IT Academy에서 포트폴리오를 위해 만들어졌습니다.
+				</p> 
+			</div>
+		</footer>
 	</div>
 </body>
 </html>

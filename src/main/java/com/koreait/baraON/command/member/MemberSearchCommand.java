@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
-import com.koreait.baraON.dao.MemberDao2;
+import com.koreait.baraON.dao.MemberDao;
 
 public class MemberSearchCommand implements MemberCommand{
 
@@ -17,11 +17,11 @@ public class MemberSearchCommand implements MemberCommand{
 		
 		String m_id = (String)map.get("m_id");
 
-		MemberDao2 memberDao2 = sqlSession.getMapper(MemberDao2.class);
+		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
-		resultMap.put("resultMap", memberDao2.memberSearch(m_id));
+		resultMap.put("resultMap", memberDao.memberSearch(m_id));
 		
 		return resultMap;
 	}

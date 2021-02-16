@@ -73,7 +73,7 @@ function fn_usingList(){
 			<div id="wrap" style="width :1020px; height: 500px; margin: 0 auto;">
 				<h1>자주묻는질문(FAQ)</h1><br/>
 					<div class="categoryList" style="width: 1020px; text-align: center; margin:20px;">
-						<a href="faqListPage.faq?f_category=1">전체</a>
+						<a href="faqListPage.faq?">전체</a>
 						<a href="faqListPage.faq?f_category=2">결제 및 환불</a>
 						<a href="faqListPage.faq?f_category=3">계정</a>
 						<a href="faqListPage.faq?f_category=4">이용안내</a>

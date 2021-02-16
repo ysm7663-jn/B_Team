@@ -76,8 +76,8 @@ $(document).ready(function(){
 <body>
 	<div id="wrap" style="width :1020px; margin: 0 auto;">
 	<br/>
-	<h1>자주묻는질문(FAQ) - 관리자모드</h1><br/>
-	<h3>전체 : ${totalRecord}개 FAQ</h3>
+	<span style="font-size: 40px; font-weight: bold">자주묻는질문(FAQ) - 관리자모드</span><br/><br/>
+	<span style="font-size: 15px; color:blue; margin-left:10px;">전체 : ${totalRecord}개 FAQ가 있습니다</span>
 	<input type="button" value="FAQ추가" style="float:right; width:100px" onclick="location.href='faqInsertPage.admin'" /><br/><br/>
 	<div  style="display: flex; flex-direction: column;">
 		<div style="text-align: center">
@@ -90,7 +90,7 @@ $(document).ready(function(){
 			</form><br/>
 			 -->
 			 <div class="categoryList" style="width: 1020px; text-align: center; margin:20px;">
-						<a href="adminFaqListPage.admin">전체</a>
+						<a href="adminFaqListPage.admin?">전체</a>
 						<a href="adminFaqListPage.admin?f_category=2">결제 및 환불</a>
 						<a href="adminFaqListPage.admin?f_category=3">계정</a>
 						<a href="adminFaqListPage.admin?f_category=4">이용안내</a>

@@ -9,9 +9,12 @@ public interface ReservationDao {
 	public int reserveUpdate(ReservationDto reservationDto);
 	
 	// seller에서 가져다 쓰는 중
-	public List<ReservationDto> reservationList(int beginRecord, int endRecord);
+	public List<ReservationDto> reservationList(int s_no, int beginRecord, int endRecord);
 	
 	public int reservationCount();
 	
 	public int stateChange(ReservationDto reservationDto);
+	
+	public int stateCancle(ReservationDto reservationDto);
+	
 }

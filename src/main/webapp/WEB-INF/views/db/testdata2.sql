@@ -104,19 +104,48 @@ VALUES(PLACE_SEQ.NEXTVAL, 2, 2,
 
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
 VALUES (PLACE_SEQ.NEXTVAL, 3, 3,
-'P_TITLE',
-'P_NAME',
-'P_DESC',
-'P_CONTENT',
-'["P_INFO"]',
-'P_ADDR',
-'P_BNAME',
-'P_ADDRDETAIL',
-'["P_IMG"]',
-'미승인',
-'P_URL',
-'["P_REMARK"]',
-1);
+'하늘밑, [매일소독중]',
+'하늘밑',
+'하늘을 벗삼아 &#39;잠시 쉬었다&#39; 가고 싶은 곳',
+'*겨울시즌 외부난로 제공 및 따뜻한 실내*
+
+
+남산타워와 서울 도심이 한 눈에 담기는 &#39;하늘밑&#39;
+
+바베큐, 촬영, 모임, 이벤트 등 다양한 목적으로 이용가능합니다.
+
+#서울역과 숙대입구역 사이에 위치(도보 10분)
+
+#외부공간 : 루프탑, 바베큐 및 요리가 가능한 시설, 외부난로 제공(2개)
+
+#내부공간 : 방(바닥난방,에어컨), 화장실, 부엌
+
+#음식 및 주류반입, 배달음식 가능
+
+#대학가 주변이라 각종 편의시설(편의점, 마트)
+
+
+* 스페이스클라우드에 2호점 &#39;카멜레온&#39;도 운영중이니, 검색해주세요.
+*"리턴이벤트" , 사진리뷰 작성시 5000원 환급!
+
+* "리턴이벤트" , 사진리뷰시 5000원 환급
+
+* 다른 공간이 궁금하다면, 아래 공간을 검색해주세요
+ㅁ 1호점 루프탑&#39;하늘밑&#39;
+ㅁ 3호점 비밀공간&#39;수작&#39;
+ㅁ 5호점 도심 속 캠핑 루프탑&#39;산장&#39;
+
+* 카카오톡 문의 :: 카카오톡 검색창에 "개성공간"을 검색
+* 인스타그램 :: kaesung_space',
+'["바베큐 시설 (그릴, 숯, 토치, 가위, 집게 :: 유료)","빔프로젝터 (HDMI 연결이 가능한 노트북 지참 :: 유료)","식기 제공 (접시, 그릇, 수저, 맥주잔, 냄비, 후라이팬 :: 6인 기준)","부엌 가전 (인덕션, 전자레인지, 냉장고)","실내외 가전 (전기난로, 에어컨, 선풍기)","화장실 (샤워 가능 단, 세면도구 및 타올 제공 불가)","방 (원형좌식테이블 단, 침구류 제공 불가)","WIFI (실내외 가능)","주차 (무료 :: 골목주차 / 유료 :: 새빛관 도보 1분 거리)"]',
+'서울특별시 용산구 청파로47나길 83-14',
+'청파동1가',
+'5층 옥탑방',
+'["엠티장소1.jpg","엠티장소2.jpg"]',
+'승인',
+'https://www.instagram.com/haneulmeet/',
+'["소음 : 22시 이전 외부공간 이용시 소음문제 절대주의, 22시 이후 외부 공간 소음문제로 이용 절대 금지, 일상적이 대화 내용도 밤늦은 시간에는 이웃들에게는 불쾌한 소음 입니다.","안전 : 난간에 기대지 말 것, 실내 이용시 방에서 조리 금지, 옥외 절대금연","파손분실 : 정가보상","청소보증금 5만원 : 안내에 따라 청소 후, 퇴실 뒤 당일 내로 청소 상태 확인 후 환급 해드립니다.","올나잇 : 숙박시설이 아니므로 세면도구 및 침구류 제공은 하지 않습니다.","실내 : 쾌적한 공간을 제공하고 화재를 예방하기위해 실내에서는 취사를 금지합니다. 취사는 부엌과 야외에서 가능합니다.","미성년자 : 19세미만 청소년은 22시 이후 보호자 동반없이 출입불가","환불 : 전일 및 당일 취소는 불가(우천 제외), 예약 당일 기준으로 7일이내에 취소시 내규 정책에 따라 환불 불가. (단, 우천시 100% 환불)"]',
+0);
 
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
 VALUES(PLACE_SEQ.NEXTVAL, 4, 4,
@@ -204,19 +233,32 @@ VALUES(PLACE_SEQ.NEXTVAL, 6, 6,
 
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
 VALUES (PLACE_SEQ.NEXTVAL, 7, 7,
-'P_TITLE',
-'P_NAME',
-'P_DESC',
-'P_CONTENT',
-'["P_INFO"]',
-'P_ADDR',
-'P_BNAME',
-'P_ADDRDETAIL',
-'["P_IMG"]',
-'미승인',
-'P_URL',
-'["P_REMARK"]',
-1);
+'씨즈더위켄드 브라이덜 샤워',
+'씨즈더위켄드',
+'씨즈의 공간에서 만드는 특별한 순간･ᴗ･',
+'여러분의 소중한 순간을 씨즈와 함께 만들어요ฅ^•ﻌ•^ฅ
+
+•5호선 오목교역/ 9호선 신목동역 도보 5분! 프라이빗한 13평 공간의 스튜디오입니다!
+•브라이덜샤워 소품 풀 세트 대여!
+{이니셜 풍선, 부케, 화관, 꽃 팔찌, 코사지(부토니에), 베일, 드레스} - 옵션에서 선택 가능합니다!
+•고퀄 주의! 기본 테이블 셋팅
+{골드림 플레이트 세트, 골드 커트러리, 케이크 스탠드, 2단 디저트 트레이, 우드 치즈 플레이트}
+•모던하고 미니멀한 감성의 안목 높은 여러분을 위한 심플&빈티지 감성의 인테리어
+•넓고 깔끔한 6인 테이블과 미니 주방이 있어 프라이빗한 사용이 가능!
+
+
+•예약 관련 문의
+- 카카오톡 채널 : 씨즈더위켄드 / @seizetheweekend 로 검색 후 문의
+- 인스타그램 @seize_the_weekend DM으로 문의',
+'["간단한 조리 및 음식 페어링이 가능한 미니 주방 (감성 뿜뿜 스메그 냉장고가 여러분의 음식을 지켜줄게요♥︎)","인스타 갬성 낭낭 마샬 스피커와 캔들, 조화 등 다양한 빈티지 소품으로 막 찍어도 인생샷 ☺︎","인생샷 필수품! 스마트폰 삼각대 + 유튜버들이 쓴다는 LED 지속광 조명도 있어요~","전신거울 / 행거 / 스팀다리미 / 고데기 (그 외 필요한 도구는 뭐든지 문의 주세요!)","뷰 맛집☼ 야경 맛집☽ 조용한 동네 분위기와 프라이빗한 단독 공간에서 소음 걱정 없이 즐기세요!","스튜디오 내 개인 화장실 / 탈의 공간을 안전하게 이용하세요~","건물 내 주차 2시간 무료 / 주말엔 무료인 외부 공영 주차장 이용을 추천드려요!","대중교통 이용시 5호선 오목교역/ 9호선 신목동역에서 5분! / 2호선 9호선 당산역에서 10분!","건물 내 편의점 있음 / 건물 밖 같은 블럭에 스타벅스, 파리바게트, 배스킨라빈스를 포함한 상업 시설 매우 많음!"]',
+'서울 양천구 목동서로 77',
+'목동',
+'16층',
+'["브라이덜샤워1.jpg","브라이덜샤워2.jpg","브라이덜샤워3.jpg"]',
+'승인',
+'https://instagram.com/seize_the_weekend',
+'["이용시간은 입실시간과 퇴실시간을 기준으로 합니다. (셋팅 및 정리시간 포함)","보증금 3만원이 있습니다. 퇴실 후 뒷 정리(분리수거 및 원상복구) 여부 / 소품 파손, 분실, 오염 확인 후에 보증금을 환급해 드립니다.","화재사고 예방 및 실내 청결 유지를 위해 실내는 절대 금연 구역입니다. 흡연 발견 시 즉각 퇴실 처리 되며 보증금 환불 불가합니다.","반려동물은 출입 불가능하며, 미성년자는 보호자 동반 하에 입실 가능합니다. 무단 출입이 확인될 시 즉각 퇴실 조치 합니다.","과도한 소음 및 음주가무는 불가하며 호스트 판단 하에 퇴실 권고 드릴 수 있습니다. 또한 공간 내에서 불법적인 행위는 절대 금하며 적발시 즉각 퇴실 조치 합니다.","음식(배달 음식 포함)은 깔끔한 취식 및 정리가 가능한 범위 내에서 반입 가능하며 퇴실 시 음식물 쓰레기 분리수거 요청드립니다.","공간 내 기물 오염 및 파손시 원가로 배상하셔야 하며, 도난 적발시 원가의 10배로 배상하셔야 합니다.","안전과 보안을 위해 CCTV가 설치되어 있습니다. 입/퇴실 확인 및 파손, 사고 파악을 위한 용도로 녹화되며 이후에는 일체 확인하지 않습니다. (7일 후 삭제)"]',
+0);
 
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
 VALUES(PLACE_SEQ.NEXTVAL, 8, 8,
@@ -329,19 +371,34 @@ insta: @seogyo_resort',
 
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
 VALUES (PLACE_SEQ.NEXTVAL, 11, 11,
-'P_TITLE',
-'P_NAME',
-'P_DESC',
-'P_CONTENT',
-'["P_INFO"]',
-'P_ADDR',
-'P_BNAME',
-'P_ADDRDETAIL',
-'["P_IMG"]',
-'미승인',
-'P_URL',
-'["P_REMARK"]',
-1);
+'탑마린 럭셔리 요트',
+'탑마린',
+'요트에서 소중한 사람들과 특별한 추억을 남겨보세요',
+'스페이스클라우드에서만 제공하는 특별 할인가격!
+고품격 요트에서 럭셔리 라이프를 즐겨보세요.
+
+1. 페레티 592(운항)
+정가: 130만원 --> 특별할인가: 65만원
+
+2. 베이라이너 300(운항)
+정가: 65만원 --> 특별할인가: 32만 5천원
+
+요트를 타시며 한강&아라뱃길의 경치를 즐겨보면 어떨까요?
+
+각종 모임, 프라이빗 파티, 이벤트, 프로포즈, 선상촬영, 방송촬영 등
+여러분만의 프라이빗하고 럭셔리한 시간을 보낼 수 있습니다.
+
+특별한 날, 해양레저의 최고시설인 요트를 통해
+신선함을 경험해보면 어떨까요?',
+'["모든 요트는 운항시 최대 승선인원은 10명입니다.","페레티592는 3개의 침실과 각 화장실&샤워실이 있습니다.","베이라이너300은 2개의 침실과 1개의 화장실이 있습니다.","모든 요트는 간단히 조리할 수 있는 주방이 있습니다.(싱크대,전자레인지,인덕션,냉장고,와인냉장고)","모든 요트에는 스피커와 CD플레이어가 있습니다.","운항시 옵션으로 제트스키 (최대2대)를 빌려드립니다."]',
+'경기도 김포시 고촌읍 아라육로270번길 73',
+'고촌읍',
+'아라마리나 컨벤션',
+'["수상레저1.jpg","수상레저2.jpg","수상레저3.jpg"]',
+'승인',
+'www.topmarine.co.kr',
+'["모든요트 선내&선외에서는 금연입니다.","요트에 탑승시 반드시 신발을 벗어주세요","선내 카펫&소파에 음료및 음식물 또는 기타 오염 발생시 클리닝 비용이 발생합니다.","케이터링을 원하시는 경우에는 최소 5일전에 예약하셔야 합니다.","요트가 수면위에 계류중이오니 추락및 안전사고에 주의 바랍니다.","요트에 있는 모든 시설을 파손 및 도난시 실비 청구가 발생합니다."]',
+0);
 
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
 VALUES(PLACE_SEQ.NEXTVAL, 12, 12,
@@ -570,19 +627,41 @@ VALUES(PLACE_SEQ.NEXTVAL, 19, 19, '홍대 파티룸 루프땅[2월할인]', '루
 
 INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
 VALUES (PLACE_SEQ.NEXTVAL, 20, 20,
-'P_TITLE',
-'P_NAME',
-'P_DESC',
-'P_CONTENT',
-'["P_INFO"]',
-'P_ADDR',
-'P_BNAME',
-'P_ADDRDETAIL',
-'["P_IMG"]',
-'미승인',
-'P_URL',
-'["P_REMARK"]',
-1);
+'이태원필라테스',
+'필라테스 스튜디오',
+'이태원역 5분내 거리에 위치한 필라테스 스튜디오',
+'월,수,금 오전 10-11시, 오후 7-9시 외
+에 대관 가능합니다. (W25000으로 필라테스, 플라잉요가 수업참여 가능) 매트/소도구 필라테스 수업공간이나, 플라잉요가수업, 연습실, 파티공간으로도 좋을거같네요. ^^
+매트, 소도구, 블루투스스피커, 피팅룸, 샤워실 구비되어있습니다.
+이태원역 도보 5분이내로 접근성좋아요. 주차는 건물 맞은편 공영주차장이나 용산구청 주차장 이용하시면 됩니다.',
+'["필라테스클래스","요가수업","댄스연습실","플라잉요가","파티룸"]',
+'서울특별시 용산구 이태원동 137-8',
+'이태원동',
+'503',
+'["기타1.jpeg","기타2.jpeg"]',
+'승인',
+NULL,
+'["월수금 오전 10-11, 오후 7-9시외 대관가능"]',
+0);
+
+INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
+VALUES (PLACE_SEQ.NEXTVAL, 20, 4,
+'이태원필라테스',
+'필라테스 스튜디오',
+'이태원역 5분내 거리에 위치한 필라테스 스튜디오',
+'월,수,금 오전 10-11시, 오후 7-9시 외
+에 대관 가능합니다. (W25000으로 필라테스, 플라잉요가 수업참여 가능) 매트/소도구 필라테스 수업공간이나, 플라잉요가수업, 연습실, 파티공간으로도 좋을거같네요. ^^
+매트, 소도구, 블루투스스피커, 피팅룸, 샤워실 구비되어있습니다.
+이태원역 도보 5분이내로 접근성좋아요. 주차는 건물 맞은편 공영주차장이나 용산구청 주차장 이용하시면 됩니다.',
+'["필라테스클래스","요가수업","댄스연습실","플라잉요가","파티룸"]',
+'서울특별시 용산구 이태원동 137-8',
+'이태원동',
+'503',
+'["기타1.jpeg","기타2.jpeg"]',
+'승인',
+NULL,
+'["월수금 오전 10-11, 오후 7-9시외 대관가능"]',
+0);
 
 -- PLACEOPTION
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
@@ -604,6 +683,16 @@ VALUES (PLACEOPTION_SEQ.NEXTVAL, 2,
 29000, 
 '스튜디오옵션1.jpeg', 
 '["주류반입가능","금연","TV/프로젝터","탈의실","반려동물가능","전신거울"]');
+
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
+VALUES (PLACEOPTION_SEQ.NEXTVAL, 3, 
+'하늘 밑', 
+1, 
+6, 
+50000, 
+60000, 
+'엠티장소옵션1.jpeg', 
+'["주류반입가능","금연","TV/프로젝터","탈의실","취사시설","전신거울"]');
 
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
 VALUES (PLACEOPTION_SEQ.NEXTVAL, 4, 
@@ -653,6 +742,16 @@ VALUES (PLACEOPTION_SEQ.NEXTVAL, 6,
 '["반려동물동반가능","금연","TV/프로젝터","화이트보드","인터넷/WIFI","주차"]');
 
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
+VALUES (PLACEOPTION_SEQ.NEXTVAL, 7, 
+'씨즈의 브라이덜샤워 패키지', 
+2, 
+8, 
+88000, 
+99000, 
+'브라이덜샤워옵션1.jpg', 
+'["탈의실","주류반입가능","취사시설","금연","TV/프로젝터","화이트보드","인터넷/WIFI","주차"]');
+
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
 VALUES (PLACEOPTION_SEQ.NEXTVAL, 8, 
 '모이자 M룸 5-8인', 
 5, 
@@ -692,6 +791,46 @@ VALUES (PLACEOPTION_SEQ.NEXTVAL, 10,
 70000, 
 '카페옵션1.jpg', 
 '["주류반입가능","취사시설","반려동물동반가능","금연","전신거울"]');
+
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
+VALUES (PLACEOPTION_SEQ.NEXTVAL, 11, 
+'베이라이너 300(운항)', 
+1, 
+20, 
+325000, 
+325000, 
+'수상레저옵션1.jpg', 
+'["주류반입가능","TV/프로젝터","인터넷/WIFI"]');
+
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
+VALUES (PLACEOPTION_SEQ.NEXTVAL, 11, 
+'베이라이너 300(정박)', 
+1, 
+20, 
+100000, 
+100000, 
+'수상레저옵션2.jpg', 
+'["주류반입가능","TV/프로젝터","인터넷/WIFI"]');
+
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
+VALUES (PLACEOPTION_SEQ.NEXTVAL, 11, 
+'페레티 592(운항)', 
+4, 
+12, 
+650000, 
+650000, 
+'수상레저옵션3.jpg', 
+'["주류반입가능","취사시설","금연","주차","샤워시설","TV/프로젝터","인터넷/WIFI"]');
+
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
+VALUES (PLACEOPTION_SEQ.NEXTVAL, 11, 
+'페레티 592(정박)', 
+4, 
+12, 
+200000, 
+200000, 
+'수상레저옵션4.jpg', 
+'["주류반입가능","취사시설","금연","주차","샤워시설","TV/프로젝터","인터넷/WIFI"]');
 
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
 VALUES (PLACEOPTION_SEQ.NEXTVAL, 12, 
@@ -803,6 +942,101 @@ VALUES (PLACEOPTION_SEQ.NEXTVAL, 19,
 '루프탑옵션2.jpg', 
 '["주류반입가능","바베큐시설","의자/테이블","취사시설","음식물반입가능","내부화장실","금연"]');
 
+INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) 
+VALUES (PLACEOPTION_SEQ.NEXTVAL, 20, 
+'503호 필라테스 플라잉요가', 
+1, 
+20, 
+20000, 
+25000, 
+'기타옵션1.jpeg', 
+'["주류반입가능","의자/테이블","전신거울","음식물반입가능","내부화장실","샤워실"]');
+
+-- REVIEW
+SELECT * FROM REVIEW
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 1, 0, 5, NULL, SYSDATE-50, SYSDATE-50, '아주 좋았어요. 재밌게 요리 잘 하다 갑니다 ^^');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 2, 1, 0, 4, NULL, SYSDATE-48, SYSDATE-48, '식기류들이 살짝 아쉽긴했지만 나쁘지 않았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 3, 1, 0, 4, NULL, SYSDATE-48, SYSDATE-46, '무난무난했슴다 사장님이 친절해서 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 4, 1, 0, 5, NULL, SYSDATE-45, SYSDATE-45, '분위기,크기,느낌,편의성,위치,교통 어느부분 부족함이 없었어요~ 특히 주차는 우주최강!! 주차가 4대라서 장소구하는게 어려웠는데 주차편해서 너무 좋았습니다 최고의 공간에서 가족들과 즐거운 시간 잘보내고왔습니다.^^ 다음에 또 이용하겠습니다~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 5, 1, 0, 5, NULL, SYSDATE-40, SYSDATE-39, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 6, 1, 0, 3, NULL, SYSDATE-40, SYSDATE-40, '그냥 그저 그랬어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 7, 1, 0, 3, NULL, SYSDATE-38, SYSDATE-38, '관리가 생각보다 잘 안되는 듯?');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 8, 1, 0, 2, NULL, SYSDATE-38, SYSDATE-38, '다시는 안갑니다.');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 9, 1, 0, 1, NULL, SYSDATE-37, SYSDATE-34, '아주 별로~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 10, 1, 0, 1, NULL, SYSDATE-36, SYSDATE-36, '완전 별루~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 10, 2, 0, 5, NULL, SYSDATE-26, SYSDATE-26, '2시간 정도 영상촬영을하였는데, 정말 친절하게 도와주셔서 편하게 이용할 수 있었습니다:) 시설도 깔끔하고 웬만한 물품과 장비는 다 구비되어있었고, 블루투스 스피커가 있어서 음악을 틀고 작업할 수 있었습니다. 추천해요~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 10, 3, 0, 3, '["엠티장소리뷰1.jpg","엠티장소리뷰2.jpg"]', SYSDATE-16, SYSDATE-14, '할말이 많지만 짧게 이야기한다면 1. 간단한 회식 장소가 필요했음. 나름 적합 2. 겨울이라서(이불 얾)루프탑 못씀. 그런거에 비해서 방도 작아서 못누리는게 많아서 시간당 2만원인데 다소 비싸다는 느낌이 듦. 3. 화장실 열악한편 4. 가는 길이 진짜 최악... 5. 주차는 골목에 지정선없는 곳에 두라함. 안되면 숙대가라함. 말이되나... 비쌈..');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 10, 4, 0, 5, '["스터디룸리뷰1.jpeg"]', SYSDATE-6, SYSDATE-6, 'wifi 잘 터지고 HDMI로 노트북과 모니터 연결할 수 있어서 스터디하기 좋았습니다. 작지만 큰 불편은 없었습니다.');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 10, 5, 0, 4, NULL, SYSDATE-2, SYSDATE-2, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 10, 6, 0, 4, NULL, SYSDATE, SYSDATE, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 11, 1, 0, 5, NULL, SYSDATE-56, SYSDATE-55, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 11, 3, 0, 5, NULL, SYSDATE-48, SYSDATE-48, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 11, 6, 0, 5, NULL, SYSDATE-40, SYSDATE-40, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 11, 8, 0, 4, NULL, SYSDATE-30, SYSDATE-30, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 11, 10, 0, 4, NULL, SYSDATE-26, SYSDATE-26, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 11, 13, 0, 4, NULL, SYSDATE-20, SYSDATE-20, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 12, 5, 0, 1, NULL, SYSDATE-90, SYSDATE-90, '완전 별로');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 12, 4, 0, 1, NULL, SYSDATE-80, SYSDATE-77, '여기도 별로');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 12, 9, 0, 1, NULL, SYSDATE-60, SYSDATE-60, '진짜 별로');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 13, 18, 0, 5, NULL, SYSDATE-70, SYSDATE-70, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 13, 19, 0, 3, NULL, SYSDATE-20, SYSDATE-15, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 14, 20, 0, 4, NULL, SYSDATE-80, SYSDATE-80, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 14, 7, 0, 3, NULL, SYSDATE-40, SYSDATE-40, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 15, 16, 0, 5, NULL, SYSDATE-100, SYSDATE-100, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 15, 15, 0, 4, NULL, SYSDATE-80, SYSDATE-80, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 15, 2, 0, 5, '["스튜디오리뷰.jpeg"]', SYSDATE-65, SYSDATE-60, '첫째도 친절 둘째도 친절이셨습니다 새벽0~2시 타임에도 불구하고 조명셋팅 및 조작법도 차근차근 설명해주셔서 수월하게 이용했습니다!! 고민말고 바로 이용하세용~~ 밤 늦은 시간에 수고많으셨고 감사했습니다 사장님~~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 15, 6, 0, 3, NULL, SYSDATE-30, SYSDATE-27, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 16, 20, 0, 5, NULL, SYSDATE-88, SYSDATE-88, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 16, 18, 0, 5, NULL, SYSDATE-67, SYSDATE-67, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 16, 20, 0, 5, NULL, SYSDATE-52, SYSDATE-49, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 17, 6, 0, 5, NULL, SYSDATE-66, SYSDATE-64, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 17, 9, 0, 5, NULL, SYSDATE-34, SYSDATE+-34, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 17, 11, 0, 5, NULL, SYSDATE-20, SYSDATE-20, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 18, 18, 0, 5, NULL, SYSDATE-76, SYSDATE-76, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 18, 7, 0, 5, NULL, SYSDATE-35, SYSDATE-35, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 18, 15, 0, 5, NULL, SYSDATE-1, SYSDATE, '아주 좋았어요');
+
 --CLUB
 
 --CLUBLIST
@@ -841,19 +1075,150 @@ INSERT INTO RESERVATION (RES_NO, M_NO, PO_NO, RES_DATE, RES_PEOPLE, RES_STATE, R
 INSERT INTO RESERVATION (RES_NO, M_NO, PO_NO, RES_DATE, RES_PEOPLE, RES_STATE, RES_PRICE, RES_APPLYNUM, RES_PURPOSE, RES_REQUIREMENT) VALUES (RESERVATION_SEQ.NEXTVAL, 01, 10, '2021-05-30', 10, '예약완료', 85000, 10, 'RES_PURPOSE 10', 'RES_REQUIREMENT 10');
 
 --NOTICE
-INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL , '두번째 공지' , '나다라마바사' , SYSDATE);
-INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL , '세번째 공지' , '다라마바사' , SYSDATE);
-INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL , '네번째 공지' , '라마바사' , SYSDATE);
-INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL , '다섯번째 공지' , '마바사' , SYSDATE);
-INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL , '여섯번째 공지' , '바사' , SYSDATE);
-INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL , '일곱번째 공지' , '사가나다라' , SYSDATE);
+INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL , 
+'개인정보 처리방침 변경 안내' , 
+'회사는 이용자의 개인정보를 원칙적으로 외부에 제공하지 않습니다. 
+단, 개인정보보호법 제18조(개인정보의 이용•제공제한) 및 제 27조(영업양도 등에 따른 개인정보의 이전 제한)에 근거하여 
+다음의 경우에는 개인정보를 처리할 수 있습니다.
+
+- 이용자들이 사전에 동의한 경우
+- 법령의 규정에 의거하거나, 수사 목적으로 법령에 정해진 절차와 방법에 따라 수사기관의 요구가 있는 경우
+- 서비스의 제공에 관한 계약의 이행을 위하여 필요한 개인정보로서 경제적/기술적인 사유로 통상의 동의를 받는 것이 현저히 곤란한 경우
+- 영업양도 등에 따라 회사의 영업이 양도된 경우
+(단, 개인정보보호법 제 27조에 따라 회사는 회원들에게 사전 공지를 해야하며, 동의하지 않는 회원에 대해 그 방법과 절차를 필히 안내함)' ,SYSDATE);
+INSERT INTO NOTICE VALUES (NOTICE_SEQ.NEXTVAL , 
+'[환불규정] 환불규정 안내',
+'학기활동(모임) 환불정책
+1) 학기 시작일 
+(1학기 : 1월 1일 / 2학기 : 4월 1일 / 3학기 : 7월 1일 / 4학기 : 10월 1일)
+이후 15일 이내 환불 신청 시 납부한 회비의 1/3을 제한 2/3 해당액을 반환합니다.
+
+2) 학기 시작일 
+(1학기 : 1월 1일 / 2학기 : 4월 1일 / 3학기 : 7월 1일 / 4학기 : 10월 1일) 
+이후 한달 이내 환불 신청 시 납부한 회비의 1/2를 제한 1/2 해당액을 반환합니다.
+
+3) 학기 시작일 (1학기 : 1월 1일 / 2학기 : 4월 1일 / 3학기 : 7월 1일 / 4학기 : 10월 1일)
+이후 한달 이후부터는 환불이 불가능합니다.
+
+4) 결제 후 다른 이에게 양도 불가능합니다.
+
+예시 (20.3학기기준)
+
+▷ 20년 7월 1일 ~ 7월 15일 환불신청 : 납부한 회비의 1/3을 제한 2/3 해당액을 반환합니다.
+
+▷ 20년 7월 16일 ~ 7월 30일 환불신청 : 납부한 회비의 1/2을 제한 1/2 해당액을 반환합니다.
+
+▷ 20년 7월 31일부터 환불신청 : 환불불가합니다.' ,SYSDATE);
 
 --FAQ
-INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '바라온 환불정책' , '바라온은 아래와 같은 환불정책을 따릅니다.' , SYSDATE, 2);
-INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '탈퇴는 어떻게하나요?' , '더보기 => 내 정보 => 탈퇴하기' , SYSDATE, 3);
-INSERT INTO FAQ VALUES (FAQ_SEQ.NEXTVAL , '정기vs번개' , '편한걸로' , SYSDATE, 4);
+INSERT INTO FAQ VALUES (NOTICE_SEQ.NEXTVAL , '[환불규정] 환불규정 안내','학기활동(모임) 환불정책
+1) 학기 시작일 
+(1학기 : 1월 1일 / 2학기 : 4월 1일 / 3학기 : 7월 1일 / 4학기 : 10월 1일)
+이후 15일 이내 환불 신청 시 납부한 회비의 1/3을 제한 2/3 해당액을 반환합니다.
 
+2) 학기 시작일 
+(1학기 : 1월 1일 / 2학기 : 4월 1일 / 3학기 : 7월 1일 / 4학기 : 10월 1일) 
+이후 한달 이내 환불 신청 시 납부한 회비의 1/2를 제한 1/2 해당액을 반환합니다.
+
+3) 학기 시작일 (1학기 : 1월 1일 / 2학기 : 4월 1일 / 3학기 : 7월 1일 / 4학기 : 10월 1일)
+이후 한달 이후부터는 환불이 불가능합니다.
+
+4) 결제 후 다른 이에게 양도 불가능합니다.
+
+예시 (20.3학기기준)
+
+▷ 20년 7월 1일 ~ 7월 15일 환불신청 : 납부한 회비의 1/3을 제한 2/3 해당액을 반환합니다.
+
+▷ 20년 7월 16일 ~ 7월 30일 환불신청 : 납부한 회비의 1/2을 제한 1/2 해당액을 반환합니다.
+
+▷ 20년 7월 31일부터 환불신청 : 환불불가합니다.' , SYSDATE, 2);
+INSERT INTO FAQ VALUES (NOTICE_SEQ.NEXTVAL , 
+'탈퇴 방법' ,
+'안녕하세요.
+
+건전한 직장인 커뮤니티를 꿈꾸는 baraON입니다.
+탈퇴는 아래와 같이 직접 진행해주시면 됩니다.
+
+앱 들어가기 => 더보기 => 내 정보 => 탈퇴하기
+사람 좋은 사람들의 커뮤니티가 될 수 있도록 노력하겠습니다.
+
+baraON 커뮤니티 많이 사랑해주세요! 
+
+감사합니다.', SYSDATE, 3);
+INSERT INTO FAQ VALUES (NOTICE_SEQ.NEXTVAL , 
+'정기 VS 번개' ,
+'안녕하세요.
+baraON이 가장 중요하게 생각하는 것은
+사람과 사람의 소통, 관계입니다. 참여하시는 분들께서는
+긍정적인 관계를 통해 좋은 네트워크를 해 나가셨으면 합니다.
+
+번개활동은 1회 모임이라고 보시면 됩니다. 강의 형태의 모임이 될수도 있고, 혹은 액티비티를 함께 즐기는 활동이 될 수도 있습니다.
+
+정기활동은 3개월 단위로 진행하는 활동입니다.
+정기 활동은 정해진 날짜에 같은 멤버들과 함께 활동을 하는 모임입니다.
+관계적인 측면을 중요 시하며 운영을 하고 있고,
+활동별로 번개도 자체적으로 진행합니다.', SYSDATE, 4);
+INSERT INTO FAQ VALUES (NOTICE_SEQ.NEXTVAL , 
+'정기활동 신청은 언제받나요?' ,
+'안녕하세요.
+건전한 직장인 커뮤니티를 꿈꾸는 baraON입니다.
+
+학기모임 신청 및 활동 기간은 아래와 같습니다.
+
+1학기 : 01월 01일 ~ 03월 31일 (신청기간 : 12월 01일 ~ 다음해 1월 12일)
+2학기 : 04월 01일 ~ 06월 30일 (신청기간 : 03월 01일 ~ 04월 12일)
+3학기 : 07월 01일 ~ 09월 30일 (신청기간 : 06월 01일 ~ 07월 12일)
+4학기 : 10월 01일 ~ 12월 31일 (신청기간 : 09월 01일 ~ 10월 12일)
+
+사람 좋은 사람들이 모일 수 있는 커뮤니티가 되도록 하겠습니다.
+
+감사합니다.', SYSDATE, 4);
+INSERT INTO FAQ VALUES (NOTICE_SEQ.NEXTVAL , 
+'후기 아직 없는 활동이 있는데 어떤가요??' ,
+'안녕하세요.
+건전한 직장인 커뮤니티를 꿈꾸는 baraON 입니다.
+
+최근에 홈페이지를 개편하면서, 그리고 앱을 개발하면서 이전의 데이터를 가지고 오지 못했습니다.
+
+앞으로 진행되는 모임들에 대해서는
+많은 분들에게 도움이 될 수 있도록 후기를 잘 쌓아나갈 예정이오니,
+향후 참고 부탁드립니다.
+
+건전한 직장인 커뮤니티가 될 수 있도록 최선의 노력을 다하겠습니다.
+
+감사합니다.', SYSDATE, 4);
+INSERT INTO FAQ VALUES (NOTICE_SEQ.NEXTVAL , 
+'리더(모임장) 신청 어떻게 하나요?' ,
+'안녕하세요
+건전한 직장인 커뮤니티를 꿈꾸는 baraON 입니다.
+ 
+#리더 되는 법 1
+
+리더 신청은 홈페이지에서 진행해주시면 됩니다.
+활동에 대한 컨셉과 간단한 설명을 적어주시면, 
+저희 운영진이 연락이 갈 예정입니다. 
+면담 진행 후 활동 진행 여부 확정될 예정입니다.
+
+ 
+#리더 되는 법2
+
+학기활동 진행 후 저희 운영진에게 모임 진행 이야기해주시면 됩니다.
+
+
+#참고
+
+매달 진행되는 리더의 모든 것을 신청해주셔서
+활동에 대한 다양한 이야기를 들으시고, 결정해주셔도 됩니다.
+
+앞으로 더 좋은 리더가 많이 모일 수 있도록
+활동에 대한 다양한 혜택을 제공할 예정이오니,
+많은 신청 부탁드립니다.', SYSDATE, 4);
 --EVENT
+INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
+'치킨&맥주 파티 모집중!',
+'baraON 멤버라면 누구나 가능!
+멤버님들의 성원에 힘입어 참여대상을 확대했습니다!',
+'event1', SYSDATE);
 
 --WISHLIST
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 01, 01);
@@ -875,8 +1240,3 @@ INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 16, 01);
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 17, 01);
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 18, 01);
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 19, 01);
-
-
-
-
-
