@@ -165,7 +165,7 @@
 </head>
 <body>
 	<div class="review">
-			<h1>리뷰 목록</h1><br/>
+			<span style="font-size: 40px; font-weight: bold">리뷰 목록</span><br/><br/>
 			<table>
 				<thead>
 					<tr>

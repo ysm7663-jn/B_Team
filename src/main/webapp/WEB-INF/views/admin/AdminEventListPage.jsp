@@ -31,8 +31,8 @@
 <body>
 	<div id="wrap" style="width :1020px; margin: 0 auto;">
 	<br/>
-	<h1>이벤트(NOTICE)-관리자모드</h1><br/>
-	<h3>전체 :${totalRecord}개 이벤트</h3>
+	<span style="font-size: 40px; font-weight: bold">이벤트(NOTICE)-관리자모드</span><br/><br/>
+	<span style="font-size: 15px; color:blue; margin-left:10px;">전체 :${totalRecord}개 이벤트</span>
 	<input type="button" value="이벤트 추가" style="float: right" onclick="location.href='eventInsertPage.admin'" /><br/><br/>
 		<div>
 			<section>

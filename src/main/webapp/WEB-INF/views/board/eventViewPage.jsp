@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 <%@ include file="../template/header.jsp" %>
@@ -22,8 +24,8 @@
 			</div>
 		</div>
 		<div>
-			<div style="width:500px; height:200px; margin:30px 0 0 20px;  font-size: 18px">
-				<img alt="${eventDto.e_filename}" src="resources/storage/${filename}"><br/><br/>
+			<div style="width:500px; height:auto; margin:30px 0 0 20px;  font-size: 18px">
+				<img alt="${eventDto.e_filename}" src="resources/storage/${eventDto.e_filename}.JPG"><br/><br/>
 			</div>
 			<div style="height:auto; margin:30px auto;  font-size: 18px; border-bottom:1px solid black">
 				<pre>${eventDto.e_content}</pre><br/><br/>

@@ -32,8 +32,8 @@
 <body>
 		<div id="wrap" style="width :1020px; margin: 0 auto;">
 	<br/>
-	<h1>공지사항(NOTICE)-관리자모드</h1><br/>
-	<h3>전체 :${totalRecord}개 공지사항</h3>
+	<span style="font-size: 40px; font-weight: bold">공지사항(NOTICE)-관리자모드</span><br/><br/>
+	<span style="font-size: 15px; color:blue; margin-left:10px;">전체 : ${totalRecord}개 공지사항이 있습니다.</span>
 	<input type="button" value="공지사항추가" style="float: right" onclick="location.href='noticeInsertPage.admin'" /><br/><br/>
 		<div>
 				<div style="background:#3ED0C8">
