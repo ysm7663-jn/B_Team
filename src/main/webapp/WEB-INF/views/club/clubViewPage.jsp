@@ -216,17 +216,19 @@
 						<div id="date">${clubDto.c_endDate}</div>
 					</div>
 					<br/><br/>
-					<%-- hidden --%>
-					<input type="hidden" name="c_no" value="${clubDto.c_no}" />
-					<input type="hidden" name="m_no" value="${loginDto.m_no}" />
-					<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
-					<input type="hidden" name="c_title" value="${clubDto.c_title}" />
-					<input type="hidden" name="c_min" value="${clubDto.c_min}" />
-					<input type="hidden" name="c_max" value="${clubDto.c_max}" />
-					<input type="hidden" name="c_startDate" value="${clubDto.c_startDate}" />
-					<input type="hidden" name="c_endDate" value="${clubDto.c_endDate}" />
-					<input type="hidden" name="c_content" value="${clubDto.c_content}" />
 					<form method="post">
+						<%-- hidden --%>
+						<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+						<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+						<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
+						<input type="hidden" name="c_title" value="${clubDto.c_title}" />
+						<input type="hidden" name="c_desc" value="${clubDto.c_desc}" />
+						<input type="hidden" name="c_min" value="${clubDto.c_min}" />
+						<input type="hidden" name="c_max" value="${clubDto.c_max}" />
+						<input type="hidden" name="c_startDate" value="${clubDto.c_startDate}" />
+						<input type="hidden" name="c_endDate" value="${clubDto.c_endDate}" />
+						<input type="hidden" name="c_content" value="${clubDto.c_content}" />
+						
 						<div class="side_content">
 							<input type="button" value="장소등록하기" id="btn1" onclick="location.href='placeListPage.place'" /><br/> 
 							<input type="button" value="클럽수정하기" id="btn1" onclick="fn_update(this.form)" /> <br/>

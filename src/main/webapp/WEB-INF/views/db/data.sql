@@ -60,7 +60,7 @@ CREATE TABLE CLUB
     M_NO           NUMBER            NULL, 
     C_TITLE        VARCHAR2(100)     NOT NULL, 
     C_DESC         VARCHAR2(300)     NOT NULL, 
-    C_CONTENT      VARCHAR2(4000)    NULL, 
+    C_CONTENT      VARCHAR2(4000)    NOT NULL, 
     C_POSTDATE     DATE             NOT NULL,
     C_STARTDATE    DATE    			 NOT NULL, 
     C_ENDDATE      DATE              NOT NULL, 
