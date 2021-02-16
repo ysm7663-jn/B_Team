@@ -167,7 +167,7 @@
 </head>
 <body>
 	<div class="reply">
-			<h1>답글 목록</h1><br/>
+			<span style="font-size: 40px; font-weight: bold">답글 목록</span><br/><br/>
 			<table>
 				<thead>
 					<tr>
