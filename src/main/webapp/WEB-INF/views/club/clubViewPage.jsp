@@ -111,46 +111,46 @@
 			<div class="thumnail">
 				<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 					<c:if test="${wishListDto.m_no ne loginDto.m_no}">
-						<button id="wish_btn"><span class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></span></button>
+						<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></div></button>
 					</c:if>
 				
 					<c:if test="${wishListDto.m_no eq loginDto.m_no}">
-						<button id="wish_btn"><span class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></span></button>
+						<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></div></button>
 					</c:if>
 			</div>
 			
 			<div class="contents">
-				<span id="title">클럽명</span> 
+				<div id="title">클럽명</div> 
 				<div id="content">${clubDto.c_title}</div>
 			</div>
 
 			<div class="contents">
-				<span id="title">한 줄 설명</span> 
+				<div id="title">한 줄 설명</div> 
 				<div id="content">${clubDto.c_desc}</div>
 			</div>
 	
 			<div class="contents">
-				<span id="title">리더 소개</span> 
+				<div id="title">리더 소개</div> 
 				<div id="content">${memberDto.m_nick}</div>
 			</div>
 
 			<div class="contents">
-				<span id="title">클럽내용</span> 
+				<div id="title">클럽내용</div> 
 				<div id="content">${clubDto.c_content}</div>
 			</div>
 			
 			<div class="contents">
-				<span id="title">활동시작일</span> 
+				<div id="title">활동시작일</div> 
 				<div id="content">${clubDto.c_startDate}</div>
 			</div>
 			
 			<div class="contents">
-				<span id="title">활동종료일</span> 
+				<div id="title">활동종료일</div>
 				<div id="content">${clubDto.c_endDate}</div>
 			</div>
 			
 			<div class="contents">
-				<span id="title">등록일</span>
+				<div id="title">등록일</div>
 				<div id="content">${clubDto.c_postDate}</div>
 			</div>
 			
@@ -160,18 +160,18 @@
 			<div class="right_box">
 				<div class="right_content">
 					<div class="side_content">
-						<span id="title">${clubDto.c_title}</span>
+						<div id="title">${clubDto.c_title}</div>
 					</div>
 					<br/><br/>
 					<hr class="line">
 					<div class="side_content">
-						<span id="title">활동 시작일 : </span>
-						<span id="date">${clubDto.c_startDate}</span>
+						<div id="title">활동 시작일 : </div>
+						<div id="date">${clubDto.c_startDate}</div>
 					</div>
 					<br/>
 					<div class="side_content">
-						<span id="title">활동 종료일 : </span>
-						<span id="date">${clubDto.c_endDate}</span>
+						<div id="title">활동 종료일 : </div>
+						<div id="date">${clubDto.c_endDate}</div>
 					</div>
 					<br/><br/>
 					<input type="hidden" name="c_no" value="${clubDto.c_no}" />
@@ -202,18 +202,18 @@
 			<div class="right_box">
 				<div class="right_content">
 					<div class="side_content">
-						<span id="content">${clubDto.c_title}</span>
+						<div id="content">${clubDto.c_title}</div>
 					</div>
 					<br/><br/>
 					<hr class="line">
 					<div class="side_content">
-						<span id="title">활동 시작일 : </span>
-						<span id="date">${clubDto.c_startDate}</span>
+						<div id="title">활동 시작일 : </div><br/>
+						<div id="date">${clubDto.c_startDate}</div>
 					</div>
 					<br/>
 					<div class="side_content">
-						<span id="title">활동 종료일 : </span>
-						<span id="date">${clubDto.c_endDate}</span>
+						<div id="title">활동 종료일 : </div><br/>
+						<div id="date">${clubDto.c_endDate}</div>
 					</div>
 					<br/><br/>
 					<%-- hidden --%>

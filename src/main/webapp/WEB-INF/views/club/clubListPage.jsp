@@ -35,7 +35,7 @@ if (afterDelete) {
 
 <form method="get">
 	<div class="body_wrap">
-		<span id="title">정기 활동</span>
+		<div id="main_title">정기 활동</div>
 		<div id="btn_create">
 			<c:if test="${loginDto ne null}">
 				<input type="button" id="btn_create" value="새 클럽 등록하기" onclick="location.href='clubInsertPage.club'" />
