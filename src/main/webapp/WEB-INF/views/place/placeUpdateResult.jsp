@@ -4,14 +4,17 @@
 <jsp:include page="../template/header.jsp" >
 	<jsp:param value="BaraON :: 예약" name="title"/>
 </jsp:include>
-
+<link rel="stylesheet" href="resources/style/place/result.css" />
 
 <section>
-<h1 id="result"></h1>
+<div class="result-box">
+	<h1 id="result"></h1>
+</div>
 
-
-<button type="button" id="view-btn" class="btn">게시글 확인</button>
-<button type="button" id="list-btn" class="btn">목록으로 돌아가기</button>
+<div class="btn-box">
+	<button type="button" id="view-btn" class="btn">게시글 확인</button>
+	<button type="button" id="list-btn" class="btn">목록으로 돌아가기</button>
+</div>
 </section>
 
 <script>

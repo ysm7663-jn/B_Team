@@ -12,6 +12,7 @@
 <script>
 	let remarkList = JSON.parse('${placeDto.p_remark}');
 	let facilityList = JSON.parse('${placeOptionDto.po_fxility}');
+	let isProgress=false;
 	function fn_facilityList(list, appendTo){
 		$.each(list, function(idx, facility){
 			let strHtml = '<div class="facility">'+facility+'</div>';
@@ -24,8 +25,17 @@
 			$(appendTo).append(strHtml);
 		});
 	}
-	let isProgress=false;
+	function fn_moreBtn(btn){
+		$(btn).click(function(event){
+			if($(event.target).parent().next().is('.active')===false){
+				$(event.target).parent().next().addClass('active');
+			} else {
+				$(event.target).parent().next().removeClass('active');
+			}
+		})
+	}
 	$(function(){
+		fn_moreBtn('.more-btn');
 		fn_facilityList(facilityList, '#facility-list');
 		fn_remarkList(remarkList, '#remark-list');
 		$("#res-update").click(function() {
@@ -217,18 +227,28 @@
 			<div class="sub-content">
 				<ul>
 					<li>
-						<label><input id="terms-all" type="checkbox" />전체 동의</label>
+						<input id="terms-all" type="checkbox" />
+						<label for="terms-all">전체 동의</label>
 					</li> 
 					<li>
-						<label><input id="terms1" type="checkbox" />위 공간의 예약조건 확인 및 결제진행 동의</label><span class="required-data">필수</span>
+						<input id="terms1" type="checkbox" />
+						<label for="terms1">위 공간의 예약조건 확인 및 결제진행 동의
+							<span class="required-data">필수</span>
+						</label>
 					</li> 
 					<li>
-						<label><input id="terms2" type="checkbox" />환불규정 안내에 대한 동의</label><span class="required-data">필수</span>
+						<input id="terms2" type="checkbox" />
+						<label for="terms2">환불규정 안내에 대한 동의
+							<span class="required-data">필수</span>
+						</label>
 					</li> 
 					<li>
 						<div class="confirm-box">
 							<input id="terms3" type="checkbox" />
-							<label for="terms3">개인정보 제3자 제공동의<span class="required-data">필수</span></label>
+								<label for="terms3">개인정보 제3자 제공동의
+								<span class="required-data">필수</span>
+							</label>
+							<button class="more-btn" type="button" ><i class="fas fa-caret-down"></i></button>
 							<a></a>
 						</div>
 						<div class="scroll-box">
@@ -250,7 +270,10 @@
 					<li>
 						<div class="confirm-box">
 							<input id="terms4" type="checkbox" />
-							<label for="terms4">개인정보 수집 및 이용동의<span class="required-data">필수</span></label>
+								<label for="terms4">개인정보 수집 및 이용동의
+								<span class="required-data">필수</span>
+							</label>
+							<button class="more-btn" type="button" ><i class="fas fa-caret-down"></i></button>
 						</div>
 						<div class="scroll-box">
 							<ol>

@@ -174,8 +174,10 @@
 										가격<span class="required-data">필수 사항</span>
 									</div>
 									<div class="option-content">
-										평일 : <input type="number" name="po_dayPrice" value="${optionDto.po_dayPrice}" required />원<br/>
-										주말(공휴일) : <input type="number" name="po_holiday" value="${optionDto.po_holiday}" required />원
+										평일 :<br/> 
+										<input type="number" name="po_dayPrice" value="${optionDto.po_dayPrice}" style="width:80px;" required />원<br/>
+										주말(공휴일) :<br/>
+										<input type="number" name="po_holiday" value="${optionDto.po_holiday}" style="width:80px;" required />원
 									</div>
 								</article>
 								<article class="option-box">
@@ -183,8 +185,8 @@
 										인원<span class="required-data">필수 사항</span>
 									</div>
 									<div class="option-content">
-										최소 : <input type="number" name="po_min" value="${optionDto.po_min}" required />명<br/>
-										최대 : <input type="number" name="po_max" value="${optionDto.po_max}" required />명
+										최소 : <input type="number" name="po_min" value="${optionDto.po_min}" style="width:80px;" required />명<br/>
+										최대 : <input type="number" name="po_max" value="${optionDto.po_max}" style="width:80px;" required />명
 									</div>
 								</article>
 								<article class="option-box">
