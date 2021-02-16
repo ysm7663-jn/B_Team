@@ -121,9 +121,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  ON CL.M_NO = M.M_NO
  		 WHERE CL.C_NO = #{param1}
 	</select>
-	<update id="cardPlus" parameterType="int">
+	<update id="addCard" parameterType="int">
 		UPDATE CLUBLIST
-			SET CL_CARD += 1
+			SET CL_CARD  = CL_CARD + 1
  		 WHERE CL_NO = #{param1}
 	</update>
 	<select id="cardCount" parameterType="int" resultType="int">

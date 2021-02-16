@@ -48,11 +48,6 @@ public class ClubManageDetailCommand implements BaraONCommand {
 		/** 참가 멤버 **/
 		int memberCount = myPageDao.clubCount(cNo);
 		List<ClubListDto> clubList = null;
-		/*if(state == 0) {
-			clubList = myPageDao.clubList(mNo, c_part);
-		} else {
-			clubList = myPageDao.lastClubList(mNo, c_part);
-		}*/
 		clubList = myPageDao.memberInfo(cNo);
 		
 		model.addAttribute("clubDto", clubDto);

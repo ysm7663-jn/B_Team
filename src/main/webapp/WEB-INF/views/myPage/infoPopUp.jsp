@@ -10,42 +10,37 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
 
-	/* var nick = opener.document.getElementById("nick").value;
-	var name = opener.document.getElementById("name").value;
-	var phone = opener.document.getElementById("phone").value;
-	var email = opener.document.getElementById("email").value;
-	var birth = opener.document.getElementById("birth").value;
-	var card = opener.document.getElementById("card").value;
-	var cl_no = opener.document.getElementById("cl_no").value; */
-	
-	alert('${clubListDto}');
-	let nick = '${clubListDto.m_nick}';
-	let name = '${clubListDto.m_name}';
-	let phone = '${clubListDto.m_phone}';
-	let email = '${clubListDto.m_email}';
-	let birth= '${clubListDto.m_birth}';
-	let card = '${clubListDto.cl_card}';
-	let cl_no = '${clubListDto.cl_no}';
-	
-	var year = new Date().getFullYear();
-	//var age = year - (Number)birth.subString(3) + 1;
-	
-	var addIcon = '';
-	for(var i = 0; i < card; i ++) {
-		addIcon += '<i class="fas fa-skull"></i>' ; 
-	}
+	var cl_no;
+	//var year = new Date().getFullYear();
 	
 	$(function() {
-		//$('#nameAndAge').html(name + "(" + age + "살)"); 
-		$('#nick').html(nick); 
-		$('#phone').html(phone); 
-		$('#email').html(email); 
-		$('#card-icon').html(addIcon);
-		$('#cl_card').val(card); 
-		$('#cl_no').val(cl_no); 
+		var formList = $('form[name="infoForm"]', opener.document);
+		$.each(formList, function(idx, f) {
+			var card = $(f).find("#card").val();
+			var nick = $(f).find('#nick').val();
+			//var birth = $(f).find("#name").val();
+			//var age = year - (Number)birth.subString(3) + 1;
+			cl_no = $(f).find("#cl_no").val();
+			
+			var addIcon = '';
+			for(var i = 0; i < card; i ++) {
+				addIcon += '<i class="fas fa-skull"></i>' ; 
+			}
+			
+			if(nick == '${nick}') {
+				//$('#nameAndAge').html($(f).find("#name").val() + "(" + age + "살)"); 
+				$('#nick').html($(f).find("#nick").val()); 
+				$('#phone').html($(f).find("#phone").val()); 
+				$('#email').html($(f).find("#email").val()); 
+				$('#card-icon').html(addIcon);
+				$('#card').val($(f).find("#card").val()); 
+				$('#cl_no').val($(f).find("#cl_no").val());  
+			}			
+		});
+	
 	});
 	
-	function fn_cardPlus() {
+	function fn_addCard() {
 		$.ajax({
 			url: 'cardPlus/' + cl_no,
 			type: 'get',
@@ -62,7 +57,7 @@
 				}
 			},
 			error: function() {
-				alert('문제가 발생했습니다. 다시 시도하세요.');
+				alert('알 수 없는 문제가 발생했습니다. 다시 시도하세요.');
 			}
 			
 		});
@@ -72,9 +67,9 @@
 		<span id="nameAndAge"></span>
 			<form method="post">
 				<!-- hidden -->
-				<!-- <input type="hidden" id="cl_card" name="cl_card" />
-				<input type="hidden" id="cl_no" name="cl_no" /> -->
-				<input type="button" value="옐로카드" onclick="fn_cardPlus()" />
+				<input type="hidden" id="card" name="card" />
+				<input type="hidden" id="cl_no" name="cl_no" />
+				<input type="button" value="옐로카드" onclick="fn_addCard()" />
 			</form>
 	</div>
 	<div class="popup-body">
@@ -95,5 +90,4 @@
 			</tbody>
 		</table>
 		<div id="card-icon"></div>
-		<input type="text" id="index" />
 	</div>

@@ -21,19 +21,31 @@
 		}
 	});
 	
-	let openWin;
+	/* 팝업 */
+	var openWin;
+	
 	function fn_infoPopUp(f) {
-		window.name ='parentForm';
-		openWin = window.open('infoPopUp.myPage', 'infoPopUp', 'width=500, height=500, top=30, left=30, resizable=no, scrollbars=no, location=no');	
+		var url = 'infoPopUp.myPage?nick=' + f.nick.value;
+		var options = 'width=500, height=500, top=30, left=30, resizable=no, scrollbars=no, location=no';
+		openWin = window.open(url, 'infoPopUp', options);	
 		
-		//setChildText(e);
-		f.target='infoPopUp';
-		
-		f.submit();
+		openWin.onbeforeunload = function(){
+			fn_memberReload();
+		};
 	}
 	
-	function setChildText(e){
-		//openWin.document.querySelector('#index').value = $(e.target).prev().val();
+	function fn_memberReload() {
+		var cNo = '${clubDto.c_no}';
+		$.ajax({
+			url: 'memberReload/' + cNo,
+			type: 'get',
+			dataType: 'json',
+			success: function(responseObj) {
+			},
+			error: function(){
+				alert('reload 중에 문제가 발생했습니다. 다시 시도하세요.');
+			}
+		});
 	}
 	
 		
@@ -112,7 +124,7 @@
 			</c:if>
 			<c:if test="${not empty clubList}">
 				<div class="membersInfo">
-				<c:forEach var="memberDto" items="${clubList}" varStatus="k" >
+				<c:forEach var="memberDto" items="${clubList}" >
 						<div class="memberInfo">
 							<div class="memberImg"><i class="fas fa-user-circle"></i></div>
 							<div class="memberDetail">
@@ -124,7 +136,7 @@
 								</div>
 							</div>
 							<div class="detailBtn">
-								<form name="infoForm" method="post">
+								<form name="infoForm" method="get">
 									<!-- hidden -->
 									<input type="hidden" name="name" id="name" value="${memberDto.m_name}" />
 									<input type="hidden" name="nick" id="nick" value="${memberDto.m_nick}" />
@@ -133,7 +145,6 @@
 									<input type="hidden" name="email" id="email" value="${memberDto.m_email}" />
 									<input type="hidden" name="cl_no" id="cl_no" value="${memberDto.cl_no}" />
 									<input type="hidden" name="card" id="card" value="${memberDto.cl_card}" />
-									<input type="hidden" name="index" value="${k.index}"/>
 									<input type="button" value="자세히" onclick="fn_infoPopUp(this.form)" />
 								</form>
 							</div>
