@@ -41,7 +41,7 @@
 					<input type="text" name="c_endDate" id="input" placeholder="  ex)20xx.xx.xx" /><br/><br/>
 					
 				<div class="title">클럽내용</div>
-					<textarea rows="20" cols="100" placeholder=" 2000자 이내로 작성해주세요" name="c_content"></textarea>
+					<textarea rows="20" cols="100" id="c_content" placeholder=" 2000자 이내로 작성해주세요" name="c_content"></textarea>
 				<br/><br/>
 			</div>
 		</div>
