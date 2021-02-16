@@ -57,7 +57,7 @@
 		if (afterUpdate > 0) {
 			alert('수정되었습니다.');
 		} else {
-			alert('실패했습니다.');
+			alert('실패했습니다1.');
 		}
 	} 
 	
@@ -67,7 +67,7 @@
 		if (joinResult > 0) {
 			alert('클럽에 가입되었습니다.');
 		} else {
-			alert('실패했습니다.');
+			alert('실패했습니다2.');
 		}
 	}
 	
@@ -77,7 +77,7 @@
 		if (chkOutResult > 0) {
 			alert('클럽을 탈퇴했습니다.');
 		} else {
-			alert('실패했습니다.');
+			alert('실패했습니다3.');
 		}
 	} 
 	
@@ -89,10 +89,10 @@
 
 		<div class="left_side">
 			<div class="thumnail">
-				<img alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
+				<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 			</div>
 			
-			<button><span class="wishIcon"><i class="fas fa-heart"></i></span></button>
+			<!-- <button><span class="wishIcon"><i class="fas fa-heart"></i></span></button> -->
 		
 			<div class="contents">
 				<span id="title">클럽명</span> 
@@ -113,23 +113,19 @@
 				<span id="title">클럽내용</span> 
 				<div id="content">${clubDto.c_content}</div>
 			</div>
-
+			
 			<div class="contents">
-				<span id="content">${clubDto.c_img1}</span>
-				 <div id="content">${clubDto.c_subContent1}</div>
-			</div>
-
-			<div class="contents">
-				<span id="content">${clubDto.c_img2}</span>
-				<div id="content">${clubDto.c_subContent2}</div>
-			</div>
-
-			<div class="contents">
-				<span id="content">${clubDto.c_img3}</span> 
-				<div id="content">${clubDto.c_subContent3}</div>
+				<span id="title">활동시작일</span> 
+				<div id="content">${clubDto.c_startDate}</div>
 			</div>
 			
 			<div class="contents">
+				<span id="title">활동종료일</span> 
+				<div id="content">${clubDto.c_endDate}</div>
+			</div>
+			
+			<div class="contents">
+				<span id="title">등록일</span>
 				<div id="content">${clubDto.c_postDate}</div>
 			</div>
 			
@@ -137,21 +133,27 @@
 		
 		<div class="right_side">
 			<c:if test="${clubDto.m_no ne loginDto.m_no}">
-
+			<div class="right_content">
+			
+				<div class="right_content">
+				</div>
 				<div class="side_content">
-					<span id="content">${clubDto.c_title}</span>
+					<span id="title">${clubDto.c_title}</span>
 				</div>
 				
 				<br/><br/>
+				<hr class="line">
 				
 				<div class="side_content">
-					<span id="content">활동 시작일 : ${clubDto.c_startDate}</span>
+					<span id="title">활동 시작일 : </span>
+					<span id="date">${clubDto.c_startDate}</span>
 				</div>
 
 				<br/>
 
 				<div class="side_content">
-					<span id="content">활동 종료일 : ${clubDto.c_endDate}</span>
+					<span id="title">활동 종료일 : </span>
+					<span id="date">${clubDto.c_endDate}</span>
 				</div>
 				
 				<br/><br/>
@@ -160,28 +162,32 @@
 				<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 
 				<div class="side_content">
-					<c:if test="${clubListDto.m_no ne loginDto.m_no}">
-						<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)" />
-					</c:if>
+					<div class="box_content">
+						<c:if test="${clubListDto.m_no ne loginDto.m_no}">
+							<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)" /><br/>
+						</c:if>
 					
-					<c:if test="${clubListDto.m_no eq loginDto.m_no}">
-						<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/>
-					</c:if>
-					
-					<c:if test="${wishListDto.m_no ne loginDto.m_no}">
-						<input type="button" value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" id="btn1" onclick="fn_likeClub(this.form)"/>
-					</c:if>
-					<c:if test="${wishListDto.m_no eq loginDto.m_no}">
-						<input type="button" value="탈퇴하기" id="btn1" onclick="fn_unLikeClub(this.form)"/>
-					</c:if>
-					
+						<c:if test="${clubListDto.m_no eq loginDto.m_no}">
+							<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/><br/>
+						</c:if>
+						
+						<c:if test="${wishListDto.m_no ne loginDto.m_no}">
+							<input type="button" value="" id="btn1" onclick="fn_likeClub(this.form)"/><br/>
+						</c:if>
+						<c:if test="${wishListDto.m_no eq loginDto.m_no}">
+							<input type="button" value="탈퇴하기" id="btn1" onclick="fn_unLikeClub(this.form)"/><br/>
+						</c:if>
+						
+						<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" />
+					</div>
+					</div>
 				</div>
 			</c:if>
 		</div>
 
-		<c:if test="${clubDto.m_no eq loginDto.m_no}">
-			<div class="right_side">
-
+		<div class="right_side">
+			<c:if test="${clubDto.m_no eq loginDto.m_no}">
+				<div class="right_content">
 				<div class="side_content">
 					<span id="content">${clubDto.c_title}</span>
 				</div>
@@ -189,13 +195,13 @@
 				<br/><br/>
 				
 				<div class="side_content">
-					<span id="content">활동 시작일 : ${clubDto.c_startDate}</span>
+					<span id="title">활동 시작일 : </span>${clubDto.c_startDate}
 				</div>
 
 				<br/>
 
 				<div class="side_content">
-					<span id="content">활동 종료일 : ${clubDto.c_endDate}</span>
+					<span id="title">활동 종료일 : </span>${clubDto.c_endDate}
 				</div>
 				
 				<br/><br/>
@@ -212,18 +218,16 @@
 				<input type="hidden" name="c_content" value="${clubDto.c_content}" />
 
 				<div class="side_content">
-					<input type="button" value="장소등록하기" onclick="location.href='placeListPage.place'" /> 
-					<input type="button" value="클럽수정하기" onclick="fn_update(this.form)" /> 
-					<input type="button" value="클럽해제하기" onclick="fn_delete(this.form)" />
+					<input type="button" value="장소등록하기" id="btn1" onclick="location.href='placeListPage.place'" /><br/> 
+					<input type="button" value="클럽수정하기" id="btn1" onclick="fn_update(this.form)" /> <br/>
+					<input type="button" value="클럽해제하기" id="btn1" onclick="fn_delete(this.form)" />	<br/>
+					<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" /> <br/>
 				</div>
 			</div>
 		</c:if>
 		
 	</div>
 	
-		<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
-	
-
 </form>
 
 <%@ include file="../template/footer.jsp"%>
