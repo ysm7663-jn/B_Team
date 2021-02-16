@@ -16,6 +16,7 @@ public class ClubListDto {
 	private String m_birth;
 	private String m_nick;
 	private String m_email;
+	private String c_no;		
 	private String c_title;		
 	private String c_content;		
 	private String c_mainimg;

@@ -109,7 +109,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<select id="clubReservationList" parameterType="int" resultType="com.koreait.baraON.dto.ClubReservationListDto">
 		SELECT RES.RES_NO, RES.RES_DATE, RES.RES_PEOPLE, RES.RES_STATE, RES.RES_PRICE,
-               PO.PO_NAME, PO.PO_IMG, P.P_TITLE, P.P_NAME, P.P_ADDR, P.P_ADDRDETAIL, P.P_IMG
+               PO.PO_NAME, PO.PO_IMG, P.P_NO, P.P_TITLE, P.P_NAME, P.P_ADDR, P.P_ADDRDETAIL, P.P_IMG
 			FROM RESERVATION RES JOIN PLACEOPTION PO ON RES.PO_NO = PO.PO_NO
 				JOIN PLACE P ON P.P_NO = PO.P_NO
  		 WHERE RES.M_NO = #{param1}
@@ -136,9 +136,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE CL_NO = #{param1}
 	</delete>
 	
-	<select id="asdfasdf" resultType="com.koreait.baraON.dto.ClubListDto">
-		SELECT *
-		FROM CLUBLIST
-		WHERE CL_NO=#{param1}
-	</select>
 </mapper>

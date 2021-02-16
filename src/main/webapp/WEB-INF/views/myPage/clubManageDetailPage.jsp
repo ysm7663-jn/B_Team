@@ -15,7 +15,9 @@
 	
 	$(function() {
 		if(${state == 1}) {   // 지난 모임이면
-			$('.ing').remove();
+			$('.update').remove();
+			$('.delete').remove();
+			$('.addPlace').remove();
 		}
 	});
 	
@@ -33,22 +35,35 @@
 	function setChildText(e){
 		//openWin.document.querySelector('#index').value = $(e.target).prev().val();
 	}
-	</script>
+	
+		
+</script>
 	<div class="mypage-contents">
 		<h2>모임 관리</h2>
 		<hr class="top">
+		
+		<ul class="state">
+			<li>
+				<a href="clubManagePage.myPage?state=0">진행중&nbsp;</a>
+			</li>
+			<li>
+				<a href="clubManagePage.myPage?state=1">지난모임</a>
+			</li>
+		</ul>
+		
 		<div class="buttons">
 			<form method="post">
 				<!-- hidden -->
 				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
 				<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
-				<input type="button" class="btn delete" value="삭제" onclick="fn_clubDelete(this.form)"/>
+				<input type="hidden" name="isDetailPage" value="true" />
+				<input type="button" class="btn delete" value="삭제하기" onclick="fn_clubDelete(this.form)"/>
 			</form>
 			<input type="button" class="btn back" value="뒤로가기" onclick="history.back()"/>
 		</div>
 				
 		<div class="clubSimple-wrap">
-			<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${clubDto.c_mainImg}"></a></div>
+			<div class="clubImage"><a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no="${loginDto.m_no}><img alt="모임이미지" src="resources/images/club/${clubDto.c_mainImg}"></a></div>
 			<div class="clubContent">
 				<div class="title">
 					<span class="part">
@@ -67,7 +82,7 @@
 		
 		<div class="space-wrap">
 			<h2>공간 내역</h2>
-			<input type="button" class="ing" value="장소 추가" onclick="location.href='placeListPage.place'" />
+			<input type="button"class="addPlace" value="장소 추가" onclick="location.href='placeListPage.place'" />
 			<table border="1">
 				<thead>
 					<tr>
@@ -131,11 +146,7 @@
 		<hr class="contentSection">
 		<div class="mainContent">
 			<h2>내용</h2>
-			<form>
-				<!-- hidden -->
-				
-				<input type="button" class="ing" value="수정하러 가기" onclick="location.href='clubUpdatePage.club'" />
-			</form>
+			<input type="button" class="update" value="수정하러 가기" onclick="location.href='clubViewPage.club?c_no=${clubDto.c_no}&m_no=${loginDto.m_no}'" />
 			
 			<div class="min">최소 인원:  ${clubDto.c_min}명</div>
 			<div class="max">최대 인원:  ${clubDto.c_max}명</div>
@@ -143,6 +154,7 @@
 			<div class="desc">${clubDto.c_desc}</div>
 			<h3>설명</h3>
 			<div class="content">${clubDto.c_content}</div>
+			<!--  
 			<div class="sub box1">
 				<div class="img"><img alt="이미지1" src="resources/images/club/${clubDto.c_img1}"></div>
 				<div class="subContent">${clubDto.c_subContent1}</div>
@@ -155,6 +167,7 @@
 				<div class="img"><img alt="이미지3" src="resources/images/club/${clubDto.c_img3}"></div>
 				<div class="subContent">${clubDto.c_subContent3}</div>
 			</div>
+			-->
 			
 		</div>
 	</div>

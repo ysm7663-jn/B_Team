@@ -30,5 +30,4 @@ public interface MyPageDao {
 	public int cardCount(int clNo);
 	public int clubMemberDelete(int clNo);
 	
-	public ClubListDto asdfasdf(int cl_no);
 }

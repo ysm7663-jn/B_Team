@@ -151,7 +151,6 @@ public class MyPageController {
 	@RequestMapping(value="infoPopUp.myPage", method=RequestMethod.POST)
 	public String infoPopUp(int cl_no, Model model) {
 		MyPageDao myPageDao = sqlSession.getMapper(MyPageDao.class);
-		model.addAttribute("clubListDto", myPageDao.asdfasdf(cl_no));
 		return "myPage/infoPopUp";
 	}
 	

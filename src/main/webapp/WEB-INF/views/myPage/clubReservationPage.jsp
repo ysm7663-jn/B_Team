@@ -23,7 +23,7 @@
 						<h3>${clubReservationListDto.res_date}</h3>
 						<div class="res_state">${clubReservationListDto.res_state}</div>
 						<div class="reservation-info">
-							<div class="img"><a href=""><img alt="장소 이미지" src="resources/images/PlaceOptionImages/${clubReservationListDto.po_img}"></a></div>
+							<div class="img"><a href="placeViewPage.place?no=${clubReservationListDto.p_no}"><img alt="장소 이미지" src="resources/images/PlaceOptionImages/${clubReservationListDto.po_img}"></a></div>
 							<div class="content">
 								<div class="info">
 									<h2>${clubReservationListDto.p_title}</h2><br/>
