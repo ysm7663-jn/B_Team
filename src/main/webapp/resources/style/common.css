@@ -58,22 +58,13 @@ a {
 
 #bottom-head {
 	display: flex;
-	width: 700px;
+	width: 600px;
 	justify-content: space-between;
 }
 
 #bottom-head div{
     font-size: 20px;
     line-height:40px; 
-}
-
-/* body */
-.main {
-	width: 1080px;
-	margin: 0 auto;
-	justify-content: center;
-	display: flex;
-	font-size:28px;
 }
 
 /* footer */

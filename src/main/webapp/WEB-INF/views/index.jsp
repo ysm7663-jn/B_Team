@@ -4,60 +4,109 @@
     
 <%-- 머리글 포함(파라미터(title)가 있으므로 동적 페이지 포함) --%>
 <jsp:include page="template/header.jsp" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
+<script>
+	$(function(){
+		$('.event-slider').slick({
+			autoplay:true,
+			autoplaySpeed:1000,
+			nextArrow:$('.next'),
+			prevArrow:$('.prev'),
+			dots:true,
+		});
+	});
+</script>
+<link rel="stylesheet" href="resources/style/index.css" />
+<link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick-theme.css" />
+<link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick.css" />
 	
-	<div class="slick-slide">
-		
-	</div>
+	<section class="slide-wrap">
+		<i class="fas fa-chevron-left prev"></i>
+        <i class="fas fa-chevron-right next"></i>
+		<div class="event-slider">
+			<div class="event-list">
+				<img src="resources/images/car.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/bottles.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/books.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/car.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/bottles.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/books.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/car.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/bottles.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/books.jpg" />
+			</div>
+		</div>
+	</section>
 			
 	<section class="main">
 		<article id="main-event">
 			<div class="main-subtitle">
-				<div class="larger-subtitle">
-					EVENT
+				<div class="subtitle-wrap">
+					<div class="larger-subtitle">
+						EVENT
+					</div>
+					<div class="smaller-subtitle">
+						BaraON 이벤트
+					</div>
 				</div>
-				<div class="smaller-subtitle">
-					BaraON 이벤트
-				</div>
-				<div>
-					<a href="adminEventListPage.admin">+ 더 보기</a>
+				<div class="plus">
+					<a href="eventListPage.event">+ 더 보기</a>
 				</div>
 			</div>
+			<hr>
 			<div class="main-content">
-				<c:if test="${eventList eq null}">
-					<div>
-						진행중인 이벤트가 없습니다.
-					</div>
-				</c:if>
-				<c:if test="${eventList ne null}">
+				<c:if test="${not empty eventList}">
 					<c:forEach var="eventDto" items="${eventList}" >
-						<a href="eventViewPage.admin?no=${eventDto.e_no}">
+						<a href="eventViewPage.event?no=${eventDto.e_no}&page=1">
 							<div>
 								<img src="resources/images/EventImages/${eventDto.e_filename}" />
 							</div>
 						</a>
 					</c:forEach>
 				</c:if>
+				<c:if test="${empty eventList}">
+					진행중인 이벤트가 없습니다.
+				</c:if>
 			</div>
 		</article>
 		<article id="main-notice">
 			<div class="main-subtitle">
-				<div class="larger-subtitle">
-					NOTICE
+				<div class="subtitle-wrap">
+					<div class="larger-subtitle">
+						NOTICE
+					</div>
+					<div class="smaller-subtitle">
+						공지사항
+					</div>
 				</div>
-				<div class="smaller-subtitle">
-					공지사항
-				</div>
-				<div>
-					<a href="adminNoticeListPage.admin">+</a>
+				<div class="plus">
+					<button type="button" onclick="location.href='noticeListPage.notice'">+</button>
 				</div>
 			</div>
+			<hr>
 			<div class="main-content">
-				<c:if test="${noticeList eq null}">
+				<c:if test="${empty noticeList}">
 					<div class="not-exist">등록된 공지사항이 없습니다.</div>
 				</c:if>
-				<c:if test="${noticeList ne null}">
+				<c:if test="${not empty noticeList}">
 					<c:forEach var="noticeDto" items="${noticeList}" >
-						<a href="noticeViewPage.admin?no=${noticeDto.n_no}">
+						<a href="noticeViewPage.notice?no=${noticeDto.n_no}&page=1">
 							<div class="row">
 								<div class="dot"></div>
 								<div class="board-title">${noticeDto.n_title}</div>
@@ -71,23 +120,26 @@
 		</article>
 		<article id="main-faq">
 			<div class="main-subtitle">
-				<div class="larger-subtitle">
-					FAQ
+				<div class="subtitle-wrap">
+					<div class="larger-subtitle">
+						FAQ
+					</div>
+					<div class="smaller-subtitle">
+						자주묻는질문
+					</div>
 				</div>
-				<div class="smaller-subtitle">
-					자주묻는질문
-				</div>
-				<div>
-					<a href="adminFaqListPage.admin">+</a>
+				<div class="plus">
+					<button type="button" onclick="location.href='faqListPage.faq'">+</button>
 				</div>
 			</div>
+			<hr>
 			<div class="main-content">
-				<c:if test="${faqList eq null}">
+				<c:if test="${empty faqList}">
 					<div class="not-exist">등록된 자주묻는 질문이 없습니다.</div>
 				</c:if>
-				<c:if test="${faqList ne null}">
+				<c:if test="${not empty faqList}">
 					<c:forEach var="faqDto" items="${faqList}" >
-						<a href="faqViewPage.admin?no=${faqDto.f_no}">
+						<a href="faqViewPage.faq?no=${faqDto.f_no}&page=1">
 							<div class=row">
 								<div class="dot"></div>
 								<div class="board-title">${faqDto.f_title}</div>
@@ -101,8 +153,40 @@
 		</article>
 		<article id="main-club">
 			<div class="main-subtitle">
-			
+				<div class="subtitle-wrap">
+					<div class="larger-subtitle">
+						BaraON
+					</div>
+					<div class="smaller-subtitle">
+						모임
+					</div>
+				</div>
+				<div class="plus">
+					<a href="clubListPage.club">+ 더 보기</a>
+				</div>
 			</div>
+			<hr/>
+			<div class="main-content">
+				
+			</div>
+		
+		</article>
+		
+		<article id="main-place">
+			<div class="main-subtitle">
+				<div class="subtitle-wrap">
+					<div class="larger-subtitle">
+						BaraON
+					</div>
+					<div class="smaller-subtitle">
+						공간
+					</div>
+				</div>
+				<div class="plus">
+					<a href="placeListPage.place">+ 더 보기</a>
+				</div>
+			</div>
+			<hr/>
 			<div class="main-content">
 			
 			</div>
