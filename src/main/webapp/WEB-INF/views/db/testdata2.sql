@@ -1231,7 +1231,7 @@ INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
 '치킨&맥주 파티 모집중!',
 'baraON 멤버라면 누구나 가능!
 멤버님들의 성원에 힘입어 참여대상을 확대했습니다!',
-'event1', SYSDATE);
+'치맥파티.jpg', SYSDATE);
 
 --WISHLIST
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 01, 01);

@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM (SELECT A.*, ROWNUM AS RN
 		          FROM (SELECT *
 		                  FROM PLACE
-		                  WHERE P_CONFIRM = '1'
+		                  WHERE P_CONFIRM NOT LIKE '승인'
 		              ORDER BY S_NO DESC) A) B
 		 WHERE B.RN BETWEEN #{param1} AND #{param2}
 	</select>

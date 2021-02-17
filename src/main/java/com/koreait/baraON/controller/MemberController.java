@@ -153,7 +153,7 @@ public class MemberController {
 		/*kakaoAPI.kakaoLogout((String)session.getAttribute("access_Token"));
 		session.removeAttribute("access_Token");
 		session.removeAttribute("userId");*/
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="findPage.member", method=RequestMethod.GET)

@@ -27,31 +27,16 @@
         </div>
 		<div class="event-slider">
 			<div class="event-list">
-				<img src="resources/images/banner/봄세일.png" />
+				<img src="resources/images/banner/봄세일-배너.jpg" />
 			</div>
 			<div class="event-list">
-				<img src="resources/images/bottles.jpg" />
+				<img src="resources/images/banner/코로나방역소독-배너.jpg" />
 			</div>
 			<div class="event-list">
-				<img src="resources/images/books.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/car.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/bottles.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/books.jpg" />
+				<img src="resources/images/banner/치맥파티-배너.jpg" />
 			</div>
 			<div class="event-list">
 				<img src="resources/images/car.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/bottles.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/books.jpg" />
 			</div>
 		</div>
 	</section>
@@ -79,8 +64,8 @@
 				<c:if test="${not empty eventList}">
 					<c:forEach var="eventDto" items="${eventList}" >
 						<a href="eventViewPage.event?no=${eventDto.e_no}&page=1">
-							<div>
-								<img src="resources/images/EventImages/${eventDto.e_filename}" />
+							<div class="event-img-box">
+								<img src="resources/images/event/${eventDto.e_filename}" />
 							</div>
 						</a>
 					</c:forEach>
