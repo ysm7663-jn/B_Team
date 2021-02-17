@@ -12,6 +12,7 @@
 			$('.update').remove();
 			$('.delete').remove();
 			$('.addPlace').remove();
+			$('.detailBtn').remove();
 		}
 	});
 	
@@ -26,7 +27,7 @@
 	
 	function fn_infoPopUp(f) {
 		var url = 'infoPopUp.myPage?nick=' + f.nick.value;
-		var options = 'width=500, height=500, top=30, left=30, resizable=no, scrollbars=no, location=no';
+		var options = 'width=470, height=310, top=30, left=400, resizable=no, scrollbars=no, location=no';
 		openWin = window.open(url, 'infoPopUp', options);	
 		
 		openWin.onbeforeunload = function(){
@@ -71,15 +72,14 @@
 				<input type="hidden" name="c_no" value="${clubDto.c_no}" />
 				<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
 				<input type="hidden" name="isDetailPage" value="true" />
-				<input type="button" class="btn delete" value="삭제하기" onclick="fn_clubDelete(this.form)"/>
+				<input type="button" class="button delete" value="삭제하기" onclick="fn_clubDelete(this.form)"/>
 			</form>
-			<input type="button" class="btn back" value="뒤로가기" onclick="history.back()"/>
+			<input type="button" class="button back" value="뒤로가기" onclick="history.back()"/>
 		</div>
-				
 		<div class="clubSimple-wrap">
 			<div class="clubImage"><a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no="${loginDto.m_no}><img alt="모임이미지" src="resources/images/club/${clubDto.c_mainImg}"></a></div>
 			<div class="clubContent">
-				<div class="title">
+				<h1 class="title">
 					<span class="part">
 						<c:if test="${clubDto.c_part == 0}">
 							(정기)
@@ -89,14 +89,14 @@
 						</c:if>
 					</span>
 					${clubDto.c_title}
-					</div>
+				</h1>
 				<div class="date">${clubDto.c_startDate} ~ ${clubDto.c_endDate}</div><br/>
 			</div>
 		</div>
 		
 		<div class="space-wrap">
-			<h2>공간 내역</h2>
-			<input type="button"class="addPlace" value="장소 추가" onclick="location.href='placeListPage.place'" />
+			<h2 class="sub_title">공간 내역</h2>
+			<input type="button"class="button addPlace" value="장소 추가" onclick="location.href='placeListPage.place'" />
 			<table border="1">
 				<thead>
 					<tr>
@@ -118,8 +118,8 @@
 		</div>
 		
 		<div class="membersInfo-wrap">
-			<h2>참가 멤버</h2>
-			<div class="clubCount">현재 인원: ${memberCount}명</div>
+			<h2 class="sub_title">참가 멤버</h2>
+			<div class="clubCount">총 인원: ${memberCount}명</div>
 			
 			<c:if test="${empty clubList}">
 				<div class="empty">아직 참가한 인원이 없습니다. :(</div>
@@ -128,16 +128,14 @@
 				<div class="membersInfo">
 				<c:forEach var="memberDto" items="${clubList}" >
 						<div class="memberInfo">
-							<div class="memberImg"><i class="fas fa-user-circle"></i></div>
+							<div class="memberImg"><i class="fas fa-user fa-2x"></i></div>
 							<div class="memberDetail">
 								<div class="nickAndName">${memberDto.m_nick}<span class="memberName">(${memberDto.m_name})</span></div>
 								<div class="cl_card">
 									<c:forEach begin="1" end="${memberDto.cl_card}" step="1">
-										<i class="fas fa-skull"></i>
+										<i class="far fa-frown"></i>
 									</c:forEach>
 								</div>
-							</div>
-							<div class="detailBtn">
 								<form name="infoForm" method="get">
 									<!-- hidden -->
 									<input type="hidden" name="name" id="name" value="${memberDto.m_name}" />
@@ -147,7 +145,7 @@
 									<input type="hidden" name="email" id="email" value="${memberDto.m_email}" />
 									<input type="hidden" name="cl_no" id="cl_no" value="${memberDto.cl_no}" />
 									<input type="hidden" name="card" id="card" value="${memberDto.cl_card}" />
-									<input type="button" value="자세히" onclick="fn_infoPopUp(this.form)" />
+									<input type="button" class="detailBtn" value="자세히" onclick="fn_infoPopUp(this.form)" />
 								</form>
 							</div>
 						</div>
@@ -156,10 +154,10 @@
 			</c:if>
 			
 		</div>
-		<hr class="contentSection">
+		<hr class="content-section">
 		<div class="mainContent">
-			<h2>내용</h2>
-			<input type="button" class="update" value="수정하러 가기" onclick="location.href='clubViewPage.club?c_no=${clubDto.c_no}&m_no=${loginDto.m_no}'" />
+			<h2 class="sub_title">내용</h2>
+			<input type="button" class="button update" value="수정하기" onclick="location.href='clubViewPage.club?c_no=${clubDto.c_no}&m_no=${loginDto.m_no}'" />
 			
 			<div class="min">최소 인원:  ${clubDto.c_min}명</div>
 			<div class="max">최대 인원:  ${clubDto.c_max}명</div>
@@ -167,20 +165,6 @@
 			<div class="desc">${clubDto.c_desc}</div>
 			<h3>설명</h3>
 			<div class="content">${clubDto.c_content}</div>
-			<!--  
-			<div class="sub box1">
-				<div class="img"><img alt="이미지1" src="resources/images/club/${clubDto.c_img1}"></div>
-				<div class="subContent">${clubDto.c_subContent1}</div>
-			</div>
-			<div class="sub box2">
-				<div class="img"><img alt="이미지2" src="resources/images/club/${clubDto.c_img2}"></div>
-				<div class="subContent">${clubDto.c_subContent2}</div>
-			</div>
-			<div class="sub box3">
-				<div class="img"><img alt="이미지3" src="resources/images/club/${clubDto.c_img3}"></div>
-				<div class="subContent">${clubDto.c_subContent3}</div>
-			</div>
-			-->
 			
 		</div>
 	</div>
