@@ -20,48 +20,46 @@
 	}
 </script>
 
-<form method="post">
-
-	<div class="wrap">
-		<div class="side">
-			<div class="side_content">
-				<span class="title">파일첨부<br/></span>
-				<input type="file" name="c_mainImg" /> 
-					[기존 첨부파일: ${clubDto.c_mainImg}]<br/><br/>
-					<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
-			</div>
+<form method="post" enctype="multipart/form-data">
+	<div class="insert-wrap">
+	<hr class="line">
+		<div class="main_image">
+			<div class="title">파일첨부<br/></div>
+			<input type="file" name="c_mainImg" /> <br/>
+			[기존 첨부파일: ${clubDto.c_mainImg}]<br/><br/>
+			<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
+		</div>
+		
+		<div class="inputs">
+		    <div class="title">클럽명</div>
+			${clubDto.c_title}<br/>
 			
-			<div class="side_content">
-			    <span class="title">클럽명</span>
-				${clubDto.c_title}<br/>
-			</div>
+			<div class="title">한 줄 설명</div> 
+			<input type="text" name="c_desc" id="input" value="${clubDto.c_desc}" /><br/>
 			
-			<span class="title">한 줄 설명</span> 
-			<input type="text" name="c_desc" value="${clubDto.c_desc}" /><br/>
+			<div class="title">최소인원</div> 
+			<input type="text" name="c_min" id="input" value="${clubDto.c_min}" /><br/>
 			
-			<span class="title">최소인원</span> 
-			<input type="text" name="c_min" value="${clubDto.c_min}" /><br/>
-			
-			<span class="title">최대인원</span> 
-			<input type="text" name="c_max" value="${clubDto.c_max}" /><br/>
+			<div class="title">최대인원</div> 
+			<input type="text" name="c_max" id="input" value="${clubDto.c_max}" /><br/>
 			 
-			<span class="title">활동시작날짜</span> 
+			<div class="title">활동시작날짜</div> 
 			${clubDto.c_startDate}<br/>
 			
-			<span class="title">활동종료날짜</span> 
+			<div class="title">활동종료날짜</div> 
 			${clubDto.c_endDate}<br/>
 			
-			<span class="title">클럽내용</span><br />
-			<textarea rows="20" cols="100" placeholder="${clubDto.c_content}" name="c_content"></textarea>
-			<br /><br /> 
-			
-			<input type="hidden" name="c_no" value="${clubDto.c_no}" />
-			<input type="hidden" name="m_no" value="${clubDto.m_no}" />
-			<input type="hidden" name="c_mainImg2" value="${clubDto.c_mainImg}" />
-			
-			<input type="button" value="수정하기" onclick="fn_update(this.form)" />
-			<input type="button" value="목록으로 돌아가기" onclick="location.href='clubListPage.club'" />
+			<div class="title">클럽내용</div><br />
+			<textarea rows="20" cols="100" id="c_content" placeholder="${clubDto.c_content}" name="c_content"></textarea>
 		</div>
+		<br /><br /> 
+		
+		<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+		<input type="hidden" name="m_no" value="${clubDto.m_no}" />
+		<input type="hidden" name="c_mainImg2" value="${clubDto.c_mainImg}" />
+		
+		<input type="button" value="수정하기" id="btn" onclick="fn_update(this.form)" />
+		<input type="button" value="목록으로 돌아가기" id="btn" onclick="location.href='clubListPage.club'" />
 	</div>
 </form>
 
