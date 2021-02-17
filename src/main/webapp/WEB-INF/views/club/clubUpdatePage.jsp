@@ -58,9 +58,6 @@
 		<input type="hidden" name="m_no" value="${clubDto.m_no}" />
 		
 		<c:if test="${not empty clubDto.c_mainImg}">
-			<input type="hidden" name="c_mainImg" value="${clubDto.c_mainImg}" />
-		</c:if>
-		<c:if test="${empty clubDto.c_mainImg}">
 			<input type="hidden" name="c_mainImg2" value="${clubDto.c_mainImg}" />
 		</c:if>
 		
