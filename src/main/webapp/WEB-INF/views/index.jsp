@@ -27,7 +27,7 @@
         </div>
 		<div class="event-slider">
 			<div class="event-list">
-				<img src="resources/images/car.jpg" />
+				<img src="resources/images/banner/봄세일.png" />
 			</div>
 			<div class="event-list">
 				<img src="resources/images/bottles.jpg" />
@@ -74,7 +74,7 @@
 			<hr>
 			<div class="main-content">
 				<c:if test="${empty eventList}">
-					진행중인 이벤트가 없습니다.
+					<span class="not-exist"><i class="fas fa-sad-tear"></i>진행중인 이벤트가 없습니다.</span>
 				</c:if>
 				<c:if test="${not empty eventList}">
 					<c:forEach var="eventDto" items="${eventList}" >
