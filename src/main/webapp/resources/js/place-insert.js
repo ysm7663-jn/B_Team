@@ -11,7 +11,18 @@ $(function(){
 	fn_previewThumbnail('#upload-btn');
 	fn_previewThumbnail('.option-thumbnail');
 	fn_removeOption();
+	fn_countChar('.place-input');
 })
+/* 글자수 count */
+function fn_countChar(countTag){
+	$(countTag).on('keyup', function(event){
+		let count = $(event.target).val().length;
+		if(count>)
+		$(event.target).next().text(count);
+	});
+}
+
+
 /* 주소 찾기 */
 function fn_searchPopUp(){
 	new daum.Postcode({
