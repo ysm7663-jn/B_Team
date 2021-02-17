@@ -119,6 +119,7 @@
 </script>
 <title></title>
 <link rel="stylesheet" href="resources/style/common.css">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <style type="text/css">
 	body{
 		background:#F8EBEE;
@@ -136,13 +137,13 @@
 		background: #3ED0C8;
 	}
 	.review{
-		width: 800px;
-		height:570px;
-		margin:50px 0 0 100px;
+		width: 1200px;
+		height:auto;
+		margin:50px 0 0 300px;
 	}
 	#pagingBox{
 		width: 500px;
-		padding-left: 200px;
+		padding-left: 500px;
 	}
 	#paging {
 		display: flex;
@@ -161,6 +162,10 @@
 	#paging .disable {
 		color: black;
 	}
+	.no , .delete{
+		width:100px;
+	}
+	
 </style>
 </head>
 <body>
@@ -169,9 +174,9 @@
 			<table>
 				<thead>
 					<tr>
-						<th>리뷰번호</th>
+						<th class="no">리뷰번호</th>
 						<th>후기내용</th>
-						<th>비고</th>
+						<th class="delete">비고</th>
 					</tr>
 				</thead>
 				<tbody id="reviewList"></tbody>
@@ -182,9 +187,9 @@
 						</td>
 					</tr>
 				</tfoot>
-			</table>
-		<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
-		</div>
+			</table><br/>
+		<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" /><br/><br/>
+		</div><br/>
 <%@ include file="../template/footer.jsp" %>	
 </body>
 </html>
