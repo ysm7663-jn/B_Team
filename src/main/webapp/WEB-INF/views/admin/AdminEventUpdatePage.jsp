@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="resources/style/common.css">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <script type="text/javascript">
 	function fn_eventUpdate(f){
 		if (confirm('수정하시겠습니까?')) {
