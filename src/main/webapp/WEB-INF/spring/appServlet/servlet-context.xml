@@ -130,18 +130,23 @@
 	<beans:bean id="kakaoAPI" class="com.koreait.baraON.command.member.KakaoAPI" />	
 
 	<!-- join -->
-	<beans:bean id="memberJoin2Command" class="com.koreait.baraON.command.member.MemberJoin2Command"></beans:bean>
-	<beans:bean id="memberSearchCommand" class="com.koreait.baraON.command.member.MemberSearchCommand"></beans:bean>
-	<beans:bean id="memberNickSearchCommand" class="com.koreait.baraON.command.member.MemberNickSearchCommand"></beans:bean>
-	<beans:bean id="emailAuthCommand2" class="com.koreait.baraON.command.member.EmailAuthCommand2"></beans:bean>
-	<beans:bean id="memberPwSearchCommand" class="com.koreait.baraON.command.member.MemberPwSearchCommand"></beans:bean>
-	<beans:bean id="memberInsertCommand" class="com.koreait.baraON.command.member.MemberInsertCommand"></beans:bean>
-	<beans:bean id="memberPwUpdateCommand" class="com.koreait.baraON.command.member.MemberPwUpdateCommand"></beans:bean>
-	<beans:bean id="memberNickUpdateCommand" class="com.koreait.baraON.command.member.MemberNickUpdateCommand"></beans:bean>
-	<beans:bean id="memberUpdateCommand" class="com.koreait.baraON.command.member.MemberUpdateCommand"></beans:bean>
+	<beans:bean id="memberJoin2Command" class="com.koreait.baraON.command.member.MemberJoin2Command"/>
+	<beans:bean id="memberSearchCommand" class="com.koreait.baraON.command.member.MemberSearchCommand"/>
+	<beans:bean id="memberNickSearchCommand" class="com.koreait.baraON.command.member.MemberNickSearchCommand"/>
+	<beans:bean id="memberPhoneSearchCommand" class="com.koreait.baraON.command.member.MemberPhoneSearchCommand"/>
+	<beans:bean id="memberEmailSearchCommand" class="com.koreait.baraON.command.member.MemberEmailSearchCommand"/>
+	<beans:bean id="emailAuthCommand2" class="com.koreait.baraON.command.member.EmailAuthCommand2"/>
+	<beans:bean id="memberPwSearchCommand" class="com.koreait.baraON.command.member.MemberPwSearchCommand"/>
+	<beans:bean id="memberInsertCommand" class="com.koreait.baraON.command.member.MemberInsertCommand"/>
+	<beans:bean id="memberPwUpdateCommand" class="com.koreait.baraON.command.member.MemberPwUpdateCommand"/>
+	<beans:bean id="memberNickUpdateCommand" class="com.koreait.baraON.command.member.MemberNickUpdateCommand"/>
+	<beans:bean id="memberUpdateCommand" class="com.koreait.baraON.command.member.MemberUpdateCommand"/>
 	
 	<!-- seller -->
 	<beans:bean id="spaceViewPageCommand" class="com.koreait.baraON.command.seller.SpaceViewPageCommand"/>
+	<beans:bean id="sellerPhoneSearchCommand" class="com.koreait.baraON.command.seller.SellerPhoneSearchCommand"/>
+	<beans:bean id="sellerEmailSearchCommand" class="com.koreait.baraON.command.seller.SellerEmailSearchCommand"/>
+	<beans:bean id="sellerInsertCommand" class="com.koreait.baraON.command.seller.SellerInsertCommand"/>
 	<beans:bean id="allPlaceSearchCommand" class="com.koreait.baraON.command.seller.AllPlaceSearchCommand"/>
 	<beans:bean id="allPlaceSearch2Command" class="com.koreait.baraON.command.seller.AllPlaceSearch2Command"/>
 	<beans:bean id="placeCaSearchCommand" class="com.koreait.baraON.command.seller.PlaceCaSearchCommand"/>

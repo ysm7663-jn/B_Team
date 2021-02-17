@@ -9,7 +9,7 @@
    
 <script>
 	$(function(){
-		$(".footer-wrap").css("background" , "white");
+		$("footer").css("background" , "white");
 	});
 
 	function fn_emailAuthConfirm(f) {
@@ -28,7 +28,6 @@
 		}
 	}
 </script>
-<link rel="stylesheet" href="resources/style/findPage.css">
 <div class="box">
 	<div class="inner-box">
 		<div class="main-aside">
@@ -36,7 +35,7 @@
 			<input type="radio" name="tab" id="findPw" />
 			<div class="tab-buttons">
 				<label for="findId">아이디 찾기<hr></label>&nbsp;&nbsp;&nbsp;
-				<label for="findPw">비밀번호 찾기<hr></label>
+				<label for="findPw">비밀번호 찾기<hr class="check"></label>
 			</div>
 			<div class="resultBox">
 				<h4>인증번호가 메일로 전송되었습니다.</h4>

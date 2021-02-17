@@ -11,7 +11,7 @@
 
 <script>
 	$(document).ready(function(){
-		$(".footer-wrap").css("background" , "white");
+		$("footer").css("background" , "white");
 	});
 	
 <%

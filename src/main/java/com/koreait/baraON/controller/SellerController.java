@@ -2,6 +2,8 @@ package com.koreait.baraON.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -22,6 +24,9 @@ import com.koreait.baraON.command.seller.PlaceCaSearch2Command;
 import com.koreait.baraON.command.seller.PlaceCaSearchCommand;
 import com.koreait.baraON.command.seller.ReservationListCommand;
 import com.koreait.baraON.command.seller.SellerEmailAuthCommand;
+import com.koreait.baraON.command.seller.SellerEmailSearchCommand;
+import com.koreait.baraON.command.seller.SellerInsertCommand;
+import com.koreait.baraON.command.seller.SellerPhoneSearchCommand;
 import com.koreait.baraON.command.seller.SellerPwSearchCommand;
 import com.koreait.baraON.command.seller.SellerPwUpdateCommand;
 import com.koreait.baraON.command.seller.SellerSearchCommand;
@@ -54,6 +59,9 @@ public class SellerController {
 	private SellerEmailAuthCommand sellerEmailAuthCommand;
 	private StateChangeCommand stateChangeCommand;
 	private StateCancleCommand stateCancleCommand;
+	private SellerPhoneSearchCommand sellerPhoneSearchCommand;
+	private SellerEmailSearchCommand sellerEmailSearchCommand;
+	private SellerInsertCommand sellerInsertCommand;
 	
 	@Autowired
 	public void setCommand(SpaceViewPageCommand spaceViewPageCommand,
@@ -70,7 +78,10 @@ public class SellerController {
 							JavaMailSender javaMailSender,
 							SellerEmailAuthCommand sellerEmailAuthCommand,
 							StateChangeCommand stateChangeCommand,
-							StateCancleCommand stateCancleCommand) {
+							StateCancleCommand stateCancleCommand,
+							SellerPhoneSearchCommand sellerPhoneSearchCommand,
+							SellerEmailSearchCommand sellerEmailSearchCommand,
+							SellerInsertCommand sellerInsertCommand) {
 		this.spaceViewPageCommand=spaceViewPageCommand;
 		this.allPlaceSearchCommand=allPlaceSearchCommand;
 		this.allPlaceSearch2Command=allPlaceSearch2Command;
@@ -86,6 +97,9 @@ public class SellerController {
 		this.sellerEmailAuthCommand=sellerEmailAuthCommand;
 		this.stateChangeCommand=stateChangeCommand;
 		this.stateCancleCommand=stateCancleCommand;
+		this.sellerPhoneSearchCommand=sellerPhoneSearchCommand;
+		this.sellerEmailSearchCommand=sellerEmailSearchCommand;
+		this.sellerInsertCommand=sellerInsertCommand;
 	}
 	
 	@RequestMapping(value="sellerJoin.seller")
@@ -93,8 +107,9 @@ public class SellerController {
 		return "seller/sellerJoin";
 	}
 	
-	@RequestMapping(value="sellerJoin2.seller")
-	public String sellerJoin2() {
+	@RequestMapping(value="sellerJoin2.seller" ,method=RequestMethod.POST)
+	public String sellerJoin2(HttpServletRequest request, Model model) {
+		model.addAttribute("chk_email", request.getParameter("chk_email"));
 		return "seller/sellerJoin2";
 	}
 	
@@ -126,6 +141,26 @@ public class SellerController {
 												Model model) {
 		model.addAttribute("s_no",sellerDto.getS_no());
 		return sellerPwSearchCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="sellerPhoneSearch.seller", 
+			method=RequestMethod.POST,
+			produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> sellerPhoneSearch(@RequestParam("s_phone") String s_phone,
+			Model model) {
+		model.addAttribute("s_phone",s_phone);
+		return sellerPhoneSearchCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="sellerEmailSearch.seller", 
+			method=RequestMethod.POST,
+			produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> sellerEmailSearch(@RequestParam("s_email") String s_email,
+			Model model) {
+		model.addAttribute("s_email",s_email);
+		return sellerEmailSearchCommand.execute(sqlSession, model);
 	}
 	
 	@RequestMapping(value="spaceViewPage.seller")
@@ -267,7 +302,14 @@ public class SellerController {
 		return stateCancleCommand.execute(sqlSession, model);
 	}
 	
-	
+	@RequestMapping(value="sellerInsert.seller",
+				method=RequestMethod.POST)
+	public String sellerInsert(SellerDto sellerDto,
+										Model model){
+	model.addAttribute("sellerDto", sellerDto);
+	sellerInsertCommand.execute(sqlSession, model);
+	return "member/loginPage";
+}
 }
 
 

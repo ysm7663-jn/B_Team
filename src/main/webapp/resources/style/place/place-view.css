@@ -324,14 +324,15 @@ ul.img-list li>img {
 	width : 100%;
 	height : 100%;
 }
-ul.img-list:hover{
+ul.img-list li>img:hover{
+	position: absolute;
 	z-index:999997;
-	animation : img-move 2s both; 
+	animation : img-move 1s both; 
 }
 
 @keyframes img-move {
 	0% {left : 0px;}
-	100% {left : 50%; transform: scale(6.0);}
+	100% {left : 100%; transform: scale(6.0);}
 }
 .review-btns > input[type="button"] {
 	width: 150px;

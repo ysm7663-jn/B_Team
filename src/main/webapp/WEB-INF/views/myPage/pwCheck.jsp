@@ -42,7 +42,7 @@ function fn_pwSearch(){
 	    <br>
 	    <div id="chk">
 	        <form id="checkForm">
-	            <input type="text" name="pwinput" id="userPw">
+	            <input type="password" name="pwinput" id="userPw">
 	            <input type="button" value="확인" id="pwCheck"onclick="fn_pwSearch()"/>
 	        </form>
 	        <br>

@@ -27,9 +27,11 @@ import com.koreait.baraON.command.member.FindPwCommand;
 import com.koreait.baraON.command.member.KakaoAPI;
 import com.koreait.baraON.command.member.LoginCommand;
 import com.koreait.baraON.command.member.LogoutCommand;
+import com.koreait.baraON.command.member.MemberEmailSearchCommand;
 import com.koreait.baraON.command.member.MemberInsertCommand;
 import com.koreait.baraON.command.member.MemberNickSearchCommand;
 import com.koreait.baraON.command.member.MemberNickUpdateCommand;
+import com.koreait.baraON.command.member.MemberPhoneSearchCommand;
 import com.koreait.baraON.command.member.MemberPwSearchCommand;
 import com.koreait.baraON.command.member.MemberPwUpdateCommand;
 import com.koreait.baraON.command.member.MemberSearchCommand;
@@ -61,6 +63,8 @@ public class MemberController {
 	private MemberPwUpdateCommand memberPwUpdateCommand;
 	private MemberNickUpdateCommand memberNickUpdateCommand;
 	private MemberUpdateCommand memberUpdateCommand;
+	private MemberPhoneSearchCommand memberPhoneSearchCommand;
+	private MemberEmailSearchCommand memberEmailSearchCommand;
 	
 	@Autowired
 	public void setCommand(LoginCommand loginCommand,
@@ -80,7 +84,9 @@ public class MemberController {
 							MemberInsertCommand memberInsertCommand,
 							MemberPwUpdateCommand memberPwUpdateCommand,
 							MemberNickUpdateCommand memberNickUpdateCommand,
-							MemberUpdateCommand memberUpdateCommand) {
+							MemberUpdateCommand memberUpdateCommand,
+							MemberPhoneSearchCommand memberPhoneSearchCommand,
+							MemberEmailSearchCommand memberEmailSearchCommand) {
 		
 		this.loginCommand = loginCommand;
 		this.logoutCommand = logoutCommand;
@@ -101,6 +107,8 @@ public class MemberController {
 		this.memberPwUpdateCommand=memberPwUpdateCommand;
 		this.memberNickUpdateCommand=memberNickUpdateCommand;
 		this.memberUpdateCommand=memberUpdateCommand;
+		this.memberPhoneSearchCommand=memberPhoneSearchCommand;
+		this.memberEmailSearchCommand=memberEmailSearchCommand;
 	}
 	
 	@RequestMapping(value="loginPage.member", method=RequestMethod.GET)
@@ -153,7 +161,7 @@ public class MemberController {
 		/*kakaoAPI.kakaoLogout((String)session.getAttribute("access_Token"));
 		session.removeAttribute("access_Token");
 		session.removeAttribute("userId");*/
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="findPage.member", method=RequestMethod.GET)
@@ -221,7 +229,8 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="memberJoin2.member" ,method=RequestMethod.POST)
-	public String memberJoin2() {
+	public String memberJoin2(HttpServletRequest request, Model model) {
+		model.addAttribute("chk_email", request.getParameter("chk_email"));
 		return "member/memberJoin2";
 	}
 	
@@ -243,6 +252,26 @@ public class MemberController {
 												Model model) {
 		model.addAttribute("m_nick",m_nick);
 		return memberNickSearchCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="memberPhoneSearch.member", 
+			method=RequestMethod.POST,
+			produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> memberPhoneSearch(@RequestParam("m_phone") String m_phone,
+			Model model) {
+		model.addAttribute("m_phone",m_phone);
+		return memberPhoneSearchCommand.execute(sqlSession, model);
+	}
+	
+	@RequestMapping(value="memberEmailSearch.member", 
+			method=RequestMethod.POST,
+			produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> memberEmailSearch(@RequestParam("m_email") String m_email,
+			Model model) {
+		model.addAttribute("m_email",m_email);
+		return memberEmailSearchCommand.execute(sqlSession, model);
 	}
 	
 	@RequestMapping(value="memberPwSearch.member", 
@@ -269,10 +298,11 @@ public class MemberController {
 	
 	@RequestMapping(value="memberInsert.member",
 					method=RequestMethod.POST)
-	public Map<String, Object> memberInsert(MemberDto memberDto,
+	public String memberInsert(MemberDto memberDto,
 											Model model){
 		model.addAttribute("memberDto", memberDto);
-		return memberInsertCommand.execute(sqlSession, model);
+		memberInsertCommand.execute(sqlSession, model);
+		return "member/loginPage";
 	}
 	
 	@RequestMapping(value="memberView.member",

@@ -30,7 +30,7 @@
 		if(${param.state == 1}) {    // 지난 모임이면
 			$('.empty').text('진행했던 모임이 없습니다.');
 			$('.clubImage > a').css('pointer-events', 'none').css('cursor', 'default');
-			$('.clubImage > a > img').css('-webkit-filter', 'grayscale(100%)').css('filter', gray);
+			$('.clubImage > a > img').css('-webkit-filter', 'grayscale(100%)').css('filter', 'gray');
 			$('.detailBtn > form button').css('background', '#d3d3d3').css('color', '#b2b2b2').css('border', '1px solid #d3d3d3');
 		}
 	});
