@@ -70,7 +70,7 @@
 							</div>
 							<div class="cl-card">
 								<c:forEach begin="1" end="${ClubListDto.cl_card}" step="1">
-									<span><i class="fas fa-skull" ></i></span>
+									<span><i class="far fa-frown"></i></i></span>
 								</c:forEach>
 							</div>
 							<br/><br/>

@@ -29,70 +29,45 @@ public class ClubInsertCommand implements ClubCommand {
 		String c_content = multipartRequest.getParameter("c_content");
 		int c_min = Integer.parseInt(multipartRequest.getParameter("c_min"));
 		int c_max = Integer.parseInt(multipartRequest.getParameter("c_max"));
-		/*String c_subContent1 = multipartRequest.getParameter("c_subContent1");
-		String c_subContent2 = multipartRequest.getParameter("c_subContent2");
-		String c_subContent3 = multipartRequest.getParameter("c_subContent3");*/
 		
 		String c_startDate = multipartRequest.getParameter("c_startDate");
 		String c_endDate = multipartRequest.getParameter("c_endDate");
 		
-		/*MultipartFile[] file = new MultipartFile[3];
-		
-		for (int i = 1; i <= file.length; i++) {
-			if (file[i] != null && !file[i].isEmpty()) {
-				file[i] = multipartRequest.getFile("c_img[i]");
-				String originalFilename[i] = file[i].getOriginalFilename();
-				String extension[i] = originalFilename[i].substring( originalFilename[i].lastIndexOf(".")+1);
-				
-				String filename[i] = originalFilename.substring(0, originalFilename.lastIndexOf("."));
-						
-				String uploadFilename[i] = filename + "-" + System.currentTimeMillis() + "." + extension;
-				
-				String realPath = multipartRequest.getServletContext().getRealPath("resources/storage");
-				
-				File dir = new File(realPath);
-				if(!dir.exists()) {
-					dir.mkdirs();
-				}
-				
-				File uploadFile = new File(realPath, uploadFilename);
+		MultipartFile file = multipartRequest.getFile("c_mainImg");
+	
+		if (file != null && !file.isEmpty()) {
+	
+			String originalFilename = file.getOriginalFilename();
+			String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
+			
+			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+					
+			String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
+			
+			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/club");
+			
+			File dir = new File(realPath);
+			if(!dir.exists()) {
+				dir.mkdirs();
 			}
-		}*/
-			MultipartFile file = multipartRequest.getFile("c_mainImg");
-		
-			if (file != null && !file.isEmpty()) {
-		
-				String originalFilename = file.getOriginalFilename();
-				String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
-				
-				String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
-						
-				String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
-				
-				String realPath = multipartRequest.getServletContext().getRealPath("resources/images/club");
-				
-				File dir = new File(realPath);
-				if(!dir.exists()) {
-					dir.mkdirs();
-				}
-				
-				File uploadFile = new File(realPath, uploadFilename);
+			
+			File uploadFile = new File(realPath, uploadFilename);
 
-				try {
-					file.transferTo(uploadFile);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				int insertResult = clubDao.clubInsert(m_no, c_title, c_desc, c_min, c_max, c_startDate, c_endDate, c_content, uploadFilename);
-				
-				boolean afterInsert = false;
-				if(insertResult > 0) { 
-					afterInsert = true;
-				}
-				
-				rttr.addFlashAttribute("insertResult", insertResult);
-				rttr.addFlashAttribute("afterInsert", afterInsert);
+			try {
+				file.transferTo(uploadFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+			int insertResult = clubDao.clubInsert(m_no, c_title, c_desc, c_min, c_max, c_startDate, c_endDate, c_content, uploadFilename);
+			
+			boolean afterInsert = false;
+			if(insertResult > 0) { 
+				afterInsert = true;
+			}
+			
+			rttr.addFlashAttribute("insertResult", insertResult);
+			rttr.addFlashAttribute("afterInsert", afterInsert);
 		} 
 		
 	}

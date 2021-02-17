@@ -52,8 +52,6 @@
 	
 	<context:component-scan base-package="com.koreait.baraON" />
 	
-	<!-- club -->
-
 	<!-- board -->
 	<beans:bean id="noticeListCommand" class="com.koreait.baraON.command.board.NoticeListCommand" />
 	<beans:bean id="noticeViewCommand" class="com.koreait.baraON.command.board.NoticeViewCommand" />
@@ -101,7 +99,7 @@
 	<beans:bean id="adminConfirmViewCommand" class="com.koreait.baraON.command.admin.AdminConfirmViewCommand" />
 	<beans:bean id="adminConfirmUpdateCommand" class="com.koreait.baraON.command.admin.AdminConfirmUpdateCommand" />
 	
-
+	<!-- club -->
 
 	<beans:bean id="clubListCommand" class="com.koreait.baraON.command.club.ClubListCommand" />
 	<beans:bean id="clubInsertCommand" class="com.koreait.baraON.command.club.ClubInsertCommand" />
@@ -112,6 +110,13 @@
 	<beans:bean id="chkOutClubCommand" class="com.koreait.baraON.command.club.ChkOutClubCommand" />
 	<beans:bean id="likeClubCommand" class="com.koreait.baraON.command.club.LikeClubCommand" />
 	<beans:bean id="unLikeClubCommand" class="com.koreait.baraON.command.club.UnLikeClubCommand" />
+	
+	<beans:bean id="instanceClubListCommand" class="com.koreait.baraON.command.club.InstanceClubListCommand" />
+	<beans:bean id="instanceClubInsertCommand" class="com.koreait.baraON.command.club.InstanceClubInsertCommand" />
+	<beans:bean id="instanceClubViewCommand" class="com.koreait.baraON.command.club.InstanceClubViewCommand" />
+	<beans:bean id="instanceClubUpdateCommand" class="com.koreait.baraON.command.club.InstanceClubUpdateCommand" />
+	<beans:bean id="instanceClubDeleteCommand" class="com.koreait.baraON.command.club.InstanceClubDeleteCommand" />
+	
 
 	<!-- login -->
 

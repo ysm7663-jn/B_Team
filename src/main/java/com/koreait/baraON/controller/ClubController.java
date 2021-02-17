@@ -18,6 +18,11 @@ import com.koreait.baraON.command.club.ClubInsertCommand;
 import com.koreait.baraON.command.club.ClubListCommand;
 import com.koreait.baraON.command.club.ClubUpdateCommand;
 import com.koreait.baraON.command.club.ClubViewCommand;
+import com.koreait.baraON.command.club.InstanceClubDeleteCommand;
+import com.koreait.baraON.command.club.InstanceClubInsertCommand;
+import com.koreait.baraON.command.club.InstanceClubListCommand;
+import com.koreait.baraON.command.club.InstanceClubUpdateCommand;
+import com.koreait.baraON.command.club.InstanceClubViewCommand;
 import com.koreait.baraON.command.club.JoinClubCommand;
 import com.koreait.baraON.command.club.LikeClubCommand;
 import com.koreait.baraON.command.club.UnLikeClubCommand;
@@ -38,6 +43,11 @@ public class ClubController {
 	private LikeClubCommand likeClubCommand;
 	private UnLikeClubCommand unLikeClubCommand;
 	private ChkOutClubCommand chkOutClubCommand;
+	private InstanceClubListCommand instanClubListCommand;
+	private InstanceClubInsertCommand instanceClubInsertCommand;
+	private InstanceClubViewCommand instanceClubViewCommand;
+	private InstanceClubUpdateCommand instanceClubUpdateCommand;
+	private InstanceClubDeleteCommand instanceClubDeleteCommand;
 	
 	@Autowired
 	public void setCommand(ClubListCommand clubListCommand,
@@ -48,7 +58,11 @@ public class ClubController {
 						   JoinClubCommand joinClubCommand,
 						   ChkOutClubCommand chkOutClubCommand,
 						   LikeClubCommand likeClubCommand,
-						   UnLikeClubCommand unLikeClubCommand
+						   UnLikeClubCommand unLikeClubCommand,
+						   InstanceClubListCommand instanceCLubListCommand,
+						   InstanceClubInsertCommand instanceClubInsertCommand,
+						   InstanceClubViewCommand instanceClubViewCommand,
+						   InstanceClubDeleteCommand instanceClubDeleteCommand
 						  ) {
 		this.clubListCommand = clubListCommand;
 		this.clubInsertCommand = clubInsertCommand;
@@ -59,11 +73,20 @@ public class ClubController {
 		this.likeClubCommand = likeClubCommand;
 		this.unLikeClubCommand = unLikeClubCommand;
 		this.chkOutClubCommand = chkOutClubCommand;
+		this.instanceClubInsertCommand = instanceClubInsertCommand;
+		this.instanceClubInsertCommand = instanceClubInsertCommand;
+		this.instanceClubViewCommand = instanceClubViewCommand;
+		this.instanceClubDeleteCommand = instanceClubDeleteCommand;
 	}
 
 	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
 	public String clubInsertPage() {
 		return "club/clubInsertPage";
+	}
+	
+	@RequestMapping(value="instanceClubInsertPage.club", method=RequestMethod.GET)
+	public String instanceClubInsertPage() {
+		return "club/instanceClubInsertPage";
 	}
 	
 	// method 이동
@@ -74,12 +97,27 @@ public class ClubController {
 		return "club/clubListPage";
 	}
 	
+	@RequestMapping(value="instanceClubListPage.club", method=RequestMethod.GET)
+	public String instanceClubListPage(Model model) {
+		clubListCommand.execute(sqlSession, model);
+		
+		return "club/instanceClubListPage";
+	}
+	
 	@RequestMapping(value="clubInsert.club", method=RequestMethod.POST)
 	public String clubInsert(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
 		model.addAttribute("rttr", rttr);
 		clubInsertCommand.execute(sqlSession, model);
 		return "redirect:clubListPage.club";
+	}
+	
+	@RequestMapping(value="instanceClubInsert.club", method=RequestMethod.POST)
+	public String instanceClubInsert(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
+		model.addAttribute("multipartRequest", multipartRequest);
+		model.addAttribute("rttr", rttr);
+		instanceClubInsertCommand.execute(sqlSession, model);
+		return "redirect:instanceClubListPage.club";
 	}
 	
 	@RequestMapping(value="clubViewPage.club", method=RequestMethod.GET)

@@ -28,13 +28,29 @@ div {
 	font-size: 20px;
 	font-weight: bold;
 }
+.emptyList {
+	width: 400px;
+	height: 200px;
+	text-align: center;
+	margin: 40px auto;
+}
+.emptyList > div:last-of-type {
+	font-weight: bold;
+	margin-top: 26px;
+	padding: 0 0 0 15px;
+}
+.fa-exclamation-circle:before {
+	font-size: 90px;
+	color: cadetblue;	
+}
 .clubList {
 	display: flex;
 	height: 160px;
 	margin: 35px 0;
 }
 .clubImage {
-	width: 30%;
+	width: 268px;
+	height: 180px;
 	margin-right: 18px;
 }
 .clubImage > a > img {

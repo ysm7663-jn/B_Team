@@ -121,8 +121,12 @@ public class MyPageController {
 	}
 	
 	@RequestMapping(value="infoDeletePage.myPage", method=RequestMethod.GET)
-	public String infoDeletePage(HttpServletRequest request) {
-		return "myPage/infoDeletePage";
+	public String infoDeletePage(@RequestParam(value="grade", required=false) String grade) {
+		if(grade.equals("member")) {
+			return "myPage/memberDeletePage";
+		} else {
+			return "myPage/sellerDeletePage";
+		}
 	}
 	
 	@RequestMapping(value="infoDelete.myPage", method=RequestMethod.GET)
