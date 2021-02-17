@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.ClubDao;
 
-public class ClubInsertCommand implements ClubCommand {
+public class InstanceClubInsertCommand implements ClubCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
@@ -30,9 +30,10 @@ public class ClubInsertCommand implements ClubCommand {
 		int c_min = Integer.parseInt(multipartRequest.getParameter("c_min"));
 		int c_max = Integer.parseInt(multipartRequest.getParameter("c_max"));
 		
+		
 		String c_startDate = multipartRequest.getParameter("c_startDate");
 		String c_endDate = multipartRequest.getParameter("c_endDate");
-		
+	
 		MultipartFile file = multipartRequest.getFile("c_mainImg");
 	
 		if (file != null && !file.isEmpty()) {
@@ -59,15 +60,15 @@ public class ClubInsertCommand implements ClubCommand {
 				e.printStackTrace();
 			}
 			
-			int insertResult = clubDao.clubInsert(m_no, c_title, c_desc, c_min, c_max, c_startDate, c_endDate, c_content, uploadFilename);
+			int insertResult2 = clubDao.instanceclubInsert(m_no, c_title, c_desc, c_min, c_max, c_startDate, c_endDate, c_content, uploadFilename);
 			
-			boolean afterInsert = false;
-			if(insertResult > 0) { 
-				afterInsert = true;
+			boolean afterInsert2 = false;
+			if(insertResult2 > 0) { 
+				afterInsert2 = true;
 			}
 			
-			rttr.addFlashAttribute("insertResult", insertResult);
-			rttr.addFlashAttribute("afterInsert", afterInsert);
+			rttr.addFlashAttribute("insertResult2", insertResult2);
+			rttr.addFlashAttribute("afterInsert2", afterInsert2);
 		} 
 		
 	}

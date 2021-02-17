@@ -21,6 +21,8 @@ public interface MemberDao {
 	
 	public int memberSearch(String m_id);
 	public int memberNickSearch(String m_nick);
+	public int memberPhoneSearch(String m_phone);
+	public int memberEmailSearch(String m_email);
 	public int memberInsert(MemberDto memberDto);
 	public MemberDto memberView(int m_no);
 	public String memberPwSearch(String m_id);

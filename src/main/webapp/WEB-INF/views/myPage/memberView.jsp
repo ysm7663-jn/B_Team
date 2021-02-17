@@ -281,7 +281,7 @@
 					<td><input type="text" placeholder="${loginDto.m_email}"id="m_email" name="m_email"/></td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2"  style="text-align:center";>
 						<input type="button" value="확인" onclick="fn_memberUpdate()"/>
 					</td>
 				</tr>

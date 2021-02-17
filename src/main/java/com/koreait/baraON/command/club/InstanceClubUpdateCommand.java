@@ -11,7 +11,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.ClubDao;
 
-public class ClubUpdateCommand implements ClubCommand {
+public class InstanceClubUpdateCommand implements ClubCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {

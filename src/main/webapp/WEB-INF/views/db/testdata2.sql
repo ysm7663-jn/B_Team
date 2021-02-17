@@ -1227,11 +1227,31 @@ INSERT INTO FAQ VALUES (NOTICE_SEQ.NEXTVAL ,
 활동에 대한 다양한 혜택을 제공할 예정이오니,
 많은 신청 부탁드립니다.', SYSDATE, 4);
 --EVENT
-INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
+INSERT INTO EVENT VALUES(1,
 '치킨&맥주 파티 모집중!',
 'baraON 멤버라면 누구나 가능!
 멤버님들의 성원에 힘입어 참여대상을 확대했습니다!',
 'event1', SYSDATE);
+INSERT INTO EVENT VALUES(2,
+'봄을 맞아 세일해봄',
+'추운 겨울이 지나고 새 봄을 맞이하여
+저희 baraON에서 봄맞이 세일을 준비하였습니다!',
+'sale.png', SYSDATE);
+INSERT INTO EVENT VALUES(3,
+'코로나 극복 기원 이벤트',
+'코로나 극복을 기원하며 
+저희 baraON에서 특별 이벤트를 준비하였습니다!',
+'covid-19.jpg', SYSDATE);
+INSERT INTO EVENT VALUES(4,
+'새학기 이벤트',
+'새학기 맞이  
+저희 baraON에서 이벤트를 준비하였습니다!',
+'newClass.jpg', SYSDATE);
+INSERT INTO EVENT VALUES(5,
+'신규 런칭 이벤트',
+'baraON 신규 런칭을 맞이하여  
+첫 예약 할인 이벤트를 준비하였습니다!',
+'sale2.png', SYSDATE);
 
 --WISHLIST
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 01, 01);
