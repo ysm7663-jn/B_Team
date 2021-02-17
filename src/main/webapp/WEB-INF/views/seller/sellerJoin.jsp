@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <jsp:include page="../template/header.jsp" />
+<link rel="stylesheet" href="resources/style/seller/sellerJoin.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
 	<script>
@@ -36,8 +37,8 @@
 		
 	</script>
 
-
-	<form id="joinform" method="GET">
+	<div class="box">
+	<form id="joinform" method="post">
 	
 		<input type="checkbox" name="chk_all" id="chk_all" />
 		<label for="chk_all">
@@ -48,7 +49,7 @@
 				<input type="checkbox" name="chk_service" id="chk_service" />
 				<label for="chk_service">바라온 이용약관 동의(필수)</label>
 		
-		<div style="overflow:scroll; width:500px; height:200px; padding:10px; overflow-x:hidden;">
+		<div style="overflow:scroll; width:500px; height:200px; padding:10px; overflow-x:hidden;" class="box2">
 		[2교시 이용약관]
 		<br/>
 		최종 갱신일: 2017. 12. 01
@@ -372,7 +373,7 @@
 		
 				<input type="checkbox" name="chk_privacy" id="chk_privacy"/>
 				<label for="chk_privacy">개인정보 수집 및 이용 동의(필수)</label>
-				<div style="overflow:scroll; width:500px; height:200px; padding:10px; overflow-x:hidden;">
+				<div style="overflow:scroll; width:500px; height:200px; padding:10px; overflow-x:hidden;" class="box2">
 				개인정보처리방침
 				<br/>
  
@@ -522,6 +523,6 @@ oo는 이용자 혹은 법정 대리인의 요청에 의해 해지 또는 삭제
 	<input type="button" value="취소" name="btn2" id="btn2" onclick="location.href='index'"/>
 	
 	</form>
-	
+	</div>	
 	
 <%@ include file="../template/footer.jsp" %>

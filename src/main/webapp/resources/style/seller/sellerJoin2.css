@@ -1,44 +1,39 @@
 @charset "UTF-8";
 .box{
-	height: 1500px;
+	height: 1200px;
 	text-align:center;
 }
-#m_id{
+#s_id{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
 }
-#m_pw{
+#s_pw{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
 }
-#m_pw2{
+#s_pw2{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
 }
-#m_nick{
+#s_phone{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
 }
-#m_name{
+#s_name{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
 }
-#m_birth{
+#s_birth{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
 }
-#m_phone{
-	width : 400px; 
-	height : 50px; 
-	font-size : 15px;
-}
-#m_email2{
+#s_email2{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
@@ -48,14 +43,18 @@
 	height : 50px; 
 	font-size : 15px;
 }
-#btn{
+#s_companyNo{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
 }
-
-#m_email{
+#s_email{
 	width : 200px; 
+	height : 50px; 
+	font-size : 15px;
+}
+#s_email2{
+	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
 }
@@ -65,5 +64,9 @@
 	height : 50px; 
 	font-size : 15px;
 }
-
+#btn{
+	width : 400px; 
+	height : 50px; 
+	font-size : 15px;
+}
 
