@@ -30,7 +30,7 @@
 		<hr>
 		<div>
 			<div style="width 500px; height:auto; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 20px;">
-				<img alt="${eventDto.e_filename}" src="resources/images/event/${eventDto.e_filename}">
+				<img style="width:500px; height:300px;"alt="${eventDto.e_filename}" src="resources/images/event/${eventDto.e_filename}">
 			</div>
 			<div style="height:auto; margin:10px 0 0 10px; padding-top:10px; font-weight: 800px; font-size: 18px;border-bottom:1px solid black">
 				<pre>${eventDto.e_content}</pre><br/>

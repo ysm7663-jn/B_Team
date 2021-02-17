@@ -30,13 +30,16 @@
 				<img src="resources/images/banner/봄세일-배너.jpg" />
 			</div>
 			<div class="event-list">
-				<img src="resources/images/banner/코로나방역소독-배너.jpg" />
-			</div>
-			<div class="event-list">
 				<img src="resources/images/banner/치맥파티-배너.jpg" />
 			</div>
 			<div class="event-list">
-				<img src="resources/images/car.jpg" />
+				<img src="resources/images/banner/covid-19-배너.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/banner/sale2-배너.jpg" />
+			</div>
+			<div class="event-list">
+				<img src="resources/images/banner/코로나방역소독-배너.jpg" />
 			</div>
 		</div>
 	</section>

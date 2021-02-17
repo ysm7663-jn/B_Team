@@ -8,14 +8,14 @@ import org.springframework.ui.Model;
 import com.koreait.baraON.dao.ClubDao;
 import com.koreait.baraON.dto.ClubDto;
 
-public class ClubListCommand implements ClubCommand {
+public class InstanceClubListCommand implements ClubCommand {
 
 	@Override
 	public void execute(SqlSession sqlSession, Model model) {
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 		
-		List<ClubDto> list = clubDao.clubList();
+		List<ClubDto> list = clubDao.instanceClubList();
 		
 		model.addAttribute("list", list);
 	}

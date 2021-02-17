@@ -43,11 +43,8 @@
 			<div class="title">최대인원</div> 
 			<input type="text" name="c_max" id="input" value="${clubDto.c_max}" /><br/>
 			 
-			<div class="title">활동시작날짜</div> 
+			<div class="title">활동날짜</div> 
 			${clubDto.c_startDate}<br/>
-			
-			<div class="title">활동종료날짜</div> 
-			${clubDto.c_endDate}<br/>
 			
 			<div class="title">클럽내용</div><br />
 			<textarea rows="20" cols="100" id="c_content" name="c_content">${clubDto.c_content}</textarea>
