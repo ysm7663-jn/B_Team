@@ -23,9 +23,8 @@ div {
 }
 .mypage-body {
 	display: flex;
-	overflow: hidden;
-	height: auto;
-	margin: 2% 18% 12% 18%;
+	width: 1200px;
+	margin: 54px auto;
 }
 .mypage-category {
 	margin: 0 2% 2% 3%;

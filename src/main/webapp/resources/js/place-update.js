@@ -104,7 +104,7 @@ function fn_deleteOption(){
 	$('.select-remove-btn').click(function(event){
 		if(confirm('복구가 불가능합니다 삭제하시겠습니까?')){
 			$.ajax({
-				url:'placeOptionDelete.place/'+$(event.target).prev().val(),
+				url:'placeOptionDelete.place/'+$(event.target).prev().prev().val(),
 				type:'delete',
 				dataType:'json',
 				success:function(responseObj){
@@ -116,9 +116,10 @@ function fn_deleteOption(){
 				},
 				error:function(request, status, error){
 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+					return;
 				}
 			});
-			$(event.target).parent().remove();
+			$(event.target).closest('form').remove();
 		}
 	});
 }
@@ -240,8 +241,12 @@ function fn_addOption(){
 						가격<span class="required-data">필수 사항</span>
 					</div>
 					<div class="option-content">
-						평일 : <input type="number" name="po_dayPrice" required />원<br/>
-						주말(공휴일) : <input type="number" name="po_holiday" required />원
+						평일 :
+						<br/>
+						 <input type="number" name="po_dayPrice" style="width:80px;"  required />원<br/>
+						주말(공휴일) :
+						<br/>
+						<input type="number" name="po_holiday" style="width:80px;"  required />원
 					</div>
 				</article>
 				<article class="option-box">
@@ -249,8 +254,8 @@ function fn_addOption(){
 						인원<span class="required-data">필수 사항</span>
 					</div>
 					<div class="option-content">
-						최소 : <input type="number" name="po_min" required />명<br/>
-						최대 : <input type="number" name="po_max" required />명
+						최소 : <input type="number" name="po_min" style="width:80px;"  required />명<br/>
+						최대 : <input type="number" name="po_max" style="width:80px;"  required />명
 					</div>
 				</article>
 				<article class="option-box">
@@ -281,7 +286,7 @@ function fn_addOption(){
 				</article>
 				<input type="hidden" name="p_no" value="${placeNo}" />
 				<button type="button" class="select-insert-btn" onclick="fn_optionInsert(this.form)" >옵션 추가</button>
-				<button type="button" class="remove-option-btn" >해당옵션 삭제</button>
+				<button type="button" class="select-remove-option-btn" >해당옵션 삭제</button>
 				</section>
 			</form>
 		`;

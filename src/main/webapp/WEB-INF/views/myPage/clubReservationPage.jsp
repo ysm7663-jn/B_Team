@@ -5,7 +5,21 @@
 <jsp:include page="myPage.jsp" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 <link rel="stylesheet" href="resources/style/myPage/clubReservationPage.css">	 
-   
+<script>
+	let imgList = new Array();
+	
+	<c:forEach var="clubReservationDto" items="${list}">
+		imgList.push(JSON.parse('${clubReservationDto.p_img}'));	
+	</c:forEach>
+	
+	$(function(){
+		$.each(imgList, function(idx, thumbnail){
+			$('.img > a').eq(idx).append('<img alt="장소 이미지" src="resources/images/PlaceImages/'+thumbnail[0]+'">');
+		});
+	})
+</script>
+
+
 	<div class="mypage-contents">
 		<h2>예약내역</h2>
 		<hr class="top">
@@ -23,7 +37,9 @@
 						<h3>${clubReservationListDto.res_date}</h3>
 						<div class="res_state">${clubReservationListDto.res_state}</div>
 						<div class="reservation-info">
-							<div class="img"><a href=""><img alt="장소 이미지" src="resources/images/PlaceOptionImages/${clubReservationListDto.po_img}"></a></div>
+							<div class="img">
+								<a href="placeViewPage.place?no=${clubReservationListDto.p_no}"></a>
+							</div>
 							<div class="content">
 								<div class="info">
 									<h2>${clubReservationListDto.p_title}</h2><br/>

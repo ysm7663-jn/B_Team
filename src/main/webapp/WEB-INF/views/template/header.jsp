@@ -20,6 +20,7 @@
 <title>${title}</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon_16x16.png">
 <!-- header, footer css -->
 <link rel="stylesheet" href="resources/style/common.css">
 <!-- Fontawesome CDN -->

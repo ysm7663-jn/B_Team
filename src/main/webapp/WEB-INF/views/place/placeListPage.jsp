@@ -1,17 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <jsp:include page="../template/header.jsp">
 	<jsp:param value="BaraON :: 공간목록" name="title"/>
 </jsp:include>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="resources/style/place/place-list.css">
+<link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick-theme.css" />
+<link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick.css" />
 
 <script>
 	let imgList = new Array();
 	<c:forEach var="list" items="${list}">
 		imgList.push(JSON.parse('${list.p_img}'));
 	</c:forEach>
+	
 	let categoryNo = '${param.categoryNo}';
 	$(function(){
 		$.each(imgList, function(idx, img){
@@ -20,9 +24,15 @@
 				if (i==0){
 					$('.thumbnail-box').eq(idx).append($(imgTag).css('display', 'block'));
 				} else {
-					$('.thumbnail-box').eq(idx).append($(imgTag).css('display', 'none'));
+					$('.thumbnail-box').eq(idx).append($(imgTag));
 				}
 			}); 
+		});
+		$('.thumbnail-box').slick({
+			dots: true,
+			fade: true,
+			autoplay: true,
+			autoplaySpeed: 2000
 		});
 		if(categoryNo != ''){
 			$('div.category').eq(categoryNo-1).css('background','rgba(95, 158, 160, 1)');
@@ -78,7 +88,9 @@
 
 						</div>
 						<div id="info-price">
-							<strong class="place-price" >${placeList.minPrice}</strong>
+							<strong class="place-price" >
+								<fmt:formatNumber value="${placeList.minPrice}" pattern="#,###" />
+							</strong>
 							<span class="txt-unit" >원/일</span>
 						</div>
 						<div id="info-people-reviews">

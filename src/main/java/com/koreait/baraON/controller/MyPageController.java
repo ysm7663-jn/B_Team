@@ -11,10 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.koreait.baraON.command.myPage.CardPlusCommand;
+import com.koreait.baraON.command.myPage.AddCardCommand;
 import com.koreait.baraON.command.myPage.ClubCountCommand;
 import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
 import com.koreait.baraON.command.myPage.ClubManageDetailCommand;
@@ -25,7 +26,6 @@ import com.koreait.baraON.command.myPage.InstantClubCommand;
 import com.koreait.baraON.command.myPage.RegularClubCommand;
 import com.koreait.baraON.command.myPage.WishDeleteCommand;
 import com.koreait.baraON.command.myPage.WishListCommand;
-import com.koreait.baraON.dao.MyPageDao;
 
 @Controller
 public class MyPageController {
@@ -41,7 +41,7 @@ public class MyPageController {
 	private ClubManageListCommand clubManageListCommand;
 	private ClubCountCommand clubCountCommand;
 	private ClubManageDetailCommand clubManageDetailCommand;
-	private CardPlusCommand cardPlusCommand;
+	private AddCardCommand addCardCommand;
 	private ClubReservationListCommand clubReservationListCommand;
 	
 	@Autowired
@@ -54,7 +54,7 @@ public class MyPageController {
 							 ClubManageListCommand clubManageListCommand,
 							 ClubCountCommand clubCountCommand,
 							 ClubManageDetailCommand clubManageDetailCommand,
-							 CardPlusCommand cardPlusCommand,
+							 AddCardCommand addCardCommand,
 							 ClubReservationListCommand clubReservationListCommand) {
 		this.wishListCommand = wishListCommand;
 		this.wishDeleteCommand = wishDeleteCommand;
@@ -66,7 +66,7 @@ public class MyPageController {
 		this.clubManageListCommand = clubManageListCommand;
 		this.clubCountCommand = clubCountCommand;
 		this.clubManageDetailCommand = clubManageDetailCommand;
-		this.cardPlusCommand = cardPlusCommand;
+		this.addCardCommand = addCardCommand;
 		this.clubReservationListCommand = clubReservationListCommand;
 	}
 	
@@ -153,18 +153,17 @@ public class MyPageController {
 		return "myPage/clubManageDetailPage";
 	}
 	
-	@RequestMapping(value="infoPopUp.myPage", method=RequestMethod.POST)
-	public String infoPopUp(int cl_no, Model model) {
-		MyPageDao myPageDao = sqlSession.getMapper(MyPageDao.class);
-		model.addAttribute("clubListDto", myPageDao.asdfasdf(cl_no));
+	@RequestMapping(value="infoPopUp.myPage", method=RequestMethod.GET)
+	public String infoPopUp(@RequestParam("nick") String nick, Model model) {
+		model.addAttribute("nick", nick);
 		return "myPage/infoPopUp";
 	}
 	
 	@RequestMapping(value="cardPlus/{cl_no}", method=RequestMethod.GET, produces="application/json; charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> cardPlus(@PathVariable("cl_no") int clNo, Model model) {
-		model.addAttribute("clNo", clNo);
-		return cardPlusCommand.execute(sqlSession, model);
+	public Map<String, Object> cardPlus(@PathVariable("cl_no") int cl_no, Model model) {
+		model.addAttribute("cl_no", cl_no);
+		return addCardCommand.execute(sqlSession, model);
 	}
 	
 	@RequestMapping(value="clubReservationList.myPage", method=RequestMethod.GET)
@@ -173,4 +172,5 @@ public class MyPageController {
 		clubReservationListCommand.execute(sqlSession, model);
 		return "myPage/clubReservationPage";
 	}
+	
 }

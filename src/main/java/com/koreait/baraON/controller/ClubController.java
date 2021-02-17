@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -90,13 +91,17 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value="clubDelete.club", method=RequestMethod.POST)
-	public String clubDelete(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+	public String clubDelete(HttpServletRequest request, @RequestParam(value="isDetailPage", required=false, defaultValue="false") boolean isDetailPage , RedirectAttributes rttr, Model model) {
 		
 		model.addAttribute("request", request);
 		model.addAttribute("rttr", rttr);
 		clubDeleteCommand.execute(sqlSession, model);
 		
-		return "redirect:clubListPage.club";
+		if(isDetailPage) {
+			return "redirect:clubManagePage.myPage?state=0";
+		} else {
+			return "redirect:clubListPage.club";
+		}
 	}
 	
 	@RequestMapping(value="clubUpdatePage.club", method=RequestMethod.POST)

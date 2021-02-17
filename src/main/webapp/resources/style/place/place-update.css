@@ -47,7 +47,7 @@ ul.facility-list li {
 }
 
 section.option input:not([type="file"]) {
-	width:200px;
+	width:100%;
 	padding : 5px;
 }
 div.option-subtitle{

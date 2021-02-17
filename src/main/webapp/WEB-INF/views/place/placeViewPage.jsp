@@ -14,8 +14,9 @@
 <script>
 	let facilityList = JSON.parse('${facilityList}');
 	let isSeller = ${isSeller};
+	let loginDtoMNo='';
 	<c:if test="${loginDto ne null && not isSeller}">
-		let loginDtoMNo = '${loginDto.m_no}';
+		loginDtoMNo = '${loginDto.m_no}';
 	</c:if>
 	let thumbnail = JSON.parse('${placeDto.p_img}');
 	let infoList = JSON.parse('${placeDto.p_info}');
@@ -34,7 +35,6 @@
 		isEnd = true;
 	}
 	let isProgress = false;
-	let isPossible = false;
 	
 	/* 리뷰작성 성공 */
 	
@@ -115,8 +115,8 @@
 	<div class="place-line-desc1">
 		<h3>${placeDto.p_desc}</h3>
 	</div>
-	<div>
-		<span># ${categoryName}</span>
+	<div class="category-name">
+		<span>#${categoryName}</span>
 	</div>
 	<c:if test="${isSeller && (sellerDto.s_no eq loginDto.s_no)}">
 		<div class="btn-wrap">
@@ -302,7 +302,7 @@
 								<div class="review-date">
 									작성일 : <fmt:formatDate value="${reviewDto.rv_postDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
 									<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
-										최근수정일 : <fmt:formatDate value="${reviewDto.rv_modifyDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
+										<br/>최근수정일 : <fmt:formatDate value="${reviewDto.rv_modifyDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
 									</c:if>
 								</div>
 								<div class="review-content" >
