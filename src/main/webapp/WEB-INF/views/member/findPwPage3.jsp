@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="resources/style/member/findPwPage.css">
 <script>
 	$(function(){
-		$(".footer-wrap").css("background" , "white");
+		$("footer").css("background" , "white");
 
 		if(${changePwResult >= 1}) {
 			$('h3').text('비밀번호 변경이 성공적으로 이루어졌습니다.');

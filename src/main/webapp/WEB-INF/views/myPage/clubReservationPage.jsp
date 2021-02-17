@@ -15,6 +15,8 @@
 		$.each(imgList, function(idx, thumbnail){
 			$('.img > a').eq(idx).append('<img alt="장소 이미지" src="resources/images/PlaceImages/'+thumbnail[0]+'">');
 		});
+		
+		
 	})
 </script>
 

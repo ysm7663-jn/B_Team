@@ -516,7 +516,7 @@
 					</div>
 				<br/>
 				
-					<input type="checkbox" name="chk_email" id="chk_email"/>
+					<input type="checkbox" name="chk_email" id="chk_email" value="1" />
 					<label for="chk_email">프로모션 정보 수신 동의</label><br/>
 			
 			

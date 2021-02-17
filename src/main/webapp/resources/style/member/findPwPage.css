@@ -18,32 +18,40 @@ div {
 	box-sizing: border-box;
 }
 
+hr[class="check"] {
+	display: block;
+}
 /* findPwPage */
+.main-aside {
+	position: static;
+	width: 70%;
+	margin: 0 auto;
+}
+.inner-box {
+	padding: 25px 0;
+}
 .resultBox {
 	width: 75%;
 	height: 70px;
 	line-height: 70px;
 	text-align: center;
-	margin: 6% auto;
+	margin: 4% auto;
 }
 form {
 	margin: 0 12%;
 }
-.authInputBox {
-	margin: 0 12%;
-}
 .authInputBox > input[type="text"] {
 	width: 70%;
-	height: 37px;
+	height: 34px;
 	margin: 0px;	
 }	
 .authInputBox > input[type="button"] {
 	width: 54px;
-	height: 37px;
-	border: 1px solid #1ccaa7;
+	height: 31px;
+	border: 1px solid cadetblue;
 	border-radius: 5px;
 	color: white;
-	background: #1ccaa7;
+	background: cadetblue;
 	font-weight: bold;
 }	
 
@@ -66,12 +74,12 @@ form {
 	text-align: center;
 }
 .confirmBtn > input {
-	width: 60px;
+	width: 68px;
 	height: 34px;
-	border: 1px solid #1ccaa7;
+	border: 1px solid cadetblue;
 	border-radius: 4px;
 	color: white;
-	background: #1ccaa7;
+	background: cadetblue;
 	font-weight: bold;
 	margin: 21px 0;
 }
@@ -84,10 +92,10 @@ form {
 .loginButton {
 	width: 66px;
 	height: 33px;
-	border: 1px solid #1ccaa7;
+	border: 1px solid cadetblue;
 	border-radius: 4px;
 	color: white;
-	background: #1ccaa7;
+	background: cadetblue;
 	font-weight: bold;
 	margin: 0 41%;
 }

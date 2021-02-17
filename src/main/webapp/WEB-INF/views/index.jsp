@@ -130,7 +130,7 @@
 				<c:if test="${not empty faqList}">
 					<c:forEach var="faqDto" items="${faqList}" >
 						<a href="faqViewPage.faq?no=${faqDto.f_no}&page=1">
-							<div class=row">
+							<div class="row">
 								<div class="dot"></div>
 								<div class="board-title">${faqDto.f_title}</div>
 								<div class="board-date">${faqDto.f_regDate}</div>

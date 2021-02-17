@@ -76,6 +76,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE M_NICK= #{m_nick}
 	</select>
 	
+	<select id="memberPhoneSearch" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE M_Phone= #{m_phone}
+	</select>
+	
+	<select id="memberEmailSearch" parameterType="String" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE M_email= #{m_email}
+	</select>
+	
 	<select id="memberPwSearch" parameterType="String" resultType="String">
 		SELECT M_PW
 		FROM MEMBER
