@@ -34,13 +34,13 @@
 					<input type="text" name="c_max" id="input" placeholder="  최대인원을 입력해주세요" /><br/><br/>
 					
 				<div class="title">활동시작날짜</div>
-					<input type="text" name="c_startDate" id="input" placeholder="  ex)20xx.xx.xx" /><br/><br/>
+					<input type="text" name="c_startDate" id="input" placeholder="  ex) 20xx.xx.xx" /><br/><br/>
 					
 				<div class="title">활동종료날짜</div>
-					<input type="text" name="c_endDate" id="input" placeholder="  ex)20xx.xx.xx" /><br/><br/>
+					<input type="text" name="c_endDate" id="input" placeholder="  ex) 20xx.xx.xx" /><br/><br/>
 					
 				<div class="title">클럽내용</div>
-					<textarea rows="20" cols="100" id="c_content" placeholder=" 2000자 이내로 작성해주세요" name="c_content"></textarea>
+					<textarea rows="20" cols="100" id="c_content" name="c_content" placeholder=" 2000자 이내로 작성해주세요" ></textarea>
 				<br/><br/>
 			</div>
 		</div>

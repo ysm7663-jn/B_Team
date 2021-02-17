@@ -50,7 +50,7 @@
 			${clubDto.c_endDate}<br/>
 			
 			<div class="title">클럽내용</div><br />
-			<textarea rows="20" cols="100" id="c_content" name="c_content" placeholder="${clubDto.c_content}" ></textarea>
+			<textarea rows="20" cols="100" id="c_content" name="c_content">${clubDto.c_content}</textarea>
 		</div>
 		<br /><br /> 
 		
