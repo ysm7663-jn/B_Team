@@ -40,7 +40,7 @@ public class EventInsertCommand implements NoticeCommand {
 							                "." +
 							                extension;
 					
-					String realPath = multipartRequest.getServletContext().getRealPath("resources/storage");
+					String realPath = multipartRequest.getServletContext().getRealPath("resources/images/event");
 					
 					File dir = new File(realPath);
 					if ( !dir.exists() ) {
