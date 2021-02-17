@@ -144,5 +144,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM PLACE
 	</select>
 
+	<select id="querySearch" parameterType="string" resultType="com.koreait.baraON.dto.PlaceListDto">
+		SELECT A.*, PC.PC_NAME, MIN(PO.PO_DAYPRICE) AS MINPRICE, MAX(PO.PO_MAX) AS MAXPEOPLE
+		  FROM (SELECT P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG, COUNT(RV.P_NO) AS RVCOUNT
+				  FROM PLACE P LEFT JOIN REVIEW RV ON P.P_NO = RV.P_NO
+				 WHERE P.P_CONFIRM LIKE '승인'
+				   AND P.P_DELETE = 0
+				   AND (RV.RV_DELETE IS NULL OR RV.RV_DELETE = 0)
+			  GROUP BY P.P_NO, P.PC_NO, P.P_TITLE, P.P_BNAME, P.P_IMG) A LEFT JOIN PLACECATEGORY PC ON A.PC_NO = PC.PC_NO
+																		 LEFT JOIN PLACEOPTION PO ON A.P_NO = PO.P_NO
+		 WHERE A.P_BNAME LIKE '%'||#{param1}||'%'
+		 	OR A.P_ADDR LIKE '%'||#{param1}||'%'
+		 	OR A.P_ADDRDETAIL LIKE '%'||#{param1}||'%'
+		 	OR A.P_TITLE LIKE '%'||#{param1}||'%'
+		 	OR A.P_NAME LIKE '%'||#{param1}||'%'
+	  GROUP BY A.P_NO, A.PC_NO, A.P_TITLE, A.P_BNAME, A.P_IMG, A.RVCOUNT, PC.PC_NAME
+	  ORDER BY A.P_NO DESC
+	</select>
 
 </mapper>

@@ -69,19 +69,20 @@ a#insert-btn:hover{
 	column-gap: 30px;
 	justify-content : space-evenly;
 }
-article.place-list>a>div.thumbnail-box{
+article.place-list>a>div.thumbnail-box, .slick-track{
 	overflow: hidden;
 	
 }
-
-article.place-list > a>div.thumbnail-box> img.list-thumbnail {
+img[id^="slick-slide"]{
 	width: 100%;
 	height : 400px;
 	transition: all ease 0.5s;
 }
-article.place-list> a:hover>div.thumbnail-box> img.list-thumbnail {
+img[id^="slick-slide"]:hover{
 	transform : scale(1.2) ;
+	height: 400px;
 }
+
 img {
 	width:100%;
 }
