@@ -59,7 +59,7 @@ public class ClubController {
 						   ChkOutClubCommand chkOutClubCommand,
 						   LikeClubCommand likeClubCommand,
 						   UnLikeClubCommand unLikeClubCommand,
-						   InstanceClubListCommand instaneCLubListCommand,
+						   InstanceClubListCommand instanceCLubListCommand,
 						   InstanceClubInsertCommand instanceClubInsertCommand,
 						   InstanceClubViewCommand instanceClubViewCommand,
 						   InstanceClubDeleteCommand instanceClubDeleteCommand
@@ -73,7 +73,7 @@ public class ClubController {
 		this.likeClubCommand = likeClubCommand;
 		this.unLikeClubCommand = unLikeClubCommand;
 		this.chkOutClubCommand = chkOutClubCommand;
-		this.instanClubListCommand = instanClubListCommand;
+		this.instanceClubInsertCommand = instanceClubInsertCommand;
 		this.instanceClubInsertCommand = instanceClubInsertCommand;
 		this.instanceClubViewCommand = instanceClubViewCommand;
 		this.instanceClubDeleteCommand = instanceClubDeleteCommand;

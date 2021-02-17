@@ -140,13 +140,8 @@
 			</div>
 			
 			<div class="contents">
-				<div id="title">활동시작일</div> 
+				<div id="title">활동일</div> 
 				<div id="content">${clubDto.c_startDate}</div>
-			</div>
-			
-			<div class="contents">
-				<div id="title">활동종료일</div>
-				<div id="content">${clubDto.c_endDate}</div>
 			</div>
 			
 			<div class="contents">
@@ -165,14 +160,10 @@
 					<br/><br/>
 					<hr class="line">
 					<div class="side_content">
-						<div id="title">활동 시작일 : </div>
+						<div id="title">활동일 : </div>
 						<div id="date">${clubDto.c_startDate}</div>
 					</div>
 					<br/>
-					<div class="side_content">
-						<div id="title">활동 종료일 : </div>
-						<div id="date">${clubDto.c_endDate}</div>
-					</div>
 					<br/><br/>
 					<input type="hidden" name="c_no" value="${clubDto.c_no}" />
 					<input type="hidden" name="m_no" value="${loginDto.m_no}" />
@@ -207,14 +198,10 @@
 					<br/><br/>
 					<hr class="line">
 					<div class="side_content">
-						<div id="title">활동 시작일 : </div><br/>
+						<div id="title">활동일 : </div><br/>
 						<div id="date">${clubDto.c_startDate}</div>
 					</div>
 					<br/>
-					<div class="side_content">
-						<div id="title">활동 종료일 : </div><br/>
-						<div id="date">${clubDto.c_endDate}</div>
-					</div>
 					<br/><br/>
 					<form method="post">
 						<%-- hidden --%>
@@ -226,7 +213,6 @@
 						<input type="hidden" name="c_min" value="${clubDto.c_min}" />
 						<input type="hidden" name="c_max" value="${clubDto.c_max}" />
 						<input type="hidden" name="c_startDate" value="${clubDto.c_startDate}" />
-						<input type="hidden" name="c_endDate" value="${clubDto.c_endDate}" />
 						<input type="hidden" name="c_content" value="${clubDto.c_content}" />
 						
 						<div class="side_content">

@@ -11,9 +11,9 @@
 
 <script>
 
-var afterInsert = ${afterInsert2};
+var afterInsert2 = ${afterInsert2};
 if (afterInsert2) {  
-	var insertResult = ${insertResult2};
+	var insertResult2 = ${insertResult2};
 	if (insertResult2 > 0) {   
 		alert('삽입되었습니다.');
 	} else {
@@ -54,15 +54,15 @@ if (afterDelete) {
 			<c:forEach var="clubDto" items="${list}">
 				<div class="clubList">
 					<div class="mainImg">
-						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">
+						<a href="instanceClubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">
 							<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 						</a>
 					</div>
 					<div class="title">
-						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_title}</a>
+						<a href="instanceClubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_title}</a>
 					</div>
 					<div class="content">
-						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_desc}</a>
+						<a href="instanceClubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_desc}</a>
 					</div>
 				</div>	
 			</c:forEach>
