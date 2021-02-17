@@ -15,7 +15,7 @@
 			<hr class="line">
 			<div id="main_image">
 				<div class="title">메인 화면 썸네일</div>
-				<input type="file" name="c_mainImg" />
+				<input id="main-img" type="file" name="c_mainImg" />
 			</div>
 		
 			<br/><br/>
@@ -55,11 +55,86 @@
 	<script type="text/javascript">
 	
 		function fn_finish(f) {
+			let isPossible=false;
 			if (confirm('클럽을 등록하겠습니까?')) {
+				let chkInputList = $('input:not([type="hidden"])');	// hidden타입을 제외한 input 배열 생성
+				
+				$.each(chkInputList, function(idx, input){			// input들을 순회하면서 validate
+					if($(input).val()==null||$(input).val()==''){
+						alert($(input).prev().text()+'을[를] 입력해주세요');
+						$(input).css('outline','red').css('box-shadow', '1px 1px 0px 0px red, -1px -1px 0px 0px red');
+						$(input).focus();							// 입력되지 않은 input으로 focus
+						isPossible=false;
+						return false;
+					} else {
+						$(input).css('outline', 'blue').css('box-shadow', '1px 1px 0px 0px blue, -1px -1px 0px 0px blue');
+						isPossible=true;
+					}
+				});
+			}
+			if (!isPossible){
+				return;
+			} else {
 				f.action='instanceClubInsert.club';
 				f.submit();
 			}
 		}
+	
+		// 확장자 체크 & 크기 체크
+		(()=>{
+			$('#main-img').on('change', function(event){
+				if($(event.target) != null) {
+					if(!fn_fileChk($(event.target))||!fn_sizeChk($(event.target))) {
+						$(event.target).val('');
+						return;
+					}
+				}
+			});
+		})();
+		
+		// 확장자 체크
+		function fn_fileChk(obj, ext){
+			let chk = false;
+			let extName=obj.val().substring(obj.val().lastIndexOf(".") + 1).toUpperCase();
+			let str = 'PNG,JPG,JPEG'.split(","); // 허용 확장자 배열
+			$.each(str, function(idx, ext){
+				if(ext.trim()===extName){
+					chk = true;
+					return false;
+				} else {
+					chk = false;
+				}
+			});
+			if(!chk){
+				alert('이미지파일만 가능합니다.(JPG, JPEG, PNG)');
+				obj.focus();
+			}
+			
+			return chk;
+		}
+		
+		// 사이즈 체크
+		function fn_sizeChk(obj) { 
+			let chk = false;
+			let sizeinbytes = obj[0].files[0].size;
+			let fSExt = new Array('Bytes', 'KB', 'MB', 'GB');
+			let i = 0;
+			const checkSize = 10*1024*1024;		// 사이즈는 10MB
+			while (checkSize > 900) { 
+				checkSize /= 1024; i++; 
+			} 
+			checkSize = (Math.round(checkSize * 100) / 100) + ' ' + fSExt[i];
+			var fSize = sizeinbytes;
+			if (fSize > size) {
+				alert("첨부파일은 " + checkSize + " 이하로 첨부 바랍니다.");
+				obj.fucus();
+				chk = false; 
+			} else {
+				chk = true; 
+			} 
+			return chk; 
+		}
+		
 	</script>
 
 <%@ include file="../template/footer.jsp"%>
