@@ -13,7 +13,7 @@
 <script type="text/javascript">
 		function fn_delete(f) {
 			if (confirm('정말 클럽을 해제하시겠습니까?')) {
-				f.action='clubDelete.club';
+				f.action='instanceClubDelete.club';
 				f.submit();
 			}
 		}

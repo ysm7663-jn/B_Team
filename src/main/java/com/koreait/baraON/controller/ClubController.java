@@ -152,6 +152,20 @@ public class ClubController {
 		}
 	}
 	
+	@RequestMapping(value="instanceClubDelete.club", method=RequestMethod.POST)
+	public String instanceClubDelete(HttpServletRequest request, @RequestParam(value="isDetailPage", required=false, defaultValue="false") boolean isDetailPage , RedirectAttributes rttr, Model model) {
+		
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		instanceClubDeleteCommand.execute(sqlSession, model);
+		
+		if(isDetailPage) {
+			return "redirect:clubManagePage.myPage?state=0";
+		} else {
+			return "redirect:instanceClubListPage.club";
+		}
+	}
+	
 	@RequestMapping(value="clubUpdatePage.club", method=RequestMethod.POST)
 	public String clubUpdatePage(ClubDto clubDto, Model model) {
 		
