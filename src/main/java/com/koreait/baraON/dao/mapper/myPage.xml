@@ -103,7 +103,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 	 AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') &lt; TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</select>
 	<select id="clubManageDetail" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">
-		SELECT C_NO, C_TITLE, C_DESC, C_CONTENT, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG, C_IMG1, C_IMG2, C_IMG3, C_SUBCONTENT1, C_SUBCONTENT2, C_SUBCONTENT3, C_PART
+		SELECT C_NO, C_TITLE, C_DESC, C_CONTENT, C_STARTDATE, C_ENDDATE, C_MIN, C_MAX, C_MAINIMG, C_PART
 			FROM CLUB
 		 WHERE C_NO = #{param1}
 	</select>
