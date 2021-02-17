@@ -5,10 +5,14 @@
 </jsp:include>
 <link rel="stylesheet" href="resources/style/member/findPage.css">
 <link rel="stylesheet" href="resources/style/member/findPwPage.css">
- 
+<style>
+	.main-aside {
+		width: 432px;
+	}
+</style>
 <script>
 	$(function(){
-		$(".footer-wrap").css("background" , "white");
+		$("footer").css("background" , "white");
 	});
 
 	function fn_checkPassword(f) {
@@ -31,7 +35,7 @@
 			<input type="radio" name="tab" id="findPw" />
 			<div class="tab-buttons">
 				<label for="findId">아이디 찾기<hr></label>&nbsp;&nbsp;&nbsp;
-				<label for="findPw">비밀번호 찾기<hr></label>
+				<label for="findPw">비밀번호 찾기<hr class="check"></label>
 			</div>
 			<form method="post">
 				<table class="findPwPage2">

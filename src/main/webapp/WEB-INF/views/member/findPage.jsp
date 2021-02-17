@@ -10,18 +10,9 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
 	$(function(){
-		$(".footer-wrap").css("background" , "white");
+		$("footer").css("background" , "white");
+		fn_tab();
 	});
-	/* css */
-	/* $(document).ready(function(){
-		if($('#findId:checked'.val() == 'checked')) {
-			$('.tab-contents:first-of-type').css('display', 'block');
-			$('hr').css("display", block);
-		} else if($('#findPw:checked.val() == 'checked')) {
-			$('.tab-contents:last-of-type').css('display', 'block');
-			$('hr').css("display", block);
-		}
-	}); */
 	
 	function fn_findId(f){
 		if (f.name.value == '') {
@@ -80,20 +71,43 @@
 		}
 	}
 	
+	function fn_tab(){
+		$('input[name="tab"]+label').on('click', function(event){
+			let target = $(event.target).prev();
+			if($(target).prop('checked')===true){
+				if($(target).prop('id')==='findId'){
+					$('.con1').css('display', 'block');
+					$('.con2').css('display', 'none');
+				} else {
+					$('.con1').css('display', 'none');
+					$('.con2').css('display', 'block');
+				}
+			} else {
+				if($(target).prop('id')==='findId'){
+					$('.con1').css('display', 'block');
+					$('.con2').css('display', 'none');
+				} else {
+					$('.con1').css('display', 'none');
+					$('.con2').css('display', 'block');
+				}
+			}
+		});
+	}
+	
 </script>
 <div class="box">
 	<div class="inner-box">
 		<div class="main-aside">
-			<form method="post">
-				<input type="radio" name="tab" id="findId" checked="checked" />
+			<div class="tab-buttons">
+				<input type="radio" name="tab" id="findId" checked />
+				<label for="findId">아이디 찾기<hr></label>&nbsp;&nbsp;&nbsp;
 				<input type="radio" name="tab" id="findPw" />
-				<div class="tab-buttons">
-					<label for="findId">아이디 찾기<hr></label>&nbsp;&nbsp;&nbsp;
-					<label for="findPw">비밀번호 찾기<hr></label>
-				</div>
+				<label for="findPw">비밀번호 찾기<hr></label>
+			</div>
 				
+			<form method="post">
 				<!-- 아이디 찾기 -->
-				<table class="tab-contents"> 
+				<table class="tab-contents con1"> 
 					<tbody>
 						<tr>
 							<td colspan="2">
@@ -129,7 +143,7 @@
 			</form>
 			<form method="post">
 				<!-- 비밀번호 찾기 -->
-				<table class="tab-contents">
+				<table class="tab-contents con2">
 					<tbody>
 						<tr>
 							<td colspan="2">

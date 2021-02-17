@@ -10,6 +10,7 @@
 <script>
 	$(document).ready(function(){
 		fn_findIdResult();
+		$("footer").css("background" , "white");
 	});
 	
 	function fn_findIdResult(){
@@ -22,7 +23,7 @@
 			<input type="radio" name="tab" id="findId" checked />
 			<input type="radio" name="tab" id="findPw" />
 			<div class="tab-buttons">
-				<label for="findId">아이디 찾기<hr></label>&nbsp;&nbsp;&nbsp;
+				<label for="findId">아이디 찾기<hr class="check"></label>&nbsp;&nbsp;&nbsp;
 				<label for="findPw">비밀번호 찾기<hr></label>
 			</div>
 			<div class="resultBox">
