@@ -34,19 +34,21 @@ public class ClubUpdateCommand implements ClubCommand {
 		
 		if ( newFile != null && oldFile != null ) {
 	
-			String originalFilename = newFile.getOriginalFilename();
-			String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
-			
-			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
-					
-			String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
-				
 			File file = new File(realPath, oldFile);
 			if(file.exists()) {
 				file.delete();
 			}
 			
+			String originalFilename = newFile.getOriginalFilename();
+			
+			String extension = originalFilename.substring( originalFilename.lastIndexOf(".")+1);
+			
+			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
+					
+			String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
+			
 			File uploadFile = new File(realPath, uploadFilename);
+			
 			try {
 				newFile.transferTo(uploadFile);
 			} catch (Exception e) {
