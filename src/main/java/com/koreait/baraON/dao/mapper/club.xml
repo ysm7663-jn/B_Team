@@ -6,14 +6,32 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.koreait.baraON.dao.ClubDao">
 
 	<select id="clubList" resultType="com.koreait.baraON.dto.ClubDto">
+		SELECT * 
+		  FROM CLUB 
+	</select>
+	
+	<select id="instanceClubList" resultType="com.koreait.baraON.dto.ClubDto">
 		SELECT *
 		  FROM CLUB
 	</select>
+	
+	<delete id="finishDay" parameterType="int">
+		DELETE
+		  FROM CLUB
+		 WHERE C.NO = #{param1}
+		   AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</delete>
 	
  	<insert id="clubInsert">
 		INSERT 
 		  INTO CLUB (C_NO, M_NO, C_TITLE, C_DESC, C_MIN, C_MAX, C_STARTDATE, C_ENDDATE, C_CONTENT, C_POSTDATE, C_MAINIMG, C_DELETE, C_PART)
 		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, SYSDATE,  #{param9}, 0, 0)
+	</insert>
+	
+ 	<insert id="instanceclubInsert">
+		INSERT 
+		  INTO CLUB (C_NO, M_NO, C_TITLE, C_DESC, C_MIN, C_MAX, C_STARTDATE, C_ENDDATE, C_CONTENT, C_POSTDATE, C_MAINIMG, C_DELETE, C_PART)
+		VALUES (CLUB_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, #{param4}, #{param5}, #{param6}, #{param7}, #{param8}, SYSDATE, #{param9}, 0, 1)
 	</insert>
 	
 	<select id="clubView" parameterType="int" resultType="com.koreait.baraON.dto.ClubDto">

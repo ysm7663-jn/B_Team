@@ -9,7 +9,13 @@ public interface ClubDao {
 	
 	public List<ClubDto> clubList();
 	
+	public List<ClubDto> instanceClubList();
+	
+	public int finishDay(int c_no);
+	
 	public int clubInsert(int m_no, String c_title, String c_desc, int c_min, int c_max, String startDate, String endDate, String c_content, String c_mainImg);
+	
+	public int instanceclubInsert(int m_no, String c_title, String c_desc, int c_min, int c_max, String startDate, String endDate, String c_content, String c_mainImg);
 	
 	public ClubDto clubView(int c_no);
 	
