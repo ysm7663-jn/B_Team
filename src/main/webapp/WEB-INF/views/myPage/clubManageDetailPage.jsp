@@ -12,6 +12,7 @@
 			$('.update').remove();
 			$('.delete').remove();
 			$('.addPlace').remove();
+			$('.detailBtn').remove();
 		}
 	});
 	
@@ -118,7 +119,7 @@
 		
 		<div class="membersInfo-wrap">
 			<h2 class="sub_title">참가 멤버</h2>
-			<div class="clubCount">현재 인원: ${memberCount}명</div>
+			<div class="clubCount">총 인원: ${memberCount}명</div>
 			
 			<c:if test="${empty clubList}">
 				<div class="empty">아직 참가한 인원이 없습니다. :(</div>

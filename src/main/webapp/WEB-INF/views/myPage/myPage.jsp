@@ -38,7 +38,7 @@
 					<a class="btn active" href="instantClub.myPage?state=0">번개 모임</a><br/>
 				</li>
 				<li>
-					<a class="btn" href="infoDeletePage.myPage">탈퇴하기</a><br/>
+					<a class="btn" href="infoDeletePage.myPage?grade=member">탈퇴하기</a><br/>
 				</li>
 			</ul>
 		
@@ -69,7 +69,7 @@
 					<a href="reservation.seller">예약리스트</a><br/>
 				</li>
 				<li>
-					<a href="infoDeletePage.myPage">탈퇴하기</a><br/>
+					<a href="infoDeletePage.myPage?grade=seller">탈퇴하기</a><br/>
 				</li>
 			</ul>
 		</c:if>

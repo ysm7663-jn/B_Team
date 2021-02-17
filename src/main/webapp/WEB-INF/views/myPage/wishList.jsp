@@ -27,7 +27,7 @@
 			<div class="club-wrap">
 				<c:forEach var="wishListDto" items="${list}">
 					<div class="clubList">
-						<div class="clubImage"><a href=""><img alt="모임이미지" src="resources/images/club/${wishListDto.c_mainimg}"></a></div>
+						<div class="clubImage"><a href="clubViewPage.club?c_no=${wishListDto.c_no}&m_no=${loginDto.m_no}"><img alt="모임이미지" src="resources/images/club/${wishListDto.c_mainimg}"></a></div>
 						<form action="wishDelete.myPage" method="post">
 							<!-- hidden -->
 							<input type="hidden" name="wNo" value="${wishListDto.w_no}" />
