@@ -20,7 +20,7 @@
 		
 		function fn_update(f) {
 			if (confirm('클럽 정보를 수정하시겠습니까?')) {
-				f.action='clubUpdatePage.club';
+				f.action='instanceClubUpdatePage.club';
 				f.submit();
 			}
 		}

@@ -35,9 +35,9 @@
 					
 				<div class="title">활동날짜</div>
 					<input type="text" name="c_startDate" id="input" placeholder="  ex) 20xx.xx.xx" /><br/><br/>
-					
-				<input type="hidden" name="c_endDate" value="0" />
 				
+				<input type="hidden" name="c_endDate" value="1111.11.11" />
+					
 				<div class="title">클럽내용</div>
 					<textarea rows="20" cols="100" id="c_content" name="c_content" placeholder=" 2000자 이내로 작성해주세요" ></textarea>
 				<br/><br/>
@@ -45,6 +45,7 @@
 		</div>
 		<%-- hidden --%>
 		<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+		
 		<div class="btn_wrap">
 			<input type="button" name="btn" id="btn" value="완료하기" onclick="fn_finish(this.form)" />
 			<input type="button" name="btn" id="btn" value="돌아가기" onclick="location.href='instanceClubListPage.club'" />
