@@ -80,7 +80,7 @@ function fn_clickCategory(){
 	$('body').on('click', '#category-list li>a', function(){
 		$(this).closest('#category-list').next().val($(this).next().val());
 		$('#category-list li>a').css('background', '');
-		$(this).css('background','rgba(216,100,216,1)');
+		$(this).css('background','rgba(95, 158, 160, 1)');
 		
 	});
 }
