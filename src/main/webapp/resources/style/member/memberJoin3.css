@@ -47,11 +47,15 @@
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
+	background:cadetblue;
+	color:white;
 }
 #btn{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
+	background:cadetblue;
+	color:white;
 }
 
 #m_email{
@@ -64,6 +68,8 @@
 	width : 200px; 
 	height : 50px; 
 	font-size : 15px;
+	background:cadetblue;
+	color:white;
 }
 
 
