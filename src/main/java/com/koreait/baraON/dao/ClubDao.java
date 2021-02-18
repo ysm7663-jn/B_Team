@@ -3,6 +3,7 @@ package com.koreait.baraON.dao;
 import java.util.List;
 
 import com.koreait.baraON.dto.ClubDto;
+import com.koreait.baraON.dto.ClubListDto;
 import com.koreait.baraON.dto.MemberDto;
 
 public interface ClubDao {
@@ -24,6 +25,8 @@ public interface ClubDao {
 	public int clubDelete(int c_no);
 
 	public int clubUpdate(String c_mainImg, String c_desc, int c_min, int c_max, String c_content, int c_no);
+	
+	public ClubListDto findJoin(int c_no, int m_no);
 	
 	public int joinClub(int c_no, int m_no);
 	

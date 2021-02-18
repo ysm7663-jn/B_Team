@@ -54,15 +54,15 @@ if (afterDelete) {
 			<c:forEach var="clubDto" items="${list}">
 				<div class="clubList">
 					<div class="mainImg">
-						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">
+						<a href="clubViewPage.club?c_no=${clubDto.c_no}">
 							<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 						</a>
 					</div>
 					<div class="title">
-						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_title}</a>
+						<a href="clubViewPage.club?c_no=${clubDto.c_no}">${clubDto.c_title}</a>
 					</div>
 					<div class="content">
-						<a href="clubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">${clubDto.c_desc}</a>
+						<a href="clubViewPage.club?c_no=${clubDto.c_no}">${clubDto.c_desc}</a>
 					</div>
 				</div>	
 			</c:forEach>
