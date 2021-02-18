@@ -24,6 +24,27 @@ function fn_faqUpdate(f){
 		f.submit();
 		}
 	}
+function fn_checkForm(f) {
+
+    if(f.title.value == '' || f.title.value.length < 2 ) {
+        alert("제목을 확인하세요.");
+        f.title.focus();
+        return false;
+    }
+    if(f.content.value == ''){
+        alert('내용을 입력하세요.');
+        f.content.focus();
+		return false;
+    }
+    if(f.f_category.value == '선택'){
+    	alert('카테고리를 선택하세요.');
+        f.f_category.focus();
+		return false;
+    }
+    fn_faqUpdate(f);
+    f.submit();
+    	
+    }
 </script>
 <title>I</title>
 </head>
@@ -32,12 +53,19 @@ function fn_faqUpdate(f){
 		<h1>FAQ 수정 페이지</h1><br/>
 		<h3>${faqDto.f_title} 제목의 FAQ입니다.</h3><br/>
 		<form action="faqUpdate.admin">
+			카테고리
+			<select name="f_category">
+				<option>선택</option>
+				<option value="2">결제 및 환불</option>
+				<option value="3">계정</option>
+				<option value="4">이용안내</option>
+			</select><br/><br/>
 			<span style="font-size: 20px">제목</span><br/>
 			<input type="text" id="titlebox" name="title" value="${faqDto.f_title}" /><br/><br/>
 			<span style="font-size: 20px">내용</span><br/>
-			<textarea rows="4" cols="20" style="width:1200px; height:400px; font-size:18px; margin-top:10px" name="content">${faqDto.f_content}" /></textarea><br/><br/>
+			<textarea rows="4" cols="20" name="content" style="width:1200px; height:400px; font-size:18px; margin-top:10px" name="content">${faqDto.f_content}"</textarea><br/><br/>
 			<input type="hidden" name="no" value="${faqDto.f_no}" />
-			<input type="button" value="수정하기" onclick="fn_faqUpdate(this.form)">
+			<input type="button" value="수정하기" onclick="fn_checkForm(this.form)">
 		</form>
 	</div><br/><br/>
 <%@ include file="../template/footer.jsp" %>	

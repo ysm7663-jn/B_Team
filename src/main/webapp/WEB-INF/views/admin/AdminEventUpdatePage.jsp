@@ -13,6 +13,27 @@
 			f.submit();
 			}
 		}
+	function fn_checkForm(f) {
+
+	    if(f.title.value == '' || f.title.value.length < 2 ) {
+	        alert("제목을 확인하세요.");
+	        f.title.focus();
+	        return false;
+	    }
+	    if(f.content.value == ''){
+	        alert('내용을 입력하세요.');
+	        f.content.focus();
+			return false;
+	    }
+	    if(f.filename.value == ''){
+	        alert('파일을 선택해주세요.');
+	        f.filename.focus();
+			return false;
+	    }
+	    fn_eventUpdate(f);
+	    f.submit();
+	    	
+	    }
 </script>
 <title></title>
 <style type="text/css">
@@ -33,13 +54,13 @@
 			<h3>${eventDto.e_title} 제목의 이벤트입니다.</h3><br/>
 			<form action="eventUpdate.admin">
 				<span style="font-size: 20px">제목</span><br/>
-				<input type="text" id="titlebox" value="${eventDto.e_title}" /><br/><br/>
+				<input type="text" id="titlebox" name="title" value="${eventDto.e_title}" /><br/><br/>
 				<span style="font-size: 20px">내용</span><br/>
-				<textarea rows="4" cols="20" style="width:1200px; height:400px; font-size:18px; margin-top:10px" name="content">${eventDto.e_content}</textarea><br/><br/>
+				<textarea rows="4" cols="20" name="content"style="width:1200px; height:400px; font-size:18px; margin-top:10px" name="content">${eventDto.e_content}</textarea><br/><br/>
 				파일첨부<br/>
 				<input type="file" name="filename" value="${eventDto.e_filename}" /><br/><br/>
 				<input type="hidden" name="no" value="${eventDto.e_no}" />
-				<input type="button" value="수정하기" onclick="fn_eventUpdate(this.form)">
+				<input type="button" value="수정하기" onclick="fn_checkForm(this.form)">
 			</form>
 	</div>
 <%@ include file="../template/footer.jsp" %>

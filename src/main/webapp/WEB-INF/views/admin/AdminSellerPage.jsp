@@ -13,6 +13,8 @@
 		sellerUpdate();
 	});
 	var page = 1; 
+	var date = new Date();
+	date = dateToYear(date);
 	
 	function sellerList() {
 		
@@ -87,6 +89,21 @@
 			});
 		
 		}
+	function dateToYear(date) {
+	    var year = date.getFullYear();
+
+	    var month = date.getMonth() + 1;
+	    if (month < 10)  {
+	        month = '0' + month;
+	    }
+
+	    var date = date.getDate();
+	    if (date < 10) {
+	        date = '0' + date;
+	    }
+	    
+	    return year + '-' + month + '-' + date;
+	}
 	function sellerListTable(list) {
 		$.each(list, function(idx, seller){
 			$('<tr>')
@@ -98,7 +115,7 @@
 			.append( $('<td>').html(seller.s_birth) )
 			.append( $('<td>').html(seller.s_companyno) )
 			.append( $('<td>').html(seller.s_email) )
-			.append( $('<td>').html(seller.s_regDate) )
+			.append( $('<td>').html(date) )
 			.append( $('<input type="hidden" name="no" />').val(seller.s_no) )
 			.append( $('<input type="hidden" name="id" />').val(seller.s_id) )  // 회원 삭제에서 사용할 id를 새로 추가했습니다.
 			.append( $('<td>').html('<input type="button" value="조회" id="btnView" />'))

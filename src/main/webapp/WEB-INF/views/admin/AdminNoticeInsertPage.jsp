@@ -23,6 +23,24 @@
 	function fn_insert(){
 		alert('공지사항이 추가되었습니다.');
 	}
+	function fn_checkForm(f) {
+
+	    if(f.title.value == '' || f.title.value.length < 2 ) {
+	        alert("제목을 확인하세요.");
+	        f.title.focus();
+	        return false;
+	    }
+	    if(f.content.value == ''){
+	        alert('내용을 입력하세요.');
+	        f.content.focus();
+			return false;
+	    }
+	    fn_insert();
+	    f.submit();
+	    	
+	    }
+	
+
 </script>
 </head>
 <body>
@@ -30,10 +48,10 @@
 		<h1>공지사항 추가 페이지</h1><br/>
 		<form action="noticeInsert.admin">
 			<span style="font-size: 20px">제목</span><br/>
-			<input type="text" id="titlebox" name="title" /><br/><br/>
+			<input type="text" id="n_title" name="title" /><br/><br/>
 			<span style="font-size: 20px">내용</span><br/>
-			<textarea rows="4" cols="20" name="content" style="width:400px; height:200px; font-size:20px; margin-top:10px"></textarea><br/><br/>
-			<button onclick="fn_insert()">작성완료</button>
+			<textarea rows="4" cols="20" id="n_content" name="content" style="width:400px; height:200px; font-size:20px; margin-top:10px"></textarea><br/><br/>
+			<input type="button" value="작성완료" onclick="fn_checkForm(this.form)"/>
 		</form>
 	</div><br/><br/>
 <%@ include file="../template/footer.jsp" %>
