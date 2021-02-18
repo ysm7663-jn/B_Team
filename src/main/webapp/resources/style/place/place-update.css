@@ -45,6 +45,9 @@ ul.facility-list li {
 	border : 1px solid rgba(95, 158, 160, 0.8);
 	border-radius: 10px;
 }
+button[class^="select-"]{
+	width: 130px;
+}
 
 section.option input:not([type="file"]) {
 	width:100%;

@@ -11,7 +11,7 @@ $(function(){
 			$(event.target).next().removeClass('active');
 			// 이 때 만약 날짜를 선택했다면 input hidden name=res_date에 값이 들어가있다.
 			// active 클래스를 없애준 후 해당 값도 없애준다.
-			$(event.target).next().find('input[type="hidden"]').val('');
+			$(event.target).next().find('input[type="hidden"]').remove();
 		} else {
 			$(event.target).next().addClass('active');
 		}
@@ -192,7 +192,8 @@ function fn_datepiacker(){
         showMonthAfterYear: true,
         yearSuffix: '년',
         onSelect: function(d){
-        	$(this).closest('.calendar-wrap').next().val(d);
+        	$(this).closest('.option-info-box').find('input[type="hidden"]').remove();
+        	$(this).closest('.calendar-wrap').after('<input type="hidden" name="res_date" value="'+d+'"/>');
         }
 	});
 }

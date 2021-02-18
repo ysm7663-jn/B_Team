@@ -17,7 +17,15 @@ $(function(){
 	let selectedCategory = $('input[value="${placeCategoryDto.pc_no}"]');
 	$(selectedCategory).prev('a').css('background', 'rgba(95, 158, 160, 1)');
 	fn_optionFacility('.facility-list', poFacilities);
+	fn_countChar('.place-input');
 })
+/* 글자수 count */
+function fn_countChar(countTag){
+	$(countTag).on('keyup', function(event){
+		let count = $(event.target).val().length;
+		$(event.target).next().text(count);
+	});
+}
 
 function fn_optionFacility(tagTo, list){
 	$.each(list, function(idx,facilityList){

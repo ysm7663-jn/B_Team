@@ -169,7 +169,7 @@
 								</div>
 								<div class="calendar-wrap">
 								</div>
-								<input type="hidden" name="res_date" />
+								<!-- <input type="hidden" name="res_date" /> -->
 								<div class="people-count">
 									<strong>예약인원</strong>
 									<button type="button" class="count-minus" >&lt;</button>

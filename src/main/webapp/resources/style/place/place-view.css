@@ -91,6 +91,21 @@ button:hover{
 .close:hover{
 	transform:rotateY(360deg);
 }
+
+button#place-update-btn, button#place-delete-btn{
+	width : 150px;
+	height : 30px;
+	font-size: 15px;
+	text-align : center;
+	line-height : 30px;
+	border : 0;
+	border-radius: 10px;
+	background: rgba(95, 158, 160, 0.5);
+	cursor:pointer;	
+}
+button#place-update-btn:hover, button#place-delete-btn:hover{
+	background: rgba(95, 158, 160, 1);
+}
 /* 공간 옵션 css */
 aside {
 	position : sticky;
