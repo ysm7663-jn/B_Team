@@ -114,30 +114,9 @@
 	}
 
 	
-	function fn_sellerUpdate(){
-		var obj={
-			"s_no":'${loginDto.s_no}',
-			"s_phone":$('#s_phone').val(),
-			"s_email":$('#s_email').val()
-		};
-		$.ajax({
-			url:'sellerUpdate.seller',
-			type:'post',
-			data:JSON.stringify(obj),
-			contentType: 'application/json',
-			dataType:'json',
-			success:function(data){
-				if(data.result == 1){
-					alert('수정되었습니다');
-					location.href='index';
-				}else{
-					alert('실패');
-				}
-			},
-			error: function(){
-				alert('실패');
-			}
-		});
+	function fn_sellerUpdate(f){
+		f.action='pwCheck2.seller';
+		f.submit();		
 	}
 	
 	
@@ -212,15 +191,15 @@
 				</tr>
 				<tr>
 					<th>휴대전화</th>
-					<td><input type="text" placeholder="${loginDto.s_phone}" id="s_phone" name="s_phone"/></td>
+					<td><input type="text" placeholder="${loginDto.s_phone}" id="s_phone" name="s_phone" value="${loginDto.s_phone}"/></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="text" placeholder="${loginDto.s_email}"id="s_email" name="s_email"/></td>
+					<td><input type="text" placeholder="${loginDto.s_email}"id="s_email" name="s_email" value="${loginDto.s_email}"/></td>
 				</tr>
 				<tr>
 					<td>
-						<input type="button" value="확인" onclick="fn_sellerUpdate()"/>
+						<input type="button" value="확인" onclick="fn_sellerUpdate(this.form)"/>
 					</td>
 				</tr>
 				
