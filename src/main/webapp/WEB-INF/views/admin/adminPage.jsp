@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
-	if(document.referrer.indexOf('index')!=-1&&document.referrer.indexOf('index')==){
+	if(document.referrer.indexOf('index')!=-1){
 		alert('baraON 관리자페이지 입니다.');
 	}
 </script>
