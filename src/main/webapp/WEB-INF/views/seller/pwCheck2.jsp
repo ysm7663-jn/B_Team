@@ -7,7 +7,6 @@
 
 <script >
 
-
 function fn_pwSearch(){
 	var s_no= '${loginDto.s_no}';
 	var s_pw= $('#sellerPw').val();
@@ -23,7 +22,29 @@ function fn_pwSearch(){
 		success:function(data){
 			if(s_pw==data.result){
 				alert('성공');	//지울것
-				location.href='sellerView.seller';
+				var obj={
+						"s_no":'${loginDto.s_no}',
+						"s_phone":'${s_phone}',	
+						"s_email":'${s_email}'
+					};
+					$.ajax({
+						url:'sellerUpdate.seller',
+						type:'post',
+						data:JSON.stringify(obj),
+						contentType: 'application/json',
+						dataType:'json',
+						success:function(data){
+							if(data.result == 1){
+								alert('수정되었습니다');
+								location.href='index';
+							}else{
+								alert('실패');
+							}
+						},
+						error: function(){
+							alert('실패');
+						}
+					});
 			}else{
 				alert('비밀번호가 틀립니다');
 			}
