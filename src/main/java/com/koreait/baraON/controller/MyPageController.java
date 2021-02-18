@@ -75,8 +75,10 @@ public class MyPageController {
 		return "myPage/profile";
 	}
 	
-	@RequestMapping(value="pwCheck.myPage", method=RequestMethod.GET)
-	public String pwCheck(HttpServletRequest request) {
+	@RequestMapping(value="pwCheck.myPage" ,method=RequestMethod.GET)
+	public String memberJoin2(HttpServletRequest request, Model model) {
+		model.addAttribute("m_phone", request.getParameter("m_phone"));
+		model.addAttribute("m_email", request.getParameter("m_email"));
 		return "myPage/pwCheck";
 	}
 	

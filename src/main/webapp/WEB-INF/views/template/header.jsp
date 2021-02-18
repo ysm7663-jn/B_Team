@@ -46,7 +46,12 @@
 						<!-- 로그인 후 -->
 						<c:if test="${loginDto ne null}">
 							<div><a href="logout.member">로그아웃</a></div>
-							<div><a href="profile.myPage">마이페이지</a></div>
+							 <c:if test="${grade eq 'member'}">
+								<div><a href="memberView.member">마이페이지</a></div>
+							</c:if>
+							 <c:if test="${grade eq 'seller'}">
+								<div><a href="sellerView.seller">마이페이지</a></div>
+							</c:if>
 							<div><a href="faqListPage.faq">FAQ</a></div>
 						</c:if>
 					</nav>

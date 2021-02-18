@@ -108,13 +108,15 @@ public class SellerController {
 	}
 	
 	@RequestMapping(value="sellerJoin2.seller" ,method=RequestMethod.POST)
-	public String sellerJoin2(HttpServletRequest request, Model model) {
+	public String sellerJoin1(HttpServletRequest request, Model model) {
 		model.addAttribute("chk_email", request.getParameter("chk_email"));
 		return "seller/sellerJoin2";
 	}
 	
-	@RequestMapping(value="pwCheck2.seller")
-	public String spaceViewPage() {
+	@RequestMapping(value="pwCheck2.seller" ,method=RequestMethod.GET)
+	public String pwCheck2(HttpServletRequest request, Model model) {
+		model.addAttribute("s_phone", request.getParameter("s_phone"));
+		model.addAttribute("s_email", request.getParameter("s_email"));
 		return "seller/pwCheck2";
 	}
 	
