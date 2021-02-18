@@ -25,7 +25,7 @@ public class PlaceAdminListCommand implements SellerCommand {
 		int beginRecord = (page - 1) * recordPerPage + 1;
 		int endRecord = beginRecord + recordPerPage - 1;
 		endRecord = (endRecord < totalRecord) ? endRecord : totalRecord;
-		int totalPage = totalRecord / recordPerPage;  // 전체 페이지의 개수
+		int totalPage = totalRecord / recordPerPage;  
 		if (totalRecord % recordPerPage != 0) {
 			totalPage++;
 		}
