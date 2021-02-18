@@ -15,7 +15,6 @@
 	var page = 1; 
 	
 	function memberList() {
-		
 		var obj= {
 				"page": page
 			};
@@ -27,11 +26,8 @@
 				contentType: 'application/json',  // 컨트롤러로 보내는 데이터의 타입
 				dataType: 'json',
 				success: function(result) {
-					
 					var paging = result.paging;
-					
 					$('#memberList').empty();  // 기존 목록 제거
-					
 					// 회원이 있으면,
 					if (result.exist) {
 						$('#totalRecord').html('전체: ' + paging.totalRecord + '명');  // 전체 인원수 출력
@@ -43,60 +39,33 @@
 						.append($('<td colspan="6" style="height: 20px;">').html('데이터가 없습니다.'))
 						.appendTo('#memberList');
 					}
-					
-					
-					// 여기서부터 memberList() 끝까지 페이징 처리
-					
 					$('#paging').empty();  // 기존 페이징 초기화
-					
-					// 링크가 필요한 모든 곳에는 data-page 속성에 이동할 페이지 번호를 계산해 두고
-					// $(this).attr('data-page') 를 통해서 그 값을 꺼내서 사용합니다.
 					
 					// ◀
 					if (paging.beginPage <= paging.pagePerBlock) {
-						// class 의미
-						// disable : css (클릭 안 되는 건 실버색) 적용하려고
 						$('#paging').append('<div class="disable"><a>◀</a></div>');
 					} else {
-						// class 의미
-						// 1) prev-block : 이전(◀)으로 이동하려고
-						// 2) go-page : css (cursor: pointer) 적용하려고
 						$('#paging').append('<div class="prev-block go-page" data-page="' + (paging.beginPage - 1) + '"><a>◀</a></div>');
 					}
-					
 					// 1 2 3 4 5
 					for (let p = paging.beginPage; p <= paging.endPage; p++) {
-						if (paging.page == p) {  // 현재페이지는 링크가 안 됩니다.
-							// class 의미
-							// now-page : css (현재 페이지는 녹색) 적용하려고
+						if (paging.page == p) {  
 							$('#paging').append('<div class="now-page"><a>' + p + '</a></div>')
 						} else {
-							// class 의미
-							// go-page : css (cursor: pointer) 적용하려고
 							$('#paging').append('<div class="go-page" data-page="' + p + '"><a>' + p + '</a></div>');
 						}
 					}
-					
 					// ▶
 					if (paging.endPage >= paging.totalPage) {
-						// class 의미
-						// disable : css (클릭 안 되는 건 실버색) 적용하려고
 						$('#paging').append('<div class="disable"><a>▶</a></div>');
 					} else {
-						// class 의미
-						// 1) next-block : 다음(▶)으로 이동하려고
-						// 2) go-page : css (cursor: pointer) 적용하려고
 						$('#paging').append('<div class="next-block go-page" data-page="' + (paging.endPage + 1) + '"><a>▶</a></div>');
 					}
-					
 				},
 				error: function(){
 					alert('실패');
 				}
-				
 			});
-			
-			// 링크가 걸릴 때 이동할 페이지 번호를 알아내서 다시 목록을 뿌리는 함수들
 			$('body').on('click', '.prev-block', function(){
 				page = $(this).attr('data-page');
 				memberList();
