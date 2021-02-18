@@ -11,19 +11,24 @@
 	});
 
 	function clubCount() {
-		var cNo = $('#c_no').val();
 		
-		$.ajax({
-			url: 'clubCount/' + cNo,
-			type: 'get',
-			dataType: 'json',
-			success: function(responseObj){
-				$('.count').html('총 인원 :  ' + responseObj.clubCount + '명');
-			},
-			error: function() {
-				alert('총 인원을 구하는데 문제가 발생했습니다.');
-			}
+		var cNoList = $('input:hidden[name="c_no"]');
+		var countList = $('.count');
+		$.each(cNoList, function(idx, cNo){
+			var cNo = $(cNo).attr('value');
+			$.ajax({
+				url: 'clubCount/' + cNo,
+				type: 'get',
+				dataType: 'json',
+				success: function(responseObj){
+					$(countList[idx]).html('총 인원 :  ' + responseObj.clubCount + '명');
+				},
+				error: function() {
+					alert('총 인원을 구하는데 문제가 발생했습니다.');
+				}
+			});
 		});
+		
 	}
 
 	$(function(){

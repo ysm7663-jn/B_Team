@@ -36,22 +36,6 @@
 		};
 	}
 	
-	function fn_memberReload() {
-		var cNo = '${clubDto.c_no}';
-		$.ajax({
-			url: 'memberReload/' + cNo,
-			type: 'get',
-			dataType: 'json',
-			success: function(responseObj) {
-				
-			},
-			error: function(){
-				alert('reload 중에 문제가 발생했습니다. 다시 시도하세요.');
-			}
-		});
-	}
-	
-		
 </script>
 	<div class="mypage-contents">
 		<h2>모임 관리</h2>
