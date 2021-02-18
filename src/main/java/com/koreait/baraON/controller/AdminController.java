@@ -315,8 +315,10 @@ public class AdminController {
 	}
 	@RequestMapping(value="eventInsert.admin" , method=RequestMethod.POST)
 		public String eventInsert(MultipartRequest multipartRequest,
-										Model model) {
+									RedirectAttributes rttr,
+									Model model) {
 		model.addAttribute("multipartRequest", multipartRequest);
+		model.addAttribute("rttr", rttr);
 		eventInsertCommand.execute(sqlSession, model);
 		return "redirect:adminEventListPage.admin";
 	}

@@ -5,7 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
-	alert('baraON 관리자페이지 입니다.');
+	if(document.referrer.indexOf('index')!=-1&&document.referrer.indexOf('index')==){
+		alert('baraON 관리자페이지 입니다.');
+	}
 </script>
 <link rel="stylesheet" href="resources/style/common.css">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
