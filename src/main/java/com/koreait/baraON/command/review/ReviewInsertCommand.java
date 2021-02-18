@@ -20,7 +20,6 @@ public class ReviewInsertCommand implements ReviewCommand {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)model.asMap().get("multipartRequest");
 		RedirectAttributes rttr = (RedirectAttributes)model.asMap().get("rttr");
-//		System.out.println(rttr);
 		
 		int m_no = Integer.parseInt(multipartRequest.getParameter("m_no"));
 		int p_no = Integer.parseInt(multipartRequest.getParameter("p_no"));
@@ -89,11 +88,9 @@ public class ReviewInsertCommand implements ReviewCommand {
 			}
 		}
 		if ( !sb.toString().isEmpty() && sb.toString() != null) {
-			System.out.println("1");
 			rv_img = sb.toString();
 			rttr.addFlashAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, rv_img, rv_content));
 		} else {
-			System.out.println("2");
 			rttr.addFlashAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, sb.toString(), rv_content));
 		}
 	}

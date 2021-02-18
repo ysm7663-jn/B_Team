@@ -13,6 +13,7 @@
 	let remarkList = JSON.parse('${placeDto.p_remark}');
 	let facilityList = JSON.parse('${placeOptionDto.po_fxility}');
 	let isProgress=false;
+	let resNo = '${reservationDto.res_no}';
 	function fn_facilityList(list, appendTo){
 		$.each(list, function(idx, facility){
 			let strHtml = '<div class="facility">'+facility+'</div>';
@@ -68,7 +69,7 @@
 				'vbank':가상계좌,
 				'phone':휴대폰소액결제
 				 */
-				merchant_uid : '${reservationDto.res_no}'+ new Date().getTime(),
+				merchant_uid : resNo +''+ new Date().getTime(),
 				/*
 				merchant_uid에 경우
 				https://docs.iamport.kr/implementation/payment
@@ -231,20 +232,20 @@
 						<label for="terms-all">전체 동의</label>
 					</li> 
 					<li>
-						<input id="terms1" type="checkbox" />
+						<input class="terms" id="terms1" type="checkbox" />
 						<label for="terms1">위 공간의 예약조건 확인 및 결제진행 동의
 							<span class="required-data">필수</span>
 						</label>
 					</li> 
 					<li>
-						<input id="terms2" type="checkbox" />
+						<input class="terms" id="terms2" type="checkbox" />
 						<label for="terms2">환불규정 안내에 대한 동의
 							<span class="required-data">필수</span>
 						</label>
 					</li> 
 					<li>
 						<div class="confirm-box">
-							<input id="terms3" type="checkbox" />
+							<input class="terms" id="terms3" type="checkbox" />
 								<label for="terms3">개인정보 제3자 제공동의
 								<span class="required-data">필수</span>
 							</label>
@@ -269,7 +270,7 @@
 					</li>
 					<li>
 						<div class="confirm-box">
-							<input id="terms4" type="checkbox" />
+							<input class="terms" id="terms4" type="checkbox" />
 								<label for="terms4">개인정보 수집 및 이용동의
 								<span class="required-data">필수</span>
 							</label>
