@@ -33,7 +33,7 @@
 		<header>
 			<div class="head-wrap">
 				<a id="logo" href="index">
-					<img  alt="로고사진" src="resources/images/logo2.png" style="height: 100%;">
+					<img  alt="로고사진" src="resources/images/logo.png" style="height: 100%;">
 				</a>
 				<div class="right-head-wrap">
 					<nav id="right-head">
@@ -48,6 +48,9 @@
 							<div><a href="logout.member">로그아웃</a></div>
 							<div><a href="profile.myPage">마이페이지</a></div>
 							<div><a href="faqListPage.faq">FAQ</a></div>
+						</c:if>
+						<c:if test="${loginDto.m_id eq 'admin'}">
+							<div><a href="admin">관리자</a></div>
 						</c:if>
 					</nav>
 				</div>
