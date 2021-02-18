@@ -39,19 +39,6 @@
 			}
 		}
 		
-		function fn_instancejoinClub(f) {
-			if (confirm('해당 클럽을 참여하시겠습니까?')) {
-				f.action = 'instanceJoinClub.club';
-				f.submit();
-			}
-		}
-		
-		function fn_instancechkOut(f) {
-			if (confirm('해당 클럽을 탈퇴하시겠습니까?')) {
-				f.action = 'instanceChkOutClub.club';
-				f.submit();
-			}
-		}
 </script>
 
  <script>
@@ -92,11 +79,21 @@
 			<div class="thumnail">
 				<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
 					<c:if test="${loginDto ne null}">
-						<c:if test="${wishListDto.m_no ne loginDto.m_no}">
-							<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></div></button>
-						</c:if>
-						<c:if test="${wishListDto.m_no eq loginDto.m_no}">
-							<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></div></button>
+						<c:if test="${clubDto.m_no ne loginDto.m_no}">
+						<form method="post" action="instanceLikeClub.club">
+							<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+							<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+							<c:if test="${wishListDto.m_no ne loginDto.m_no}">
+								<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></div></button>
+							</c:if>
+						</form>
+						
+						<form method="post" action="instanceUnLikeClub.club">
+							<c:if test="${wishListDto.m_no eq loginDto.m_no}">
+								<input type="hidden" name="w_no" value="${wishListDto.w_no}" />
+								<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></div></button>
+							</c:if>
+						</form>
 						</c:if>
 					</c:if>
 			</div>

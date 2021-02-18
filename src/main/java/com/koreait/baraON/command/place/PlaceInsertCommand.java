@@ -181,19 +181,6 @@ public class PlaceInsertCommand implements PlaceCommand {
 		String[] po_facilityList = multipartRequest.getParameterValues("po_facility");
 		for(int i = 0; i<facilityCount.length;i++) {
 			sb.setLength(0);
-			sb.append("[");
-			int count = Integer.parseInt(facilityCount[i]);
-			if (count == 0) {continue;}
-			for(int j =0;j<count;j++) {
-				if(j!=(count-1)){
-					po_facilityList[j+prevCount]=po_facilityList[j+prevCount].replace("'", "&#39;").replace("\"", "&quot;");
-					sb.append("\""+po_facilityList[j+prevCount]+"\",");
-				} else {
-					po_facilityList[j+prevCount]=po_facilityList[j+prevCount].replace("'", "&#39;").replace("\"", "&quot;");
-					sb.append("\""+po_facilityList[j+prevCount]+"\"]");
-				}
-			}
-			String po_facility = sb.toString();
 			
 			MultipartFile file = optionImgList.get(i);
 			String originalFilename = file.getOriginalFilename().replace("'", "");
@@ -245,6 +232,22 @@ public class PlaceInsertCommand implements PlaceCommand {
 			placeOptionDto.setPo_min(Integer.parseInt(poMinList[i]));
 			placeOptionDto.setPo_max(Integer.parseInt(poMaxList[i]));
 			placeOptionDto.setPo_img(po_img);
+			int count = Integer.parseInt(facilityCount[i]);
+			for(int j =0;j<count;j++) {
+				if(j!=(count-1)){
+					po_facilityList[j+prevCount]=po_facilityList[j+prevCount].replace("'", "&#39;").replace("\"", "&quot;");
+					sb.append("\""+po_facilityList[j+prevCount]+"\",");
+				} else {
+					po_facilityList[j+prevCount]=po_facilityList[j+prevCount].replace("'", "&#39;").replace("\"", "&quot;");
+					sb.append("\""+po_facilityList[j+prevCount]+"\"]");
+					sb.insert(0, "[");
+				}
+			}
+			String po_facility = "";
+			if (count!=0) {
+				po_facility = sb.toString();
+			}
+			
 			placeOptionDto.setPo_fxility(po_facility);
 			
 			insertCount += placeOptionDao.placeOptionInsert(placeOptionDto);

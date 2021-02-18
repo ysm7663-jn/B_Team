@@ -14,6 +14,7 @@ public class MemberInsertCommand{
 
 		Map<String, Object> map = model.asMap();
 		MemberDto memberDto = (MemberDto)map.get("memberDto");
+		memberDto.setM_pw(Sha256.sha256(memberDto.getM_pw()));
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 		memberDao.memberInsert(memberDto);
 		

@@ -84,6 +84,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE C_NO = #{param1} AND M_NO = #{param2}
 	</select>
 	
+	<select id="findLike" resultType="com.koreait.baraON.dto.WishListDto">
+		SELECT *
+		  FROM WISHLIST
+		 WHERE C_NO = #{param1} AND M_NO = #{param2}
+	</select>
+	
 	<insert id="joinClub">
 		INSERT 
 		  INTO CLUBLIST (CL_NO, C_NO, M_NO, CL_CARD)
