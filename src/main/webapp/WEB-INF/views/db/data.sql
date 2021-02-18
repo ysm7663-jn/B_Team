@@ -17,7 +17,7 @@ DROP SEQUENCE CLUB_SEQ;
 DROP SEQUENCE MEMBER_SEQ;
 select * from place;
 select * from placeoption;
-
+select * from member
 -- DROP TABLES
 DROP TABLE EVENT;
 DROP TABLE WISHLIST;

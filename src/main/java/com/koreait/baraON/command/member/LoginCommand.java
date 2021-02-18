@@ -21,8 +21,8 @@ public class LoginCommand implements BaraONCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String id = request.getParameter("id");
-		//String pw = Sha256.sha256(request.getParameter("pw"));
-		String pw = request.getParameter("pw");
+		String pw = Sha256.sha256(request.getParameter("pw"));
+		//String pw = request.getParameter("pw");
 		String grade = request.getParameter("grade");
 		
 		if(grade.equals("member")) { // 등급이 member일때
