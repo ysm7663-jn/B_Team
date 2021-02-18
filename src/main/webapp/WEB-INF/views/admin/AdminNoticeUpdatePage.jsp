@@ -13,6 +13,22 @@
 			f.submit();
 			}
 		}
+	function fn_checkForm(f) {
+
+	    if(f.title.value == '' || f.title.value.length < 2 ) {
+	        alert("제목을 확인하세요.");
+	        f.title.focus();
+	        return false;
+	    }
+	    if(f.content.value == ''){
+	        alert('내용을 입력하세요.');
+	        f.content.focus();
+			return false;
+	    }
+	    fn_noticeUpdate(f);
+	    f.submit();
+	    	
+	    }
 </script>
 <title></title>
 <style type="text/css">
@@ -35,12 +51,11 @@
 				<span style="font-size: 20px">제목</span><br/>
 				<input type="text" id="titlebox" name="title" value="${noticeDto.n_title}" /><br/><br/>
 				<span style="font-size: 20px">내용</span><br/>
-				<textarea rows="4" cols="20" style="width:1200px; height:400px; font-size:18px; margin-top:10px" name="content">
-					${noticeDto.n_content}
+				<textarea rows="4" cols="20" style="width:1200px; height:400px; font-size:18px; margin-top:10px" name="content">${noticeDto.n_content}
 				</textarea><br/><br/>
 				
 				<input type="hidden" name="no" value="${noticeDto.n_no}" />
-				<input type="button" value="수정하기" onclick="fn_noticeUpdate(this.form)">
+				<input type="button" value="수정하기" onclick="fn_checkForm(this.form)">
 			</form>
 	</div><br/><br/>
 <%@ include file="../template/footer.jsp" %>

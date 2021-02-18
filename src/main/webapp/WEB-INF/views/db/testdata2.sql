@@ -43,6 +43,7 @@ INSERT INTO SELLER (S_NO, S_ID, S_PW, S_PHONE, S_NAME, S_BIRTH, S_EMAIL, S_REGDA
 INSERT INTO SELLER (S_NO, S_ID, S_PW, S_PHONE, S_NAME, S_BIRTH, S_EMAIL, S_REGDATE, S_AGREEMENT, S_COMPANYNO) VALUES (SELLER_SEQ.NEXTVAL, 'seller19', 'ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1', '010-2222-2219', '판매자19', '2002-01-19', 'seller19@baraON.com', sysdate, 1, '123-5648-56419');
 INSERT INTO SELLER (S_NO, S_ID, S_PW, S_PHONE, S_NAME, S_BIRTH, S_EMAIL, S_REGDATE, S_AGREEMENT, S_COMPANYNO) VALUES (SELLER_SEQ.NEXTVAL, 'seller20', 'ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1', '010-2222-2220', '판매자20', '2002-01-20', 'seller20@baraON.com', sysdate, 1, '123-5648-56420');
 
+
 -- PLACECATEGORY
 INSERT INTO PLACECATEGORY (PC_NO, PC_NAME) VALUES (PLACECATEGORY_SEQ.NEXTVAL, '공유키친');
 INSERT INTO PLACECATEGORY (PC_NO, PC_NAME) VALUES (PLACECATEGORY_SEQ.NEXTVAL, '촬영스튜디오');
@@ -82,6 +83,25 @@ VALUES(PLACE_SEQ.NEXTVAL, 1, 1,
 '1층 음공 스튜디오&키친',
 '["공유키친1.jpg","공유키친2.jpg"]',
 '승인',
+'http://instagram.com/eumgong_studio_kitchen',
+'["사용 후 정리 부탁드립니다.","집기사용은 내어드린 집기를 사용해주시고 파손 시 비용이 추가될 수 있습니다.","주차공간이 협소합니다.","식사를 제공하는 대관의 경우 최대 15인까지가 좋습니다. 그 외에 다른 용도에 대한 인원은 상담해주세요. 기본적으로 16인 내로 사용 추천하는 공간입니다.삭제"]',
+0);
+INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
+VALUES(PLACE_SEQ.NEXTVAL, 1, 1,
+'음공 스튜디오 앤 키친',
+'음공스튜디오&키친',
+'음공은 천천히 머물다가는 따뜻한 공간입니다.',
+'연남동에 위치한 &#39;프라이빗 공간&#39;음공입니다.
+푸드스튜디오 겸 이탈리안 식당으로 다양한 이야기를 풀어놓는 프라이빗한 공간입니다.
+쿠킹클래스, 전시공간, 브라이덜샤워, 대관파티, 식사대관, 생일파티, 모임, 회의, 상견계, 돌잔치 등 원하시는 컨텐츠를 가지고 편안하고 따뜻하게 머물다가세요.
+식사를 취향에 맞게 준비해드리거나 공간을 연출해드리기도 합니다.
+하나하나 정성으로 차려놓은 공간을 나누어드립니다.',
+'["간단한 식기도구","공간연출을 위한 간단한 소품","야외 테라스","원하시는 식사 또는 공간연출이 가능한 공간입니다. 요리와 스타일링이 필요하신 분들은 문의주세요.","테라스에 전시공간을 무료로 제공합니다. 필요하신 분은 연락주세요.","원하시는 테이블셋팅, 파티셋팅, 플라워셋팅을 무드에 맞게 주문하실 수 있습니다.","공간 대여외에 음공이 준비하는 식사 대관이 가능합니다. 1인당 가격에 맞춰 요리가 준비되며 3만원부터 구성됩니다. 식사 대관은 전화로 문의주세요."]',
+'서울특별시 마포구 연남동 224-6',
+'연남동',
+'1층 음공 스튜디오&키친',
+'["공유키친1.jpg","공유키친2.jpg"]',
+'1',
 'http://instagram.com/eumgong_studio_kitchen',
 '["사용 후 정리 부탁드립니다.","집기사용은 내어드린 집기를 사용해주시고 파손 시 비용이 추가될 수 있습니다.","주차공간이 협소합니다.","식사를 제공하는 대관의 경우 최대 15인까지가 좋습니다. 그 외에 다른 용도에 대한 인원은 상담해주세요. 기본적으로 16인 내로 사용 추천하는 공간입니다.삭제"]',
 0);
@@ -1249,10 +1269,6 @@ INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
 첫 예약 할인 이벤트를 준비하였습니다!',
 'sale2.jpg', 'sale2.jpg', SYSDATE);
 
-select * from club
-SELECT *
-		  FROM CLUB
-		 WHERE C_PART = 1
 --WISHLIST
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 01, 01);
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 02, 01);

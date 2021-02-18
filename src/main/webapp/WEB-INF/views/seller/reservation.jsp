@@ -54,9 +54,9 @@
 				
 				for(let p = paging.beginPage; p <= paging.endPage; p++){
 					if(paging.page==p){
-						$('#paging').append('<div class="now-page"><a>' + p + '</a></div>')
+						$('#paging').append('<div class="now-page"style="cursor:pointer;"><a>' + p + '</a></div>')
 					}else{
-						$('#paging').append('<div class="go-page" data-page="' + p + '"><a>' + p + '</a></div>');
+						$('#paging').append('<div class="go-page" data-page="' + p + '" style="cursor:pointer;"><a>' + p + '</a></div>');
 					}
 				}
 				

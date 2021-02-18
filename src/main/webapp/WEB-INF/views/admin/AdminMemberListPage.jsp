@@ -13,7 +13,8 @@
 		memberUpdate();
 	});
 	var page = 1; 
-	
+	var date = new Date();
+	date = dateToYear(date);
 	function memberList() {
 		var obj= {
 				"page": page
@@ -80,6 +81,22 @@
 			});
 		
 		}
+	function dateToYear(date) {
+	    var year = date.getFullYear();
+
+	    var month = date.getMonth() + 1;
+	    if (month < 10)  {
+	        month = '0' + month;
+	    }
+
+	    var date = date.getDate();
+	    if (date < 10) {
+	        date = '0' + date;
+	    }
+	    
+	    return year + '-' + month + '-' + date;
+	}
+	
 	function memberListTable(list) {
 		$.each(list, function(idx, member){
 			$('<tr>')
@@ -91,7 +108,7 @@
 			.append( $('<td>').html(member.m_birth) )
 			.append( $('<td>').html(member.m_nick) )
 			.append( $('<td>').html(member.m_email) )
-			.append( $('<td>').html(member.m_regDate) )
+			.append( $('<td>').html(date) )
 			.append( $('<input type="hidden" name="no" />').val(member.m_no) )
 			.append( $('<input type="hidden" name="id" />').val(member.m_id) )  // 회원 삭제에서 사용할 id를 새로 추가했습니다.
 			.append( $('<td>').html('<input type="button" value="조회" id="btnView" />'))
@@ -238,6 +255,7 @@
 </style>
 </head>
 <body>
+	
 	<div class="wrap">
 	<div class="right">
 			<span style="font-size: 40px; font-weight: bold">회원 목록</span><br/>

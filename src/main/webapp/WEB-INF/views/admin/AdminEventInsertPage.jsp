@@ -22,19 +22,32 @@
 	}
 </style>
 <script type="text/javascript">
-	function fn_insert(f){
-		let inputList = $('input');
-		$.each(inputList, function(idx, input){
-			if($(input).val()==''||$(input).val()==null){
-				alert($(input).prop('name')+'이(가) 입력되지 않았습니다.');
-				$(input).focus();
-				return;
-			}
-		});
-		
-		f.action="eventInsert.admin";
-		f.submit();
+
+	function fn_insert(){
+		alert('이벤트가 추가되었습니다.');
+
 	}
+	function fn_checkForm(f) {
+
+	    if(f.title.value == '' || f.title.value.length < 2 ) {
+	        alert("제목을 확인하세요.");
+	        f.title.focus();
+	        return false;
+	    }
+	    if(f.content.value == ''){
+	        alert('내용을 입력하세요.');
+	        f.content.focus();
+			return false;
+	    }
+	    if(f.files.value == ''){
+	        alert('파일을 선택해주세요.');
+	        f.files.focus();
+			return false;
+	    }
+	    fn_insert();
+	    f.submit();
+	    	
+	    }
 </script>
 </head>
 <body>
@@ -47,9 +60,8 @@
 			<textarea rows="4" cols="20" name="content" style="width:400px; height:200px; font-size:20px; margin-top:10px"></textarea><br/>
 			썸네일 이미지첨부<br/>
 			<input type="file" name="files" /><br/><br/>
-			배너 이미지첨부<br/>
-			<input type="file" name="banner" /><br/><br/>
-			<button type="button" onclick="fn_insert(this.form)">작성완료</button>
+			<input type="button" value="작성완료" onclick="fn_checkForm(this.form)"/>
+
 		</form>
 	</div>
 <%@ include file="../template/footer.jsp" %>
