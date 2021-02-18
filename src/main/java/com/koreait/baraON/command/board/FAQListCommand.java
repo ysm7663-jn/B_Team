@@ -46,7 +46,6 @@ public class FAQListCommand implements NoticeCommand {
 		
 		String paging = Paging.getPaging("faqListPage.faq?f_category="+ f_category, totalRecord, recordPerPage, page);
 	
-		
 		model.addAttribute("list" , list);
 		model.addAttribute("totalRecord" , totalRecord);
 		model.addAttribute("page" , page);

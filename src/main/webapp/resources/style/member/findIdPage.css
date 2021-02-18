@@ -18,6 +18,9 @@ div {
 	box-sizing: border-box;
 }
 
+hr[class="check"] {
+	display: block;
+}
 .resultBox {
 	width: 75%;
 	height: 96px;
@@ -29,9 +32,9 @@ div {
 	margin: 6% auto;
 }
 input[type="button"] {
-	border: 1px solid #1DD1AD;
+	border: 1px solid cadetblue;
 	border-radius: 3px;
-	background: #1DD1AD;
+	background: cadetblue;
 	color: white;
 	width: 30%;
 	height: 41px;

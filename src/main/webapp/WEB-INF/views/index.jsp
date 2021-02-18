@@ -26,32 +26,17 @@
         	<i class="fas fa-chevron-right"></i>
         </div>
 		<div class="event-slider">
+			<c:forEach var="eventDto" items="${eventList}" varStatus="k" >
+				<div class="event-list">
+					<img src="resources/images/banner/${eventDto.e_filename}" usemap="#${k.index}" />
+					<map name="${k.index}">
+						<area shape="rect" coords="0, 0, 1600, 400" href="eventViewPage.event?no=${eventDto.e_no}&page=1" target="_blank" >
+					</map>
+				</div>
+			</c:forEach>
+			
 			<div class="event-list">
-				<img src="resources/images/car.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/bottles.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/books.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/car.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/bottles.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/books.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/car.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/bottles.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/books.jpg" />
+				<img src="resources/images/banner/코로나방역소독-배너.jpg" />
 			</div>
 		</div>
 	</section>
@@ -74,13 +59,13 @@
 			<hr>
 			<div class="main-content">
 				<c:if test="${empty eventList}">
-					진행중인 이벤트가 없습니다.
+					<span class="not-exist"><i class="fas fa-sad-tear"></i>진행중인 이벤트가 없습니다.</span>
 				</c:if>
 				<c:if test="${not empty eventList}">
 					<c:forEach var="eventDto" items="${eventList}" >
 						<a href="eventViewPage.event?no=${eventDto.e_no}&page=1">
-							<div>
-								<img src="resources/images/EventImages/${eventDto.e_filename}" />
+							<div class="event-img-box">
+								<img src="resources/images/event/${eventDto.e_filename}" />
 							</div>
 						</a>
 					</c:forEach>
@@ -142,7 +127,7 @@
 				<c:if test="${not empty faqList}">
 					<c:forEach var="faqDto" items="${faqList}" >
 						<a href="faqViewPage.faq?no=${faqDto.f_no}&page=1">
-							<div class=row">
+							<div class="row">
 								<div class="dot"></div>
 								<div class="board-title">${faqDto.f_title}</div>
 								<div class="board-date">${faqDto.f_regDate}</div>

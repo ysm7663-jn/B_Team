@@ -46,6 +46,23 @@ section.main {
 	display: grid;
 	grid-template-columns: 50% 50%;
 }
+article#main-event div.main-content{
+	display: grid;
+	width: 940px;
+	grid-template-columns: repeat(3, 300px);
+	margin: 0 auto;
+	gap: 0 20px;
+}
+article#main-event div.main-content a{
+	display: inline-block;
+	width: 300px;
+	height: 300px;
+}
+div.event-img-box img{
+	width: 300px;
+	height: 300px;
+}
+
 
 /* 더보기 */
 div.plus{
@@ -89,6 +106,7 @@ div.board-date{
 }
 div.row{
 	display: flex;
+	margin: 4px 0;
 }
 article#main-event, article#main-club, article#main-place {
 	grid-column : 1/3;

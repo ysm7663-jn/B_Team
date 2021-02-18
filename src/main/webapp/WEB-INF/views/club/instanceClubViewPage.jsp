@@ -13,14 +13,14 @@
 <script type="text/javascript">
 		function fn_delete(f) {
 			if (confirm('정말 클럽을 해제하시겠습니까?')) {
-				f.action='clubDelete.club';
+				f.action='instanceClubDelete.club';
 				f.submit();
 			}
 		}
 		
 		function fn_update(f) {
 			if (confirm('클럽 정보를 수정하시겠습니까?')) {
-				f.action='clubUpdatePage.club';
+				f.action='instanceClubUpdatePage.club';
 				f.submit();
 			}
 		}
@@ -180,7 +180,7 @@
 									</c:if>
 								</form>
 								
-								<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" />
+								<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='instanceClubListPage.club'" />
 							</div>
 						</div>
 					</c:if>
@@ -219,7 +219,7 @@
 							<input type="button" value="장소등록하기" id="btn1" onclick="location.href='placeListPage.place'" /><br/> 
 							<input type="button" value="클럽수정하기" id="btn1" onclick="fn_update(this.form)" /> <br/>
 							<input type="button" value="클럽해제하기" id="btn1" onclick="fn_delete(this.form)" />	<br/>
-							<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" /> <br/>
+							<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='instanceClubListPage.club'" /> <br/>
 						</div>
 					</form>
 				</div>

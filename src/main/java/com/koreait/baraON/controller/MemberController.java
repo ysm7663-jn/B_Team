@@ -161,7 +161,7 @@ public class MemberController {
 		/*kakaoAPI.kakaoLogout((String)session.getAttribute("access_Token"));
 		session.removeAttribute("access_Token");
 		session.removeAttribute("userId");*/
-		return "index";
+		return "redirect:/";
 	}
 	
 	@RequestMapping(value="findPage.member", method=RequestMethod.GET)
@@ -188,13 +188,13 @@ public class MemberController {
 		return "member/findPage";
 	}
 
-	@Autowired
-	private JavaMailSender mailSender;
+	//@Autowired
+	//private JavaMailSender mailSender;
 	//post?
 	@RequestMapping(value="findPwPage.member", method=RequestMethod.GET)
 	public String findPwPage(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
-		model.addAttribute("mailSender", mailSender);
+		model.addAttribute("javaMailSender", javaMailSender);
 		emailAuthCommmand.execute(sqlSession, model);
 		return "member/findPwPage";
 	}

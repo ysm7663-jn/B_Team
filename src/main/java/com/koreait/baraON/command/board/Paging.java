@@ -4,15 +4,12 @@ public class Paging {
 
 	public static String getPaging(String path, int totalRecord, int recordPerPage, int page) {
 		
-		
 		int totalPage;	
 		totalPage = totalRecord / recordPerPage;
 		if (totalRecord % recordPerPage != 0) {
 			totalPage++;
 		}
 		totalPage = (totalPage >= page) ? totalPage : page;
-		
-		
 		
 		int pagePerBlock = 4;	
 		
@@ -22,11 +19,8 @@ public class Paging {
 		endPage = beginPage + pagePerBlock - 1;
 		endPage = endPage < totalPage ? endPage : totalPage;
 		
-		
 		// 페이징 (< 1 2 3 4 5 >) 만들기
 		StringBuffer sb = new StringBuffer();
-		
-	
 		
 		// 1) 이전 버튼
 		if (beginPage <= pagePerBlock) {
@@ -38,7 +32,6 @@ public class Paging {
 				sb.append("<a href=\"" + path + "?page=" + (beginPage - 1) + "\">◀&nbsp;</a>");				
 			}
 		}
-		
 		// 2) 페이지 번호
 		for (int p = beginPage; p <= endPage; p++) {
 			if (p == page) {
@@ -51,7 +44,6 @@ public class Paging {
 				}
 			}
 		}
-		
 		// 3) 다음 버튼
 		if (endPage >= totalPage) { 
 			sb.append("▶");
@@ -62,9 +54,6 @@ public class Paging {
 				sb.append("<a href=\"" + path + "?page=" + (endPage + 1) + "\">▶</a>");
 			}
 		}
-		
 		return sb.toString();
-		
 	}
-
 }

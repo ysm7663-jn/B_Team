@@ -18,10 +18,13 @@ div {
 	box-sizing: border-box;
 }
 
+.member-category:nth-of-type(1) li:nth-of-type(5) > a {
+	color: cadetblue;
+}
 .deleteBody {
 	width: 426px;
 	text-align: center;
-	margin: 0 auto;
+	margin: 58px auto;
 }
 .content-wrap {
 	text-align: center;
