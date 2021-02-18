@@ -32,6 +32,7 @@ public class ClubViewCommand implements ClubCommand {
 		}
 		
 		model.addAttribute("clubListDto", clubDao.findJoin(c_no, m_no));
+		model.addAttribute("wishListDto", clubDao.findLike(c_no, m_no));
 		model.addAttribute("memberDto", clubDao.clubView2(c_no));
 		model.addAttribute("clubDto", clubDao.clubView(c_no));
 

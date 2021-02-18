@@ -31,7 +31,6 @@
 		openWin = window.open(url, 'infoPopUp', options);	
 		
 		openWin.onbeforeunload = function(){
-			alert('성공');
 			window.location.reload();
 		};
 	}

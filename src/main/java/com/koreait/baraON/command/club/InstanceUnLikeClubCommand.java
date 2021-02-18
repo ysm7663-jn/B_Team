@@ -25,7 +25,7 @@ public class InstanceUnLikeClubCommand implements ClubCommand {
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 
-		int unlikeResult = clubDao.unlikeClub(w_no);
+		int unlikeResult = clubDao.instanceUnlikeClub(w_no);
 		
 		model.addAttribute("unlikeResult", unlikeResult);
 		
