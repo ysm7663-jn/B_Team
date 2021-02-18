@@ -23,7 +23,7 @@ public class InstanceLikeClubCommand implements ClubCommand {
 		int	c_no = Integer.parseInt(request.getParameter("c_no"));
 		int	m_no = Integer.parseInt(request.getParameter("m_no"));
 
-		int likeResult = clubDao.likeClub(c_no, m_no);
+		int likeResult = clubDao.instanceLikeClub(c_no, m_no);
 	
 		model.addAttribute("likeResult", likeResult);
 		

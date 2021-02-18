@@ -27,19 +27,17 @@
 			<div class="club-wrap">
 				<c:forEach var="wishListDto" items="${list}">
 					<div class="clubList">
-						<div class="clubImage"><a href="clubViewPage.club?c_no=${wishListDto.c_no}&m_no=${loginDto.m_no}"><img alt="모임이미지" src="resources/images/club/${wishListDto.c_mainimg}"></a></div>
-						<form action="wishDelete.myPage" method="post">
-							<!-- hidden -->
-							<input type="hidden" name="wNo" value="${wishListDto.w_no}" />
-							<button><span class="wishIcon"><i class="fas fa-heart"></i></span></button>
-						</form>
-						<div class="title"><a href="">${wishListDto.c_title}</a></div>
-						<div class="content"><a href="">${wishListDto.c_content}</a></div>
-					</div>
+						<div class="clubImage"><a href="clubViewPage.club?c_no=${wishListDto.c_no}"><img alt="모임이미지" src="resources/images/club/${wishListDto.c_mainimg}"></a></div>
+							<form action="wishDelete.myPage" method="post">
+								<!-- hidden -->
+								<input type="hidden" name="wNo" value="${wishListDto.w_no}" />
+								<button><span class="wishIcon"><i class="fas fa-heart"></i></span></button>
+								<div class="title"><a href="clubViewPage.club?c_no=${wishListDto.c_no}">${wishListDto.c_title}</a></div>
+								<div class="content"><a href="clubViewPage.club?c_no=${wishListDto.c_no}">${wishListDto.c_content}</a></div>
+							</form>
+						</div>
 				</c:forEach>
 			</div>
 		</c:if>
-				
 	</div>
-</div>
 <%@ include file="../template/footer.jsp" %>
