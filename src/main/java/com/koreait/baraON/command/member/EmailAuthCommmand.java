@@ -22,9 +22,9 @@ public class EmailAuthCommmand implements BaraONCommand {
 		try {
 			Map<String, Object> map = model.asMap();
 			HttpServletRequest request = (HttpServletRequest)map.get("request");
-			JavaMailSender mailSender = (JavaMailSender)map.get("mailSender");
+			JavaMailSender javaMailSender = (JavaMailSender)map.get("javaMailSender");
 			
-			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessage message = javaMailSender.createMimeMessage();
 			message.setHeader("Content-Type", "text/plain; charset=utf-8");
 			message.setFrom(new InternetAddress("baraontest@gmail.com", "바라온"));
 			
@@ -37,7 +37,7 @@ public class EmailAuthCommmand implements BaraONCommand {
 			long authKey = (long)(Math.random() * 100000000L) + 1234567890;
 			
 			message.setText("인증코드: " + authKey, "utf-8");
-			mailSender.send(message);
+			javaMailSender.send(message);
 			
 			model.addAttribute("authKey", authKey);
 			

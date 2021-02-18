@@ -105,12 +105,15 @@ th, td {
 	text-align: center;
 	font-size: 20px;
 }
+.membersInfo-wrap {
+	width: 86%;
+}
 .clubCount {
 	margin-bottom: 20px;
 }
 .membersInfo {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(50%, auto));
+	grid-template-columns: repeat(auto-fill, minmax(33%, auto));
 	row-gap: 20px;
 }
 .memberInfo {
