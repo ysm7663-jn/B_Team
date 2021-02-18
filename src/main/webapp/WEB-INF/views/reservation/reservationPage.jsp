@@ -13,6 +13,7 @@
 	let remarkList = JSON.parse('${placeDto.p_remark}');
 	let facilityList = JSON.parse('${placeOptionDto.po_fxility}');
 	let isProgress=false;
+	let isPossible
 	let resNo = '${reservationDto.res_no}';
 	function fn_facilityList(list, appendTo){
 		$.each(list, function(idx, facility){
@@ -30,20 +31,64 @@
 		$(btn).click(function(event){
 			if($(event.target).parent().next().is('.active')===false){
 				$(event.target).parent().next().addClass('active');
+				$(event.target).text('▲');
 			} else {
 				$(event.target).parent().next().removeClass('active');
+				$(event.target).text('▼');
 			}
-		})
+		});
+	}
+	function fn_allChk(){
+		$('#terms-all').on('click', function(){
+			let chkList = $('.terms');
+			if($(this).prop('checked')===true){
+				$(chkList).prop('checked', true);
+			} else {
+				$(chkList).prop('checked', false);
+			}
+		});
+	}
+	function fn_chkBox(){
+		const chkBox=$('.terms');
+		$('.terms').on('click',function(){
+			let chked = $('.terms:checked');
+			if(chkBox.length === chked.length){
+				$('#terms-all').prop('checked', true);
+			} else {
+				$('#terms-all').prop('checked', false);
+			}
+		});
 	}
 	$(function(){
+		fn_chkBox();
+		fn_allChk();
 		fn_moreBtn('.more-btn');
 		fn_facilityList(facilityList, '#facility-list');
 		fn_remarkList(remarkList, '#remark-list');
 		$("#res-update").click(function() {
+			
 			if(isProgress){
 				return;
 			}
+			
+			let chkBoxList = $('.terms');
+			
+			$.each(chkBoxList, function(idx, chkBox){
+				if($(chkBox).prop('checked')===false){
+					alert('서비스 동의를 체크해주세요');
+					isPosibble=false;
+					return false;
+				} else{
+					isPosibble=true;
+				}
+			});
+			
+			if(!isPosibble){
+				return;
+			}
+			
 			isProgress=true;
+			
 			var IMP = window.IMP; // 생략가능
 			IMP.init('imp97817701');
 			// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
@@ -249,7 +294,7 @@
 								<label for="terms3">개인정보 제3자 제공동의
 								<span class="required-data">필수</span>
 							</label>
-							<button class="more-btn" type="button" ><i class="fas fa-caret-down"></i></button>
+							<button class="more-btn" type="button" >▼</button>
 							<a></a>
 						</div>
 						<div class="scroll-box">
@@ -274,7 +319,7 @@
 								<label for="terms4">개인정보 수집 및 이용동의
 								<span class="required-data">필수</span>
 							</label>
-							<button class="more-btn" type="button" ><i class="fas fa-caret-down"></i></button>
+							<button class="more-btn" type="button" >▼</button>
 						</div>
 						<div class="scroll-box">
 							<ol>

@@ -32,6 +32,7 @@
 	<beans:bean id="placeUpdateCommand" class="com.koreait.baraON.command.place.PlaceUpdateCommand" />
 	<beans:bean id="placeDeleteCommand" class="com.koreait.baraON.command.place.PlaceDeleteCommand" />
 	<beans:bean id="placeFullDeleteCommand" class="com.koreait.baraON.command.place.PlaceFullDeleteCommand" />
+	<beans:bean id="placeSearchCommand" class="com.koreait.baraON.command.place.PlaceSearchCommand" />
 	
 	<!-- placeOption command -->
 	<beans:bean id="optionDeleteCommand" class="com.koreait.baraON.command.option.OptionDeleteCommand" />
