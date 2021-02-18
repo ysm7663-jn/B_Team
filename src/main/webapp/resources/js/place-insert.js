@@ -17,7 +17,6 @@ $(function(){
 function fn_countChar(countTag){
 	$(countTag).on('keyup', function(event){
 		let count = $(event.target).val().length;
-		if(count>)
 		$(event.target).next().text(count);
 	});
 }
