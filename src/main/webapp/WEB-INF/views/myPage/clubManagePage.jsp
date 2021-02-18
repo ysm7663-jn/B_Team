@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>   
-<link rel="stylesheet" href="resources/style/myPage/clubManagePage.css">	    
 <jsp:include page="myPage.jsp" />
+<link rel="stylesheet" href="resources/style/myPage/clubManagePage.css">	    
 <script>
 	$(document).ready(function() {
-		clubCount();
+		if(${not empty list}) {
+			clubCount();
+		}
 	});
 
 	function clubCount() {

@@ -120,6 +120,7 @@
 </script>
 <title></title>
 <link rel="stylesheet" href="resources/style/common.css">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <style type="text/css">
 	body{
 		background:#F8EBEE;
@@ -138,9 +139,9 @@
 		background: #3ED0C8;
 	}
 	.reply{
-		width: 800px;
-		height:570px;
-		margin:50px 0 0 100px;
+		width: 1200px;
+		height:auto;
+		margin:50px 0 0 300px;
 	}
 	#pagingBox{
 		width: 500px;
@@ -163,6 +164,9 @@
 	#paging .disable {
 		color: black;
 	}
+	.no , .delete, .date{
+		width:100px;
+	}
 </style>
 </head>
 <body>
@@ -171,10 +175,10 @@
 			<table>
 				<thead>
 					<tr>
-						<th>답글번호</th>
+						<th class="no">답글번호</th>
 						<th>댓글내용</th>
-						<th>작성일자</th>
-						<th>비고</th>
+						<th class="date">작성일자</th>
+						<th class="delete">비고</th>
 					</tr>
 				</thead>
 				<tbody id="replyList"></tbody>
@@ -185,9 +189,9 @@
 						</td>
 					</tr>
 				</tfoot>
-			</table>
+			</table><br/>
 		<input type="button" value="관리 목록페이지" style="float: left; margin:10px 0 10px 0" onclick="location.href='admin'" />
-		</div>
+		</div><br/>
 <%@ include file="../template/footer.jsp" %>	
 </body>
 </html>

@@ -69,7 +69,8 @@ div {
 }
 .clubList > .clubImage > a > img {
 	display: block;
-	width: 100%;
+	width: 267px;
+	height: 177px;
 }
 .clubContent {
 	width:97%;
@@ -89,10 +90,11 @@ div {
 }
 .detail { 
 	display: flex;
+	width: 275px;
 }
 .summary {
 	padding: 0 10px;
-	width: 222px;
+	width: 198px;
 }
 .summary > .readerName {
 	width: 100%;
@@ -117,7 +119,7 @@ div {
 .fa-user-circle:before {
 	color: cadetblue;
 }
-.fa-skull:before {
+.fa-frown:before {
 	color: #cc0000;
 	font-size: 28px;
 }

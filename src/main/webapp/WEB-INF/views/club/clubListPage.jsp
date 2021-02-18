@@ -35,6 +35,7 @@ if (afterDelete) {
 
 <form method="get">
 	<div class="body_wrap">
+	<hr class="line">
 		<div id="main_title">정기 활동</div>
 		<div id="btn_create">
 			<c:if test="${loginDto ne null}">

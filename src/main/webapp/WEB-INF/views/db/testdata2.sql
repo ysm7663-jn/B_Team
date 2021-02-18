@@ -953,7 +953,6 @@ VALUES (PLACEOPTION_SEQ.NEXTVAL, 20,
 '["주류반입가능","의자/테이블","전신거울","음식물반입가능","내부화장실","샤워실"]');
 
 -- REVIEW
-SELECT * FROM REVIEW
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
 VALUES (REVIEW_SEQ.NEXTVAL, 1, 1, 0, 5, NULL, SYSDATE-50, SYSDATE-50, '아주 좋았어요. 재밌게 요리 잘 하다 갑니다 ^^');
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
@@ -1036,6 +1035,20 @@ INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, 
 VALUES (REVIEW_SEQ.NEXTVAL, 18, 7, 0, 5, NULL, SYSDATE-35, SYSDATE-35, '아주 좋았어요');
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
 VALUES (REVIEW_SEQ.NEXTVAL, 18, 15, 0, 5, NULL, SYSDATE-1, SYSDATE, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 19, 3, 0, 5, NULL, SYSDATE-26, SYSDATE-26, '2시간 정도 영상촬영을하였는데, 정말 친절하게 도와주셔서 편하게 이용할 수 있었습니다:) 시설도 깔끔하고 웬만한 물품과 장비는 다 구비되어있었고, 블루투스 스피커가 있어서 음악을 틀고 작업할 수 있었습니다. 추천해요~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 19, 9, 0, 3, '["엠티장소리뷰1.jpg","엠티장소리뷰2.jpg"]', SYSDATE-16, SYSDATE-14, '할말이 많지만 짧게 이야기한다면 1. 간단한 회식 장소가 필요했음. 나름 적합 2. 겨울이라서(이불 얾)루프탑 못씀. 그런거에 비해서 방도 작아서 못누리는게 많아서 시간당 2만원인데 다소 비싸다는 느낌이 듦. 3. 화장실 열악한편 4. 가는 길이 진짜 최악... 5. 주차는 골목에 지정선없는 곳에 두라함. 안되면 숙대가라함. 말이되나... 비쌈..');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 19, 16, 0, 5, '["스터디룸리뷰1.jpeg"]', SYSDATE-6, SYSDATE-6, 'wifi 잘 터지고 HDMI로 노트북과 모니터 연결할 수 있어서 스터디하기 좋았습니다. 작지만 큰 불편은 없었습니다.');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 19, 20, 0, 4, NULL, SYSDATE-2, SYSDATE-2, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 20, 5, 0, 5, '["스튜디오리뷰.jpeg"]', SYSDATE-65, SYSDATE-60, '첫째도 친절 둘째도 친절이셨습니다 새벽0~2시 타임에도 불구하고 조명셋팅 및 조작법도 차근차근 설명해주셔서 수월하게 이용했습니다!! 고민말고 바로 이용하세용~~ 밤 늦은 시간에 수고많으셨고 감사했습니다 사장님~~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 20, 14, 0, 3, NULL, SYSDATE-30, SYSDATE-27, '아주 좋았어요');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 20, 18, 0, 5, NULL, SYSDATE-88, SYSDATE-88, '아주 좋았어요');
 
 --CLUB
 
@@ -1214,11 +1227,31 @@ INSERT INTO FAQ VALUES (NOTICE_SEQ.NEXTVAL ,
 활동에 대한 다양한 혜택을 제공할 예정이오니,
 많은 신청 부탁드립니다.', SYSDATE, 4);
 --EVENT
-INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
+INSERT INTO EVENT VALUES(1,
 '치킨&맥주 파티 모집중!',
 'baraON 멤버라면 누구나 가능!
 멤버님들의 성원에 힘입어 참여대상을 확대했습니다!',
 'event1', SYSDATE);
+INSERT INTO EVENT VALUES(2,
+'봄을 맞아 세일해봄',
+'추운 겨울이 지나고 새 봄을 맞이하여
+저희 baraON에서 봄맞이 세일을 준비하였습니다!',
+'sale.png', SYSDATE);
+INSERT INTO EVENT VALUES(3,
+'코로나 극복 기원 이벤트',
+'코로나 극복을 기원하며 
+저희 baraON에서 특별 이벤트를 준비하였습니다!',
+'covid-19.jpg', SYSDATE);
+INSERT INTO EVENT VALUES(4,
+'새학기 이벤트',
+'새학기 맞이  
+저희 baraON에서 이벤트를 준비하였습니다!',
+'newClass.jpg', SYSDATE);
+INSERT INTO EVENT VALUES(5,
+'신규 런칭 이벤트',
+'baraON 신규 런칭을 맞이하여  
+첫 예약 할인 이벤트를 준비하였습니다!',
+'sale2.png', SYSDATE);
 
 --WISHLIST
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 01, 01);

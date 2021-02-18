@@ -1,28 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%-- 머리글 포함(파라미터(title)가 있으므로 동적 페이지 포함) --%>
 <jsp:include page="template/header.jsp" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
+<script src="resources/js/index.js" defer></script>
 <script>
-	$(function(){
-		$('.event-slider').slick({
-			autoplay:true,
-			autoplaySpeed:1000,
-			nextArrow:$('.next'),
-			prevArrow:$('.prev'),
-			dots:true
-		});
-		$('.club-slide').slick({
-			slidesToShow:3,
-			slidesToScroll:1,
-			autoplay:true,
-			autoplaySpeed:1000,
-			centerMode: true,
-			centerPadding: '60px'
-		});
-	});
+	let placeImgList = new Array();
+	<c:forEach var="placeDto" items="${placeList}" >
+		placeImgList.push(JSON.parse('${placeDto.p_img}'));
+	</c:forEach>
+
 </script>
 <link rel="stylesheet" href="resources/style/index.css" />
 <link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick-theme.css" />
@@ -181,7 +171,7 @@
 			<div class="main-content">
 				<c:if test="${empty clubList}">
 					<div class="not-exist">
-						<span class="not-exist"><i class="fas fa-sad-tear"></i>등록된 클럽이 없습니다.</span>
+						<span class="not-exist"><i class="fas fa-sad-tear"></i>등록된 모임이 없습니다.</span>
 					</div>
 				</c:if>
 				<c:if test="${not empty clubList}">
@@ -221,22 +211,38 @@
 			</div>
 			<hr/>
 			<div class="main-content">
-				<c:if test="${empty clubList}">
+				<c:if test="${empty placeList}">
 					<div class="not-exist">
-						
+						<span class="not-exist"><i class="fas fa-sad-tear"></i>등록된 공간이 없습니다.</span>
 					</div>
 				</c:if>
-				<c:if test="${not empty clubList}">
-					<div class="club-slide">
-						<c:forEach var="clubDto" items="${clubList}" >
-							<a href="clubViewPage.club?c_no=${clubDto.c_no}">
-								<div class="club-card">
-									<img src="resources/images/club/${clubDto.c_mainImg}" />
-									<div class="club-card-title">
-										<span class="text-stroke">${clubDto.c_title}</span>
+				<c:if test="${not empty placeList}">
+					<div class="place-slide">
+						<c:forEach var="placeDto" items="${placeList}" >
+							<a href="placeViewPage.place?no=${placeDto.p_no}">
+								<div class="place-card">
+									<div>
+										<img class="place-img" src="" />
 									</div>
-									<div class="club-card-desc">
-										<span class="text-stroke">${clubDto.c_desc}</span>
+									<div class="place-card-title">
+										<h3>${placeDto.p_title}</h3>
+									</div>
+									<div class="place-card-info">
+										<span id="place-list-addr"><i class="fas fa-map-marker-alt"></i>${placeDto.p_bname}</span>
+										<span id="place-list-category"># ${placeDto.pc_name}</span><br/>
+									</div>
+									<div class="place-card-info">
+										<strong class="place-price" >
+											<fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${placeDto.minPrice}" />
+										</strong>
+									</div>
+									<div class="place-card-info">
+										<span>
+											<i class="fas fa-user-friends"></i>최대 ${placeDto.maxPeople}인
+										</span>
+										<span>
+											<i class="fas fa-comment-dots"></i>${placeDto.rvCount}
+										</span>
 									</div>
 								</div>
 							</a>

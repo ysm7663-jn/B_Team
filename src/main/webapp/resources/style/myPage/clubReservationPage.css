@@ -18,6 +18,21 @@ div {
 	box-sizing: border-box;
 }
 
+.emptyList {
+	width: 400px;
+	height: 200px;
+	text-align: center;
+	margin: 40px auto;
+}
+.emptyList > div:last-of-type {
+	font-weight: bold;
+	margin-top: 26px;
+	padding: 0 0 0 15px;
+}
+.fa-exclamation-circle:before {
+	font-size: 90px;
+	color: cadetblue;	
+}
 .reservation-wrap {
 	margin: 28px 28px 28px 0;
 }
@@ -41,6 +56,7 @@ div {
 
 .reservation-info > .img {
 	width: 157px;
+	height: 157px;
 	margin: 4px 10px 10px 2px;
 }
 .reservation-info > div > a > img {
@@ -48,31 +64,29 @@ div {
 	height: 100%;
 	object-fit: cover;
 }
-.content { 
-	display: flex;
-	width: 480px;
+.info { 
+	width: 666px;
+	margin: 20px 0 20px 15px;
 }
-.content > .info {
-	width: 321px;
-	padding: 21px 0 0 27px;
-}
-.content > .payment {
+.info > .payment {
 	position: relative;
 	left: 41px;
 	line-height: 30px;
 	margin-top: 71px;
 }
-.payment > h3 {
-	padding: 4px;
+.info > h3 {
 	color: #ff5a0b;
+	text-align: right;
+	margin-right: 5px;
 }
-.payment > input {
-	width: 71px;
-	height: 31px;
+.cancelPayment > input {
+	width: 67px;
+	height: 27px;
 	color: white;
-	font-size: 18px;
-	font-weight: bold;
+	font-size: 17px;
 	background: cadetblue;
 	border: 1px solid cadetblue;
 	border-radius: 3px;
+	float: right;
+	
 }

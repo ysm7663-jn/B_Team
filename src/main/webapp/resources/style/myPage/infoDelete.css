@@ -18,17 +18,17 @@ div {
 	box-sizing: border-box;
 }
 
+.deleteBody {
+	width: 426px;
+	text-align: center;
+	margin: 0 auto;
+}
 .content-wrap {
-	position: relative;
-	width: 45%;
-	height: 116px;
 	text-align: center;
 	font-size: 14px;
 	border: 1px solid lightgray;
 	border-radius: 5px;
 	padding: 17px 0;
-	left: 21%;
-	top: 16%;
 }
 .content-wrap > div {
 	font-size: 17px;
@@ -42,11 +42,6 @@ div {
 	font-size: 21px;
 	margin-left: 4px;
 	color: slategrey;
-}
-.buttons {
-	position: relative;
-	left: 34%;
-	top: 17%;
 }
 .buttons > .pwCheck {
 	margin-left: 4%;

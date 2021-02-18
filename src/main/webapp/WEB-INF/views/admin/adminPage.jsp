@@ -4,14 +4,20 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript">
+	alert('baraON 관리자페이지 입니다.');
+</script>
 <link rel="stylesheet" href="resources/style/common.css">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <style type="text/css">
-	
+
+
 	a{
 		font-size: 16px;
 		text-decoration: none;
 	}
 	.head{
+		font-family: 'Do Hyeon', sans-serif;
 		font-size: 40px;
 		font-weight: bold;
 		margin: 0 0 0 20px;
@@ -25,16 +31,18 @@
 	.exit{
 		float: right;
 		line-height: 100px;
-		font-size: 15px;
+		margin-right: 50px;
+		font-size: 20px;
 		color : blue;
 	}
+
 </style>
 <title></title>
 </head>
 <body>
 	<div style="height: 100px">
 		<a href="admin" class="head">baraON-관리자페이지</a>
-		<a href="index" class="exit">⇒ 관리자페이지 나가기</a>
+		<a href="index" onclick="alert('관리자 페이지를 종료합니다.')" class="exit">⇒ 관리자페이지 나가기</a>
 	</div>
 	<hr>
 	<div style="background:#F8EBEE; height: 580px;">
