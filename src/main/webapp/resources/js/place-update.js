@@ -15,7 +15,7 @@ $(function(){
 	fn_appendList(remarkList, '#place-remark-list', 'p_remark');
 	fn_uploadedImg();
 	let selectedCategory = $('input[value="${placeCategoryDto.pc_no}"]');
-	$(selectedCategory).prev('a').css('background', 'rgba(216,100,216,1)');
+	$(selectedCategory).prev('a').css('background', 'rgba(95, 158, 160, 1)');
 	fn_optionFacility('.facility-list', poFacilities);
 })
 

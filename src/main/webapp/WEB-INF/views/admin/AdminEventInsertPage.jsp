@@ -7,6 +7,7 @@
 <title></title>
 <link rel="stylesheet" href="resources/style/common.css">
 <link rel="stylesheet" href="resources/style/common.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <style type="text/css">
 	body{
@@ -21,22 +22,34 @@
 	}
 </style>
 <script type="text/javascript">
-	function fn_insert(){
-		alert('공지사항이 추가되었습니다.');
+	function fn_insert(f){
+		let inputList = $('input');
+		$.each(inputList, function(idx, input){
+			if($(input).val()==''||$(input).val()==null){
+				alert($(input).prop('name')+'이(가) 입력되지 않았습니다.');
+				$(input).focus();
+				return;
+			}
+		});
+		
+		f.action="eventInsert.admin";
+		f.submit();
 	}
 </script>
 </head>
 <body>
 	<div style="width :1020px; height:555px; margin: 20px 0 0 100px; ">
 	<h1>이벤트 추가 페이지</h1><br/>
-		<form action="eventInsert.admin" method="post" enctype="multipart/form-data">
+		<form  method="post" enctype="multipart/form-data">
 			<span style="font-size: 20px">제목</span><br/>
 			<input type="text" id="titlebox" name="title" /><br/>
 			<span style="font-size: 20px">내용</span><br/>
 			<textarea rows="4" cols="20" name="content" style="width:400px; height:200px; font-size:20px; margin-top:10px"></textarea><br/>
-			파일첨부<br/>
+			썸네일 이미지첨부<br/>
 			<input type="file" name="files" /><br/><br/>
-			<button onclick="fn_insert()">작성완료</button>
+			배너 이미지첨부<br/>
+			<input type="file" name="banner" /><br/><br/>
+			<button type="button" onclick="fn_insert(this.form)">작성완료</button>
 		</form>
 	</div>
 <%@ include file="../template/footer.jsp" %>

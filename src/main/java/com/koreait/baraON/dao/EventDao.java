@@ -11,7 +11,7 @@ public interface EventDao {
 	
 	public EventDto eventView(int no);
 	
-	public int eventInsert(String title, String content, String filename);
+	public int eventInsert(EventDto eventDto);
 	
 	public int eventDelete(int no);
 	

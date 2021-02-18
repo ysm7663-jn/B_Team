@@ -14,7 +14,7 @@
 <script type="text/javascript">
 	function fn_update(f) {
 		if (confirm('클럽 내용을 수정하시겠습니까?')) {
-			f.action = 'clubUpdate.club';
+			f.action = 'instaceClubUpdate.club';
 			f.submit();
 		}
 	}

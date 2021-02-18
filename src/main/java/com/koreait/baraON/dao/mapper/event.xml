@@ -27,8 +27,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<insert id="eventInsert">
 		INSERT INTO
-		EVENT (E_NO, E_TITLE, E_CONTENT, E_FILENAME ,E_POSTDATE)
-		VALUES (NOTICE_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3} ,SYSDATE)
+		EVENT (E_NO, E_TITLE, E_CONTENT, E_FILENAME, E_BANNER ,E_POSTDATE)
+		VALUES (NOTICE_SEQ.NEXTVAL, #{e_title}, #{e_content}, #{e_filename}, #{e_banner} ,SYSDATE)
 	</insert>
 	
 	<delete id="eventDelete">

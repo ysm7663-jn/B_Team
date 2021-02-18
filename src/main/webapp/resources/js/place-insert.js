@@ -11,7 +11,18 @@ $(function(){
 	fn_previewThumbnail('#upload-btn');
 	fn_previewThumbnail('.option-thumbnail');
 	fn_removeOption();
+	fn_countChar('.place-input');
 })
+let isPossible = false;
+/* 글자수 count */
+function fn_countChar(countTag){
+	$(countTag).on('keyup', function(event){
+		let count = $(event.target).val().length;
+		$(event.target).next().text(count);
+	});
+}
+
+
 /* 주소 찾기 */
 function fn_searchPopUp(){
 	new daum.Postcode({
@@ -43,12 +54,19 @@ function fn_placeInsert(f){
 		if($(requiredInput).val()== null || $(requiredInput).val()==''){
 			alert('누락된 필수입력사항이 있습니다. 확인해주세요');
 			$(requiredInput).focus();
-			return;
+			isPossible = false;
+			return false;
+		} else {
+			isPossible = true;
 		}
 	});
-	if(f.p_content.value==''){
-		alert('누락된 필수입력사항이 있습니다. 확인해주세요');
-		f.p_content.focus();
+	if(isPossible) {
+		if(f.p_content.value==''){
+			alert('누락된 필수입력사항이 있습니다. 확인해주세요');
+			f.p_content.focus();
+			return;
+		}
+	} else {
 		return;
 	}
 	f.action = 'placeInsert.place';
@@ -80,7 +98,7 @@ function fn_clickCategory(){
 	$('body').on('click', '#category-list li>a', function(){
 		$(this).closest('#category-list').next().val($(this).next().val());
 		$('#category-list li>a').css('background', '');
-		$(this).css('background','rgba(216,100,216,1)');
+		$(this).css('background','rgba(95, 158, 160, 1)');
 		
 	});
 }

@@ -10,30 +10,22 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.ClubDao;
 
-public class ChkOutClubCommand implements ClubCommand {
+public class InstanceLikeClubCommand implements ClubCommand {
 
+	@Override
 	public void execute(SqlSession sqlSession, Model model) {
-
+		
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
-		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
-
-		int cl_no = 0;
-		if(request.getParameter("cl_no") != null) {
-			cl_no = Integer.parseInt(request.getParameter("cl_no"));
-		}
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
-		
-		int chkOutResult = clubDao.chkOutClub(cl_no);
-		
-		boolean afterChkOut = false;
-		if(chkOutResult > 0) { 
-			afterChkOut = true;
-		}
-		
-		rttr.addFlashAttribute("chkOutResult", chkOutResult);
-		rttr.addFlashAttribute("afterChkOut", afterChkOut);
+
+		int	c_no = Integer.parseInt(request.getParameter("c_no"));
+		int	m_no = Integer.parseInt(request.getParameter("m_no"));
+
+		int likeResult = clubDao.instanceLikeClub(c_no, m_no);
+	
+		model.addAttribute("likeResult", likeResult);
 		
 	}
 

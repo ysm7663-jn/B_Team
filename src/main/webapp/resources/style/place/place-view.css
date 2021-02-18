@@ -157,7 +157,7 @@ div[id*="facilities"] {
 	transform: scale(1.2);
 }
 .reserve-form > .btn-wrap button{
-	width : 151px;
+	width : 140px;
 	height : 50px;
 	line-height: 50px;
 	text-align: center;
@@ -239,13 +239,16 @@ ol#info-list, ol#remark-list{
 .thumbnail-box{
 	overflow:hidden;
 }
-.thumbnail-box > img {
+.thumbnail-box img.thumbnail {
 	width : 100%;
 	height: 600px;
 	transition: all ease 0.5s;
 }
-.thumbnail-box > img:hover {
+.thumbnail-box img.thumbnail:hover {
 	transform : scale(1.2) ;
+}
+.slick-track{
+	overflow:hidden;
 }
 
 /* 별점 css */
@@ -324,14 +327,15 @@ ul.img-list li>img {
 	width : 100%;
 	height : 100%;
 }
-ul.img-list:hover{
+ul.img-list li>img:hover{
+	position: absolute;
 	z-index:999997;
-	animation : img-move 2s both; 
+	animation : img-move 1s both; 
 }
 
 @keyframes img-move {
 	0% {left : 0px;}
-	100% {left : 50%; transform: scale(6.0);}
+	100% {left : 100%; transform: scale(6.0);}
 }
 .review-btns > input[type="button"] {
 	width: 150px;

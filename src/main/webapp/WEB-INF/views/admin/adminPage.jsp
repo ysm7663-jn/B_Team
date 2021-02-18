@@ -5,7 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
-	alert('baraON 관리자페이지 입니다.');
+	if(document.referrer.indexOf('index')!=-1&&document.referrer.indexOf('index')==){
+		alert('baraON 관리자페이지 입니다.');
+	}
 </script>
 <link rel="stylesheet" href="resources/style/common.css">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -13,24 +15,24 @@
 
 
 	a{
-		font-size: 16px;
+		font-size: 25px;
 		text-decoration: none;
 	}
 	.head{
 		font-family: 'Do Hyeon', sans-serif;
-		font-size: 40px;
+		font-size: 20px;
 		font-weight: bold;
-		margin: 0 0 0 20px;
 		line-height: 100px;
 	}
 	.board, .member, .review{
 		margin-left: 10px;
-		font-size: 22px;
+		font-size: 30px;
 		font-weight: bold;
+		color:cadetblue;
 	}
 	.exit{
 		float: right;
-		line-height: 100px;
+		line-height: 150px;
 		margin-right: 50px;
 		font-size: 20px;
 		color : blue;
@@ -40,31 +42,37 @@
 <title></title>
 </head>
 <body>
-	<div style="height: 100px">
-		<a href="admin" class="head">baraON-관리자페이지</a>
+	<div style="height: 150px">
+	<img alt="logo" style="height:150px"src="resources/images/logo.png">
 		<a href="index" onclick="alert('관리자 페이지를 종료합니다.')" class="exit">⇒ 관리자페이지 나가기</a>
 	</div>
 	<hr>
-	<div style="background:#F8EBEE; height: 580px;">
-			<div style="width: 150px; height:200px; border-bottom: 1px solid black; padding:20px 0 0 10px" >
+	<div style="background:#F8EBEE; height: 720px;">
+			<div style="float:right; height:250px; margin: 200px 500px 100px 300px; text-align: center">
+				<span style="font-size: 70px">BARAON 관리자 페이지 입니다.</span><br/><br/><br/><br/><br/>
+				<span style="font-size: 40px">BARAON 멤버님들의 소중한 정보를 수정하는 공간이오니</span><br/>
+				<span style="font-size: 40px">정보 수정 시 다시한번 확인 후 수정해주시기 바랍니다.</span><br/>
+			</div>
+			<div style="width: 200px; height:250px; border-bottom: 1px solid black; padding:20px 0 0 10px; display:inline-block;" >
 				<span class="board">게시판 관리</span>
-					<div style="margin: 20px 0 0 30px;"><a href="adminNoticeListPage.admin">공지사항</a></div>
-					<div style="margin: 20px 0 10px 30px;"><a href="adminFaqListPage.admin">FAQ</a></div>
-					<div style="margin: 20px 0 10px 30px;"><a href="adminEventListPage.admin">이벤트</a></div>
+					<div style="margin: 20px 0 0 30px"><a href="adminNoticeListPage.admin">공지사항</a></div>
+					<div style="margin: 20px 0 10px 30px"><a href="adminFaqListPage.admin">FAQ</a></div>
+					<div style="margin: 20px 0 10px 30px"><a href="adminEventListPage.admin">이벤트</a></div>
 					<div style="width: 150px;"></div>	
 			</div>
-			<div style="width: 150px; height:200px; border-bottom: 1px solid black; padding:20px 0 0 10px">
+			<div style="width: 200px; height:250px; border-bottom: 1px solid black; padding:20px 0 0 10px">
 				<span class="member">이용자 관리</span>
 					<div style="margin: 20px 0 0 30px;"><a href="adminMemberPage.admin">회원 관리</a></div>
 					<div style="margin: 20px 0 10px 30px;"><a href="adminSellerPage.admin">판매자 관리</a></div>
 					<div style="margin: 20px 0 10px 30px;"><a href="adminConfirmPage.admin">공간 승인관리</a></div>
 					<div style="width: 150px;"></div>	
 			</div>
-			<div style="width: 150px; height:200px; padding:20px 0 0 10px">
+			<div style="width: 200px;height:200px; padding:20px 0 0 10px">
 				<span class="review">댓글 관리</span>
 				<div style="margin: 20px 0 0 30px;"><a href="adminReplyPage.admin">답글 관리</a></div>
 				<div style="margin: 20px 0 10px 30px;"><a href="adminReviewPage.admin">리뷰 관리</a></div>
 			</div>
+		
 	</div>
 <%@ include file="../template/footer.jsp" %>	
 </body>

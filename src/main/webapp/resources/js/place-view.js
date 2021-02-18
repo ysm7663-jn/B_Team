@@ -18,11 +18,7 @@ $(function(){
 	});
 	
 	$.each(thumbnail, function(idx, img){
-		if(idx==0){
-			$('.thumbnail-box').append($('<img class="thumbnail">').prop('src', 'resources/images/PlaceImages/'+img));
-		}else{
-			$('.thumbnail-box').append($('<img class="thumbnail" style="display:none;">').prop('src', 'resources/images/PlaceImages/'+img));
-		}
+		$('.thumbnail-box').append($('<img class="thumbnail">').prop('src', 'resources/images/PlaceImages/'+img));
 	});
 	
 	let rn = $('.review-list input[type="hidden"][name="rn"]').last().val();
@@ -30,6 +26,11 @@ $(function(){
 		$('#more').text('마지막 리뷰입니다.')
 		isEnd=true;
 	}
+	$('.thumbnail-box').slick({
+		autoplay:true,
+		autoplaySpeed:2000,
+		fade:true
+	});
 	
 	fn_minus();
 	fn_plus();
@@ -38,7 +39,6 @@ $(function(){
 	fn_getMap();
 	fn_datepiacker();
 	fn_star();
-	fn_sildeImg();
 	fn_appendList(remarkList, '#remark-list');
 	fn_appendList(infoList, '#info-list');
 	fn_submitTo('#place-update-btn', 'placeUpdatePage.place', '수정');
@@ -66,22 +66,6 @@ function fn_appendList(list, appendToTag){
 	});
 }
 
-
-/* 클릭시 썸네일 변경 */
-function fn_sildeImg(){
-	$('body').on('click', '.thumbnail', function(event){
-		let length = $('.thumbnail').length;
-		if($(event.target).index()==(length-1)){
-			$('.thumbnail').first().css('display', 'block');
-			$(event.target).css('display', 'none');
-		} else {
-			$(event.target).next().css('display', 'block');
-			$(event.target).css('display', 'none');
-		}
-		
-		
-	});
-}
 
 /* 최대 최소인원 */
 function fn_minus(){
@@ -149,7 +133,9 @@ function fn_getMap(){
 	
 	// 지도를 생성합니다    
 	let map = new kakao.maps.Map(mapContainer, mapOption); 
-	
+	// 확대, 축소 막기
+	map.setZoomable(false);
+	map.setDraggable(false);
 	// 주소-좌표 변환 객체를 생성합니다
 	let geocoder = new kakao.maps.services.Geocoder();
 	

@@ -13,65 +13,33 @@
 <script type="text/javascript">
 		function fn_delete(f) {
 			if (confirm('정말 클럽을 해제하시겠습니까?')) {
-				f.action='clubDelete.club';
+				f.action='instanceClubDelete.club';
 				f.submit();
 			}
 		}
 		
 		function fn_update(f) {
 			if (confirm('클럽 정보를 수정하시겠습니까?')) {
-				f.action='clubUpdatePage.club';
+				f.action='instanceClubUpdatePage.club';
 				f.submit();
 			}
 		}
 		
-		function fn_joinClub(f) {
+		function fn_instancejoinClub(f) {
 			if (confirm('해당 클럽을 참여하시겠습니까?')) {
-				f.action = 'joinClub.club';
+				f.action = 'instanceJoinClub.club';
 				f.submit();
 			}
 		}
 			
-		function fn_chkOut(f) {
+		function fn_instancechkOut(f) {
 			if (confirm('해당 클럽을 탈퇴하시겠습니까?')) {
-				f.action = 'chkOutClub.club';
+				f.action = 'instanceChkOutClub.club';
 				f.submit();
 			}
 		}
+		
 </script>
-
-<script>
-	$(function() {
-		$("#wish_btn").click(function(){
-			$.ajax({
-				url: "likeClub.club",
-				type: "POST",
-				data: {
-					c_no : ${clubDto.c_no},
-					m_no : ${loginDto.m_no}
-				},
-				success: function() {
-					
-				}
-			});
-		});
-	});
-	
-	$(function() {
-		$("#wish_btn").click(function(){
-			$.ajax({
-				url: "unLikeClub.club",
-				type: "POST",
-				data: {
-					w_no : ${whisListDto.w_no}
-				},
-				success: function() {
-					
-				}
-			})
-		})
-	})
-</script>	
 
  <script>
  	var afterUpdate = ${afterUpdate};
@@ -84,10 +52,10 @@
 		}
 	} 
 	
-	var afterJoin = ${afterJoin};
-	if (afterJoin) {
-		var joinResult = ${joinResult};
-		if (joinResult > 0) {
+	var afterJoin2 = ${afterJoin2};
+	if (afterJoin2) {
+		var joinResult2 = ${joinResult2};
+		if (joinResult2 > 0) {
 			alert('클럽에 가입되었습니다.');
 		} else {
 			alert('실패했습니다2.');
@@ -110,12 +78,23 @@
 		<div class="left_side">
 			<div class="thumnail">
 				<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
-					<c:if test="${wishListDto.m_no ne loginDto.m_no}">
-						<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></div></button>
-					</c:if>
-				
-					<c:if test="${wishListDto.m_no eq loginDto.m_no}">
-						<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></div></button>
+					<c:if test="${loginDto ne null}">
+						<c:if test="${clubDto.m_no ne loginDto.m_no}">
+						<form method="post" action="instanceLikeClub.club">
+							<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+							<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+							<c:if test="${wishListDto.m_no ne loginDto.m_no}">
+								<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></div></button>
+							</c:if>
+						</form>
+						
+						<form method="post" action="instanceUnLikeClub.club">
+							<c:if test="${wishListDto.m_no eq loginDto.m_no}">
+								<input type="hidden" name="w_no" value="${wishListDto.w_no}" />
+								<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></div></button>
+							</c:if>
+						</form>
+						</c:if>
 					</c:if>
 			</div>
 			
@@ -165,22 +144,23 @@
 					</div>
 					<br/>
 					<br/><br/>
-					<input type="hidden" name="c_no" value="${clubDto.c_no}" />
-					<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 					
 					<c:if test="${loginDto ne null}">
 						<div class="side_content">
 							<div class="box_content">
 								<form method="post">
+									<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+									<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 									<c:if test="${clubListDto.m_no ne loginDto.m_no}">
-										<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)"/>
+										<input type="button" value="참여하기" id="btn1" onclick="fn_instancejoinClub(this.form)"/>
 									</c:if>
 									<c:if test="${clubListDto.m_no eq loginDto.m_no}">
-										<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/>
+										<input type="hidden" name="cl_no" value="${clubListDto.cl_no}" />
+										<input type="button" value="탈퇴하기" id="btn1" onclick="fn_instancechkOut(this.form)"/>
 									</c:if>
 								</form>
 								
-								<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" />
+								<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='instanceClubListPage.club'" />
 							</div>
 						</div>
 					</c:if>
@@ -219,7 +199,7 @@
 							<input type="button" value="장소등록하기" id="btn1" onclick="location.href='placeListPage.place'" /><br/> 
 							<input type="button" value="클럽수정하기" id="btn1" onclick="fn_update(this.form)" /> <br/>
 							<input type="button" value="클럽해제하기" id="btn1" onclick="fn_delete(this.form)" />	<br/>
-							<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='clubListPage.club'" /> <br/>
+							<input type="button" value="목록으로 돌아가기" id="btn1" onclick="location.href='instanceClubListPage.club'" /> <br/>
 						</div>
 					</form>
 				</div>
