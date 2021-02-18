@@ -13,6 +13,7 @@ $(function(){
 	fn_removeOption();
 	fn_countChar('.place-input');
 })
+let isPossible = false;
 /* 글자수 count */
 function fn_countChar(countTag){
 	$(countTag).on('keyup', function(event){
@@ -53,12 +54,19 @@ function fn_placeInsert(f){
 		if($(requiredInput).val()== null || $(requiredInput).val()==''){
 			alert('누락된 필수입력사항이 있습니다. 확인해주세요');
 			$(requiredInput).focus();
-			return;
+			isPossible = false;
+			return false;
+		} else {
+			isPossible = true;
 		}
 	});
-	if(f.p_content.value==''){
-		alert('누락된 필수입력사항이 있습니다. 확인해주세요');
-		f.p_content.focus();
+	if(isPossible) {
+		if(f.p_content.value==''){
+			alert('누락된 필수입력사항이 있습니다. 확인해주세요');
+			f.p_content.focus();
+			return;
+		}
+	} else {
 		return;
 	}
 	f.action = 'placeInsert.place';

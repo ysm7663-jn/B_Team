@@ -8,9 +8,12 @@
 </jsp:include>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b735551da134940779a92513cdbca8f5&libraries=services"></script>
 <script type="text/javascript" src="resources/js/place-view.js" defer ></script> 
 <link rel="stylesheet" href="resources/style/place/place-view.css">
+<link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick-theme.css" />
+<link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick.css" />
 <script>
 	let facilityList = JSON.parse('${facilityList}');
 	let isSeller = ${isSeller};
@@ -186,7 +189,7 @@
 	</aside>
 	<article>
 		<div class="thumbnail-box">
-		
+			
 		</div>
 		<div class="place-line-desc2">
 			${placeDto.p_desc}
