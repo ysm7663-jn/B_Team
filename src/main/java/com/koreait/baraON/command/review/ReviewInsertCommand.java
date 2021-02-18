@@ -38,7 +38,7 @@ public class ReviewInsertCommand implements ReviewCommand {
 		
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
-		System.out.println(sb.length());
+		// System.out.println(sb.length());
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {

@@ -9,7 +9,6 @@
 			clubCount();
 		}
 	});
-
 	function clubCount() {
 		
 		var cNoList = $('input:hidden[name="c_no"]');
@@ -30,7 +29,6 @@
 		});
 		
 	}
-
 	$(function(){
 		if(${param.state == 1}) {    // 지난 모임이면
 			$('.empty').text('진행했던 모임이 없습니다.');
