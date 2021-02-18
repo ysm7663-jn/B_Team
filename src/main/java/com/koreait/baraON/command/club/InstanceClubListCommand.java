@@ -15,9 +15,9 @@ public class InstanceClubListCommand implements ClubCommand {
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 		
-		List<ClubDto> list = clubDao.instanceClubList();
+		List<ClubDto> list2 = clubDao.instanceClubList();
 		
-		model.addAttribute("list", list);
+		model.addAttribute("list2", list2);
 	}
 
 }

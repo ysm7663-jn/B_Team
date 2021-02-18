@@ -56,7 +56,10 @@
 		
 		<input type="hidden" name="c_no" value="${clubDto.c_no}" />
 		<input type="hidden" name="m_no" value="${clubDto.m_no}" />
-		<input type="hidden" name="c_mainImg2" value="${clubDto.c_mainImg}" />
+		
+		<c:if test="${not empty clubDto.c_mainImg}">
+			<input type="hidden" name="c_mainImg2" value="${clubDto.c_mainImg}" />
+		</c:if>
 		
 		<input type="button" value="수정하기" id="btn" onclick="fn_update(this.form)" />
 		<input type="button" value="목록으로 돌아가기" id="btn" onclick="location.href='clubListPage.club'" />
