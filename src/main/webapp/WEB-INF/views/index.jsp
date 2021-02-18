@@ -26,18 +26,15 @@
         	<i class="fas fa-chevron-right"></i>
         </div>
 		<div class="event-slider">
-			<div class="event-list">
-				<img src="resources/images/banner/봄세일-배너.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/banner/치맥파티-배너.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/banner/covid-19-배너.jpg" />
-			</div>
-			<div class="event-list">
-				<img src="resources/images/banner/sale2-배너.jpg" />
-			</div>
+			<c:forEach var="eventDto" items="${eventList}" varStatus="k" >
+				<div class="event-list">
+					<img src="resources/images/banner/${eventDto.e_filename}" usemap="#${k.index}" />
+					<map name="${k.index}">
+						<area shape="rect" coords="0, 0, 1600, 400" href="eventViewPage.event?no=${eventDto.e_no}&page=1" target="_blank" >
+					</map>
+				</div>
+			</c:forEach>
+			
 			<div class="event-list">
 				<img src="resources/images/banner/코로나방역소독-배너.jpg" />
 			</div>

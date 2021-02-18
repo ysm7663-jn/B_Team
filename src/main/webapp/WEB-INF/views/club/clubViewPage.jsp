@@ -31,16 +31,33 @@
 				f.submit();
 			}
 		}
-			
-		function fn_chkOut(f) {
-			if (confirm('해당 클럽을 탈퇴하시겠습니까?')) {
-				f.action = 'chkOutClub.club';
-				f.submit();
-			}
-		}
+		
 </script>
 
 <script>
+
+
+	function fn_chkOut(f) {
+		if (confirm('해당 클럽을 탈퇴하시겠습니까?')) {
+			$.ajax({
+				url: 'chkOutClub.club',
+				type: 'post',
+				contentType: 'application/json; charset=utf-8',
+				dataType: 'json',
+				success: function(responseObj) {
+					if (responseObj.result > 0) {
+						alert('클럽을 탈퇴했습니다.');
+					} else {
+						alert('탈퇴실패');
+					}
+				},
+				error: function() {
+					alert('구현실패');
+				}
+			});
+		}
+	}
+
 	$(function() {
 		$("#wish_btn").click(function(){
 			$.ajax({
@@ -174,18 +191,19 @@
 						<div id="date">${clubDto.c_endDate}</div>
 					</div>
 					<br/><br/>
-					<input type="hidden" name="c_no" value="${clubDto.c_no}" />
-					<input type="hidden" name="m_no" value="${loginDto.m_no}" />
 					
 					<c:if test="${loginDto ne null}">
 						<div class="side_content">
 							<div class="box_content">
 								<form method="post">
+									<input type="hidden" name="c_no" value="${clubDto.c_no}" />
+									<input type="hidden" name="m_no" value="${loginDto.m_no}" />
+									
 									<c:if test="${clubListDto.m_no ne loginDto.m_no}">
 										<input type="button" value="참여하기" id="btn1" onclick="fn_joinClub(this.form)"/>
 									</c:if>
 									<c:if test="${clubListDto.m_no eq loginDto.m_no}">
-										<input type="button" value="탈퇴하기" id="btn1" onclick="fn_chkOut(this.form)"/>
+										<input type="button" value="탈퇴하기" id="btn2" onclick="fn_chkOut(this.form)"/>
 									</c:if>
 								</form>
 								

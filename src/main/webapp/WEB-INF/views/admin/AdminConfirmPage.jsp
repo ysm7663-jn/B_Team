@@ -192,10 +192,10 @@
 				dataType: 'json',
 				success: function(responseObj) {
 					if (responseObj.result == 1) {
-						alert('회원 정보가 수정되었습니다.');
+						alert('승인이 완료되었습니다.');
 						confirmList();
 					} else {
-						alert('회원 정보 수정이 실패했습니다.');
+						alert('승인이 실패했습니다.');
 					}
 				},
 				error: function(){

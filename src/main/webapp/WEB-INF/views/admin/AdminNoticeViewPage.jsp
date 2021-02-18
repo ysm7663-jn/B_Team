@@ -26,11 +26,9 @@
 				${noticeDto.n_postDate}
 			</div>
 		</div>
-		<div>
 			<div style="height:auto; padding:30px 0 0 10px; font-weight: 800px; font-size: 18px; border-bottom:1px solid black">
 				<pre>${noticeDto.n_content}</pre><br/><br/>
 			</div><br/>
-		</div>
 		<div>
 			<form>
 				<input type="button" name="list" value="목록보기" style="font-size: 16px" onclick="location.href='adminNoticeListPage.admin'" />
