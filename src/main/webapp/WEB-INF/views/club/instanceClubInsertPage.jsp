@@ -36,7 +36,7 @@
 				<div class="title">활동날짜</div>
 					<input type="text" name="c_startDate" id="input" placeholder="  ex) 20xx.xx.xx" /><br/><br/>
 				
-				<input type="hidden" name="c_endDate" value="1111.11.11" />
+				<input type="hidden" name="c_endDate" />
 					
 				<div class="title">클럽내용</div>
 					<textarea rows="20" cols="100" id="c_content" name="c_content" placeholder=" 2000자 이내로 작성해주세요" ></textarea>

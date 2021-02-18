@@ -8,20 +8,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="clubList" resultType="com.koreait.baraON.dto.ClubDto">
 		SELECT * 
 		  FROM CLUB 
-		 WHERE C_PART = 0 AND C_DELETE = 0
+		 WHERE C_PART = 0
+		   AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')  
+		   AND C_DELETE = 0
 	</select>
 	
 	<select id="instanceClubList" resultType="com.koreait.baraON.dto.ClubDto">
 		SELECT *
 		  FROM CLUB
-		 WHERE C_PART = 1 AND C_DELETE = 0
+		 WHERE C_PART = 1 
+		   AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')  
+		   AND C_DELETE = 0
 	</select>
 	
 	<update id="finishDay" parameterType="int">
 		UPDATE CLUB
 		   SET C_DELETE = 1
-		 WHERE C_NO = #{param1}
-		   AND TO_CHAR(C.C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+		 WHERE C_NO = #{param1} AND C_PART = 0
+		   AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
+	</update>
+	
+	<update id="instancefinishDay" parameterType="int">
+		UPDATE CLUB
+		   SET C_DELETE = 1
+		 WHERE C_NO = #{param1} AND C_PART = 1
+		   AND TO_CHAR(C_ENDDATE, 'YYYY-MM-DD') >= TO_CHAR(SYSDATE, 'YYYY-MM-DD')
 	</update>
 	
  	<insert id="clubInsert">
@@ -80,6 +91,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	<delete id="chkOutClub" parameterType="int">
+		DELETE 
+		  FROM CLUBLIST
+		 WHERE CL_NO = #{param1}
+	</delete>
+	
+	<insert id="instanceJoinClub">
+		INSERT 
+		  INTO CLUBLIST (CL_NO, C_NO, M_NO, CL_CARD)
+		  VALUES (CLUBLIST_SEQ.NEXTVAL, #{param1}, #{param2}, 0)
+	</insert>
+	
+	<delete id="instanceChkOutClub" parameterType="int">
 		DELETE 
 		  FROM CLUBLIST
 		 WHERE CL_NO = #{param1}

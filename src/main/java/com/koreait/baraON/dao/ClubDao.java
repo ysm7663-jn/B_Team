@@ -14,6 +14,8 @@ public interface ClubDao {
 	
 	public int finishDay(int c_no);
 	
+	public int instancefinishDay(int c_no);
+	
 	public int clubInsert(int m_no, String c_title, String c_desc, int c_min, int c_max, String c_startDate, String c_endDate, String c_content, String c_mainImg);
 	
 	public int instanceclubInsert(int m_no, String c_title, String c_desc, int c_min, int c_max, String c_startDate, String c_endDate, String c_content, String c_mainImg);
@@ -35,5 +37,13 @@ public interface ClubDao {
 	public int likeClub(int c_no, int m_no);
 	
 	public int unlikeClub(int w_no);
+	
+	public int instanceJoinClub(int c_no, int m_no);
+	
+	public int instanceChkOutClub(int cl_no);
+	
+	public int instanceLikeClub(int c_no, int m_no);
+	
+	public int instanceUnlikeClub(int w_no);
 	
  }

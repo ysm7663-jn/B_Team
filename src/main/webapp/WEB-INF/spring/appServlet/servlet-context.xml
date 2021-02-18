@@ -116,6 +116,10 @@
 	<beans:bean id="instanceClubViewCommand" class="com.koreait.baraON.command.club.InstanceClubViewCommand" />
 	<beans:bean id="instanceClubUpdateCommand" class="com.koreait.baraON.command.club.InstanceClubUpdateCommand" />
 	<beans:bean id="instanceClubDeleteCommand" class="com.koreait.baraON.command.club.InstanceClubDeleteCommand" />
+	<beans:bean id="instanceJoinClubCommand" class="com.koreait.baraON.command.club.InstanceJoinClubCommand" />
+	<beans:bean id="instanceChkOutClubCommand" class="com.koreait.baraON.command.club.InstanceChkOutClubCommand" />
+	<beans:bean id="instanceLikeClubCommand" class="com.koreait.baraON.command.club.InstanceLikeClubCommand" />
+	<beans:bean id="instanceUnLikeClubCommand" class="com.koreait.baraON.command.club.InstanceUnLikeClubCommand" />
 	
 
 	<!-- login -->

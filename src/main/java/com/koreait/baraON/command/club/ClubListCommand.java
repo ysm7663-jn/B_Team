@@ -17,6 +17,7 @@ public class ClubListCommand implements ClubCommand {
 		
 		List<ClubDto> list = clubDao.clubList();
 		
+		
 		model.addAttribute("list", list);
 	}
 

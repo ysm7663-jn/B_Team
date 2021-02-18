@@ -32,7 +32,7 @@ public class InstanceClubInsertCommand implements ClubCommand {
 		
 		
 		String c_startDate = multipartRequest.getParameter("c_startDate");
-		String c_endDate = multipartRequest.getParameter("c_endDate");
+		String c_endDate = c_startDate;
 	
 		MultipartFile file = multipartRequest.getFile("c_mainImg");
 	

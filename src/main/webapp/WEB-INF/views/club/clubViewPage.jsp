@@ -78,12 +78,13 @@
 		<div class="left_side">
 			<div class="thumnail">
 				<img class="img" alt="${clubDto.c_mainImg}" src="resources/images/club/${clubDto.c_mainImg}">
-					<c:if test="${wishListDto.m_no ne loginDto.m_no}">
-						<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></div></button>
-					</c:if>
-					${wishListDto.m_no}
-					<c:if test="${wishListDto.m_no eq loginDto.m_no}">
-						<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></div></button>
+					<c:if test="${loginDto ne null}">
+						<c:if test="${wishListDto.m_no ne loginDto.m_no}">
+							<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:gray"></i></div></button>
+						</c:if>
+						<c:if test="${wishListDto.m_no eq loginDto.m_no}">
+							<button id="wish_btn"><div class="wishIcon"><i class="fa fa-heart" style="color:cadetblue"></i></div></button>
+						</c:if>
 					</c:if>
 			</div>
 			
