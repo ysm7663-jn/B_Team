@@ -45,13 +45,13 @@ if (afterDelete) {
 		</div>
 	</div>
 
-	<c:if test="${empty list}">
+	<c:if test="${empty list2}">
 		<div id="none_content">등록된 클럽이 없습니다.</div>
 	</c:if>
 
-	<c:if test="${not empty list}">
+	<c:if test="${not empty list2}">
 		<div class="group-list">
-			<c:forEach var="clubDto" items="${list}">
+			<c:forEach var="clubDto" items="${list2}">
 				<div class="clubList">
 					<div class="mainImg">
 						<a href="instanceClubViewPage.club?c_no=${clubDto.c_no}&m_no=${clubDto.m_no}">

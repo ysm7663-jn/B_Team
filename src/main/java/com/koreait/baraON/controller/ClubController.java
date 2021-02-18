@@ -43,7 +43,7 @@ public class ClubController {
 	private LikeClubCommand likeClubCommand;
 	private UnLikeClubCommand unLikeClubCommand;
 	private ChkOutClubCommand chkOutClubCommand;
-	private InstanceClubListCommand instanClubListCommand;
+	private InstanceClubListCommand instanceClubListCommand;
 	private InstanceClubInsertCommand instanceClubInsertCommand;
 	private InstanceClubViewCommand instanceClubViewCommand;
 	private InstanceClubUpdateCommand instanceClubUpdateCommand;
@@ -59,9 +59,10 @@ public class ClubController {
 						   ChkOutClubCommand chkOutClubCommand,
 						   LikeClubCommand likeClubCommand,
 						   UnLikeClubCommand unLikeClubCommand,
-						   InstanceClubListCommand instanceCLubListCommand,
+						   InstanceClubListCommand instanceClubListCommand,
 						   InstanceClubInsertCommand instanceClubInsertCommand,
 						   InstanceClubViewCommand instanceClubViewCommand,
+						   InstanceClubUpdateCommand instanceClubUpdateCommand,
 						   InstanceClubDeleteCommand instanceClubDeleteCommand
 						  ) {
 		this.clubListCommand = clubListCommand;
@@ -73,9 +74,10 @@ public class ClubController {
 		this.likeClubCommand = likeClubCommand;
 		this.unLikeClubCommand = unLikeClubCommand;
 		this.chkOutClubCommand = chkOutClubCommand;
-		this.instanceClubInsertCommand = instanceClubInsertCommand;
+		this.instanceClubListCommand = instanceClubListCommand;
 		this.instanceClubInsertCommand = instanceClubInsertCommand;
 		this.instanceClubViewCommand = instanceClubViewCommand;
+		this.instanceClubUpdateCommand = instanceClubUpdateCommand;
 		this.instanceClubDeleteCommand = instanceClubDeleteCommand;
 	}
 
@@ -99,7 +101,7 @@ public class ClubController {
 	
 	@RequestMapping(value="instanceClubListPage.club", method=RequestMethod.GET)
 	public String instanceClubListPage(Model model) {
-		clubListCommand.execute(sqlSession, model);
+		instanceClubListCommand.execute(sqlSession, model);
 		
 		return "club/instanceClubListPage";
 	}
@@ -128,6 +130,14 @@ public class ClubController {
 		return "club/clubViewPage";
 	}
 	
+	@RequestMapping(value="instanceClubViewPage.club", method=RequestMethod.GET)
+	public String instanceClubViewPage(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		clubViewCommand.execute(sqlSession, model);
+		
+		return "club/instanceClubViewPage";
+	}
+	
 	@RequestMapping(value="clubDelete.club", method=RequestMethod.POST)
 	public String clubDelete(HttpServletRequest request, @RequestParam(value="isDetailPage", required=false, defaultValue="false") boolean isDetailPage , RedirectAttributes rttr, Model model) {
 		
@@ -139,6 +149,20 @@ public class ClubController {
 			return "redirect:clubManagePage.myPage?state=0";
 		} else {
 			return "redirect:clubListPage.club";
+		}
+	}
+	
+	@RequestMapping(value="instanceClubDelete.club", method=RequestMethod.POST)
+	public String instanceClubDelete(HttpServletRequest request, @RequestParam(value="isDetailPage", required=false, defaultValue="false") boolean isDetailPage , RedirectAttributes rttr, Model model) {
+		
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		instanceClubDeleteCommand.execute(sqlSession, model);
+		
+		if(isDetailPage) {
+			return "redirect:clubManagePage.myPage?state=0";
+		} else {
+			return "redirect:instanceClubListPage.club";
 		}
 	}
 	
@@ -159,6 +183,25 @@ public class ClubController {
 		clubUpdateCommand.execute(sqlSession, model);
 		
 		return "redirect:clubViewPage.club?c_no=" + multipartRequest.getParameter("c_no") + "&m_no=" + multipartRequest.getParameter("m_no");
+	}
+	
+	@RequestMapping(value="instanceClubUpdatePage.club", method=RequestMethod.POST)
+	public String instanceClubUpdatePage(ClubDto clubDto, Model model) {
+		
+		model.addAttribute("clubDto", clubDto);
+		
+		return "club/intanceClubUpdatePage";
+	}
+	
+	@RequestMapping(value="instaceClubUpdate.club", method=RequestMethod.POST)
+	public String instaceClubUpdate(MultipartHttpServletRequest multipartRequest, RedirectAttributes rttr, Model model) {
+		
+		model.addAttribute("multipartRequest", multipartRequest);
+		model.addAttribute("rttr", rttr);
+		
+		instanceClubUpdateCommand.execute(sqlSession, model);
+		
+		return "redirect:instanceClubViewPage.club?c_no=" + multipartRequest.getParameter("c_no") + "&m_no=" + multipartRequest.getParameter("m_no");
 	}
 	
 	@RequestMapping(value="joinClub.club", method=RequestMethod.POST)
