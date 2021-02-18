@@ -21,8 +21,8 @@ public class LoginCommand implements BaraONCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		String id = request.getParameter("id");
-		//String pw = Sha256.sha256(request.getParameter("pw"));
-		String pw = request.getParameter("pw");
+		String pw = Sha256.sha256(request.getParameter("pw"));
+		//String pw = request.getParameter("pw");
 		String grade = request.getParameter("grade");
 		
 		if(grade.equals("member")) { // 등급이 member일때
@@ -32,6 +32,11 @@ public class LoginCommand implements BaraONCommand {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginDto", loginMemberDto); //  로그인 정보 session에 저장
 				session.setAttribute("grade", grade); 
+				if(loginMemberDto.getM_id().equals("admin")) {
+					session.setAttribute("admin", true);
+				} else {
+					session.setAttribute("admin", false);
+				}
 			}
 		} else {  // 등급이 seller일때 
 			SellerDto loginSellerDto = memberDao.sellerLogin(id, pw);
