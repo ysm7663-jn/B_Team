@@ -26,7 +26,7 @@
 			<h2>일반</h2>
 			<ul class="member-category">
 				<li>
-					<a class="btn" href="pwCheck.myPage">내 프로필</a><br/>
+					<a class="btn" href="memberView.member">내 프로필</a><br/>
 				</li>
 				<li>
 					<a class="btn" href="wishList.myPage">위시리스트</a><br/>
@@ -57,7 +57,7 @@
 			<h2>호스트</h2>
 			<ul class="seller-category">
 				<li>
-					<a href="pwCheck2.seller">내 프로필</a><br/>
+					<a href="sellerView.seller">내 프로필</a><br/>
 				</li>
 				<li>
 					<a href="spaceViewPage.seller">공간정보 관리</a><br/>

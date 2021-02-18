@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <jsp:include page="../myPage/myPage.jsp" />
 <link rel="stylesheet" href="resources/style/seller/reviewPage.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>	
@@ -85,11 +86,22 @@
 	function placeListTable(list){
 		
 		$.each(list, function(idx, place){
-			$('<tr>')
-			.append( $('<td>').html(place.p_title) )
-			.append( $('<td>').html(place.p_review) )
-			.append( $('<td>').html(place.s_no) )
-			.appendTo('#placeList');
+			let strHtml = '<tr><td>'+place.p_title+'</td>';
+			if ((place.rv_content).length >=15){
+				strHtml += '<td>'+place.rv_content.substring(0,15)+'...</td>';
+			} else {
+				strHtml += '<td>'+place.rv_content+'</td>';
+			}
+			strHtml += '<td>'+place.m_id+'</td>';
+			switch(place.rv_star){
+			case 1: strHtml += '<td>'+'☆☆☆☆★'+'</td>'; break;
+			case 2: strHtml += '<td>'+'☆☆☆★★'+'</td>'; break;
+			case 3: strHtml += '<td>'+'☆☆★★★'+'</td>'; break;
+			case 4: strHtml += '<td>'+'☆★★★★'+'</td>'; break;
+			default: strHtml += '<td>'+'★★★★★'+'</td>';
+			}
+			strHtml += '</tr>';
+			$('#placeList').append(strHtml);
 		});
 	}
 </script>
@@ -97,7 +109,6 @@
 	<h3>이용 후기 관리</h3>
 	<br/>
 		<div class="content-wrap">
-
 	<div class="right">
 	<table>
 		<thead>
@@ -108,7 +119,9 @@
 				<th>별점</th>
 			</tr>
 		</thead>
-		<tbody id="placeList"></tbody>
+		<tbody id="placeList">
+		
+		</tbody>
 		<tfoot>
 			<tr>
 				<td colspan="5">

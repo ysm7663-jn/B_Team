@@ -12,6 +12,7 @@ ul, ol {
 }
 table {
 	border-collapse: collapse;
+	text-algin:center;
 }
 div {
 	box-sizing: border-box;
@@ -24,7 +25,9 @@ th{
 	width: 200px;
 	height: 50px;
 }
-
+td{
+	text-align: center;
+}
 #paging{
 	display:flex;
 	text-align :center;
