@@ -5,7 +5,7 @@
 }
 .box2{
 	margin:0 auto;
-	background: silver;
+	background: cadetblue;
 }
 #btn1{
 	margin: 10px 50px;
@@ -13,6 +13,8 @@
 	font-size: 16px;
 	border-radius: 10px;
 	border: 1px solid white;
+	color: white;
+	background: cadetblue;
 }
 #btn2{
 	margin: 10px 50px;
@@ -20,4 +22,6 @@
 	font-size: 16px;
 	border-radius: 10px;
 	border: 1px solid white;
+	color: white;
+	background: cadetblue;
 }
