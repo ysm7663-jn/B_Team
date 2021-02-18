@@ -1,6 +1,6 @@
 package com.koreait.baraON.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +18,6 @@ public class MemberDto {
 	private String m_birth;
 	private String m_nick;
 	private String m_email;
-	private Date m_regDate;
+	private Timestamp m_regDate;
 	private int m_agreement;
 }

@@ -32,6 +32,11 @@ public class LoginCommand implements BaraONCommand {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginDto", loginMemberDto); //  로그인 정보 session에 저장
 				session.setAttribute("grade", grade); 
+				if(loginMemberDto.getM_id().equals("admin")) {
+					session.setAttribute("admin", true);
+				} else {
+					session.setAttribute("admin", false);
+				}
 			}
 		} else {  // 등급이 seller일때 
 			SellerDto loginSellerDto = memberDao.sellerLogin(id, pw);

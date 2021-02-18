@@ -14,5 +14,6 @@ public class EventDto {
 	private String e_title;
 	private String e_content;
 	private String e_filename;
+	private String e_banner;
 	private Date e_postDate;
 }

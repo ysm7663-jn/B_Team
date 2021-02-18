@@ -20,6 +20,7 @@
 <title>${title}</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<!-- favicon 적용 -->
 <link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon_16x16.png">
 <!-- header, footer css -->
 <link rel="stylesheet" href="resources/style/common.css">
@@ -54,7 +55,7 @@
 							</c:if>
 							<div><a href="faqListPage.faq">FAQ</a></div>
 						</c:if>
-						<c:if test="${loginDto.m_id eq 'admin'}">
+						<c:if test="${admin}">
 							<div><a href="admin">관리자</a></div>
 						</c:if>
 					</nav>

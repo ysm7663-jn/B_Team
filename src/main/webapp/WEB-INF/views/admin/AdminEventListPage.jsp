@@ -9,6 +9,7 @@
 <title></title>
 <link rel="stylesheet" href="resources/style/common.css">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <style type="text/css">
 	 a:link { color: black; text-decoration: none;}
  	 a:visited { color: black; text-decoration: none;}
@@ -28,6 +29,13 @@
 	 	margin: 0 10px 0 10px;
 	 }
 </style>
+<script>
+	$(function(){
+		if('${insertResult}'>0){
+			alert('이벤트가 등록되었습니다');
+		}
+	})
+</script>
 </head>
 <body>
 	<div id="wrap" style="width :1020px; margin: 0 auto;">
