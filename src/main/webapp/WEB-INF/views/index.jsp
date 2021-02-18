@@ -28,15 +28,15 @@
 		<div class="event-slider">
 			<c:forEach var="eventDto" items="${eventList}" varStatus="k" >
 				<div class="event-list">
-					<img src="resources/images/banner/${eventDto.e_filename}" usemap="#${k.index}" />
+					<img src="resources/images/banner/${eventDto.e_banner}" usemap="#${k.index}" />
 					<map name="${k.index}">
-						<area shape="rect" coords="0, 0, 1600, 400" href="eventViewPage.event?no=${eventDto.e_no}&page=1" target="_blank" >
+						<area shape="rect" coords="0, 0, 1900, 400" href="eventViewPage.event?no=${eventDto.e_no}&page=1" target="_blank" >
 					</map>
 				</div>
 			</c:forEach>
 			
 			<div class="event-list">
-				<img src="resources/images/banner/코로나방역소독-배너.jpg" />
+				<img src="resources/images/banner/코로나방역소독.jpg" />
 			</div>
 		</div>
 	</section>

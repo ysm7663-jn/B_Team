@@ -19,6 +19,7 @@ INSERT INTO MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL,
 INSERT INTO MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL, M_REGDATE, M_AGREEMENT) VALUES (MEMBER_SEQ.NEXTVAL, 'member18', '1111', '010-1111-1118', '김재성', '1992-04-01', '성재김', 'member18@google.com', sysdate, 1);
 INSERT INTO MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL, M_REGDATE, M_AGREEMENT) VALUES (MEMBER_SEQ.NEXTVAL, 'member19', '1111', '010-1111-1119', '정재성', '1992-05-01', '성재정', 'member19@google.com', sysdate, 1);
 INSERT INTO MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL, M_REGDATE, M_AGREEMENT) VALUES (MEMBER_SEQ.NEXTVAL, 'member20', '1111', '010-1111-1120', '박재성', '1992-06-10', '성재박', 'member20@google.com', sysdate, 1);
+INSERT INTO MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL, M_REGDATE, M_AGREEMENT) VALUES (MEMBER_SEQ.NEXTVAL, 'admin', 'baraonadmin1111', '010-9999-9999', '관리자', '1992-12-31', '보스', 'admin@google.com', sysdate, 1);
 
 -- SELLER
 INSERT INTO SELLER (S_NO, S_ID, S_PW, S_PHONE, S_NAME, S_BIRTH, S_EMAIL, S_REGDATE, S_AGREEMENT, S_COMPANYNO) VALUES (SELLER_SEQ.NEXTVAL, 'seller01', '1111', '010-2222-2201', '판매자1', '2002-01-01', 'seller01@baraON.com', sysdate, 1, '123-5648-56401');
@@ -1231,23 +1232,27 @@ INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
 '치킨&맥주 파티 모집중!',
 'baraON 멤버라면 누구나 가능!
 멤버님들의 성원에 힘입어 참여대상을 확대했습니다!',
-'치맥파티.jpg', SYSDATE);
+'치맥파티.jpg', '치맥파티.jpg', SYSDATE);
 INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
 '봄을 맞아 세일해봄',
 '추운 겨울이 지나고 새 봄을 맞이하여
 저희 baraON에서 봄맞이 세일을 준비하였습니다!',
-'봄세일.jpg', SYSDATE);
+'봄세일.jpg', '봄세일.jpg', SYSDATE);
 INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
 '코로나 극복 기원 이벤트',
 '코로나 극복을 기원하며 
 저희 baraON에서 특별 이벤트를 준비하였습니다!',
-'covid-19.jpg', SYSDATE);
+'covid-19.jpg', 'covid-19.jpg', SYSDATE);
 INSERT INTO EVENT VALUES(EVENT_SEQ.NEXTVAL,
 '신규 런칭 이벤트',
 'baraON 신규 런칭을 맞이하여  
 첫 예약 할인 이벤트를 준비하였습니다!',
-'sale2.jpg', SYSDATE);
+'sale2.jpg', 'sale2.jpg', SYSDATE);
 
+select * from club
+SELECT *
+		  FROM CLUB
+		 WHERE C_PART = 1
 --WISHLIST
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 01, 01);
 INSERT INTO WISHLIST (W_NO, C_NO, M_NO) VALUES (WISHLIST_SEQ.NEXTVAL, 02, 01);

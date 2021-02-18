@@ -1,18 +1,14 @@
 package com.koreait.baraON.controller;
 
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -22,11 +18,15 @@ import com.koreait.baraON.command.club.ClubInsertCommand;
 import com.koreait.baraON.command.club.ClubListCommand;
 import com.koreait.baraON.command.club.ClubUpdateCommand;
 import com.koreait.baraON.command.club.ClubViewCommand;
+import com.koreait.baraON.command.club.InstanceChkOutClubCommand;
 import com.koreait.baraON.command.club.InstanceClubDeleteCommand;
 import com.koreait.baraON.command.club.InstanceClubInsertCommand;
 import com.koreait.baraON.command.club.InstanceClubListCommand;
 import com.koreait.baraON.command.club.InstanceClubUpdateCommand;
 import com.koreait.baraON.command.club.InstanceClubViewCommand;
+import com.koreait.baraON.command.club.InstanceJoinClubCommand;
+import com.koreait.baraON.command.club.InstanceLikeClubCommand;
+import com.koreait.baraON.command.club.InstanceUnLikeClubCommand;
 import com.koreait.baraON.command.club.JoinClubCommand;
 import com.koreait.baraON.command.club.LikeClubCommand;
 import com.koreait.baraON.command.club.UnLikeClubCommand;
@@ -52,6 +52,10 @@ public class ClubController {
 	private InstanceClubViewCommand instanceClubViewCommand;
 	private InstanceClubUpdateCommand instanceClubUpdateCommand;
 	private InstanceClubDeleteCommand instanceClubDeleteCommand;
+	private InstanceJoinClubCommand instanceJoinClubCommand;
+	private InstanceChkOutClubCommand instanceChkOutClubCommand;
+	private InstanceLikeClubCommand instanceLikeClubCommand;
+	private InstanceUnLikeClubCommand instanceUnLikeClubCommand;
 	
 	@Autowired
 	public void setCommand(ClubListCommand clubListCommand,
@@ -67,7 +71,11 @@ public class ClubController {
 						   InstanceClubInsertCommand instanceClubInsertCommand,
 						   InstanceClubViewCommand instanceClubViewCommand,
 						   InstanceClubUpdateCommand instanceClubUpdateCommand,
-						   InstanceClubDeleteCommand instanceClubDeleteCommand
+						   InstanceClubDeleteCommand instanceClubDeleteCommand,
+						   InstanceJoinClubCommand instanceJoinClubCommand,
+						   InstanceChkOutClubCommand instanceChkOutClubCommand,
+						   InstanceLikeClubCommand instanceLikeClubCommand,
+						   InstanceUnLikeClubCommand instanceUnLikeClubCommand
 						  ) {
 		this.clubListCommand = clubListCommand;
 		this.clubInsertCommand = clubInsertCommand;
@@ -83,6 +91,10 @@ public class ClubController {
 		this.instanceClubViewCommand = instanceClubViewCommand;
 		this.instanceClubUpdateCommand = instanceClubUpdateCommand;
 		this.instanceClubDeleteCommand = instanceClubDeleteCommand;
+		this.instanceJoinClubCommand = instanceJoinClubCommand;
+		this.instanceChkOutClubCommand = instanceChkOutClubCommand;
+		this.instanceLikeClubCommand = instanceLikeClubCommand;
+		this.instanceUnLikeClubCommand = instanceUnLikeClubCommand;
 	}
 
 	@RequestMapping(value="clubInsertPage.club", method=RequestMethod.GET)
@@ -217,15 +229,14 @@ public class ClubController {
 		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no");
 	}
 	
-	@RequestMapping(value="chkOutClub.club/{cl_no}", method=RequestMethod.POST, produces="application/json; charset=utf-8")
-	@ResponseBody
-	public Map<String, Object> chkOutClub(@PathVariable int cl_no, HttpServletRequest request, Model model) {
+	@RequestMapping(value="chkOutClub.club", method=RequestMethod.POST)
+	public String chkOutClub(HttpServletRequest request, RedirectAttributes rttr, Model model) {
 		
-		model.addAttribute("cl_no", cl_no);
 		model.addAttribute("request", request);
-		return chkOutClubCommand.execute(sqlSession, model);
+		model.addAttribute("rttr", rttr);
+		chkOutClubCommand.execute(sqlSession, model);
 		
-		//return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no");
+		return "redirect:clubViewPage.club?c_no=" + request.getParameter("c_no");
 	}
 	
 	@RequestMapping(value="likeClub.club", method=RequestMethod.POST)
@@ -236,10 +247,43 @@ public class ClubController {
 	}
 	
 	@RequestMapping(value="unLikeClub.club", method=RequestMethod.POST)
-	public String chkOutClub(HttpServletRequest request, Model model) {
+	public String unLikeClub(HttpServletRequest request, Model model) {
 		model.addAttribute("request", request);
 		unLikeClubCommand.execute(sqlSession, model);
 		return "redirect:clubListPage.club";
+	}
+	
+	@RequestMapping(value="instanceJoinClub.club", method=RequestMethod.POST)
+	public String instanceJoinClub(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+		
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		instanceJoinClubCommand.execute(sqlSession, model);
+		return "redirect:instanceClubViewPage.club?c_no=" + request.getParameter("c_no");
+	}
+	
+	@RequestMapping(value="instanceChkOutClub.club", method=RequestMethod.POST)
+	public String instanceChkOutClub(HttpServletRequest request, RedirectAttributes rttr, Model model) {
+		
+		model.addAttribute("request", request);
+		model.addAttribute("rttr", rttr);
+		instanceChkOutClubCommand.execute(sqlSession, model);
+		
+		return "redirect:instanceClubViewPage.club?c_no=" + request.getParameter("c_no");
+	}
+	
+	@RequestMapping(value="instanceLikeClub.club", method=RequestMethod.POST)
+	public String instanceLikeClub(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		likeClubCommand.execute(sqlSession, model);
+		return "redirect:instanceClubViewPage.club?c_no=" + request.getParameter("c_no");
+	}
+	
+	@RequestMapping(value="instanceUnLikeClub.club", method=RequestMethod.POST)
+	public String instanceUnLikeClub(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		unLikeClubCommand.execute(sqlSession, model);
+		return "redirect:instanceClubListPage.club";
 	}
 	
 }

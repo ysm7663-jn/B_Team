@@ -23,7 +23,29 @@ function fn_pwSearch(){
 		success:function(data){
 			if(m_pw==data.result){
 				alert('성공');	//지울것
-				location.href='memberView.member';
+					var obj={
+							'm_no':'${loginDto.m_no}',
+							'm_phone':'${m_phone}',	
+							'm_email':'${m_email}'
+						};
+						$.ajax({
+							url:'memberUpdate.member',
+							type:'post',
+							data:JSON.stringify(obj),
+							contentType: 'application/json',
+							dataType:'json',
+							success:function(data){
+								if(data.result == 1){
+									alert('수정되었습니다');
+									location.href='index';
+								}else{
+									alert('실패');
+								}
+							},
+							error: function(){
+								alert('실패');
+							}
+						});
 			}else{
 				alert('비밀번호가 틀립니다');
 			}
@@ -33,6 +55,9 @@ function fn_pwSearch(){
 		}
 	});
 }
+
+
+
 </script>
 
 	<div class="box">

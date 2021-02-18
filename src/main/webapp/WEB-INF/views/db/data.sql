@@ -298,10 +298,14 @@ CREATE TABLE EVENT
     E_NO    		NUMBER PRIMARY KEY, 
     E_TITLE			VARCHAR2(300),
     E_CONTENT    	VARCHAR2(4000),    
-    E_FILENAME   	VARCHAR2(300),    
+    E_FILENAME   	VARCHAR2(300),
+    E_BANNER		VARCHAR2(300),
 	E_POSTDATE		DATE 		
 );
-
+select * from event
+delete from event
+drop sequence event_seq
+drop table event
 CREATE SEQUENCE EVENT_SEQ
 START WITH 1
 INCREMENT BY 1

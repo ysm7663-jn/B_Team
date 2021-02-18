@@ -20,6 +20,7 @@
 <title>${title}</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+<!-- favicon 적용 -->
 <link rel="icon" type="image/png" sizes="16x16" href="resources/images/favicon_16x16.png">
 <!-- header, footer css -->
 <link rel="stylesheet" href="resources/style/common.css">
@@ -33,7 +34,7 @@
 		<header>
 			<div class="head-wrap">
 				<a id="logo" href="index">
-					<img  alt="로고사진" src="resources/images/logo2.png" style="height: 100%;">
+					<img  alt="로고사진" src="resources/images/logo.png" style="height: 100%;">
 				</a>
 				<div class="right-head-wrap">
 					<nav id="right-head">
@@ -46,8 +47,16 @@
 						<!-- 로그인 후 -->
 						<c:if test="${loginDto ne null}">
 							<div><a href="logout.member">로그아웃</a></div>
-							<div><a href="profile.myPage">마이페이지</a></div>
+							 <c:if test="${grade eq 'member'}">
+								<div><a href="memberView.member">마이페이지</a></div>
+							</c:if>
+							 <c:if test="${grade eq 'seller'}">
+								<div><a href="sellerView.seller">마이페이지</a></div>
+							</c:if>
 							<div><a href="faqListPage.faq">FAQ</a></div>
+						</c:if>
+						<c:if test="${admin}">
+							<div><a href="admin">관리자</a></div>
 						</c:if>
 					</nav>
 				</div>

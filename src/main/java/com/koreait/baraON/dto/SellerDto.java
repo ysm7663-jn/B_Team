@@ -1,6 +1,6 @@
 package com.koreait.baraON.dto;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class SellerDto {
 	private String s_name;
 	private String s_birth;
 	private String s_email;
-	private Date s_regDate;
+	private Timestamp s_regDate;
 	private int s_agreement;
 	private String s_companyNo;
 }

@@ -10,7 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.koreait.baraON.dao.ClubDao;
 
-public class ChkOutClubCommand implements ClubCommand {
+public class InstanceChkOutClubCommand implements ClubCommand {
 
 	public void execute(SqlSession sqlSession, Model model) {
 
@@ -25,15 +25,15 @@ public class ChkOutClubCommand implements ClubCommand {
 		
 		ClubDao clubDao = sqlSession.getMapper(ClubDao.class);
 		
-		int chkOutResult = clubDao.chkOutClub(cl_no);
+		int chkOutResult2 = clubDao.instanceChkOutClub(cl_no);
 		
-		boolean afterChkOut = false;
-		if(chkOutResult > 0) { 
-			afterChkOut = true;
+		boolean afterChkOut2 = false;
+		if(chkOutResult2 > 0) { 
+			afterChkOut2 = true;
 		}
 		
-		rttr.addFlashAttribute("chkOutResult", chkOutResult);
-		rttr.addFlashAttribute("afterChkOut", afterChkOut);
+		rttr.addFlashAttribute("chkOutResult2", chkOutResult2);
+		rttr.addFlashAttribute("afterChkOut2", afterChkOut2);
 		
 	}
 

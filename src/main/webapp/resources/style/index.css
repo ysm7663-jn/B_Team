@@ -51,7 +51,7 @@ article#main-event div.main-content{
 	width: 940px;
 	grid-template-columns: repeat(3, 300px);
 	margin: 0 auto;
-	gap: 0 20px;
+	gap: 20px 20px;
 }
 article#main-event div.main-content a{
 	display: inline-block;

@@ -5,7 +5,7 @@
 		<footer>
 			<div class="footer-top">
 				<a id="logo" href="index">
-					<img alt="BaraON" src="resources/images/logo2.png" />
+					<img alt="BaraON" src="resources/images/logo.png" />
 				</a>
 			</div>
 			<div class="footer-middle">

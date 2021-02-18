@@ -158,30 +158,9 @@
 		});
 	}
 	
-	function fn_memberUpdate(){
-		var obj={
-			"m_no":'${loginDto.m_no}',
-			"m_phone":$('#m_phone').val(),
-			"m_email":$('#m_email').val()
-		};
-		$.ajax({
-			url:'memberUpdate.member',
-			type:'post',
-			data:JSON.stringify(obj),
-			contentType: 'application/json',
-			dataType:'json',
-			success:function(data){
-				if(data.result == 1){
-					alert('수정되었습니다');
-					location.href='index';
-				}else{
-					alert('실패');
-				}
-			},
-			error: function(){
-				alert('실패');
-			}
-		});
+	function fn_memberUpdate(f){
+		f.action='pwCheck.myPage';
+		f.submit();
 	}
 	
 	
@@ -274,15 +253,15 @@
 				</tr>
 				<tr>
 					<th>휴대전화</th>
-					<td><input type="text" placeholder="${loginDto.m_phone}" id="m_phone" name="m_phone"/></td>
+					<td><input type="text" placeholder="${loginDto.m_phone}" id="m_phone" name="m_phone" value="${loginDto.m_phone}"/></td>
 				</tr>
 				<tr>
 					<th>이메일</th>
-					<td><input type="text" placeholder="${loginDto.m_email}"id="m_email" name="m_email"/></td>
+					<td><input type="text" placeholder="${loginDto.m_email}"id="m_email" name="m_email" value="${loginDto.m_email}"/></td>
 				</tr>
 				<tr>
 					<td colspan="2"  style="text-align:center";>
-						<input type="button" value="확인" onclick="fn_memberUpdate()"/>
+						<input type="button" value="확인" onclick="fn_memberUpdate(this.form)"/>
 					</td>
 				</tr>
 				
