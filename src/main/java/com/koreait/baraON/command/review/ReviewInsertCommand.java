@@ -20,7 +20,6 @@ public class ReviewInsertCommand implements ReviewCommand {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest)model.asMap().get("multipartRequest");
 		RedirectAttributes rttr = (RedirectAttributes)model.asMap().get("rttr");
-//		System.out.println(rttr);
 		
 		int m_no = Integer.parseInt(multipartRequest.getParameter("m_no"));
 		int p_no = Integer.parseInt(multipartRequest.getParameter("p_no"));
@@ -38,7 +37,7 @@ public class ReviewInsertCommand implements ReviewCommand {
 		
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();
-		System.out.println(sb.length());
+		// System.out.println(sb.length());
 		// 지원하는 이미지파일 확장자는 jpg, jpeg, png로 한다.
 		for (MultipartFile file : files) {
 			if (file != null && !file.isEmpty()) {
@@ -89,11 +88,9 @@ public class ReviewInsertCommand implements ReviewCommand {
 			}
 		}
 		if ( !sb.toString().isEmpty() && sb.toString() != null) {
-			System.out.println("1");
 			rv_img = sb.toString();
 			rttr.addFlashAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, rv_img, rv_content));
 		} else {
-			System.out.println("2");
 			rttr.addFlashAttribute("insertResult", reviewDao.reviewInsert(m_no, p_no, rv_star, sb.toString(), rv_content));
 		}
 	}

@@ -34,7 +34,7 @@
 		<header>
 			<div class="head-wrap">
 				<a id="logo" href="index">
-					<img  alt="로고사진" src="resources/images/logo.png" style="height: 100%;">
+					<img  alt="로고사진" src="resources/images/logo.jpg" style="height: 100%;">
 				</a>
 				<div class="right-head-wrap">
 					<nav id="right-head">
@@ -47,13 +47,14 @@
 						<!-- 로그인 후 -->
 						<c:if test="${loginDto ne null}">
 							<div><a href="logout.member">로그아웃</a></div>
-							 <c:if test="${grade eq 'member'}">
+							 <c:if test="${grade eq 'member' && not admin}">
 								<div><a href="memberView.member">마이페이지</a></div>
+								<div><a href="faqListPage.faq">FAQ</a></div>
 							</c:if>
-							 <c:if test="${grade eq 'seller'}">
+							 <c:if test="${grade eq 'seller' && not admin}">
 								<div><a href="sellerView.seller">마이페이지</a></div>
+								<div><a href="faqListPage.faq">FAQ</a></div>
 							</c:if>
-							<div><a href="faqListPage.faq">FAQ</a></div>
 						</c:if>
 						<c:if test="${admin}">
 							<div><a href="admin">관리자</a></div>

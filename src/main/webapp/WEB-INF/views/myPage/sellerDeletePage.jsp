@@ -12,15 +12,30 @@
 		$('.buttons').html('<input type="button" name="pwCheck" value="확인" placeholder="비밀번호를 입력해주세요." onclick="fn_pwCheck(this.form)" />');
 }
 	function fn_pwCheck(f) {
+		
 		if(f.pw.value == '') {
 			alert('비밀번호를 입력해주세요.');
 			f.pw.focus();
-		} else if(f.pw.value != '${loginDto.s_pw}'){
-			alert('비밀번호가 일치하지 않습니다. 다시 시도하세요.');
-			f.pw.focus();
-		} else {
-			location.href = 'infoDelete.myPage';
+			return;
 		}
+
+		let pw = f.pw.value;
+		$.ajax({
+			url:'deletePwCheck.myPage/' + pw,
+			type: 'get',
+			dataType: 'json',
+			success: function(responseObj){
+				if(responseObj.result) {
+					location.href = 'infoDelete.myPage';
+				} else {
+					alert('비밀번호가 일치하지 않습니다. 다시 시도하세요.');
+					f.pw.focus();
+				}
+			},
+			error: function(){
+				alert('비밀번호를 체크하는데 오류가 발생했습니다.');
+			}
+		});
 	}
 	
 </script>

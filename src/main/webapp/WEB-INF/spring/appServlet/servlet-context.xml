@@ -32,6 +32,7 @@
 	<beans:bean id="placeUpdateCommand" class="com.koreait.baraON.command.place.PlaceUpdateCommand" />
 	<beans:bean id="placeDeleteCommand" class="com.koreait.baraON.command.place.PlaceDeleteCommand" />
 	<beans:bean id="placeFullDeleteCommand" class="com.koreait.baraON.command.place.PlaceFullDeleteCommand" />
+	<beans:bean id="placeSearchCommand" class="com.koreait.baraON.command.place.PlaceSearchCommand" />
 	
 	<!-- placeOption command -->
 	<beans:bean id="optionDeleteCommand" class="com.koreait.baraON.command.option.OptionDeleteCommand" />
@@ -169,6 +170,7 @@
 	<beans:bean id="regularClubCommand" class="com.koreait.baraON.command.myPage.RegularClubCommand" />	
 	<beans:bean id="instantClubCommand" class="com.koreait.baraON.command.myPage.InstantClubCommand" />	
 	<beans:bean id="clubListDeleteCommand" class="com.koreait.baraON.command.myPage.ClubListDeleteCommand" />	
+	<beans:bean id="deletePwCheck" class="com.koreait.baraON.command.myPage.DeletePwCheck" />	
 	<beans:bean id="infoDeleteCommand" class="com.koreait.baraON.command.myPage.InfoDeleteCommand" />	
 	<beans:bean id="clubManageListCommand" class="com.koreait.baraON.command.myPage.ClubManageListCommand" />	
 	<beans:bean id="clubCountCommand" class="com.koreait.baraON.command.myPage.ClubCountCommand" />	

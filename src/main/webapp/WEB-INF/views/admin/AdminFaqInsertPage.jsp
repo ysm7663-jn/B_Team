@@ -24,7 +24,29 @@
 	function fn_insert(){
 		alert('FAQ가 추가되었습니다.');
 	}
+	function fn_checkForm(f) {
+
+	    if(f.title.value == '' || f.title.value.length < 2 ) {
+	        alert("제목을 확인하세요.");
+	        f.title.focus();
+	        return false;
+	    }
+	    if(f.content.value == ''){
+	        alert('내용을 입력하세요.');
+	        f.content.focus();
+			return false;
+	    }
+	    if(f.f_category.value == '선택'){
+	    	alert('카테고리를 선택하세요.');
+	        f.f_category.focus();
+			return false;
+	    }
+	    fn_insert();
+	    f.submit();
+	    	
+	    }
 	
+
 </script>
 </head>
 <body>
@@ -43,7 +65,7 @@
 			<span style="font-size: 20px">내용</span><br/>
 			<textarea rows="4" cols="20" name="content" style="width:400px; height:200px; font-size:20px; margin-top:10px"></textarea><br/><br/>
 			<input type="hidden" value="${faqDto.f_category}">
-			<button onclick="fn_insert()">작성완료</button>
+			<input type="button" value="작성완료" onclick="fn_checkForm(this.form)" />
 		</form>
 	</div><br/><br/>
 <%@ include file="../template/footer.jsp" %>

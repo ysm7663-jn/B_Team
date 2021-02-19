@@ -32,7 +32,12 @@
 				<ul id="category-list">
 					<c:forEach var="categoryDto" items="${categoryList}" >
 					<li>
-						<a href="javascript:void(0);" role="button">${categoryDto.pc_name}</a>
+						<c:if test="${categoryDto.pc_no eq placeCategoryDto.pc_no}">
+							<a href="javascript:void(0);" style="background:rgba(95, 158, 160, 1);" role="button">${categoryDto.pc_name}</a>
+						</c:if>
+						<c:if test="${categoryDto.pc_no ne placeCategoryDto.pc_no}">
+							<a href="javascript:void(0);" role="button">${categoryDto.pc_name}</a>
+						</c:if>
 						<input type="hidden" value="${categoryDto.pc_no}" />
 					</li>
 					</c:forEach>
@@ -70,7 +75,7 @@
 		<article class="place-insert-list">
 			<div class="subtitle">공간 소개 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required >${placeDto.p_content}</textarea>
+				<textarea class="place-input" rows="8" cols="100" name="p_content" placeholder="최대 2000자" required >${placeDto.p_content}</textarea>
 				<span id="character-length" >${fn:length(placeDto.p_content)}</span>자 / 2000자
 			</div>
 		</article>
@@ -174,9 +179,9 @@
 										가격<span class="required-data">필수 사항</span>
 									</div>
 									<div class="option-content">
-										평일 :<br/> 
+										평일 : 
 										<input type="number" name="po_dayPrice" value="${optionDto.po_dayPrice}" style="width:80px;" required />원<br/>
-										주말(공휴일) :<br/>
+										휴일 :
 										<input type="number" name="po_holiday" value="${optionDto.po_holiday}" style="width:80px;" required />원
 									</div>
 								</article>

@@ -6,6 +6,7 @@
 	<jsp:param value="BaraON :: 공간목록" name="title"/>
 </jsp:include>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg==" crossorigin="anonymous"></script>
+<script src="resources/js/place-list.js"></script>
 <link rel="stylesheet" href="resources/style/place/place-list.css">
 <link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick-theme.css" />
 <link rel="stylesheet" href="resources/style/slick-1.8.1/slick/slick.css" />
@@ -15,35 +16,21 @@
 	<c:forEach var="list" items="${list}">
 		imgList.push(JSON.parse('${list.p_img}'));
 	</c:forEach>
-	
 	let categoryNo = '${param.categoryNo}';
-	$(function(){
-		$.each(imgList, function(idx, img){
-			$.each(img, function(i, placeImg){
-				let imgTag = '<img class="list-thumbnail" alt="'+placeImg+'" src="resources/images/PlaceImages/'+placeImg+'">';
-				if (i==0){
-					$('.thumbnail-box').eq(idx).append($(imgTag).css('display', 'block'));
-				} else {
-					$('.thumbnail-box').eq(idx).append($(imgTag));
-				}
-			}); 
-		});
-		$('.thumbnail-box').slick({
-			dots: true,
-			fade: true,
-			autoplay: true,
-			autoplaySpeed: 2000
-		});
-		if(categoryNo != ''){
-			$('div.category').eq(categoryNo-1).css('background','rgba(95, 158, 160, 1)');
-		}
-	})
-
-	
 </script>
 <div class="search-wrap">
-	
+	<form id="search-form">
+		<div class="search-wrap">
+			<input type="text" name="query" placeholder="지역명 혹은 공간명을 검색해보세요!" />
+			<button type="button" id="search-btn"><i class="fas fa-search"></i></button>
+		</div>
+	</form>
 </div>
+<c:if test="${param.query ne null}">
+	<div class="search-result">
+		<span class="query-span">${param.query}</span>(으)로 검색한 결과입니다.
+	</div>
+</c:if>
 <h1 class="title">어떤 공간을 찾고 있나요?</h1>
 
 <div class="category-wrap">
@@ -69,8 +56,11 @@
 	<c:if test="${isSeller}">
 		<a id="insert-btn" href="placeInsertPage.place">공간등록하기</a>
 	</c:if>
-	<c:if test="${empty list}">
-		<div class="empty-list-box" >등록된 공간이 없어요!</div>
+	<c:if test="${empty list && param.query eq null}">
+		<div class="empty-list-box" >등록된 공간이 없어요!<i class="fas fa-sad-tear"></i></div>
+	</c:if>
+	<c:if test="${empty list && param.query ne null}">
+		<div class="empty-list-box" >검색 결과가 없네요<i class="fas fa-sad-tear"></i></div>
 	</c:if>
 	<c:if test="${not empty list}">
 		<div class="place-list-wrap">

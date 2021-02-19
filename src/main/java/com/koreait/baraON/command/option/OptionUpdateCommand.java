@@ -68,7 +68,17 @@ public Map<String, Object> execute(SqlSession sqlSession, Model model){
 				resultMap.put("result", -1);
 				return resultMap;
 			}
+			// 썸네일을 변경했으면 기존 파일을 삭제
+			PlaceOptionDto insertedDto = placeOptionDao.getPlaceOptionDto(po_no);
+			
 			String realPath = multipartRequest.getServletContext().getRealPath("resources/images/PlaceOptionImages");
+			
+			File uploadedImg = new File(realPath, insertedDto.getPo_img());
+			
+			if(uploadedImg.exists()) {
+				uploadedImg.delete();
+			}
+			
 			String filename = originalFilename.substring(0, originalFilename.lastIndexOf("."));
 			String uploadFilename = filename + "-" + System.currentTimeMillis() + "." + extension;
 			

@@ -11,7 +11,7 @@ $(function(){
 			$(event.target).next().removeClass('active');
 			// 이 때 만약 날짜를 선택했다면 input hidden name=res_date에 값이 들어가있다.
 			// active 클래스를 없애준 후 해당 값도 없애준다.
-			$(event.target).next().find('input[type="hidden"]').val('');
+			$(event.target).next().find('input[type="hidden"]').remove();
 		} else {
 			$(event.target).next().addClass('active');
 		}
@@ -192,7 +192,8 @@ function fn_datepiacker(){
         showMonthAfterYear: true,
         yearSuffix: '년',
         onSelect: function(d){
-        	$(this).closest('.calendar-wrap').next().val(d);
+        	$(this).closest('.option-info-box').find('input[type="hidden"]').remove();
+        	$(this).closest('.calendar-wrap').after('<input type="hidden" name="res_date" value="'+d+'"/>');
         }
 	});
 }
@@ -272,7 +273,7 @@ function fn_reviewDelete(f){
 			success:function(responseObj){
 				if(responseObj.result > 0) {
 					alert('삭제되었습니다.');
-					location.href='placeViewPage.place?no='+no+'#place-review';
+					location.href='placeViewPage.place?no='+no;
 				} else {
 					alert('삭제에 실패했습니다.');
 				}
@@ -362,9 +363,16 @@ function fn_reviewList(){
 function appendList(list){
 	
 	$.each(list,function(index, reviewDto){
-		$('<form>').append('<input type="hidden" name="review-rn" value="'+reviewDto.rn+'" />')
-		.append($('<div>').addClass('review').append($('<div>').addClass('reviewer-info')))
-		.appendTo($($('form').last()));
+		let date = new Date(reviewDto.rv_postDate);
+		let postDate = date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)+' '+('0'+date.getHours()).slice(-2)+':'+('0'+date.getMinutes()).slice(-2)+':'+date.getSeconds();
+		date = new Date(reviewDto.rv_modifyDate);
+		let modifyDate = date.getFullYear()+'-'+('0'+(date.getMonth()+1)).slice(-2)+'-'+('0'+date.getDate()).slice(-2)+' '+('0'+date.getHours()).slice(-2)+':'+('0'+date.getMinutes()).slice(-2)+':'+date.getSeconds();
+		$('form').last().after(
+				$('<form>')
+				.append('<input type="hidden" name="rn" value="'+reviewDto.rn+'" />')
+				.append($('<div>').addClass('review').append($('<div>').addClass('reviewer-info')))
+		);
+		
 		if(reviewDto.m_nick == null){
 			$('.reviewer-info').last().append($('<span>').addClass('review-id').text('ID : '+reviewDto.m_id));
 		} else {
@@ -374,15 +382,15 @@ function appendList(list){
 		}
 		$('.review').last().append('<div class="review-star">');
 		for(let i=1;i<=5;i++){
-			if(i < reviewDto.rv_star){
-				$('.review-star').last().append('<i class="fas fa-star"></i>')
+			if(i <= reviewDto.rv_star){
+				$('.review-star').last().append('<i class="fas fa-star"></i>');
 			} else {
-				$('.review-star').last().append('<i class="far fa-star"></i>')
+				$('.review-star').last().append('<i class="far fa-star"></i>');
 			}
 		}
-		$('.review').last().append($('<div class="review-date">').append('작성일 : '+reviewDto.rv_postDate+'<br/>'));
+		$('.review').last().append($('<div class="review-date">').append('작성일 : '+postDate));
 		if(reviewDto.rv_modifyDate != reviewDto.rv_postDate && reviewDto.rv_modifyDate != null){
-			$('.review-date').last().append('최근수정일 : '+reviewDto.rv_modifyDate);
+			$('.review-date').last().append('<br/>최근수정일 : '+modifyDate);
 		}
 		$('.review').last().append($('<div class="review-content">').append('<p>'+reviewDto.rv_content+'</p'));
 		if(reviewDto.rv_img != null){

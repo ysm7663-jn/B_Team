@@ -31,7 +31,7 @@
 			<div class="subtitle">공간 이름<span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
 				<input class="place-input" type="text" name="p_title" placeholder="최대 50자" required />
-				<span class="char-length" ></span>자 / 50자<br/>
+				<span class="char-length" >0</span>자 / 50자<br/>
 				<p class="example-box" style="white-space:pre-line;">
 					리스트에 공개 될 제목입니다.
 				</p>
@@ -41,7 +41,7 @@
 			<div class="subtitle">사업장명 <span class="required-data">필수 사항</span> </div>
 			<div class="sub-content">
 				<input class="place-input" type="text" name="p_name" placeholder="최대 50자" required />
-				<span class="char-length" ></span>자 / 50자
+				<span class="char-length" >0</span>자 / 50자
 				<p class="example-box" style="white-space:pre-line;">
 					사업자로 등록되어 있는 사업장 이름을 적어주세요.
 				</p>
@@ -51,14 +51,14 @@
 			<div class="subtitle">공간 한줄 소개</div>
 			<div class="sub-content">
 				<input class="place-input" type="text" name="p_desc" placeholder="최대 150자" />
-				<span class="char-length" ></span>자 / 150자
+				<span class="char-length" >0</span>자 / 150자
 			</div>
 		</article>
 		<article class="place-insert-list">
 			<div class="subtitle">공간 소개 <span class="required-data">필수 사항</span></div>
 			<div class="sub-content">
-				<textarea class="place-input" rows="5" cols="100" name="p_content" placeholder="최대 2000자" required ></textarea>
-				<span class="char-length" ></span>자 / 2000자
+				<textarea class="place-input"  rows="8" cols="100" name="p_content" placeholder="최대 2000자" required ></textarea>
+				<span class="char-length" >0</span>자 / 2000자
 			</div>
 		</article>
 		<article class="place-insert-list">
@@ -152,8 +152,8 @@
 								가격<span class="required-data">필수 사항</span>
 							</div>
 							<div class="option-content">
-								평일 : <input type="number" name="po_dayPrice" required />원
-								주말(공휴일) : <input type="number" name="po_holiday" required />원
+								평일 : <input type="number" name="po_dayPrice" required />원<br/>
+								휴일 : <input type="number" name="po_holiday" required />원
 							</div>
 						</article>
 						<article class="option-box">
@@ -161,8 +161,8 @@
 								인원<span class="required-data">필수 사항</span>
 							</div>
 							<div class="option-content">
-								최소 : <input type="number" name="po_min" required />
-								최대 : <input type="number" name="po_max" required />
+								최소 : <input type="number" name="po_min" required />명<br/>
+								최대 : <input type="number" name="po_max" required />명
 							</div>
 						</article>
 						<article class="option-box">

@@ -47,7 +47,7 @@
 								<div class="res_people">예약인원 | ${clubReservationListDto.res_people}명</div>
 								<div>
 									옵션     | ${clubReservationListDto.po_name}
-									<span class="cancelPayment"><input type="button" value="결제취소" onclick="" /></span>
+									<!-- <span class="cancelPayment"><input type="button" value="결제취소" onclick="" /></span> -->
 								</div>
 							</div>
 						</div>

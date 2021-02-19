@@ -206,6 +206,11 @@ function fn_removeOption(){
 /* 첨부이미지 미리보기 */
 function fn_previewThumbnail(btn){
 	$(btn).on('change', function(event){
+		if(event.target.files.length>5){
+			alert('파일첨부는 최대 5개까지만 가능합니다');
+			$(event.target).val('');
+			return;
+		}
 		let appendTarget = $(event.target).parent().next();
 		$(appendTarget).empty();
 		for (let image of event.target.files) { 

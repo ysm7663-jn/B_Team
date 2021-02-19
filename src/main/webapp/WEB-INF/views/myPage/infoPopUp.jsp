@@ -9,7 +9,6 @@
 <title>멤버 정보</title>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
-
 	var cl_no;
 	//var year = new Date().getFullYear();
 	
@@ -23,7 +22,6 @@
 			var nick = $(f).find('#nick').val();
 			//var birth = $(f).find("#name").val();
 			//var age = year - (Number)birth.subString(3) + 1;
-			cl_no = $(f).find("#cl_no").val();
 			
 			var addIcon = '';
 			for(var i = 0; i < card; i ++) {
@@ -31,6 +29,7 @@
 			}
 			
 			if(nick == '${nick}') {
+				cl_no = $(f).find("#cl_no").val();
 				$('#nameAndAge').html($(f).find("#name").val()); 
 				$('#nick').html($(f).find("#nick").val()); 
 				$('#phone').html($(f).find("#phone").val()); 

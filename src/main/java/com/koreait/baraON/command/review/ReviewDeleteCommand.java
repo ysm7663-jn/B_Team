@@ -19,20 +19,25 @@ public class ReviewDeleteCommand {
 		ReviewDao reviewDao = sqlSession.getMapper(ReviewDao.class);
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("result", reviewDao.reviewDelete(rv_no));
 		
 		ReviewDto reviewDto = reviewDao.getReviewDto(rv_no);
-		String filenames= reviewDto.getRv_img().replace("[", "");
-		filenames.replace("]", "");
-		filenames.replaceAll("\"", "");
-		String[] filenameList = filenames.split(", ");
-		String realPath = request.getServletContext().getRealPath("resources/images/ReviewImages");
-		for(int i = 0;i<filenameList.length;i++) {
-			File file = new File(realPath, filenameList[i]);
-			if (file.exists()) {
-				file.delete();
+		String filenames= null;
+		try {
+			filenames = reviewDto.getRv_img().replace("[", "").replace("]", "");
+			filenames.replaceAll("\"", "");
+			String[] filenameList = filenames.split(",");
+			String realPath = request.getServletContext().getRealPath("resources/images/ReviewImages");
+			for(int i = 0;i<filenameList.length;i++) {
+				File file = new File(realPath, filenameList[i]);
+				if (file.exists()) {
+					file.delete();
+				}
 			}
+			
+		} catch (NullPointerException e) {
+			
 		}
+		resultMap.put("result", reviewDao.reviewDelete(rv_no));
 		
 		return resultMap;
 	}

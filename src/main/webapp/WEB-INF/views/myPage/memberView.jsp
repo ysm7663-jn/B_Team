@@ -260,7 +260,7 @@
 					<td><input type="text" placeholder="${loginDto.m_email}"id="m_email" name="m_email" value="${loginDto.m_email}"/></td>
 				</tr>
 				<tr>
-					<td colspan="2"  style="text-align:center";>
+					<td colspan="2">
 						<input type="button" value="확인" onclick="fn_memberUpdate(this.form)"/>
 					</td>
 				</tr>

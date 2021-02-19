@@ -91,6 +91,21 @@ button:hover{
 .close:hover{
 	transform:rotateY(360deg);
 }
+
+button#place-update-btn, button#place-delete-btn{
+	width : 150px;
+	height : 30px;
+	font-size: 15px;
+	text-align : center;
+	line-height : 30px;
+	border : 0;
+	border-radius: 10px;
+	background: rgba(95, 158, 160, 0.5);
+	cursor:pointer;	
+}
+button#place-update-btn:hover, button#place-delete-btn:hover{
+	background: rgba(95, 158, 160, 1);
+}
 /* 공간 옵션 css */
 aside {
 	position : sticky;
@@ -155,6 +170,19 @@ div[id*="facilities"] {
 }
 .option-info-box>.img-box>img:hover{
 	transform: scale(1.2);
+}
+button[class^="count-"]{
+	width: 30px;
+	height: 30px;
+	border: 0 solid black;
+	border-radius: 5px;
+}
+input[name="res_people"]{
+	width:150px;
+	border: 0 solid black;
+	border-bottom: 2px solid black;
+	text-align: center;
+	font-size: 20px;	
 }
 .reserve-form > .btn-wrap button{
 	width : 140px;

@@ -20,10 +20,6 @@ div {
 .box{
 		display: inline-flex;
 }
-.mypage-body{
-	width : 1000px; 
-	
-}
 #myInfo{
 	width : 600px; 
 	height : 600px; 
@@ -43,9 +39,9 @@ input{
 	width : 200px; 
 	height : 30px; 
 }
-.mypage-contents{
-	width : 1000px; 
-	height : 1300px;
+
+tr:last-of-type > td {
+	text-align: center;
 }
 input[type=button]{
 	background:cadetblue;

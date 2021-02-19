@@ -16,12 +16,12 @@ public class MemberPwSearchCommand implements MemberCommand {
 		Map<String, Object> map = model.asMap();
 		
 		String m_id = (String)map.get("m_id");
-
+		String m_pw = Sha256.sha256((String)map.get("m_pw"));
 		MemberDao memberDao = sqlSession.getMapper(MemberDao.class);
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
-		resultMap.put("result", memberDao.memberPwSearch(m_id));
+		resultMap.put("result", memberDao.memberPwSearch(m_id).equals(m_pw));
 
 		return resultMap;
 		

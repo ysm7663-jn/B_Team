@@ -16,6 +16,7 @@ public class MemberPwUpdateCommand implements MemberCommand {
 
 		Map<String, Object> map = model.asMap();
 		MemberDto memberDto  = (MemberDto)map.get("memberDto");
+		memberDto.setM_pw(Sha256.sha256(memberDto.getM_pw()));
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		
@@ -24,7 +25,7 @@ public class MemberPwUpdateCommand implements MemberCommand {
 		resultMap.put("result", memberDao.memberPwUpdate(memberDto));
 		
 		return resultMap;
-		
+
 	}
 
 }
