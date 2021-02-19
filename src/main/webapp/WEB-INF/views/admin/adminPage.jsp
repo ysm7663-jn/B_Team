@@ -47,7 +47,6 @@
 		font-size: 20px;
 		color : blue;
 	}
-
 </style>
 <title></title>
 </head>
