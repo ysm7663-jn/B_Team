@@ -37,7 +37,6 @@
 		font-size: 20px;
 		color : blue;
 	}
-
 </style>
 <title></title>
 </head>
@@ -47,30 +46,32 @@
 		<a href="index" onclick="alert('관리자 페이지를 종료합니다.')" class="exit">⇒ 관리자페이지 나가기</a>
 	</div>
 	<hr>
-	<div style="background:#F8EBEE; height: 720px;">
-			<div style="float:right; height:250px; margin: 200px 500px 100px 300px; text-align: center">
+	<div style="background:#F8EBEE; height: 720px; display: flex;">
+			<div class="category">
+				<div style="width: 200px; height:250px; border-bottom: 1px solid black; padding:20px 0 0 10px; display:inline-block;" >
+					<span class="board">게시판 관리</span>
+						<div style="margin: 20px 0 0 30px"><a href="adminNoticeListPage.admin">공지사항</a></div>
+						<div style="margin: 20px 0 10px 30px"><a href="adminFaqListPage.admin">FAQ</a></div>
+						<div style="margin: 20px 0 10px 30px"><a href="adminEventListPage.admin">이벤트</a></div>
+						<div style="width: 150px;"></div>	
+				</div>
+				<div style="width: 200px; height:250px; border-bottom: 1px solid black; padding:20px 0 0 10px">
+					<span class="member">이용자 관리</span>
+						<div style="margin: 20px 0 0 30px;"><a href="adminMemberPage.admin">회원 관리</a></div>
+						<div style="margin: 20px 0 10px 30px;"><a href="adminSellerPage.admin">판매자 관리</a></div>
+						<div style="margin: 20px 0 10px 30px;"><a href="adminConfirmPage.admin">공간 승인관리</a></div>
+						<div style="width: 150px;"></div>	
+				</div>
+				<div style="width: 200px;height:200px; padding:20px 0 0 10px">
+					<span class="review">댓글 관리</span>
+					<div style="margin: 20px 0 0 30px;"><a href="adminReplyPage.admin">답글 관리</a></div>
+					<div style="margin: 20px 0 10px 30px;"><a href="adminReviewPage.admin">리뷰 관리</a></div>
+				</div>
+			</div>
+			<div style="height:250px; margin: 0 auto; padding: 178px; text-align: center">
 				<span style="font-size: 70px">BARAON 관리자 페이지 입니다.</span><br/><br/><br/><br/><br/>
 				<span style="font-size: 40px">BARAON 멤버님들의 소중한 정보를 수정하는 공간이오니</span><br/>
 				<span style="font-size: 40px">정보 수정 시 다시한번 확인 후 수정해주시기 바랍니다.</span><br/>
-			</div>
-			<div style="width: 200px; height:250px; border-bottom: 1px solid black; padding:20px 0 0 10px; display:inline-block;" >
-				<span class="board">게시판 관리</span>
-					<div style="margin: 20px 0 0 30px"><a href="adminNoticeListPage.admin">공지사항</a></div>
-					<div style="margin: 20px 0 10px 30px"><a href="adminFaqListPage.admin">FAQ</a></div>
-					<div style="margin: 20px 0 10px 30px"><a href="adminEventListPage.admin">이벤트</a></div>
-					<div style="width: 150px;"></div>	
-			</div>
-			<div style="width: 200px; height:250px; border-bottom: 1px solid black; padding:20px 0 0 10px">
-				<span class="member">이용자 관리</span>
-					<div style="margin: 20px 0 0 30px;"><a href="adminMemberPage.admin">회원 관리</a></div>
-					<div style="margin: 20px 0 10px 30px;"><a href="adminSellerPage.admin">판매자 관리</a></div>
-					<div style="margin: 20px 0 10px 30px;"><a href="adminConfirmPage.admin">공간 승인관리</a></div>
-					<div style="width: 150px;"></div>	
-			</div>
-			<div style="width: 200px;height:200px; padding:20px 0 0 10px">
-				<span class="review">댓글 관리</span>
-				<div style="margin: 20px 0 0 30px;"><a href="adminReplyPage.admin">답글 관리</a></div>
-				<div style="margin: 20px 0 10px 30px;"><a href="adminReviewPage.admin">리뷰 관리</a></div>
 			</div>
 		
 	</div>
