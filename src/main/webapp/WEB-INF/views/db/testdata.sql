@@ -7,8 +7,6 @@
 -- 1~15 메일인증완료
 -- 16~20 메일인증미완
 -- 회원은 member$$
-
-
 DELETE FROM MEMBER WHERE M_NO = 01;
 DELETE FROM MEMBER WHERE M_NO = 02;
 DELETE FROM MEMBER WHERE M_NO = 03;

@@ -76,12 +76,12 @@
 			var result2 = document.getElementById('result2');
 			if(regExpPW.test(s_pw)){
 				result2.textContent ='사용가능한 비밀번호입니다.';
-				result2.setAttribute = ('class', 'check-s_pw1-result-ok');
+				result2.setAttribute('class', 'check-s_pw1-result-ok');
 				check2=true;
 				return true;
 			}else{
 				result2.textContent = '사용 불가능한 비밀번호입니다.';
-				result2.setAttribute = ('class', 'check-s_pw1-result-not');
+				result2.setAttribute('class', 'check-s_pw1-result-not');
 				check2=false;
 				return false;
 			}
@@ -95,12 +95,12 @@
 			var result3 = document.getElementById('result3');
 			if(s_pw == s_pw2){
 				result3.textContent ='비밀번호가 일치합니다.';
-				result3.setAttribute = ('class', 'check-s_pw2-result-ok');
+				result3.setAttribute('class', 'check-s_pw2-result-ok');
 				check3=true;
 				return true;
 			}else{
 				result3.textContent = '비밀번호가 일치하지 않습니다.';
-				result3.setAttribute = ('class', 'check-s_pw2-result-not');
+				result3.setAttribute('class', 'check-s_pw2-result-not');
 				check3=false;
 				return false;
 			}
@@ -151,12 +151,12 @@
 			var result5 = document.getElementById('result5');
 			if(regExpNAME.test(s_name)){
 				result5.textContent ='정상적인 이름입니다.';
-				result5.setAttribute = ('class', 'check-s_name-result-ok');
+				result5.setAttribute('class', 'check-s_name-result-ok');
 				check5=true;
 				return true;
 			}else{
 				result5.textContent = '제대로 입력하셨는지 다시한번 확인해 주세요.';
-				result5.setAttribute = ('class', 'check-s_name-result-not');
+				result5.setAttribute('class', 'check-s_name-result-not');
 				check5=false;
 				return false;
 			}
@@ -171,12 +171,12 @@
 			var result6 = document.getElementById('result6');
 			if(regExpYEAR.test(s_birth)){
 				result6.textContent = '';
-				result6.setAttribute = ('class', 'check-s_birth-result-not');
+				result6.setAttribute('class', 'check-s_birth-result-not');
 				check6=true;
 				return true;
 			}else{
 				result6.textContent = '제대로 입력하셨는지 다시한번 확인해 주세요.';
-				result6.setAttribute = ('class', 'check-s_birth-result-not');
+				result6.setAttribute('class', 'check-s_birth-result-not');
 				check6=false;
 				return false;
 			}
@@ -200,11 +200,11 @@
 					}else{
 						if(regExpEMAIL.test(s_email)){
 							result7.textContent = '사용가능한 이메일입니다';
-							result7.setAttribute = ('class', 'check-s_email-result-not');
+							result7.setAttribute('class', 'check-s_email-result-not');
 							return true;
 						}else{
 							result7.textContent = '제대로 입력하셨는지 다시한번 확인해 주세요.';
-							result7.setAttribute = ('class', 'check-s_email-result-not');
+							result7.setAttribute('class', 'check-s_email-result-not');
 							return false;
 						}
 					}
@@ -254,12 +254,12 @@
 			var result8 = document.getElementById('result8');
 			if(s_email2==authKey){
 				result8.textContent = '인증이 완료되었습니다';
-				result8.setAttribute = ('class', 'check-s_email2-result-not');
+				result8.setAttribute('class', 'check-s_email2-result-not');
 				check8=true;
 				return true;
 			}else{
 				result8.textContent = '제대로 입력하셨는지 다시한번 확인해 주세요.';
-				result8.setAttribute = ('class', 'check-s_email2-result-not');
+				result8.setAttribute('class', 'check-s_email2-result-not');
 				check8=false;
 				return false;
 			}
