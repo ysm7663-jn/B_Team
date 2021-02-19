@@ -329,10 +329,12 @@ public class MemberController {
 			produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> memberNickUpdate(@RequestBody MemberDto memberDto,
+													HttpServletRequest request,
 													Model model){
 		if (memberDto != null) {
 			model.addAttribute("memberDto", memberDto);
 		}
+		model.addAttribute("request",request);
 		return memberNickUpdateCommand.execute(sqlSession, model);
 	}
 	
