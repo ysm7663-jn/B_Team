@@ -24,7 +24,7 @@ public class PlaceCaSearchCommand implements SellerCommand {
 		
 		PlaceDao placeDao = sqlSession.getMapper(PlaceDao.class);
 		
-		List<PlaceListDto> list = placeDao.allPlaceSearch(placeDto);
+		List<PlaceListDto> list = placeDao.placeCaSearch(placeDto);
 
 		StringBuffer sb = new StringBuffer();
 		sb.trimToSize();

@@ -10,7 +10,7 @@ public class SpaceViewPageCommand {
 	public void execute(SqlSession sqlSession, Model model) {
 		
 		PlaceCategoryDao placeCategoryDao = sqlSession.getMapper(PlaceCategoryDao.class);
-		model.addAttribute("list",placeCategoryDao.pcList()); 
+		model.addAttribute("categoryList",placeCategoryDao.pcList()); 
 		
 	}
 

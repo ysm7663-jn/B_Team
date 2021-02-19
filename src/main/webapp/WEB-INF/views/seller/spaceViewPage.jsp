@@ -28,9 +28,12 @@ function fn_placeSearch(){
 			contentType:'application/json',
 			dataType: 'json',
 			success: function(data){
+				$('#place-wrap').empty();
 				let imgList = JSON.parse(data.imgList);
 				$(function(){
 					$.each(imgList, function(idx, img){
+						let divTag = $('<div>').addClass('placeList').prop('id', 'placeList');
+						$('.place-wrap').append(divTag);
 						$.each(img, function(i, placeImg){
 							let imgTag = '<img class="list-thumbnail" alt="'+placeImg+'" src="resources/images/PlaceImages/'+placeImg+'">';
 							$('.placeList').eq(idx).append(imgTag);
@@ -50,9 +53,13 @@ function fn_placeSearch(){
 			contentType:'application/json',
 			dataType: 'json',
 			success: function(data){
+				$('#place-wrap').empty();
 				let imgList = JSON.parse(data.imgList);
 				$(function(){
+					console.log(data.list);
 					$.each(imgList, function(idx, img){
+						let divTag = $('<div>').addClass('placeList').prop('id', 'placeList');
+						$('.place-wrap').append(divTag);
 						$.each(img, function(i, placeImg){
 							let imgTag = '<img class="list-thumbnail" alt="'+placeImg+'" src="resources/images/PlaceImages/'+placeImg+'">';
 							$('.placeList').eq(idx).append(imgTag);
@@ -87,9 +94,11 @@ function fn_placeSearch2(){
 				let imgList = JSON.parse(data.imgList);
 				$(function(){
 					$.each(imgList, function(idx, img){
+						let divTag = $('<div>').addClass('placeList').prop('id', 'placeList');
+						$('.place-wrap').append(divTag);
 						$.each(img, function(i, placeImg){
 							let imgTag = '<img class="list-thumbnail" alt="'+placeImg+'" src="resources/images/PlaceImages/'+placeImg+'">';
-							$('.placeList2').eq(idx).append(imgTag);
+							$('.placeList').eq(idx).append(imgTag);
 						}) 
 					});
 				})
@@ -106,12 +115,15 @@ function fn_placeSearch2(){
 			contentType:'application/json',
 			dataType: 'json',
 			success: function(data){
+				$('#placeList').empty();
 				let imgList = JSON.parse(data.imgList);
 				$(function(){
 					$.each(imgList, function(idx, img){
+						let divTag = $('<div>').addClass('placeList').prop('id', 'placeList');
+						$('.place-wrap').append(divTag);
 						$.each(img, function(i, placeImg){
 							let imgTag = '<img class="list-thumbnail" alt="'+placeImg+'" src="resources/images/PlaceImages/'+placeImg+'">';
-							$('.placeList2').eq(idx).append(imgTag);
+							$('.placeList').eq(idx).append(imgTag);
 						}) 
 					});
 				})
@@ -132,24 +144,20 @@ function fn_placeSearch2(){
 <h3>OPEN</h3>
 <br/>
 <div class="content-wrap">
-<form method="get">
-	<select name="category1" id="category1" onchange="fn_placeSearch()">
-		<option value="0" selected>전체</option>
-			<c:forEach var="PlaceCategoryDto" items="${list}">
-				<option value="${PlaceCategoryDto.pc_no}">
-					${PlaceCategoryDto.pc_name}
-				</option>
-			</c:forEach>
-	</select>
-</form>
+	<form method="get">
+		<select name="category1" id="category1" onchange="fn_placeSearch()">
+			<option value="0" selected>전체</option>
+				<c:forEach var="PlaceCategoryDto" items="${categoryList}">
+					<option value="${PlaceCategoryDto.pc_no}">
+						${PlaceCategoryDto.pc_name}
+					</option>
+				</c:forEach>
+		</select>
+	</form>
 
 <br/>
-<div class="place-wrap">
-	<a href="placeViewPage.place?no=${placeList.p_no}">	<!-- 수정페이지로 전환 -->
-		<div class="placeList">
-		
-		</div>
-	</a>
+<div class="place-wrap" id="place-wrap">
+
 </div>
 
 
@@ -160,7 +168,7 @@ function fn_placeSearch2(){
 <form method="get">
 	<select name="category2" id="category2" onchange="fn_placeSearch2()">
 		<option value="">전체</option>
-			<c:forEach var="PlaceCategoryDto" items="${list}">
+			<c:forEach var="PlaceCategoryDto" items="${categoryList}">
 				<option value="${PlaceCategoryDto.pc_no}">
 					${PlaceCategoryDto.pc_no}
 				</option>
@@ -169,8 +177,10 @@ function fn_placeSearch2(){
 </form>
 
 <div class="place-wrap2">
-	<div id="placeList2">
-	</div>
+	<c:forEach var="placeDto" items="${list}" >
+			<div class="placeList2" id="placeList2">
+			</div>
+	</c:forEach>
 </div>
 
 	</div>

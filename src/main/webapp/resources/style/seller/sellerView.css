@@ -39,6 +39,11 @@ input{
 	width : 200px; 
 	height : 30px; 
 }
+
 tr:last-of-type > td {
 	text-align: center;
+}
+input[type=button]{
+	background:cadetblue;
+	color:white;
 }

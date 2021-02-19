@@ -22,7 +22,7 @@ div {
 .place-wrap, .place-wrap2{
 	width : 100%;
 	margin: 0 auto;
-	margin-left: 300px;
+	margin-left: 100px;
 	display:grid;
 	grid-template-columns : repeat(3,400px);
 	row-gap : 30px;

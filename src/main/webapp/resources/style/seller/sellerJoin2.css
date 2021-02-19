@@ -42,6 +42,8 @@
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
+	background:cadetblue;
+	color:white;
 }
 #s_companyNo{
 	width : 400px; 
@@ -63,10 +65,14 @@
 	width : 200px; 
 	height : 50px; 
 	font-size : 15px;
+	background:cadetblue;
+	color:white;
 }
 #btn{
 	width : 400px; 
 	height : 50px; 
 	font-size : 15px;
+	background:cadetblue;
+	color:white;
 }
 
