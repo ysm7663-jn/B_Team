@@ -21,7 +21,7 @@ public class MemberPwSearchCommand implements MemberCommand {
 
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 
-		resultMap.put("result", memberDao.memberPwSearch(m_id)==m_pw);
+		resultMap.put("result", memberDao.memberPwSearch(m_id).equals(m_pw));
 
 		return resultMap;
 		
