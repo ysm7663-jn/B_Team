@@ -70,7 +70,7 @@
 			<a href="findPage.member" class="login">아이디/비밀번호를 잊으셨나요?</a><br/>
 			
 			<input type="button" value="로그인" onclick="fn_login(this.form)" />
-			<div class="kakaoLogin">
+			<!-- <div class="kakaoLogin">
 				<h5>Kakao 계정으로 시작하기</h5>
 				<a href="https://kauth.kakao.com/oauth/authorize
 				?client_id=4fd62ed3c510f9b7e565ab78d297d444
@@ -78,7 +78,7 @@
 				&response_type=code">
     				<img alt="kakaoLogin" src="resources/images/kakao_login_small.png" >
     			</a>
-			</div>
+			</div> -->
 		</form>
 	</div>
 </div>

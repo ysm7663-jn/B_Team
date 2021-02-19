@@ -170,6 +170,7 @@
 	<beans:bean id="regularClubCommand" class="com.koreait.baraON.command.myPage.RegularClubCommand" />	
 	<beans:bean id="instantClubCommand" class="com.koreait.baraON.command.myPage.InstantClubCommand" />	
 	<beans:bean id="clubListDeleteCommand" class="com.koreait.baraON.command.myPage.ClubListDeleteCommand" />	
+	<beans:bean id="deletePwCheck" class="com.koreait.baraON.command.myPage.DeletePwCheck" />	
 	<beans:bean id="infoDeleteCommand" class="com.koreait.baraON.command.myPage.InfoDeleteCommand" />	
 	<beans:bean id="clubManageListCommand" class="com.koreait.baraON.command.myPage.ClubManageListCommand" />	
 	<beans:bean id="clubCountCommand" class="com.koreait.baraON.command.myPage.ClubCountCommand" />	

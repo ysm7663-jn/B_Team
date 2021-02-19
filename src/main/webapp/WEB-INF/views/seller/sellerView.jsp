@@ -198,7 +198,7 @@
 					<td><input type="text" placeholder="${loginDto.s_email}"id="s_email" name="s_email" value="${loginDto.s_email}"/></td>
 				</tr>
 				<tr>
-					<td>
+					<td colspan="2">
 						<input type="button" value="확인" onclick="fn_sellerUpdate(this.form)"/>
 					</td>
 				</tr>

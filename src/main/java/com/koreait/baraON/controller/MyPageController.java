@@ -21,6 +21,7 @@ import com.koreait.baraON.command.myPage.ClubListDeleteCommand;
 import com.koreait.baraON.command.myPage.ClubManageDetailCommand;
 import com.koreait.baraON.command.myPage.ClubManageListCommand;
 import com.koreait.baraON.command.myPage.ClubReservationListCommand;
+import com.koreait.baraON.command.myPage.DeletePwCheck;
 import com.koreait.baraON.command.myPage.InfoDeleteCommand;
 import com.koreait.baraON.command.myPage.InstantClubCommand;
 import com.koreait.baraON.command.myPage.RegularClubCommand;
@@ -37,6 +38,7 @@ public class MyPageController {
 	private RegularClubCommand regularClubCommand;
 	private InstantClubCommand instantClubCommand;
 	private ClubListDeleteCommand clubListDeleteCommand;
+	private DeletePwCheck deletePwCheck;
 	private InfoDeleteCommand infoDeleteCommand;
 	private ClubManageListCommand clubManageListCommand;
 	private ClubCountCommand clubCountCommand;
@@ -50,6 +52,7 @@ public class MyPageController {
 							 RegularClubCommand regularClubCommand,
 							 InstantClubCommand instantClubCommand,
 							 ClubListDeleteCommand clubListDeleteCommand,
+							 DeletePwCheck deletePwCheck,
 							 InfoDeleteCommand InfoDeleteCommand,
 							 ClubManageListCommand clubManageListCommand,
 							 ClubCountCommand clubCountCommand,
@@ -61,6 +64,7 @@ public class MyPageController {
 		this.regularClubCommand = regularClubCommand;
 		this.instantClubCommand = instantClubCommand;
 		this.clubListDeleteCommand = clubListDeleteCommand;
+		this.deletePwCheck = deletePwCheck;
 		this.infoDeleteCommand = InfoDeleteCommand;
 		this.clubManageListCommand = clubManageListCommand;
 		this.clubManageListCommand = clubManageListCommand;
@@ -129,6 +133,14 @@ public class MyPageController {
 		} else {
 			return "myPage/sellerDeletePage";
 		}
+	}
+	
+	@RequestMapping(value="deletePwCheck.myPage/{pw}", method=RequestMethod.GET, produces="application/json; charset=utf-8")
+	@ResponseBody
+	public Map<String, Object> deletePwCheck(@PathVariable("pw") String pw, HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		model.addAttribute("pw", pw);
+		return deletePwCheck.execute(sqlSession, model);
 	}
 	
 	@RequestMapping(value="infoDelete.myPage", method=RequestMethod.GET)

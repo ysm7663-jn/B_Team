@@ -35,3 +35,6 @@ th{
 td{
 	width : 600px; 
 }
+tr:last-of-type > td {
+	text-align: center;
+}
