@@ -47,3 +47,7 @@ input{
 	width : 1000px; 
 	height : 1300px;
 }
+input[type=button]{
+	background:cadetblue;
+	color:white;
+}

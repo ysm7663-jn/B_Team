@@ -76,12 +76,12 @@
 			var result2 = document.getElementById('result2');
 			if(regExpPW.test(s_pw)){
 				result2.textContent ='사용가능한 비밀번호입니다.';
-				result2.setAttribute = ('class', 'check-s_pw1-result-ok');
+				result2.setAttribute ('class', 'check-s_pw1-result-ok');
 				check2=true;
 				return true;
 			}else{
 				result2.textContent = '사용 불가능한 비밀번호입니다.';
-				result2.setAttribute = ('class', 'check-s_pw1-result-not');
+				result2.setAttribute ('class', 'check-s_pw1-result-not');
 				check2=false;
 				return false;
 			}
@@ -95,12 +95,12 @@
 			var result3 = document.getElementById('result3');
 			if(s_pw == s_pw2){
 				result3.textContent ='비밀번호가 일치합니다.';
-				result3.setAttribute = ('class', 'check-s_pw2-result-ok');
+				result3.setAttribute ('class', 'check-s_pw2-result-ok');
 				check3=true;
 				return true;
 			}else{
 				result3.textContent = '비밀번호가 일치하지 않습니다.';
-				result3.setAttribute = ('class', 'check-s_pw2-result-not');
+				result3.setAttribute ('class', 'check-s_pw2-result-not');
 				check3=false;
 				return false;
 			}

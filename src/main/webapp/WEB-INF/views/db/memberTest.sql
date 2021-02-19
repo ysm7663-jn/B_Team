@@ -4,6 +4,8 @@ select * from place where s_no=01;
 select * from place where p_no=101;
 select * from review where p_no=101;
 select * from placeoption;
+select placeoption_seq.nextval from dual
+
 
 SELECT R.RES_NO ,R.M_NO, R.RES_PEOPLE, R.RES_PRICE, R.RES_STATE
 			              FROM SELLER S, PLACE P, PLACEOPTION PO, RESERVATION R
@@ -11,7 +13,9 @@ SELECT R.RES_NO ,R.M_NO, R.RES_PEOPLE, R.RES_PRICE, R.RES_STATE
 			               AND P.P_NO = PO.P_NO
 			               AND PO.PO_NO = R.PO_NO;
 
-
+SELECT * FROM USER_SEQUENCES;
+			               
+			               
 INSERT INTO PLACECATEGORY (PC_NO, PC_NAME) VALUES (100,'음공 스튜디오 키친');
 
 INSERT INTO PLACEOPTION (PO_NO, P_NO, PO_NAME, PO_MIN, PO_MAX, PO_DAYPRICE, PO_HOLIDAY, PO_IMG, PO_FXILITY) VALUES (100, 101, '음공 스튜디오 키친01', 2, 15, 40000, 50000, 'PO_IMG101.jpg', '[tv, 주류반입가능, 마이크]');

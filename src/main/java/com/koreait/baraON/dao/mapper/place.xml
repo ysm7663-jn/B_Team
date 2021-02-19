@@ -112,7 +112,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="placeCaSearch"  parameterType="com.koreait.baraON.dto.PlaceDto" resultType="com.koreait.baraON.dto.PlaceListDto">
 		SELECT *
 		FROM PLACE
-		WHERE S_NO=#{s_no} AND PC_NO=#{pc_no} P_DELETE = 0
+		WHERE S_NO=#{s_no} AND PC_NO=#{pc_no} AND P_DELETE = 0
 	</select>
 	
 	<select id="allPlaceSearch2"  parameterType="com.koreait.baraON.dto.PlaceDto" resultType="com.koreait.baraON.dto.PlaceListDto">
@@ -124,7 +124,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="placeCaSearch2"  parameterType="com.koreait.baraON.dto.PlaceDto" resultType="com.koreait.baraON.dto.PlaceListDto">
 		SELECT *
 		FROM PLACE
-		WHERE S_NO=#{s_no} AND PC_NO=#{pc_no} P_DELETE = 1
+		WHERE S_NO=#{s_no} AND PC_NO=#{pc_no} AND P_DELETE = 1
 	</select>
 	
 	<select id="placeAdminList" resultType="com.koreait.baraON.dto.ReviewCheckDto">
