@@ -17,6 +17,9 @@ div {
 	box-sizing: border-box;
 }
 
+.member-category:nth-of-type(1) li:nth-of-type(1) > a {
+	color: cadetblue;
+}
 .box{
 		display: inline-flex;
 }

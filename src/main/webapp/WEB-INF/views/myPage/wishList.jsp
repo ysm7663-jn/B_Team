@@ -31,7 +31,7 @@
 							<form action="wishDelete.myPage" method="post">
 								<!-- hidden -->
 								<input type="hidden" name="wNo" value="${wishListDto.w_no}" />
-								<button><span class="wishIcon"><i class="fas fa-heart"></i></span></button>
+								<button class="wish-btn"><span class="wishIcon"><i class="fas fa-heart"></i></span></button>
 								<div class="title"><a href="clubViewPage.club?c_no=${wishListDto.c_no}">${wishListDto.c_title}</a></div>
 								<div class="content"><a href="clubViewPage.club?c_no=${wishListDto.c_no}">${wishListDto.c_content}</a></div>
 							</form>

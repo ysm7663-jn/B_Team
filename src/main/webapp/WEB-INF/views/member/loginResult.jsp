@@ -6,7 +6,7 @@
 	var loginDto = '${loginDto}';
 	
 	if (loginDto != '') {
-		alert('${loginDto.m_id}님 환영합니다.');
+		alert('${loginDto.m_nick}님 환영합니다.');
 		location.href='index';
 	} else {
 		alert('일치하는 회원이 없습니다.');

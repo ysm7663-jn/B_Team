@@ -8,6 +8,11 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
 <link rel="stylesheet" href="resources/style/myPage/clubList.css">	
+<style>
+	.member-category:nth-of-type(1) li:nth-of-type(3) > a {
+	color: cadetblue;
+}
+</style>
 <script>
 	function fn_quit(f){
 		if(confirm('모임을 나가시면 해당 모임에 대한 정보는 전부 사라집니다.               나가시려면 "확인" 취소하시려면 "취소"를 눌러주세요.')) {
