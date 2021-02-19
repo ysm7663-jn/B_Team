@@ -83,7 +83,7 @@
 						<div class="quit">
 							<form method="post">
 								<!-- hidden -->
-								<input type="hidden" name="clubNo" value="0" />
+								<input type="hidden" name="clubNo" value="1" />
 								<input type="hidden" name="clNo" value="${ClubListDto.cl_no}" />
 								<input type="button" value="Quit >" onclick="fn_quit(this.form)" />
 							</form>
