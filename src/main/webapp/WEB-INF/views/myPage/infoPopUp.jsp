@@ -22,7 +22,6 @@
 			var nick = $(f).find('#nick').val();
 			//var birth = $(f).find("#name").val();
 			//var age = year - (Number)birth.subString(3) + 1;
-			cl_no = $(f).find("#cl_no").val();
 			
 			var addIcon = '';
 			for(var i = 0; i < card; i ++) {
@@ -30,6 +29,7 @@
 			}
 			
 			if(nick == '${nick}') {
+				cl_no = $(f).find("#cl_no").val();
 				$('#nameAndAge').html($(f).find("#name").val()); 
 				$('#nick').html($(f).find("#nick").val()); 
 				$('#phone').html($(f).find("#phone").val()); 

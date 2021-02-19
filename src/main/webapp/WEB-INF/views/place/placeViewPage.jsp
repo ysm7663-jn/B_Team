@@ -169,7 +169,7 @@
 								</div>
 								<div class="calendar-wrap">
 								</div>
-								<input type="hidden" name="res_date" />
+								<!-- <input type="hidden" name="res_date" /> -->
 								<div class="people-count">
 									<strong>예약인원</strong>
 									<button type="button" class="count-minus" >&lt;</button>
@@ -303,9 +303,9 @@
 									 </c:forEach>
 								</div>
 								<div class="review-date">
-									작성일 : <fmt:formatDate value="${reviewDto.rv_postDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
+									작성일 : <fmt:formatDate value="${reviewDto.rv_postDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 									<c:if test="${(reviewDto.rv_modifyDate ne reviewDto.rv_postDate) && (reviewDto.rv_modifyDate ne null)}">
-										<br/>최근수정일 : <fmt:formatDate value="${reviewDto.rv_modifyDate}" pattern="yyyy-MM-dd (EE) hh:mm:ss"/>
+										<br/>최근수정일 : <fmt:formatDate value="${reviewDto.rv_modifyDate}" pattern="yyyy-MM-dd HH:mm:ss"/>
 									</c:if>
 								</div>
 								<div class="review-content" >

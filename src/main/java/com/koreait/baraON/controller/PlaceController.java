@@ -19,6 +19,7 @@ import com.koreait.baraON.command.place.PlaceDeleteCommand;
 import com.koreait.baraON.command.place.PlaceFullDeleteCommand;
 import com.koreait.baraON.command.place.PlaceInsertCommand;
 import com.koreait.baraON.command.place.PlaceListCommand;
+import com.koreait.baraON.command.place.PlaceSearchCommand;
 import com.koreait.baraON.command.place.PlaceUpdateCommand;
 import com.koreait.baraON.command.place.PlaceUpdatePageCommand;
 import com.koreait.baraON.command.place.PlaceViewCommand;
@@ -37,6 +38,7 @@ public class PlaceController {
 	private PlaceDeleteCommand placeDeleteCommand;
 	private PlaceUpdatePageCommand placeUpdatePageCommand;
 	private PlaceFullDeleteCommand placeFullDeleteCommand;
+	private PlaceSearchCommand placeSearchCommand;
 	
 	@Autowired
 	public void setCommand(PlaceListCommand placeListCommand,
@@ -45,7 +47,8 @@ public class PlaceController {
 							PlaceUpdateCommand placeUpdateCommand,
 							PlaceDeleteCommand placeDeleteCommand,
 							PlaceUpdatePageCommand placeUpdatePageCommand,
-							PlaceFullDeleteCommand placeFullDeleteCommand) {
+							PlaceFullDeleteCommand placeFullDeleteCommand,
+							PlaceSearchCommand placeSearchCommand) {
 		this.placeListCommand = placeListCommand;
 		this.placeViewCommand = placeViewCommand;
 		this.placeInsertCommand = placeInsertCommand;
@@ -53,6 +56,7 @@ public class PlaceController {
 		this.placeDeleteCommand = placeDeleteCommand;
 		this.placeUpdatePageCommand = placeUpdatePageCommand;
 		this.placeFullDeleteCommand = placeFullDeleteCommand;
+		this.placeSearchCommand = placeSearchCommand;
 	}
 	
 	@RequestMapping(value="placeListPage.place", method=RequestMethod.GET)
@@ -128,6 +132,15 @@ public class PlaceController {
 		model.addAttribute("p_no", p_no);
 		
 		return placeFullDeleteCommand.execute(sqlSession, model);
+	}
+	
+	
+	@RequestMapping(value="searchPlace.place", method=RequestMethod.GET)
+	public String searchPlace(HttpServletRequest request, Model model) {
+		model.addAttribute("request",request);
+		placeSearchCommand.execute(sqlSession, model);
+		
+		return "place/placeListPage";
 	}
 	
 }

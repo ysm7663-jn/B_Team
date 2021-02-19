@@ -12,117 +12,10 @@
 <script>
 	let remarkList = JSON.parse('${placeDto.p_remark}');
 	let facilityList = JSON.parse('${placeOptionDto.po_fxility}');
+	let placeName='${placeOptionDto.po_name}';
+	let resNo='${reservationDto.res_no}';
 	let isProgress=false;
-	function fn_facilityList(list, appendTo){
-		$.each(list, function(idx, facility){
-			let strHtml = '<div class="facility">'+facility+'</div>';
-			$(appendTo).append(strHtml);
-		});
-	}
-	function fn_remarkList(list, appendTo){
-		$.each(list, function(idx, remark){
-			let strHtml = '<li class="remark">'+remark+'</li>';
-			$(appendTo).append(strHtml);
-		});
-	}
-	function fn_moreBtn(btn){
-		$(btn).click(function(event){
-			if($(event.target).parent().next().is('.active')===false){
-				$(event.target).parent().next().addClass('active');
-			} else {
-				$(event.target).parent().next().removeClass('active');
-			}
-		})
-	}
-	$(function(){
-		fn_moreBtn('.more-btn');
-		fn_facilityList(facilityList, '#facility-list');
-		fn_remarkList(remarkList, '#remark-list');
-		$("#res-update").click(function() {
-			if(isProgress){
-				return;
-			}
-			isProgress=true;
-			var IMP = window.IMP; // 생략가능
-			IMP.init('imp97817701');
-			// 'iamport' 대신 부여받은 "가맹점 식별코드"를 사용
-			// i'mport 관리자 페이지 -> 내정보 -> 가맹점식별코드
-			IMP.request_pay({
-				pg : 'inicis', // version 1.1.0부터 지원.
-				/*
-				'kakao':카카오페이,
-				html5_inicis':이니시스(웹표준결제)
-				'nice':나이스페이
-				'jtnet':제이티넷
-				'uplus':LG유플러스
-				'danal':다날
-				'payco':페이코
-				'syrup':시럽페이
-				'paypal':페이팔
-				 */
-				pay_method : 'card',
-				/*
-				'samsung':삼성페이,
-				'card':신용카드,
-				'trans':실시간계좌이체,
-				'vbank':가상계좌,
-				'phone':휴대폰소액결제
-				 */
-				merchant_uid : '${reservationDto.res_no}'+ new Date().getTime(),
-				/*
-				merchant_uid에 경우
-				https://docs.iamport.kr/implementation/payment
-				 */
-				name : '${placeOptionDto.po_name}',
-				//결제창에서 보여질 이름
-				amount : $('[name="res_price"]').val(),
-				buyer_email : $('[name="res_email"]').val(),
-				buyer_name : $('[name="res_name"]').val(),
-				buyer_tel : $('[name="res_phone"]').val()
-			}, function(rsp) {
-				console.log(rsp);
-				if (rsp.success) {
-					let sendObj = {
-							'res_no' : '${reservationDto.res_no}',
-							'res_email' : rsp.buyer_email,
-							'res_price' : rsp.paid_amount,
-							'res_applynum' : rsp.apply_num,
-							'res_purpose' : $('[name="res_purpose"]').val(),
-							'res_requirement' : $('[name="requirement"]').val(),
-							'res_impid' : rsp.imp_uid
-					};
-					$.ajax({
-						url:'reservationUpdate.reservation',
-						type:'put',
-						data:JSON.stringify(sendObj),
-						contentType:'application/json; charset=utf-8',
-						dataType:'json',
-						success:function(responseObj){
-							if(responseObj.result){
-								alert('결제에 성공했습니다. 예약대기상태로 변경됩니다.');
-							} else {
-								alert('결제에 실패했습니다. 다시 시도해주세요');
-							}
-						},
-						error:function(request,status,error){
-							alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-						},
-						complete:function(){
-							setTimeout(function(){
-								isProgress = false;
-							},1000);
-							location.href='placeListPage.place';
-						}
-					});
-				} else {
-					var msg = '결제에 실패하였습니다.';
-					msg += '에러내용 : ' + rsp.error_msg;
-					alert(msg);
-				}
-			});
-		});
-		
-	})
+	let isPossible=false;
 </script>
 
 <div>
@@ -231,24 +124,24 @@
 						<label for="terms-all">전체 동의</label>
 					</li> 
 					<li>
-						<input id="terms1" type="checkbox" />
+						<input class="terms" id="terms1" type="checkbox" />
 						<label for="terms1">위 공간의 예약조건 확인 및 결제진행 동의
 							<span class="required-data">필수</span>
 						</label>
 					</li> 
 					<li>
-						<input id="terms2" type="checkbox" />
+						<input class="terms" id="terms2" type="checkbox" />
 						<label for="terms2">환불규정 안내에 대한 동의
 							<span class="required-data">필수</span>
 						</label>
 					</li> 
 					<li>
 						<div class="confirm-box">
-							<input id="terms3" type="checkbox" />
+							<input class="terms" id="terms3" type="checkbox" />
 								<label for="terms3">개인정보 제3자 제공동의
 								<span class="required-data">필수</span>
 							</label>
-							<button class="more-btn" type="button" ><i class="fas fa-caret-down"></i></button>
+							<button class="more-btn" type="button" >▼</button>
 							<a></a>
 						</div>
 						<div class="scroll-box">
@@ -269,11 +162,11 @@
 					</li>
 					<li>
 						<div class="confirm-box">
-							<input id="terms4" type="checkbox" />
+							<input class="terms" id="terms4" type="checkbox" />
 								<label for="terms4">개인정보 수집 및 이용동의
 								<span class="required-data">필수</span>
 							</label>
-							<button class="more-btn" type="button" ><i class="fas fa-caret-down"></i></button>
+							<button class="more-btn" type="button" >▼</button>
 						</div>
 						<div class="scroll-box">
 							<ol>

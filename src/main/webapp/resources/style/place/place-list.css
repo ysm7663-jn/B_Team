@@ -31,6 +31,43 @@
 	background: rgba(95, 158, 160, 0.8);
 }
 
+.search-wrap{
+	width: 100vw;
+	height: 80px;
+	background: #fdfdfd;
+	position:sticky;
+	top:0;
+	z-index:99999;
+}
+.search-wrap>input{
+	font-size: 20px;
+	height: 50px;
+	width: 300px;
+	border: 0 solid white;
+	padding: 20px;
+	border-bottom : 2px solid #8f8f8f;
+	margin: 0 auto;
+}
+#search-btn{
+	height: 50px;
+	width: 50px;
+	font-size: 30px;
+	background:none;
+	border: 0 solid white;
+	margin: 5px 0;
+}
+div.search-result{
+	font-size: 35px;
+	
+}
+span.query-span{
+	color: rgba(95, 158, 160, 1);
+}
+div.empty-list-box{
+	font-size: 35px;
+	color: rgba(95, 158, 160, 1);
+}
+
 h1, h3{
 	text-align: center;
 }

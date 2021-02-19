@@ -281,6 +281,7 @@ public class MemberController {
 	public Map<String, Object> memberPwSearch(@RequestBody MemberDto memberDto,
 												Model model) {
 		model.addAttribute("m_id",memberDto.getM_id());
+		model.addAttribute("m_pw",memberDto.getM_pw());
 		return memberPwSearchCommand.execute(sqlSession, model);
 	}
 	
@@ -340,10 +341,12 @@ public class MemberController {
 					produces="application/json; charset=utf-8")
 	@ResponseBody
 	public Map<String, Object> memberUpdate(@RequestBody MemberDto memberDto,
+												HttpServletRequest request,
 												Model model){
 		if (memberDto != null) {
 			model.addAttribute("memberDto", memberDto);
 		}
+		model.addAttribute("request",request);
 		return memberUpdateCommand.execute(sqlSession, model);
 	}
 	

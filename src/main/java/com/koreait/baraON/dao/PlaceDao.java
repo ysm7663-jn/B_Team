@@ -31,5 +31,6 @@ public interface PlaceDao {
 	public List<PlaceListDto> placeCaSearch2(PlaceDto placeDto);
 	public List<ReviewCheckDto> placeAdminList(int s_no, int beginRecord, int endRecord);
 	public int placeCount();
+	public List<PlaceListDto> querySearch(String query);
 	
 }
