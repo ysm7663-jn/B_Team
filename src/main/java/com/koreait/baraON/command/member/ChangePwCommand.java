@@ -18,7 +18,7 @@ public class ChangePwCommand implements BaraONCommand {
 		Map<String, Object> map = model.asMap();
 		HttpServletRequest request = (HttpServletRequest)map.get("request");
 		HttpSession session = request.getSession();
-		String newPassword = request.getParameter("newPassword");
+		String newPassword = Sha256.sha256(request.getParameter("newPassword"));
 		String id = (String)session.getAttribute("id");
 		String grade = (String)session.getAttribute("grade");
 		
