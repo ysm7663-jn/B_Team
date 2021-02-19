@@ -12,7 +12,8 @@ function fn_pwSearch(){
 	var m_id= '${loginDto.m_id}';
 	var m_pw= $('#userPw').val();
 	var Obj={
-			'm_id':m_id
+			'm_id':m_id,
+			'm_pw':m_pw
 	};
 	$.ajax({
 		url:'memberPwSearch.member',
@@ -21,7 +22,7 @@ function fn_pwSearch(){
 		contentType:'application/json',
 		dataType:'json',
 		success:function(data){
-			if(m_pw==data.result){
+			if(data.result){
 				alert('성공');	//지울것
 					var obj={
 							'm_no':'${loginDto.m_no}',
@@ -47,7 +48,7 @@ function fn_pwSearch(){
 							}
 						});
 			}else{
-				alert('비밀번호가 틀립니다');
+				alert('비밀번호가 다릅니다');
 			}
 		},
 		error: function(){

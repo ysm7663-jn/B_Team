@@ -1,12 +1,3 @@
-SELECT B.*
-		FROM (SELECT ROWNUM RN, A.*
-		FROM (SELECT RV.*, M.M_NICK, M.M_ID
-			 FROM REVIEW RV LEFT JOIN MEMBER M ON RV.M_NO = M.M_NO
-			 WHERE P_NO =6
-			 AND RV.RV_DELETE=0
-			 ORDER BY RV.RV_POSTDATE DESC ) A ) B
-		 WHERE RN BETWEEN #{param2} AND #{param3}
-
 -- MEMBER
 INSERT INTO MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL, M_REGDATE, M_AGREEMENT) VALUES (MEMBER_SEQ.NEXTVAL, 'member01', 'ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1', '010-1111-1101', '윤성민', '1998-01-01', '윤조장', 'dpwls6787@naver.com', sysdate, 1);
 INSERT INTO MEMBER (M_NO, M_ID, M_PW, M_PHONE, M_NAME, M_BIRTH, M_NICK, M_EMAIL, M_REGDATE, M_AGREEMENT) VALUES (MEMBER_SEQ.NEXTVAL, 'member02', 'ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1', '010-1111-1102', '김성민', '1998-02-01', '김조장', 'member02@naver.com', sysdate, 1);
@@ -92,25 +83,6 @@ VALUES(PLACE_SEQ.NEXTVAL, 1, 1,
 '1층 음공 스튜디오&키친',
 '["공유키친1.jpg","공유키친2.jpg"]',
 '승인',
-'http://instagram.com/eumgong_studio_kitchen',
-'["사용 후 정리 부탁드립니다.","집기사용은 내어드린 집기를 사용해주시고 파손 시 비용이 추가될 수 있습니다.","주차공간이 협소합니다.","식사를 제공하는 대관의 경우 최대 15인까지가 좋습니다. 그 외에 다른 용도에 대한 인원은 상담해주세요. 기본적으로 16인 내로 사용 추천하는 공간입니다.삭제"]',
-0);
-INSERT INTO PLACE (P_NO, S_NO, PC_NO, P_TITLE, P_NAME, P_DESC, P_CONTENT, P_INFO, P_ADDR, P_BNAME, P_ADDRDETAIL, P_IMG, P_CONFIRM, P_URL, P_REMARK, P_DELETE)
-VALUES(PLACE_SEQ.NEXTVAL, 1, 1,
-'음공 스튜디오 앤 키친',
-'음공스튜디오&키친',
-'음공은 천천히 머물다가는 따뜻한 공간입니다.',
-'연남동에 위치한 &#39;프라이빗 공간&#39;음공입니다.
-푸드스튜디오 겸 이탈리안 식당으로 다양한 이야기를 풀어놓는 프라이빗한 공간입니다.
-쿠킹클래스, 전시공간, 브라이덜샤워, 대관파티, 식사대관, 생일파티, 모임, 회의, 상견계, 돌잔치 등 원하시는 컨텐츠를 가지고 편안하고 따뜻하게 머물다가세요.
-식사를 취향에 맞게 준비해드리거나 공간을 연출해드리기도 합니다.
-하나하나 정성으로 차려놓은 공간을 나누어드립니다.',
-'["간단한 식기도구","공간연출을 위한 간단한 소품","야외 테라스","원하시는 식사 또는 공간연출이 가능한 공간입니다. 요리와 스타일링이 필요하신 분들은 문의주세요.","테라스에 전시공간을 무료로 제공합니다. 필요하신 분은 연락주세요.","원하시는 테이블셋팅, 파티셋팅, 플라워셋팅을 무드에 맞게 주문하실 수 있습니다.","공간 대여외에 음공이 준비하는 식사 대관이 가능합니다. 1인당 가격에 맞춰 요리가 준비되며 3만원부터 구성됩니다. 식사 대관은 전화로 문의주세요."]',
-'서울특별시 마포구 연남동 224-6',
-'연남동',
-'1층 음공 스튜디오&키친',
-'["공유키친1.jpg","공유키친2.jpg"]',
-'1',
 'http://instagram.com/eumgong_studio_kitchen',
 '["사용 후 정리 부탁드립니다.","집기사용은 내어드린 집기를 사용해주시고 파손 시 비용이 추가될 수 있습니다.","주차공간이 협소합니다.","식사를 제공하는 대관의 경우 최대 15인까지가 좋습니다. 그 외에 다른 용도에 대한 인원은 상담해주세요. 기본적으로 16인 내로 사용 추천하는 공간입니다.삭제"]',
 0);
@@ -967,6 +939,32 @@ VALUES (PLACEOPTION_SEQ.NEXTVAL, 20,
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
 VALUES (REVIEW_SEQ.NEXTVAL, 1, 1, 0, 5, NULL, SYSDATE-50, SYSDATE-50, '아주 좋았어요. 재밌게 요리 잘 하다 갑니다 ^^');
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 2, 0, 4, '["엠티장소리뷰1.jpg","엠티장소리뷰2.jpg"]', SYSDATE-16, SYSDATE-14, '할말이 많지만 짧게 이야기한다면 1. 간단한 회식 장소가 필요했음. 나름 적합 2. 겨울이라서(이불 얾)루프탑 못씀. 그런거에 비해서 방도 작아서 못누리는게 많아서 시간당 2만원인데 다소 비싸다는 느낌이 듦. 3. 화장실 열악한편 4. 가는 길이 진짜 최악... 5. 주차는 골목에 지정선없는 곳에 두라함. 안되면 숙대가라함. 말이되나... 비쌈..');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 3, 0, 3, '["엠티장소리뷰1.jpg","엠티장소리뷰2.jpg"]', SYSDATE-16, SYSDATE-14, '할말이 많지만 짧게 이야기한다면 1. 간단한 회식 장소가 필요했음. 나름 적합 2. 겨울이라서(이불 얾)루프탑 못씀. 그런거에 비해서 방도 작아서 못누리는게 많아서 시간당 2만원인데 다소 비싸다는 느낌이 듦. 3. 화장실 열악한편 4. 가는 길이 진짜 최악... 5. 주차는 골목에 지정선없는 곳에 두라함. 안되면 숙대가라함. 말이되나... 비쌈..');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 4, 0, 2, '["엠티장소리뷰1.jpg","엠티장소리뷰2.jpg"]', SYSDATE-16, SYSDATE-14, '할말이 많지만 짧게 이야기한다면 1. 간단한 회식 장소가 필요했음. 나름 적합 2. 겨울이라서(이불 얾)루프탑 못씀. 그런거에 비해서 방도 작아서 못누리는게 많아서 시간당 2만원인데 다소 비싸다는 느낌이 듦. 3. 화장실 열악한편 4. 가는 길이 진짜 최악... 5. 주차는 골목에 지정선없는 곳에 두라함. 안되면 숙대가라함. 말이되나... 비쌈..');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 5, 0, 1, '["엠티장소리뷰1.jpg","엠티장소리뷰2.jpg"]', SYSDATE-16, SYSDATE-14, '할말이 많지만 짧게 이야기한다면 1. 간단한 회식 장소가 필요했음. 나름 적합 2. 겨울이라서(이불 얾)루프탑 못씀. 그런거에 비해서 방도 작아서 못누리는게 많아서 시간당 2만원인데 다소 비싸다는 느낌이 듦. 3. 화장실 열악한편 4. 가는 길이 진짜 최악... 5. 주차는 골목에 지정선없는 곳에 두라함. 안되면 숙대가라함. 말이되나... 비쌈..');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 6, 0, 2, '["스터디룸리뷰1.jpeg"]', SYSDATE-6, SYSDATE-6, 'wifi 잘 터지고 HDMI로 노트북과 모니터 연결할 수 있어서 스터디하기 좋았습니다. 작지만 큰 불편은 없었습니다.');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 7, 0, 3, '["스터디룸리뷰1.jpeg"]', SYSDATE-6, SYSDATE-6, 'wifi 잘 터지고 HDMI로 노트북과 모니터 연결할 수 있어서 스터디하기 좋았습니다. 작지만 큰 불편은 없었습니다.');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 8, 0, 4, '["스터디룸리뷰1.jpeg"]', SYSDATE-6, SYSDATE-6, 'wifi 잘 터지고 HDMI로 노트북과 모니터 연결할 수 있어서 스터디하기 좋았습니다. 작지만 큰 불편은 없었습니다.');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 9, 0, 5, '["스터디룸리뷰1.jpeg"]', SYSDATE-6, SYSDATE-6, 'wifi 잘 터지고 HDMI로 노트북과 모니터 연결할 수 있어서 스터디하기 좋았습니다. 작지만 큰 불편은 없었습니다.');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 10, 0, 4, '["엠티장소리뷰1.jpg","엠티장소리뷰2.jpg"]', SYSDATE-16, SYSDATE-14, '할말이 많지만 짧게 이야기한다면 1. 간단한 회식 장소가 필요했음. 나름 적합 2. 겨울이라서(이불 얾)루프탑 못씀. 그런거에 비해서 방도 작아서 못누리는게 많아서 시간당 2만원인데 다소 비싸다는 느낌이 듦. 3. 화장실 열악한편 4. 가는 길이 진짜 최악... 5. 주차는 골목에 지정선없는 곳에 두라함. 안되면 숙대가라함. 말이되나... 비쌈..');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 11, 0, 3, '["스터디룸리뷰1.jpeg"]', SYSDATE-6, SYSDATE-6, 'wifi 잘 터지고 HDMI로 노트북과 모니터 연결할 수 있어서 스터디하기 좋았습니다. 작지만 큰 불편은 없었습니다.');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 12, 0, 2, '["스튜디오리뷰.jpeg"]', SYSDATE-65, SYSDATE-60, '첫째도 친절 둘째도 친절이셨습니다 새벽0~2시 타임에도 불구하고 조명셋팅 및 조작법도 차근차근 설명해주셔서 수월하게 이용했습니다!! 고민말고 바로 이용하세용~~ 밤 늦은 시간에 수고많으셨고 감사했습니다 사장님~~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 13, 0, 1, '["스튜디오리뷰.jpeg"]', SYSDATE-65, SYSDATE-60, '첫째도 친절 둘째도 친절이셨습니다 새벽0~2시 타임에도 불구하고 조명셋팅 및 조작법도 차근차근 설명해주셔서 수월하게 이용했습니다!! 고민말고 바로 이용하세용~~ 밤 늦은 시간에 수고많으셨고 감사했습니다 사장님~~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
+VALUES (REVIEW_SEQ.NEXTVAL, 1, 14, 0, 2, '["스튜디오리뷰.jpeg"]', SYSDATE-65, SYSDATE-60, '첫째도 친절 둘째도 친절이셨습니다 새벽0~2시 타임에도 불구하고 조명셋팅 및 조작법도 차근차근 설명해주셔서 수월하게 이용했습니다!! 고민말고 바로 이용하세용~~ 밤 늦은 시간에 수고많으셨고 감사했습니다 사장님~~');
+INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
 VALUES (REVIEW_SEQ.NEXTVAL, 2, 1, 0, 4, NULL, SYSDATE-48, SYSDATE-48, '식기류들이 살짝 아쉽긴했지만 나쁘지 않았어요');
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
 VALUES (REVIEW_SEQ.NEXTVAL, 3, 1, 0, 4, NULL, SYSDATE-48, SYSDATE-46, '무난무난했슴다 사장님이 친절해서 좋았어요');
@@ -986,10 +984,6 @@ INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, 
 VALUES (REVIEW_SEQ.NEXTVAL, 10, 1, 0, 1, NULL, SYSDATE-36, SYSDATE-36, '완전 별루~');
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
 VALUES (REVIEW_SEQ.NEXTVAL, 10, 2, 0, 5, NULL, SYSDATE-26, SYSDATE-26, '2시간 정도 영상촬영을하였는데, 정말 친절하게 도와주셔서 편하게 이용할 수 있었습니다:) 시설도 깔끔하고 웬만한 물품과 장비는 다 구비되어있었고, 블루투스 스피커가 있어서 음악을 틀고 작업할 수 있었습니다. 추천해요~');
-INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
-VALUES (REVIEW_SEQ.NEXTVAL, 10, 3, 0, 3, '["엠티장소리뷰1.jpg","엠티장소리뷰2.jpg"]', SYSDATE-16, SYSDATE-14, '할말이 많지만 짧게 이야기한다면 1. 간단한 회식 장소가 필요했음. 나름 적합 2. 겨울이라서(이불 얾)루프탑 못씀. 그런거에 비해서 방도 작아서 못누리는게 많아서 시간당 2만원인데 다소 비싸다는 느낌이 듦. 3. 화장실 열악한편 4. 가는 길이 진짜 최악... 5. 주차는 골목에 지정선없는 곳에 두라함. 안되면 숙대가라함. 말이되나... 비쌈..');
-INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
-VALUES (REVIEW_SEQ.NEXTVAL, 10, 4, 0, 5, '["스터디룸리뷰1.jpeg"]', SYSDATE-6, SYSDATE-6, 'wifi 잘 터지고 HDMI로 노트북과 모니터 연결할 수 있어서 스터디하기 좋았습니다. 작지만 큰 불편은 없었습니다.');
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
 VALUES (REVIEW_SEQ.NEXTVAL, 10, 5, 0, 4, NULL, SYSDATE-2, SYSDATE-2, '아주 좋았어요');
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
@@ -1060,6 +1054,7 @@ INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, 
 VALUES (REVIEW_SEQ.NEXTVAL, 20, 14, 0, 3, NULL, SYSDATE-30, SYSDATE-27, '아주 좋았어요');
 INSERT INTO REVIEW (RV_NO, M_NO, P_NO, RV_DELETE, RV_STAR, RV_IMG, RV_POSTDATE, RV_MODIFYDATE, RV_CONTENT)
 VALUES (REVIEW_SEQ.NEXTVAL, 20, 18, 0, 5, NULL, SYSDATE-88, SYSDATE-88, '아주 좋았어요');
+
 
 --CLUB
 
