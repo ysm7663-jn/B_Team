@@ -66,6 +66,9 @@ a {
     font-size: 20px;
     line-height:40px; 
 }
+nav#bottom-head	div > a:hover, nav#right-head div>a:hover{
+	color:rgba(95, 158, 160, 1);
+}
 
 /* footer */
 footer {

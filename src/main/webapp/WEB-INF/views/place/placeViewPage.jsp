@@ -65,7 +65,7 @@
 		}
 		let chked = $('.place-option-wrap input:checked');
 		/* hidden res-date 선택하는 방법 생각하기 */
-		if($(chked).next().next().find('input[name="res_date"]').val() ==''){
+		if($(chked).next().next().find('input[name="res_date"]').length == 0){
 			alert('날짜를 선택해 주세요');
 			return;
 		}

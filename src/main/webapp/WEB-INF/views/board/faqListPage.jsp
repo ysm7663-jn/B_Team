@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<jsp:include page="../template/header.jsp">
+	<jsp:param value="BaraON::FAQ" name="title"/>
+</jsp:include>
 <link rel="stylesheet" href="resources/style/common.css">
-<%@ include file="../template/header.jsp" %>
 <style type="text/css">
+	#bottom-head div:nth-of-type(4){
+		border-bottom: 2px solid rgba(95, 158, 160, 1);
+	}
+	#bottom-head div:nth-of-type(4)>a{
+		color: rgba(95, 158, 160, 1);
+	}
 	.categoryList >	a:link { color: black; text-decoration: none;}
  	.categoryList > a:visited { color: black; text-decoration: none;}
 	.categoryList >	a:hover { color: blue; text-decoration: underline;}
@@ -67,9 +71,6 @@ function fn_usingList(){
 }
 */
 </script>
-<title></title>
-</head>
-<body>
 			<div id="wrap" style="width :1020px; height: 500px; margin: 0 auto;">
 				<h1>자주묻는질문(FAQ)</h1><br/>
 					<div class="categoryList" style="width: 1020px; text-align: center; margin:20px;">
@@ -118,5 +119,3 @@ function fn_usingList(){
 				</section>		
 			</div>
 <%@ include file="../template/footer.jsp" %>
-</body>
-</html>

@@ -79,7 +79,7 @@
 			</div>
 			<div>
 				<span class="review">댓글 관리</span>
-				<div style="margin: 20px 0 0 30px;"><a href="adminReplyPage.admin">답글 관리</a></div>
+				<!-- <div style="margin: 20px 0 0 30px;"><a href="adminReplyPage.admin">답글 관리</a></div> -->
 				<div style="margin: 20px 0 10px 30px;"><a href="adminReviewPage.admin">리뷰 관리</a></div>
 			</div>
 		</aside>

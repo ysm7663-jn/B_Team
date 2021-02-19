@@ -5,6 +5,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+#bottom-head div:nth-of-type(1){
+	border-bottom: 2px solid rgba(95, 158, 160, 1);
+}
+#bottom-head div:nth-of-type(1)>a{
+	color: rgba(95, 158, 160, 1);
+}
 
 .body {
 	background: white;

@@ -1,18 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
-<%@ include file="../template/header.jsp" %>
-<style type="text/css">
-
+<jsp:include page="../template/header.jsp">
+	<jsp:param value="BaraON::이벤트" name="title"/>
+</jsp:include>
+<style>
+	#bottom-head div:nth-of-type(4){
+		border-bottom: 2px solid rgba(95, 158, 160, 1);
+	}
+	#bottom-head div:nth-of-type(4)>a{
+		color: rgba(95, 158, 160, 1);
+	}
 </style>
-</head>
-<body>
 	<div style="width :1020px; height:auto; margin: 0 auto;">
 		<h1 style="margin-left: 10px">이벤트(EVENT)</h1><br/>
 		<div style="background:cadetblue; border-top: 1px solid black; border-bottom: 1px solid black">
@@ -41,5 +39,3 @@
 		</div>
 	</div>
 <%@ include file="../template/footer.jsp" %>
-</body>
-</html>

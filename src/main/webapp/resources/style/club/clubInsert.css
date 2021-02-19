@@ -6,6 +6,7 @@
     box-sizing: border-box;
 }
 
+
 .body {
 	background: white;
 	width: 100%;
@@ -15,7 +16,12 @@ a {
 	text-decoration: none;
 	color: black;
 }
-
+#bottom-head div:nth-of-type(1){
+	border-bottom: 2px solid rgba(95, 158, 160, 1);
+}
+#bottom-head div:nth-of-type(1)>a{
+	color: rgba(95, 158, 160, 1);
+} 
 .insert-wrap {
 	width: 100%;
 	text-align: center;

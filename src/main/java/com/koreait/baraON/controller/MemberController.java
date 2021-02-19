@@ -123,11 +123,13 @@ public class MemberController {
 		// 아이디 기억하기
 		chkIdCommand.execute(response, model);
 		
+		
 		// 로그인
 		loginCommand.execute(sqlSession, model);
 		HttpSession session = request.getSession();
 		if(session.getAttribute("grade") != null) {
 			if(session.getAttribute("grade").equals("member")) { // member일때
+				
 				return "member/loginResult";
 			}
 		} 

@@ -9,6 +9,20 @@
 <link rel="stylesheet" href="resources/style/common.css" />
 <link rel="stylesheet" href="resources/style/club/clubList.css" />
 
+<style>
+#bottom-head div:nth-of-type(1){
+	border-bottom: none;
+}
+#bottom-head div:nth-of-type(1)>a{
+	color: black;
+}
+#bottom-head div:nth-of-type(2){
+	border-bottom: 2px solid rgba(95, 158, 160, 1);
+}
+#bottom-head div:nth-of-type(2)>a{
+	color: rgba(95, 158, 160, 1);
+}
+</style>
 <script>
 
 var afterInsert2 = ${afterInsert2};

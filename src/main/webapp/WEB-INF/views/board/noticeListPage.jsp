@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<jsp:include page="../template/header.jsp">
+	<jsp:param value="BaraON::공지사항&이벤트" name="title"/>
+</jsp:include>
 <link rel="stylesheet" href="resources/style/common.css">
-<%@ include file="../template/header.jsp" %>
 <style type="text/css">
+	#bottom-head div:nth-of-type(4){
+		border-bottom: 2px solid rgba(95, 158, 160, 1);
+	}
+	#bottom-head div:nth-of-type(4)>a{
+		color: rgba(95, 158, 160, 1);
+	}
 	.boardCategory > a:link { color: black; text-decoration: none;}
  	.boardCategory >  a:visited { color: black; text-decoration: none;}
 	.boardCategory >  a:hover { color: blue; text-decoration: underline;}
@@ -40,8 +43,6 @@
 		 font-weight: bold;
 	 }
 </style>
-</head>
-<body>
 		<div class="boardCategory"style="width: 1020px; margin:0 auto ; text-align: center" >
 			<a href="noticeListPage.notice" class="notice">공지사항(NOTICE)</a>
 			<a href="eventListPage.event"class="event">이벤트(NOTICE)</a>
@@ -81,5 +82,3 @@
 			</section>		
 		</div>
 <%@ include file="../template/footer.jsp" %>		
-</body>
-</html>
