@@ -118,7 +118,6 @@ $(function(){
 						'res_applynum' : rsp.apply_num,
 						'res_purpose' : $('[name="res_purpose"]').val(),
 						'res_requirement' : $('[name="requirement"]').val(),
-						'res_impid' : rsp.imp_uid
 				};
 				$.ajax({
 					url:'reservationUpdate.reservation',
