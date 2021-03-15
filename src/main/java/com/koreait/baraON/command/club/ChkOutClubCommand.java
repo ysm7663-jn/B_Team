@@ -19,7 +19,7 @@ public class ChkOutClubCommand implements ClubCommand {
 		RedirectAttributes rttr = (RedirectAttributes)map.get("rttr");
 
 		int cl_no = 0;
-		if(request.getParameter("cl_no") != null) {
+		if(request.getParameter("cl_no") != null) { 
 			cl_no = Integer.parseInt(request.getParameter("cl_no"));
 		}
 		
